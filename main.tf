@@ -3,7 +3,9 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-2"
+  region     = "us-east-2"
+  access_key = "AKIA5JDNQ7PFK5UTAH7H"
+  secret_key = ""
 }
 
 resource "aws_instance" "ubuntu" {
