@@ -1,0 +1,13 @@
+.git
+.gitignore
+.editorconfig
+
+# Compiled files
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+
+# Module directory
+.terraform
+**/.idea
+**/*.iml
