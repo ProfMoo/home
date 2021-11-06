@@ -6,21 +6,22 @@ terraform {
       version = "~> 3.0"
     }
   }
+  backend "s3" {
+    bucket = "sobrien-home"
+    key = "home"
+    region = "us-east-1"
+    # To authenticate to access the state (not the actual plan)
+    shared_credentials_file = "./aws-credentials"
+  }
 }
 
 provider "aws" {
   region     = "us-east-2"
-  profile    = "default"
-  
-  shared_credentials_file = "/aws-credentials"
+  # To authenticate to access during the plan/apply phase
+  shared_credentials_file = "./aws-credentials"
 }
 
-resource "aws_instance" "ubuntu" {
-  # NOTE: Ubuntu 20.10 us-east-1 amd64 image
-  ami               = "ami-019212a8baeffb0fa"
-  instance_type     = "t3a.micro"
-  availability_zone = "us-east-2a"
+resource "aws_s3_bucket" "music" {
+  bucket = "sobrien-music"
+  acl    = "private"
 }
-
-# use rsync to sync between local linux raid and amazon backup (ec2 and ebs)
-# use ntf to sync between roon core and the local linux raid
