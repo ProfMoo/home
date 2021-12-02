@@ -11,7 +11,10 @@ services:
       - UMASK=002
       - TZ=Etc/UTC
     volumes:
-      - ./volume:/config
+      - ./lidarr-volume:/config
+    links:
+      - jackett
+      - deluge
   jackett:
     image: hotio/jackett
     ports:
@@ -22,4 +25,21 @@ services:
       - UMASK=002
       - TZ=Etc/UTC
     volumes:
-      - /jackett-volume:/config
+      - ./jackett-volume:/config
+  deluge:
+    image: lscr.io/linuxserver/deluge
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=022
+      - TZ=America/New_York
+      - DELUGE_LOGLEVEL=error #optional
+    volumes:
+      - ./deluge-config:/config
+      - ./deluge-volume:/downloads
+    ports:
+      - 8112:8112
+      - 6881:6881
+      - 6881:6881/udp
+      - 58846:58846
+    restart: unless-stopped

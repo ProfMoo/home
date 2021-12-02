@@ -34,3 +34,6 @@ override.tf.json
 terraform.rc
 
 aws-credentials
+
+lidarr-volume
+jackett-volume
