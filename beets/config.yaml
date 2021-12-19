@@ -1,0 +1,14 @@
+# plugins: discogs
+
+# discogs:
+#    source_weight: 0.0
+
+# NOTE: This assumes that the music directory is mounted here
+plugins: discogs
+
+discogs:
+   source_weight: 0.0
+
+directory: /mnt/x/test
+library:  /mnt/x/test/beets.db
+asciify_paths: true
