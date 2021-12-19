@@ -1,4 +1,0 @@
-plugins: discogs
-
-discogs:
-   source_weight: 0.0
