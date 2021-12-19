@@ -1,15 +1,39 @@
-# plugins: discogs
-
-# discogs:
-#    source_weight: 0.0
+plugins: discogs fetchart bandcamp embedart
 
 # NOTE: This assumes that the music directory is mounted here
-plugins: discogs fetchart
-
-discogs:
-   source_weight: 0.0
-   extra_tags: [year]
-
 directory: /mnt/x/test
 library:  /mnt/x/test/beets.db
 asciify_paths: true
+
+# Removing characters that could cause issues on filesystem or on S3
+replace:
+  '[\\/]': _
+  '^\.': _
+  '[\x00-\x1f]': _
+  '[<>:"\?\*\|]': _
+  '\.$': _
+  '\s+$': ''
+  '^\s+': ''
+  '^-': _
+  '#' : _
+
+discogs:
+  source_weight: 0.0
+  extra_tags: [year]
+
+import:
+  duplicate_action: skip
+
+# Configuring the bandcamp plugin
+# We have the bandcamp plugin in case there are releases only available on bandcamp
+bandcamp:
+  include_digital_only_tracks: true
+  search_max: 5
+  art: yes
+
+embedart:
+  compare_threshold: 20
+
+# NOTE:
+# try mr. carmack stuff next
+# see if we can tag album art (or add better year info)
