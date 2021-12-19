@@ -4,10 +4,11 @@
 #    source_weight: 0.0
 
 # NOTE: This assumes that the music directory is mounted here
-plugins: discogs
+plugins: discogs fetchart
 
 discogs:
    source_weight: 0.0
+   extra_tags: [year]
 
 directory: /mnt/x/test
 library:  /mnt/x/test/beets.db
