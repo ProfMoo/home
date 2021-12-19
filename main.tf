@@ -8,7 +8,7 @@ terraform {
   }
   backend "s3" {
     bucket = "sobrien-home"
-    key = "home"
+    key    = "home"
     region = "us-east-1"
     # To authenticate to access the state (not the actual plan)
     shared_credentials_file = "./aws-credentials"
@@ -16,7 +16,7 @@ terraform {
 }
 
 provider "aws" {
-  region     = "us-east-2"
+  region = "us-east-2"
   # To authenticate to access during the plan/apply phase
   shared_credentials_file = "./aws-credentials"
 }
@@ -49,18 +49,18 @@ resource "aws_iam_access_key" "nas" {
 }
 
 resource "aws_iam_policy" "nas" {
-  name = "s3-bucket-access"
+  name        = "s3-bucket-access"
   path        = "/"
   description = "Allow the NAS full access to the music backup S3 bucket"
   policy = jsonencode({
-    "Version": "2012-10-17",
-    "Statement": [
+    "Version" : "2012-10-17",
+    "Statement" : [
       {
-        "Action": [
+        "Action" : [
           "s3:*"
         ],
-        "Effect": "Allow",
-        "Resource": [
+        "Effect" : "Allow",
+        "Resource" : [
           "${aws_s3_bucket.music.arn}",
           "${aws_s3_bucket.music.arn}/*"
         ]
@@ -80,6 +80,6 @@ output "access_key_id" {
 }
 
 output "secret_access_key" {
-  value = aws_iam_access_key.nas.secret
+  value     = aws_iam_access_key.nas.secret
   sensitive = true
 }
