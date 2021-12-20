@@ -3,3 +3,5 @@ requests==2.26
 python3-discogs-client==2.3.12
 beetcamp==0.11.0
 pyacoustid==1.2.2
+beets-yearfixer==0.0.3
+pylast==4.4.0

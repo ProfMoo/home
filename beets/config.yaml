@@ -1,4 +1,4 @@
-plugins: discogs fetchart bandcamp embedart spotify
+plugins: discogs fetchart bandcamp chroma embedart spotify duplicates yearfixer lastgenre
 
 # NOTE: This assumes that the music directory is mounted here
 directory: /mnt/x/test
@@ -7,6 +7,8 @@ asciify_paths: true
 
 import:
   duplicate_action: skip
+  incremental: yes
+  log: ./log.txt
 
 # Removing characters that could cause issues on filesystem or on S3
 replace:
@@ -21,10 +23,6 @@ replace:
   '[\[\{]' : (
   '[\]\}]' : )
   '[\^\%\`\~#]' : _
-
-import:
-  incremental: yes
-  log: ./log.txt
 
 # Plugins for additional identification
 discogs:
@@ -46,6 +44,7 @@ chroma:
 embedart:
   compare_threshold: 20
 
-# NOTE:
-# try mr. carmack stuff next
-# see if we can tag album art (or add better year info)
+# Preferring the higher bitrate
+duplicates:
+  tiebreak:
+   items: [bitrate]
