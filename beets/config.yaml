@@ -1,4 +1,4 @@
-plugins: discogs fetchart bandcamp chroma embedart spotify duplicates yearfixer lastgenre
+plugins: discogs fetchart bandcamp embedart spotify duplicates yearfixer lastgenre
 
 # NOTE: This assumes that the music directory is mounted here
 directory: /mnt/x/test
@@ -6,8 +6,12 @@ library:  /mnt/x/test/beets.db
 asciify_paths: true
 
 import:
+  write: yes
   duplicate_action: skip
-  incremental: yes
+  autotag: yes
+  # uncomment when this goes to production
+  # move: yes
+  # incremental: yes
   log: ./log.txt
 
 # Removing characters that could cause issues on filesystem or on S3
@@ -36,10 +40,6 @@ bandcamp:
   include_digital_only_tracks: true
   search_max: 5
   art: yes
-
-# If all else fails, we can do a scan of the audiofile for tagging
-chroma:
-  auto: no
 
 embedart:
   compare_threshold: 20

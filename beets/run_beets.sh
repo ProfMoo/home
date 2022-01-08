@@ -1,3 +1,3 @@
 #!/bin/bash
 
-beet
+beet --config=config.yaml import /mnt/c/Users/DrMoo/Music/test
