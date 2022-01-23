@@ -14,3 +14,4 @@ services:
     ports:
       - 8337:8337
     restart: unless-stopped
+    entrypoint: '/config/entrypoint.sh'

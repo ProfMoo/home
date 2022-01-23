@@ -1,0 +1,54 @@
+plugins: discogs fetchart bandcamp embedart spotify duplicates yearfixer lastgenre extrafiles
+
+# NOTE: This assumes that the music directory is mounted here
+directory: /mnt/x/test
+library:  /mnt/x/test/beets.db
+asciify_paths: true
+
+import:
+  write: yes
+  duplicate_action: skip
+  autotag: yes
+  # uncomment when this goes to production
+  # move: yes
+  # incremental: yes
+  log: ./log.txt
+
+# Removing characters that could cause issues on filesystem or on S3
+replace:
+  '[\\/]': _
+  '^\.': _
+  '[\x00-\x1f]': _
+  '[<>:"\?\*\|]': _
+  '\.$': _
+  '\s+$': ''
+  '^\s+': ''
+  '^-': _
+  '[\[\{]' : (
+  '[\]\}]' : )
+  '[\^\%\`\~#]' : _
+
+extrafiles:
+    patterns:
+        all: '*.*'
+
+# Plugins for additional identification
+discogs:
+  source_weight: 0.0
+  extra_tags: [year]
+
+spotify:
+  source_weight: 0.7
+
+bandcamp:
+  include_digital_only_tracks: true
+  search_max: 5
+  art: yes
+
+embedart:
+  compare_threshold: 20
+
+# Preferring the higher bitrate
+duplicates:
+  tiebreak:
+   items: [bitrate]
