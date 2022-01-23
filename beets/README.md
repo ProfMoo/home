@@ -6,6 +6,7 @@
    2. Get album art
    3. Get genre
    4. Fix years
+3. Have Lidarr download albums automatically, then Beets automatically moves that into the final location with all the right tags
 
 # TO TRY NEXT
 
@@ -13,3 +14,4 @@
 2. The Skrillex disco dump
 3. Mura Masa random singles
 4. the heart and the tongue - chance the rapper
+5. 28 mansions

@@ -1,0 +1,16 @@
+# docker compose up
+version: "2.1"
+services:
+  beets:
+    image: lscr.io/linuxserver/beets
+    container_name: beets
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ./config:/config
+      - /mnt/x/test:/music
+      - /mnt/c/Users/DrMoo/Music/test:/downloads
+    ports:
+      - 8337:8337
+    restart: unless-stopped

@@ -1,4 +1,4 @@
-plugins: discogs fetchart bandcamp embedart spotify duplicates yearfixer lastgenre
+plugins: discogs fetchart bandcamp embedart spotify duplicates yearfixer lastgenre extrafiles
 
 # NOTE: This assumes that the music directory is mounted here
 directory: /mnt/x/test
@@ -27,6 +27,10 @@ replace:
   '[\[\{]' : (
   '[\]\}]' : )
   '[\^\%\`\~#]' : _
+
+extrafiles:
+    patterns:
+        all: '*.*'
 
 # Plugins for additional identification
 discogs:
