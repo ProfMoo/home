@@ -1,8 +1,7 @@
-FROM python:3.10.2-alpine
+FROM python:3.8.12
 
 COPY requirements.txt requirements.txt
 COPY entrypoint.sh entrypoint.sh
+COPY config.yaml config.yaml
 
 RUN pip3 install -r requirements.txt
-
-ENV BEETSDIR=/config
