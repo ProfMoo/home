@@ -8,10 +8,10 @@ services:
       - PUID=1000
       - PGID=1000
     volumes:
-      - ./config:/config
+      - ./volume:/volume
       - /mnt/x/test:/music
       - /mnt/c/Users/DrMoo/Music/test:/downloads
     ports:
       - 8337:8337
     restart: unless-stopped
-    entrypoint: '/config/entrypoint.sh'
+    entrypoint: 'entrypoint.sh'

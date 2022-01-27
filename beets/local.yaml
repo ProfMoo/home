@@ -2,7 +2,7 @@
 # beet --config=local.yaml import /mnt/c/Users/DrMoo/test
 
 include:
-  - config/config.yaml
+  - config.yaml
 
 directory: /mnt/x/test
 library:  /mnt/x/test/beets.db
