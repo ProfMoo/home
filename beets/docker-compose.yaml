@@ -1,9 +1,8 @@
 # docker compose up
-version: "2.1"
+version: "3.8"
 services:
   beets:
     build: .
-    container_name: beets
     environment:
       - PUID=1000
       - PGID=1000
@@ -14,4 +13,4 @@ services:
     ports:
       - 8337:8337
     restart: unless-stopped
-    entrypoint: 'entrypoint.sh'
+    entrypoint: /entrypoint.sh
