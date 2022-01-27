@@ -1,8 +1,6 @@
 #!/bin/sh
 
-echo "Hello world"
+beet import /downloads
+# TODO: figure out image artwork here 
 
-# install relevant python dependencies
-# run import
-
-beet --config=/config/config.yaml
+sleep 10
