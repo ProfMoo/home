@@ -15,6 +15,7 @@ import:
   quiet: yes
   incremental: yes
   incremental_skip_later: no
+  default_action: asis
   # TURN THIS ON WHEN READY
   # move: yes
   log: log.txt
