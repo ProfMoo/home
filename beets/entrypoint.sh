@@ -2,8 +2,8 @@
 
 beet -v import /downloads
 
-#beet fetchart
+beet fetchart
 #beet embedart
 # TODO: figure out image artwork here 
 
-sleep 10
+sleep 100

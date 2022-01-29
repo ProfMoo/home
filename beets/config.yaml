@@ -1,4 +1,4 @@
-plugins: discogs fetchart bandcamp embedart spotify duplicates yearfixer extrafiles
+plugins: discogs fetchart bandcamp embedart spotify duplicates yearfixer extrafiles unimported
 
 threaded: yes
 
@@ -14,9 +14,12 @@ import:
   resume: yes
   quiet: yes
   incremental: yes
-  incremental_skip_later: no
+  incremental_skip_later: yes
+  
+  # These fields only affect interactive mode
   default_action: apply
   none_rec_action: asis
+  
   # TURN THIS ON WHEN READY
   # move: yes
   log: /volume/log.txt
@@ -87,9 +90,16 @@ duplicates:
   tiebreak:
     items: [bitrate]
 
+chroma:
+  auto: yes
+
 check:
   import: yes                # Add checksums for new files during the import process. # This also disables integrity checks on import and will not ask you to skip the import of corrupted files.
   write-check: yes           # Verify checksums before writing files with beet write or beet modify.
   write-update: yes          # Update checksums after writing files with beet write or beet modify.
   convert-update: no         # Update the checksum if a file has been converted with the --keep-new flag.
   threads: 1                 # Threads to compute checksums.
+
+unimported:
+  ignore_extensions: jpg png
+  ignore_subdirectories: NonMusic data temp
