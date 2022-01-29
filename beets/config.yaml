@@ -86,3 +86,10 @@ embedart:
 duplicates:
   tiebreak:
     items: [bitrate]
+
+check:
+  import: yes                # Add checksums for new files during the import process. # This also disables integrity checks on import and will not ask you to skip the import of corrupted files.
+  write-check: yes           # Verify checksums before writing files with beet write or beet modify.
+  write-update: yes          # Update checksums after writing files with beet write or beet modify.
+  convert-update: no         # Update the checksum if a file has been converted with the --keep-new flag.
+  threads: 1                 # Threads to compute checksums.
