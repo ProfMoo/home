@@ -1,0 +1,12 @@
+plugins:
+ [ 
+  discogs,
+  fetchart,
+  bandcamp,
+  embedart,
+  spotify,
+  duplicates,
+  yearfixer,
+  extrafiles,
+  unimported
+ ]
