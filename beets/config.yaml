@@ -15,12 +15,14 @@ import:
   quiet: yes
   incremental: yes
   incremental_skip_later: no
-  default_action: asis
+  default_action: apply
+  none_rec_action: asis
   # TURN THIS ON WHEN READY
   # move: yes
-  log: log.txt
+  log: /volume/log.txt
 
 max_filename_length: 255
+art_filename: cover
 
 # Removing characters that could cause issues on filesystem or on S3
 replace:
@@ -37,11 +39,15 @@ replace:
   '[\^\%\`\~#]' : _
 
 extrafiles:
-    patterns:
-        all: '*.*'
+  patterns:
+      all: 
+        - '*.jpg'
+        - '*.png'
+        - '*.jpeg'
+        - '*.pdf'
 
 match:
-    strong_rec_thresh: 0.10
+  strong_rec_thresh: 0.12
 
 # Plugins for additional identification
 discogs:
@@ -73,9 +79,10 @@ fetchart:
   store_source: yes          # Store the art source (e.g. filesystem) in the beets database as art_source.
 
 embedart:
+  auto: yes
   compare_threshold: 20
 
 # Preferring the higher bitrate
 duplicates:
   tiebreak:
-   items: [bitrate]
+    items: [bitrate]
