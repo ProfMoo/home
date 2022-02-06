@@ -1,15 +1,10 @@
 #!/bin/sh
 
-# Print list of available commands
+echo 'Printing beets help page to display list of available commands (helps ensure plugins are enabled)'
 beet --help
 
-# Import downloaded music
-beet -v import /downloads
+echo 'Running beets import'
+beet import /downloads
 
-# Fetch artwork if it's available
-beet fetchart
-
-# Embed the artwork into the metadata of the file
-beet embedart
-
+echo 'Sleeping...'
 sleep 100
