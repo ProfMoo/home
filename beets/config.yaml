@@ -1,4 +1,4 @@
-plugins: fromfilename discogs fetchart bandcamp embedart spotify duplicates yearfixer extrafiles unimported acousticbrainz chroma
+plugins: fromfilename discogs fetchart bandcamp embedart spotify duplicates yearfixer extrafiles acousticbrainz chroma
 
 threaded: yes
 
@@ -23,15 +23,14 @@ import:
   quiet_fallback: asis # If no strong rec, still import "asis"
 
   # WHEN SHIFTING TO MOVE, CHANGE THIS TO 'no' AND REMOVE 'incremental_skip_later'
-  incremental: yes
-  incremental_skip_later: yes
+  # incremental: yes
+  # incremental_skip_later: yes
 
   # These fields only affect interactive (i.e not quiet) mode
   default_action: apply
   none_rec_action: asis
 
-  # WHEN SHIFTING TO MOVE, CHANGE THIS TO 'no'
-  # move: yes
+  move: yes
   log: /volume/log.txt
 
 max_filename_length: 255
@@ -87,6 +86,7 @@ fetchart:
     - filesystem # No remote art sources are queried if local art is found in the filesystem.
     - coverart
     - albumart
+    - bandcamp
     - fanarttv
     - bandcamp
   store_source: yes # Store the art source (e.g. filesystem) in the beets database as art_source.
@@ -108,10 +108,6 @@ check:
   write-update: yes # Update checksums after writing files with beet write or beet modify.
   convert-update: no # Update the checksum if a file has been converted with the --keep-new flag.
   threads: 1 # Threads to compute checksums.
-
-unimported:
-  ignore_extensions: jpg png
-  ignore_subdirectories: NonMusic data temp
 
 # AcousticBrainz ##################################################################################
 

@@ -9,8 +9,10 @@ services:
       - BEETSDIR=.
     volumes:
       - ./volume:/volume
-      - /mnt/x/test:/music
-      - /mnt/c/Users/DrMoo/Music/test:/downloads
+      # If you're changing the location of your pre-processed files or the final destination
+      # of music files, the below two lines need to be adjusted
+      - /mnt/x/post-process:/music
+      - /mnt/x/pre-process:/downloads
     ports:
       - 8337:8337
     restart: unless-stopped
