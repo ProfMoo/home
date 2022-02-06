@@ -1,4 +1,4 @@
-plugins: discogs fetchart bandcamp embedart spotify duplicates yearfixer extrafiles unimported acousticbrainz chroma
+plugins: fromfilename discogs fetchart bandcamp embedart spotify duplicates yearfixer extrafiles unimported acousticbrainz chroma
 
 threaded: yes
 
@@ -17,17 +17,20 @@ import:
   autotag: yes
   resume: yes
 
+  # Ensures that the import process doesn't ask for feedback
+  # and then fail with the lack of STDIN
   quiet: yes
-  quiet_fallback: asis
+  quiet_fallback: asis # If no strong rec, still import "asis"
 
+  # WHEN SHIFTING TO MOVE, CHANGE THIS TO 'no' AND REMOVE 'incremental_skip_later'
   incremental: yes
   incremental_skip_later: yes
 
-  # These fields only affect interactive mode
+  # These fields only affect interactive (i.e not quiet) mode
   default_action: apply
   none_rec_action: asis
 
-  # TURN THIS ON WHEN READY
+  # WHEN SHIFTING TO MOVE, CHANGE THIS TO 'no'
   # move: yes
   log: /volume/log.txt
 
@@ -65,7 +68,7 @@ discogs:
   extra_tags: [year]
 
 spotify:
-  source_weight: 0.7
+  source_weight: 0.2
 
 bandcamp:
   include_digital_only_tracks: true
@@ -76,7 +79,7 @@ fetchart:
   auto: yes # Enable automatic album art fetching during import.
   cautious: no # Pick only trusted album art by ignoring filenames that do not contain one of the keywords in "cover_names".
   enforce_ratio: yes # Only allow images with 1:1 aspect ratio
-  minwidth: 1000 # Only images with a width bigger or equal to minwidth are considered as valid album art candidates.
+  minwidth: 500 # Only images with a width bigger or equal to minwidth are considered as valid album art candidates.
   maxwidth:
     3000 # A maximum image width to downscale fetched images if they are too big.
     # The height is recomputed so that the aspect ratio is preserved.
