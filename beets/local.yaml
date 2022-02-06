@@ -1,8 +1,0 @@
-# Can use this file for local runs of beets
-# beet --config=local.yaml import /mnt/c/Users/DrMoo/test
-
-include:
-  - config.yaml
-
-directory: /mnt/x/test
-library:  /mnt/x/test/beets.db
