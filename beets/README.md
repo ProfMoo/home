@@ -7,6 +7,8 @@
    3. Get genre
    4. Fix years
 3. Have Lidarr download albums automatically, then Beets automatically moves that into the final location with all the right tags
+   1. Need to figure out how to tell beets to accept albums AS IS when it can't find anything
+   2. Beets currently asks for permission when importing album artwork, which fails because of no STDIN. Need to fix that
 
 # TO TRY NEXT
 
