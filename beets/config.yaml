@@ -57,9 +57,26 @@ extrafiles:
       - "*.png"
       - "*.jpeg"
       - "*.pdf"
+      - "*.txt"
+
+clutter:                     # When beets imports all the files in a directory, it tries to remove the directory if it’s empty.
+                             # A directory is considered empty if it only contains files whose names match the glob patterns in clutter,
+                             # which should be a list of strings.
+                             # The importer only removes recursively searched subdirectories—the top-level directory you specify on the command line is never deleted.
+  [
+  .DS_Store,                 # Default.
+  Thumbs.DB                  # Default.
+  ]
 
 match:
   strong_rec_thresh: 0.12
+  # Block matches when there are missing/unmatched tracks
+  ignored: missing_tracks unmatched_tracks
+
+musicbrainz:
+  source_weight: 0.2
+  extra_tags:
+    - year
 
 discogs:
   user_token: dkVyfeemJydxHxvQxAcTWMGHsAvfAwvAKwVuEXTn
@@ -107,7 +124,7 @@ check:
   write-check: yes # Verify checksums before writing files with beet write or beet modify.
   write-update: yes # Update checksums after writing files with beet write or beet modify.
   convert-update: no # Update the checksum if a file has been converted with the --keep-new flag.
-  threads: 1 # Threads to compute checksums.
+  threads: 2 # Threads to compute checksums.
 
 # AcousticBrainz ##################################################################################
 
