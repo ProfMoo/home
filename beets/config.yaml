@@ -1,4 +1,16 @@
-plugins: fromfilename discogs fetchart bandcamp embedart spotify duplicates yearfixer extrafiles acousticbrainz chroma
+plugins:
+  - fromfilename
+  - discogs
+  - fetchart
+  - bandcamp
+  - embedart
+  - spotify
+  - duplicates
+  - yearfixer
+  - extrafiles
+  - acousticbrainz
+  - chroma
+  - mbsync
 
 threaded: yes
 
@@ -73,10 +85,24 @@ match:
   # Block matches when there are missing/unmatched tracks
   ignored: missing_tracks unmatched_tracks
 
+paths:
+  default: $albumartist/$album%aunique{}/$track $title
+  singleton: Non-Album/$artist/$title
+  comp: Compilations/$album%aunique{}/$track $title
+
+aunique:
+  keys: albumartist album
+  disambiguators: albumtype year label catalognum albumdisambig releasegroupdisambig
+  bracket: '()'
+
 musicbrainz:
   source_weight: 0.2
   extra_tags:
     - year
+    - catalognum,
+    - country,
+    - label,
+    - media
 
 discogs:
   user_token: dkVyfeemJydxHxvQxAcTWMGHsAvfAwvAKwVuEXTn
