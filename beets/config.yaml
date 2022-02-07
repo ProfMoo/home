@@ -25,7 +25,7 @@ statefile: /volume/state.pickle
 
 import:
   write: yes
-  duplicate_action: skip
+  duplicate_action: keep
   autotag: yes
   resume: yes
 
