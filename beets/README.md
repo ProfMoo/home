@@ -21,14 +21,17 @@ This beets configuration is based on a few assumptions, which, if broken, could 
    2. DONE: Beets currently asks for permission when importing album artwork, which fails because of no STDIN. Need to fix that (check sakuraburst album for live example)
    3. DONE: Figure out why Adele's 30 Deluxe is recognized as a duplicate of the regular version (and therefore isn't being imported)
    4. Figure out why Herobust's Lose Your Shit single is so poorly categorized in beets
-   5. Figure out some script that runs 'beets move' after a duplicate is detected so that beets goes back and adds the proper modifiers to the first version of the album (i.e. deluxe)
-   6. Fix the album disambiguation so that it provides the proper version of the ablum (i.e. deluxe) rather than the label. Ex: Donda, Adele's 30
+   5. DONE: Figure out some script that runs 'beets move' after a duplicate is detected so that beets goes back and adds the proper modifiers to the first version of the album (i.e. deluxe)
+   6. DONE: Fix the album disambiguation so that it provides the proper version of the ablum (i.e. deluxe) rather than the label. Ex: Donda, Adele's 30
+   7. TODO: Fix Mac Miller's Faces
+   8. Look at Mac Miller's KIDS to fix the coverart (there are multiple covers)
+   9. TODO: Figure out how to "update" metadata automatically once it's been imported if the config file changes (ex: we want new tags)
 4. Lidarr can automatically download albums of artists I like and put it into the pre-processing folder
 
 ## TO TRY NEXT
 
 1. Mixtapes from more underground rappers
-2. The Skrillex disco dump
+2. The Skrillex disco dump (oof)
 3. Mura Masa random singles
 4. DONE: the heart and the tongue - chance the rapper
 5. 28 mansions
