@@ -92,8 +92,8 @@ paths:
 
 # To get a better sense of how beets is differentiating very similar albums (ex: Deluxe editions), use this query:
 # beet ls -af '$album - $albumtype - $year - $label - $catalognum - $albumdisambig - $releasegroupdisambig - $format'
-# Helpful query when disambiguating between extremely similar albums (ex: Kanye's multiple Donda releases):
-# beet modify -a album:Dona ^albumdisambig:deluxe ^albumdisambig:24bit albumdisambig="Original Release"
+# Here is a helpful query when manually disambiguating between extremely similar albums (ex: Kanye's multiple Donda releases):
+# beet modify -a album:Donda ^albumdisambig:deluxe ^albumdisambig:24bit albumdisambig="Original Release"
 # For deluxe editions, special releases, etc, use the 'albumdisambig'
 aunique:
   keys: albumartist album
