@@ -5,12 +5,13 @@ plugins:
   - bandcamp
   - embedart
   - spotify
-  - duplicates
   - yearfixer
   - extrafiles
   - acousticbrainz
   - chroma
   - mbsync
+  - hook
+  - unimported
 
 threaded: yes
 
@@ -65,20 +66,15 @@ replace:
 extrafiles:
   patterns:
     all:
-      - "*.jpg"
-      - "*.png"
-      - "*.jpeg"
-      - "*.pdf"
-      - "*.txt"
+      - "**.jpg"
+      - "**.png"
+      - "**.jpeg"
+      - "**.pdf"
 
-clutter:                     # When beets imports all the files in a directory, it tries to remove the directory if it’s empty.
-                             # A directory is considered empty if it only contains files whose names match the glob patterns in clutter,
-                             # which should be a list of strings.
-                             # The importer only removes recursively searched subdirectories—the top-level directory you specify on the command line is never deleted.
-  [
-  .DS_Store,                 # Default.
-  Thumbs.DB                  # Default.
-  ]
+clutter:
+  - ".DS_Store"
+  - "Thumbs.DB"
+  - "*.zip"
 
 match:
   strong_rec_thresh: 0.12
@@ -92,13 +88,13 @@ paths:
 
 # To get a better sense of how beets is differentiating very similar albums (ex: Deluxe editions), use this query:
 # beet ls -af '$album - $albumtype - $year - $label - $catalognum - $albumdisambig - $releasegroupdisambig - $format'
-# Here is a helpful query when manually disambiguating between extremely similar albums (ex: Kanye's multiple Donda releases):
+# Here is an example query when manually disambiguating between extremely similar albums (ex: Kanye's multiple Donda releases):
 # beet modify -a album:Donda ^albumdisambig:deluxe ^albumdisambig:24bit albumdisambig="Original Release"
 # For deluxe editions, special releases, etc, use the 'albumdisambig'
 aunique:
   keys: albumartist album
   disambiguators: albumtype year label catalognum albumdisambig releasegroupdisambig
-  bracket: '()'
+  bracket: "()"
 
 musicbrainz:
   source_weight: 0.2
@@ -142,11 +138,6 @@ fetchart:
 embedart:
   auto: yes
 
-# Preferring the higher bitrate
-duplicates:
-  tiebreak:
-    items: [bitrate]
-
 chroma:
   auto: yes
 
@@ -170,3 +161,26 @@ acoustid:
 acousticbrainz: # The acousticbrainz plugin gets acoustic-analysis information from the AcousticBrainz project.
   auto: yes # Enable AcousticBrainz during beet import. Default: yes.
   force: yes # Download AcousticBrainz data even for tracks that already have it. Default: no.
+
+verbose: no
+
+hook:
+  hooks:
+    - event: album_imported
+      command: echo "\"{album}\""
+    - event: import
+      command: echo "Imported from {paths}"
+    - event: art_set
+      command: echo "Coverart saved"
+    - event: import_begin
+      command: echo "Import started..."
+    - event: import_task_apply
+      command: echo "Metadata applied"
+    - event: item_copied
+      command: echo "\"{item}\" copied from \"{source}\" to \"{destination}\""
+    - event: item_moved
+      command: echo "Moved \"{item}\""
+    - event: write
+      command: echo "Writing to {path}"
+    - event: cli_exit
+      command: echo "All tasks finished!"
