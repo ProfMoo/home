@@ -25,8 +25,13 @@ This beets configuration is based on a few assumptions, which, if broken, could 
    6. DONE: Fix the album disambiguation so that it provides the proper version of the ablum (i.e. deluxe) rather than the label. Ex: Donda, Adele's 30
    7. TODO: Fix Mac Miller's Faces
    8. Look at Mac Miller's KIDS to fix the coverart (there are multiple coversmm)
-   9. TODO: Figure out how to "update" metadata automatically once it's been imported if the config file changes (ex: we want new tags)
+   9. TODO: Figure out how to "update" metadata automatically once it's been imported if the config file changes (ex: we want new tags and have edited the config)
    10. TODO: Figure out album artwork more fully
+   11. DONE: Figure out how to pull in scans/artwork from typical file locations
+   12. TODO: Figure out how to get rid of everything in the pre-processed directory
+   13. TODO: Fix DJ @@
+   14. Explore 'ftintitle' plugin
+   15. Look through redacted.ch for more thoughts/info on beets
 4. Lidarr can automatically download albums of artists I like and put it into the pre-processing folder
 
 ## TO TRY NEXT
@@ -36,3 +41,7 @@ This beets configuration is based on a few assumptions, which, if broken, could 
 3. Mura Masa random singles
 4. DONE: the heart and the tongue - chance the rapper
 5. 28 mansions
+
+### Unrelated TODO
+
+Figure out how to still torrent files after the import from beets. Is it even possible? Maybe I just keep both? Beets has built in symlink support - could kinda work, but then would lose the beets tags on the actual files

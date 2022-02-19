@@ -5,13 +5,13 @@ plugins:
   - bandcamp
   - embedart
   - spotify
-  - yearfixer
   - extrafiles
   - acousticbrainz
   - chroma
   - mbsync
   - hook
   - unimported
+  - zero
 
 threaded: yes
 
@@ -49,6 +49,10 @@ import:
 max_filename_length: 255
 art_filename: cover
 
+# Remove the "comments" tag (torrents sometimes include unnecessary info there)
+zero:
+  fields: comments
+
 # Removing characters that could cause issues on filesystem or on S3
 replace:
   '[\\/]': _
@@ -65,16 +69,20 @@ replace:
 
 extrafiles:
   patterns:
+    artworkdir:
+      - '[sS]cans/'
+      - '[aA]rtwork/'
+    paths:
+      artworkdir: $albumpath/artwork
     all:
-      - "**.jpg"
-      - "**.png"
-      - "**.jpeg"
-      - "**.pdf"
+      - "*.jpg"
+      - "*.png"
+      - "*.jpeg"
+      - "*.pdf"
+      - "*.cue"
+      - "*.log"
 
-clutter:
-  - ".DS_Store"
-  - "Thumbs.DB"
-  - "*.zip"
+clutter: ["Thumbs.DB", ".DS_Store", "**.zip", "**.torrent", "**.ini", "**.txt"]
 
 match:
   strong_rec_thresh: 0.12
@@ -164,6 +172,7 @@ acousticbrainz: # The acousticbrainz plugin gets acoustic-analysis information f
 
 verbose: no
 
+# To provide better logs:
 hook:
   hooks:
     - event: album_imported
