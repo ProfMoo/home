@@ -7,6 +7,7 @@ This beets configuration is built to run as automatically and as smoothly as pos
 This beets configuration is based on a few assumptions, which, if broken, could lead to unintended behavior
 
 1. **Duplicates won't be added to pre-import folder**: There isn't any way (that I've found) to allow for "duplicates" such as Kanye West's Donda (two versions released on streaming), Deluxe Editions, Mac Miller's Faces (one version was a self-released mixtape, the other released on streaming), while also disallowing exact copies. So, until this is figured out, duplicates have been allowed into the beets db. If you only want to have unique albums in your library, don't add any duplicates to the pre-processed folder.
+2. **Albums are separated by folder**: This beets config can successfully explore a complex directory structure with album at the bottom (ex: Knxwledge -> 2014 -> Albums -> MeekMillV1), but if multiple albums are mixed together in the same directory, there is undefined behavior.
 
 ## TODO
 
