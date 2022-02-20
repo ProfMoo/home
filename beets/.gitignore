@@ -1,1 +1,4 @@
 volume/*
+
+# Ignoring some test torrent files that are kept locally
+test-torrents
