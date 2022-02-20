@@ -1,0 +1,11 @@
+lidarr-volume
+jackett-volume
+deluge-volume
+deluge-config
+
+# Ignore the overwhelmingly large, auto-generated qbittorrent config folder,
+# but keep the important config file that is found inside
+qbittorrent-config/*
+!qbittorrent-config/config
+qbittorrent-config/config/*
+!qbittorrent-config/config/qBittorrent.conf
