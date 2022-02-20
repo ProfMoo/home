@@ -2,3 +2,8 @@ lidarr-volume
 jackett-volume
 deluge-volume
 deluge-config
+
+qbittorrent-config/*
+!qbittorrent-config/config
+qbittorrent-config/config/*
+!qbittorrent-config/config/qBittorrent.conf
