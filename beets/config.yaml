@@ -12,6 +12,7 @@ plugins:
   - hook
   - unimported
   - zero
+  - originquery
 
 threaded: yes
 
@@ -53,6 +54,18 @@ art_filename: cover
 zero:
   fields: comments
 
+# Gives beets access to additional info and "hints" that come from the origin.yaml
+# The origin.yaml is downloaded alongside the album from the tracker
+originquery:
+  use_origin_on_conflict: yes
+  origin_file: origin.yaml
+  tag_patterns:
+    media: '$.Media'
+    year: '$."Edition year"'
+    label: '$."Record label"'
+    catalognum: '$."Catalog number"'
+    albumdisambig: '$.Edition'
+
 # Removing characters that could cause issues on filesystem or on S3
 replace:
   '[\\/]': _
@@ -82,7 +95,7 @@ extrafiles:
       - "*.cue"
       - "*.log"
 
-clutter: ["Thumbs.DB", ".DS_Store", "**.zip", "**.torrent", "**.ini", "**.txt"]
+clutter: ["Thumbs.DB", ".DS_Store", "**.zip", "**.torrent", "**.ini", "**.txt", "**.nfo", "**.m3u"]
 
 match:
   strong_rec_thresh: 0.12

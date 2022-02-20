@@ -33,7 +33,7 @@ This beets configuration is based on a few assumptions, which, if broken, could 
    13. TODO: Fix DJ @@
    14. Explore 'ftintitle' plugin
    15. Look through redacted.ch for more thoughts/info on beets
-       1.  Found gazelle-origin here, which could really help with deluxe editions and other complex tags
+       1.  Found gazelle-origin here, which could really help with deluxe editions and other complex tags. Need to figure this out with Kanye's TLOP
 4. Lidarr can automatically download albums of artists I like and put it into the pre-processing folder
 
 ## TO TRY NEXT
