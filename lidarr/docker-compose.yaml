@@ -12,6 +12,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - ./lidarr-volume:/config
+      - ./downloads:/downloads
     links:
       - jackett
   jackett:

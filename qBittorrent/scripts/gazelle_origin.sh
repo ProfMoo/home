@@ -15,4 +15,4 @@ NAME_OF_FILE="origin.yaml"
 
 echo "[gazelle_origin]: Downloading '$NAME_OF_FILE' file into '$ROOT_PATH', populated with info from $ORIGIN_TRACKER tracker"
 gazelle-origin --tracker $TRACKER_FILE --out "$ROOT_PATH/$NAME_OF_FILE" $INFO_HASH
-echo "[gazelle_origin]: Done. Exiting..."
+echo "[gazelle_origin]: Done. Exiting script..."

@@ -1,4 +1,5 @@
 # NOTE: This is a top-level config that is just a concept right now
+# There is no actual implementation of a top-level config
 
 TRACKER_DIRECTORY: asdf
 DOWNLOAD_DIRECTORY: asdf

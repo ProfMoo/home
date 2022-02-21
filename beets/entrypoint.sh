@@ -1,20 +1,20 @@
 #!/bin/sh
 
-echo '[ENTRYPOINT SCRIPT] Printing beets help page to display list of available commands (helps ensure plugins are enabled)'
+echo '[entrypoint.sh] Printing beets help page to display list of available commands (helps ensure plugins are enabled)'
 beet --help
 
-echo '[ENTRYPOINT SCRIPT] Continuously importing music files'
+echo '[entrypoint.sh] Continuously importing music files'
 while true
 do
-    echo '[ENTRYPOINT SCRIPT] Running beets import'
+    echo '[entrypoint.sh] Running beets import'
     beet import /downloads
 
-    echo '[ENTRYPOINT SCRIPT] Running beets move in case there is new configuration that needs to be backported, or there are duplicates recently added that need to be disambiguated.'
+    echo '[entrypoint.sh] Running beets move in case there is new configuration that needs to be backported, or there are duplicates recently added that need to be disambiguated.'
     beet move
 
-    echo '[ENTRYPOINT SCRIPT] Running beets update in case there are any metadata updates'
+    echo '[entrypoint.sh] Running beets update in case there are any metadata updates'
     beet update
 
-    echo '[ENTRYPOINT SCRIPT] Sleeping...'
+    echo '[entrypoint.sh] Sleeping...'
     sleep 100
 done

@@ -11,13 +11,12 @@ This beets configuration is based on a few assumptions, which, if broken, could 
 
 ## TODO
 
-1. DONE: Get beets running in a docker image so that it's more easily repeatable
-2. Work on a script that does everything I'd like on import:
+1. Work on a script that does everything I'd like on import:
    1. DONE: Import
    2. DONE: Get album art
    3. Get genre
    4. Fix years
-3. DONE: Beets automatically moves that into the final location with all the right tags
+2. DONE: Beets automatically moves that into the final location with all the right tags
    1. DONE: Need to figure out how to tell beets to accept albums AS IS when it can't find anything
    2. DONE: Beets currently asks for permission when importing album artwork, which fails because of no STDIN. Need to fix that (check sakuraburst album for live example)
    3. DONE: Figure out why Adele's 30 Deluxe is recognized as a duplicate of the regular version (and therefore isn't being imported)
@@ -29,12 +28,11 @@ This beets configuration is based on a few assumptions, which, if broken, could 
    9. TODO: Figure out how to "update" metadata automatically once it's been imported if the config file changes (ex: we want new tags and have edited the config)
    10. TODO: Figure out album artwork more fully
    11. DONE: Figure out how to pull in scans/artwork from typical file locations
-   12. TODO: Figure out how to get rid of everything in the pre-processed directory
+   12. TODO: Figure out how to get rid of everything in the pre-processed directory (update: or maybe not because I might ahve to keep both copied for seeding)
    13. TODO: Fix DJ @@
    14. Explore 'ftintitle' plugin
    15. Look through redacted.ch for more thoughts/info on beets
        1.  Found gazelle-origin here, which could really help with deluxe editions and other complex tags. Need to figure this out with Kanye's TLOP
-4. Lidarr can automatically download albums of artists I like and put it into the pre-processing folder
 
 ## TO TRY NEXT
 
@@ -46,4 +44,4 @@ This beets configuration is based on a few assumptions, which, if broken, could 
 
 ### Unrelated TODO
 
-Figure out how to still torrent files after the import from beets. Is it even possible? Maybe I just keep both? Beets has built in symlink support - could kinda work, but then would lose the beets tags on the actual files
+Figure out how to still torrent files after the import from beets. Is it even possible? Maybe I just keep both? Beets has built in symlink support - could kinda work, but then would lose the beets tags on the actual files (thonk)
