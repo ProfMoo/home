@@ -1,0 +1,13 @@
+services:
+  beets:
+    extends:
+      file: beets/docker-compose.yaml
+      service: beets
+  qBittorrent:
+    extends:
+      file: qBittorrent/docker-compose.yaml
+      service: qBittorrent
+  lidarr:
+    extends:
+      file: lidarr/docker-compose.yaml
+      service: lidarr

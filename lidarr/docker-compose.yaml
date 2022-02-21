@@ -14,7 +14,6 @@ services:
       - ./lidarr-volume:/config
     links:
       - jackett
-      - deluge
   jackett:
     image: hotio/jackett
     ports:

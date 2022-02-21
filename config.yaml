@@ -1,0 +1,5 @@
+# NOTE: This is a top-level config that is just a concept right now
+
+TRACKER_DIRECTORY: asdf
+DOWNLOAD_DIRECTORY: asdf
+MUSIC_LIBRARY_DIRECTORY: adsf
