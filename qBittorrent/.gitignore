@@ -1,8 +1,10 @@
 # Ignore the overwhelmingly large, auto-generated qbittorrent config folder,
 # but keep the important config file that is found inside
-qbittorrent-config/*
-!qbittorrent-config/config
-qbittorrent-config/config/*
-!qbittorrent-config/config/qBittorrent.conf
+config/*
+!config/config
+config/config/*
+!config/config/qBittorrent.conf
 
+test
+test2
 .env
