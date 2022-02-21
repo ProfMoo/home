@@ -15,11 +15,11 @@ services:
       - TZ=Etc/UTC
     volumes:
       - ./config:/config
-      # The two volumes below correspond to (TODO)
+      # The two volumes below correspond to:
       # 1. The location where qBittorrent will search for the torrent files
       # 2. The location where qBittorrent will place the downloaded music files
       # If you change these locations inside the docker container, you must also change the config file
-      - ./test:/torrent-files
-      - ./test2:/downloads
+      - /mnt/x/torrent-files:/torrent-files
+      - /mnt/x/pre-process:/downloads
       # Loading in the post-download scripts
       - ./scripts:/scripts
