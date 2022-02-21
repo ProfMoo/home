@@ -1,0 +1,423 @@
+(N) 2022-02-20T23:54:39 - qBittorrent v4.4.0 started
+(N) 2022-02-20T23:54:39 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-20T23:54:39 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-20T23:54:39 - Peer ID: -qB4400-
+(N) 2022-02-20T23:54:39 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-20T23:54:39 - DHT support [ON]
+(I) 2022-02-20T23:54:39 - Local Peer Discovery support [ON]
+(I) 2022-02-20T23:54:39 - PeX support [ON]
+(I) 2022-02-20T23:54:39 - Anonymous mode [OFF]
+(I) 2022-02-20T23:54:39 - Encryption support [ON]
+(I) 2022-02-20T23:54:39 - UPnP / NAT-PMP support [ON]
+(W) 2022-02-20T23:54:39 - Couldn't load IP geolocation database. Reason: No such file or directory
+(N) 2022-02-20T23:54:39 - Using built-in Web UI.
+(W) 2022-02-20T23:54:39 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-20T23:54:39 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-20T23:54:39 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-20T23:54:39 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-20T23:54:39 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-20T23:54:39 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-20T23:54:39 - Detected external IP: 68.195.131.249
+(I) 2022-02-20T23:54:39 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(I) 2022-02-20T23:54:39 - Successfully updated IP geolocation database.
+(N) 2022-02-20T23:55:08 - WebAPI login success. IP: ::ffff:172.18.0.1
+(C) 2022-02-20T23:57:15 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(C) 2022-02-20T23:57:15 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(I) 2022-02-20T23:59:29 - UPnP / NAT-PMP support [OFF]
+(N) 2022-02-21T01:31:03 - qBittorrent v4.4.0 started
+(N) 2022-02-21T01:31:03 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-21T01:31:03 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-21T01:31:03 - Peer ID: -qB4400-
+(N) 2022-02-21T01:31:03 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-21T01:31:03 - DHT support [ON]
+(I) 2022-02-21T01:31:03 - Local Peer Discovery support [ON]
+(I) 2022-02-21T01:31:03 - PeX support [ON]
+(I) 2022-02-21T01:31:03 - Anonymous mode [OFF]
+(I) 2022-02-21T01:31:03 - Encryption support [ON]
+(I) 2022-02-21T01:31:03 - UPnP / NAT-PMP support [ON]
+(I) 2022-02-21T01:31:03 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(N) 2022-02-21T01:31:03 - Using built-in Web UI.
+(W) 2022-02-21T01:31:03 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-21T01:31:03 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-21T01:31:03 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-21T01:31:03 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-21T01:31:03 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-21T01:31:03 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-21T01:31:03 - Detected external IP: 68.195.131.249
+(C) 2022-02-21T01:33:39 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(C) 2022-02-21T01:33:39 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(I) 2022-02-21T01:39:33 - UPnP / NAT-PMP support [OFF]
+(N) 2022-02-21T01:40:50 - qBittorrent v4.4.0 started
+(N) 2022-02-21T01:40:50 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-21T01:40:50 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-21T01:40:50 - Peer ID: -qB4400-
+(N) 2022-02-21T01:40:50 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-21T01:40:50 - DHT support [ON]
+(I) 2022-02-21T01:40:50 - Local Peer Discovery support [ON]
+(I) 2022-02-21T01:40:50 - PeX support [ON]
+(I) 2022-02-21T01:40:50 - Anonymous mode [OFF]
+(I) 2022-02-21T01:40:50 - Encryption support [ON]
+(I) 2022-02-21T01:40:50 - UPnP / NAT-PMP support [ON]
+(I) 2022-02-21T01:40:50 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(N) 2022-02-21T01:40:50 - Using built-in Web UI.
+(W) 2022-02-21T01:40:50 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-21T01:40:50 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-21T01:40:50 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-21T01:40:50 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-21T01:40:50 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-21T01:40:50 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-21T01:40:50 - Detected external IP: 68.195.131.249
+(C) 2022-02-21T01:43:26 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(C) 2022-02-21T01:43:26 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(I) 2022-02-21T02:10:33 - UPnP / NAT-PMP support [OFF]
+(N) 2022-02-21T02:10:40 - qBittorrent v4.4.0 started
+(N) 2022-02-21T02:10:40 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-21T02:10:40 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-21T02:10:40 - Peer ID: -qB4400-
+(N) 2022-02-21T02:10:40 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-21T02:10:40 - DHT support [ON]
+(I) 2022-02-21T02:10:40 - Local Peer Discovery support [ON]
+(I) 2022-02-21T02:10:40 - PeX support [ON]
+(I) 2022-02-21T02:10:40 - Anonymous mode [OFF]
+(I) 2022-02-21T02:10:40 - Encryption support [ON]
+(I) 2022-02-21T02:10:40 - UPnP / NAT-PMP support [ON]
+(I) 2022-02-21T02:10:40 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(N) 2022-02-21T02:10:40 - Using built-in Web UI.
+(W) 2022-02-21T02:10:40 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-21T02:10:40 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-21T02:10:40 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-21T02:10:40 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-21T02:10:40 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-21T02:10:40 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-21T02:10:40 - Detected external IP: 68.195.131.249
+(C) 2022-02-21T02:13:16 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(C) 2022-02-21T02:13:16 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(I) 2022-02-21T02:30:57 - UPnP / NAT-PMP support [OFF]
+(N) 2022-02-21T02:35:18 - qBittorrent v4.4.0 started
+(N) 2022-02-21T02:35:18 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-21T02:35:18 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-21T02:35:18 - Peer ID: -qB4400-
+(N) 2022-02-21T02:35:18 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-21T02:35:18 - DHT support [ON]
+(I) 2022-02-21T02:35:18 - Local Peer Discovery support [ON]
+(I) 2022-02-21T02:35:18 - PeX support [ON]
+(I) 2022-02-21T02:35:18 - Anonymous mode [OFF]
+(I) 2022-02-21T02:35:18 - Encryption support [ON]
+(I) 2022-02-21T02:35:18 - UPnP / NAT-PMP support [ON]
+(I) 2022-02-21T02:35:18 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(N) 2022-02-21T02:35:18 - Using built-in Web UI.
+(W) 2022-02-21T02:35:18 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-21T02:35:18 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-21T02:35:18 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-21T02:35:18 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-21T02:35:18 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-21T02:35:18 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-21T02:35:18 - Detected external IP: 68.195.131.249
+(I) 2022-02-21T02:36:08 - UPnP / NAT-PMP support [OFF]
+(N) 2022-02-21T02:36:23 - qBittorrent v4.4.0 started
+(N) 2022-02-21T02:36:23 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-21T02:36:23 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-21T02:36:23 - Peer ID: -qB4400-
+(N) 2022-02-21T02:36:23 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-21T02:36:23 - DHT support [ON]
+(I) 2022-02-21T02:36:23 - Local Peer Discovery support [ON]
+(I) 2022-02-21T02:36:23 - PeX support [ON]
+(I) 2022-02-21T02:36:23 - Anonymous mode [OFF]
+(I) 2022-02-21T02:36:23 - Encryption support [ON]
+(I) 2022-02-21T02:36:23 - UPnP / NAT-PMP support [ON]
+(I) 2022-02-21T02:36:24 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(N) 2022-02-21T02:36:24 - Using built-in Web UI.
+(W) 2022-02-21T02:36:24 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-21T02:36:24 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-21T02:36:24 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-21T02:36:24 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-21T02:36:24 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-21T02:36:24 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-21T02:36:24 - Detected external IP: 68.195.131.249
+(C) 2022-02-21T02:38:59 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(C) 2022-02-21T02:38:59 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(I) 2022-02-21T02:41:06 - UPnP / NAT-PMP support [OFF]
+(N) 2022-02-21T02:41:13 - qBittorrent v4.4.0 started
+(N) 2022-02-21T02:41:13 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-21T02:41:13 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-21T02:41:13 - Peer ID: -qB4400-
+(N) 2022-02-21T02:41:13 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-21T02:41:13 - DHT support [ON]
+(I) 2022-02-21T02:41:13 - Local Peer Discovery support [ON]
+(I) 2022-02-21T02:41:13 - PeX support [ON]
+(I) 2022-02-21T02:41:13 - Anonymous mode [OFF]
+(I) 2022-02-21T02:41:13 - Encryption support [ON]
+(I) 2022-02-21T02:41:13 - UPnP / NAT-PMP support [ON]
+(I) 2022-02-21T02:41:13 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(N) 2022-02-21T02:41:13 - Using built-in Web UI.
+(W) 2022-02-21T02:41:13 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-21T02:41:13 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-21T02:41:13 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-21T02:41:13 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-21T02:41:13 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-21T02:41:13 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-21T02:41:13 - Detected external IP: 68.195.131.249
+(C) 2022-02-21T02:43:49 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(C) 2022-02-21T02:43:49 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(N) 2022-02-21T02:49:06 - WebAPI login success. IP: ::ffff:172.18.0.1
+(N) 2022-02-21T02:49:29 - Web UI: Now listening on IP: *, port: 8080
+(N) 2022-02-21T02:50:16 - Web UI: Now listening on IP: *, port: 8080
+(N) 2022-02-21T02:50:16 - Watching folder: "/torrent-files"
+(N) 2022-02-21T02:50:26 - 'Aminé - Onepointfive (2018) [WEB V0]' added to download list.
+(N) 2022-02-21T02:50:26 - Couldn't enqueue move of "Aminé - Onepointfive (2018) [WEB V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T02:50:37 - Enqueued to move "Aminé - Onepointfive (2018) [WEB V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T02:50:37 - Moving "Aminé - Onepointfive (2018) [WEB V0]" to "/downloads"...
+(C) 2022-02-21T02:50:37 - Failed to move "Aminé - Onepointfive (2018) [WEB V0]" from "/tmp" to "/downloads". Reason: Aminé - Onepointfive (2018) [WEB V0] storage move failed. mkdir (): Permission denied.
+(N) 2022-02-21T02:50:37 - Torrent: Aminé - Onepointfive (2018) [WEB V0], running external program, command: gazelle-origin -t https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce -o "/tmp/Aminé - Onepointfive (2018) [WEB V0]/origin.yaml" --api-key $RED_API_KEY 1a00ca1d7253a487b1fdaf797862bb7e57baa998
+(I) 2022-02-21T02:51:44 - UPnP / NAT-PMP support [OFF]
+(N) 2022-02-21T02:51:56 - qBittorrent v4.4.0 started
+(N) 2022-02-21T02:51:56 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-21T02:51:56 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-21T02:51:57 - Peer ID: -qB4400-
+(N) 2022-02-21T02:51:57 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-21T02:51:57 - DHT support [ON]
+(I) 2022-02-21T02:51:57 - Local Peer Discovery support [ON]
+(I) 2022-02-21T02:51:57 - PeX support [ON]
+(I) 2022-02-21T02:51:57 - Anonymous mode [OFF]
+(I) 2022-02-21T02:51:57 - Encryption support [ON]
+(I) 2022-02-21T02:51:57 - UPnP / NAT-PMP support [ON]
+(I) 2022-02-21T02:51:57 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(N) 2022-02-21T02:51:57 - Using built-in Web UI.
+(W) 2022-02-21T02:51:57 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-21T02:51:57 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-21T02:51:57 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-21T02:51:57 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-21T02:51:57 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-21T02:51:57 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-21T02:51:57 - Detected external IP: 68.195.131.249
+(N) 2022-02-21T02:51:57 - 'Aminé - Onepointfive (2018) [WEB V0]' restored.
+(N) 2022-02-21T02:51:57 - Watching folder: "/torrent-files"
+(C) 2022-02-21T02:51:57 - File sizes mismatch for torrent 'Aminé - Onepointfive (2018) [WEB V0]'. Cannot proceed further.
+(N) 2022-02-21T02:52:27 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T02:52:28 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T02:52:34 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T02:52:34 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T02:52:34 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T02:52:34 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: gazelle-origin -t https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce -o "/downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]/origin.yaml" --api-key $RED_API_KEY 4c5780898628631669806a46fbe36ae5f127d498
+(N) 2022-02-21T02:52:37 - WebAPI login success. IP: ::ffff:172.18.0.1
+(N) 2022-02-21T02:52:48 - 'Aminé - Onepointfive (2018) [WEB V0]' was removed from the transfer list and hard disk.
+(N) 2022-02-21T02:54:07 - Web UI: Now listening on IP: *, port: 8080
+(C) 2022-02-21T02:54:33 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(C) 2022-02-21T02:54:33 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(I) 2022-02-21T02:55:53 - UPnP / NAT-PMP support [OFF]
+(N) 2022-02-21T02:56:07 - qBittorrent v4.4.0 started
+(N) 2022-02-21T02:56:07 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-21T02:56:07 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-21T02:56:07 - Peer ID: -qB4400-
+(N) 2022-02-21T02:56:07 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-21T02:56:07 - DHT support [ON]
+(I) 2022-02-21T02:56:07 - Local Peer Discovery support [ON]
+(I) 2022-02-21T02:56:07 - PeX support [ON]
+(I) 2022-02-21T02:56:07 - Anonymous mode [OFF]
+(I) 2022-02-21T02:56:07 - Encryption support [ON]
+(I) 2022-02-21T02:56:07 - UPnP / NAT-PMP support [ON]
+(I) 2022-02-21T02:56:07 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(N) 2022-02-21T02:56:07 - Using built-in Web UI.
+(W) 2022-02-21T02:56:07 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-21T02:56:07 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-21T02:56:07 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-21T02:56:07 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-21T02:56:07 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-21T02:56:07 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-21T02:56:07 - Detected external IP: 68.195.131.249
+(N) 2022-02-21T02:56:07 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' restored.
+(N) 2022-02-21T02:56:07 - Watching folder: "/torrent-files"
+(C) 2022-02-21T02:56:07 - File sizes mismatch for torrent 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]'. Cannot proceed further.
+(N) 2022-02-21T02:56:37 - WebAPI login success. IP: ::ffff:172.18.0.1
+(N) 2022-02-21T02:56:48 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' was removed from the transfer list and hard disk.
+(N) 2022-02-21T02:56:57 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T02:56:57 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T02:57:04 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T02:57:04 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T02:57:04 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T02:57:04 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: gazelle-origin -t https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce -o "/downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]/origin.yaml" --api-key $RED_API_KEY 4c5780898628631669806a46fbe36ae5f127d498
+(C) 2022-02-21T02:58:43 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(C) 2022-02-21T02:58:43 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(N) 2022-02-21T02:58:44 - Web UI: Now listening on IP: *, port: 8080
+(N) 2022-02-21T03:02:20 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' was removed from the transfer list and hard disk.
+(I) 2022-02-21T03:02:26 - UPnP / NAT-PMP support [OFF]
+(N) 2022-02-21T03:02:32 - qBittorrent v4.4.0 started
+(N) 2022-02-21T03:02:32 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-21T03:02:32 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-21T03:02:32 - Peer ID: -qB4400-
+(N) 2022-02-21T03:02:32 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-21T03:02:32 - DHT support [ON]
+(I) 2022-02-21T03:02:32 - Local Peer Discovery support [ON]
+(I) 2022-02-21T03:02:32 - PeX support [ON]
+(I) 2022-02-21T03:02:32 - Anonymous mode [OFF]
+(I) 2022-02-21T03:02:32 - Encryption support [ON]
+(I) 2022-02-21T03:02:32 - UPnP / NAT-PMP support [ON]
+(I) 2022-02-21T03:02:32 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(N) 2022-02-21T03:02:32 - Using built-in Web UI.
+(W) 2022-02-21T03:02:32 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-21T03:02:32 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-21T03:02:32 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-21T03:02:32 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-21T03:02:32 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-21T03:02:32 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-21T03:02:32 - Detected external IP: 68.195.131.249
+(N) 2022-02-21T03:02:32 - Watching folder: "/torrent-files"
+(N) 2022-02-21T03:02:40 - WebAPI login success. IP: ::ffff:172.18.0.1
+(N) 2022-02-21T03:02:52 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T03:02:52 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T03:02:59 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T03:02:59 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T03:03:00 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T03:03:00 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: gazelle-origin -t https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce -o "/downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]/origin.yaml" --api-key $RED_API_KEY 4c5780898628631669806a46fbe36ae5f127d498
+(C) 2022-02-21T03:05:08 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(C) 2022-02-21T03:05:08 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(N) 2022-02-21T03:10:35 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' was removed from the transfer list and hard disk.
+(I) 2022-02-21T03:10:39 - UPnP / NAT-PMP support [OFF]
+(N) 2022-02-21T03:10:45 - qBittorrent v4.4.0 started
+(N) 2022-02-21T03:10:45 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-21T03:10:45 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-21T03:10:45 - Peer ID: -qB4400-
+(N) 2022-02-21T03:10:45 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-21T03:10:45 - DHT support [ON]
+(I) 2022-02-21T03:10:45 - Local Peer Discovery support [ON]
+(I) 2022-02-21T03:10:45 - PeX support [ON]
+(I) 2022-02-21T03:10:45 - Anonymous mode [OFF]
+(I) 2022-02-21T03:10:45 - Encryption support [ON]
+(I) 2022-02-21T03:10:45 - UPnP / NAT-PMP support [ON]
+(I) 2022-02-21T03:10:46 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(N) 2022-02-21T03:10:46 - Using built-in Web UI.
+(W) 2022-02-21T03:10:46 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-21T03:10:46 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-21T03:10:46 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-21T03:10:46 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-21T03:10:46 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-21T03:10:46 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-21T03:10:46 - Detected external IP: 68.195.131.249
+(N) 2022-02-21T03:10:46 - Watching folder: "/torrent-files"
+(N) 2022-02-21T03:11:15 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T03:11:16 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T03:11:21 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T03:11:21 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T03:11:21 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T03:11:21 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: gazelle-origin -t https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce -o "/downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]/origin.yaml" --api-key $RED_API_KEY 4c5780898628631669806a46fbe36ae5f127d498
+(N) 2022-02-21T03:13:13 - WebAPI login success. IP: ::ffff:172.18.0.1
+(C) 2022-02-21T03:13:21 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(C) 2022-02-21T03:13:21 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(I) 2022-02-21T03:13:56 - UPnP / NAT-PMP support [OFF]
+(N) 2022-02-21T03:14:25 - qBittorrent v4.4.0 started
+(N) 2022-02-21T03:14:25 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-21T03:14:25 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-21T03:14:25 - Peer ID: -qB4400-
+(N) 2022-02-21T03:14:25 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-21T03:14:25 - DHT support [ON]
+(I) 2022-02-21T03:14:25 - Local Peer Discovery support [ON]
+(I) 2022-02-21T03:14:25 - PeX support [ON]
+(I) 2022-02-21T03:14:25 - Anonymous mode [OFF]
+(I) 2022-02-21T03:14:25 - Encryption support [ON]
+(I) 2022-02-21T03:14:25 - UPnP / NAT-PMP support [ON]
+(I) 2022-02-21T03:14:26 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(N) 2022-02-21T03:14:26 - Using built-in Web UI.
+(W) 2022-02-21T03:14:26 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-21T03:14:26 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-21T03:14:26 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-21T03:14:26 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-21T03:14:26 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-21T03:14:26 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-21T03:14:26 - Detected external IP: 68.195.131.249
+(N) 2022-02-21T03:14:26 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' restored.
+(N) 2022-02-21T03:14:26 - Watching folder: "/torrent-files"
+(N) 2022-02-21T03:14:26 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/downloads" to "/downloads". Both paths point to the same location.
+(N) 2022-02-21T03:14:53 - WebAPI login success. IP: ::ffff:172.18.0.1
+(N) 2022-02-21T03:15:10 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' was removed from the transfer list and hard disk.
+(C) 2022-02-21T03:17:01 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(C) 2022-02-21T03:17:01 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(N) 2022-02-21T03:18:15 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T03:18:16 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T03:18:22 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T03:18:22 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T03:18:22 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T03:18:22 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: /scripts/gazelle_origin.sh https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce /downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0] 4c5780898628631669806a46fbe36ae5f127d498
+(N) 2022-02-21T03:22:26 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' was removed from the transfer list and hard disk.
+(N) 2022-02-21T03:23:05 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T03:23:06 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T03:23:11 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T03:23:11 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T03:23:12 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T03:23:12 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: /scripts/gazelle_origin.sh https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce /downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0] 4c5780898628631669806a46fbe36ae5f127d498
+(N) 2022-02-21T03:23:42 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' was removed from the transfer list and hard disk.
+(N) 2022-02-21T03:23:55 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T03:23:56 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T03:24:01 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T03:24:01 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T03:24:02 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T03:24:02 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: /scripts/gazelle_origin.sh https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce /downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0] 4c5780898628631669806a46fbe36ae5f127d498
+(N) 2022-02-21T03:26:23 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' was removed from the transfer list and hard disk.
+(N) 2022-02-21T03:26:35 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T03:26:36 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T03:26:41 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T03:26:41 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T03:26:42 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T03:26:42 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: /scripts/gazelle_origin.sh https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce /downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0] 4c5780898628631669806a46fbe36ae5f127d498
+(N) 2022-02-21T03:29:19 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' was removed from the transfer list and hard disk.
+(N) 2022-02-21T03:29:25 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T03:29:26 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T03:29:31 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T03:29:31 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T03:29:32 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T03:29:32 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: /scripts/gazelle_origin.sh https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce /downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0] 4c5780898628631669806a46fbe36ae5f127d498
+(I) 2022-02-21T03:31:13 - UPnP / NAT-PMP support [OFF]
+(N) 2022-02-21T03:31:23 - qBittorrent v4.4.0 started
+(N) 2022-02-21T03:31:23 - Using config directory: /app/qBittorrent/config
+(I) 2022-02-21T03:31:23 - Trying to listen on: 0.0.0.0:38983,[::]:38983
+(N) 2022-02-21T03:31:23 - Peer ID: -qB4400-
+(N) 2022-02-21T03:31:23 - HTTP User-Agent is 'qBittorrent/4.4.0'
+(I) 2022-02-21T03:31:23 - DHT support [ON]
+(I) 2022-02-21T03:31:23 - Local Peer Discovery support [ON]
+(I) 2022-02-21T03:31:23 - PeX support [ON]
+(I) 2022-02-21T03:31:23 - Anonymous mode [OFF]
+(I) 2022-02-21T03:31:23 - Encryption support [ON]
+(I) 2022-02-21T03:31:23 - UPnP / NAT-PMP support [ON]
+(I) 2022-02-21T03:31:23 - IP geolocation database loaded. Type: DBIP-Country-Lite. Build time: Tue Feb 1 01:11:03 2022.
+(N) 2022-02-21T03:31:23 - Using built-in Web UI.
+(W) 2022-02-21T03:31:23 - Couldn't load Web UI translation for selected locale (C).
+(N) 2022-02-21T03:31:23 - Web UI: Now listening on IP: *, port: 8080
+(I) 2022-02-21T03:31:23 - Successfully listening on IP: 127.0.0.1, port: TCP/38983
+(I) 2022-02-21T03:31:23 - Successfully listening on IP: 127.0.0.1, port: UDP/38983
+(I) 2022-02-21T03:31:23 - Successfully listening on IP: 172.18.0.2, port: TCP/38983
+(I) 2022-02-21T03:31:23 - Successfully listening on IP: 172.18.0.2, port: UDP/38983
+(I) 2022-02-21T03:31:23 - Detected external IP: 68.195.131.249
+(N) 2022-02-21T03:31:23 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' restored.
+(N) 2022-02-21T03:31:23 - Watching folder: "/torrent-files"
+(N) 2022-02-21T03:31:23 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/downloads" to "/downloads". Both paths point to the same location.
+(N) 2022-02-21T03:31:40 - WebAPI login success. IP: ::ffff:172.18.0.1
+(N) 2022-02-21T03:31:49 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' was removed from the transfer list and hard disk.
+(N) 2022-02-21T03:32:03 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T03:32:04 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T03:32:09 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T03:32:09 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T03:32:10 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T03:32:10 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: /scripts/gazelle_origin.sh https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce /downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0] 4c5780898628631669806a46fbe36ae5f127d498
+(C) 2022-02-21T03:33:59 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(C) 2022-02-21T03:33:59 - UPnP/NAT-PMP: Port mapping failure, message: could not map port using UPnP: no router found
+(N) 2022-02-21T03:34:16 - Web UI: Now listening on IP: *, port: 8080
+(N) 2022-02-21T03:34:29 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' was removed from the transfer list and hard disk.
+(N) 2022-02-21T03:34:43 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T03:34:43 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T03:34:49 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T03:34:49 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T03:34:49 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T03:34:49 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: /scripts/gazelle_origin.sh "https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce" "/downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" "4c5780898628631669806a46fbe36ae5f127d498"
+(N) 2022-02-21T03:35:44 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' was removed from the transfer list and hard disk.
+(N) 2022-02-21T03:37:43 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T03:37:44 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T03:37:50 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T03:37:50 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T03:37:50 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T03:37:50 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: /scripts/gazelle_origin.sh "https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce" "/downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" "4c5780898628631669806a46fbe36ae5f127d498"
+(N) 2022-02-21T03:41:09 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' was removed from the transfer list and hard disk.
+(N) 2022-02-21T03:41:13 - 'Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]' added to download list.
+(N) 2022-02-21T03:41:14 - Couldn't enqueue move of "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/tmp". Both paths point to the same location.
+(N) 2022-02-21T03:41:20 - Enqueued to move "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" from "/tmp" to "/downloads".
+(N) 2022-02-21T03:41:20 - Moving "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" to "/downloads"...
+(N) 2022-02-21T03:41:20 - "Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" is successfully moved to "/downloads".
+(N) 2022-02-21T03:41:20 - Torrent: Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0], running external program, command: /scripts/gazelle_origin.sh "https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce" "/downloads/Herpagonasyphilaids - Herpagonasyphilaids (2017) [V0]" "4c5780898628631669806a46fbe36ae5f127d498"
