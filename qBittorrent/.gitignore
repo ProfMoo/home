@@ -4,3 +4,5 @@ qbittorrent-config/*
 !qbittorrent-config/config
 qbittorrent-config/config/*
 !qbittorrent-config/config/qBittorrent.conf
+
+.env

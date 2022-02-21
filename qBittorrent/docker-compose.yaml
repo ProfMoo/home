@@ -2,13 +2,23 @@ version: "3.7"
 
 services:
   qbittorrent:
-    image: cr.hotio.dev/hotio/qbittorrent
+    build: .
     ports:
       - "8080:8080"
     environment:
+      # NOTE: This is populated from a .env file
+      - RED_API_KEY=${RED_API_KEY}
+      - ORIGIN_TRACKER=red
       - PUID=1000
       - PGID=1000
       - UMASK=002
       - TZ=Etc/UTC
     volumes:
       - ./qbittorrent-config:/config
+      # The two volumes below correspond to (TODO)
+      # 1. The location where qBittorrent will search for the torrent files
+      # 2. The location where qBittorrent will place the downloaded music files
+      - ./test:/torrent-files
+      - ./test2:/downloads
+      # Loading in the post-download script
+      - ./scripts:/scripts
