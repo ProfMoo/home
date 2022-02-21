@@ -9,8 +9,8 @@ services:
       - BEETSDIR=.
     volumes:
       - ./volume:/volume
-      # If you're changing the location of your pre-processed files or the final destination
-      # of music files, the below two lines need to be adjusted
+      # If you're changing the location of your pre-processed music files
+      # or the final destination of music files, the below two lines need to be changed
       - /mnt/x/post-process:/music
       - /mnt/x/pre-process:/downloads
     ports:
