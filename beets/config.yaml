@@ -17,6 +17,7 @@ plugins:
   - describe
 
 threaded: yes
+verbose: no
 
 # NOTE: This assumes that the music directory is mounted here
 directory: /music
@@ -197,8 +198,6 @@ acoustid:
 acousticbrainz: # The acousticbrainz plugin gets acoustic-analysis information from the AcousticBrainz project.
   auto: yes # Enable AcousticBrainz during beet import. Default: yes.
   force: yes # Download AcousticBrainz data even for tracks that already have it. Default: no.
-
-verbose: no
 
 lastgenre: # Fetches tags from Last.fm and assigns them as genres to your albums and items.
   auto: yes # Fetch genres automatically during import. Default: yes.
