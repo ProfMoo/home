@@ -6,7 +6,7 @@ A docker container that runs a qBittorrent client with special configuration and
 
 * Auto-downloads when torrent files are placed in the directory
 * Has reasonable defaults set for a seedbox (ex: allowing for unlimited files to be seeding at one time)
-* Runs the `gazelle-origin` script automatically after download, which provides `beets` additional and helpful info during the tagging process. To read more, refer to the `gazelle-origin` README [here](https://github.com/x1ppy/gazelle-origin)
+* Runs the `gazelle-origin` script automatically after download to generate the `origin.yaml` file, which provides `beets` additional and helpful info during the tagging process. To read more, refer to the `gazelle-origin` README [here](https://github.com/x1ppy/gazelle-origin)
 
 ## TODO
 
