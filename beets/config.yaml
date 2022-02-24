@@ -13,6 +13,8 @@ plugins:
   - hook
   - unimported
   - zero
+  - lastgenre
+  - describe
 
 threaded: yes
 
@@ -52,7 +54,7 @@ art_filename: cover
 
 musicbrainz:
   source_weight: 0.2
-  # NOTE: These 'extra_tags' assist the musicbrainz matching process, but don't change the tags that are 
+  # NOTE: These 'extra_tags' assist the musicbrainz matching process, but don't change the tags that are
   # added inside the beets database
   extra_tags:
     - year
@@ -71,13 +73,13 @@ originquery:
   use_origin_on_conflict: yes
   origin_file: origin.yaml
   tag_patterns:
-    media: '$.Media'
+    media: "$.Media"
     year: '$."Edition year"'
     label: '$."Record label"'
     catalognum: '$."Catalog number"'
     # NOTE: The 'albumdisambig' field is critically important to disambiguation very similar releases
     # (such as Kanye's multiple TLOP releases, deluxe editions, etc)
-    albumdisambig: '$.Edition'
+    albumdisambig: "$.Edition"
 
 # Removing characters that could cause issues on filesystem or on S3
 replace:
@@ -96,8 +98,8 @@ replace:
 extrafiles:
   patterns:
     artworkdir:
-      - '[sS]cans/'
-      - '[aA]rtwork/'
+      - "[sS]cans/"
+      - "[aA]rtwork/"
     paths:
       artworkdir: $albumpath/artwork
     all:
@@ -108,7 +110,17 @@ extrafiles:
       - "*.cue"
       - "*.log"
 
-clutter: ["Thumbs.DB", ".DS_Store", "**.zip", "**.torrent", "**.ini", "**.txt", "**.nfo", "**.m3u"]
+clutter:
+  [
+    "Thumbs.DB",
+    ".DS_Store",
+    "**.zip",
+    "**.torrent",
+    "**.ini",
+    "**.txt",
+    "**.nfo",
+    "**.m3u",
+  ]
 
 match:
   strong_rec_thresh: 0.12
@@ -187,6 +199,18 @@ acousticbrainz: # The acousticbrainz plugin gets acoustic-analysis information f
   force: yes # Download AcousticBrainz data even for tracks that already have it. Default: no.
 
 verbose: no
+
+lastgenre: # Fetches tags from Last.fm and assigns them as genres to your albums and items.
+  auto: yes # Fetch genres automatically during import. Default: yes.
+  canonical: yes # Setting this to yes will use a built-in tree.
+  whitelist: yes # Use the internal whitelist
+  count: 1 # Number of genres to fetch. Default: 1
+  fallback: "" # No fallback
+  force: yes # By default, beets will always fetch new genres, even if the files already have one.
+  min_weight: 10 # Minimum popularity factor below which genres are discarded. Default: 10.
+  prefer_specific: no # Sort genres by the most to least specific, rather than most to least popular. Default: no.
+  source: track # Which entity to look up in Last.fm. Can be either artist, album or track. Default: album.
+  title_case: yes # Convert the new tags to TitleCase before saving. Default: yes.
 
 # To provide better logs:
 hook:
