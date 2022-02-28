@@ -54,7 +54,6 @@ max_filename_length: 255
 art_filename: cover
 
 musicbrainz:
-  source_weight: 0.2
   # NOTE: These 'extra_tags' assist the musicbrainz matching process, but don't change the tags that are
   # added inside the beets database
   extra_tags:

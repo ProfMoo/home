@@ -1,12 +1,21 @@
+version: '3.8'
+
 services:
   beets:
+    volumes:
+      - ${DOWNLOAD_DIR}:/downloads
+      - ${MUSIC_LIBRARY_DIR}:/music
     extends:
       file: beets/docker-compose.yaml
       service: beets
-  qBittorrent:
+  qbittorrent:
+    volumes:
+      # If you change these locations inside the docker container, you must also change the config file
+      - ${TRACKER_DIR}:/torrent-files
+      - ${DOWNLOAD_DIR}:/downloads
     extends:
       file: qBittorrent/docker-compose.yaml
-      service: qBittorrent
+      service: qbittorrent
   lidarr:
     extends:
       file: lidarr/docker-compose.yaml
