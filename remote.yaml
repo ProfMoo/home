@@ -1,0 +1,5 @@
+# I use this file when running the containers on the NAS
+
+TRACKER_DIR: /torrent-files
+DOWNLOAD_DIR: /pre-process
+MUSIC_LIBRARY_DIR: /post-process
