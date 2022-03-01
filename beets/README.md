@@ -36,6 +36,7 @@ file in the music directory, which is generated from the tracker's metadata. Bee
    15. DONE: Look through redacted.ch for more thoughts/info on beets
        1. DONE: Found gazelle-origin here, which could really help with deluxe editions and other complex tags. Need to figure this out with Kanye's TLOP
    16. TOOD: Figure out why beets is continually trying to change some flags
+   17. Fix weird warnings when that print at the top of ever beets command
 
 ## TO TRY NEXT
 
