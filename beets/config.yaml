@@ -37,9 +37,10 @@ import:
   # Ensures that the import process doesn't ask for feedback
   # and then fail with the lack of STDIN
   quiet: yes
-  quiet_fallback: asis # If no strong rec, still import "asis"
+  # WHEN SHIFTING TO NAS, CHANGE THIS TO "asis"
+  quiet_fallback: skip
 
-  # WHEN SHIFTING TO MOVE, CHANGE THIS TO 'no' AND REMOVE 'incremental_skip_later'
+  # WHEN SHIFTING TO COPY, UNCOMMENT THESE LINES
   # incremental: yes
   # incremental_skip_later: yes
 
@@ -125,7 +126,7 @@ clutter:
 match:
   strong_rec_thresh: 0.12
   # Block matches when there are missing/unmatched tracks
-  ignored: missing_tracks unmatched_tracks
+  # ignored: missing_tracks unmatched_tracks
 
 paths:
   default: $albumartist/$album%aunique{}/$track $title
