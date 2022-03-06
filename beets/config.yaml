@@ -15,6 +15,8 @@ plugins:
   - zero
   - lastgenre
   - describe
+  - yearfixer
+  - deezer
 
 threaded: yes
 verbose: no
@@ -34,9 +36,10 @@ import:
   autotag: yes
   resume: yes
 
-  # Ensures that the import process doesn't ask for feedback
-  # and then fail with the lack of STDIN
-  quiet: yes
+  # Setting this to no in the configuration so that it's possible to run
+  # 'beet import' without quiet on the running process. However, the script that runs continuously
+  # calls 'beet import -q'
+  quiet: no
   # WHEN SHIFTING TO NAS, CHANGE THIS TO "asis"
   quiet_fallback: skip
 
@@ -81,6 +84,7 @@ originquery:
     # NOTE: The 'albumdisambig' field is critically important to disambiguation very similar releases
     # (such as Kanye's multiple TLOP releases, deluxe editions, etc)
     albumdisambig: "$.Edition"
+    original_year: '$."Original year"'
 
 # Removing characters that could cause issues on filesystem or on S3
 replace:
@@ -124,9 +128,10 @@ clutter:
   ]
 
 match:
-  strong_rec_thresh: 0.12
-  # Block matches when there are missing/unmatched tracks
-  # ignored: missing_tracks unmatched_tracks
+  strong_rec_thresh: 0.12 # Automatically confirm matches whose tags have greater then 88% match.
+  max_rec:
+    missing_tracks: medium
+    unmatched_tracks: medium
 
 paths:
   default: $albumartist/$album%aunique{}/$track $title
@@ -134,13 +139,13 @@ paths:
   comp: Compilations/$album%aunique{}/$track $title
 
 # To get a better sense of how beets is differentiating very similar albums (ex: Deluxe editions), use this query:
-# beet ls album:"The Life Of Pablo" -af '$album - $albumtype - $year - $label - $catalognum - $albumdisambig - $releasegroupdisambig'
+# beet ls album:"The Life Of Pablo" -af '$album - $albumtype - $original_year - $albumdisambig - $label - $catalognum - $releasegroupdisambig - $id'
 # Here is an example query when manually disambiguating between extremely similar albums (ex: Kanye's multiple Donda releases):
 # beet modify -a album:Donda ^albumdisambig:deluxe ^albumdisambig:24bit albumdisambig="Original Release"
 # For deluxe editions, special releases, etc, use the 'albumdisambig'
 aunique:
   keys: albumartist album
-  disambiguators: albumtype year albumdisambig label catalognum releasegroupdisambig
+  disambiguators: albumtype original_year albumdisambig label catalognum releasegroupdisambig
   bracket: "()"
 
 discogs:
@@ -150,11 +155,14 @@ discogs:
 
 # TOOD: Figure out where to put the spotify token
 spotify:
-  source_weight: 0.2
+  source_weight: 0.0
+
+deezer:
+  source_weight: 0.0 
 
 bandcamp:
   include_digital_only_tracks: true
-  search_max: 5
+  search_max: 30
   art: yes
 
 fetchart:
@@ -171,7 +179,6 @@ fetchart:
     - albumart
     - bandcamp
     - fanarttv
-    - bandcamp
   store_source: yes # Store the art source (e.g. filesystem) in the beets database as art_source.
 
 embedart:

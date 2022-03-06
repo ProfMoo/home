@@ -8,7 +8,7 @@ echo '[ENTRYPOINT SCRIPT] Continuously importing music files'
 while true
 do
     echo '[ENTRYPOINT SCRIPT] Running beets import'
-    beet import /downloads
+    beet import -q /downloads
 
     echo '[ENTRYPOINT SCRIPT] Running beets move in case there is new configuration that needs to be backported, or there are duplicates recently added that need to be disambiguated.'
     beet move
