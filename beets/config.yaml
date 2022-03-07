@@ -100,6 +100,16 @@ replace:
   '[\]\}]': )
   '[\^\%\`\~#]': _
 
+# To get a better sense of how beets is differentiating very similar albums (ex: Deluxe editions), use this query:
+# beet ls album:"The Life Of Pablo" -af '$album - $albumtype - $original_year - $albumdisambig - $label - $catalognum - $releasegroupdisambig - $id'
+# Here is an example query when manually disambiguating between extremely similar albums (ex: Kanye's multiple Donda releases):
+# beet modify -a album:Donda ^albumdisambig:deluxe ^albumdisambig:24bit albumdisambig="Original Release"
+# For deluxe editions, special releases, etc, use the 'albumdisambig'
+aunique:
+  keys: albumartist album
+  disambiguators: albumtype original_year albumdisambig label catalognum releasegroupdisambig
+  bracket: "()"
+
 extrafiles:
   patterns:
     artworkdir:
@@ -138,16 +148,6 @@ paths:
   singleton: Non-Album/$artist/$title
   comp: Compilations/$album%aunique{}/$track $title
 
-# To get a better sense of how beets is differentiating very similar albums (ex: Deluxe editions), use this query:
-# beet ls album:"The Life Of Pablo" -af '$album - $albumtype - $original_year - $albumdisambig - $label - $catalognum - $releasegroupdisambig - $id'
-# Here is an example query when manually disambiguating between extremely similar albums (ex: Kanye's multiple Donda releases):
-# beet modify -a album:Donda ^albumdisambig:deluxe ^albumdisambig:24bit albumdisambig="Original Release"
-# For deluxe editions, special releases, etc, use the 'albumdisambig'
-aunique:
-  keys: albumartist album
-  disambiguators: albumtype original_year albumdisambig label catalognum releasegroupdisambig
-  bracket: "()"
-
 discogs:
   user_token: dkVyfeemJydxHxvQxAcTWMGHsAvfAwvAKwVuEXTn
   source_weight: 0.0
@@ -158,11 +158,13 @@ spotify:
   source_weight: 0.0
 
 deezer:
-  source_weight: 0.0 
+  source_weight: 0.0
 
+# NOTE: Bandcamp search works by simply iterating through a list of albums that are returned
+# from a query for the album name.
 bandcamp:
   include_digital_only_tracks: true
-  search_max: 30
+  search_max: 10
   art: yes
 
 fetchart:
@@ -179,6 +181,9 @@ fetchart:
     - albumart
     - bandcamp
     - fanarttv
+    - itunes
+    - amazon
+    - wikipedia
   store_source: yes # Store the art source (e.g. filesystem) in the beets database as art_source.
 
 embedart:

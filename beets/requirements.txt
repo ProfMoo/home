@@ -7,6 +7,6 @@ pylast==4.4.0
 beets-extrafiles==0.0.7
 beets-check==0.13.0
 pyacoustid==1.2.2
-pylast==4.4.0
 beets-describe==0.0.3
+pylast==4.4.0
 git+https://github.com/ProfMoo/beets-originquery
