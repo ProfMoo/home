@@ -5,6 +5,9 @@ beet --help
 
 echo '[ENTRYPOINT SCRIPT] Continuously importing music files'
 
+# Uncomment this when you want to run manual imports
+sleep 100000
+
 while true
 do
     echo '[ENTRYPOINT SCRIPT] Running beets import'
@@ -17,6 +20,6 @@ do
     # echo '[ENTRYPOINT SCRIPT] Running beets update in case there are any metadata updates'
     # beet update
 
-    echo '[ENTRYPOINT SCRIPT] Sleeping for 100 seconds...'
-    sleep 100
+    echo '[ENTRYPOINT SCRIPT] Sleeping for 1000 seconds...'
+    sleep 100000
 done

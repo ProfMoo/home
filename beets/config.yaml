@@ -16,13 +16,14 @@ plugins:
   - lastgenre
   - describe
   - yearfixer
-  - deezer
+#  - deezer
+  - missing
 
 threaded: yes
 verbose: no
 
 # NOTE: This assumes that the music directory is mounted here
-directory: /music
+directory: /music 
 library: /music/beets.db
 asciify_paths: true
 
@@ -40,7 +41,6 @@ import:
   # 'beet import' without quiet on the running process. However, the script that runs continuously
   # calls 'beet import -q'
   quiet: no
-  # WHEN SHIFTING TO NAS, CHANGE THIS TO "asis"
   quiet_fallback: skip
 
   # WHEN SHIFTING TO COPY, UNCOMMENT THESE LINES
@@ -49,7 +49,7 @@ import:
 
   # These fields only affect interactive (i.e not quiet) mode
   default_action: apply
-  none_rec_action: asis
+  none_rec_action: ask
 
   move: yes
   log: /volume/log.txt
@@ -124,6 +124,7 @@ extrafiles:
       - "*.pdf"
       - "*.cue"
       - "*.log"
+      - "origin.yaml"
 
 clutter:
   [
@@ -136,6 +137,10 @@ clutter:
     "**.nfo",
     "**.m3u",
   ]
+
+# NOTE: This can tell the user from the CLI which albums are missing songs
+missing:
+  format: $albumartist - $album - $title
 
 match:
   strong_rec_thresh: 0.12 # Automatically confirm matches whose tags have greater then 88% match.
@@ -157,8 +162,8 @@ discogs:
 spotify:
   source_weight: 0.0
 
-deezer:
-  source_weight: 0.0
+# deezer:
+#   source_weight: 0.0
 
 # NOTE: Bandcamp search works by simply iterating through a list of albums that are returned
 # from a query for the album name.
