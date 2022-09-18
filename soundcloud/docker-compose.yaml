@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  soundcloud:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - /mnt/x/test:/volume
