@@ -15,5 +15,9 @@
 ## How To Use
 
 ```
+# As a CLI tool
 scdl -l https://soundcloud.com/yojasmusic/brrrt --force-metadata
+
+# In the repo
+sudo python3 scdl/scdl.py -l https://soundcloud.com/yojasmusic/brrrt --force-metadata --path /mnt/x/test
 ```
