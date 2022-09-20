@@ -16,7 +16,7 @@ plugins:
   - lastgenre
   - describe
   - yearfixer
-#  - deezer
+  - deezer
   - missing
 
 threaded: yes
