@@ -21,5 +21,5 @@ do
     # beet update
 
     echo '[ENTRYPOINT SCRIPT] Sleeping for 1000 seconds...'
-    sleep 100000
+    sleep 1000
 done
