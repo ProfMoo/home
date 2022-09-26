@@ -43,15 +43,17 @@ import:
   quiet: no
   quiet_fallback: skip
 
-  # WHEN SHIFTING TO COPY, UNCOMMENT THESE LINES
-  # incremental: yes
-  # incremental_skip_later: yes
+  # We set this to incremental so that we don't try to import files that we've already imported
+  incremental: yes
+  # Tells beets to attempt to import folders that we previously skipped
+  incremental_skip_later: yes
 
   # These fields only affect interactive (i.e not quiet) mode
   default_action: apply
   none_rec_action: ask
 
-  move: yes
+  move: no
+  copy: yes
   log: /volume/log.txt
 
 max_filename_length: 255
@@ -158,12 +160,13 @@ discogs:
   source_weight: 0.0
   extra_tags: [year]
 
-# TOOD: Figure out where to put the spotify token
+# TOOD: Figure out where to put the spotify token.
+# Right now it's just placed manually in the shared volume in this directory.
 spotify:
   source_weight: 0.0
 
-# deezer:
-#   source_weight: 0.0
+deezer:
+  source_weight: 0.0
 
 # NOTE: Bandcamp search works by simply iterating through a list of albums that are returned
 # from a query for the album name.
