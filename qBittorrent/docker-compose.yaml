@@ -6,12 +6,12 @@ services:
       - "8080:8080"
     environment:
       # NOTE: RED_API_KEY is populated from a .env file
-      - RED_API_KEY=${RED_API_KEY}
-      - ORIGIN_TRACKER=red
-      - PUID=1000
-      - PGID=1000
-      - UMASK=002
-      - TZ=Etc/UTC
+      RED_API_KEY: ${RED_API_KEY}
+      ORIGIN_TRACKER: red
+      PUID: 1000
+      PGID: 1000
+      UMASK: 002
+      TZ: Etc/UTC
     volumes:
       - ./config:/config
       # Loading in the post-download scripts
