@@ -1,5 +1,0 @@
-# Adjust this file to the needs of your own personal setup
-
-TRACKER_DIR: /mnt/x/torrent-files
-DOWNLOAD_DIR: /mnt/x/pre-process
-MUSIC_LIBRARY_DIR: /mnt/x/post-process
