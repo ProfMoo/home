@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+  minecraft-server-3:
+    image: itzg/minecraft-server
+    environment:
+      ENABLE_RCON: "true"
+      OPS: "0a499d9d-e542-4394-ae92-e5646580a310"
+      DIFFICULTY: "normal"
+      MOTD: "Moo's Pasture - Moo, Moo, Bitch"
+      OVERRIDE_SERVER_PROPERTIES: "TRUE"
+      ENFORCE_WHITELIST: "TRUE"
+      WHITELIST: "0a499d9d-e542-4394-ae92-e5646580a310,786cf52f-eed1-43e7-a394-9ae12cdd172e,dfdec815-5a93-4a31-b4ea-b1c227a05006,754c94dc-2237-4def-891f-b75381c5df20"
+      PATH: "/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      LANG: "en_US.UTF-8"
+      LANGUAGE: "en_US:en"
+      LC_ALL: "en_US.UTF-8"
+      JAVA_VERSION: "jdk-17.0.3+7"
+      JAVA_HOME: "/opt/java/openjdk"
+      TYPE: "VANILLA"
+      VERSION: "LATEST"
+      EULA: "TRUE"
+      UID: "1000"
+      GID: "1000"
+      MEMORY: "8G"
+    volumes:
+      - /volume2/docker/minecraft-server-3:/data
+    ports:
+      - 25565:25565
+      - 25575:25575
+    restart: unless-stopped
+    # NOTE: This is deprecated, we'll need to update this to 'deploy' once we can update
+    # the docker version on the Synology NAS
+    # https://docs.docker.com/compose/compose-file/deploy/#memory
+    mem_limit: 8G
