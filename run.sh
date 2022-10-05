@@ -12,7 +12,7 @@ elif [ "$RUN_TYPE" = "nas" ]; then
     echo "Starting up with the 'nas' configuration"
     source config/nas.sh
 else
-    echo "Run type '$RUN_TYPE' not supported. Exiting..."
+    echo "Run type '$RUN_TYPE' not supported. Supported types are 'local' and 'nas'. Exiting..."
 fi
 
 if docker-compose build ; then
