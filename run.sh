@@ -15,7 +15,7 @@ else
     echo "Run type '$RUN_TYPE' not supported. Exiting..."
 fi
 
-if docker compose build --parallel ; then
+if docker compose build ; then
     docker compose up --remove-orphans
 else
     echo "Docker compose build failed"
