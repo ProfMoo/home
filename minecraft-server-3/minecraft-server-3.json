@@ -1,0 +1,133 @@
+{
+   "CapAdd" : null,
+   "CapDrop" : null,
+   "cmd" : "",
+   "cpu_priority" : 50,
+   "enable_publish_all_ports" : false,
+   "enable_restart_policy" : true,
+   "enabled" : false,
+   "env_variables" : [
+      {
+         "key" : "RCON_PASSWORD",
+         "value" : "poggerino"
+      },
+      {
+         "key" : "ENABLE_RCON",
+         "value" : "true"
+      },
+      {
+         "key" : "OPS",
+         "value" : "0a499d9d-e542-4394-ae92-e5646580a310,dfdec815-5a93-4a31-b4ea-b1c227a05006"
+      },
+      {
+         "key" : "DIFFICULTY",
+         "value" : "normal"
+      },
+      {
+         "key" : "MOTD",
+         "value" : "\"Moo's Pasture - Moo, Moo, Bitch\""
+      },
+      {
+         "key" : "OVERRIDE_SERVER_PROPERTIES",
+         "value" : "TRUE"
+      },
+      {
+         "key" : "ENFORCE_WHITELIST",
+         "value" : "TRUE"
+      },
+      {
+         "key" : "WHITELIST",
+         "value" : "0a499d9d-e542-4394-ae92-e5646580a310,786cf52f-eed1-43e7-a394-9ae12cdd172e,"
+      },
+      {
+         "key" : "PATH",
+         "value" : "/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      },
+      {
+         "key" : "LANG",
+         "value" : "en_US.UTF-8"
+      },
+      {
+         "key" : "LANGUAGE",
+         "value" : "en_US:en"
+      },
+      {
+         "key" : "LC_ALL",
+         "value" : "en_US.UTF-8"
+      },
+      {
+         "key" : "JAVA_VERSION",
+         "value" : "jdk-17.0.3+7"
+      },
+      {
+         "key" : "JAVA_HOME",
+         "value" : "/opt/java/openjdk"
+      },
+      {
+         "key" : "TYPE",
+         "value" : "VANILLA"
+      },
+      {
+         "key" : "VERSION",
+         "value" : "LATEST"
+      },
+      {
+         "key" : "EULA",
+         "value" : "TRUE"
+      },
+      {
+         "key" : "UID",
+         "value" : "1000"
+      },
+      {
+         "key" : "GID",
+         "value" : "1000"
+      },
+      {
+         "key" : "MEMORY",
+         "value" : "8G"
+      }
+   ],
+   "exporting" : false,
+   "id" : "f64bdc82fb91ef0153389b9ec34e691d6b0486b03a1a9932fbff3fe1e916e878",
+   "image" : "itzg/minecraft-server:latest",
+   "is_ddsm" : false,
+   "is_package" : false,
+   "links" : [],
+   "memory_limit" : 10573840384,
+   "name" : "minecraft-server-3",
+   "network" : [
+      {
+         "driver" : "bridge",
+         "name" : "bridge"
+      }
+   ],
+   "network_mode" : "bridge",
+   "port_bindings" : [
+      {
+         "container_port" : 25565,
+         "host_port" : 25565,
+         "type" : "tcp"
+      },
+      {
+         "container_port" : 25575,
+         "host_port" : 25575,
+         "type" : "tcp"
+      }
+   ],
+   "privileged" : false,
+   "shortcut" : {
+      "enable_shortcut" : false,
+      "enable_status_page" : false,
+      "enable_web_page" : false,
+      "web_page_url" : ""
+   },
+   "use_host_network" : false,
+   "volume_bindings" : [
+      {
+         "host_volume_file" : "/docker/minecraft-server-3",
+         "mount_point" : "/data",
+         "type" : "rw"
+      }
+   ]
+}
