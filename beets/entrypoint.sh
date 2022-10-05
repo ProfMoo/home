@@ -6,7 +6,7 @@ beet --help
 echo '[ENTRYPOINT SCRIPT] Continuously importing music files'
 
 # Uncomment this when you want to run manual imports
-sleep 100000
+# sleep 100000
 
 while true
 do
