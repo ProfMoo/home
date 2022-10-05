@@ -6,7 +6,8 @@ This repository contains the configuration and code necessary to deploy and main
 
 ### Prerequisites
 
-1. Docker installed on your system (I used `20.10.14`, which has `compose` built in)
+1. Docker installed on your system (I used `20.10.14`
+2. Docker compose installed on your system (I used `v2.4.1`)
 
 ### Quick Start
 
