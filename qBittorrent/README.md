@@ -12,6 +12,7 @@ A docker container that runs a qBittorrent client with special configuration and
 ## TODO
 
 1. Add username/password that isn't the default
+2. Keep torrent files so that I can reseed all the torrent in case of a massive loss of the torrent files
 
 ## Shortcomings
 

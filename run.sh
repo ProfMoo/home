@@ -8,7 +8,6 @@ echo "Starting up the docker container for the home setup..."
 if [ "$RUN_TYPE" = "local" ]; then
     echo "Starting up with the 'local' configuration"
     source config/local.sh
-    RUN_ARGS="--detach"
 elif [ "$RUN_TYPE" = "nas" ]; then
     echo "Starting up with the 'nas' configuration"
     source config/nas.sh
