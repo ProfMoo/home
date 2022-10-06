@@ -1,12 +1,11 @@
-# docker compose up
 version: "3.9"
 services:
   beets:
     build: .
     environment:
-      - PUID=1000
-      - PGID=1000
-      - BEETSDIR=.
+      PUID: 1000
+      PGID: 1000
+      BEETSDIR: .
     volumes:
       - ./volume:/volume
     ports:
