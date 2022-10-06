@@ -2,3 +2,6 @@ volume/*
 
 # Ignoring some test torrent files that are kept locally
 test-torrents
+
+# Beets secret files
+secrets.yaml

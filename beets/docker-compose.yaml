@@ -5,7 +5,8 @@ services:
     environment:
       PUID: 1000
       PGID: 1000
-      BEETSDIR: .
+      # NOTE: This directory needs to be set to where your configuration is
+      BEETSDIR: /config
     volumes:
       - ./volume:/volume
     ports:

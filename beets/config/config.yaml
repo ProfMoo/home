@@ -1,3 +1,8 @@
+# # A list of extra configuration files to include. IMPORTANT: Most configurations doesn't seem to work in external files, so leave them here.
+include:
+  # Secret strings (REDACTED) like usernames and passwords. Add this file to .gitignore.
+  - secrets.yaml
+
 plugins:
   - originquery
   - fromfilename
@@ -23,12 +28,12 @@ threaded: yes
 verbose: no
 
 # NOTE: This assumes that the music directory is mounted here
-directory: /music 
+directory: /music
 library: /music/beets.db
 asciify_paths: true
 
 # Pointing beets to the file where we keep the list of directories
-# we've already imported
+# we've already imported.
 statefile: /volume/state.pickle
 
 import:
@@ -152,11 +157,13 @@ match:
 
 paths:
   default: $albumartist/$album%aunique{}/$track $title
+  # NOTE: I think the commented out singleton configuration is better, but this needs to be
+  # fully tested before it's turned on
+  # singleton: $artist/Non-Album/$title
   singleton: Non-Album/$artist/$title
   comp: Compilations/$album%aunique{}/$track $title
 
 discogs:
-  user_token: dkVyfeemJydxHxvQxAcTWMGHsAvfAwvAKwVuEXTn
   source_weight: 0.0
   extra_tags: [year]
 
@@ -174,6 +181,10 @@ bandcamp:
   include_digital_only_tracks: true
   search_max: 10
   art: yes
+
+importadded:
+  preserve_mtimes: yes        # After importing files, do not re-set their mtimes to their original value. Default: no.
+  preserve_write_mtimes: yes  # After writing files, do not re-set their mtimes to their original value. Default: no.
 
 fetchart:
   auto: yes # Enable automatic album art fetching during import.
@@ -211,9 +222,6 @@ absubmit: # The absubmit plugin lets you submit acoustic analysis results to the
   auto: yes # Analyze every file on import. Otherwise, you need to use the beet absubmit command explicitly. Default: no
   force: no # Analyze items and submit of AcousticBrainz data even for tracks that already have it. Default: no.
   pretend: no # Do not analyze and submit of AcousticBrainz data but print out the items which would be processed. Default: no.
-
-acoustid:
-  apikey: QqnLdUzcLa
 
 acousticbrainz: # The acousticbrainz plugin gets acoustic-analysis information from the AcousticBrainz project.
   auto: yes # Enable AcousticBrainz during beet import. Default: yes.
