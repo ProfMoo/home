@@ -3,7 +3,9 @@ services:
   qbittorrent:
     build: .
     ports:
-      - "8080:8080"
+      - 8080:8080
+      - 6881:6881
+      - 6881:6881/udp
     environment:
       # NOTE: RED_API_KEY is populated from a .env file
       RED_API_KEY: ${RED_API_KEY}
