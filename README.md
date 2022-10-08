@@ -6,8 +6,8 @@ This repository contains the configuration and code necessary to deploy and main
 
 ### Prerequisites
 
-1. Docker installed on your system (I used `20.10.14`
-2. Docker compose installed on your system (I used `v2.4.1`)
+1. Docker installed on your system (I currently using `20.10.14`
+2. Docker compose installed on your system (I currently using `v2.4.1`)
 
 ### Quick Start
 
@@ -25,3 +25,11 @@ This repository contains the configuration and code necessary to deploy and main
     # ex: ./run.sh config/local
     ./run.sh <config location>
     ```
+
+## Docker In Docker
+
+Some useful links for DIND:
+
+- https://github.com/markdumay/synology-docker/issues/22
+- https://kristoferlundgren.medium.com/synology-run-the-latest-docker-daemon-without-patching-dsm6-x-7bb4834d87bc
+- https://github.com/markdumay/synology-docker
