@@ -9,7 +9,7 @@ services:
       MOTD: "Moo's Pasture - Moo, Moo, Bitch"
       OVERRIDE_SERVER_PROPERTIES: "TRUE"
       ENFORCE_WHITELIST: "TRUE"
-      WHITELIST: "0a499d9d-e542-4394-ae92-e5646580a310,786cf52f-eed1-43e7-a394-9ae12cdd172e,dfdec815-5a93-4a31-b4ea-b1c227a05006,754c94dc-2237-4def-891f-b75381c5df20,8ce0f5f3-b5e5-4b63-a05b-fef0f8f7dc86"
+      WHITELIST: "0a499d9d-e542-4394-ae92-e5646580a310,786cf52f-eed1-43e7-a394-9ae12cdd172e,dfdec815-5a93-4a31-b4ea-b1c227a05006,754c94dc-2237-4def-891f-b75381c5df20,8ce0f5f3-b5e5-4b63-a05b-fef0f8f7dc86,77e9fcd7-bfe5-4142-9ab3-65a9228e2eaa"
       PATH: "/opt/java/openjdk/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
       LANG: "en_US.UTF-8"
       LANGUAGE: "en_US:en"
