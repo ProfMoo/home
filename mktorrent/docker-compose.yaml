@@ -4,5 +4,11 @@ services:
     build: .
     command:
       - "mktorrent"
-      - "--help"
+      - "--announce=https://flacsfor.me/7ff5fc52d1dff7075d7dbd7d2c393b6a/announce"
+      - "--source=RED"
+      - "--private"
+      - "--output="
+    volumes:
+      - ${DOWNLOAD_DIR}:/downloads
+      - ${MUSIC_LIBRARY_DIR}:/music
 #    restart: unless-stopped
