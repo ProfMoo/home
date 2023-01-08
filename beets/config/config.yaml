@@ -8,9 +8,9 @@ plugins:
   - fromfilename
   - discogs
   - fetchart
-  - bandcamp
+#  - bandcamp
   - embedart
-  - spotify
+#  - spotify
   - extrafiles
   - acousticbrainz
   - chroma

@@ -13,8 +13,6 @@ services:
     volumes:
       - ./lidarr-volume:/config
       - ./downloads:/downloads
-    links:
-      - jackett
   jackett:
     image: hotio/jackett
     ports:
