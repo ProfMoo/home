@@ -8,7 +8,7 @@ plugins:
   - fromfilename
   - discogs
   - fetchart
-#  - bandcamp
+  - bandcamp
   - embedart
 #  - spotify
   - extrafiles
