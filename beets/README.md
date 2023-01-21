@@ -16,41 +16,17 @@ This beets configuration is based on a few assumptions, which, if broken, could 
 3. **New music is being added from a Gazelle-based tracker (ex: RED)**: The configuration expects an 'origin.yaml' 
 file in the music directory, which is generated from the tracker's metadata. Beets might still work without it, but the results will be much less effective. This repo is configured to automatically gather that info on download. To view that code, refer [here](../qBittorrent/README.md#features)
 
-## TODO
-
-1. Work on a script that does everything I'd like on import:
-   1. DONE: Import
-   2. DONE: Get album art
-   3. DONE: Get genre(s)
-   4. Fix years (maybe don't need)
-2. DONE: Beets automatically moves that into the final location with all the right tags
-   1. DONE: Need to figure out how to tell beets to accept albums AS IS when it can't find anything
-   2. DONE: Beets currently asks for permission when importing album artwork, which fails because of no STDIN. Need to fix that (check sakuraburst album for live example)
-   3. DONE: Figure out why Adele's 30 Deluxe is recognized as a duplicate of the regular version (and therefore isn't being imported)
-   4. Figure out why Herobust's Lose Your Shit single is so poorly categorized in beets
-   5. DONE: Figure out some script that runs 'beets move' after a duplicate is detected so that beets goes back and adds the proper modifiers to the first version of the album (i.e. deluxe)
-   6. DONE: Fix the album disambiguation so that it provides the proper version of the ablum (i.e. deluxe) rather than the label. Ex: Donda, Adele's 30
-   7. TODO: Fix Mac Miller's Faces
-   8. Look at Mac Miller's KIDS to fix the coverart (there are multiple covers)
-   9. DONE: Figure out how to "update" metadata automatically once it's been imported if the config file changes (ex: we want new tags and have edited the config)
-   10. TODO: Figure out album artwork more fully
-   11. DONE: Figure out how to pull in scans/artwork from typical file locations
-   12. TODO: Figure out how to get rid of everything in the pre-processed directory (update: or maybe not because I might ahve to keep both copied for seeding)
-   13. TODO: Fix DJ @@
-   14. TODO: Explore 'ftintitle' plugin (decided to put this off until later. don't need it right now and can always add in later)
-   15. DONE: Look through redacted.ch for more thoughts/info on beets
-       1. DONE: Found gazelle-origin here, which could really help with deluxe editions and other complex tags. Need to figure this out with Kanye's TLOP
-   16. TOOD: Figure out why beets is continually trying to change some flags
-   17. TODO: Fix weird warnings when that print at the top of ever beets command. Seems this comes from individual plugins, so I need to figure out which ones it's coming from and update them.
-   18. 2562 - It's not importing from MusicBrainz due to track mismatch. But for some reason, bandcamp and spotify aren't returning a strong rec either. Maybe file a bug report?
-
 ### Tasks
 
 Below are instruction for performing various tasks
 
-#### Contributing To Musicbrainz
+#### Contributing To MusicBrainz
 
-Musicbrainz does not support entirely programmatic entry into the canonical Musicbrainz DB. This is to prevent people from inserting massive amounts of incorrect information - they want some sort of "human check" for each entry. As such, the best way to add entries to Musicbrainz are Userscripts. Userscripts are small JS snippets that can run in your browser. For more info about them, refer to [the relevant Musicbrainz wiki page](https://wiki.musicbrainz.org/Guides/Userscripts).
+MusicBrainz does not support entirely programmatic entry into the canonical MusicBrainz DB. This is to prevent people from inserting massive amounts of incorrect information - they want some sort of "human check" for each entry. As such, the best way to add entries to MusicBrainz are Userscripts. Userscripts are small JS snippets that can run in your browser. For more info about them, refer to [the relevant MusicBrainz wiki page](https://wiki.musicbrainz.org/Guides/Userscripts).
+
+#### Disambiguating Very Similar Releases
+
+Ex: Mac Miller's Faces
 
 ### Unrelated TODO
 
