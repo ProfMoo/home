@@ -11,7 +11,7 @@ This beets configuration is built to run as automatically and as smoothly as pos
 
 This beets configuration is based on a few assumptions, which, if broken, could lead to unintended behavior
 
-1. **Duplicates won't be added to pre-import folder**: There isn't any way (that I've found) to allow for "duplicates" such as Kanye West's Donda (two versions released on streaming), Deluxe Editions, Mac Miller's Faces (one version was a self-released mixtape, the other released on streaming), while also disallowing exact copies. So, until this is figured out, duplicates have been allowed into the beets db. If you only want to have unique albums in your library, don't add any duplicates to the pre-processed folder.
+1. **Exact duplicates shouldn't be added to pre-import folder**: If duplicates are added to the pre-import folder, then you can expect both copies to be imported. There isn't any way (that I've found) to disallow exact copies while also allowing for "almost duplicates", such as multiple versions of Kanye West's Donda (which are different only in custom disambiguations, such as "streaming edition date"), Deluxe Editions, and Mac Miller's Faces (one version was a self-released mixtape, the other released on streaming). So, until this is figured out, duplicates have been allowed into the beets db. If you only want to have unique albums in your library, don't add any duplicates to the pre-processed folder.
 2. **Albums are separated by folder before import**: This beets config can successfully explore a complex directory structure with album at the bottom (ex: Knxwledge -> 2014 -> Albums -> MeekMillV1), but if multiple albums are mixed together in the same directory, there is undefined behavior.
 3. **New music is being added from a Gazelle-based tracker (ex: RED)**: The configuration expects an 'origin.yaml' 
 file in the music directory, which is generated from the tracker's metadata. Beets might still work without it, but the results will be much less effective. This repo is configured to automatically gather that info on download. To view that code, refer [here](../qBittorrent/README.md#features)
@@ -44,13 +44,13 @@ file in the music directory, which is generated from the tracker's metadata. Bee
    17. TODO: Fix weird warnings when that print at the top of ever beets command. Seems this comes from individual plugins, so I need to figure out which ones it's coming from and update them.
    18. 2562 - It's not importing from MusicBrainz due to track mismatch. But for some reason, bandcamp and spotify aren't returning a strong rec either. Maybe file a bug report?
 
-## TO TRY NEXT
+### Tasks
 
-1. Mixtapes from more underground rappers
-2. The Skrillex disco dump (oof)
-3. Mura Masa random singles
-4. DONE: the heart and the tongue - chance the rapper
-5. 28 mansions
+Below are instruction for performing various tasks
+
+#### Contributing To Musicbrainz
+
+Musicbrainz does not support entirely programmatic entry into the canonical Musicbrainz DB. This is to prevent people from inserting massive amounts of incorrect information - they want some sort of "human check" for each entry. As such, the best way to add entries to Musicbrainz are Userscripts. Userscripts are small JS snippets that can run in your browser. For more info about them, refer to [the relevant Musicbrainz wiki page](https://wiki.musicbrainz.org/Guides/Userscripts).
 
 ### Unrelated TODO
 
