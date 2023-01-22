@@ -1,16 +1,19 @@
 # # A list of extra configuration files to include. IMPORTANT: Most configurations doesn't seem to work in external files, so leave them here.
 include:
-  # Secret strings (REDACTED) like usernames and passwords. Add this file to .gitignore.
+  # Secret strings (REDACTED) like usernames and passwords. This file should be in .gitignore.
   - secrets.yaml
 
 plugins:
+  # Data sources
+  - discogs
+    #  - spotify
+  - bandcamp
+  - deezer
+
   - originquery
   - fromfilename
-  - discogs
   - fetchart
-  - bandcamp
   - embedart
-#  - spotify
   - extrafiles
   - acousticbrainz
   - chroma
@@ -21,7 +24,6 @@ plugins:
   - lastgenre
   - describe
   - yearfixer
-  - deezer
   - missing
 
 threaded: yes
@@ -107,16 +109,6 @@ replace:
   '[\]\}]': )
   '[\^\%\`\~#]': _
 
-# To get a better sense of how beets is differentiating very similar albums (ex: Deluxe editions), use this query:
-# beet ls album:"The Life Of Pablo" -af '$album - $albumtype - $original_year - $albumdisambig - $label - $catalognum - $releasegroupdisambig - $id'
-# Here is an example query when manually disambiguating between extremely similar albums (ex: Kanye's multiple Donda releases):
-# beet modify -a album:Donda ^albumdisambig:deluxe ^albumdisambig:24bit albumdisambig="Original Release"
-# For deluxe editions, special releases, etc, use the 'albumdisambig'
-aunique:
-  keys: albumartist album
-  disambiguators: albumtype original_year albumdisambig label catalognum releasegroupdisambig
-  bracket: "()"
-
 extrafiles:
   patterns:
     artworkdir:
@@ -155,10 +147,16 @@ match:
     missing_tracks: medium
     unmatched_tracks: medium
 
+# Refer to the README for more details on the release group disambiguation process
+aunique:
+  keys: albumartist album
+  disambiguators: albumtype releasegroupdisambig albumdisambig label catalognum
+  bracket: "()"
+
 paths:
   default: $albumartist/$album%aunique{}/$track $title
   # NOTE: I think the commented out singleton configuration is better, but this needs to be
-  # fully tested before it's turned on
+  # fully tested before it's turned on. We don't want to lose playlist entries when shifting a lot of hard-to-identify singles.
   # singleton: $artist/Non-Album/$title
   singleton: Non-Album/$artist/$title
   comp: Compilations/$album%aunique{}/$track $title
@@ -170,21 +168,23 @@ discogs:
 # TOOD: Figure out where to put the spotify token.
 # Right now it's just placed manually in the shared volume in this directory.
 spotify:
-  source_weight: 0.0
+  source_weight: 0.7
 
 deezer:
-  source_weight: 0.0
+  source_weight: 0.7
 
 # NOTE: Bandcamp search works by simply iterating through a list of albums that are returned
-# from a query for the album name.
+# from a query for the album name. This could be quite a slow process, depending on the 'search_max'.
+# Further, the bandcamp search might not work if the album name is common (i.e. won't show up in first X results)
 bandcamp:
+  source_weight: 0.7
   include_digital_only_tracks: true
   search_max: 10
   art: yes
 
 importadded:
-  preserve_mtimes: yes        # After importing files, do not re-set their mtimes to their original value. Default: no.
-  preserve_write_mtimes: yes  # After writing files, do not re-set their mtimes to their original value. Default: no.
+  preserve_mtimes: yes # After importing files, do not re-set their mtimes to their original value. Default: no.
+  preserve_write_mtimes: yes # After writing files, do not re-set their mtimes to their original value. Default: no.
 
 fetchart:
   auto: yes # Enable automatic album art fetching during import.
