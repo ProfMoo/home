@@ -6,7 +6,7 @@ include:
 plugins:
   # Data sources
   - discogs
-    #  - spotify
+  #  - spotify
   - bandcamp
   - deezer
 
@@ -205,8 +205,10 @@ fetchart:
     - wikipedia
   store_source: yes # Store the art source (e.g. filesystem) in the beets database as art_source.
 
+# We want to enable this plugin so that we can use its 'extractart' and 'clearart' features,
+# but we don't want to automatically embed album art because it increases the size of EACH song on an album (it's duplicative)
 embedart:
-  auto: yes
+  auto: no
 
 chroma:
   auto: yes
