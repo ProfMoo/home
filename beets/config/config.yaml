@@ -4,10 +4,10 @@ include:
   - secrets.yaml
 
 plugins:
-  # Data sources
+  # Data sources (commented out some because they've been inconsistent)
   - discogs
-  #  - spotify
-  - bandcamp
+  # - spotify
+  # - bandcamp
   - deezer
 
   - originquery
