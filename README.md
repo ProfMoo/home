@@ -28,8 +28,11 @@ This repository contains the configuration and code necessary to deploy and main
 
 ## Docker In Docker
 
-Some useful links for DIND:
+I'd like to run these home services on a NAS or other type of home server eventually (rather than mostly on my personal desktop). However, when trying to deploy the docker containers to the NAS, I ran into numerous issues, as detailed in some of these blogs posts:
 
 - https://github.com/markdumay/synology-docker/issues/22
 - https://kristoferlundgren.medium.com/synology-run-the-latest-docker-daemon-without-patching-dsm6-x-7bb4834d87bc
 - https://github.com/markdumay/synology-docker
+
+
+The potential solution to this problem would be a DIND setup, which would allow me to alleviate the dependency on a specific version of docker and docker-compose to run these containers. This is a WIP.
