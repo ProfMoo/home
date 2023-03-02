@@ -4,11 +4,12 @@ include:
   - secrets.yaml
 
 plugins:
-  # Data sources (commented out some because they've been inconsistent)
   - discogs
+  # Data sources (commented out some because they've been inconsistent).
+  # More info in the README
   # - spotify
   # - bandcamp
-  - deezer
+  # - deezer
 
   - originquery
   - fromfilename
@@ -162,7 +163,7 @@ paths:
   comp: Compilations/$album%aunique{}/$track $title
 
 discogs:
-  source_weight: 0.0
+  source_weight: 0.7
   extra_tags: [year]
 
 # TOOD: Figure out where to put the spotify token.

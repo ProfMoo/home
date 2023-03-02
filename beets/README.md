@@ -8,7 +8,7 @@ This code covers the full music downloading lifecycle, starting in a Gazelle-bas
 
 1. **Prefer manual over incorrect**: If there is ambiguity during a music organization task, prefer to defer to manual intervention over an incorrect action. For example, prefer to ask the user to select the correct album during import rather than assume an incorrect album. Of course, we will try to automate as much as we can.
 2. **Prefer music file correctness over music viewer corrections**: While there are many great ways to ensure music is labeled and displayed correctly in the music viewing/browsing tool, this repository prefers to make modifications to the underlying songs, tags, and directory structure. This ensures that as music browsing tools necessarily change over time in ways we can't predict, the underlying files remain organizationally sound.
-3. **Prefer Musicbrainz as data source**: Musicbrainz is considered the most canonical source of information for both `beets` and Roon. This repository uses Musicbrainz as its primary source of information, and prefers 
+3. **Prefer Musicbrainz as data source**: Musicbrainz is considered the most canonical source of information for both `beets` and Roon. This repository uses Musicbrainz as its primary source of information, and places heigher weight on responses from Roon. Discogs is still enabled in cases where it's helpful, but other data sources have been manually commented out in the `config.yaml`.
 
 ## Assumptions
 
@@ -106,4 +106,4 @@ For more information about how `beets` handles release disambiguation, please re
 
 * Remove API keys from config.yaml
 
-* Move Roon to a container. [It's seemingly possible](https://hub.docker.com/r/steefdebruijn/docker-roonserver)
+* Move Roon to a container? [It's seemingly possible](https://hub.docker.com/r/steefdebruijn/docker-roonserver)
