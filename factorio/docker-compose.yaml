@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  factorio:
+    image: factoriotools/factorio:latest
+    environment:
+      INSTANCE_NAME: "OBKiddos"
+      INSTANCE_DESC: "Moo, Moo, Motherfucker"
+      UPDATE_MODS_ON_START: "true"
+      USERNAME: ProfMoo
+      TOKEN: ${TOKEN}
+      SAVE_NAME: server.zip
+      GAME_PASSWORD: ${GAME_PASSWORD}
+    volumes:
+      - ${FACTORIO_DIR}:/factorio
+      - ./server-settings.json:/server-settings.json
+    ports:
+      - "34197:34197/udp"
+    restart: unless-stopped
+    entrypoint: /bin/sh -c "mkdir -p /factorio/config && envsubst < /server-settings.json > /factorio/config/server-settings.json && exec /docker-entrypoint.sh"
