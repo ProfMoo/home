@@ -23,6 +23,7 @@ services:
       GID: "1000"
       MEMORY: "8G"
     volumes:
+      # NOTE: Needs to be run on the NAS or else the volumes won't match.
       - /volume2/docker/minecraft-server-1:/data
     ports:
       - 25565:25565
