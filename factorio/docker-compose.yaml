@@ -8,7 +8,6 @@ services:
       UPDATE_MODS_ON_START: "true"
       USERNAME: ProfMoo
       TOKEN: ${TOKEN}
-      SAVE_NAME: server.zip
       GAME_PASSWORD: ${GAME_PASSWORD}
     volumes:
       - ${FACTORIO_DIR}:/factorio
