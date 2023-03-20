@@ -1,2 +1,0 @@
-mutagen==1.45.1
-git+https://github.com/ProfMoo/scdl@additions
