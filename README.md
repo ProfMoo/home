@@ -36,3 +36,11 @@ I'd like to run these home services on a NAS or other type of home server eventu
 
 
 The potential solution to this problem would be a DIND setup, which would allow me to alleviate the dependency on a specific version of docker and docker-compose to run these containers. This is a WIP.
+
+## Torrent Management
+
+https://github.com/rndusr/torf
+
+https://github.com/pobrn/mktorrent
+
+https://github.com/flyingrub/scdl
