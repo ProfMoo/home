@@ -44,3 +44,13 @@ https://github.com/rndusr/torf
 https://github.com/pobrn/mktorrent
 
 https://github.com/flyingrub/scdl
+
+## Upload Torrents
+
+https://redacted.ch/wiki.php?action=article&id=455#_3053351046
+
+https://redacted.ch/wiki.php?action=article&id=35
+
+https://redacted.ch/wiki.php?action=article&name=Creating+torrents+with+qBittorrent
+
+https://github.com/aruhier/gazelle-uploader
