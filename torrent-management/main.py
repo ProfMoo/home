@@ -5,7 +5,7 @@ import requests
 from torf import Torrent
 
 
-def create_torrent_file(torrent_release_location: str) -> str:
+def create_torrent_file(torrent_release_location: str, output_name: str) -> str:
 
     TORRENT_DIR = os.getenv('TORRENT_DIR')
     REDACTED_ANNOUNCE_URL = os.getenv('REDACTED_ANNOUNCE_URL')
@@ -23,7 +23,7 @@ def create_torrent_file(torrent_release_location: str) -> str:
 
     newTorrent.generate()
 
-    torrent_file_location = TORRENT_DIR + '/test.torrent'
+    torrent_file_location = TORRENT_DIR + '/' + output_name + '.torrent'
     newTorrent.write(torrent_file_location)
 
     print("New torrent created at location: " + torrent_file_location)
@@ -64,5 +64,10 @@ def upload_torrent_to_red(torrent_file_location: str) -> bool:
 
 MUSIC_TO_UPLOAD_DIR = os.getenv('MUSIC_TO_UPLOAD_DIR')
 
-create_torrent_file(MUSIC_TO_UPLOAD_DIR + '/Losing My Way')
-query_red()
+create_torrent_file(MUSIC_TO_UPLOAD_DIR +
+                    '/Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - FLAC - LOSSLESS)', 'Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - FLAC - LOSSLESS)')
+create_torrent_file(MUSIC_TO_UPLOAD_DIR +
+                    '/Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - MP3 - 320)', 'Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - MP3 - 320)')
+create_torrent_file(MUSIC_TO_UPLOAD_DIR +
+                    '/Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - MP3 - V0)', 'Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - MP3 - V0)')
+# query_red()
