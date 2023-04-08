@@ -3,16 +3,17 @@ services:
   factorio:
     image: factoriotools/factorio:latest
     environment:
-      INSTANCE_NAME: "OBKiddos"
-      INSTANCE_DESC: "Moo, Moo, Motherfucker"
+      INSTANCE_NAME: "Coinbase"
+      INSTANCE_DESC: "To the moon!"
       UPDATE_MODS_ON_START: "true"
       USERNAME: ProfMoo
       TOKEN: ${TOKEN}
+      PORT: "34198"
       GAME_PASSWORD: ${GAME_PASSWORD}
     volumes:
-      - ${FACTORIO_DIR}:/factorio
+      - ${FACTORIO_DIR}/factorio-vanilla:/factorio
       - ./server-settings.json:/server-settings.json
     ports:
-      - "34197:34197/udp"
+      - "34198:34198/udp"
     restart: unless-stopped
     entrypoint: /bin/sh -c "mkdir -p /factorio/config && envsubst < /server-settings.json > /factorio/config/server-settings.json && exec /docker-entrypoint.sh"
