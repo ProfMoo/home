@@ -64,10 +64,10 @@ def upload_torrent_to_red(torrent_file_location: str) -> bool:
 
 MUSIC_TO_UPLOAD_DIR = os.getenv('MUSIC_TO_UPLOAD_DIR')
 
-create_torrent_file(MUSIC_TO_UPLOAD_DIR +
-                    '/Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - FLAC - LOSSLESS)', 'Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - FLAC - LOSSLESS)')
-create_torrent_file(MUSIC_TO_UPLOAD_DIR +
-                    '/Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - MP3 - 320)', 'Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - MP3 - 320)')
-create_torrent_file(MUSIC_TO_UPLOAD_DIR +
-                    '/Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - MP3 - V0)', 'Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - MP3 - V0)')
+# create_torrent_file(MUSIC_TO_UPLOAD_DIR +
+#                     '/Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - FLAC - LOSSLESS)', 'Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - FLAC - LOSSLESS)')
+# create_torrent_file(MUSIC_TO_UPLOAD_DIR +
+#                     '/Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - MP3 - 320)', 'Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - MP3 - 320)')
+# create_torrent_file(MUSIC_TO_UPLOAD_DIR +
+#                     '/Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - MP3 - V0)', 'Yasunao Tone - MP3 Deviation #8 - 2023 (WEB - MP3 - V0)')
 # query_red()

@@ -5,5 +5,7 @@ config/*
 config/config/*
 !config/config/qBittorrent.conf
 
+# Temporary and test files
 test
 test2
+tmp
