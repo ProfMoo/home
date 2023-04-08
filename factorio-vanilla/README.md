@@ -1,6 +1,6 @@
 # Factorio Server
 
-This is the first shared server the OB Kiddos made. This is the one with the large basement and the oversized Iron farm.
+This is a factorio server that runs with some basic QoL mods, but nothing that alters the gameplay significantly.
 
 ## Quick Start
 

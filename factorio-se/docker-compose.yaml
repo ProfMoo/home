@@ -10,7 +10,7 @@ services:
       TOKEN: ${TOKEN}
       GAME_PASSWORD: ${GAME_PASSWORD}
     volumes:
-      - ${FACTORIO_DIR}:/factorio
+      - ${FACTORIO_DIR}/factorio-se:/factorio
       - ./server-settings.json:/server-settings.json
     ports:
       - "34197:34197/udp"
