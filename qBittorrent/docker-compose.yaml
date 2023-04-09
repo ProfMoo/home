@@ -1,6 +1,8 @@
 version: "3.9"
 services:
   qbittorrent:
+    # NOTE: We set the user to root to ensure qBittorrent has the proper permissions to monitor to folder
+    # for new torrents
     build: .
     ports:
       - 8080:8080
@@ -12,7 +14,6 @@ services:
       ORIGIN_TRACKER: red
       PUID: 1000
       PGID: 1000
-      UMASK: 002
       TZ: Etc/UTC
     volumes:
       - ./config:/config

@@ -9,9 +9,6 @@ services:
       file: beets/docker-compose.yaml
       service: beets
   qbittorrent:
-    # NOTE: We set the user to root to ensure qBittorrent has the proper permissions to monitor to folder
-    # for new torrents
-    user: root
     volumes:
       # If you change these locations inside the docker container, you must also change the config file
       - ${TRACKER_DIR}:/torrent-files
