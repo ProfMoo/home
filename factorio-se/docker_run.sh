@@ -7,7 +7,7 @@ echo "Starting up the factorio server..."
 
 if [ "$RUN_TYPE" = "local" ]; then
     echo "Starting up with the 'local' configuration"
-    export FACTORIO_DIR="/mnt/z/factorio"
+    export FACTORIO_DIR="/mnt/z"
 elif [ "$RUN_TYPE" = "nas" ]; then
     echo "Starting up with the 'nas' configuration"
     export FACTORIO_DIR="/volume2/docker/factorio"
