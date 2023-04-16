@@ -4,3 +4,5 @@
 export TRACKER_DIR="/mnt/x/torrent-files"
 export DOWNLOAD_DIR="/mnt/x/pre-process"
 export MUSIC_LIBRARY_DIR="/mnt/x/post-process"
+export ACTIVE_TORRENTS="/mnt/x/active-torrents"
+export IN_PROGRESS_TORRENTS="/mnt/x/torrents-in-progress"

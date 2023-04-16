@@ -6,7 +6,7 @@ This repository contains the configuration and code necessary to deploy and main
 
 ### Prerequisites
 
-1. Docker installed on your system (I currently using `20.10.14`
+1. Docker installed on your system (I currently using `20.10.14`)
 2. Docker compose installed on your system (I currently using `v2.4.1`)
 
 ### Quick Start
@@ -19,6 +19,7 @@ This repository contains the configuration and code necessary to deploy and main
     DOWNLOAD_DIR: mydir/pre-process
     MUSIC_LIBRARY_DIR: mydir/post-process
     ```
+
 3. Run
 
     ```bash
@@ -34,7 +35,6 @@ I'd like to run these home services on a NAS or other type of home server eventu
 - https://kristoferlundgren.medium.com/synology-run-the-latest-docker-daemon-without-patching-dsm6-x-7bb4834d87bc
 - https://github.com/markdumay/synology-docker
 
-
 The potential solution to this problem would be a DIND setup, which would allow me to alleviate the dependency on a specific version of docker and docker-compose to run these containers. This is a WIP.
 
 ## Torrent Management
@@ -44,3 +44,13 @@ https://github.com/rndusr/torf
 https://github.com/pobrn/mktorrent
 
 https://github.com/flyingrub/scdl
+
+## Upload Torrents
+
+https://redacted.ch/wiki.php?action=article&id=455#_3053351046
+
+https://redacted.ch/wiki.php?action=article&id=35
+
+https://redacted.ch/wiki.php?action=article&name=Creating+torrents+with+qBittorrent
+
+https://github.com/aruhier/gazelle-uploader
