@@ -2,25 +2,13 @@ version: "3.9"
 
 services:
   lidarr:
-    image: hotio/lidarr
+    image: linuxserver/lidarr:1.1.4
     ports:
       - "8686:8686"
     environment:
-      PUID: 1000
-      PGID: 1000
-      UMASK: 002
+      PUID: 0
+      PGID: 0
       TZ: Etc/UTC
     volumes:
-      - ./lidarr-volume:/config
-      - ./downloads:/downloads
-  jackett:
-    image: hotio/jackett
-    ports:
-      - "9117:9117"
-    environment:
-      PUID: 1000
-      PGID: 1000
-      UMASK: 002
-      TZ: Etc/UTC
-    volumes:
-      - ./jackett-volume:/config
+      - /mnt/z/lidarr:/config
+      - /mnt/x/pre-process:/downloads

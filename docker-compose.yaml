@@ -22,3 +22,7 @@ services:
     extends:
       file: lidarr/docker-compose.yaml
       service: lidarr
+    depends_on:
+      qbittorrent:
+        condition: service_healthy
+        restart: true
