@@ -13,8 +13,8 @@ services:
       # If you change these locations inside the docker container, you must also change the config file
       - ${TRACKER_DIR}:/torrent-files
       - ${DOWNLOAD_DIR}:/downloads
-      # - ./qBittorrent/output-torrent-files:/output-torrent-files
-      # - ./qBittorrent/tmp:/tmp
+      - ${ACTIVE_TORRENTS}:/config/qBittorrent/BT_backup
+      - ${IN_PROGRESS_TORRENTS}:/tmp
     extends:
       file: qBittorrent/docker-compose.yaml
       service: qbittorrent
