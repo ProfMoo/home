@@ -1,8 +1,6 @@
 version: "3.9"
 services:
   qbittorrent:
-    # NOTE: We set the user to root to ensure qBittorrent has the proper permissions to monitor to folder
-    # for new torrents
     build: .
     ports:
       - 8080:8080
@@ -12,6 +10,8 @@ services:
       # NOTE: RED_API_KEY is populated from a .env file
       RED_API_KEY: ${RED_API_KEY}
       ORIGIN_TRACKER: red
+      # NOTE: We set the user to root to ensure qBittorrent has the proper permissions to monitor to folder
+      # for new torrents and modify the active torrents directory (BT_backup)
       PUID: 0
       PGID: 0
       TZ: Etc/UTC
