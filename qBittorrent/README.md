@@ -4,16 +4,16 @@ A docker container that runs a qBittorrent client with special configuration and
 
 ## Features
 
-* Auto-downloads when torrent files are placed in the directory
-* Has reasonable defaults set for a seedbox (ex: allowing for unlimited files to be seeding at one time)
-* Runs the `gazelle-origin` script automatically after download to generate the `origin.yaml` file, which provides `beets` additional and helpful info during the tagging process. To read more, refer to the `gazelle-origin` README [here](https://github.com/x1ppy/gazelle-origin)
-* Doesn't move downloaded files into the "finished" location until 100% complete to avoid importing/scanning incomplete music files
+* Has reasonable defaults set for a seedbox (ex: allowing for unlimited files to be seeding at one time).
+* Runs the `gazelle-origin` script automatically after download to generate the `origin.yaml` file, which provides `beets` additional and helpful info during the tagging process. To read more, refer to the `gazelle-origin` README [here](https://github.com/x1ppy/gazelle-origin).
+* Doesn't move downloaded files into the "finished" location until 100% complete to avoid importing/scanning incomplete music files.
+* Keeps the torrent files in a volume to ensure active torrents aren't lost. This allows for portability of the qBittorrent instance.
 
 ## TODO
 
 1. Add username/password that isn't the default
-2. Keep torrent files so that I can reseed all the torrent in case of a massive loss of the torrent files
 
 ## Shortcomings
 
-1. qBittorrent has no way to configure the monitored folders (i.e. where you put your torrent files) from the config file. This has to be configured manually from the UI
+1. Need to run qBittorrent was root to avoid a mess of file system and docker mount volume permissioning problems. Ended up using [this solution](https://www.reddit.com/r/qBittorrent/comments/ptj4yu/qbittorrent_docker_on_synology_nas/) to workaround these issues
+2. The auto torrent pickup feature still doesn't work. Torrents placed into the `torrent-files` directory aren't seen and picked up automatically by qBittorrent.
