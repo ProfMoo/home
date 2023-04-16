@@ -17,4 +17,4 @@ A docker container that runs a qBittorrent client with special configuration and
 
 1. There isn't currently a way to run qBittorrent on my Windows machine and ensure it can pickup the correct files. It's unclear where exactly the problem lies, as the full volumes path is Synology volume -> WSL mount -> Docker mount. This situation can be re-evaluated once qBittorrent is moved to its final resting place. Features currently broken because of this:
    1. Auto-downloads when torrent files are placed in the directory.
-   2. The FASTRESUME feature of qBittorrent where torrents can be picked back up without checking the contents (not super necessary)
+   2. The FASTRESUME feature of qBittorrent where torrents can be picked back up without checking the contents. This means that each torrent that has been downloaded since saving the torrents will need to be rechecked each time the 
