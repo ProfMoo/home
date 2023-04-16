@@ -12,8 +12,8 @@ services:
       # NOTE: RED_API_KEY is populated from a .env file
       RED_API_KEY: ${RED_API_KEY}
       ORIGIN_TRACKER: red
-      PUID: 911
-      PGID: 911
+      PUID: 0
+      PGID: 0
       TZ: Etc/UTC
       WEBUI_PORT: 8080
     volumes:
