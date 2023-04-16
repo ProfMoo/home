@@ -11,4 +11,6 @@ services:
       TZ: Etc/UTC
     volumes:
       - /mnt/z/lidarr:/config
-      - /mnt/x/pre-process:/downloads
+
+# NOTE: This isn't how it's supposed to work. Don't turn this back on
+#       - /mnt/x/pre-process:/downloads
