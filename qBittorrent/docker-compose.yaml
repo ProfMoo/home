@@ -12,10 +12,12 @@ services:
       # NOTE: RED_API_KEY is populated from a .env file
       RED_API_KEY: ${RED_API_KEY}
       ORIGIN_TRACKER: red
-      PUID: 1000
-      PGID: 1000
+      PUID: 911
+      PGID: 911
       TZ: Etc/UTC
+      WEBUI_PORT: 8080
     volumes:
+      # All the files on disk that qBittorrent uses to function. Includes configuration, cache, logs, etc.
       - ./config:/config
-      # Loading in the post-download scripts
+      # Contains the post-download scripts
       - ./scripts:/scripts
