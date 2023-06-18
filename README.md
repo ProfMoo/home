@@ -54,3 +54,7 @@ https://redacted.ch/wiki.php?action=article&id=35
 https://redacted.ch/wiki.php?action=article&name=Creating+torrents+with+qBittorrent
 
 https://github.com/aruhier/gazelle-uploader
+
+## K8s Exploration
+
+Got a small, local K8s cluster running using [k3d](https://k3d.io/v5.4.9/).

@@ -9,7 +9,8 @@
             "save_path": "",
             "seeding_time_limit": -2,
             "skip_checking": false,
-            "tags": [],
+            "tags": [
+            ],
             "upload_limit": -1
         },
         "recursive": true
