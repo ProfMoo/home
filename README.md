@@ -58,3 +58,18 @@ https://github.com/aruhier/gazelle-uploader
 ## K8s Exploration
 
 Got a small, local K8s cluster running using [k3d](https://k3d.io/v5.4.9/).
+
+## TODO
+
+1. Move containers to a paradigm that allows them to moved more easily (ex: k8s)
+2. Move Roon to a container
+
+### Some Thoughts
+
+Should separate the process environment (i.e. k8s, docker-compose) from the storage story. Can probably solve the process environment problem first and just hardcode all the storage locations (which would be on the Synology still). Then, figure out the storage situation later.
+
+Definitely seems like using Rancher is the move. It's a great open source solution for managing k8s clusters and will give a lot more repeatability for standing the k8s clusters back up. Ex: https://jmcglock.substack.com/p/running-a-kubernetes-cluster-using
+
+Perhaps could use Proxmox on my Windows machine to get a feel for it, then see about getting a server rack.
+
+The term for the kind of setup I'm looking for is: homelab
