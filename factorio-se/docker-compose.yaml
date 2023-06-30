@@ -1,6 +1,8 @@
 version: "3.9"
 services:
   factorio:
+    # NOTE: We use 'stable' here rather than 'latest' because Steam matches the stable version
+    # and we want to be able to connect to the server from Steam launchers
     image: factoriotools/factorio:stable
     environment:
       INSTANCE_NAME: "OBKiddos"
