@@ -23,6 +23,15 @@ file in the music directory, which is generated from the tracker's metadata. Bee
 
 Below are instruction for performing various tasks that are important for maintaining the music library, but might not be immediately obvious.
 
+### Operate
+
+secrets.yaml
+
+```yaml
+discogs:
+  user_token: XXXX
+```
+
 ### Contributing To MusicBrainz
 
 MusicBrainz does not support entirely programmatic entry into the canonical MusicBrainz DB. This is to prevent people from inserting massive amounts of incorrect information - they want some sort of "human check" for each entry. As such, the best way to add entries to MusicBrainz are Userscripts. Userscripts are small JS snippets that can run in your browser. For more info about them, refer to [the relevant MusicBrainz wiki page](https://wiki.musicbrainz.org/Guides/Userscripts).
