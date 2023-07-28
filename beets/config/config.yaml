@@ -33,15 +33,15 @@ verbose: no
 # NOTE: This assumes that the music directory is mounted here
 directory: /music
 library: /music/beets.db
-asciify_paths: true
-
 # Pointing beets to the file where we keep the list of directories
 # we've already imported.
-statefile: /volume/state.pickle
+statefile: /music/beets/state.pickle
+
+asciify_paths: true
 
 import:
   write: yes
-  duplicate_action: keep
+  duplicate_action: skip
   autotag: yes
   resume: yes
 
@@ -62,7 +62,7 @@ import:
 
   move: no
   copy: yes
-  log: /volume/log.txt
+  log: /music/beets/log.txt
 
 max_filename_length: 255
 art_filename: cover
@@ -166,7 +166,7 @@ discogs:
   source_weight: 0.7
   extra_tags: [year]
 
-# TOOD: Figure out where to put the spotify token.
+# TODO: Figure out where to put the spotify token.
 # Right now it's just placed manually in the shared volume in this directory.
 spotify:
   source_weight: 0.7
