@@ -1,4 +1,5 @@
-# # A list of extra configuration files to include. IMPORTANT: Most configurations doesn't seem to work in external files, so leave them here.
+# # A list of extra configuration files to include. IMPORTANT: Most configurations don't work in external files.
+# So unless the beets documentation says that a config key/value can be moved to a separate file, assume it must be left in this singular config.
 include:
   # Secret strings (REDACTED) like usernames and passwords. This file should be in .gitignore.
   - secrets.yaml
@@ -41,28 +42,37 @@ asciify_paths: true
 
 import:
   write: yes
-  duplicate_action: skip
-  autotag: yes
-  resume: yes
+  copy: yes
+  move: no
 
-  # Setting this to no in the configuration so that it's possible to run
-  # 'beet import' without quiet on the running process. However, the script that runs continuously
-  # calls 'beet import -q'
-  quiet: no
-  quiet_fallback: skip
+  resume: yes
 
   # We set this to incremental so that we don't try to import files that we've already imported
   incremental: yes
-  # Tells beets to attempt to import folders that we previously skipped
+  # Tells beets to ignore folders that we previously skipped
   incremental_skip_later: yes
+
+  # Setting this to no in the configuration so that it's possible to run
+  # 'beet import' without quiet on the running process. 
+  # However, the script that runs continuously calls 'beet import -q'
+  quiet: no
+  quiet_fallback: skip
+
+  # Specified what should happen during an interactive import session when there is no recommendation.
+  none_rec_action: ask
+
+  # The log file location
+  log: /music/beets/log.txt
 
   # These fields only affect interactive (i.e not quiet) mode
   default_action: apply
-  none_rec_action: ask
 
-  move: no
-  copy: yes
-  log: /music/beets/log.txt
+  # One of apply, skip, asis, or none, indicating which option should be
+  # the default when selecting an action for a given match. 
+  # This is the action that will be taken when you type return without an option letter.
+  duplicate_action: skip
+
+  autotag: yes
 
 max_filename_length: 255
 art_filename: cover
