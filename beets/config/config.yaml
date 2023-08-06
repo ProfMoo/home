@@ -47,9 +47,12 @@ import:
 
   resume: yes
 
-  # We set this to incremental so that we don't try to import files that we've already imported
+  # Either yes or no, controlling whether imported directories are recorded and whether 
+  # these recorded directories are skipped during the next import.
   incremental: yes
-  # Tells beets to ignore folders that we previously skipped
+  # Either yes or no, controlling whether skipped directories are recorded in the incremental list. When set to yes, 
+  # skipped directories won’t be recorded, and beets will try to import them again later. 
+  # When set to no, skipped directories will be recorded, and skipped later.
   incremental_skip_later: yes
 
   # Setting this to no in the configuration so that it's possible to run
