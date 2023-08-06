@@ -6,7 +6,7 @@ beet --help
 echo '[ENTRYPOINT SCRIPT] Continuously importing music files'
 
 # Uncomment this when you want to run manual imports
-sleep 100000
+sleep 1000000
 
 while true
 do
@@ -15,6 +15,9 @@ do
 
     echo '[ENTRYPOINT SCRIPT] Running beets move in case there is new configuration that needs to be backported, or there are duplicates recently added that need to be disambiguated.'
     beet move
+
+    echo '[ENTRYPOINT SCRIPT] Updating information locally to match out-of-band changes from MusicBrainz.'
+    beet mbsync
 
     # Commenting this out until I understand why beet update continually updates the same info
     # echo '[ENTRYPOINT SCRIPT] Running beets update in case there are any metadata updates'

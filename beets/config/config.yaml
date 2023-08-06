@@ -1,4 +1,5 @@
-# # A list of extra configuration files to include. IMPORTANT: Most configurations doesn't seem to work in external files, so leave them here.
+# # A list of extra configuration files to include. IMPORTANT: Most configurations don't work in external files.
+# So unless the beets documentation says that a config key/value can be moved to a separate file, assume it must be left in this singular config.
 include:
   # Secret strings (REDACTED) like usernames and passwords. This file should be in .gitignore.
   - secrets.yaml
@@ -33,36 +34,60 @@ verbose: no
 # NOTE: This assumes that the music directory is mounted here
 directory: /music
 library: /music/beets.db
-asciify_paths: true
-
 # Pointing beets to the file where we keep the list of directories
 # we've already imported.
-statefile: /volume/state.pickle
+statefile: /music/beets/state.pickle
+
+asciify_paths: true
 
 import:
   write: yes
-  duplicate_action: keep
-  autotag: yes
+  copy: yes
+  move: no
+
+  # Controlling whether an interrupted import is picked up during the next import
   resume: yes
 
+  # Either yes or no, controlling whether imported directories are recorded and whether 
+  # these recorded directories are skipped during the next import.
+  incremental: yes
+  # Either yes or no, controlling whether skipped directories are recorded in the incremental list. When set to yes, 
+  # skipped directories won’t be recorded, and beets will try to import them again later. 
+  # When set to no, skipped directories will be recorded, and skipped later. Default to 'no'
+  incremental_skip_later: no
+
+  # Either yes or no (default), controlling whether to ask for a manual decision from the user 
+  # when the importer is unsure how to proceed. This corresponds to the --quiet flag to beet import.
   # Setting this to no in the configuration so that it's possible to run
-  # 'beet import' without quiet on the running process. However, the script that runs continuously
-  # calls 'beet import -q'
+  # 'beet import' without quiet on the running process. 
+  # However, the script that runs continuously calls 'beet import -q'
   quiet: no
+  # Either skip (default) or asis, specifying what should happen in 
+  # quiet mode (see the -q flag to import, above) when there is no strong recommendation.
   quiet_fallback: skip
 
-  # We set this to incremental so that we don't try to import files that we've already imported
-  incremental: yes
-  # Tells beets to attempt to import folders that we previously skipped
-  incremental_skip_later: yes
+  # The log file location
+  log: /music/beets/log.txt
 
-  # These fields only affect interactive (i.e not quiet) mode
+  # One of apply, skip, asis, or none, indicating which option should be 
+  # the default when selecting an action for a given match. 
+  # This is the action that will be taken when you type return without an option letter. 
   default_action: apply
+
+  # Either ask (default), asis or skip. Specifies what should happen during an interactive import session when there is no recommendation. 
+  # Useful when you are only interested in processing medium and strong recommendations interactively.
   none_rec_action: ask
 
-  move: no
-  copy: yes
-  log: /volume/log.txt
+  # Either skip, keep, remove, merge or ask. Controls how duplicates are treated in import task. 
+  # “skip” means that new item(album or track) will be skipped; 
+  # “keep” means keep both old and new items; 
+  # “remove” means remove old item; 
+  # “merge” means merge into one album; 
+  # “ask” means the user should be prompted for the action each time. 
+  # The default is ask.
+  duplicate_action: skip
+
+  autotag: yes
 
 max_filename_length: 255
 art_filename: cover
@@ -77,7 +102,7 @@ musicbrainz:
     - label,
     - media
 
-# Remove the "comments" tag (torrents sometimes include unnecessary info there)
+# Remove the "comments" tag during import (torrents sometimes include unnecessary info there)
 zero:
   fields: comments
 
@@ -110,6 +135,8 @@ replace:
   '[\]\}]': )
   '[\^\%\`\~#]': _
 
+# Ensures that beets also copies over music-related files that we want to keep,
+# such as coverart and 'origin.yaml' files, which contain metadata from the tracker
 extrafiles:
   patterns:
     artworkdir:
@@ -166,7 +193,7 @@ discogs:
   source_weight: 0.7
   extra_tags: [year]
 
-# TOOD: Figure out where to put the spotify token.
+# TODO: Figure out where to put the spotify token.
 # Right now it's just placed manually in the shared volume in this directory.
 spotify:
   source_weight: 0.7

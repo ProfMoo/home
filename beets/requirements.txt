@@ -1,4 +1,4 @@
-git+https://github.com/beetbox/beets
+beets==1.6.0
 requests==2.26
 python3-discogs-client==2.3.12
 beetcamp==0.12.0
