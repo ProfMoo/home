@@ -45,6 +45,7 @@ import:
   copy: yes
   move: no
 
+  # Controlling whether an interrupted import is picked up during the next import
   resume: yes
 
   # Either yes or no, controlling whether imported directories are recorded and whether 
@@ -52,27 +53,38 @@ import:
   incremental: yes
   # Either yes or no, controlling whether skipped directories are recorded in the incremental list. When set to yes, 
   # skipped directories won’t be recorded, and beets will try to import them again later. 
-  # When set to no, skipped directories will be recorded, and skipped later.
-  incremental_skip_later: yes
+  # When set to no, skipped directories will be recorded, and skipped later. Default to 'no'
+  incremental_skip_later: no
 
+  # Either yes or no (default), controlling whether to ask for a manual decision from the user 
+  # when the importer is unsure how to proceed. This corresponds to the --quiet flag to beet import.
   # Setting this to no in the configuration so that it's possible to run
   # 'beet import' without quiet on the running process. 
   # However, the script that runs continuously calls 'beet import -q'
   quiet: no
+  # Either skip (default) or asis, specifying what should happen in 
+  # quiet mode (see the -q flag to import, above) when there is no strong recommendation.
   quiet_fallback: skip
-
-  # Specified what should happen during an interactive import session when there is no recommendation.
-  none_rec_action: ask
 
   # The log file location
   log: /music/beets/log.txt
 
-  # These fields only affect interactive (i.e not quiet) mode
+  # One of apply, skip, asis, or none, indicating which option should be 
+  # the default when selecting an action for a given match. 
+  # This is the action that will be taken when you type return without an option letter. 
   default_action: apply
 
-  # One of apply, skip, asis, or none, indicating which option should be
-  # the default when selecting an action for a given match. 
-  # This is the action that will be taken when you type return without an option letter.
+  # Either ask (default), asis or skip. Specifies what should happen during an interactive import session when there is no recommendation. 
+  # Useful when you are only interested in processing medium and strong recommendations interactively.
+  none_rec_action: ask
+
+  # Either skip, keep, remove, merge or ask. Controls how duplicates are treated in import task. 
+  # “skip” means that new item(album or track) will be skipped; 
+  # “keep” means keep both old and new items; 
+  # “remove” means remove old item; 
+  # “merge” means merge into one album; 
+  # “ask” means the user should be prompted for the action each time. 
+  # The default is ask.
   duplicate_action: skip
 
   autotag: yes
@@ -90,7 +102,7 @@ musicbrainz:
     - label,
     - media
 
-# Remove the "comments" tag (torrents sometimes include unnecessary info there)
+# Remove the "comments" tag during import (torrents sometimes include unnecessary info there)
 zero:
   fields: comments
 
@@ -123,6 +135,8 @@ replace:
   '[\]\}]': )
   '[\^\%\`\~#]': _
 
+# Ensures that beets also copies over music-related files that we want to keep,
+# such as coverart and 'origin.yaml' files, which contain metadata from the tracker
 extrafiles:
   patterns:
     artworkdir:

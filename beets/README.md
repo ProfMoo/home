@@ -57,6 +57,12 @@ First, to get the full scope of the situation, run this command, which tells you
    beet ls album:"<album>" -af 'id: $id path: $path | $albumartist - $album - $albumtype - $releasegroupdisambig - $albumdisambig - $label - $catalognum'
    ```
 
+You can also use the built-in script:
+
+   ```bash
+   /scripts/disambig.sh "<release_name>"
+   ```
+
 
 > **NOTE** 
 > 
