@@ -54,7 +54,7 @@ The import process *should* account for very similar releases, such as the vario
 First, to get the full scope of the situation, run this command, which tells you all the information relevant to `beets` for disambiguating releases:
 
    ```bash
-   beet ls album:"<album>" -af 'id: $id path: $path | $albumartist - $album - $albumtype - $releasegroupdisambig - $albumdisambig - $label - $catalognum'
+   beet ls album:"<album>" -af 'id: $id path: $path | $albumartist - $album - $albumtype - $releasegroupdisambig - $albumdisambig - $label - $catalognum | (%aunique{})'
    ```
 
 You can also use the built-in script:

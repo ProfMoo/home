@@ -17,7 +17,6 @@ plugins:
   - fetchart
   - embedart
   - extrafiles
-  - acousticbrainz
   - chroma
   - mbsync
   - hook
@@ -153,6 +152,7 @@ extrafiles:
       - "*.log"
       - "origin.yaml"
 
+# https://beets.readthedocs.io/en/stable/reference/config.html#clutter
 clutter:
   [
     "Thumbs.DB",
@@ -175,12 +175,14 @@ match:
     missing_tracks: medium
     unmatched_tracks: medium
 
-# Refer to the README for more details on the release group disambiguation process
+# Refer to the README for more details on the release group disambiguation process.
+# and here: https://beets.readthedocs.io/en/stable/reference/config.html#aunique
 aunique:
   keys: albumartist album
   disambiguators: albumtype releasegroupdisambig albumdisambig label catalognum
   bracket: "()"
 
+# Docs: https://beets.readthedocs.io/en/stable/reference/pathformat.html#aunique
 paths:
   default: $albumartist/$album%aunique{}/$track $title
   # NOTE: I think the commented out singleton configuration is better, but this needs to be
@@ -247,15 +249,6 @@ check:
   write-update: yes # Update checksums after writing files with beet write or beet modify.
   convert-update: no # Update the checksum if a file has been converted with the --keep-new flag.
   threads: 2 # Threads to compute checksums.
-
-absubmit: # The absubmit plugin lets you submit acoustic analysis results to the AcousticBrainz server.
-  auto: yes # Analyze every file on import. Otherwise, you need to use the beet absubmit command explicitly. Default: no
-  force: no # Analyze items and submit of AcousticBrainz data even for tracks that already have it. Default: no.
-  pretend: no # Do not analyze and submit of AcousticBrainz data but print out the items which would be processed. Default: no.
-
-acousticbrainz: # The acousticbrainz plugin gets acoustic-analysis information from the AcousticBrainz project.
-  auto: yes # Enable AcousticBrainz during beet import. Default: yes.
-  force: yes # Download AcousticBrainz data even for tracks that already have it. Default: no.
 
 lastgenre: # Fetches tags from Last.fm and assigns them as genres to your albums and items.
   auto: yes # Fetch genres automatically during import. Default: yes.
