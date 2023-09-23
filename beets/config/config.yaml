@@ -6,7 +6,7 @@ include:
 
 plugins:
   - discogs
-  # Data sources (commented out some because they've been inconsistent).
+  # NOTE: These data sources have commented out some because they've been inconsistent.
   # More info in the README
   # - spotify
   # - bandcamp

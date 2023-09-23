@@ -113,12 +113,12 @@ For more information about how `beets` handles release disambiguation, please re
 
 1. **Do not run multiple `beets` commands simultaneously against one DB**. It is highly likely that one of the command will fail due to locked rows/tables. If this occurs, the DB could be in an undetermined state, such as partially imported albums or partially modified metadata. This situation could require a lot of manual, tedious work to recover from.
 
+#### Helpful 
+
 ### Unrelated TODO
 
-* Figure out how to still seed torrents after the import from beets. Is it even possible? Maybe I just keep both? Beets has built in symlink support - could kinda work, but then would lose the beets tags on the actual files (thonk)
+* Once I get [this PR](https://github.com/x1ppy/beets-originquery/pull/5) merged in, the `requirements.txt` for beets can be changed back to use x1ppy's repository rather than my own internal fork.
 
-* Once I get this PR merged in, the `requirements.txt` can be changed back
-
-* Remove API keys from config.yaml
+* Remove API keys from config.yaml.
 
 * Move Roon to a container? [It's seemingly possible](https://hub.docker.com/r/steefdebruijn/docker-roonserver)
