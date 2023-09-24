@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  roonserver:
+    image: steefdebruijn/docker-roonserver:latest
+    container_name: docker-roonserver
+    network_mode: host
+    environment:
+      TZ: "Etc/UTC"
+    volumes:
+      - roon-app:/app
+      - roon-data:/data
+      - roon-music:/music
+      - roon-backups:/backup
+    restart: always
+volumes:
+  roon-app:
+  roon-data:
+  roon-music:
+  roon-backups:
