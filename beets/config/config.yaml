@@ -26,6 +26,8 @@ plugins:
   - describe
   - yearfixer
   - missing
+  - info
+  - unimported
 
 threaded: yes
 verbose: no
@@ -64,6 +66,9 @@ import:
   # Either skip (default) or asis, specifying what should happen in 
   # quiet mode (see the -q flag to import, above) when there is no strong recommendation.
   quiet_fallback: skip
+
+  # https://beets.readthedocs.io/en/stable/reference/config.html#from-scratch
+  from_scratch: no
 
   # The log file location
   log: /music/beets/log.txt
@@ -249,6 +254,11 @@ check:
   write-update: yes # Update checksums after writing files with beet write or beet modify.
   convert-update: no # Update the checksum if a file has been converted with the --keep-new flag.
   threads: 2 # Threads to compute checksums.
+
+# Docs: https://beets.readthedocs.io/en/stable/plugins/unimported.html
+unimported:
+    ignore_extensions: jpg png zip jepg log cue yaml db
+    ignore_subdirectories: NonMusic data temp
 
 lastgenre: # Fetches tags from Last.fm and assigns them as genres to your albums and items.
   auto: yes # Fetch genres automatically during import. Default: yes.
