@@ -113,7 +113,13 @@ For more information about how `beets` handles release disambiguation, please re
 
 1. **Do not run multiple `beets` commands simultaneously against one DB**. It is highly likely that one of the command will fail due to locked rows/tables. If this occurs, the DB could be in an undetermined state, such as partially imported albums or partially modified metadata. This situation could require a lot of manual, tedious work to recover from.
 
-#### Helpful 
+#### Helpful
+
+* To get full information on a per-track basis:
+
+```bash
+beet ls album:"Hollow World" -f 'id: $id path: $path | $artist - $artists - $albumartist - $albumartists - $album - $albumtype - $releasegroupdisambig - $albumdisambig - $label - $catalognum | (%aunique{})'
+```
 
 ### Unrelated TODO
 
