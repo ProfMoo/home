@@ -89,7 +89,7 @@ import:
   # “merge” means merge into one album; 
   # “ask” means the user should be prompted for the action each time. 
   # The default is ask.
-  duplicate_action: skip
+  duplicate_action: keep
 
   autotag: yes
 
