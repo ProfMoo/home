@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  gonic:
+    image: sentriz/gonic:v0.16.0-rc1
+    ports:
+      - 4747:80
+    restart: unless-stopped
+    environment:
+      GONIC_MULTI_VALUE_ALBUM_ARTIST: "multi"
+      GONIC_MULTI_VALUE_GENRE: "multi"
+    volumes:
+      - /mnt/x/test-gonic:/data # gonic db etc
+      - /mnt/x/post-process:/music:ro # your music
+      - /mnt/x/test-gonic/podcasts:/podcasts # your podcasts
+      - /mnt/x/test-gonic/playlists:/playlists # your playlists
+      - /mnt/x/test-gonic/cache:/cache # transcode / covers / etc cache dir

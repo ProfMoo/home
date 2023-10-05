@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  airsonic-refix:
+    image: tamland/airsonic-refix:latest
+    ports:
+      - 4748:80
+    restart: unless-stopped
+    environment:
+      SERVER_URL: "http://localhost:4747"

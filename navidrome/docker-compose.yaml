@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    user: 1000:1000 # should be owner of volumes
+    ports:
+      - "4533:4533"
+    restart: unless-stopped
+    environment:
+      # Optional: put your config options customization here. Examples:
+      ND_SCANSCHEDULE: 1h
+      ND_LOGLEVEL: info  
+      ND_SESSIONTIMEOUT: 72h
+      ND_BASEURL: ""
+      ND_LASTFM_ENABLED: "false"
+    volumes:
+      - "/mnt/x/test-navidrome:/data"
+      - "/mnt/x/post-process:/music:ro"
