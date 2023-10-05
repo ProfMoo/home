@@ -10,7 +10,7 @@ services:
     environment:
       # NOTE: RED_API_KEY is populated from a .env file
       RED_API_KEY: ${RED_API_KEY}
-      ORIGIN_TRACKER: red
+      OPS_SESSION_COOKIE : ${OPS_SESSION_COOKIE}
       # NOTE: We set the user to root to ensure qBittorrent has the proper permissions to monitor to folder
       # for new torrents and modify the active torrents directory (BT_backup)
       PUID: 0
