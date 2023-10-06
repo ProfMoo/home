@@ -5,6 +5,7 @@ services:
     volumes:
       - ${DOWNLOAD_DIR}:/downloads
       - ${MUSIC_LIBRARY_DIR}:/music
+      - ${BEETS_DIR}:/beets
     extends:
       file: beets/docker-compose.yaml
       service: beets
