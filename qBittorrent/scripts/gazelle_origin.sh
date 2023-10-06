@@ -4,7 +4,7 @@
 # to provide a more familiar testing/development environment
 
 # This scripts assumes that both RED_API_KEY and OPS_SESSION_COOKIE environment variables are configured correctly
-# For more info about these variables, refer here: https://github.com/x1ppy/gazelle-origin#installation
+# For more info about these variables, refer here: https://github.com/ProfMoo/gazelle-origin#installation
 
 # Converting bash script inputs into readable env vars
 
