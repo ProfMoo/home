@@ -6,4 +6,4 @@ beets-yearfixer==0.0.4
 pylast==4.4.0
 beets-extrafiles==0.0.7
 beets-check==0.13.0
-git+https://github.com/ProfMoo/beets-originquery@cf92c653b01ec4e1b52dbb2291ccbd63f28067d7
+git+https://github.com/ProfMoo/beets-originquery@8a6e604d8fc968b55a0ddc792981317679fb8215
