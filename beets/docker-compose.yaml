@@ -2,16 +2,17 @@ version: "3.9"
 services:
   beets:
     build: .
-    container_name: beets
+    container_name: betanin
     environment:
-      PUID: 1000
-      PGID: 1000
-      # NOTE: This directory needs to be set to where your configuration is
-      BEETSDIR: /config
+      UID: 1000 # (optionally) set user id
+      GID: 1000 # (optionally) set group id
     volumes:
-      - ./volume:/volume
-      - ./scripts:/scripts
+      - /mnt/x/betanin/data:/b/.local/share/betanin/
+      - /mnt/x/betanin/config:/b/.config/betanin/
+      - /mnt/x/beets:/beets
+      - ./config:/b/.config/beets/
+      - /mnt/x/post-process:/music
+      - /mnt/x/pre-process:/downloads
     ports:
-      - 8337:8337
+      - 9393:9393
     restart: unless-stopped
-    entrypoint: /entrypoint.sh
