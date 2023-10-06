@@ -1,14 +1,14 @@
 version: '3.8'
 
 services:
-  beets:
-    volumes:
-      - ${DOWNLOAD_DIR}:/downloads
-      - ${MUSIC_LIBRARY_DIR}:/music
-      - ${BEETS_DIR}:/beets
-    extends:
-      file: beets/docker-compose.yaml
-      service: beets
+  # beets:
+  #   volumes:
+  #     - ${DOWNLOAD_DIR}:/downloads
+  #     - ${MUSIC_LIBRARY_DIR}:/music
+  #     - ${BEETS_DIR}:/beets
+  #   extends:
+  #     file: beets/docker-compose.yaml
+  #     service: beets
   qbittorrent:
     volumes:
       # If you change these locations inside the docker container, you must also change the config file
