@@ -7,7 +7,7 @@ echo "[betanin]: Adding new torrent '$PATH' to betanin queue..."
 
 echo "[betanin]: Running curl against betanin..."
 
-if ! curl --request POST --data-urlencode "both=$PATH" --header "X-API-Key: f3d5a5a95fad096470ca411eb41161fb" https://host.docker.internal:9393/api/torrents; then
+if ! curl --request POST --data-urlencode "both=$PATH" --header "X-API-Key: f3d5a5a95fad096470ca411eb41161fb" http://host.docker.internal:9393/api/torrents; then
     echo "[betanin]: Adding new torrent '$PATH' to betanin queue failed."
 else
     echo "[betanin]: Adding new torrent '$PATH' to betanin queue succeeded."
