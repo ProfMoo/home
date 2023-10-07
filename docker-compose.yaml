@@ -21,7 +21,3 @@ services:
     extends:
       file: qBittorrent/docker-compose.yaml
       service: qbittorrent
-  lidarr:
-    extends:
-      file: lidarr/docker-compose.yaml
-      service: lidarr
