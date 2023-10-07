@@ -6,6 +6,8 @@ services:
       - ${DOWNLOAD_DIR}:/downloads
       - ${MUSIC_LIBRARY_DIR}:/music
       - ${BEETS_DIR}:/beets
+      - ${BETANIN_DIR}/data:/b/.local/share/betanin/
+      - ${BETANIN_DIR}/config:/b/.config/betanin/
     extends:
       file: beets/docker-compose.yaml
       service: beets

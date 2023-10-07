@@ -4,14 +4,12 @@ services:
     build: .
     container_name: beets
     environment:
-      PUID: 1000
-      PGID: 1000
-      # NOTE: This directory needs to be set to where your configuration is
-      BEETSDIR: /config
+      UID: 1000
+      GID: 1000
     volumes:
-      - ./volume:/volume
+      # Loading files from this repository
+      - ./config:/b/.config/beets/
       - ./scripts:/scripts
     ports:
-      - 8337:8337
+      - 9393:9393
     restart: unless-stopped
-    entrypoint: /entrypoint.sh

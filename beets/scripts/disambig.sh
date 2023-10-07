@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Script to assist in disambiguating similar releases.
 # How to use:
