@@ -4,7 +4,7 @@
 # The script will ask you for a confirmation before deleting from disk permanently.
 # How to use:
 #   ./delete-from-disk.sh "<release_id>"
-# 
+#
 # To get the release ID, you can use the disambig.sh script
 
 beet rm -a id:$1 -d
