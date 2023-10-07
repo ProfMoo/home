@@ -46,8 +46,8 @@ The import process *should* account for very similar releases, such as the vario
 1. One of the versions was added to the library at a previous date, before additional disambiguation fields were added to the download/import process.
 2. The information coming from the source (i.e. the Gazelle-based tracker) is simply not complete enough.
 
-> **NOTE** 
-> 
+> **NOTE**
+>
 > Beets will only add the disambiguation to the file when it's needed. If you only have one of these versions, beets will not add any information because the `albumartist` and `album`
 
 #### Diagnosis
@@ -64,11 +64,10 @@ You can also use the built-in script:
    /scripts/disambig.sh "<release_name>"
    ```
 
-
-> **NOTE** 
-> 
+> **NOTE**
+>
 > `albumdisambig` - refers to differentiators within one album, such as "Deluxe Edition" or "Bootleg Release"
-> 
+>
 > `releasegroupdisambig` - refers to differentiators between similarly named albums, such as the numerous self-titled Weezer albums. They are called "Blue Album" and "Red Album" by convention, but that is not the technical name.
 
 The output of the above command will begin to paint a picture of how `beets` is currently disambiguating the two releases. It's worth noting that in the current configuration, `beets` currently doesn't account for various forms of media (ex: CD vs. Vinyl) in the release group disambiguation process. Instead, `beets` will differentiate on something like Catalog number.
