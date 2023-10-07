@@ -2,17 +2,14 @@ version: "3.9"
 services:
   beets:
     build: .
-    container_name: betanin
+    container_name: beets
     environment:
-      UID: 1000 # (optionally) set user id
-      GID: 1000 # (optionally) set group id
+      UID: 1000
+      GID: 1000
     volumes:
-      - /mnt/x/betanin/data:/b/.local/share/betanin/
-      - /mnt/x/betanin/config:/b/.config/betanin/
-      - /mnt/x/beets:/beets
+      # Loading files from this repository
       - ./config:/b/.config/beets/
-      - /mnt/x/post-process:/music
-      - /mnt/x/pre-process:/downloads
+      - ./scripts:/scripts
     ports:
       - 9393:9393
     restart: unless-stopped
