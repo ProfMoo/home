@@ -31,29 +31,29 @@ This repository contains the configuration and code necessary to deploy and main
 
 I'd like to run these home services on a NAS or other type of home server eventually (rather than mostly on my personal desktop). However, when trying to deploy the docker containers to the NAS, I ran into numerous issues, as detailed in some of these blogs posts:
 
-- https://github.com/markdumay/synology-docker/issues/22
-- https://kristoferlundgren.medium.com/synology-run-the-latest-docker-daemon-without-patching-dsm6-x-7bb4834d87bc
-- https://github.com/markdumay/synology-docker
+- <https://github.com/markdumay/synology-docker/issues/22>
+- <https://kristoferlundgren.medium.com/synology-run-the-latest-docker-daemon-without-patching-dsm6-x-7bb4834d87bc>
+- <https://github.com/markdumay/synology-docker>
 
 The potential solution to this problem would be a DIND setup, which would allow me to alleviate the dependency on a specific version of docker and docker-compose to run these containers. This is a WIP.
 
 ## Torrent Management
 
-https://github.com/rndusr/torf
+<https://github.com/rndusr/torf>
 
-https://github.com/pobrn/mktorrent
+<https://github.com/pobrn/mktorrent>
 
-https://github.com/flyingrub/scdl
+<https://github.com/flyingrub/scdl>
 
 ## Upload Torrents
 
-https://redacted.ch/wiki.php?action=article&id=455#_3053351046
+<https://redacted.ch/wiki.php?action=article&id=455#_3053351046>
 
-https://redacted.ch/wiki.php?action=article&id=35
+<https://redacted.ch/wiki.php?action=article&id=35>
 
-https://redacted.ch/wiki.php?action=article&name=Creating+torrents+with+qBittorrent
+<https://redacted.ch/wiki.php?action=article&name=Creating+torrents+with+qBittorrent>
 
-https://github.com/aruhier/gazelle-uploader
+<https://github.com/aruhier/gazelle-uploader>
 
 ## K8s Exploration
 
@@ -68,7 +68,7 @@ Got a small, local K8s cluster running using [k3d](https://k3d.io/v5.4.9/).
 
 Should separate the process environment (i.e. k8s, docker-compose) from the storage story. Can probably solve the process environment problem first and just hardcode all the storage locations (which would be on the Synology still). Then, figure out the storage situation later.
 
-Definitely seems like using Rancher is the move. It's a great open source solution for managing k8s clusters and will give a lot more repeatability for standing the k8s clusters back up. Ex: https://jmcglock.substack.com/p/running-a-kubernetes-cluster-using
+Definitely seems like using Rancher is the move. It's a great open source solution for managing k8s clusters and will give a lot more repeatability for standing the k8s clusters back up. Ex: <https://jmcglock.substack.com/p/running-a-kubernetes-cluster-using>
 
 Perhaps could use Proxmox on my Windows machine to get a feel for it, then see about getting a server rack.
 
@@ -76,4 +76,4 @@ The term for the kind of setup I'm looking for is: homelab
 
 ### Idea(s)
 
-* Why even have the path hold information at all? Music information is retagged and changes all the time, leading to changing paths and potential confusion in the music viewer. Why not use the [Inline plugin](https://beets.readthedocs.io/en/stable/plugins/inline.html), get the album ID from MusicBrainz, then store the album there.
+- Why even have the path hold information at all? Music information is retagged and changes all the time, leading to changing paths and potential confusion in the music viewer. Why not use the [Inline plugin](https://beets.readthedocs.io/en/stable/plugins/inline.html), get the album ID from MusicBrainz, then store the album there.
