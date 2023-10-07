@@ -4,6 +4,8 @@ This beets configuration is built to run as automatically and as smoothly as pos
 
 This code covers the full music downloading lifecycle, starting in a Gazelle-based private tracker (i.e. RED), downloading the torrent files, sorting/organizing the music files locally, and importing into Roon.
 
+This codebase uses [betanin](https://github.com/sentriz/betanin) as a wrapper around beets.
+
 ## Guiding Principles
 
 1. **Prefer manual over incorrect**: If there is ambiguity during a music organization task, prefer to defer to manual intervention over an incorrect action. For example, prefer to ask the user to select the correct album during import rather than assume an incorrect album. Of course, we will try to automate as much as we can.

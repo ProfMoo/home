@@ -4,11 +4,13 @@ services:
     build: .
     container_name: qbittorrent
     ports:
+      # WEB UI port
       - 8080:8080
+      # Incoming connection ports from other torrenters
       - 6881:6881
       - 6881:6881/udp
     environment:
-      # NOTE: RED_API_KEY is populated from a .env file
+      # NOTE: RED_API_KEY and OPS_SESSION_COOKIE are populated from a .env file
       RED_API_KEY: ${RED_API_KEY}
       OPS_SESSION_COOKIE : ${OPS_SESSION_COOKIE}
       # NOTE: We set the user to root to ensure qBittorrent has the proper permissions to monitor to folder
