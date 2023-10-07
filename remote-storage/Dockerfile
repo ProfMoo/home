@@ -1,6 +1,6 @@
-FROM hashicorp/terraform:1.0.3
+FROM hashicorp/terraform:1.6.0
 
-COPY . .
+COPY src .
 
 COPY aws-credentials /aws-credentials
 

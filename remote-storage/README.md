@@ -2,10 +2,20 @@
 
 This Terraform code is used to generate the AWS resources necessary for long-time archival S3 storage. I use S3 as a low-cost, API-driven remote backup service.
 
-## Installation
+## Quick Start
 
-```bash
-./run.sh $TERRAFORM_COMMANDS_HERE
-# Ex: ./run.sh apply -auto-aprove
-# Ex: ./run.sh plan
-```
+1. Ensure you have a file named `aws-credentials` in this directory in the format:
+
+    ```text
+    [default]
+    aws_access_key_id = <redacted>
+    aws_secret_access_key = <redacted>
+    ```
+
+2. Run:
+
+    ```bash
+    ./run.sh $TERRAFORM_COMMANDS_HERE
+    # Ex: ./docker_run.sh apply -auto-aprove
+    # Ex: ./docker_run.sh plan
+    ```

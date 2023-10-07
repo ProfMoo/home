@@ -1,40 +1,4 @@
-terraform {
-  required_version = ">= 1.0"
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.0"
-    }
-  }
-  backend "s3" {
-    bucket = "sobrien-home"
-    key    = "home"
-    region = "us-east-1"
-    # To authenticate to access the state (not the actual plan)
-    shared_credentials_file = "./aws-credentials"
-  }
-}
-
-provider "aws" {
-  region = "us-east-2"
-  # To authenticate to access during the plan/apply phase
-  shared_credentials_file = "./aws-credentials"
-}
-
-resource "aws_s3_bucket" "music" {
-  bucket = "sobrien-music"
-  acl    = "private"
-
-  lifecycle_rule {
-    id      = "glacier"
-    enabled = true
-
-    transition {
-      days          = 1
-      storage_class = "GLACIER"
-    }
-  }
-}
+# Resources related to the nas communicating with the S3 bucket
 
 resource "aws_iam_user" "nas" {
   name = "nas"
