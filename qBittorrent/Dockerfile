@@ -5,5 +5,5 @@ RUN apk add py3-pip && apk add git && pip install bencoder && pip install git+ht
 
 # Install curl to ensure the post-download betanin script has the necessary dependencies
 
-RUN apk add curl
+RUN apk --no-cache add curl
 # NOTE: There is no CMD or ENTRYPOINT here because we want to inherit them from the source container
