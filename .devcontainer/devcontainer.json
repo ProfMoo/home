@@ -4,7 +4,6 @@
 	"name": "Docker outside of Docker",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
-
 	"features": {
 		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
 			"version": "latest",
@@ -14,21 +13,35 @@
 		"ghcr.io/devcontainers/features/terraform:1": {},
 		"ghcr.io/devcontainers-contrib/features/yamllint:2": {}
 	},
-
 	// Use this environment variable if you need to bind mount your local source code into a new container.
 	"remoteEnv": {
 		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
-	}
-
+	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
-
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "docker --version",
-
 	// Configure tool-specific properties.
-	// "customizations": {},
-
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"bufbuild.vscode-buf"
+			],
+			"terminal.integrated.defaultProfile.osx": "custom-tmux",
+			"terminal.integrated.profiles.osx": {
+				"bash": null,
+				"dash": null,
+				"csh": null,
+				"tcsh": null,
+				"sh": null,
+				"ksh": null,
+				"custom-tmux": {
+					"path": "/Users/drmoo/.zsh/vscode.zsh",
+					"color": "terminal.ansiMagenta"
+				}
+			}
+		}
+	}
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
 }
