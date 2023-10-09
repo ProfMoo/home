@@ -11,7 +11,10 @@
 			"moby": "true"
 		},
 		"ghcr.io/devcontainers/features/terraform:1": {},
-		"ghcr.io/devcontainers-contrib/features/yamllint:2": {}
+		"ghcr.io/devcontainers-contrib/features/yamllint:2": {},
+		"ghcr.io/devcontainers-contrib/features/tmux-apt-get": {
+			"version": "latest"
+		}
 	},
 	// Use this environment variable if you need to bind mount your local source code into a new container.
 	"remoteEnv": {
@@ -25,19 +28,22 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"bufbuild.vscode-buf"
+				"bufbuild.vscode-buf",
+				"golang.go"
 			],
-			"terminal.integrated.defaultProfile.osx": "custom-tmux",
-			"terminal.integrated.profiles.osx": {
-				"bash": null,
-				"dash": null,
-				"csh": null,
-				"tcsh": null,
-				"sh": null,
-				"ksh": null,
-				"custom-tmux": {
-					"path": "/Users/drmoo/.zsh/vscode.zsh",
-					"color": "terminal.ansiMagenta"
+			"settings": {
+				"terminal.integrated.defaultProfile.osx": "custom-tmux",
+				"terminal.integrated.profiles.osx": {
+					"bash": null,
+					"dash": null,
+					"csh": null,
+					"tcsh": null,
+					"sh": null,
+					"ksh": null,
+					"custom-tmux": {
+						"path": "/Users/drmoo/.zsh/vscode.zsh",
+						"color": "terminal.ansiMagenta"
+					}
 				}
 			}
 		}
