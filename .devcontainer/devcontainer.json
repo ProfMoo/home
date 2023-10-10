@@ -14,7 +14,11 @@
 		"ghcr.io/devcontainers-contrib/features/yamllint:2": {},
 		"ghcr.io/devcontainers-contrib/features/tmux-apt-get": {
 			"version": "latest"
-		}
+		},
+		"ghcr.io/eitsupi/devcontainer-features/jq-likes": {
+			"version": "2.1.0"
+		},
+		"ghcr.io/devcontainers-contrib/features/fzf:1": {}
 	},
 	// Use this environment variable if you need to bind mount your local source code into a new container.
 	"remoteEnv": {
@@ -32,22 +36,23 @@
 				"golang.go"
 			],
 			"settings": {
-				"terminal.integrated.defaultProfile.osx": "custom-tmux",
-				"terminal.integrated.profiles.osx": {
+				// "terminal.integrated.defaultProfile.linux": "custom-tmux",
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"terminal.integrated.profiles.linux": {
 					"bash": null,
 					"dash": null,
 					"csh": null,
 					"tcsh": null,
 					"sh": null,
-					"ksh": null,
-					"custom-tmux": {
-						"path": "/Users/drmoo/.zsh/vscode.zsh",
-						"color": "terminal.ansiMagenta"
-					}
+					"ksh": null
+					// "custom-tmux": {
+					// 	"path": "/Users/drmoo/.zsh/tmux.zsh",
+					// 	"color": "terminal.ansiMagenta"
+					// }
 				}
 			}
 		}
+		// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+		// "remoteUser": "root"
 	}
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
 }
