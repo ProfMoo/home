@@ -1,7 +1,7 @@
 FROM --platform=linux/arm64 alpine:3.18
 
 # Install the most basic command line tooling
-RUN apk add bash zsh curl wget git tmux
+RUN apk add bash zsh curl wget git tmux fzf
 
 # Install oh-my-zsh
 RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

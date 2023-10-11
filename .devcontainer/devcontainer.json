@@ -5,22 +5,22 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-	// "features": {
-	// 	// "ghcr.io/devcontainers/features/docker-outside-of-docker:1.3.0": {
-	// 	// 	"moby": true,
-	// 	// 	"enableNonRootDocker": "true"
-	// 	// }
-	// 	// 	"ghcr.io/devcontainers/features/terraform:1": {},
-	// 	// 	"ghcr.io/devcontainers-contrib/features/yamllint:2": {},
-	// 	// 	"ghcr.io/devcontainers-contrib/features/tmux-apt-get": {
-	// 	// 		"version": "latest"
-	// 	// 	},
-	// 	// 	"ghcr.io/eitsupi/devcontainer-features/jq-likes": {
-	// 	// 		"version": "2.1.0"
-	// 	// 	},
-	// 	// 	"ghcr.io/devcontainers-contrib/features/fzf:1": {}
-	// 	// },
-	// },
+	"features": {
+		// "ghcr.io/devcontainers/features/docker-outside-of-docker:1.3.0": {
+		// 	"moby": true,
+		// 	"enableNonRootDocker": "true"
+		// }
+		// 	// 	"ghcr.io/devcontainers/features/terraform:1": {},
+		// 	// 	"ghcr.io/devcontainers-contrib/features/yamllint:2": {},
+		// 	// 	"ghcr.io/devcontainers-contrib/features/tmux-apt-get": {
+		// 	// 		"version": "latest"
+		// 	// 	},
+		// 	// 	"ghcr.io/eitsupi/devcontainer-features/jq-likes": {
+		// 	// 		"version": "2.1.0"
+		// 	// 	},
+		// 	// 	"ghcr.io/devcontainers-contrib/features/fzf:1": {}
+		// 	// },
+	},
 	// Use this environment variable if you need to bind mount your local source code into a new container.
 	"remoteEnv": {
 		"LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}"
@@ -36,10 +36,40 @@
 				"yzhang.markdown-all-in-one",
 				"ms-azuretools.vscode-docker",
 				"bufbuild.vscode-buf",
-				"golang.go"
+				"golang.go",
+				"ms-vscode-remote.remote-containers",
+				"hediet.vscode-drawio",
+				"GitHub.remotehub",
+				"GraphQL.vscode-graphql-syntax",
+				"malmaud.tmux",
+				"vscode-icons-team.vscode-icons",
+				"streetsidesoftware.code-spell-checker",
+				"dbaeumer.vscode-eslint",
+				"GrapeCity.gc-excelviewer",
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"GitHub.vscode-pull-request-github",
+				"eamodio.gitlens",
+				"GraphQL.vscode-graphql",
+				"exiasr.hadolint",
+				"hashicorp.terraform",
+				"Tim-Koehler.helm-intellisense",
+				"ms-vscode.vscode-typescript-next",
+				"bierner.markdown-preview-github-styles",
+				"darkriszty.markdown-table-prettify",
+				"DavidAnson.vscode-markdownlint",
+				"mongodb.mongodb-vscode",
+				"esbenp.prettier-vscode",
+				"rvest.vs-code-prettier-eslint",
+				"inferrinizzard.prettier-sql-vscode",
+				"mohsen1.prettify-json",
+				"foxundermoon.shell-format",
+				"aswinkumar863.smarty-template-support",
+				"snowflake.snowflake-vsc",
+				"sourcegraph.sourcegraph",
+				"adpyke.vscode-sql-formatter"
 			],
 			"settings": {
-				// "terminal.integrated.defaultProfile.linux": "custom-tmux",
 				"terminal.integrated.defaultProfile.linux": "zsh",
 				"terminal.integrated.profiles.linux": {
 					"bash": null,
@@ -47,18 +77,16 @@
 					"csh": null,
 					"tcsh": null,
 					"sh": null,
-					"ksh": null
-					// "custom-tmux": {
-					// 	"path": "/Users/drmoo/.zsh/tmux.zsh",
-					// 	"color": "terminal.ansiMagenta"
-					// }
+					"ksh": null,
+					"custom-tmux": {
+						"path": "~/.zsh/tmux.zsh",
+						"color": "terminal.ansiMagenta"
+					}
 				}
 			}
-		},
-		// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-		// "remoteUser": "root"s
-		"mounts": [
-			"source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind"
-		]
-	}
+		}
+	},
+	"mounts": [
+		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+	]
 }
