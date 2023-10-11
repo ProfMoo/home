@@ -13,4 +13,7 @@ RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools
 
 # Install docker
-RUN apk add --update docker openrc
+RUN apk add --update docker=23.0.6-r5 openrc
+
+# Install additional, more specific tooling
+RUN apk add hadolint

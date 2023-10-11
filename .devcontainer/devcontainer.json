@@ -5,11 +5,6 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "docker --version",
-	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -57,11 +52,11 @@
 					"csh": null,
 					"tcsh": null,
 					"sh": null,
-					"ksh": null,
-					"custom-tmux": {
-						"path": "~/.zsh/tmux.zsh",
-						"color": "terminal.ansiMagenta"
-					}
+					"ksh": null
+					// "custom-tmux": {
+					// 	"path": "~/.zsh/tmux.zsh",
+					// 	"color": "terminal.ansiMagenta"
+					// }
 				}
 			}
 		}
