@@ -126,3 +126,7 @@ beet ls album:"Hollow World" -f 'id: $id path: $path | $artist - $artists - $alb
 * Once I get [this PR](https://github.com/x1ppy/beets-originquery/pull/5) merged in, the `requirements.txt` for beets can be changed back to use x1ppy's repository rather than my own internal fork.
 
 * Remove API keys from config.yaml.
+
+### Idea(s)
+
+* Why even have the path hold information at all? Music information is retagged and changes all the time, leading to changing paths and potential confusion in the music viewer. Why not use the [Inline plugin](https://beets.readthedocs.io/en/stable/plugins/inline.html), get the album ID from MusicBrainz, then store the album there.
