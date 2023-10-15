@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    ports:
+      - 8096:8096 
+    volumes:
+      - /mnt/x/jellyfin/config:/config
+      - /mnt/x/jellyfin/cache:/cache
+      - /mnt/x/movies:/media,readonly
+    restart: 'unless-stopped'
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2048M
