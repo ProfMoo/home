@@ -1,7 +1,7 @@
 FROM --platform=linux/arm64 alpine:3.18
 
 # Install the most basic command line tooling
-RUN apk add bash zsh curl wget git tmux fzf
+RUN apk add bash zsh curl wget git tmux fzf openssh
 
 # Install oh-my-zsh
 RUN sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -13,7 +13,7 @@ RUN python3 -m ensurepip
 RUN pip3 install --no-cache --upgrade pip setuptools
 
 # Install docker
-RUN apk add --update docker=23.0.6-r5 openrc
+RUN apk add --update docker=23.0.6-r5 openrc docker-compose
 
 # Install additional, more specific tooling
-RUN apk add hadolint
+# RUN apk add hadolint
