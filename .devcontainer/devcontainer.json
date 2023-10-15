@@ -2,6 +2,7 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/docker-outside-of-docker
 {
 	"name": "Docker outside of Docker",
+<<<<<<< HEAD
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/base:bullseye",
 	"features": {
@@ -52,4 +53,68 @@
 	// Configure tool-specific properties.
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
+=======
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"yzhang.markdown-all-in-one",
+				"ms-azuretools.vscode-docker",
+				"bufbuild.vscode-buf",
+				"golang.go",
+				"ms-vscode-remote.remote-containers",
+				"hediet.vscode-drawio",
+				"GitHub.remotehub",
+				"GraphQL.vscode-graphql-syntax",
+				"malmaud.tmux",
+				"vscode-icons-team.vscode-icons",
+				"streetsidesoftware.code-spell-checker",
+				"dbaeumer.vscode-eslint",
+				"GrapeCity.gc-excelviewer",
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"GitHub.vscode-pull-request-github",
+				"eamodio.gitlens",
+				"GraphQL.vscode-graphql",
+				"exiasr.hadolint",
+				"hashicorp.terraform",
+				"Tim-Koehler.helm-intellisense",
+				"ms-vscode.vscode-typescript-next",
+				"bierner.markdown-preview-github-styles",
+				"darkriszty.markdown-table-prettify",
+				"DavidAnson.vscode-markdownlint",
+				"mongodb.mongodb-vscode",
+				"esbenp.prettier-vscode",
+				"rvest.vs-code-prettier-eslint",
+				"inferrinizzard.prettier-sql-vscode",
+				"mohsen1.prettify-json",
+				"foxundermoon.shell-format",
+				"aswinkumar863.smarty-template-support",
+				"snowflake.snowflake-vsc",
+				"sourcegraph.sourcegraph",
+				"adpyke.vscode-sql-formatter"
+			],
+			"settings": {
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"terminal.integrated.profiles.linux": {
+					"bash": null,
+					"dash": null,
+					"csh": null,
+					"tcsh": null,
+					"sh": null,
+					"ksh": null
+					// "custom-tmux": {
+					// 	"path": "~/.zsh/tmux.zsh",
+					// 	"color": "terminal.ansiMagenta"
+					// }
+				}
+			}
+		}
+	},
+	"mounts": [
+		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+	]
+>>>>>>> da9bda14fa1319b8753661c8b07496ebfbbc80b4
 }
