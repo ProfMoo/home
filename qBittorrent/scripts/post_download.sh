@@ -42,7 +42,13 @@ echo "TORRENT_ID: $TORRENT_ID"
 
 echo "[post_download]: Running post-download scripts..."
 
-source $DIR/gazelle_origin.sh "${ROOT_PATH}" "${INFO_HASH_V1}" "${CURRENT_TRACKER}"
-source $DIR/betanin.sh "${ROOT_PATH}"
+echo "[post_download]: Tag of torrent: ${TAGS}"
+
+if [[ "$TAGS" == *"movie"* ]]; then
+    echo "[post_download]: Torrent is category 'movie'. No post-download scripts for movies"
+else
+    source $DIR/gazelle_origin.sh "${ROOT_PATH}" "${INFO_HASH_V1}" "${CURRENT_TRACKER}"
+    source $DIR/betanin.sh "${ROOT_PATH}"
+fi
 
 echo "[post_download]: Completed post-download scripts."
