@@ -4,20 +4,19 @@ services:
   plex:
     image: lscr.io/linuxserver/plex:latest
     container_name: plex
-    network_mode: host
+    #  network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
       - VERSION=docker
-      - PLEX_CLAIM= #optional
     volumes:
       - /mnt/x/plex:/config
       - /mnt/x/movies:/movies
     ports:
-      - 32400:32400
+      - 0.0.0.0:32400:32400
       - 1900:1900/udp
-      - 5353:5353/udp
+      # - 5353:5353/udp
       - 8324:8324
       - 32410:32410/udp
       - 32412:32412/udp
