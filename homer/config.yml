@@ -76,7 +76,6 @@ services:
     icon: "fas fa-cloud"
     items:
       - name: "qBittorrent"
-        logo: "assets/images/sample2.png"
         subtitle: "Torrent client"
         type: "qBittorrent"
         tag: "torrent"
