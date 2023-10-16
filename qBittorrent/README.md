@@ -12,6 +12,7 @@ A docker container that runs a qBittorrent client with special configuration and
 ## TODO
 
 1. Add username/password that isn't the default
+2. Move the qBittorrent persistent storage to the NAS, but ensure the configuration is stored in code.
 
 ## Shortcomings
 

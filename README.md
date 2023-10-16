@@ -52,6 +52,12 @@ Perhaps could use Proxmox on my Windows machine to get a feel for it, then see a
 
 The term for the kind of setup I'm looking for is: "homelab". I played around with some homelab-esque situations and got a small, local K8s cluster running using [k3d](https://k3d.io/v5.4.9/).
 
+#### Inspiration
+
+<https://www.youtube.com/watch?v=cFm9z54TyT8>
+
+<https://www.youtube.com/watch?v=dzh3so5wOro>
+
 ### Torrent Management
 
 <https://github.com/rndusr/torf>
