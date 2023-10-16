@@ -1,0 +1,5 @@
+# Portainer
+
+### Login
+
+admin:adminadminadmin
