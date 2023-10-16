@@ -12,4 +12,4 @@ services:
       UMASK: 002
       TZ: Etc/UTC
     volumes:
-      - ./config:/config
+      - /mnt/x/prowlarr:/config
