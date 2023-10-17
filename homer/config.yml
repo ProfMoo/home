@@ -2,8 +2,8 @@
 # Homepage configuration
 # See https://fontawesome.com/v5/search for icons options
 
-title: "Demo dashboardzzzzzzzzzz"
-subtitle: "Homer"
+title: "Moo's Pasture"
+subtitle: "Hi :)"
 logo: "logo.png"
 # icon: "fas fa-skull-crossbones" # Optional icon
 
@@ -81,10 +81,36 @@ services:
         tag: "torrent"
         rateInterval: 2000 # Interval for updating the download and upload rates.
         torrentInterval: 5000 # Interval for updating the torrent count.
-        url: "http://host.docker.internal:8080"
+        url: "http://host.docker.internal:8080/"
         target: "_blank" # optional html a tag target attribute
-      - name: "Another one"
-        logo: "assets/images/sample.png"
-        subtitle: "Another application"
-        tag: "app"
-        url: "#"
+      - name: "Prowlarr"
+        type: "Prowlarr"
+        url: "http://host.docker.internal:9696/"
+        apikey: "0f7b3e4b022c48f188f9a0241beadce2"
+        target: "_blank"
+        legacyApi: true
+      - name: "Betanin"
+        logo: "assets/tools/sample2.png"
+        url: "http://host.docker.internal:9393/"
+  - name: "Media"
+    icon: "fas fa-cloud"
+    items:
+      - name: "Jellyfin"
+        type: "Emby"
+        url: "http://host.docker.internal:8096/"
+        apikey: "e16be2bd58bc471a888dc99324bbb615"
+        libraryType: "movies"
+  - name: "Management"
+    icon: fas fa-cloud"
+    items:
+      - name: "Portainer"
+        logo: "assets/tools/sample2.png"
+        url: "http://host.docker.internal:9000/"
+        type: "Portainer"
+        apikey: "ptr_Sz7vtzNmiOGU2QgyzEqGP5qWPgbr+9yLOQk5DJqOZP8="
+      - name: "Synology NAS"
+        logo: "assets/tools/sample2.png"
+        url: "http://192.168.1.84:5000"
+      - name: "Unifi Dream Machine"
+        logo: "assets/tools/sample2.png"
+        url: "http://192.168.1.1"

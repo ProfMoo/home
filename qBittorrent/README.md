@@ -17,3 +17,7 @@ A docker container that runs a qBittorrent client with special configuration and
 ## Shortcomings
 
 1. Need to run qBittorrent was root to avoid a mess of file system and docker mount volume permissioning problems. Ended up using [this solution](https://www.reddit.com/r/qBittorrent/comments/ptj4yu/qbittorrent_docker_on_synology_nas/) to workaround these issues
+
+### Login
+
+admin:adminadmin
