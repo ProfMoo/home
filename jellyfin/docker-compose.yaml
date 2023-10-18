@@ -10,6 +10,7 @@ services:
       - /mnt/x/jellyfin/config:/config
       - /mnt/x/jellyfin/cache:/cache
       - /mnt/x/movies:/media,readonly
+      - /mnt/x/post-process:/media2,readonly
     restart: 'unless-stopped'
     deploy:
       resources:
