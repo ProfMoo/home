@@ -24,7 +24,7 @@ services:
         source: ./buildarr-config
         target: /config
     environment:
-      TZ: Pacific/Auckland
+      TZ: Etc/UTC
       PUID: "1000"
       PGID: "1000"
     depends_on:

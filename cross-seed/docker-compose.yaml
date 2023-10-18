@@ -20,7 +20,8 @@ services:
         "--include-non-videos", 
         "--action", "inject",
         "--qbittorrent-url", "http://admin:adminadmin@host.docker.internal:8080",
-        "--search-cadence", "1 week",
+        "--search-cadence", "1 day",
+        "--exclude-recent-search", "2 weeks",
         "--delay", "20",
         "--torznab", "http://host.docker.internal:9696/1/api?apikey=${PROWLARR_API_KEY}", "http://host.docker.internal:9696/2/api?apikey=${PROWLARR_API_KEY}",
       ]
