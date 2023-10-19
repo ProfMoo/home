@@ -1,0 +1,47 @@
+- Games:
+    - Minecraft:
+        href: udp://192.168.1.84:25565
+        icon: minecraft
+        description: OBKiddos
+        widget:
+          type: minecraft
+          url: udp://192.168.1.84:25565
+
+- Media:
+    - Jellyfin:
+        url: http://host.docker.internal:8096
+        icon: jellyfin
+        description: Media server
+        widget:
+          type: jellyfin
+          url: http://host.docker.internal:8096
+          key: e16be2bd58bc471a888dc99324bbb615
+          enableBlocks: true # optional, defaults to false
+          enableNowPlaying: true # optional, defaults to true
+    - Feishin:
+        url: http://host.docker.internal:9180
+        icon: mdi-headphones
+        description: Music player
+
+- Torrents:
+    - qBittorrent:
+        href: http://host.docker.internal:8080/
+        icon: qbittorrent
+        description: Torrent downloader
+        widget:
+          type: qbittorrent
+          url: http://host.docker.internal:8080/
+          username: admin
+          password: adminadmin
+    - Betanin:
+        url: http://host.docker.internal:9393
+        icon: betanin
+        description: Music tagging
+    - Prowlarr:
+        url: http://host.docker.internal:9696
+        icon: prowlarr.png
+        description: Tracker indexer wrapper
+        widget:
+          type: prowlarr
+          url: http://host.docker.internal:9696
+          key: 0f7b3e4b022c48f188f9a0241beadce2
