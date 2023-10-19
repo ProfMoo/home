@@ -1,3 +1,5 @@
-# Homer
+# Homepage
 
-[homer](https://github.com/bastienwirtz/homer/tree/main). [Configuration](https://github.com/bastienwirtz/homer/blob/main/docs/configuration.md). [Custom services](https://github.com/bastienwirtz/homer/blob/main/docs/customservices.md#qbittorrent).
+<fill in more details here>
+
+[Configuration documentation](https://gethomepage.dev/v0.7.4/configs/)
