@@ -1,3 +1,10 @@
+title: Moo's Pasture
 providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
+
+logpath: /dev/null
+# Media:
+#   icon: mdi-music-note
+# Torrents:
+#   icon: mdi-database

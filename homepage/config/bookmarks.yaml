@@ -1,14 +1,24 @@
 - Developer:
     - Github:
         - abbr: GH
-          href: https://github.com/
+          icon: github.png
+          href: https://github.com/ProfMoo
 
 - Social:
     - Reddit:
         - abbr: RE
+          icon: reddit.png
           href: https://reddit.com/
+    - X:
+        - abbr: X
+          icon: x.png
+          href: https://x.com/
 
 - Entertainment:
     - YouTube:
         - abbr: YT
+          icon: youtube.png
           href: https://youtube.com/
+    - Chess:
+        - icon: mdi-chess-knight
+          href: https://chess.com/
