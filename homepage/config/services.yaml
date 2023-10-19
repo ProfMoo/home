@@ -9,39 +9,49 @@
 
 - Media:
     - Jellyfin:
-        url: http://host.docker.internal:8096
+        href: http://host.docker.internal:8096
         icon: jellyfin
-        description: Media server
+        description: Media server (admin:)
         widget:
           type: jellyfin
           url: http://host.docker.internal:8096
           key: e16be2bd58bc471a888dc99324bbb615
-          enableBlocks: true # optional, defaults to false
-          enableNowPlaying: true # optional, defaults to true
     - Feishin:
-        url: http://host.docker.internal:9180
+        href: http://host.docker.internal:9180
         icon: mdi-headphones
         description: Music player
+        target: _blank
 
 - Torrents:
     - qBittorrent:
         href: http://host.docker.internal:8080
         icon: qbittorrent
-        description: Torrent downloader
+        description: Torrent downloader (admin:adminadmin)
         widget:
           type: qbittorrent
           url: http://host.docker.internal:8080
           username: admin
           password: adminadmin
     - Betanin:
-        url: http://host.docker.internal:9393
+        href: http://host.docker.internal:9393
         icon: betanin
-        description: Music tagging
+        description: Music tagging  (admin:admin)
     - Prowlarr:
-        url: http://host.docker.internal:9696
+        href: http://host.docker.internal:9696
         icon: prowlarr.png
-        description: Tracker indexer wrapper
+        description: Tracker indexer wrapper (admin:admin)
         widget:
           type: prowlarr
           url: http://host.docker.internal:9696
           key: 0f7b3e4b022c48f188f9a0241beadce2
+
+- Management:
+    - Portainer:
+        href: http://host.docker.internal:9000
+        icon: portainer
+        description: Container management GUI (admin:adminadminadmin)
+        widget:
+          type: portainer
+          url: http://host.docker.internal:9000
+          env: 2
+          key: "ptr_Sz7vtzNmiOGU2QgyzEqGP5qWPgbr+9yLOQk5DJqOZP8="
