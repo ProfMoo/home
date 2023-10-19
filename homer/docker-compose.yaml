@@ -10,7 +10,6 @@ services:
       - ./config.yml:/www/assets/config.yml
       # Mounting images that we reference in the configuration
       - ./images:/www/assets/images
-      # Mounting images that we reference in the configuration
     ports:
       - 8081:8080
     user: 1000:1000
