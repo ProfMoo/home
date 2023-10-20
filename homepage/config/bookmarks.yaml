@@ -4,15 +4,15 @@
           icon: github.png
           href: https://github.com/ProfMoo
 
-- Social:
-    - Reddit:
-        - abbr: RE
-          icon: reddit.png
-          href: https://reddit.com/
-    - X:
-        - abbr: X
-          icon: x.png
-          href: https://x.com/
+- Trackers:
+    - Redacted:
+        - abbr: RED
+          icon: mdi-music
+          href: https://redacted.ch/
+    - Oprheus:
+        - abbr: OPS
+          icon: mdi-music
+          href: https://orpheus.network/
 
 - Entertainment:
     - YouTube:
@@ -22,3 +22,11 @@
     - Chess:
         - icon: mdi-chess-knight
           href: https://chess.com/
+    - Reddit:
+        - abbr: RE
+          icon: reddit.png
+          href: https://reddit.com/
+    - X:
+        - abbr: X
+          icon: x.png
+          href: https://x.com/
