@@ -2,4 +2,4 @@ title: Moo's Pasture
 
 logpath: /tmp
 
-target: _blank
+target: _self
