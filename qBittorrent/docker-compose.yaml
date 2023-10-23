@@ -24,3 +24,11 @@ services:
       - ./config:/config
       # Contains the post-download scripts
       - ./scripts:/scripts
+  qbitmanage:
+    container_name: qbitmanage
+    image: bobokun/qbit_manage
+    volumes:
+      - ./qBitManageConfig/config.yaml:/app/config.yaml
+    environment:
+      QBT_CONFIG: "/app/config.yaml"
+    restart: on-failure
