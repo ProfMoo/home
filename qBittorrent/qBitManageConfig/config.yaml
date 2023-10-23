@@ -28,7 +28,7 @@ settings:
   force_auto_tmm: true # Will force qBittorrent to enable Automatic Torrent Management for each torrent.
   tracker_error_tag: issue # Will set the tag of any torrents that do not have a working tracker.
   ignoreTags_OnUpdate: # When running tag-update function, it will update torrent tags for a given torrent even if the torrent has one or more of the tags defined here.
-    - cross-seed # Ensuring the cross-seeded torrents aren't overwritten or changes, since they are "special" in how they share the same underlying files.
+  - cross-seed   # Ensuring the cross-seeded torrents aren't overwritten or changes, since they are "special" in how they share the same underlying files.
 
   nohardlinks_tag: noHL
   share_limits_tag: ~share_limit
@@ -42,19 +42,19 @@ directory:
   # <OPTIONAL> recycle_bin var: </your/path/here/>   # Path of the RecycleBin folder. Default location is set to remote_dir/.RecycleBin
   # <OPTIONAL> torrents_dir var: </your/path/here/>  # Path of the your qbittorrent torrents directory. Required for `save_torrents` attribute in recyclebin
 
-  root_dir: /media
+  root_dir: /downloads
   torrents_dir: /active-torrents
 
   # Functionallty a "watch" folder
   cross_seed: /torrent-files
 
-  remote_dir: /media/
+  remote_dir: /downloads/
 cat:
   # Category & Path Parameters
   # <Category Name> : <save_path>  # Path of your save directory.
-  movies: /media/movies/
-  tv: /media/tv
-  music: /media/music
+  movies: /downloads/movies/
+  tv: /downloads/tv
+  music: /downloads/music
 
 tracker:
   # Tag Parameters
@@ -71,16 +71,19 @@ tracker:
   #   notifiarr: <notifiarr indexer>
   flacsfor.me:
     tag:
-      - music
-      - flacsfor.me
+    - music
+    - flacsfor.me
+    category: music
   opsfet.ch:
     tag:
-      - music
-      - opsfet.ch
+    - music
+    - opsfet.ch
+    category: music
   tracker.torrentleech.org:
     tag:
-      - movies
-      - tracker.torrentleech.org
+    - movies
+    - tracker.torrentleech.org
+    category: music
 recyclebin:
   #   # Recycle Bin method of deletion will move files into the recycle bin (Located in /root_dir/.RecycleBin) instead of directly deleting them in qbit
   #   # By default the Recycle Bin will be emptied on every run of the qbit_manage script if empty_after_x_days is defined.
