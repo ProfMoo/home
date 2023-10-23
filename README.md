@@ -15,7 +15,7 @@ This repository contains the configuration and code necessary to deploy and main
 2. Create a configuration file for your needs using this format:
 
     ```yaml
-    TRACKER_DIR: mydir/torrent-files
+    TORRENT_DIR: mydir/torrent-files
     DOWNLOAD_DIR: mydir/pre-process
     MUSIC_LIBRARY_DIR: mydir/post-process
     ```

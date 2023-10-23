@@ -3,7 +3,7 @@ version: '3.8'
 services:
   beets:
     volumes:
-      - ${DOWNLOAD_DIR}:/downloads
+      - ${MUSIC_DOWNLOAD_DIR}:/downloads
       - ${MUSIC_LIBRARY_DIR}:/music
       - ${BEETS_DIR}:/beets
       - ${BETANIN_DIR}/data:/b/.local/share/betanin/
@@ -14,10 +14,19 @@ services:
   qbittorrent:
     volumes:
       # If you change these locations inside the docker container, you must also change the config file
-      - ${TRACKER_DIR}:/torrent-files
+      - ${TORRENT_DIR}:/torrent-files
       - ${DOWNLOAD_DIR}:/downloads
       - ${ACTIVE_TORRENTS}:/config/qBittorrent/BT_backup
       - ${IN_PROGRESS_TORRENTS}:/tmp
     extends:
       file: qBittorrent/docker-compose.yaml
       service: qbittorrent
+  qbitmanage:
+    volumes:
+      # If you change these locations inside the docker container, you must also change the config file
+      - ${TORRENT_DIR}:/torrent-files
+      - ${ACTIVE_TORRENTS}:/active-torrents
+      - ${DOWNLOAD_DIR}:/downloads
+    extends:
+      file: qBittorrent/docker-compose.yaml
+      service: qbitmanage
