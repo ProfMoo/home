@@ -26,10 +26,10 @@ services:
       - ./scripts:/scripts
   qbitmanage:
     container_name: qbitmanage
-    image: bobokun/qbit_manage
+    image: bobokun/qbit_manage:v4.0.5
     volumes:
       - ./qBitManageConfig/config.yaml:/app/config.yaml
     environment:
       QBT_CONFIG: "/app/config.yaml"
-      QBT_SCHEDULE: 5
+      QBT_SCHEDULE: 3
     restart: on-failure
