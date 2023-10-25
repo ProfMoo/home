@@ -12,9 +12,11 @@ export MUSIC_LIBRARY_DIR="/mnt/x/media/music"
 export MOVIE_LIBRARY_DIR="/mnt/x/media/movies"
 
 # Torrents
+export INPUT_TORRENT_DIR="/mnt/x/torrents/input"
+export INPUT_TORRENT_MUSIC_DIR="/mnt/x/torrents/input/music"
+export INPUT_TORRENT_MOVIES_DIR="/mnt/x/torrents/input/movies"
 export ACTIVE_TORRENTS="/mnt/x/torrents/active-torrents"
 export IN_PROGRESS_TORRENTS="/mnt/x/torrents/torrents-in-progress"
-export TORRENT_DIR="/mnt/x/torrents/input-torrents"
 
 # Container volumes
 export BEETS_DIR="/mnt/x/container-volumes/beets"

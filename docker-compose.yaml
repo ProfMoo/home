@@ -14,8 +14,10 @@ services:
   qbittorrent:
     volumes:
       # If you change these locations inside the docker container, you must also change the config file
-      - ${TORRENT_DIR}:/torrent-files
+      - ${INPUT_TORRENT_DIR}:/input
       - ${DOWNLOAD_DIR}:/downloads
+      # NOTE: This needs to be mounted at this precise location because that's where qBittorrent looks for the files
+      # TODO: Figure out if I can configure qBittorrent where to look for these torrents
       - ${ACTIVE_TORRENTS}:/config/qBittorrent/BT_backup
       - ${IN_PROGRESS_TORRENTS}:/tmp
     extends:
@@ -24,7 +26,6 @@ services:
   qbitmanage:
     volumes:
       # If you change these locations inside the docker container, you must also change the config file
-      - ${TORRENT_DIR}:/torrent-files
       - ${ACTIVE_TORRENTS}:/active-torrents
       - ${MUSIC_DOWNLOAD_DIR}:/downloads/music
       - ${MOVIES_DOWNLOAD_DIR}:/downloads/movies
