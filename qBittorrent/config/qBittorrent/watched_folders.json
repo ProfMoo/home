@@ -1,17 +1,35 @@
 {
-    "/torrent-files": {
+    "/input/movies": {
         "add_torrent_params": {
             "category": "",
             "download_limit": -1,
             "download_path": "",
             "operating_mode": "AutoManaged",
             "ratio_limit": -2,
-            "save_path": "",
+            "save_path": "/downloads/movies",
             "seeding_time_limit": -2,
             "skip_checking": false,
             "tags": [
             ],
-            "upload_limit": -1
+            "upload_limit": -1,
+            "use_auto_tmm": false
+        },
+        "recursive": false
+    },
+    "/input/music": {
+        "add_torrent_params": {
+            "category": "",
+            "download_limit": -1,
+            "download_path": "",
+            "operating_mode": "AutoManaged",
+            "ratio_limit": -2,
+            "save_path": "/downloads/music",
+            "seeding_time_limit": -2,
+            "skip_checking": false,
+            "tags": [
+            ],
+            "upload_limit": -1,
+            "use_auto_tmm": false
         },
         "recursive": false
     }
