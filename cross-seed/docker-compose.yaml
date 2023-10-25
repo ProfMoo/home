@@ -8,11 +8,11 @@ services:
     volumes:
       # NOTE: cross-seed calls this "config", but really it's all the internal files and dbs needed for the app to function.
       # As such, we should ensure this information is saved somewhere with persistence (i.e. on the NAS)
-      - /mnt/x/cross-seed/config:/config
+      - /mnt/x/container-volumes/cross-seed/config:/config
       # NOTE: We don't actually use this folder because we inject the downloaded torrents directly into the torrent client,
       # but we need to include this directory in the container for cross-seed to startup correctly.
       - ./unnecessary-torrent-folder:/cross-seeds
-      - /mnt/x/active-torrents:/torrents:ro
+      - ${ACTIVE_TORRENTS}:/torrents:ro
     command: 
     # NOTE: More information on these options can be found here: https://www.cross-seed.org/docs/reference/options
       [
