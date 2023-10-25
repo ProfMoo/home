@@ -13,7 +13,7 @@ services:
       TZ: Etc/UTC
     volumes:
       - type: bind
-        source: /mnt/x/prowlarr
+        source: /mnt/x/container-volumes/prowlarr
         target: /config
   buildarr:
     image: callum027/buildarr:latest

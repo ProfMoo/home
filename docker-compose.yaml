@@ -26,7 +26,8 @@ services:
       # If you change these locations inside the docker container, you must also change the config file
       - ${TORRENT_DIR}:/torrent-files
       - ${ACTIVE_TORRENTS}:/active-torrents
-      - ${DOWNLOAD_DIR}:/downloads
+      - ${MUSIC_DOWNLOAD_DIR}:/downloads/music
+      - ${MOVIES_DOWNLOAD_DIR}:/downloads/movies
     extends:
       file: qBittorrent/docker-compose.yaml
       service: qbitmanage

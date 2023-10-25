@@ -17,5 +17,5 @@ export IN_PROGRESS_TORRENTS="/mnt/x/torrents/torrents-in-progress"
 export TORRENT_DIR="/mnt/x/torrents/input-torrents"
 
 # Container volumes
-export BEETS_DIR="/mnt/x/beets"
-export BETANIN_DIR="/mnt/x/betanin"
+export BEETS_DIR="/mnt/x/container-volumes/beets"
+export BETANIN_DIR="/mnt/x/container-volumes/betanin"
