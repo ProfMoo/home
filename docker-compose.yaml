@@ -32,3 +32,30 @@ services:
     extends:
       file: qBittorrent/docker-compose.yaml
       service: qbitmanage
+    depends_on:
+      - qbittorrent
+  jellyfin:
+    extends:
+      file: jellyfin/docker-compose.yaml
+      service: jellyfin
+  feishin:
+    extends:
+      file: feishin/docker-compose.yaml
+      service: feishin
+    depends_on:
+      - jellyfin
+  homepage:
+    extends:
+      file: homepage/docker-compose.yaml
+      service: homepage
+  prowlarr:
+    extends:
+      file: prowlarr/docker-compose.yaml
+      service: prowlarr
+  crossseed:
+    extends:
+      file: cross-seed/docker-compose.yaml
+      service: cross-seed
+    depends_on:
+      - qbittorrent
+      - prowlarr

@@ -20,7 +20,6 @@
             href: http://host.docker.internal:9180
             icon: mdi-headphones
             description: Music player
-            target: _blank
 
 - Torrents:
       - qBittorrent:
