@@ -3,7 +3,7 @@ version: '3.8'
 services:
   beets:
     volumes:
-      - ${MUSIC_DOWNLOAD_DIR}:/downloads
+      - ${MUSIC_DOWNLOAD_DIR}:/downloads/music
       - ${MUSIC_LIBRARY_DIR}:/music
       - ${BEETS_DIR}:/beets
       - ${BETANIN_DIR}/data:/b/.local/share/betanin/
@@ -34,16 +34,16 @@ services:
       service: qbitmanage
     depends_on:
       - qbittorrent
-  jellyfin:
-    extends:
-      file: jellyfin/docker-compose.yaml
-      service: jellyfin
+  # jellyfin:
+  #   extends:
+  #     file: jellyfin/docker-compose.yaml
+  #     service: jellyfin
   feishin:
     extends:
       file: feishin/docker-compose.yaml
       service: feishin
-    depends_on:
-      - jellyfin
+    # depends_on:
+    #   - jellyfin
   homepage:
     extends:
       file: homepage/docker-compose.yaml
@@ -59,3 +59,17 @@ services:
     depends_on:
       - qbittorrent
       - prowlarr
+  radarr:
+    container_name: radarr
+    image: ghcr.io/hotio/radarr
+    ports:
+      - "7878:7878"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Etc/UTC
+    volumes:
+      - /mnt/x/container-volumes/radarr:/config
+      - /mnt/x/downloads:/downloads
+      - /mnt/x/media:/media

@@ -15,17 +15,3 @@ services:
       - type: bind
         source: /mnt/x/container-volumes/prowlarr
         target: /config
-  buildarr:
-    image: callum027/buildarr:latest
-    container_name: buildarr
-    restart: always
-    volumes:
-      - type: bind
-        source: ./buildarr-config
-        target: /config
-    environment:
-      TZ: Etc/UTC
-      PUID: "1000"
-      PGID: "1000"
-    depends_on:
-      - prowlarr
