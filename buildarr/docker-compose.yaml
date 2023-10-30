@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  buildarr:
+    image: callum027/buildarr:latest
+    container_name: buildarr
+    restart: always
+    volumes:
+      - type: bind
+        source: ./buildarr-config
+        target: /config
+    environment:
+      TZ: Etc/UTC
+      PUID: "1000"
+      PGID: "1000"
