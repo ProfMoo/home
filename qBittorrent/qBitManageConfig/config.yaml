@@ -28,7 +28,7 @@ settings:
   force_auto_tmm: true # Will force qBittorrent to enable Automatic Torrent Management for each torrent.
   tracker_error_tag: issue # Will set the tag of any torrents that do not have a working tracker.
   ignoreTags_OnUpdate: # When running tag-update function, it will update torrent tags for a given torrent even if the torrent has one or more of the tags defined here.
-    - cross-seed # Ensuring the cross-seeded torrents aren't overwritten or changes, since they are "special" in how they share the same underlying files.
+  - cross-seed   # Ensuring the cross-seeded torrents aren't overwritten or changes, since they are "special" in how they share the same underlying files.
 
   nohardlinks_tag: noHL
   share_limits_tag: ~share_limit
@@ -42,18 +42,17 @@ directory:
   # <OPTIONAL> recycle_bin var: </your/path/here/>   # Path of the RecycleBin folder. Default location is set to remote_dir/.RecycleBin
   # <OPTIONAL> torrents_dir var: </your/path/here/>  # Path of the your qbittorrent torrents directory. Required for `save_torrents` attribute in recyclebin
 
-  root_dir: /downloads
+  root_dir: /data/downloads
   torrents_dir: /active-torrents
 
-  remote_dir: /downloads/
-
   cross_seed:
+  remote_dir: /data/downloads/
 cat:
   # Category & Path Parameters
   # <Category Name> : <save_path>  # Path of your save directory.
-  movies: /downloads/movies/
-  tv: /downloads/tv
-  music: /downloads/music
+  movies: /data/downloads/movies/
+  tv: /data/downloads/tv
+  music: /data/downloads/music
 
 tracker:
   # Tag Parameters
@@ -70,23 +69,23 @@ tracker:
   #   notifiarr: <notifiarr indexer>
   flacsfor.me:
     tag:
-      - music
-      - flacsfor.me
+    - music
+    - flacsfor.me
     cat: music
   opsfet.ch:
     tag:
-      - music
-      - opsfet.ch
+    - music
+    - opsfet.ch
     cat: music
   tracker.torrentleech.org:
     tag:
-      - movies
-      - tracker.torrentleech.org
+    - movies
+    - tracker.torrentleech.org
     cat: movies
   tracker.anthelion.me:
     tag:
-      - movies
-      - tracker.anthelion.me
+    - movies
+    - tracker.anthelion.me
     cat: movies
 recyclebin:
   #   # Recycle Bin method of deletion will move files into the recycle bin (Located in /root_dir/.RecycleBin) instead of directly deleting them in qbit

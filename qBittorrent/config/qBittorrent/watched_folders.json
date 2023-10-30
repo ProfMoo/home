@@ -6,7 +6,7 @@
             "download_path": "",
             "operating_mode": "AutoManaged",
             "ratio_limit": -2,
-            "save_path": "/downloads/movies",
+            "save_path": "/data/downloads/movies",
             "seeding_time_limit": -2,
             "skip_checking": false,
             "tags": [
@@ -23,7 +23,7 @@
             "download_path": "",
             "operating_mode": "AutoManaged",
             "ratio_limit": -2,
-            "save_path": "/downloads/music",
+            "save_path": "/data/downloads/music",
             "seeding_time_limit": -2,
             "skip_checking": false,
             "tags": [

@@ -3,7 +3,7 @@ version: '3.8'
 services:
   beets:
     volumes:
-      - ${MUSIC_DOWNLOAD_DIR}:/downloads/music
+      - ${MUSIC_DOWNLOAD_DIR}:/data/downloads/music
       - ${MUSIC_LIBRARY_DIR}:/music
       - ${BEETS_DIR}:/beets
       - ${BETANIN_DIR}/data:/b/.local/share/betanin/
@@ -15,11 +15,10 @@ services:
     volumes:
       # If you change these locations inside the docker container, you must also change the config file
       - ${INPUT_TORRENT_DIR}:/input
-      - ${DOWNLOAD_DIR}:/downloads
+      - ${DOWNLOAD_DIR}:/data/downloads
       # NOTE: This needs to be mounted at this precise location because that's where qBittorrent looks for the files
       # TODO: Figure out if I can configure qBittorrent where to look for these torrents
       - ${ACTIVE_TORRENTS}:/config/qBittorrent/BT_backup
-      - ${IN_PROGRESS_TORRENTS}:/tmp
     extends:
       file: qBittorrent/docker-compose.yaml
       service: qbittorrent
@@ -27,8 +26,8 @@ services:
     volumes:
       # If you change these locations inside the docker container, you must also change the config file
       - ${ACTIVE_TORRENTS}:/active-torrents
-      - ${MUSIC_DOWNLOAD_DIR}:/downloads/music
-      - ${MOVIES_DOWNLOAD_DIR}:/downloads/movies
+      - ${MUSIC_DOWNLOAD_DIR}:/data/downloads/music
+      - ${MOVIES_DOWNLOAD_DIR}:/data/downloads/movies
     extends:
       file: qBittorrent/docker-compose.yaml
       service: qbitmanage
@@ -71,5 +70,4 @@ services:
       - TZ=Etc/UTC
     volumes:
       - /mnt/x/container-volumes/radarr:/config
-      - /mnt/x/downloads:/downloads
-      - /mnt/x/media:/media
+      - /mnt/x:/data
