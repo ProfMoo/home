@@ -28,7 +28,7 @@ settings:
   force_auto_tmm: true # Will force qBittorrent to enable Automatic Torrent Management for each torrent.
   tracker_error_tag: issue # Will set the tag of any torrents that do not have a working tracker.
   ignoreTags_OnUpdate: # When running tag-update function, it will update torrent tags for a given torrent even if the torrent has one or more of the tags defined here.
-  - cross-seed   # Ensuring the cross-seeded torrents aren't overwritten or changes, since they are "special" in how they share the same underlying files.
+    - cross-seed # Ensuring the cross-seeded torrents aren't overwritten or changes, since they are "special" in how they share the same underlying files.
 
   nohardlinks_tag: noHL
   share_limits_tag: ~share_limit
@@ -45,12 +45,12 @@ directory:
   root_dir: /data/downloads
   torrents_dir: /active-torrents
 
-  cross_seed:
   remote_dir: /data/downloads/
+  cross_seed:
 cat:
   # Category & Path Parameters
   # <Category Name> : <save_path>  # Path of your save directory.
-  movies: /data/downloads/movies/
+  movies: /data/downloads/movies
   tv: /data/downloads/tv
   music: /data/downloads/music
 
@@ -69,23 +69,15 @@ tracker:
   #   notifiarr: <notifiarr indexer>
   flacsfor.me:
     tag:
-    - music
-    - flacsfor.me
+      - music
     cat: music
   opsfet.ch:
     tag:
-    - music
-    - opsfet.ch
+      - music
     cat: music
-  tracker.torrentleech.org:
-    tag:
-    - movies
-    - tracker.torrentleech.org
-    cat: movies
   tracker.anthelion.me:
     tag:
-    - movies
-    - tracker.anthelion.me
+      - movies
     cat: movies
 recyclebin:
   #   # Recycle Bin method of deletion will move files into the recycle bin (Located in /root_dir/.RecycleBin) instead of directly deleting them in qbit
