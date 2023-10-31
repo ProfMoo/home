@@ -1,6 +1,9 @@
 #!/bin/bash
 # I use this file when running this directory from my development environment (i.e. desktop)
 
+# Data
+export DATA_DIR="/mnt/x"
+
 # Downloads
 export DOWNLOAD_DIR="/mnt/x/downloads"
 export MUSIC_DOWNLOAD_DIR="/mnt/x/downloads/music"
