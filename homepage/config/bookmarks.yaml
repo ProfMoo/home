@@ -4,6 +4,8 @@
           icon: github.png
           href: https://github.com/ProfMoo
 
+# To browse more icons, check here:
+# https://pictogrammers.com/library/mdi/
 - Trackers:
     - Redacted:
         - abbr: RED
@@ -13,6 +15,14 @@
         - abbr: OPS
           icon: mdi-music
           href: https://orpheus.network/
+    - MoreThanTV:
+        - abbr: MTV
+          icon: mdi-television
+          href: https://morethantv.me/
+    - Anthelion:
+        - abbr: ANT
+          icon: mdi-movie
+          href: https://anthelion.me/
 
 - Entertainment:
     - YouTube:
