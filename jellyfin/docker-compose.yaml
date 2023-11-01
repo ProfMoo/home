@@ -9,8 +9,7 @@ services:
     volumes:
       - /mnt/x/container-volumes/jellyfin/config:/config
       - /mnt/x/container-volumes/jellyfin/cache:/cache
-      - ${MOVIE_LIBRARY_DIR}:/media,readonly
-      - ${MUSIC_LIBRARY_DIR}:/media2,readonly
+      - ${LIBRARY_DIR}:/media
     restart: 'unless-stopped'
     deploy:
       resources:
