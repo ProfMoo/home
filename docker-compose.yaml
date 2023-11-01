@@ -70,6 +70,8 @@ services:
     volumes:
       - /mnt/x/container-volumes/radarr:/config
       - /mnt/x:/data
+    depends_on:
+      - qbittorrent
   sonarr:
     container_name: sonarr
     image: ghcr.io/hotio/sonarr:nightly
@@ -83,3 +85,5 @@ services:
     volumes:
       - /mnt/x/container-volumes/sonarr:/config
       - /mnt/x:/data
+    depends_on:
+      - qbittorrent

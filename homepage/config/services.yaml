@@ -51,7 +51,7 @@
                     widget:
                             type: sonarr
                             url: http://host.docker.internal:8989
-                            key: 3332dc6cd509473eaf4be1a93bb3f1a7
+                            key: 4adbf087ecba48a4a46e6f911f5aded4
 
 - Other:
           - Minecraft:
