@@ -1,22 +1,23 @@
 - resources:
-      cpu: true
-      memory: true
-      disk: /
+        cpu: true
+        memory: true
+        disk: /
 
 - search:
-      provider: google
-      focus: true
-      target: _self
+        provider: google
+        focus: true
+        target: _self
 
 - datetime:
-      text_size: xl
-      format:
-          hour12: true
-          timeStyle: short
+        text_size: xl
+        format:
+              hour12: true
+              timeStyle: short
 
 - openmeteo:
-      label: Hoboken #optional
-      latitude: 40.7440
-      longitude: 74.0324
-      units: imperial # or imperial
-      cache: 5 # Time in minutes to cache API responses, to stay within limits
+        label: Hoboken #optional
+        latitude: 40.7440
+        longitude: -74.0324
+        units: imperial # or imperial
+        cache: 5 # Time in minutes to cache API responses, to stay within limits
+
