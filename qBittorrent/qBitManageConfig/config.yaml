@@ -79,6 +79,10 @@ tracker:
     tag:
       - movies
     cat: movies
+  tracker.morethantv.me:
+    tag:
+      - tv
+    cat: tv
 recyclebin:
   #   # Recycle Bin method of deletion will move files into the recycle bin (Located in /root_dir/.RecycleBin) instead of directly deleting them in qbit
   #   # By default the Recycle Bin will be emptied on every run of the qbit_manage script if empty_after_x_days is defined.
