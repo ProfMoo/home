@@ -72,6 +72,7 @@ services:
       - /mnt/x:/data
     depends_on:
       - qbittorrent
+      - prowlarr
   sonarr:
     container_name: sonarr
     image: ghcr.io/hotio/sonarr:nightly
@@ -87,3 +88,4 @@ services:
       - /mnt/x:/data
     depends_on:
       - qbittorrent
+      - prowlarr
