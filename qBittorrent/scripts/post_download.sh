@@ -42,13 +42,18 @@ echo "TORRENT_ID: $TORRENT_ID"
 
 echo "[post_download]: Running post-download scripts..."
 
-echo "[post_download]: Tag of torrent: ${TAGS}"
+echo "[post_download]: Tag(s) of torrent: ${TAGS}"
 
 if [[ "$TAGS" == *"movie"* ]]; then
     echo "[post_download]: Torrent is category 'movie'. No post-download scripts for movies"
-else
+elif [[ "$TAGS" == *"tv"* ]]; then
+    echo "[post_download]: Torrent is category 'tv'. No post-download scripts for tv"
+elif [[ "$TAGS" == *"music"* ]]; then
+    echo "[post_download]: Torrent is category 'music'. Running post-download scripts for music"
     source $DIR/gazelle_origin.sh "${ROOT_PATH}" "${INFO_HASH_V1}" "${CURRENT_TRACKER}"
     source $DIR/betanin.sh "${ROOT_PATH}"
+else
+    echo "[post_download]: No recognizable torrent category. Not running any post-download scripts..."
 fi
 
-echo "[post_download]: Completed post-download scripts."
+echo "[post_download]: Done."
