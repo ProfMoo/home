@@ -24,3 +24,8 @@ export IN_PROGRESS_TORRENTS="/mnt/x/torrents/torrents-in-progress"
 # Container volumes
 export BEETS_DIR="/mnt/x/container-volumes/beets"
 export BETANIN_DIR="/mnt/x/container-volumes/betanin"
+export PROWLARR_DIR="/mnt/x/container-volumes/prowlarr"
+export JELLYFIN_DIR="/mnt/x/container-volumes/jellyfin"
+export CROSS_SEED_DIR="/mnt/x/container-volumes/cross-seed"
+export RADARR_DIR="/mnt/x/container-volumes/radarr"
+export SONARR_DIR="/mnt/x/container-volumes/sonarr"

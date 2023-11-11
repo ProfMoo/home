@@ -13,5 +13,5 @@ services:
       TZ: Etc/UTC
     volumes:
       - type: bind
-        source: /mnt/x/container-volumes/prowlarr
+        source: ${PROWLARR_DIR}
         target: /config

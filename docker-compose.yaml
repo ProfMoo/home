@@ -68,7 +68,7 @@ services:
       - UMASK=002
       - TZ=Etc/UTC
     volumes:
-      - /mnt/x/container-volumes/radarr:/config
+      - ${RADARR_DIR}:/config
       - /mnt/x:/data
     depends_on:
       - qbittorrent
@@ -84,7 +84,7 @@ services:
       - UMASK=002
       - TZ=Etc/UTC
     volumes:
-      - /mnt/x/container-volumes/sonarr:/config
+      - ${SONARR_DIR}:/config
       - /mnt/x:/data
     depends_on:
       - qbittorrent
