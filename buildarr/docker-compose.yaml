@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   buildarr:
-    image: callum027/buildarr:latest
+    image: callum027/buildarr:0.6
     container_name: buildarr
     restart: always
     volumes:
@@ -13,3 +13,4 @@ services:
       TZ: Etc/UTC
       PUID: "1000"
       PGID: "1000"
+      BUILDARR_LOG_LEVEL: "debug"
