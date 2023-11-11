@@ -4,7 +4,7 @@ resource "aws_iam_user" "nas" {
   name = "nas"
 
   tags = {
-    description = "Used by Synology NAS to connect to the S3 replication backup"
+    description = "Used by Synology NAS to connect to the S3 replication backup. Also in-use by TrueNAS NAS now."
   }
 }
 
@@ -37,6 +37,11 @@ resource "aws_iam_policy_attachment" "nas" {
   name       = "attach-nas-to-s3-bucket"
   users      = [aws_iam_user.nas.name]
   policy_arn = aws_iam_policy.nas.arn
+}
+
+resource "aws_iam_user_policy_attachment" "full_access" {
+  user       = aws_iam_user.nas.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
 }
 
 output "access_key_id" {

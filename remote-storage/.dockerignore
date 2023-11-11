@@ -14,3 +14,5 @@
 
 Dockerfile
 .dockerignore
+docker_run.sh
+README.md

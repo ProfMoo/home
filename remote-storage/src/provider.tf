@@ -3,7 +3,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 3.0"
+      version = "~> 5.0"
     }
   }
   backend "s3" {
@@ -18,5 +18,5 @@ terraform {
 provider "aws" {
   region = "us-east-2"
   # To authenticate to access during the plan/apply phase
-  shared_credentials_file = "./aws-credentials"
+  shared_credentials_files = ["./aws-credentials"]
 }
