@@ -19,7 +19,6 @@ export INPUT_TORRENT_DIR="/mnt/t/torrents/input"
 export INPUT_TORRENT_MUSIC_DIR="/mnt/t/torrents/input/music"
 export INPUT_TORRENT_MOVIES_DIR="/mnt/t/torrents/input/movies"
 export ACTIVE_TORRENTS="/mnt/t/torrents/active-torrents"
-export IN_PROGRESS_TORRENTS="/mnt/t/torrents/torrents-in-progress"
 
 # Container volumes
 export BEETS_DIR="/mnt/v/beets"
