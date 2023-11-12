@@ -5,6 +5,10 @@ services:
     extends:
       file: portainer/docker-compose.yaml
       service: portainer
+  homepage:
+    extends:
+      file: homepage/docker-compose.yaml
+      service: homepage
   beets:
     volumes:
       - ${MUSIC_DOWNLOAD_DIR}:/data/downloads/music
@@ -51,14 +55,12 @@ services:
   #     service: feishin
   #   # depends_on:
   #   #   - jellyfin
-  homepage:
-    extends:
-      file: homepage/docker-compose.yaml
-      service: homepage
   prowlarr:
     extends:
       file: prowlarr/docker-compose.yaml
       service: prowlarr
+    depends_on:
+      - portainer
   # crossseed:
   #   extends:
   #     file: cross-seed/docker-compose.yaml
@@ -66,35 +68,37 @@ services:
   #   depends_on:
   #     - qbittorrent
   #     - prowlarr
-  # radarr:
-  #   container_name: radarr
-  #   image: ghcr.io/hotio/radarr
-  #   ports:
-  #     - "7878:7878"
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #     - UMASK=002
-  #     - TZ=Etc/UTC
-  #   volumes:
-  #     - ${RADARR_DIR}:/config
-  #     - /mnt/x:/data
-  #   depends_on:
-  #     - qbittorrent
-  #     - prowlarr
-  # sonarr:
-  #   container_name: sonarr
-  #   image: ghcr.io/hotio/sonarr:nightly
-  #   ports:
-  #     - "8989:8989"
-  #   environment:
-  #     - PUID=1000
-  #     - PGID=1000
-  #     - UMASK=002
-  #     - TZ=Etc/UTC
-  #   volumes:
-  #     - ${SONARR_DIR}:/config
-  #     - /mnt/x:/data
-  #   depends_on:
-  #     - qbittorrent
-  #     - prowlarr
+  radarr:
+    container_name: radarr
+    image: ghcr.io/hotio/radarr
+    ports:
+      - "7878:7878"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Etc/UTC
+    volumes:
+      - ${RADARR_DIR}:/config
+      - ${DATA_DIR}:/data
+    depends_on:
+      - qbittorrent
+      - prowlarr
+      - portainer
+  sonarr:
+    container_name: sonarr
+    image: ghcr.io/hotio/sonarr:nightly
+    ports:
+      - "8989:8989"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - UMASK=002
+      - TZ=Etc/UTC
+    volumes:
+      - ${SONARR_DIR}:/config
+      - ${DATA_DIR}:/data
+    depends_on:
+      - qbittorrent
+      - prowlarr
+      - portainer
