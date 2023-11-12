@@ -1,16 +1,22 @@
 version: '3.8'
 
 services:
-  beets:
-    volumes:
-      - ${MUSIC_DOWNLOAD_DIR}:/data/downloads/music
-      - ${MUSIC_LIBRARY_DIR}:/music
-      - ${BEETS_DIR}:/beets
-      - ${BETANIN_DIR}/data:/b/.local/share/betanin/
-      - ${BETANIN_DIR}/config:/b/.config/betanin/
+  portainer:
     extends:
-      file: beets/docker-compose.yaml
-      service: beets
+      file: portainer/docker-compose.yaml
+      service: portainer
+  # beets:
+  #   volumes:
+  #     - ${MUSIC_DOWNLOAD_DIR}:/data/downloads/music
+  #     - ${MUSIC_LIBRARY_DIR}:/music
+  #     - ${BEETS_DIR}:/beets
+  #     - ${BETANIN_DIR}/data:/b/.local/share/betanin/
+  #     - ${BETANIN_DIR}/config:/b/.config/betanin/
+  #   extends:
+  #     file: beets/docker-compose.yaml
+  #     service: beets
+  #   depends_on:
+  #     - portainer
   qbittorrent:
     volumes:
       # If you change these locations inside the docker container, you must also change the config file
@@ -22,70 +28,73 @@ services:
     extends:
       file: qBittorrent/docker-compose.yaml
       service: qbittorrent
-  qbitmanage:
-    volumes:
-      # If you change these locations inside the docker container, you must also change the config file
-      - ${ACTIVE_TORRENTS}:/active-torrents
-      - ${DOWNLOAD_DIR}:/data/downloads
-    extends:
-      file: qBittorrent/docker-compose.yaml
-      service: qbitmanage
     depends_on:
-      - qbittorrent
-  # jellyfin:
+      - portainer
+  # qbitmanage:
+  #   volumes:
+  #     # If you change these locations inside the docker container, you must also change the config file
+  #     - ${ACTIVE_TORRENTS}:/active-torrents
+  #     - ${DOWNLOAD_DIR}:/data/downloads
   #   extends:
-  #     file: jellyfin/docker-compose.yaml
-  #     service: jellyfin
-  feishin:
-    extends:
-      file: feishin/docker-compose.yaml
-      service: feishin
-    # depends_on:
-    #   - jellyfin
+  #     file: qBittorrent/docker-compose.yaml
+  #     service: qbitmanage
+  #   depends_on:
+  #     - qbittorrent
+  #     - portainer
+  # # jellyfin:
+  # #   extends:
+  # #     file: jellyfin/docker-compose.yaml
+  # #     service: jellyfin
+  # feishin:
+  #   extends:
+  #     file: feishin/docker-compose.yaml
+  #     service: feishin
+  #   # depends_on:
+  #   #   - jellyfin
   homepage:
     extends:
       file: homepage/docker-compose.yaml
       service: homepage
-  prowlarr:
-    extends:
-      file: prowlarr/docker-compose.yaml
-      service: prowlarr
-  crossseed:
-    extends:
-      file: cross-seed/docker-compose.yaml
-      service: cross-seed
-    depends_on:
-      - qbittorrent
-      - prowlarr
-  radarr:
-    container_name: radarr
-    image: ghcr.io/hotio/radarr
-    ports:
-      - "7878:7878"
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - UMASK=002
-      - TZ=Etc/UTC
-    volumes:
-      - ${RADARR_DIR}:/config
-      - /mnt/x:/data
-    depends_on:
-      - qbittorrent
-      - prowlarr
-  sonarr:
-    container_name: sonarr
-    image: ghcr.io/hotio/sonarr:nightly
-    ports:
-      - "8989:8989"
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - UMASK=002
-      - TZ=Etc/UTC
-    volumes:
-      - ${SONARR_DIR}:/config
-      - /mnt/x:/data
-    depends_on:
-      - qbittorrent
-      - prowlarr
+  # prowlarr:
+  #   extends:
+  #     file: prowlarr/docker-compose.yaml
+  #     service: prowlarr
+  # crossseed:
+  #   extends:
+  #     file: cross-seed/docker-compose.yaml
+  #     service: cross-seed
+  #   depends_on:
+  #     - qbittorrent
+  #     - prowlarr
+  # radarr:
+  #   container_name: radarr
+  #   image: ghcr.io/hotio/radarr
+  #   ports:
+  #     - "7878:7878"
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - UMASK=002
+  #     - TZ=Etc/UTC
+  #   volumes:
+  #     - ${RADARR_DIR}:/config
+  #     - /mnt/x:/data
+  #   depends_on:
+  #     - qbittorrent
+  #     - prowlarr
+  # sonarr:
+  #   container_name: sonarr
+  #   image: ghcr.io/hotio/sonarr:nightly
+  #   ports:
+  #     - "8989:8989"
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - UMASK=002
+  #     - TZ=Etc/UTC
+  #   volumes:
+  #     - ${SONARR_DIR}:/config
+  #     - /mnt/x:/data
+  #   depends_on:
+  #     - qbittorrent
+  #     - prowlarr

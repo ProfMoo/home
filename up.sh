@@ -5,9 +5,12 @@ RUN_TYPE=$1
 
 echo "Starting up the docker container for the home setup..."
 
-if [ "$RUN_TYPE" = "local" ]; then
-    echo "Starting up with the 'local' configuration"
-    source config/local.sh
+if [ "$RUN_TYPE" = "local-synology" ]; then
+    echo "Starting up with compute in 'local' configuration and storage in 'synology' configuration"
+    source config/local-synology.sh
+elif [ "$RUN_TYPE" = "local-truenas" ]; then
+    echo "Starting up with compute in 'local' configuration and storage in 'truenas' configuration"
+    source config/local-truenas.sh
 elif [ "$RUN_TYPE" = "nas" ]; then
     echo "Starting up with the 'nas' configuration"
     source config/nas.sh
