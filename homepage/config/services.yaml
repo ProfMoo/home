@@ -69,4 +69,4 @@
                             type: portainer
                             url: http://host.docker.internal:9000
                             env: 2
-                            key: "ptr_Sz7vtzNmiOGU2QgyzEqGP5qWPgbr+9yLOQk5DJqOZP8="
+                            key: "ptr_hgKHWDWYO1uaTWdjUxjbEQiYcAxz2lOXJM6j7CVnQIE="

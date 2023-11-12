@@ -5,18 +5,18 @@ services:
     extends:
       file: portainer/docker-compose.yaml
       service: portainer
-  # beets:
-  #   volumes:
-  #     - ${MUSIC_DOWNLOAD_DIR}:/data/downloads/music
-  #     - ${MUSIC_LIBRARY_DIR}:/music
-  #     - ${BEETS_DIR}:/beets
-  #     - ${BETANIN_DIR}/data:/b/.local/share/betanin/
-  #     - ${BETANIN_DIR}/config:/b/.config/betanin/
-  #   extends:
-  #     file: beets/docker-compose.yaml
-  #     service: beets
-  #   depends_on:
-  #     - portainer
+  beets:
+    volumes:
+      - ${MUSIC_DOWNLOAD_DIR}:/data/downloads/music
+      - ${MUSIC_LIBRARY_DIR}:/music
+      - ${BEETS_DIR}:/beets
+      - ${BETANIN_DIR}/data:/b/.local/share/betanin/
+      - ${BETANIN_DIR}/config:/b/.config/betanin/
+    extends:
+      file: beets/docker-compose.yaml
+      service: beets
+    depends_on:
+      - portainer
   qbittorrent:
     volumes:
       # If you change these locations inside the docker container, you must also change the config file
@@ -30,17 +30,17 @@ services:
       service: qbittorrent
     depends_on:
       - portainer
-  # qbitmanage:
-  #   volumes:
-  #     # If you change these locations inside the docker container, you must also change the config file
-  #     - ${ACTIVE_TORRENTS}:/active-torrents
-  #     - ${DOWNLOAD_DIR}:/data/downloads
-  #   extends:
-  #     file: qBittorrent/docker-compose.yaml
-  #     service: qbitmanage
-  #   depends_on:
-  #     - qbittorrent
-  #     - portainer
+  qbitmanage:
+    volumes:
+      # If you change these locations inside the docker container, you must also change the config file
+      - ${ACTIVE_TORRENTS}:/active-torrents
+      - ${DOWNLOAD_DIR}:/data/downloads
+    extends:
+      file: qBittorrent/docker-compose.yaml
+      service: qbitmanage
+    depends_on:
+      - qbittorrent
+      - portainer
   # # jellyfin:
   # #   extends:
   # #     file: jellyfin/docker-compose.yaml
@@ -55,10 +55,10 @@ services:
     extends:
       file: homepage/docker-compose.yaml
       service: homepage
-  # prowlarr:
-  #   extends:
-  #     file: prowlarr/docker-compose.yaml
-  #     service: prowlarr
+  prowlarr:
+    extends:
+      file: prowlarr/docker-compose.yaml
+      service: prowlarr
   # crossseed:
   #   extends:
   #     file: cross-seed/docker-compose.yaml
