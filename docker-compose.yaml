@@ -45,29 +45,29 @@ services:
     depends_on:
       - qbittorrent
       - portainer
-  # # jellyfin:
-  # #   extends:
-  # #     file: jellyfin/docker-compose.yaml
-  # #     service: jellyfin
-  # feishin:
+  # jellyfin:
   #   extends:
-  #     file: feishin/docker-compose.yaml
-  #     service: feishin
-  #   # depends_on:
-  #   #   - jellyfin
+  #     file: jellyfin/docker-compose.yaml
+  #     service: jellyfin
+  feishin:
+    extends:
+      file: feishin/docker-compose.yaml
+      service: feishin
+    # depends_on:
+    #   - jellyfin
   prowlarr:
     extends:
       file: prowlarr/docker-compose.yaml
       service: prowlarr
     depends_on:
       - portainer
-  # crossseed:
-  #   extends:
-  #     file: cross-seed/docker-compose.yaml
-  #     service: cross-seed
-  #   depends_on:
-  #     - qbittorrent
-  #     - prowlarr
+  crossseed:
+    extends:
+      file: cross-seed/docker-compose.yaml
+      service: cross-seed
+    depends_on:
+      - qbittorrent
+      - prowlarr
   radarr:
     container_name: radarr
     image: ghcr.io/hotio/radarr
