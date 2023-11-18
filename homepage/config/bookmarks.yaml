@@ -23,6 +23,14 @@
         - abbr: ANT
           icon: mdi-movie
           href: https://anthelion.me/
+    - AnimeBytes:
+        - abbr: AB
+          icon: mdi-ideogram-cjk
+          href: https://animebytes.tv/
+    - MyAnonamouse:
+        - abbr: MA
+          icon: mdi-book-open-variant
+          href: https://myanonamouse.net/
 
 - Entertainment:
     - YouTube:
