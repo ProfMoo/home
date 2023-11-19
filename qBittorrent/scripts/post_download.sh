@@ -45,11 +45,13 @@ echo "[post_download]: Running post-download scripts..."
 echo "[post_download]: Tag(s) of torrent: ${TAGS}"
 
 if [[ "$TAGS" == *"movies"* ]] || [[ "$SAVE_PATH" == *"movies"* ]]; then
-    echo "[post_download]: Torrent is category 'movie'. No post-download scripts for movies"
+    echo "[post_download]: Torrent is category 'movie'. No post-download scripts for 'movies'"
 elif [[ "$TAGS" == *"tv"* ]] || [[ "$SAVE_PATH" == *"tv"* ]]; then
-    echo "[post_download]: Torrent is category 'tv'. No post-download scripts for tv"
+    echo "[post_download]: Torrent is category 'tv'. No post-download scripts for 'tv'"
+elif [[ "$TAGS" == *"books"* ]] || [[ "$SAVE_PATH" == *"books"* ]]; then
+    echo "[post_download]: Torrent is category 'books'. No post-download scripts for 'books'"
 elif [[ "$TAGS" == *"music"* ]] || [[ "$SAVE_PATH" == *"music"* ]]; then
-    echo "[post_download]: Torrent is category 'music'. Running post-download scripts for music"
+    echo "[post_download]: Torrent is category 'music'. Running post-download scripts for 'music'"
     source $DIR/gazelle_origin.sh "${ROOT_PATH}" "${INFO_HASH_V1}" "${CURRENT_TRACKER}"
     source $DIR/betanin.sh "${ROOT_PATH}"
 else

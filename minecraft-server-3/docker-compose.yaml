@@ -24,7 +24,7 @@ services:
       MEMORY: "8G"
     volumes:
       # NOTE: Needs to be run on the NAS or else the volumes won't match.
-      - ${CONTAINER_VOLUMES}/minecraft-server-3:/data
+      - ${CONTAINER_VOLUME_DIR}/minecraft-server-3:/data
     ports:
       - 25565:25565
       - 25575:25575

@@ -21,6 +21,7 @@ export INPUT_TORRENT_MOVIES_DIR="/mnt/t/torrents/input/movies"
 export ACTIVE_TORRENTS="/mnt/t/torrents/active-torrents"
 
 # Container volumes
+export CONTAINER_VOLUME_DIR="/mnt/v"
 export BEETS_DIR="/mnt/v/beets"
 export BETANIN_DIR="/mnt/v/betanin"
 export PROWLARR_DIR="/mnt/v/prowlarr"
