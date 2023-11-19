@@ -28,7 +28,7 @@ settings:
   force_auto_tmm: true # Will force qBittorrent to enable Automatic Torrent Management for each torrent.
   tracker_error_tag: issue # Will set the tag of any torrents that do not have a working tracker.
   ignoreTags_OnUpdate: # When running tag-update function, it will update torrent tags for a given torrent even if the torrent has one or more of the tags defined here.
-    - cross-seed # Ensuring the cross-seeded torrents aren't overwritten or changes, since they are "special" in how they share the same underlying files.
+  - cross-seed   # Ensuring the cross-seeded torrents aren't overwritten or changes, since they are "special" in how they share the same underlying files.
 
   nohardlinks_tag: noHL
   share_limits_tag: ~share_limit
@@ -53,6 +53,7 @@ cat:
   movies: /data/downloads/movies
   tv: /data/downloads/tv
   music: /data/downloads/music
+  books: /data/downloads/books
 
 tracker:
   # Tag Parameters
@@ -69,20 +70,30 @@ tracker:
   #   notifiarr: <notifiarr indexer>
   flacsfor.me:
     tag:
-      - music
+    - music
     cat: music
   opsfet.ch:
     tag:
-      - music
+    - music
     cat: music
   tracker.anthelion.me:
     tag:
-      - movies
+    - movies
     cat: movies
   tracker.morethantv.me:
     tag:
-      - tv
+    - tv
     cat: tv
+  tracker.animebytes.me:
+    tag:
+    - tv
+    cat: tv
+  t.myanonamouse.net:
+    tag:
+    - books
+    cat: books
+  tracker.animebytes.tv:
+    tag: tracker.animebytes.tv
 recyclebin:
   #   # Recycle Bin method of deletion will move files into the recycle bin (Located in /root_dir/.RecycleBin) instead of directly deleting them in qbit
   #   # By default the Recycle Bin will be emptied on every run of the qbit_manage script if empty_after_x_days is defined.
