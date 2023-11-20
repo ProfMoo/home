@@ -52,6 +52,14 @@
           type: sonarr
           url: http://host.docker.internal:8989
           key: 4adbf087ecba48a4a46e6f911f5aded4
+    - Readarr:
+        href: http://host.docker.internal:8989
+        icon: readarr.png
+        description: Book & eBook torrent manager (admin:admin)
+        widget:
+          type: readarr
+          url: http://host.docker.internal:8989
+          key: 4adbf087ecba48a4a46e6f911f5aded4
 
 - Other:
     - TrueNAS:
@@ -62,6 +70,15 @@
           type: truenas
           url: http://truenas.local
           key: 1-WYckrNh6X7L1w3Bhwm8PUGn6N3n1JCjXsEUWnD870nhloTnqeVuiFbTHs6CQfAyF
+    - TrueNAS OOBM:
+        href: http://192.168.1.54
+        icon: truenas
+    - Compute-1 iDRAC:
+        href: http://192.168.1.120
+        icon: dell
+    - Unifi:
+        href: http://192.168.1.1
+        icon: unifi
     - Minecraft:
         href: udp://192.168.1.84:25565
         icon: minecraft

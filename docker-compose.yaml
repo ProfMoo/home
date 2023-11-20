@@ -119,8 +119,8 @@ services:
       - qbittorrent
       - prowlarr
       - portainer
-  minecraft:
-    extends:
-      file: minecraft-server-3/docker-compose.yaml
-      service: minecraft-server-3
+  # minecraft:
+  #   extends:
+  #     file: minecraft-server-3/docker-compose.yaml
+  #     service: minecraft-server-3
 
