@@ -71,3 +71,7 @@ The term for the kind of setup I'm looking for is: "homelab". I played around wi
 <https://redacted.ch/wiki.php?action=article&name=Creating+torrents+with+qBittorrent>
 
 <https://github.com/aruhier/gazelle-uploader>
+
+### K8s on Proxmox
+
+<https://betterprogramming.pub/rancher-k3s-kubernetes-on-proxmox-containers-2228100e2d13>

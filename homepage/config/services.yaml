@@ -79,6 +79,10 @@
     - Unifi:
         href: http://192.168.1.1
         icon: unifi
+    - Compute-1 Proxmox:
+        href: http://192.168.1.64:8006
+        icon: proxmox
+        description: (root:admin)
     - Minecraft:
         href: udp://192.168.1.84:25565
         icon: minecraft
