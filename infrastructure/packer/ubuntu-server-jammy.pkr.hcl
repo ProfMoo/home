@@ -5,7 +5,7 @@
 packer {
   required_plugins {
     proxmox-iso = {
-      version = ">= 1.1.6"
+      version = "= 1.1.6"
       source  = "github.com/hashicorp/proxmox"
     }
   }
@@ -26,7 +26,7 @@ variable "proxmox_api_token_secret" {
 }
 
 # Resource Definiation for the VM Template
-source "proxmox" "ubuntu-server-jammy" {
+source "proxmox-iso" "ubuntu-server-jammy" {
 
   # Proxmox Connection Settings
   proxmox_url = var.proxmox_api_url
@@ -46,7 +46,7 @@ source "proxmox" "ubuntu-server-jammy" {
   # iso_file = "local:iso/ubuntu-22.04-live-server-amd64.iso"
   # - or -
   # (Option 2) Download ISO
-  iso_url          = "https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd64.img"
+  iso_url          = "https://releases.ubuntu.com/22.04.3/ubuntu-22.04.3-live-server-amd64.iso"
   iso_checksum     = "a4acfda10b18da50e2ec50ccaf860d7f20b389df8765611142305c0e911d16fd"
   iso_storage_pool = "local"
   unmount_iso      = true
@@ -59,10 +59,9 @@ source "proxmox" "ubuntu-server-jammy" {
 
 
   disks {
-    disk_size         = "20G"
-    storage_pool      = "local-lvm"
-    storage_pool_type = "lvm"
-    type              = "virtio"
+    disk_size    = "20G"
+    storage_pool = "local-lvm"
+    type         = "virtio"
   }
 
   # VM Network Settings
@@ -88,7 +87,10 @@ source "proxmox" "ubuntu-server-jammy" {
     "e<wait>",
     "<down><down><down><end>",
     "<bs><bs><bs><bs><wait>",
-    "autoinstall ds='nocloud-net;s=http://192.168.1.78:51015/' ---<wait>",
+    # NOTE: In order for this auto-IP configuration to work, you need to have
+    # the machine running the packer build process to be able to self-assign an IP address
+    # that's accessible from the VM being built. It currently doesn't work with WSL2.
+    "autoinstall ds='nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/' ---<wait>",
     "<f10><wait>"
   ]
 
@@ -98,28 +100,24 @@ source "proxmox" "ubuntu-server-jammy" {
 
   # PACKER Autoinstall Settings
   http_directory = "http"
-  # (Optional) Bind IP Address and Port
-  http_bind_address = "0.0.0.0"
-  http_port_min     = 51015
-  http_port_max     = 51015
+  # (Optional) Bind IP Address and Port. Only needed if the packer worker is unable to self-assign an IP address
+  # that is accessible from the VM being built.
+  # http_bind_address = "0.0.0.0"
+  # http_port_min     = 51015
+  # http_port_max     = 51015
 
+  ssh_port     = 22
   ssh_username = "drmoo"
-
-  # (Option 1) Add your Password here
-  ssh_password = "password"
-  # - or -
-  # (Option 2) Add your Private SSH KEY file here
-  # ssh_private_key_file = "~/.ssh/id_rsa"
-
-  # Raise the timeout, when installation takes longer
-  ssh_timeout = "20m"
+  ssh_password = "ubuntu"
+  # Can raise the timeout if installation takes longer
+  ssh_timeout = "60m"
 }
 
 # Build Definition to create the VM Template
 build {
 
   name    = "ubuntu-server-jammy"
-  sources = ["source.proxmox.ubuntu-server-jammy"]
+  sources = ["source.proxmox-iso.ubuntu-server-jammy"]
 
   # Provisioning the VM Template for Cloud-Init Integration in Proxmox #1
   provisioner "shell" {
