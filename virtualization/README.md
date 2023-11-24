@@ -1,6 +1,11 @@
-# Remote Storage
+# Virtualization
 
-This Terraform code is used to generate the AWS resources necessary for long-time archival S3 storage. I use S3 as a low-cost, API-driven remote backup service.
+This Terraform code creates the VMs.
+
+## How To Use
+
+1. Install Proxmox v8.0 on a baremetal machine
+2. Follow [this video](https://www.youtube.com/watch?v=shiIi38cJe4) to create VM template on the Proxmox machine.
 
 ## Quick Start
 

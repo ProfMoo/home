@@ -1,0 +1,17 @@
+.git
+.gitignore
+
+# Compiled files
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+
+# Module directory
+.terraform
+**/.idea
+**/*.iml
+
+Dockerfile
+.dockerignore
+docker_run.sh
+README.md
