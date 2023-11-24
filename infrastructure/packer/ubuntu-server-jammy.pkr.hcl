@@ -57,7 +57,6 @@ source "proxmox-iso" "ubuntu-server-jammy" {
   # VM Hard Disk Settings
   scsi_controller = "virtio-scsi-pci"
 
-
   disks {
     disk_size    = "20G"
     storage_pool = "local-lvm"
