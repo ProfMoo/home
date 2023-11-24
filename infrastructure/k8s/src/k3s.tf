@@ -5,10 +5,10 @@ module "k3s" {
 
   proxmox_node = "pve"
 
-  # NOTE: This string must be a cloud-init enabled template ALREADY IN PROXMOX
-  node_template = "ubuntu-cloud"
-
-  # proxmox_resource_pool = "k3s"
+  # NOTE: This string must be a cloud-init enabled template ALREADY IN PROXMOX.
+  # So make sure you have a template named "ubuntu-server-jammy" in your proxmox.
+  # In this codebase, the name is defined by the packer template found here: infrastructure/packer/ubuntu-server-jammy.json
+  node_template = "ubuntu-server-jammy"
 
   network_gateway = "192.168.1.1"
   lan_subnet      = "192.168.1.0/24"
