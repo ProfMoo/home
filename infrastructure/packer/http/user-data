@@ -23,4 +23,5 @@ autoinstall:
   user-data:
     disable_root: false
   late-commands:
+    # NOTE: This adds 'drmoo' to the sudoers file
     - echo 'drmoo ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/drmoo
