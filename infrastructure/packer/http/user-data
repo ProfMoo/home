@@ -2,14 +2,16 @@
 autoinstall:
   version: 1
   locale: en_US
-  keyboard:
-    layout: de
   ssh:
     install-server: true
     allow-pw: true
     disable_root: true
     ssh_quiet_keygen: true
     allow_public_ssh_keys: true
+  identity:
+    hostname: ubuntu
+    username: drmoo
+    password: "$6$exDY1mhS4KUYCE/2$zmn9ToZwTKLhCw.b4/b.ZRTIZM30JZ4QrOQ2aOXJ8yk96xpcCof0kxKwuX1kqLG/ygbJ1f8wxED22bTL4F46P0"
   packages:
     - qemu-guest-agent
     - sudo
@@ -19,15 +21,6 @@ autoinstall:
     swap:
       size: 0
   user-data:
-    package_upgrade: false
-    timezone: America/NewYork
-    users:
-      - name: drmoo
-        groups: [adm, sudo]
-        lock-passwd: false
-        sudo: ALL=(ALL) NOPASSWD:ALL
-        shell: /bin/bash
-        passwd: password
-        # - or -
-        # ssh_authorized_keys:
-        #   - your-ssh-key
+    disable_root: false
+  late-commands:
+    - echo 'drmoo ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/drmoo
