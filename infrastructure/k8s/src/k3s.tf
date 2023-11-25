@@ -1,7 +1,8 @@
 module "k3s" {
   source = "github.com/klimer2012/terraform-proxmox-k3s?ref=v0.1.5"
 
-  authorized_keys_file = "/authorized_keys"
+  authorized_keys_file = "authorized_keys"
+  private_key = "private_key"
 
   proxmox_node = "pve"
 
