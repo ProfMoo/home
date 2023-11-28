@@ -1,0 +1,3 @@
+[submodule "TJs-Kubernetes-Service"]
+	path = TJs-Kubernetes-Service
+	url = git@github.com:zimmertr/TJs-Kubernetes-Service.git
