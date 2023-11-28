@@ -1,0 +1,18 @@
+# Terraform
+.terraform*
+*.tfstate*
+
+# Provider
+config.env
+
+# Talos
+talosconfig
+
+# Kubernetes
+kubeconfig
+
+# MacOS
+.DS_Store
+
+# AWS Credentials
+aws-credentials
