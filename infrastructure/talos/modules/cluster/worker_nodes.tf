@@ -3,15 +3,18 @@ module "worker_nodes" {
 
   source = "../node"
 
-  vm_tags                     = each.value.vm_tags
-  vm_id                       = each.value.vm_id
-  vm_cpu_cores                = each.value.vm_cpu_cores
-  vm_memory                   = each.value.vm_memory
-  vm_disk_size                = each.value.vm_disk_size
-  proxmox_node_name           = each.value.proxmox_node_name
-  proxmox_node_datastore      = each.value.proxmox_node_datastore
-  proxmox_node_network_device = each.value.proxmox_node_network_device
-  vm_vlan_id                  = each.value.vm_vlan_id
+  id                    = each.value.id
+  name                  = each.value.name
+  description           = each.value.description
+  tags                  = each.value.tags
+  cpu_cores             = each.value.cpu_cores
+  memory                = each.value.memory
+  disk_size             = each.value.disk_size
+  datastore             = each.value.datastore
+  vlan_id               = each.value.vlan_id
+  bridge_network_device = each.value.bridge_network_device
+  proxmox_node_name     = each.value.proxmox_node_name
+  initial_boot_iso      = each.value.initial_boot_iso
 
-  initial_boot_iso = proxmox_virtual_environment_file.talos_image.id
+  proxmox_pool = proxmox_virtual_environment_pool.pool.pool_id
 }

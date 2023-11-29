@@ -1,5 +1,3 @@
-provider "talos" {}
-
 terraform {
   required_providers {
     proxmox = {
@@ -39,10 +37,12 @@ provider "proxmox" {
   }
 }
 
+provider "talos" {}
+
+
 provider "unifi" {
-  # you may need to allow insecure TLS communications unless you have configured
-  # certificates for your controller
-  allow_insecure = true # optionally use UNIFI_INSECURE env var
+  # I haven't configured TLS communications for my controller
+  allow_insecure = true
 }
 
 data "unifi_network" "lan_network" {

@@ -9,7 +9,7 @@ variable "talos_version" {
   description = "Total version to use. Can identify the available versions here: https://github.com/siderolabs/talos/releases."
 }
 
-variable "talos_image_node_storage_name" {
+variable "talos_image_storage_node" {
   type        = string
   description = "Proxmox node used for storing the Talos image."
 }
