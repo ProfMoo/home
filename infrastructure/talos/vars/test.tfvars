@@ -14,45 +14,45 @@ gateway_ip                      = "192.168.1.1"
 kubernetes_cluster_name         = "test"
 
 
-# Controlplanes #################
-controlplane_vmid_prefix        = "405"               # 4051-4059
-controlplane_node_name          = "pve"
-controlplane_num                = 1
+# control_planes #################
+control_plane_vmid_prefix        = "405"               # 4051-4059
+control_plane_node_name          = "pve"
+control_plane_num                = 1
 
-controlplane_hostname_prefix    = "test-k8s-cp"
-controlplane_ip_prefix          = "192.168.1.5"      # 51-59
-controlplane_vlan_id            = "0"
+control_plane_hostname_prefix    = "test-k8s-cp"
+control_plane_ip_prefix          = "192.168.1.5"      # 51-59
+control_plane_vlan_id            = "1"
 
-controlplane_cpu_cores          = "4"
-controlplane_memory             = "4096"
-controlplane_disk_size          = "40"
+control_plane_cpu_cores          = "4"
+control_plane_memory             = "4096"
+control_plane_disk_size          = "40"
 
-controlplane_datastore = "local-lvm"
+control_plane_datastore = "local-lvm"
 
-controlplane_tags               = [
+control_plane_tags               = [
   "app-kubernetes",
   "clusterid-test",
-  "type-controlplane"
+  "type-control_plane"
 ]
 
 
 # Worker Nodes ##################
-workernode_vmid_prefix          = "406"               # 4061-4069
-workernode_node_name            = "pve"
-workernode_num                  = 1
+worker_node_vmid_prefix          = "406"               # 4061-4069
+worker_node_node_name            = "pve"
+worker_node_num                  = 1
 
-workernode_hostname_prefix      = "test-k8s-node"
-workernode_ip_prefix            = "192.168.1.6"      # 62-69
-workernode_vlan_id              = "0"
+worker_node_hostname_prefix      = "test-k8s-node"
+worker_node_ip_prefix            = "192.168.1.6"      # 62-69
+worker_node_vlan_id              = "1"
 
-workernode_cpu_cores            = "4"
-workernode_memory               = "4096"
-workernode_disk_size            = "40"
+worker_node_cpu_cores            = "4"
+worker_node_memory               = "4096"
+worker_node_disk_size            = "40"
 
-workernode_datastore = "local-lvm"
+worker_node_datastore = "local-lvm"
 
-workernode_tags                 = [
+worker_node_tags                 = [
   "app-kubernetes",
   "clusterid-test",
-  "type-workernode"
+  "type-worker_node"
 ]

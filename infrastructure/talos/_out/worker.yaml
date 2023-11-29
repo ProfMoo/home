@@ -4,10 +4,10 @@ persist: true # description: |
 # Provides machine specific configuration options.
 machine:
     type: worker # Defines the role of the machine within the cluster.
-    token: gpnnav.ohdb7nxaj17im9wh # The `token` is used by a machine to join the PKI of the cluster.
+    token: 0mvtsr.0t54srecow7eqcfq # The `token` is used by a machine to join the PKI of the cluster.
     # The root certificate authority of the PKI.
     ca:
-        crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJQakNCOGFBREFnRUNBaEFMMXo0Sml6TXlYOEVtYzJJWGJoZnZNQVVHQXl0bGNEQVFNUTR3REFZRFZRUUsKRXdWMFlXeHZjekFlRncweU16RXhNamd4T0RReU1UZGFGdzB6TXpFeE1qVXhPRFF5TVRkYU1CQXhEakFNQmdOVgpCQW9UQlhSaGJHOXpNQ293QlFZREsyVndBeUVBUnM4cWhGdnJTZ09FNEEwUjEvaFRJME5YZjNRdkhRN1BnOGx2CmpqTW9ZbVdqWVRCZk1BNEdBMVVkRHdFQi93UUVBd0lDaERBZEJnTlZIU1VFRmpBVUJnZ3JCZ0VGQlFjREFRWUkKS3dZQkJRVUhBd0l3RHdZRFZSMFRBUUgvQkFVd0F3RUIvekFkQmdOVkhRNEVGZ1FVYW5XOXN5WC9Zdnh1NUlNLwo4aTZmaWFKMHp2TXdCUVlESzJWd0EwRUFpZnFRejE2MzFrNlJSN29VSkxXa0dJS3FaSk45dlRWbnErUXVxZy9ECkVQbEE4cXRlcllodTRUOElRK1Z4VWNnVllISDdSQkIvOHoxOFRPU2tGaFUyQ1E9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+        crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJQekNCOHFBREFnRUNBaEVBNUd3MVE2NDNWWjA5alRuZWtwSmh5ekFGQmdNclpYQXdFREVPTUF3R0ExVUUKQ2hNRmRHRnNiM013SGhjTk1qTXhNVEk1TURFeE56VTBXaGNOTXpNeE1USTJNREV4TnpVMFdqQVFNUTR3REFZRApWUVFLRXdWMFlXeHZjekFxTUFVR0F5dGxjQU1oQUZWazVHM1UyOWw2YmExN0ZGSWxaTjhTeWNxbDZBSldnS2FKCm1FVnJQWERBbzJFd1h6QU9CZ05WSFE4QkFmOEVCQU1DQW9Rd0hRWURWUjBsQkJZd0ZBWUlLd1lCQlFVSEF3RUcKQ0NzR0FRVUZCd01DTUE4R0ExVWRFd0VCL3dRRk1BTUJBZjh3SFFZRFZSME9CQllFRklTeFZuSXh5Z2l2Z2Z3WAp2Ty8yTlVvVTh2dS9NQVVHQXl0bGNBTkJBR1lobTZiZEF6aHpLQ3VPNncwbVYxYTNzOGMwVHdZQ1JXdy9BN0thCmRyUUh6OWl2dHcxN0RiSndQWStQS0ZvRi9mdmtjZ1RiRU1NUHdNRHdOdEJGT1FVPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
         key: ""
     # Extra certificate subject alternative names for the machine's certificate.
     certSANs: []
@@ -21,7 +21,7 @@ machine:
         image: ghcr.io/siderolabs/kubelet:v1.28.3 # The `image` field is an optional reference to an alternative kubelet image.
         defaultRuntimeSeccompProfileEnabled: true # Enable container runtime default Seccomp profile.
         disableManifestsDirectory: true # The `disableManifestsDirectory` field configures the kubelet to get static pod manifests from the /etc/kubernetes/manifests directory.
-        
+
         # # The `ClusterDNS` field is an optional reference to an alternative kubelet clusterDNS ip list.
         # clusterDNS:
         #     - 10.96.0.10
@@ -66,7 +66,7 @@ machine:
     #           gateway: 192.168.2.1 # The route's gateway (if empty, creates link scope route).
     #           metric: 1024 # The optional metric for the route.
     #       mtu: 1500 # The interface's MTU.
-    #       
+    #
     #       # # Picks a network device using the selector.
 
     #       # # select a device with bus prefix 00:*.
@@ -166,7 +166,7 @@ machine:
         disk: /dev/sda # The disk used for installations.
         image: ghcr.io/siderolabs/installer:v1.5.5 # Allows for supplying the image used to perform the installation.
         wipe: false # Indicates if the installation disk should be wiped at installation time.
-        
+
         # # Look up disk using disk attributes like model, size, serial and others.
         # diskSelector:
         #     size: 4GB # Disk size.
@@ -197,12 +197,12 @@ machine:
     #         # The TLS configuration for the registry.
     #         tls:
     #             insecureSkipVerify: true # Skip TLS server certificate verification (not recommended).
-    #             
+    #
     #             # # Enable mutual TLS authentication with the registry.
     #             # clientIdentity:
     #             #     crt: LS0tIEVYQU1QTEUgQ0VSVElGSUNBVEUgLS0t
     #             #     key: LS0tIEVYQU1QTEUgS0VZIC0tLQ==
-    #         
+    #
     #         # # The auth configuration for this registry.
     #         # auth:
     #         #     username: username # Optional registry authentication.
@@ -214,7 +214,7 @@ machine:
         stableHostname: true # Enable stable default hostname.
         apidCheckExtKeyUsage: true # Enable checks for extended key usage of client certificates in apid.
         diskQuotaSupport: true # Enable XFS project quota support for EPHEMERAL partition and user disks.
-        
+
         # # Configure Talos API access from Kubernetes pods.
         # kubernetesTalosAPIAccess:
         #     enabled: true # Enable Talos API access from Kubernetes pods.
@@ -224,11 +224,11 @@ machine:
         #     # The list of Kubernetes namespaces Talos API access is available from.
         #     allowedKubernetesNamespaces:
         #         - kube-system
-    
+
     # # Provides machine specific control plane configuration options.
 
-    # # ControlPlane definition example.
-    # controlPlane:
+    # # control_plane definition example.
+    # control_plane:
     #     # Controller manager machine specific configuration options.
     #     controllerManager:
     #         disabled: false # Disable kube-controller-manager on the node.
@@ -257,7 +257,7 @@ machine:
     #       # A list of partitions to create on the disk.
     #       partitions:
     #         - mountpoint: /var/mnt/extra # Where to mount the partition.
-    #           
+    #
     #           # # The size of partition: either bytes or human readable representation. If `size:` is omitted, the partition is sized to occupy the full disk.
 
     #           # # Human readable representation.
@@ -320,11 +320,11 @@ machine:
     #             - # Deterministically generated key from the node UUID and PartitionLabel.
     #               nodeID: {}
     #               slot: 0 # Key slot number for LUKS2 encryption.
-    #               
+    #
     #               # # KMS managed encryption key.
     #               # kms:
     #               #     endpoint: https://192.168.88.21:4443 # KMS endpoint to Seal/Unseal the key.
-    #         
+    #
     #         # # Cipher kind to use for the encryption. Depends on the encryption provider.
     #         # cipher: aes-xts-plain64
 
@@ -369,11 +369,11 @@ machine:
     #     exampleLabel: exampleLabelValue
 # Provides cluster specific configuration options.
 cluster:
-    id: qcZpwpShxlabAcdkJp37yZzrOxEKwifPHugqxXuaSmo= # Globally unique identifier for this cluster (base64 encoded random 32 bytes).
-    secret: kKnV11j7QGcB5lyUpLdm2bev6BvXZMSg1i/N6gwGLsc= # Shared secret of cluster (base64 encoded random 32 bytes).
+    id: ca53luIsRASVNUtBmI3znJ9ocJM__QAfMtzRj4ucCs8= # Globally unique identifier for this cluster (base64 encoded random 32 bytes).
+    secret: +mz+5ZTlYaiBiWQOalcVLiOGdcrt0xalYse/KTsgGgE= # Shared secret of cluster (base64 encoded random 32 bytes).
     # Provides control plane specific configuration options.
-    controlPlane:
-        endpoint: https://192.168.1.51:6443 # Endpoint is the canonical controlplane endpoint, which can be an IP address or a DNS hostname.
+    control_plane:
+        endpoint: https://192.168.1.68:6443 # Endpoint is the canonical control_plane endpoint, which can be an IP address or a DNS hostname.
     # Provides cluster specific network configuration options.
     network:
         dnsDomain: cluster.local # The domain used by Kubernetes DNS.
@@ -383,17 +383,17 @@ cluster:
         # The service subnet CIDR.
         serviceSubnets:
             - 10.96.0.0/12
-        
+
         # # The CNI used.
         # cni:
         #     name: custom # Name of CNI to use.
         #     # URLs containing manifests to apply for the CNI.
         #     urls:
         #         - https://docs.projectcalico.org/archive/v3.20/manifests/canal.yaml
-    token: ullscw.xxzpm1kxw2ywy80w # The [bootstrap token](https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/) used to join the cluster.
+    token: qyei5d.0hoer25nohdon2cu # The [bootstrap token](https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/) used to join the cluster.
     # The base64 encoded root certificate authority used by Kubernetes.
     ca:
-        crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJpakNDQVMrZ0F3SUJBZ0lRTzkyTmNrWHFKMmZEekp0cmZ3VW42akFLQmdncWhrak9QUVFEQWpBVk1STXcKRVFZRFZRUUtFd3ByZFdKbGNtNWxkR1Z6TUI0WERUSXpNVEV5T0RFNE5ESXhOMW9YRFRNek1URXlOVEU0TkRJeApOMW93RlRFVE1CRUdBMVVFQ2hNS2EzVmlaWEp1WlhSbGN6QlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VICkEwSUFCR3JUYWxYbTBDVGFjOXJwMmxzV05hZ0RUUE4zZzYvc2dBR3dtam5oR3pjMlNyZmQ1L001Z0podHc3VWYKSS85UEFJN1Zta3RwV2RMMUVmVzZZRXVXRTcrallUQmZNQTRHQTFVZER3RUIvd1FFQXdJQ2hEQWRCZ05WSFNVRQpGakFVQmdnckJnRUZCUWNEQVFZSUt3WUJCUVVIQXdJd0R3WURWUjBUQVFIL0JBVXdBd0VCL3pBZEJnTlZIUTRFCkZnUVU1OG9iR1kvcW9wUUQrK3NaSGR4eUR0Zm5yckF3Q2dZSUtvWkl6ajBFQXdJRFNRQXdSZ0loQUszSzdkQ1QKU21DdGVHOXRlZDcyY2hGbktVZk8xSEFjN3dHcGZFM2ZQRGJsQWlFQWlBMjZrK3d4UExUTG1wMUU5SG13dW1zVwp2RmlLU3hSaGFDZ2h5K2ZzZDlNPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
+        crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUJpVENDQVMrZ0F3SUJBZ0lRYVA1a0t2QkJLa0k1bHExb0o1YnNmakFLQmdncWhrak9QUVFEQWpBVk1STXcKRVFZRFZRUUtFd3ByZFdKbGNtNWxkR1Z6TUI0WERUSXpNVEV5T1RBeE1UYzFORm9YRFRNek1URXlOakF4TVRjMQpORm93RlRFVE1CRUdBMVVFQ2hNS2EzVmlaWEp1WlhSbGN6QlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDlBd0VICkEwSUFCT3F6bjVkOE9iSFphNVhLRGl2RytTdU9sdytmODNkQTdjU2psSDlPRUxqRU9UUmVEVFRqajVzTzVKTHgKRXNtdWpjdlUvZ0lwY3lSMmpyQW5mQlRWeUYrallUQmZNQTRHQTFVZER3RUIvd1FFQXdJQ2hEQWRCZ05WSFNVRQpGakFVQmdnckJnRUZCUWNEQVFZSUt3WUJCUVVIQXdJd0R3WURWUjBUQVFIL0JBVXdBd0VCL3pBZEJnTlZIUTRFCkZnUVVlY0R4RCtMOFJ4NitUMVZMU01pTHJlOGdhSzR3Q2dZSUtvWkl6ajBFQXdJRFNBQXdSUUloQU5Qb3UxeXMKZHdNQnZ2K3IwL2Rtd3lCVE1EM1M4UHQ2YklUbkJTOWZrWHBuQWlCNkRhWGZsK0EwUVo5bDgwU3htN1B3TitXNAp0bTRGY1JyY3ZKVlJ1Z1h0L1E9PQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
         key: ""
     # Configures cluster member discovery.
     discovery:
@@ -407,7 +407,7 @@ cluster:
             service: {}
             # # External service endpoint.
             # endpoint: https://discovery.talos.dev/
-    
+
     # # A key used for the [encryption of secret data at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/).
 
     # # Decryption secret example (do not use in production!).
@@ -541,4 +541,4 @@ cluster:
     #     certLifetime: 1h0m0s # Admin kubeconfig certificate lifetime (default is 1 year).
 
     # # Allows running workload on control-plane nodes.
-    # allowSchedulingOnControlPlanes: true
+    # allowSchedulingOncontrol_planes: true
