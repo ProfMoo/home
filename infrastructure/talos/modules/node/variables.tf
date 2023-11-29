@@ -3,6 +3,12 @@ variable "id" {
   description = "The VM ID in Proxmox (must be unique)"
 }
 
+variable "name" {
+  type        = string
+  description = "Name of the VM"
+  default     = ""
+}
+
 variable "description" {
   type        = string
   description = "Optional description for the VM in Proxmox"
@@ -10,11 +16,9 @@ variable "description" {
 }
 
 variable "tags" {
-  type        = map(any)
+  type        = list(string)
   description = "Tags to apply to the worker node virtual machines in Proxmox"
-  default = {
-    # Define default values or leave empty, depending on your needs
-  }
+  default     = []
 }
 
 variable "cpu_cores" {
@@ -30,9 +34,9 @@ variable "memory" {
 }
 
 variable "disk_size" {
-  type        = string
-  description = "The disk size to allocate for the Talos node to store its configuration and boot from."
-  default     = "50G"
+  type        = number
+  description = "The disk size (in GB) to allocate for the Talos node to store its configuration and boot from."
+  default     = 50
 }
 
 variable "datastore" {
@@ -46,9 +50,9 @@ variable "vlan_id" {
   description = "The VLAN ID to use for the VM"
 }
 
-variable "network_device" {
+variable "bridge_network_device" {
   type        = string
-  description = "The network device that the VM will use to communicate with the outside world. Corresponds to a network device on the Proxmox node. In general, this should be a network interface that bridges to a physical network interface."
+  description = "The network device that the VM will use to communicate with the outside world. Corresponds to a network device on the Proxmox node. This should be a network interface that bridges to a physical network interface."
   default     = "vmbr0" # The default name for the first bridge interface in Proxmox
 }
 

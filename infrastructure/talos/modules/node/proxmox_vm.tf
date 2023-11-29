@@ -11,7 +11,7 @@ resource "proxmox_virtual_environment_vm" "worker_node" {
   pool_id   = var.proxmox_pool
   node_name = var.proxmox_node_name
 
-  name        = var.proxmox_node_name
+  name        = var.name
   description = var.description
   tags        = var.tags
 
@@ -27,11 +27,13 @@ resource "proxmox_virtual_environment_vm" "worker_node" {
   }
 
   network_device {
-    bridge      = var.network_device
-    mac_address = macaddress.mac_addresses[count.index].address
+    bridge      = var.bridge_network_device
+    mac_address = macaddress.mac_addresses.address
     firewall    = false
   }
 
+  # NOTE: The boot order is important because we want the VM to boot from the CDROM first, then the disk.
+  # Talos functions by booting from the CDROM initially, then performing API-driven updates onto the disk, then rebooting from the disk.
   boot_order = ["scsi0", "ide2", "net0"]
 
   # NOTE: This provides Talos a location to store its state when it's configured via the API.
