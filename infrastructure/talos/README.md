@@ -106,7 +106,7 @@ TJ's Kubernetes Service, or *TKS*, is an IaC project that is used to deliver Kub
    kubectx admin@test
    ```
 
-10. Confirm Kubernetes is bootstrapped and that all of the nodes have joined the cluster. The Controlplane nodes might take a moment to respond. You can confirm the status of each Talos node using `talosctl` or by reviewing the VM consoles in Proxmox.
+10. Confirm Kubernetes is bootstrapped and that all of the nodes have joined the cluster. The control_plane nodes might take a moment to respond. You can confirm the status of each Talos node using `talosctl` or by reviewing the VM consoles in Proxmox.
 
     ```bash
     watch kubectl get nodes,all -A
@@ -152,7 +152,7 @@ Considerations:
 
 - As QEMU Guest Agent's installation is not managed by Terraform, be sure to run `./bin/manage_nodes upgrade $NODE` against any new nodes that are added to enable it. Otherwise, Terraform will have issues interacting with it through the Proxmox API.
 - At this time I don't think it's possible to choose a specific node to remove. You must scale up and down the last node.
-- Due to the way I configure IP Addressing using DHCP reservations, there is a limit of both 9 controlplanes and 9 workernodes.
+- Due to the way I configure IP Addressing using DHCP reservations, there is a limit of both 9 control_planes and 9 worker_nodes.
 
 <hr>
 
