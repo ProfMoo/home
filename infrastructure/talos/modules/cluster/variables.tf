@@ -6,34 +6,36 @@ variable "proxmox_resource_pool" {
 
 variable "worker_nodes" {
   type = map(object({
-    id                = string
-    description       = string
-    tags              = map(any)
-    cpu_cores         = number
-    memory            = number
-    disk_size         = string
-    datastore         = string
-    vlan_id           = string
-    network_device    = string
-    proxmox_node_name = string
-    proxmox_pool      = string
-    initial_boot_iso  = string
+    id                    = string
+    name                  = string
+    description           = string
+    tags                  = list(string)
+    cpu_cores             = number
+    memory                = number
+    disk_size             = number
+    datastore             = string
+    vlan_id               = string
+    bridge_network_device = string
+    proxmox_node_name     = string
+
+    initial_boot_iso = string
   }))
 }
 
 variable "control_plane" {
   type = map(object({
-    id                = string
-    description       = string
-    tags              = map(any)
-    cpu_cores         = number
-    memory            = number
-    disk_size         = string
-    datastore         = string
-    vlan_id           = string
-    network_device    = string
-    proxmox_node_name = string
-    proxmox_pool      = string
-    initial_boot_iso  = string
+    id                    = string
+    name                  = string
+    description           = string
+    tags                  = list(string)
+    cpu_cores             = number
+    memory                = number
+    disk_size             = number
+    datastore             = string
+    vlan_id               = string
+    bridge_network_device = string
+    proxmox_node_name     = string
+
+    initial_boot_iso = string
   }))
 }
