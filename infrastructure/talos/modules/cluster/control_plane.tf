@@ -18,3 +18,19 @@ module "control_plane_node" {
 
   proxmox_pool = proxmox_virtual_environment_pool.pool.pool_id
 }
+
+module "control_plane_node_configuration" {
+  for_each = var.control_plane
+
+  source = "../talos-node"
+
+  talos_virtual_ip = "192.168.1.99"
+  machine_type     = "controlplane"
+
+  kubernetes_cluster_name = var.kubernetes_cluster_name
+
+  node_ip = module.control_plane_node[each.key].vm_ipv4_address
+
+  kubernetes_version = each.value.kubernetes_version
+  talos_version      = each.value.talos_version
+}
