@@ -8,9 +8,5 @@ terraform {
       source  = "ivoronin/macaddress"
       version = "0.3.0"
     }
-    unifi = {
-      source  = "paultyng/unifi"
-      version = "0.41.0"
-    }
   }
 }

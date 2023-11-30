@@ -18,3 +18,31 @@ module "worker_nodes" {
 
   proxmox_pool = proxmox_virtual_environment_pool.pool.pool_id
 }
+
+module "worker_node_configuration" {
+  for_each = var.worker_nodes
+
+  source = "../talos-node"
+
+  talos_virtual_ip   = var.talos_virtual_ip
+  talos_machine_type = "worker"
+
+  kubernetes_cluster_name = var.kubernetes_cluster_name
+
+  # node_ip = module.worker_nodes[each.key].ipv4_address
+  node_ip = "192.168.1.44"
+
+
+  kubernetes_version = each.value.kubernetes_version
+  talos_version      = each.value.talos_version
+
+  config_patches = [
+    templatefile("configs/global.yml", {
+      qemu_guest_agent_version = "8.1.2"
+    })
+  ]
+}
+
+output "worker_nodes_ips" {
+  value = { for key, instance in module.worker_nodes : key => { "ipv4_address" : instance.ipv4_address, "mac_address" : instance.mac_address } }
+}

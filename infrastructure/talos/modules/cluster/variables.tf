@@ -9,6 +9,11 @@ variable "kubernetes_cluster_name" {
   description = "Kubernetes cluster name you wish for Talos to use"
 }
 
+variable "talos_virtual_ip" {
+  type        = string
+  description = "Virtual IP to be used by Talos. https://www.talos.dev/v1.5/talos-guides/network/vip/"
+}
+
 variable "worker_nodes" {
   type = map(object({
     id                    = string

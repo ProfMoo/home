@@ -3,12 +3,6 @@ variable "kubernetes_version" {
   description = "Identify desired version from the list here: https://github.com/siderolabs/kubelet/pkgs/container/kubelet"
 }
 
-variable "qemu_guest_agent_version" {
-  type        = string
-  default     = "8.1.2"
-  description = "Identify here: https://github.com/siderolabs/extensions/pkgs/container/qemu-guest-agent"
-}
-
 variable "kubernetes_cluster_name" {
   type        = string
   description = "Kubernetes cluster name you wish for Talos to use"
@@ -26,10 +20,20 @@ variable "talos_version" {
 
 variable "node_ip" {
   type        = string
-  description = "IPV4 address of the node we want to operate against"
+  description = "IPV4 address of the node we want to operate on"
 }
 
-variable "machine_type" {
+variable "talos_machine_type" {
   type        = string
   description = "The Kubernetes note type that Talos will configure this node as"
+
+  validation {
+    condition     = contains(["controlplane", "worker"], var.talos_machine_type)
+    error_message = "Invalid value. Must be either 'controlplane' or 'worker'."
+  }
+}
+
+variable "config_patches" {
+  type        = list(string)
+  description = "List of patches to apply to the Talos config. Each patch must be a valid YAML string."
 }
