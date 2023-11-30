@@ -1,6 +1,3 @@
-resource "talos_machine_secrets" "node" {
-  talos_version = "v${var.talos_version}"
-}
 
 data "talos_machine_configuration" "node" {
   cluster_name     = var.kubernetes_cluster_name
