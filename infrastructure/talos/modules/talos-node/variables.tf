@@ -8,9 +8,9 @@ variable "kubernetes_cluster_name" {
   description = "Kubernetes cluster name you wish for Talos to use"
 }
 
-variable "talos_virtual_ip" {
+variable "cluster_endpoint_ip" {
   type        = string
-  description = "Virtual IP address you wish for Talos to use"
+  description = "The IPv4 address of the node we want to send commands to"
 }
 
 variable "talos_version" {
@@ -20,7 +20,7 @@ variable "talos_version" {
 
 variable "node_ip" {
   type        = string
-  description = "IPV4 address of the node we want to operate on"
+  description = "The IPv4 address of the node we want to operate on"
 }
 
 variable "talos_machine_type" {

@@ -4,7 +4,7 @@ resource "talos_machine_secrets" "node" {
 
 data "talos_machine_configuration" "node" {
   cluster_name     = var.kubernetes_cluster_name
-  cluster_endpoint = "https://${var.talos_virtual_ip}:6443"
+  cluster_endpoint = "https://${var.cluster_endpoint_ip}:6443"
 
   machine_type    = var.talos_machine_type
   machine_secrets = talos_machine_secrets.node.machine_secrets

@@ -24,12 +24,11 @@ module "control_plane_node_configuration" {
 
   source = "../talos-node"
 
-  talos_virtual_ip   = var.talos_virtual_ip
-  talos_machine_type = "controlplane"
-
+  talos_machine_type      = "controlplane"
   kubernetes_cluster_name = var.kubernetes_cluster_name
 
-  node_ip = module.control_plane_node[each.key].ipv4_address
+  node_ip             = module.control_plane_node[each.key].ipv4_address
+  cluster_endpoint_ip = module.control_plane_node[each.key].ipv4_address
 
   kubernetes_version = each.value.kubernetes_version
   talos_version      = each.value.talos_version
