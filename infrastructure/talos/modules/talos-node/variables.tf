@@ -18,6 +18,11 @@ variable "talos_version" {
   description = "Talos version to use. Can identify the available versions here: https://github.com/siderolabs/talos/releases."
 }
 
+variable "talos_cluster_secrets" {
+  type        = any
+  description = "The cluster secrets to use for the Talos cluster."
+}
+
 variable "node_ip" {
   type        = string
   description = "The IPv4 address of the node we want to operate on"
