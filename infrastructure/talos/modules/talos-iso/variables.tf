@@ -6,7 +6,7 @@ variable "talos_image_datastore" {
 
 variable "talos_version" {
   type        = string
-  description = "Total version to use. Can identify the available versions here: https://github.com/siderolabs/talos/releases."
+  description = "Talos version to use. Can identify the available versions here: https://github.com/siderolabs/talos/releases."
 }
 
 variable "talos_image_storage_node" {

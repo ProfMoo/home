@@ -4,6 +4,11 @@ variable "proxmox_resource_pool" {
   description = "Resource Pool to create on Proxmox for the cluster. Mainly used for resource/VM organization."
 }
 
+variable "kubernetes_cluster_name" {
+  type        = string
+  description = "Kubernetes cluster name you wish for Talos to use"
+}
+
 variable "worker_nodes" {
   type = map(object({
     id                    = string
@@ -19,6 +24,9 @@ variable "worker_nodes" {
     proxmox_node_name     = string
 
     initial_boot_iso = string
+
+    talos_version      = string
+    kubernetes_version = string
   }))
 }
 
@@ -37,5 +45,8 @@ variable "control_plane" {
     proxmox_node_name     = string
 
     initial_boot_iso = string
+
+    talos_version      = string
+    kubernetes_version = string
   }))
 }
