@@ -25,6 +25,7 @@ module "control_plane_node_configuration" {
   source = "../talos-node"
 
   talos_machine_type      = "controlplane"
+  talos_cluster_secrets   = talos_machine_secrets.cluster
   kubernetes_cluster_name = var.kubernetes_cluster_name
 
   node_ip             = module.control_plane_node[each.key].ipv4_address
