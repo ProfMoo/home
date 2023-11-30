@@ -4,7 +4,7 @@ data "talos_machine_configuration" "node" {
   cluster_endpoint = "https://${var.cluster_endpoint_ip}:6443"
 
   machine_type    = var.talos_machine_type
-  machine_secrets = talos_machine_secrets.node.machine_secrets
+  machine_secrets = var.talos_cluster_secrets.machine_secrets
 
   talos_version      = "v${var.talos_version}"
   kubernetes_version = var.kubernetes_version
@@ -12,15 +12,10 @@ data "talos_machine_configuration" "node" {
 
 resource "talos_machine_configuration_apply" "node" {
   node     = var.node_ip
-  endpoint = var.node_ip
+  endpoint = var.cluster_endpoint_ip
 
-  client_configuration        = talos_machine_secrets.node.client_configuration
+  client_configuration        = var.talos_cluster_secrets.client_configuration
   machine_configuration_input = data.talos_machine_configuration.node.machine_configuration
 
   config_patches = var.config_patches
-}
-
-output "talos_machine_configuration" {
-  value     = talos_machine_secrets.node.client_configuration
-  sensitive = true
 }

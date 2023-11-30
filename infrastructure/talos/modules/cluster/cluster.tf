@@ -1,36 +1,29 @@
 locals {
-  first_node       = keys(module.control_plane_node)[0]
-  first_talos_node = keys(module.control_plane_node_configuration)[0]
+  first_node = keys(module.control_plane_node)[0]
 }
 
-resource "talos_machine_secrets" "node" {
+resource "talos_machine_secrets" "cluster" {
+  # Determines the schema we'll use for the machine secrets
   talos_version = "v1.5.5"
 }
 
 data "talos_client_configuration" "this" {
   cluster_name         = var.kubernetes_cluster_name
-  client_configuration = [for control_plane_node_configuration in module.control_plane_node_configuration : control_plane_node_configuration.talos_machine_configuration][0]
+  client_configuration = talos_machine_secrets.cluster.client_configuration
   endpoints            = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address]
 }
 
-
 resource "talos_machine_bootstrap" "node" {
-  # NOTE: This count creates AT MOST one instance of the resource. We only want to bootstrap once per cluster.
-  # Source: https://www.talos.dev/v1.5/introduction/getting-started/#kubernetes-bootstrap
-  for_each = { (local.first_node) = module.control_plane_node[local.first_node] }
-
-  endpoint = each.value.ipv4_address
-  node     = each.value.ipv4_address
-
-  client_configuration = module.control_plane_node_configuration[local.first_talos_node].talos_machine_configuration
+  client_configuration = talos_machine_secrets.cluster.client_configuration
+  endpoint             = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
+  node                 = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
 }
-
 
 data "talos_cluster_kubeconfig" "this" {
   depends_on = [
     talos_machine_bootstrap.node
   ]
-  client_configuration = [for control_plane_node_configuration in module.control_plane_node_configuration : control_plane_node_configuration.talos_machine_configuration][0]
+  client_configuration = talos_machine_secrets.cluster.client_configuration
   endpoint             = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
   node                 = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
 }
