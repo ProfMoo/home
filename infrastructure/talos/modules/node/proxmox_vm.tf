@@ -1,7 +1,7 @@
 # NOTE: This creates the random mac addresses that we assign to the VMs
 resource "macaddress" "mac_addresses" {}
 
-resource "proxmox_virtual_environment_vm" "worker_node" {
+resource "proxmox_virtual_environment_vm" "talos_node" {
   depends_on = [
     macaddress.mac_addresses
   ]

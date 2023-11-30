@@ -12,5 +12,8 @@ terraform {
       source  = "paultyng/unifi"
       version = "0.41.0"
     }
+    time = {
+      source = "hashicorp/time"
+    }
   }
 }
