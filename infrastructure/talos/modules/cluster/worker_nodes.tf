@@ -24,14 +24,14 @@ module "worker_node_configuration" {
 
   source = "../talos-node"
 
-  talos_virtual_ip   = var.talos_virtual_ip
-  talos_machine_type = "worker"
+  # cluster_endpoint_ip = "192.168.1.44"
+  cluster_endpoint_ip = values(module.control_plane_node)[0].ipv4_address
+  talos_machine_type  = "worker"
 
   kubernetes_cluster_name = var.kubernetes_cluster_name
 
   # node_ip = module.worker_nodes[each.key].ipv4_address
-  node_ip = "192.168.1.44"
-
+  node_ip = "192.168.1.99"
 
   kubernetes_version = each.value.kubernetes_version
   talos_version      = each.value.talos_version
