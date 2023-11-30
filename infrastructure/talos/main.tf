@@ -8,10 +8,11 @@ module "talos_1_5_5_iso" {
   talos_image_storage_node = "pve"
 }
 
-module "testing_cluster" {
+module "cluster" {
   source = "./modules/cluster"
 
-  proxmox_resource_pool = "kubernetes-testing"
+  proxmox_resource_pool   = "kubernetes"
+  kubernetes_cluster_name = "homelab"
 
   control_plane = {
     "control_plane_instance_0" = {
@@ -27,6 +28,10 @@ module "testing_cluster" {
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
+
+      # This doesn't necessarily need to match the boot ISO. 
+      talos_version      = "1.5.5"
+      kubernetes_version = "1.28.3"
     }
   }
 
@@ -44,6 +49,14 @@ module "testing_cluster" {
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
+
+      # This doesn't necessarily need to match the boot ISO. 
+      talos_version      = "1.5.5"
+      kubernetes_version = "1.28.3"
     }
   }
+}
+
+output "control_plane_nodes_ips" {
+  value = module.cluster.control_plane_nodes_ips
 }

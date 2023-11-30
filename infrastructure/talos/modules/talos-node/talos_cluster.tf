@@ -5,9 +5,9 @@
 //   worker_nodes       = ["192.168.1.89"]
 // }
 
-// resource "talos_machine_secrets" "this" {
-//   talos_version = var.talos_version
-// }
+resource "talos_machine_secrets" "this" {
+  talos_version = "v${var.talos_version}"
+}
 
 // data "talos_client_configuration" "this" {
 //   cluster_name         = var.kubernetes_cluster_name

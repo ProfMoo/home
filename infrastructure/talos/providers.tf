@@ -44,7 +44,3 @@ provider "unifi" {
   # I haven't configured TLS communications for my controller
   allow_insecure = true
 }
-
-data "unifi_network" "lan_network" {
-  name = "Default"
-}
