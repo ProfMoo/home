@@ -55,6 +55,24 @@ module "cluster" {
       talos_version      = "1.5.5"
       kubernetes_version = "1.28.3"
     }
+    "worker_node_instance_1" = {
+      id                    = "1101"
+      name                  = "skrillex"
+      description           = "Worker node instance in the Kubernetes testing cluster"
+      tags                  = ["worker-node", "kubernetes"]
+      cpu_cores             = 2
+      memory                = 4096
+      disk_size             = "50"
+      datastore             = "local-lvm"
+      vlan_id               = "0"
+      bridge_network_device = "vmbr0"
+      proxmox_node_name     = "pve"
+      initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
+
+      # This doesn't necessarily need to match the boot ISO. 
+      talos_version      = "1.5.5"
+      kubernetes_version = "1.28.3"
+    }
   }
 }
 
