@@ -15,16 +15,6 @@ resource "talos_machine_secrets" "this" {
 //   endpoints            = [for node in local.control_plane_nodes : node]
 // }
 
-// resource "talos_machine_bootstrap" "this" {
-//   count = var.control_plane_num
-//   depends_on = [
-//     talos_machine_configuration_apply.control_plane
-//   ]
-//   client_configuration = talos_machine_secrets.this.client_configuration
-//   endpoint             = local.control_plane_nodes[0]
-//   node                 = local.control_plane_nodes[0]
-// }
-
 
 // data "talos_cluster_kubeconfig" "this" {
 //   depends_on = [

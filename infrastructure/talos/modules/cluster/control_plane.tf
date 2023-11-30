@@ -29,7 +29,7 @@ module "control_plane_node_configuration" {
 
   kubernetes_cluster_name = var.kubernetes_cluster_name
 
-  node_ip = module.control_plane_node[each.key].vm_ipv4_address
+  node_ip = module.control_plane_node[each.key].ipv4_address
 
   kubernetes_version = each.value.kubernetes_version
   talos_version      = each.value.talos_version
