@@ -12,10 +12,6 @@ terraform {
       source  = "ivoronin/macaddress"
       version = "0.3.0"
     }
-    unifi = {
-      source  = "paultyng/unifi"
-      version = "0.41.0"
-    }
   }
 
   backend "s3" {
@@ -39,8 +35,3 @@ provider "proxmox" {
 
 provider "talos" {}
 
-
-provider "unifi" {
-  # I haven't configured TLS communications for my controller
-  allow_insecure = true
-}

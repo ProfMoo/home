@@ -24,8 +24,8 @@ module "control_plane_node_configuration" {
 
   source = "../talos-node"
 
-  talos_virtual_ip = "192.168.1.99"
-  machine_type     = "controlplane"
+  talos_virtual_ip   = var.talos_virtual_ip
+  talos_machine_type = "controlplane"
 
   kubernetes_cluster_name = var.kubernetes_cluster_name
 
@@ -33,4 +33,17 @@ module "control_plane_node_configuration" {
 
   kubernetes_version = each.value.kubernetes_version
   talos_version      = each.value.talos_version
+
+  config_patches = [
+    templatefile("configs/global.yml", {
+      qemu_guest_agent_version = "8.1.2"
+    }),
+    templatefile("configs/control-plane.yml", {
+      talos_virtual_ip = "${var.talos_virtual_ip}"
+    }),
+  ]
+}
+
+output "control_plane_nodes_ips" {
+  value = { for key, instance in module.control_plane_node : key => { "ipv4_address" : instance.ipv4_address, "mac_address" : instance.mac_address } }
 }

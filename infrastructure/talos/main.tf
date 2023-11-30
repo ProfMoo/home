@@ -13,6 +13,7 @@ module "cluster" {
 
   proxmox_resource_pool   = "kubernetes"
   kubernetes_cluster_name = "homelab"
+  talos_virtual_ip        = "192.168.1.99"
 
   control_plane = {
     "control_plane_instance_0" = {
@@ -57,6 +58,20 @@ module "cluster" {
   }
 }
 
-output "control_plane_nodes_ips" {
+output "control_plane_node_ips" {
   value = module.cluster.control_plane_nodes_ips
+}
+
+output "worker_node_ips" {
+  value = module.cluster.worker_nodes_ips
+}
+
+output "kubeconfig" {
+  value     = module.cluster.kubeconfig
+  sensitive = true
+}
+
+output "talosconfig" {
+  value     = module.cluster.talosconfig
+  sensitive = true
 }
