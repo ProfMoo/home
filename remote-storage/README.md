@@ -19,3 +19,7 @@ This Terraform code is used to generate the AWS resources necessary for long-tim
     # Ex: ./docker_run.sh apply -auto-approve
     # Ex: ./docker_run.sh plan
     ```
+
+## TODO
+
+Add Sops key to the managed state here if I end up using Sops

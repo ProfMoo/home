@@ -5,9 +5,11 @@ output "mac_address" {
 # NOTE: This allows time for the DHCP server to assign an IP address to the VM.
 # It takes a significant period of time because the VM needs to boot from the Talos ISO and do an initial configuration.
 resource "time_sleep" "wait_for_ip" {
-  depends_on = [proxmox_virtual_environment_vm.talos_node]
+  depends_on = [
+    proxmox_virtual_environment_vm.talos_node
+  ]
 
-  // Specifying the duration to wait
+  // Specifying the duration to wait. If the nodes are taking longer than 60 seconds to get an IP address, then this duration can be increased.
   create_duration = "60s"
 }
 

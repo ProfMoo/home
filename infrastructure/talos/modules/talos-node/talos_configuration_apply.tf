@@ -1,4 +1,3 @@
-
 data "talos_machine_configuration" "node" {
   cluster_name     = var.kubernetes_cluster_name
   cluster_endpoint = "https://${var.cluster_endpoint_ip}:6443"

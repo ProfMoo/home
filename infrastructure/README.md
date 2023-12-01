@@ -1,11 +1,15 @@
 # Infrastructure
 
-This directory houses the code that transform raw baremetal machines into functional Kubernetes clusters. It's currently divided into two directories: `packer` and `k8s`. The `packer` directory uses a LAN-accessible Proxmox VE installation to create a ready-to-k8s VM image. The `k8s` directory uses the output VM template from the `packer` directory to standup multiple VMs and create a bare-bones K3s cluster.
+This directory houses the code that transform raw bare-metal machines into functional Kubernetes clusters. It's currently divided into two directories: `talos` and `k8s`. The `talos` directory uses a LAN-accessible Proxmox VE installation to create a bare-bones Kubernetes cluster using [Talos](https://github.com/siderolabs/talos). The `k8s` directory then hooks into these bare-bones Kubernetes clusters to install the necessary Kubernetes infrastructure,
+
+## Prerequisites
+
+1. Terraform installed (check [the providers file](./talos/providers.tf) for the specific version requirements)
 
 ## How To Use
 
-1. Install Proxmox VE v8.0+ on a baremetal machine.
-2. Ensure you have a file named `aws-credentials` in the `virtualization` directory in the format:
+1. Install Proxmox VE v8.0+ on a baremetal machine (or more than one).
+2. Ensure you have a file named `aws-credentials` in the `talos` directory in the format:
 
     ```text
     [default]
@@ -13,16 +17,6 @@ This directory houses the code that transform raw baremetal machines into functi
     aws_secret_access_key = <redacted>
     ```
 
-3. Run the `./packer/run.sh` script.
-   1. This creates the necessary VM templates that we will use as a base for building VMs declaratively
-4. Run `./k8s/docker_run.sh apply -auto-approve` (assuming you want to auto-approve) script. This will stand up the K8s cluster, outputting a kubeconfig.
+    This provides authentication to the AWS S3 bucket backend that stores the TF state
 
-## Terraform Plan
-
-For local testing and verification, you can use the `k8s` script directly:
-
-```bash
-./docker_run.sh $TERRAFORM_COMMANDS_HERE
-# Ex: ./docker_run.sh apply -auto-approve
-# Ex: ./docker_run.sh plan
-```
+3. Navigate to the `talos` directory and then run the desired Terraform command (i.e. `terraform plan`, `terraform apply`).
