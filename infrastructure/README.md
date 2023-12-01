@@ -1,6 +1,6 @@
 # Infrastructure
 
-This directory houses the code that transform raw bare-metal machines into functional Kubernetes clusters. It's currently divided into two directories: `talos` and `k8s`. The `talos` directory uses a LAN-accessible Proxmox VE installation to create a bare-bones Kubernetes cluster using [Talos](https://github.com/siderolabs/talos). The `k8s` directory then hooks into these bare-bones Kubernetes clusters to install the necessary Kubernetes infrastructure,
+This directory houses the code that transforms raw bare-metal machines into functional Kubernetes clusters. The code in this directory depends on a LAN-accessible Proxmox VE installation (or multiple!) to create a bare-bones Kubernetes cluster using [Talos](https://github.com/siderolabs/talos).
 
 ## Prerequisites
 
