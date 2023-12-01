@@ -1,7 +1,3 @@
-locals {
-  first_node = keys(module.control_plane_node)[0]
-}
-
 resource "talos_machine_secrets" "cluster" {
   # Determines the schema we'll use for the machine secrets
   talos_version = "v1.5.5"

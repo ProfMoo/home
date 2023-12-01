@@ -1,9 +1,5 @@
 # Terraform
 .terraform/*
-*.tfstate*
-
-# Provider
-config.env
 
 # Talos
 talosconfig
@@ -16,3 +12,6 @@ kubeconfig
 
 # AWS Credentials
 aws-credentials
+
+# Ignoring until I figure out Sops
+secrets.yaml

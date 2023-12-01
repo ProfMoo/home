@@ -38,9 +38,9 @@ module "control_plane_node_configuration" {
     templatefile("configs/global.yml", {
       qemu_guest_agent_version = "8.1.2"
     }),
-    templatefile("configs/control-plane.yml", {
-      talos_virtual_ip = "${var.talos_virtual_ip}"
-    }),
+    // templatefile("configs/control-plane.yml", {
+    //   talos_virtual_ip = "${var.talos_virtual_ip}"
+    // }),
   ]
 }
 
