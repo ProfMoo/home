@@ -1,11 +1,11 @@
 # Terraform
 .terraform/*
 
-# Talos
-talosconfig
+# Talos configuration file
+.talosconfig
 
-# Kubernetes
-kubeconfig
+# Kubernetes configuration file
+.kubeconfig
 
 # MacOS
 .DS_Store
