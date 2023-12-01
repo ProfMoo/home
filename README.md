@@ -23,6 +23,6 @@ This repository contains the configuration and code necessary to deploy and main
 3. Run
 
     ```bash
-    # ex: ./run.sh config/local
-    ./run.sh <config location>
+    # local-truenas is the name of the configuration file in the `config` directory
+    ./up.sh local-truenas
     ```
