@@ -3,10 +3,10 @@
 # "System extensions are only activated during the installation or upgrade of Talos Linux.
 # With system extensions installed, the Talos root filesystem is still immutable and read-only."
 # https://www.talos.dev/v1.5/talos-guides/configuration/system-extensions/
-upgrade_node(){
+upgrade_node() {
   for node in $(echo $1 | sed "s/,/ /g"); do
 
-    until kubectl get node $node --kubeconfig $tmp_dir/kubeconfig > /dev/null 2>&1 ; do
+    until kubectl get node $node --kubeconfig $tmp_dir/kubeconfig >/dev/null 2>&1; do
       echo "Waiting for node..."
       sleep 5
     done
@@ -22,19 +22,18 @@ upgrade_node(){
 
 # Ensure that a node is also removed from the cluster when Terraform destroys it.
 # https://www.talos.dev/v1.5/talos-guides/howto/scaling-down/
-remove_node(){
+remove_node() {
   talosctl reset --nodes $1
-  talosctl shutdown --nodes $1
   kubectl delete node $1
 }
 
-main(){
+main() {
   tmp_dir=$(mktemp -d)
   command=$1
   nodes=$2
 
-  terraform output -raw kubeconfig > $tmp_dir/kubeconfig
-  terraform output -raw talosconfig > $tmp_dir/talosconfig
+  terraform output -raw kubeconfig >$tmp_dir/kubeconfig
+  terraform output -raw talosconfig >$tmp_dir/talosconfig
 
   export KUBECONFIG=$tmp_dir/kubeconfig
   export TALOSCONFIG=$tmp_dir/talosconfig

@@ -36,11 +36,10 @@ module "control_plane_node_configuration" {
 
   config_patches = [
     templatefile("configs/global.yml", {
-      qemu_guest_agent_version = "8.1.2"
+      qemu_guest_agent_version = "8.1.2",
+      hostname                 = each.value.name,
+      node_type                = "controlplane",
     }),
-    // templatefile("configs/control-plane.yml", {
-    //   talos_virtual_ip = "${var.talos_virtual_ip}"
-    // }),
   ]
 }
 

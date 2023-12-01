@@ -67,6 +67,6 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
   # Remove the node from Kubernetes on destroy
   provisioner "local-exec" {
     when    = destroy
-    command = "./bin/manage_nodes remove ${self.name}"
+    command = "echo '${self.name}' && ./bin/manage_nodes remove ${self.name}"
   }
 }
