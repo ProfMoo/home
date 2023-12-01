@@ -12,6 +12,3 @@ kubeconfig
 
 # AWS Credentials
 aws-credentials
-
-# Ignoring until I figure out Sops
-secrets.yaml
