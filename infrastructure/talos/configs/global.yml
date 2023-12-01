@@ -9,3 +9,7 @@ machine:
   kubelet:
     extraArgs:
       rotate-server-certificates: true
+  network:
+    hostname: ${hostname}
+  nodeLabels:
+    type: ${node_type}
