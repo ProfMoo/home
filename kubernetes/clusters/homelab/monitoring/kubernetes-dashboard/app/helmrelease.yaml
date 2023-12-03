@@ -35,13 +35,5 @@ spec:
       enabled: false
     nginx:
       enabled: false
-    protocolHttp: true
-    service:
-      externalPort: 9090
-    extraArgs:
-      - --enable-skip-login
-      - --disable-settings-authorizer
-      - --enable-insecure-login
-      - --token-ttl=43200
     metricsScraper:
       enabled: true

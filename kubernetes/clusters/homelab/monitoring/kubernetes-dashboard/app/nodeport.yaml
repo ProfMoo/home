@@ -4,10 +4,10 @@ metadata:
   name: kubernetes-dashboard
 spec:
   selector:
-    app: kubernetes-dashboard
+    app.kubernetes.io/name: kubernetes-dashboard-web
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 80
+      port: 8000
+      targetPort: 8000
       nodePort: 30082
   type: NodePort
