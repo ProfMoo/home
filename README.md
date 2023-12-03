@@ -26,3 +26,11 @@ This repository contains the configuration and code necessary to deploy and main
     # local-truenas is the name of the configuration file in the `config` directory
     ./up.sh local-truenas
     ```
+
+## Inspirations
+
+<https://github.com/FreekingDean/homelab>
+
+<https://github.com/onedr0p/home-ops>
+
+<https://github.com/zimmertr/TJs-Kubernetes-Service>
