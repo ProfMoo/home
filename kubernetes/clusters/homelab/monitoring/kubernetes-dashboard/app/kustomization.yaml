@@ -6,3 +6,4 @@ namespace: monitoring
 resources:
   - ./rbac.yaml
   - ./helmrelease.yaml
+  - ./nodeport.yaml
