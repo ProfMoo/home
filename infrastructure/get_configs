@@ -1,7 +1,4 @@
 #!/bin/zsh
 
-terraform output -raw talosconfig >./.talosconfig
-terraform output -raw kubeconfig >./.kubeconfig
-
-export TALOSCONFIG=./.talosconfig
-export KUBECONFIG=./.kubeconfig
+terraform output -raw talosconfig >$HOME/.talos/config
+terraform output -raw kubeconfig >$HOME/.kube/config

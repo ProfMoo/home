@@ -28,4 +28,5 @@ This directory houses the code that transforms raw bare-metal machines into func
 
 ## Gotchas
 
-I currently use a forked version of the Unifi Terraform provider which fixes a missing IP bug. PR is [here](https://github.com/paultyng/terraform-provider-unifi/pull/430).
+1. I currently use a forked version of the Unifi Terraform provider which fixes a missing IP bug. PR is [here](https://github.com/paultyng/terraform-provider-unifi/pull/430).
+2. For some reason the certs aren't correct on the initial cluster installation. Commands such as `kubectl logs` don't work as a result (but the cluster still functions as normal). To fix this, I needed to run the commands found in [this GitHub comment](https://github.com/kubernetes/kubeadm/issues/591#issuecomment-1257061416).
