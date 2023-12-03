@@ -27,7 +27,7 @@ spec:
     keepHistory: false
   values:
     metrics-server:
-      enabled: true
+      enabled: false
     cert-manager:
       enabled: false
     nginx:
@@ -35,8 +35,6 @@ spec:
     protocolHttp: true
     service:
       externalPort: 9090
-    env:
-      TZ: "${TIMEZONE}"
     extraArgs:
       - --enable-skip-login
       - --disable-settings-authorizer
@@ -44,7 +42,5 @@ spec:
       - --token-ttl=43200
     metricsScraper:
       enabled: true
-    serviceMonitor:
-      enabled: false
     ingress:
       enabled: false
