@@ -1,4 +1,4 @@
-# NOTE: Not sure why, but this particular file needs to use the apiVersion kustomize.config.k8s.io instead of kustomize.toolkit.fluxcd.io
+---
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
