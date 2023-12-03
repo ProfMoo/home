@@ -26,6 +26,9 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    app:
+      ingress:
+        enabled: false
     metrics-server:
       enabled: false
     cert-manager:
@@ -42,5 +45,3 @@ spec:
       - --token-ttl=43200
     metricsScraper:
       enabled: true
-    ingress:
-      enabled: false
