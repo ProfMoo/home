@@ -46,3 +46,5 @@ spec:
       enabled: true
     serviceMonitor:
       enabled: false
+    ingress:
+      enabled: false
