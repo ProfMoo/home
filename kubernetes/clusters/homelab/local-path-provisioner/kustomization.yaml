@@ -10,7 +10,7 @@ metadata:
     # This was done with the startup/shutdown scripts in mind.
     substitution.flux.home.arpa/disabled: "true"
 spec:
-  path: ./kubernetes/storage/apps/kube-system/local-path-provisioner/app
+  path: ./kubernetes/clusters/homelab/local-path-provisioner/app
   prune: true
   sourceRef:
     kind: GitRepository
