@@ -48,7 +48,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: local-path-provisioner
+              storageClassName: local-path
               resources:
                 requests:
                   storage: 1Gi
