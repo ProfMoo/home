@@ -10,4 +10,8 @@ spec:
       port: 8080
       targetPort: 8080
       nodePort: 30085
+    - protocol: TCP
+      port: 9090
+      targetPort: 9090
+      nodePort: 30086
   type: NodePort
