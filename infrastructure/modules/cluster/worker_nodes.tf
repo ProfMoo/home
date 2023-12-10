@@ -36,7 +36,7 @@ module "worker_node_configuration" {
 
   config_patches = [
     templatefile("configs/global.yml", {
-      qemu_guest_agent_version = "8.1.2",
+      qemu_guest_agent_version = each.value.qemu_guest_agent_version,
       hostname                 = each.value.name,
       node_type                = "workernode",
     })
