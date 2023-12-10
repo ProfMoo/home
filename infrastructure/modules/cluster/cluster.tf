@@ -20,8 +20,10 @@ data "talos_cluster_kubeconfig" "this" {
     talos_machine_bootstrap.node
   ]
   client_configuration = talos_machine_secrets.cluster.client_configuration
-  endpoint             = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
-  node                 = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
+
+  # TODO: This needs to be the Talos virtual IP and not just a single, "random" control plane node
+  endpoint = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
+  node     = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
 }
 
 output "kubeconfig" {
