@@ -1,5 +1,5 @@
 resource "talos_machine_secrets" "cluster" {
-  # Determines the schema we'll use for the machine secrets
+  # Determines the schema we'll use for the machine secrets for Talos
   talos_version = "v1.5.5"
 }
 
