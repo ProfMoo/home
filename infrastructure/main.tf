@@ -32,7 +32,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO. 
       talos_version      = "1.5.5"
-      kubernetes_version = "1.28.3"
+      kubernetes_version = "1.28.4"
     },
     "control_plane_instance_1" = {
       id                    = "1001"
@@ -50,7 +50,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO. 
       talos_version      = "1.5.5"
-      kubernetes_version = "1.28.3"
+      kubernetes_version = "1.28.4"
     },
     "control_plane_instance_2" = {
       id                    = "1002"
@@ -89,7 +89,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO. 
       talos_version      = "1.5.5"
-      kubernetes_version = "1.28.3"
+      kubernetes_version = "1.28.4"
     },
     "worker_node_instance_1" = {
       id                    = "1101"
@@ -107,7 +107,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO. 
       talos_version      = "1.5.5"
-      kubernetes_version = "1.28.3"
+      kubernetes_version = "1.28.4"
     },
     "worker_node_instance_2" = {
       id                    = "1102"
@@ -125,7 +125,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO. 
       talos_version      = "1.5.5"
-      kubernetes_version = "1.28.3"
+      kubernetes_version = "1.28.4"
     }
   }
 }
