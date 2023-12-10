@@ -31,8 +31,9 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.5.5"
-      kubernetes_version = "1.28.4"
+      talos_version            = "1.5.5"
+      kubernetes_version       = "1.28.4"
+      qemu_guest_agent_version = "8.1.2"
     },
     "control_plane_instance_1" = {
       id                    = "1001"
@@ -49,8 +50,9 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.5.5"
-      kubernetes_version = "1.28.4"
+      talos_version            = "1.5.5"
+      kubernetes_version       = "1.28.4"
+      qemu_guest_agent_version = "8.1.2"
     },
     "control_plane_instance_2" = {
       id                    = "1002"
@@ -67,8 +69,9 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.5.5"
-      kubernetes_version = "1.28.4"
+      talos_version            = "1.5.5"
+      kubernetes_version       = "1.28.4"
+      qemu_guest_agent_version = "8.1.2"
     }
   }
 
@@ -88,8 +91,9 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.5.5"
-      kubernetes_version = "1.28.4"
+      talos_version            = "1.5.5"
+      kubernetes_version       = "1.28.4"
+      qemu_guest_agent_version = "8.1.2"
     },
     "worker_node_instance_1" = {
       id                    = "1101"
@@ -106,8 +110,9 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.5.5"
-      kubernetes_version = "1.28.4"
+      talos_version            = "1.5.5"
+      kubernetes_version       = "1.28.4"
+      qemu_guest_agent_version = "8.1.2"
     },
     "worker_node_instance_2" = {
       id                    = "1102"
@@ -124,8 +129,9 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.5.5"
-      kubernetes_version = "1.28.4"
+      talos_version            = "1.5.5"
+      kubernetes_version       = "1.28.4"
+      qemu_guest_agent_version = "8.1.2"
     }
   }
 }
