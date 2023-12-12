@@ -88,7 +88,7 @@ spec:
       prometheusSpec:
         replicas: 1
         retention: 2d
-        retentionSize: 6GB
+        retentionSize: 50GB
         enableAdminAPI: true
         walCompression: true
         ruleSelectorNilUsesHelmValues: false
@@ -107,4 +107,4 @@ spec:
               storageClassName: local-path
               resources:
                 requests:
-                  storage: 1Gi
+                  storage: 60Gi
