@@ -34,16 +34,10 @@ spec:
   values:
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
-      config:
-        global:
-          resolve_timeout: 5m
-        receivers: []
-        route: []
-        inhibit_rules: []
       ingress:
         enabled: false
       alertmanagerSpec:
-        replicas: 3
+        replicas: 1
         podAntiAffinity: hard
         storage:
           volumeClaimTemplate:
