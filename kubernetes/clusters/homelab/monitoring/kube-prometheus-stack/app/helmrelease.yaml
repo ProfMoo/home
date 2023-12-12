@@ -35,6 +35,8 @@ spec:
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
       enabled: false
+    nodeExporter:
+      enabled: false
     kubelet:
       enabled: true
       serviceMonitor:
