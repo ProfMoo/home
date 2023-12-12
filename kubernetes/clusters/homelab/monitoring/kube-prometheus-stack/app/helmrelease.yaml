@@ -34,17 +34,7 @@ spec:
   values:
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
-      ingress:
-        enabled: false
-      alertmanagerSpec:
-        replicas: 1
-        storage:
-          volumeClaimTemplate:
-            spec:
-              storageClassName: local-path
-              resources:
-                requests:
-                  storage: 1Gi
+      enabled: false
     kubelet:
       enabled: true
       serviceMonitor:
@@ -111,3 +101,10 @@ spec:
             memory: 4Gi
           limits:
             memory: 8Gi
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: local-path
+              resources:
+                requests:
+                  storage: 1Gi
