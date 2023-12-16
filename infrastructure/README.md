@@ -37,5 +37,5 @@ This directory houses the code that transforms raw bare-metal machines into func
 
 To add new nodes with new disks:
 
-1. Run `vgcreate` to that the disks show up in Proxmox
-2. Create LVM-Thin storage pool for the new disk
+1. Create LVM-Thin storage pool for the new disk
+2. Assign new nodes to that disk

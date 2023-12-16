@@ -84,6 +84,8 @@ spec:
         targetPort: 2381
     grafana:
       enabled: false
+    coreDns:
+      enabled: true
     prometheus:
       ingress:
         enabled: false
