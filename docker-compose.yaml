@@ -104,7 +104,7 @@ services:
       - portainer
   readarr:
     container_name: readarr
-    image: ghcr.io/hotio/readarr:nightly
+    image: ghcr.io/hotio/readarr:nightly-0.3.11.2319
     ports:
       - "8787:8787"
     environment:
