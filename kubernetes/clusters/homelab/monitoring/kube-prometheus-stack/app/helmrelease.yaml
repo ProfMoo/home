@@ -105,11 +105,13 @@ spec:
             memory: 4Gi
           limits:
             memory: 8Gi
+        initContainers:
+
         securityContext:
-          runAsUser: 1000
+          runAsUser: 65534
           runAsNonRoot: true
           runAsGroup: 65534
-          fsGroup: 2000
+          fsGroup: 65534
         storageSpec:
           volumeClaimTemplate:
             spec:
