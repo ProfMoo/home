@@ -59,7 +59,11 @@
         widget:
           type: readarr
           url: http://host.docker.internal:8787
+<<<<<<< HEAD
           key: 0b7b093ea2c346548a2321c1b5c2b92a
+=======
+          key: 4adbf087ecba48a4a46e6f911f5aded4
+>>>>>>> a4172a1dd14e094859817724a3682f258c22b376
 
 - Other:
     - TrueNAS:

@@ -1,0 +1,14 @@
+# Terraform
+.terraform/*
+
+# Talos configuration file
+.talosconfig
+
+# Kubernetes configuration file
+.kubeconfig
+
+# MacOS
+.DS_Store
+
+# AWS Credentials
+aws-credentials
