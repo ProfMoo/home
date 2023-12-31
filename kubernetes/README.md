@@ -9,3 +9,7 @@ Going to have 3 kinds of storage for my k8s clusters:
 3. For that media storage that is pre-created (i.e. my existing media) and is both HUGE and CRITICAL. This data is 100% critical to the homelab and CANNOT be lost. As such, the k8s control plane can't be trusted with this data and instead it will be managed by TrueNAS (i.e. software and configuration that I don't maintain) and mounted to pods via NFS PVs. For this type of storage, I'll try to use the `node-manual` CSI driver (example [here](https://github.com/democratic-csi/democratic-csi/blob/master/examples/node-manual-nfs-pv.yaml))
 
 I might be able to use `democratic-csi` for all 3 of these, using these 3 drivers, respectively: `democratic-csi/local-hostpath`, `democratic-csi/freenas-api-nfs` & `democratic-csi/freenas-api-iscsi`, and `democratic-csi/node-manual`
+
+### Notes
+
+In the future, I might choose to go down a more "hyperconverged" route and manage storage directly from k8s (instead of having TrueNAS handle most of this). In that case, I'd need to migrate the `StorageClass` of most of my pods, which would be a big lift. To do that, there is a great article [here](https://gist.github.com/deefdragon/d58a4210622ff64088bd62a5d8a4e8cc)
