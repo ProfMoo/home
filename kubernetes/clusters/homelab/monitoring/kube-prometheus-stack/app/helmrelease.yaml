@@ -106,20 +106,8 @@ spec:
           limits:
             memory: 8Gi
         # NOTE: This is needed due to how Kubernetes handles filesystem permissions of hostPath PVCs.
-        # More info: https://github.com/prometheus/prometheus/issues/5976#issuecomment-881910837
-        initContainers:
-          - name: prometheus-data-permission-setup
-            image: busybox
-            command:
-              ["/bin/chown", "-R", "1000:1000", "/arbitrary-path/prometheus"]
-            volumeMounts:
-              - name: prometheus-kube-prometheus-stack-db
-                mountPath: /arbitrary-path/prometheus
-            # Runs the initContainer as root so that the initContainer can chown
-            securityContext:
-              runAsNonRoot: false
-              runAsUser: 0
-              runAsGroup: 0
+        # More info: https://github.com/prometheus/prometheus/issues/5976#issuecomment-881910837.
+        # I couldn't get the initContainer volume permission fix to work, so this is the next best thing.
         securityContext:
           runAsNonRoot: false
           runAsUser: 0
