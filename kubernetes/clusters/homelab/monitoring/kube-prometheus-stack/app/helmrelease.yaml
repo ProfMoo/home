@@ -121,10 +121,9 @@ spec:
               runAsUser: 0
               runAsGroup: 0
         securityContext:
-          runAsUser: 1000
-          runAsNonRoot: true
-          runAsGroup: 1000
-          fsGroup: 2000
+          runAsNonRoot: false
+          runAsUser: 0
+          runAsGroup: 0
         storageSpec:
           volumeClaimTemplate:
             spec:
