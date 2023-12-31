@@ -105,14 +105,17 @@ spec:
             memory: 4Gi
           limits:
             memory: 8Gi
-        # NOTE: This is needed for XYZ reasons
+        # NOTE: This is needed due to how Kubernetes treats permissions of hostPath PVCs.
+        # More info: https://github.com/prometheus/prometheus/issues/5976#issuecomment-881910837
         initContainers:
           - name: "init-chmod-data"
             image: "busybox"
-            command: ["chmod", "-R", "o+rw", /var/prometheus/data]
+            command: ["chmod", "-R", "65534:65534", /arbitrary-path/prometheus]
             volumeMounts:
               - name: prometheus-kube-prometheus-stack-db
-                mountPath: /var/prometheus/data
+                mountPath: /arbitrary-path/prometheus
+            # Runs the initContainer as root so that the initContainer can chown
+            securityContext: {}
         securityContext:
           runAsUser: 65534
           runAsNonRoot: true
