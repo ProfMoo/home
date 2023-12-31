@@ -105,6 +105,11 @@ spec:
             memory: 4Gi
           limits:
             memory: 8Gi
+        securityContext:
+          runAsUser: 1000
+          runAsNonRoot: true
+          runAsGroup: 65534
+          fsGroup: 2000
         storageSpec:
           volumeClaimTemplate:
             spec:
