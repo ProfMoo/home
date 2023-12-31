@@ -16,6 +16,10 @@ This Terraform code is used to generate the AWS resources necessary for long-tim
 
     ```bash
     ./run.sh $TERRAFORM_COMMANDS_HERE
-    # Ex: ./docker_run.sh apply -auto-aprove
+    # Ex: ./docker_run.sh apply -auto-approve
     # Ex: ./docker_run.sh plan
     ```
+
+## TODO
+
+Add Sops key to the managed state here if I end up using Sops. Can use [this article](https://medium.com/mercos-engineering/secrets-as-a-code-with-mozilla-sops-and-aws-kms-d069c45ae1b9) to get specific permissions needed to use the KMS key.
