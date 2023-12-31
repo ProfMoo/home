@@ -105,7 +105,7 @@ spec:
             memory: 4Gi
           limits:
             memory: 8Gi
-        # NOTE: This is needed due to how Kubernetes treats permissions of hostPath PVCs.
+        # NOTE: This is needed due to how Kubernetes handles filesystem permissions of hostPath PVCs.
         # More info: https://github.com/prometheus/prometheus/issues/5976#issuecomment-881910837
         initContainers:
           - name: prometheus-data-permission-setup
