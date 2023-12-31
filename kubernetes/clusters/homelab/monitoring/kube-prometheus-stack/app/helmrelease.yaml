@@ -108,14 +108,14 @@ spec:
         # NOTE: This is needed due to how Kubernetes treats permissions of hostPath PVCs.
         # More info: https://github.com/prometheus/prometheus/issues/5976#issuecomment-881910837
         initContainers:
-          - name: "init-chmod-data"
-            image: "busybox"
-            command: ["chmod", "-R", "65534:65534", /arbitrary-path/prometheus]
+          - name: prometheus-data-permission-setup
+            image: busybox
+            command: ["/bin/chown", "-R", "65534:65534", "/prometheus"]
             volumeMounts:
-              - name: prometheus-kube-prometheus-stack-db
-                mountPath: /arbitrary-path/prometheus
-            # Runs the initContainer as root so that the initContainer can chown
-            securityContext: {}
+              - name: storage-volume
+                mountPath: /prometheus
+                # Runs the initContainer as root so that the initContainer can chown
+                securityContext: {}
         securityContext:
           runAsUser: 65534
           runAsNonRoot: true
