@@ -110,11 +110,12 @@ spec:
         initContainers:
           - name: prometheus-data-permission-setup
             image: busybox
-            command: ["/bin/chown", "-R", "65534:65534", "/prometheus"]
+            command:
+              ["/bin/chown", "-R", "65534:65534", "/arbitrary-path/prometheus"]
             volumeMounts:
               - name: prometheus-kube-prometheus-stack-db
-                mountPath: /prometheus
-                # Runs the initContainer as root so that the initContainer can chown
+                mountPath: /arbitrary-path/prometheus
+            # Runs the initContainer as root so that the initContainer can chown
             securityContext: {}
         securityContext:
           runAsUser: 65534
