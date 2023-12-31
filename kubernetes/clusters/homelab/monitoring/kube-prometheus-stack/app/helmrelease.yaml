@@ -112,7 +112,7 @@ spec:
             image: busybox
             command: ["/bin/chown", "-R", "65534:65534", "/prometheus"]
             volumeMounts:
-              - name: storage-volume
+              - name: prometheus-kube-prometheus-stack-db
                 mountPath: /prometheus
                 # Runs the initContainer as root so that the initContainer can chown
                 securityContext: {}
