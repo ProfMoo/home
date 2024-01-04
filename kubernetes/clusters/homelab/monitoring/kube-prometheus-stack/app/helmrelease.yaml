@@ -59,16 +59,8 @@ spec:
       enabled: true
     kubeControllerManager:
       enabled: true
-      endpoints:
-        - "10.0.31.101"
-        - "10.0.31.102"
-        - "10.0.31.103"
     kubeScheduler:
       enabled: true
-      endpoints:
-        - "10.0.31.101"
-        - "10.0.31.102"
-        - "10.0.31.103"
     kubeProxy:
       enabled: false # Enable if not using eBPF
       # endpoints: ["192.168.42.10", "192.168.42.11", "192.168.42.12"]
