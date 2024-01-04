@@ -65,14 +65,6 @@ spec:
       enabled: true
     kubeEtcd:
       enabled: true
-      endpoints:
-        - "10.0.31.101"
-        - "10.0.31.102"
-        - "10.0.31.103"
-      service:
-        enabled: true
-        port: 2381
-        targetPort: 2381
     grafana:
       enabled: false
     coreDns:
