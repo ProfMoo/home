@@ -62,8 +62,7 @@ spec:
     kubeScheduler:
       enabled: true
     kubeProxy:
-      enabled: false # Enable if not using eBPF
-      # endpoints: ["192.168.42.10", "192.168.42.11", "192.168.42.12"]
+      enabled: true
     kubeEtcd:
       enabled: true
       endpoints:
