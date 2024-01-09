@@ -35,7 +35,19 @@ This directory houses the code that transforms raw bare-metal machines into func
 
 ## Operations
 
-To add new nodes with new disks:
+### To add new nodes with new disks
 
 1. Create LVM-Thin storage pool for the new disk
 2. Assign new nodes to that disk
+
+### Upgrading Kubernetes
+
+Can perform a rolling upgrade with the TF provider and a standard TF workflow (or `talosctl` also works per [the docs](https://www.talos.dev/v1.6/kubernetes-guides/upgrading-kubernetes/)).
+
+### Upgrade Talos
+
+The Talos TF provider is relatively under-featured for upgrades. [Example](https://github.com/siderolabs/terraform-provider-talos/issues/140#issue-2055027252). So it's best to use `talosctl` and follow the more production-ready upgrade path [here](https://www.talos.dev/v1.6/talos-guides/upgrading-talos/).
+
+## TODOs
+
+1. Setup [Talos virtual IP](https://www.talos.dev/v1.6/talos-guides/network/vip/) correctly so that I can access the Kubernetes API from any node (not just one master node, as I have it now).
