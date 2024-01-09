@@ -8,6 +8,16 @@ module "talos_1_5_5_iso" {
   talos_image_storage_node = "pve"
 }
 
+module "talos_1_6_1_iso" {
+  source = "./modules/talos-iso"
+
+  # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
+  talos_image_datastore = "local"
+
+  talos_version            = "1.6.1"
+  talos_image_storage_node = "pve"
+}
+
 module "cluster" {
   source = "./modules/cluster"
 
@@ -28,11 +38,11 @@ module "cluster" {
       vlan_id               = "0"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
+      initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version            = "1.5.5"
-      kubernetes_version       = "1.28.4"
+      talos_version            = "1.6.1"
+      kubernetes_version       = "1.29.0"
       qemu_guest_agent_version = "8.1.2"
     },
     "control_plane_instance_1" = {
@@ -47,11 +57,11 @@ module "cluster" {
       vlan_id               = "0"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
+      initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version            = "1.5.5"
-      kubernetes_version       = "1.28.4"
+      talos_version            = "1.6.1"
+      kubernetes_version       = "1.29.0"
       qemu_guest_agent_version = "8.1.2"
     },
     "control_plane_instance_2" = {
@@ -66,11 +76,11 @@ module "cluster" {
       vlan_id               = "0"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
+      initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version            = "1.5.5"
-      kubernetes_version       = "1.28.4"
+      talos_version            = "1.6.1"
+      kubernetes_version       = "1.29.0"
       qemu_guest_agent_version = "8.1.2"
     }
   }
@@ -88,11 +98,11 @@ module "cluster" {
       vlan_id               = "0"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
+      initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version            = "1.5.5"
-      kubernetes_version       = "1.28.4"
+      talos_version            = "1.6.1"
+      kubernetes_version       = "1.29.0"
       qemu_guest_agent_version = "8.1.2"
     },
     "worker_node_instance_1" = {
@@ -107,11 +117,11 @@ module "cluster" {
       vlan_id               = "0"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
+      initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version            = "1.5.5"
-      kubernetes_version       = "1.28.4"
+      talos_version            = "1.6.1"
+      kubernetes_version       = "1.29.0"
       qemu_guest_agent_version = "8.1.2"
     },
     "worker_node_instance_2" = {
@@ -126,11 +136,11 @@ module "cluster" {
       vlan_id               = "0"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_5_5_iso.talos_iso_id
+      initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version            = "1.5.5"
-      kubernetes_version       = "1.28.4"
+      talos_version            = "1.6.1"
+      kubernetes_version       = "1.29.0"
       qemu_guest_agent_version = "8.1.2"
     }
   }
