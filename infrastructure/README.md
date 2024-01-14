@@ -48,6 +48,10 @@ Can perform a rolling upgrade with the TF provider and a standard TF workflow (o
 
 The Talos TF provider is relatively under-featured for upgrades. [Example](https://github.com/siderolabs/terraform-provider-talos/issues/140#issue-2055027252). So it's best to use `talosctl` and follow the more production-ready upgrade path [here](https://www.talos.dev/v1.6/talos-guides/upgrading-talos/).
 
+### Upgrading Talos-Controlled, Kubernetes-State-Managed Resources
+
+There are some Kubernetes configurations, such as the `kube-proxy` configuration, which `talosctl` manages but only touches during Kubernetes bootstraps/upgrades. [Here](https://github.com/siderolabs/talos/discussions/7835) is a good example. To update a resource whose state is entirely within Kubernetes, but the config is managed via Talos, refer to the [upgrading Kubernetes section](#upgrading-kubernetes) above
+
 ## TODOs
 
 1. Setup [Talos virtual IP](https://www.talos.dev/v1.6/talos-guides/network/vip/) correctly so that I can access the Kubernetes API from any node (not just one master node, as I have it now).
