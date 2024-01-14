@@ -8,12 +8,7 @@ spec:
   ports:
     - protocol: TCP
       name: gui
-      port: 80
-      targetPort: 80
-      nodePort: 30087
-    - protocol: TCP
-      name: gui2
       port: 3000
       targetPort: 3000
-      nodePort: 30088
+      nodePort: 30087
   type: NodePort
