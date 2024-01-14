@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./kubernetes-dashboard/kustomization.yaml
-  - ./kube-prometheus-stack/kustomization.yaml
+  # - ./kube-prometheus-stack/kustomization.yaml
