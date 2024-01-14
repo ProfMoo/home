@@ -6,3 +6,4 @@ resources:
   - flux-bootstrap.yaml
   - flux-components.yaml
   - ./repositories
+  - ./podmonitor.yaml
