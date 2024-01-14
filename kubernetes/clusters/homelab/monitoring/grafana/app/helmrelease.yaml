@@ -30,6 +30,8 @@ spec:
     replicas: 1
     rbac:
       pspEnabled: false
+    adminUser: admin
+    adminPassword: admin
     dashboardProviders:
       dashboardproviders.yaml:
         apiVersion: 1
