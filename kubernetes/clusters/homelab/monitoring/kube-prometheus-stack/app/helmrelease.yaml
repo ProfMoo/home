@@ -31,6 +31,10 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  valuesFrom:
+    - kind: ConfigMap
+      name: kube-state-metrics-configmap
+      valuesKey: kube-state-metrics.yaml
   values:
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
@@ -44,17 +48,6 @@ spec:
           - action: replace
             sourceLabels: ["node"]
             targetLabel: instance
-    kube-state-metrics:
-      metricLabelsAllowlist: ["persistentvolumeclaims=[*]"]
-      prometheus:
-        monitor:
-          enabled: true
-          relabelings:
-            - action: replace
-              regex: (.*)
-              replacement: $1
-              sourceLabels: ["__meta_kubernetes_pod_node_name"]
-              targetLabel: kubernetes_node
     kubeApiServer:
       enabled: true
     kubeControllerManager:
