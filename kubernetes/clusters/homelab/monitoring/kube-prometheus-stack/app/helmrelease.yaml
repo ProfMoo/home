@@ -52,11 +52,17 @@ spec:
       enabled: true
     kubeControllerManager:
       enabled: true
+      endpoints: &endpoints
+        - 192.168.1.50
+        - 192.168.1.22
+        - 192.168.1.25
+    kubeEtcd:
+      enabled: true
+      endpoints: *endpoints
     kubeScheduler:
       enabled: true
+      endpoints: *endpoints
     kubeProxy:
-      enabled: true
-    kubeEtcd:
       enabled: true
     grafana:
       enabled: false
