@@ -55,3 +55,10 @@ There are some Kubernetes configurations, such as the `kube-proxy` configuration
 ## TODOs
 
 1. Setup [Talos virtual IP](https://www.talos.dev/v1.6/talos-guides/network/vip/) correctly so that I can access the Kubernetes API from any node (not just one master node, as I have it now).
+
+## Restart Cluster
+
+As I'm beginning to get a handle on what this cluster should look like, I want to pause and reset the cluster before putting any of my important applications inside of it. This list is the stuff that should be taken care of before important apps live on it:
+
+1. Changing the VLAN so that Kubernetes is inside 192.168.2.x instead of the same 192.168.1.x as the rest of my home network.
+2. Tearing out Flanel for Cilium.
