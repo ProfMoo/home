@@ -56,7 +56,7 @@ There are some Kubernetes configurations, such as the `kube-proxy` configuration
 
 1. Setup [Talos virtual IP](https://www.talos.dev/v1.6/talos-guides/network/vip/) correctly so that I can access the Kubernetes API from any node (not just one master node, as I have it now).
 
-## Restart Cluster
+## Rebuild Cluster
 
 As I'm beginning to get a handle on what this cluster should look like, I want to pause and reset the cluster before putting any of my important applications inside of it. This list is the stuff that should be taken care of before important apps live on it:
 
