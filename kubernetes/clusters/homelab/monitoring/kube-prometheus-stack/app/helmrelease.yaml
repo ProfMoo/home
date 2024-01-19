@@ -89,6 +89,8 @@ spec:
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
+        enableFeatures:
+          - new-service-discovery-manager
         resources:
           requests:
             cpu: 150m
