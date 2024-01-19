@@ -13,3 +13,7 @@ configMapGenerator:
   - name: kube-state-metrics-configmap
     files:
       - kube-state-metrics.yaml=./resources/kube-state-metrics.yaml
+# NOTE: This tells Flux to avoid putting a suffix on the configmap names. This is necessary because
+# we want to be able to reference the configmap in the HelmRelease values by the name defined above.
+generatorOptions:
+  disableNameSuffixHash: true
