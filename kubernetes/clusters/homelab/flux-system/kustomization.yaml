@@ -7,3 +7,4 @@ resources:
   - flux-components.yaml
   - ./repositories
   - ./podmonitor.yaml
+  - ./weave-gitops/kustomization.yaml
