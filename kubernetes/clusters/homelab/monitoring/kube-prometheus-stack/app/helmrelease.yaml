@@ -44,6 +44,7 @@ spec:
     kubelet:
       enabled: true
       serviceMonitor:
+        insecureSkipVerify: true
         metricRelabelings:
           - action: replace
             sourceLabels: ["node"]
@@ -59,6 +60,11 @@ spec:
     kubeEtcd:
       enabled: true
       endpoints: *endpoints
+      service:
+        enabled: true
+      serviceMonitor:
+        scheme: https
+        insecureSkipVerify: true
     kubeScheduler:
       enabled: true
       endpoints: *endpoints
