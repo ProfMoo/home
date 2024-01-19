@@ -49,6 +49,8 @@ spec:
           - action: replace
             sourceLabels: ["node"]
             targetLabel: instance
+    kubeStateMetrics:
+      enabled: true
     kubeApiServer:
       enabled: true
     kubeControllerManager:
