@@ -18,19 +18,21 @@ spec:
         namespace: flux-system
   maxHistory: 3
   install:
-    createNamespace: true
     crds: CreateReplace
     timeout: 30m
     remediation:
-      retries: 3
+      retries: 5
   upgrade:
     cleanupOnFail: true
     crds: CreateReplace
     timeout: 30m
     remediation:
-      retries: 3
+      retries: 5
   uninstall:
     keepHistory: false
+  dependsOn:
+    - name: local-path-provisioner
+      namespace: storage
   valuesFrom:
     - kind: ConfigMap
       name: kube-state-metrics-configmap
@@ -55,6 +57,8 @@ spec:
       enabled: true
     kubeControllerManager:
       enabled: true
+      service:
+        enabled: false
       endpoints: &endpoints
         - 192.168.1.50
         - 192.168.1.22
@@ -90,6 +94,8 @@ spec:
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
         enableFeatures:
+          - auto-gomaxprocs
+          - memory-snapshot-on-shutdown
           - new-service-discovery-manager
         resources:
           requests:
