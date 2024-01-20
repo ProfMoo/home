@@ -7,6 +7,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 15m
+  timeout: 30m
   chart:
     spec:
       chart: weave-gitops
@@ -25,6 +26,11 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  valuesFrom:
+    - kind: Secret
+      name: weave-gitops-secret
+      valuesKey: adminPassword
+      targetPath: adminUser.passwordHash
   values:
     adminUser:
       create: true
