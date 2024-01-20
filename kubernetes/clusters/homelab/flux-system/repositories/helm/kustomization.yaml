@@ -6,4 +6,4 @@ resources:
   - ./grafana.yaml
   - ./kubernetes-dashboard.yaml
   - ./prometheus-community.yaml
-  - ./weave-gitops.yaml
+  - ./weaveworks.yaml
