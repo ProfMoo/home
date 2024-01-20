@@ -64,7 +64,7 @@ spec:
         - 192.168.1.22
         - 192.168.1.25
     kubeEtcd:
-      enabled: true
+      enabled: false
       endpoints: *endpoints
       service:
         enabled: true
@@ -72,7 +72,7 @@ spec:
         scheme: https
         insecureSkipVerify: true
     kubeScheduler:
-      enabled: true
+      enabled: false
       endpoints: *endpoints
     kubeProxy:
       enabled: true
