@@ -1,5 +1,5 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
@@ -26,6 +26,8 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  # NOTE: This provides the mandatory adminUser.passwordHash value for the weave-gitops Helm chart.
+  # https://github.com/weaveworks/weave-gitops/blob/2af6d1133a5717fc3b0f367734443557074b1548/charts/gitops-server/values.yaml#L93
   valuesFrom:
     - kind: Secret
       name: weave-gitops-secret
