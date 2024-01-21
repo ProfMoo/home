@@ -55,22 +55,20 @@ spec:
       enabled: true
     kubeApiServer:
       enabled: true
-    kubeControllerManager:
-      enabled: false
-      service:
-        enabled: false
+    kubeEtcd:
+      enabled: true
       endpoints: &endpoints
         - 192.168.1.50
         - 192.168.1.22
         - 192.168.1.25
-    kubeEtcd:
-      enabled: false
-      endpoints: *endpoints
       service:
         enabled: true
       serviceMonitor:
         scheme: https
         insecureSkipVerify: true
+    kubeControllerManager:
+      enabled: false
+      endpoints: *endpoints
     kubeScheduler:
       enabled: false
       endpoints: *endpoints
