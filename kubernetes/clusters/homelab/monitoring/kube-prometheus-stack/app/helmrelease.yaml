@@ -130,4 +130,5 @@ spec:
     # It seems useful, but it continually causing the deployment issues due to an unauthorized error. Will revisit later.
     prometheusOperator:
       admissionWebhooks:
-        enabled: false
+        patch:
+          enabled: true
