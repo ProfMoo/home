@@ -104,23 +104,22 @@ spec:
         k8s-views-nodes:
           url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
           datasource: Prometheus
-        # k8s-views-pods:
-        #   url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
-        #   datasource: Prometheus
+        k8s-views-pods:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
+          datasource: Prometheus
     sidecar:
       dashboards:
-        enabled: false
-        # searchNamespace: ALL
-        # labelValue: ""
-        # label: grafana_dashboard
-        # folderAnnotation: grafana_folder
-        # provider:
-        #   disableDelete: true
-        #   foldersFromFilesStructure: true
+        enabled: true
+        searchNamespace: ALL
+        labelValue: ""
+        label: grafana_dashboard
+        folderAnnotation: grafana_folder
+        provider:
+          disableDelete: true
+          foldersFromFilesStructure: true
       datasources:
         enabled: false
-        # searchNamespace: ALL
-        # labelValue: ""
+        searchNamespace: ALL
     serviceMonitor:
       enabled: true
     ingress:
