@@ -127,6 +127,4 @@ spec:
                   storage: 60Gi
     prometheusOperator:
       admissionWebhooks:
-        deployment:
-          serviceAccount:
-            automountServiceAccountToken: true
+        enabled: false
