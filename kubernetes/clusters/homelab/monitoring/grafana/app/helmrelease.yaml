@@ -104,9 +104,9 @@ spec:
         k8s-views-nodes:
           url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
           datasource: Prometheus
-        k8s-views-pods:
-          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
-          datasource: Prometheus
+        # k8s-views-pods:
+        #   url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
+        #   datasource: Prometheus
     sidecar:
       dashboards:
         enabled: false
