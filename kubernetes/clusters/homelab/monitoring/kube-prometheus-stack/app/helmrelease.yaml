@@ -67,11 +67,21 @@ spec:
         scheme: https
         insecureSkipVerify: true
     kubeControllerManager:
-      enabled: false
+      enabled: true
       endpoints: *endpoints
+      service:
+        enabled: true
+      serviceMonitor:
+        scheme: https
+        insecureSkipVerify: true
     kubeScheduler:
-      enabled: false
+      enabled: true
       endpoints: *endpoints
+      service:
+        enabled: true
+      serviceMonitor:
+        scheme: https
+        insecureSkipVerify: true
     kubeProxy:
       enabled: true
     grafana:
