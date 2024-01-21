@@ -103,18 +103,18 @@ spec:
           url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
     sidecar:
       dashboards:
-        enabled: true
-        searchNamespace: ALL
-        labelValue: ""
-        label: grafana_dashboard
-        folderAnnotation: grafana_folder
-        provider:
-          disableDelete: true
-          foldersFromFilesStructure: true
+        enabled: false
+        # searchNamespace: ALL
+        # labelValue: ""
+        # label: grafana_dashboard
+        # folderAnnotation: grafana_folder
+        # provider:
+        #   disableDelete: true
+        #   foldersFromFilesStructure: true
       datasources:
-        enabled: true
-        searchNamespace: ALL
-        labelValue: ""
+        enabled: false
+        # searchNamespace: ALL
+        # labelValue: ""
     plugins:
       - grafana-clock-panel
       - grafana-piechart-panel
