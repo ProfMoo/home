@@ -55,6 +55,7 @@ There are some Kubernetes configurations, such as the `kube-proxy` configuration
 ## TODOs
 
 1. Setup [Talos virtual IP](https://www.talos.dev/v1.6/talos-guides/network/vip/) correctly so that I can access the Kubernetes API from any node (not just one master node, as I have it now).
+2. Enable Talos logs to my log endpoint, similar to [this example](https://github.com/buroa/k8s-gitops/blob/860a6b47e39ae0a3c7b91c0ab9ed2294433913fa/talos/talconfig.yaml#L363).
 
 ## Rebuild Cluster
 

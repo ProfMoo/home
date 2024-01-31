@@ -35,10 +35,11 @@ module "control_plane_node_configuration" {
   talos_version      = each.value.talos_version
 
   config_patches = [
-    templatefile("configs/global.yml", {
+    templatefile("configs/control-plane.yml", {
       qemu_guest_agent_version = each.value.qemu_guest_agent_version,
       hostname                 = each.value.name,
       node_type                = "controlplane",
+      proxmox_node             = each.value.proxmox_node_name,
     }),
   ]
 }
