@@ -13,6 +13,7 @@ machine:
     hostname: ${hostname}
   nodeLabels:
     type: ${node_type}
+    node: ${proxmox_node}
 cluster:
   proxy:
     # We need to override the default bind address so that the /metrics endpoint is able to be scraped by Prometheus
@@ -22,15 +23,3 @@ cluster:
     # Source: https://github.com/siderolabs/talos/discussions/7835
     extraArgs:
       metrics-bind-address: 0.0.0.0:10249
-  # etcd:
-  #   extraArgs:
-  #     # NOTE: This enables Prometheus to scrape metrics from the control plane nodes
-  #     listen-metrics-urls: http://0.0.0.0:2381
-  controllerManager:
-    extraArgs:
-      # NOTE: This enables Prometheus to scrape metrics from the control plane nodes
-      bind-address: 0.0.0.0
-  scheduler:
-    extraArgs:
-      # NOTE: This enables Prometheus to scrape metrics from the control plane nodes
-      bind-address: 0.0.0.0
