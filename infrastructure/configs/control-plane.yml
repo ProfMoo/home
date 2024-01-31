@@ -1,8 +1,0 @@
-machine:
-  features:
-    kubernetesTalosAPIAccess:
-      enabled: true
-      allowedRoles:
-        - os:operator
-      allowedKubernetesNamespaces:
-        - talos-system
