@@ -36,10 +36,17 @@ module "control_plane_node_configuration" {
 
   config_patches = [
     templatefile("configs/control-plane.yml", {
+      node_type    = "controlplane",
+      proxmox_node = each.value.proxmox_node_name,
+
       qemu_guest_agent_version = each.value.qemu_guest_agent_version,
       hostname                 = each.value.name,
-      node_type                = "controlplane",
-      proxmox_node             = each.value.proxmox_node_name,
+
+      subnet_gateway   = each.value.subnet_gateway,
+      talos_virtual_ip = each.value.talos_virtual_ip,
+      nodes_subnet     = each.value.nodes_subnet,
+      pod_subnets      = each.value.pod_subnets,
+      service_subnets  = each.value.service_subnets,
     }),
   ]
 }

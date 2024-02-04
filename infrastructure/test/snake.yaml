@@ -1,3 +1,5 @@
+# NOTE: This file is intended to be used as a quick "smoke test" for the cluster.
+# You can run this test by running `kubectl apply -f snake.yaml` and then using the exposed nodeport to play the game.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
