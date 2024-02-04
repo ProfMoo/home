@@ -1,37 +1,90 @@
 machine:
-  features:
-    kubePrism:
-      enabled: true
-      port: 7445
-  install:
-    extensions:
-      - image: "ghcr.io/siderolabs/qemu-guest-agent:${qemu_guest_agent_version}"
+  nodeLabels:
+    topology.kubernetes.io/role: ${node_type}
+    topology.kubernetes.io/zone: ${proxmox_node}
+  certSANs:
+    - ${talos_virtual_ip}
+    - ${nodes_subnet}
   kubelet:
+    defaultRuntimeSeccompProfileEnabled: true # Enable container runtime default Seccomp profile.
+    disableManifestsDirectory: true # The `disableManifestsDirectory` field configures the kubelet to get static pod manifests from the /etc/kubernetes/manifests directory.
     extraArgs:
       rotate-server-certificates: true
   network:
     hostname: ${hostname}
-  nodeLabels:
-    type: ${node_type}
-    node: ${proxmox_node}
+    interfaces:
+      # NOTE: This tells the Talos installer to use the eth0 interface for the node.
+      - interface: eth0
+        addresses:
+          - ${nodes_subnet}
+        routes:
+          - network: 0.0.0.0/0
+            gateway: ${subnet_gateway}
+        dhcp: true
+        vip:
+          ip: ${talos_virtual_ip}
+  features:
+    apidCheckExtKeyUsage: true
+    kubePrism:
+      enabled: true
+      port: 7445
+    kubernetesTalosAPIAccess:
+      enabled: true
+      allowedRoles:
+        - os:reader
+      allowedKubernetesNamespaces:
+        - kube-system
+  install:
+    extensions:
+      - image: "ghcr.io/siderolabs/qemu-guest-agent:${qemu_guest_agent_version}"
 cluster:
+  network:
+    podSubnets: ${format("%#v",split(",",pod_subnets))}
+    serviceSubnets: ${format("%#v",split(",",service_subnets))}
+    cni:
+      name: custom
+      urls:
+        - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/cilium.yaml
   proxy:
-    # We need to override the default bind address so that the /metrics endpoint is able to be scraped by Prometheus
-    # Further discussion: https://github.com/siderolabs/talos/discussions/7799
-    #
-    # Additional note: kube-proxy needs a special application process compared to most machineconfig changes.
-    # Source: https://github.com/siderolabs/talos/discussions/7835
-    extraArgs:
-      metrics-bind-address: 0.0.0.0:10249
+    disabled: true
   etcd:
     extraArgs:
-      # NOTE: This enables Prometheus to scrape metrics from the control plane nodes
+      # NOTE: We need to override the default bind address so that the /metrics endpoint is able to be scraped by Prometheus
+      # Further discussion: https://github.com/siderolabs/talos/discussions/7799
       listen-metrics-urls: http://0.0.0.0:2381
   controllerManager:
     extraArgs:
-      # NOTE: This enables Prometheus to scrape metrics from the control plane nodes
+      # NOTE: Kubernetes manifests controlled by Talos require a special application process compared to most machineconfig changes.
+      # Source: https://github.com/siderolabs/talos/discussions/7835
       bind-address: 0.0.0.0
   scheduler:
     extraArgs:
       # NOTE: This enables Prometheus to scrape metrics from the control plane nodes
       bind-address: 0.0.0.0
+  inlineManifests:
+    - name: fluxcd
+      contents: |-
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+            name: flux-system
+            labels:
+              app.kubernetes.io/instance: flux-system
+              app.kubernetes.io/part-of: flux
+              pod-security.kubernetes.io/warn: restricted
+              pod-security.kubernetes.io/warn-version: latest
+    - name: cilium
+      contents: |-
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+            name: cilium
+            labels:
+              pod-security.kubernetes.io/enforce: "privileged"
+  externalCloudProvider:
+    enabled: true
+    manifests:
+      - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/cert-approval.yaml
+      # - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/flux-crds.yaml
+      # - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/flux-components.yaml
+      # - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/flux-bootstrap.yaml

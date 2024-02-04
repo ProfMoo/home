@@ -9,12 +9,6 @@ variable "kubernetes_cluster_name" {
   description = "Kubernetes cluster name you wish for Talos to use"
 }
 
-# TODO: Use this value correctly (it's not currently used atm)
-variable "talos_virtual_ip" {
-  type        = string
-  description = "Virtual IP to be used by Talos. https://www.talos.dev/v1.5/talos-guides/network/vip/"
-}
-
 variable "worker_nodes" {
   type = map(object({
     id                    = string
@@ -56,5 +50,15 @@ variable "control_plane" {
     talos_version            = string
     kubernetes_version       = string
     qemu_guest_agent_version = string
+
+    nodes_subnet   = string
+    subnet_gateway = string
+
+    # Subnet CIDRs separated by a comma
+    pod_subnets     = string
+    service_subnets = string
+
+    # TODO: Use this value correctly (it's not currently used atm)
+    talos_virtual_ip = string
   }))
 }
