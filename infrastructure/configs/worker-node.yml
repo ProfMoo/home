@@ -1,25 +1,41 @@
 machine:
-  features:
-    kubePrism:
-      enabled: true
-      port: 7445
+  nodeLabels:
+    kubernetes.io/role: ${node_type}
+    kubernetes.io/zone: ${proxmox_node}
   install:
     extensions:
       - image: "ghcr.io/siderolabs/qemu-guest-agent:${qemu_guest_agent_version}"
   kubelet:
+    defaultRuntimeSeccompProfileEnabled: true # Enable container runtime default Seccomp profile.
+    disableManifestsDirectory: true # The `disableManifestsDirectory` field configures the kubelet to get static pod manifests from the /etc/kubernetes/manifests directory.
     extraArgs:
       rotate-server-certificates: true
   network:
     hostname: ${hostname}
-  nodeLabels:
-    type: ${node_type}
-    node: ${proxmox_node}
+    interfaces:
+      - interface: eth0
+        addresses:
+          - ${nodes_subnet}
+        routes:
+          - network: 0.0.0.0/0
+            gateway: ${subnet_gateway}
+        dhcp: true
+    # NOTE: This tells any worker nodes who need to communicate with the control plane to use
+    # the Talos virtual IP.
+    extraHostEntries:
+      - ip: ${talos_virtual_ip}
+        aliases:
+          - ${kube_api_dns}
+  features:
+    rbac: true
+    stableHostname: true
+    apidCheckExtKeyUsage: true
 cluster:
   proxy:
-    # We need to override the default bind address so that the /metrics endpoint is able to be scraped by Prometheus
-    # Further discussion: https://github.com/siderolabs/talos/discussions/7799
-    #
-    # Additional note: kube-proxy needs a special application process compared to most machineconfig changes.
-    # Source: https://github.com/siderolabs/talos/discussions/7835
-    extraArgs:
-      metrics-bind-address: 0.0.0.0:10249
+    disabled: true
+  controlPlane:
+    endpoint: https://${kube_api_dns}:6443
+  network:
+    dnsDomain: ${kube_domain}
+    podSubnets: ${format("%#v",split(",",pod_subnets))}
+    serviceSubnets: ${format("%#v",split(",",service_subnets))}

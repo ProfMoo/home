@@ -1,10 +1,12 @@
 machine:
   nodeLabels:
-    topology.kubernetes.io/role: ${node_type}
-    topology.kubernetes.io/zone: ${proxmox_node}
+    kubernetes.io/role: ${node_type}
+    kubernetes.io/zone: ${proxmox_node}
   certSANs:
+    - ${kube_api_dns}
     - ${talos_virtual_ip}
     - ${nodes_subnet}
+    - 127.0.0.1
   kubelet:
     defaultRuntimeSeccompProfileEnabled: true # Enable container runtime default Seccomp profile.
     disableManifestsDirectory: true # The `disableManifestsDirectory` field configures the kubelet to get static pod manifests from the /etc/kubernetes/manifests directory.
@@ -13,8 +15,9 @@ machine:
   network:
     hostname: ${hostname}
     interfaces:
-      # NOTE: This tells the Talos installer to use the eth0 interface for the node.
-      - interface: eth0
+      - interface: enxea65bd9f2925
+        # - deviceSelector:
+        #     driver: virtio
         addresses:
           - ${nodes_subnet}
         routes:
@@ -23,6 +26,15 @@ machine:
         dhcp: true
         vip:
           ip: ${talos_virtual_ip}
+        vlans:
+          - vlanId: 2
+            dhcp: true
+            vip:
+              ip: ${talos_virtual_ip}
+    extraHostEntries:
+      - ip: 127.0.0.1
+        aliases:
+          - ${kube_api_dns}
   features:
     apidCheckExtKeyUsage: true
     kubePrism:
@@ -38,7 +50,10 @@ machine:
     extensions:
       - image: "ghcr.io/siderolabs/qemu-guest-agent:${qemu_guest_agent_version}"
 cluster:
+  controlPlane:
+    endpoint: https://${kube_api_dns}:6443
   network:
+    dnsDomain: ${kube_domain}
     podSubnets: ${format("%#v",split(",",pod_subnets))}
     serviceSubnets: ${format("%#v",split(",",service_subnets))}
     cni:

@@ -45,11 +45,6 @@ variable "datastore" {
   default     = "local-lvm" # The default name for the data partitiion available to VMs in Proxmox
 }
 
-variable "vlan_id" {
-  type        = string
-  description = "The VLAN ID to use for the VM"
-}
-
 variable "bridge_network_device" {
   type        = string
   description = "The network device that the VM will use to communicate with the outside world. Corresponds to a network device on the Proxmox node. This should be a network interface that bridges to a physical network interface."
@@ -69,4 +64,9 @@ variable "proxmox_pool" {
 variable "initial_boot_iso" {
   type        = string
   description = "The ISO to boot the VM from initially. This should be the Talos ISO."
+}
+
+variable "vlan_id" {
+  type        = string
+  description = "The ID of the VLAN to use for the VM. This should correspond to a VLAN on the gateway of the network."
 }
