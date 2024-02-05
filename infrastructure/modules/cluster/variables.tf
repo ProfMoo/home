@@ -28,6 +28,16 @@ variable "worker_nodes" {
     talos_version            = string
     kubernetes_version       = string
     qemu_guest_agent_version = string
+
+    nodes_subnet   = string
+    subnet_gateway = string
+
+    # Subnet CIDRs separated by a comma
+    pod_subnets     = string
+    service_subnets = string
+
+    # TODO: Use this value correctly (it's not currently used atm)
+    talos_virtual_ip = string
   }))
 }
 

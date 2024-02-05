@@ -1,7 +1,4 @@
-resource "talos_machine_secrets" "cluster" {
-  # Determines the schema we'll use for the machine secrets for Talos
-  talos_version = "v1.5.5"
-}
+resource "talos_machine_secrets" "cluster" {}
 
 data "talos_client_configuration" "this" {
   cluster_name         = var.kubernetes_cluster_name
@@ -21,9 +18,10 @@ data "talos_cluster_kubeconfig" "this" {
   ]
   client_configuration = talos_machine_secrets.cluster.client_configuration
 
-  # TODO: This needs to be the Talos virtual IP and not just a single, "random" control plane node
-  endpoint = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
-  node     = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
+  # NOTE: This is the control-plane node to retrieve the kubeconfig from.
+  node = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
+  # NOTE: This is the IP address that is in the kubeconfig that's returned.
+  # endpoint = [for control_plane_node in var.control_plane : control_plane_node.talos_virtual_ip][0]
 }
 
 output "kubeconfig" {

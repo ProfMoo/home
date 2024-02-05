@@ -47,6 +47,9 @@ module "control_plane_node_configuration" {
       nodes_subnet     = each.value.nodes_subnet,
       pod_subnets      = each.value.pod_subnets,
       service_subnets  = each.value.service_subnets,
+
+      kube_api_dns = "api.cluster.local",
+      kube_domain  = "cluster.local",
     }),
   ]
 }

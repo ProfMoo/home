@@ -30,7 +30,8 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
     bridge      = var.bridge_network_device
     mac_address = macaddress.mac_addresses.address
     firewall    = false
-    vlan_id     = 2
+    vlan_id     = var.vlan_id
+    model       = "virtio"
   }
 
   # NOTE: The boot order is important because we want the VM to boot from the CDROM first, then the disk.
