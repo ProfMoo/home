@@ -22,10 +22,10 @@ machine:
         dhcp: true
     # NOTE: This tells any worker nodes who need to communicate with the control plane to use
     # the Talos virtual IP.
-    extraHostEntries:
-      - ip: ${talos_virtual_ip}
-        aliases:
-          - ${kube_api_dns}
+    # extraHostEntries:
+    #   - ip: ${talos_virtual_ip}
+    #     aliases:
+    #       - ${kube_api_dns}
   features:
     rbac: true
     stableHostname: true
@@ -34,7 +34,7 @@ cluster:
   proxy:
     disabled: true
   controlPlane:
-    endpoint: https://${kube_api_dns}:6443
+    endpoint: https://${talos_virtual_ip}:6443
   network:
     dnsDomain: ${kube_domain}
     podSubnets: ${format("%#v",split(",",pod_subnets))}
