@@ -20,9 +20,6 @@ machine:
         #     driver: virtio
         addresses:
           - ${nodes_subnet}
-        routes:
-          - network: 0.0.0.0/0
-            gateway: ${subnet_gateway}
         dhcp: true
         vip:
           ip: ${talos_virtual_ip}
