@@ -36,7 +36,6 @@ variable "worker_nodes" {
     pod_subnets     = string
     service_subnets = string
 
-    # TODO: Use this value correctly (it's not currently used atm)
     talos_virtual_ip = string
   }))
 }
@@ -68,7 +67,6 @@ variable "control_plane" {
     pod_subnets     = string
     service_subnets = string
 
-    # TODO: Use this value correctly (it's not currently used atm)
     talos_virtual_ip = string
   }))
 }

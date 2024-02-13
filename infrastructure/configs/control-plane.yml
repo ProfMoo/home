@@ -26,15 +26,10 @@ machine:
         dhcp: true
         vip:
           ip: ${talos_virtual_ip}
-        vlans:
-          - vlanId: 2
-            dhcp: true
-            vip:
-              ip: ${talos_virtual_ip}
     extraHostEntries:
       - ip: 127.0.0.1
         aliases:
-          - ${kube_api_dns}
+          - ${talos_virtual_ip}
   features:
     apidCheckExtKeyUsage: true
     kubePrism:
@@ -51,7 +46,7 @@ machine:
       - image: "ghcr.io/siderolabs/qemu-guest-agent:${qemu_guest_agent_version}"
 cluster:
   controlPlane:
-    endpoint: https://${kube_api_dns}:6443
+    endpoint: https://${talos_virtual_ip}:6443
   network:
     dnsDomain: ${kube_domain}
     podSubnets: ${format("%#v",split(",",pod_subnets))}
