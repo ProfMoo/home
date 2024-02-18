@@ -1,22 +1,36 @@
+// locals {
+//   # NOTE: This value is the last octet of the first control plane node.
+//   # If node subnet is 192.168.2.0/24, then the first control plane node will have the IP 192.168.2.10/24
+//   # If subsequent control plane nodes are added, the IP will be incremented by 1, ex: 192.168.2.11/24
+//   control_plane_node_last_octet = 10
+//   # NOTE: We need the index of the provided map to be able to generate the IP address for the worker nodes,
+//   # so we create one here. This allows us to use each.key below.
+//   control_plane_node_map = { for index, value in var.control_plane : index => value }
+// }
+
 module "control_plane_node" {
   for_each = var.control_plane
 
   source = "../node"
 
-  id                    = each.value.id
-  name                  = each.value.name
-  description           = each.value.description
-  tags                  = each.value.tags
-  cpu_cores             = each.value.cpu_cores
-  memory                = each.value.memory
-  disk_size             = each.value.disk_size
-  datastore             = each.value.datastore
+  id          = each.value.id
+  name        = each.value.name
+  description = each.value.description
+  tags        = each.value.tags
+
+  cpu_cores = each.value.cpu_cores
+  memory    = each.value.memory
+
+  disk_size = each.value.disk_size
+  datastore = each.value.datastore
+
   vlan_id               = each.value.vlan_id
   bridge_network_device = each.value.bridge_network_device
-  proxmox_node_name     = each.value.proxmox_node_name
-  initial_boot_iso      = each.value.initial_boot_iso
+  ipv4_address          = each.value.ipv4_address
 
-  proxmox_pool = proxmox_virtual_environment_pool.pool.pool_id
+  proxmox_node_name = each.value.proxmox_node_name
+  initial_boot_iso  = each.value.initial_boot_iso
+  proxmox_pool      = proxmox_virtual_environment_pool.pool.pool_id
 }
 
 module "control_plane_node_configuration" {

@@ -51,6 +51,11 @@ variable "bridge_network_device" {
   default     = "vmbr0" # The default name for the first bridge interface in Proxmox
 }
 
+variable "ipv4_address" {
+  type        = string
+  description = "The ipv4 address that is assigned to the newly created VM"
+}
+
 variable "proxmox_node_name" {
   type        = string
   description = "The Proxmox node to provision the VM on"

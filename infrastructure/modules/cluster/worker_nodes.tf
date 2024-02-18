@@ -1,22 +1,36 @@
+// locals {
+//   # NOTE: This value is the last octet of the first worker node.
+//   # If node subnet is 192.168.2.0/24, then the first worker node will have the IP 192.168.2.20/24
+//   # If subsequent worker nodes are added, the IP will be incremented by 1, ex: 192.168.2.21/24
+//   worker_node_last_octet = 20
+//   # NOTE: We need the index of the provided map to be able to generate the IP address for the worker nodes,
+//   # so we create one here. This allows us to use each.key below.
+//   worker_node_map = { for index, value in var.worker_nodes : index => value }
+// }
+
 module "worker_nodes" {
   for_each = var.worker_nodes
 
   source = "../node"
 
-  id                    = each.value.id
-  name                  = each.value.name
-  description           = each.value.description
-  tags                  = each.value.tags
-  cpu_cores             = each.value.cpu_cores
-  memory                = each.value.memory
-  disk_size             = each.value.disk_size
-  datastore             = each.value.datastore
+  id          = each.value.id
+  name        = each.value.name
+  description = each.value.description
+  tags        = each.value.tags
+
+  cpu_cores = each.value.cpu_cores
+  memory    = each.value.memory
+
+  disk_size = each.value.disk_size
+  datastore = each.value.datastore
+
   vlan_id               = each.value.vlan_id
   bridge_network_device = each.value.bridge_network_device
-  proxmox_node_name     = each.value.proxmox_node_name
-  initial_boot_iso      = each.value.initial_boot_iso
+  ipv4_address          = each.value.ipv4_address
 
-  proxmox_pool = proxmox_virtual_environment_pool.pool.pool_id
+  proxmox_node_name = each.value.proxmox_node_name
+  initial_boot_iso  = each.value.initial_boot_iso
+  proxmox_pool      = proxmox_virtual_environment_pool.pool.pool_id
 }
 
 module "worker_node_configuration" {
