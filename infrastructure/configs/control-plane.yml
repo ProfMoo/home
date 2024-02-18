@@ -14,7 +14,7 @@ machine:
   network:
     hostname: ${hostname}
     interfaces:
-      - interface: eno1
+      - interface: enx1ec8ee984946
         # - deviceSelector:
         #     driver: virtio
         addresses:
@@ -22,6 +22,8 @@ machine:
         dhcp: true
         vip:
           ip: ${talos_virtual_ip}
+    # NOTE: This tells any control plane nodes that intend to communicate with the control plane
+    # via the virtual IP to use localhost instead.
     extraHostEntries:
       - ip: 127.0.0.1
         aliases:
@@ -88,6 +90,8 @@ cluster:
   externalCloudProvider:
     enabled: true
     manifests:
+      # NOTE: We include the cert-approval in the bootstrap manifests since it enables viewing pod logs.
+      # If the cluster startup fails for any reason, it can be difficult to debug without viewing logs.
       - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/cert-approval.yaml
       # - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/flux-crds.yaml
       # - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/flux-components.yaml

@@ -84,8 +84,10 @@ spec:
               port: 8081
 
           env:
+            # NOTE: This makes the kubelet-csr-approver only approve CSRs that originate from a node with
+            # a hostname that matches this regex. I've set this to .* since I have no consistent node naming scheme.
             - name: PROVIDER_REGEX
-              value: worker-.|master-.|talos-.
+              value: .*
             - name: PROVIDER_IP_PREFIXES
               value: "0.0.0.0/0"
             - name: MAX_EXPIRATION_SECONDS
