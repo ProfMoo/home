@@ -7,8 +7,8 @@ machine:
     - ${nodes_subnet}
     - 127.0.0.1
   kubelet:
-    defaultRuntimeSeccompProfileEnabled: true # Enable container runtime default Seccomp profile.
-    disableManifestsDirectory: true # The `disableManifestsDirectory` field configures the kubelet to get static pod manifests from the /etc/kubernetes/manifests directory.
+    defaultRuntimeSeccompProfileEnabled: true
+    disableManifestsDirectory: true
     extraArgs:
       rotate-server-certificates: true
   network:
@@ -44,7 +44,6 @@ machine:
       - image: "ghcr.io/siderolabs/qemu-guest-agent:${qemu_guest_agent_version}"
 cluster:
   network:
-    dnsDomain: ${kube_domain}
     podSubnets: ${format("%#v",split(",",pod_subnets))}
     serviceSubnets: ${format("%#v",split(",",service_subnets))}
     cni:

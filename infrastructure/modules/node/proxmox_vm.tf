@@ -26,6 +26,14 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
     dedicated = var.memory
   }
 
+  initialization {
+    ip_config {
+      ipv4 {
+        address = "192.168.8.10/24"
+      }
+    }
+  }
+
   network_device {
     bridge      = var.bridge_network_device
     mac_address = macaddress.mac_addresses.address
