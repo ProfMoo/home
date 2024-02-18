@@ -10,7 +10,7 @@ variable "kubernetes_cluster_name" {
 
 variable "cluster_endpoint_ip" {
   type        = string
-  description = "The IPv4 address of the node we want to send commands to"
+  description = "The IPv4 address of the node we want to configure"
 }
 
 variable "talos_version" {

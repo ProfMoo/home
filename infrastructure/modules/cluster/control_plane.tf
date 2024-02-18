@@ -35,21 +35,17 @@ module "control_plane_node_configuration" {
   talos_version      = each.value.talos_version
 
   config_patches = [
-    templatefile("configs/control-plane.yml", {
-      node_type    = "controlplane",
+    templatefile("configs/control-plane.yaml", {
+      node_type    = "control-plane",
       proxmox_node = each.value.proxmox_node_name,
 
       qemu_guest_agent_version = each.value.qemu_guest_agent_version,
       hostname                 = each.value.name,
 
-      subnet_gateway   = each.value.subnet_gateway,
       talos_virtual_ip = each.value.talos_virtual_ip,
       nodes_subnet     = each.value.nodes_subnet,
       pod_subnets      = each.value.pod_subnets,
       service_subnets  = each.value.service_subnets,
-
-      kube_api_dns = "api.cluster.local",
-      kube_domain  = "cluster.local",
     }),
   ]
 }

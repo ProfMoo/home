@@ -17,7 +17,7 @@ machine:
     extraHostEntries:
       - ip: ${talos_virtual_ip}
         aliases:
-          - ${kube_api_dns}
+          - kubernetes.default.svc.cluster.local
   features:
     rbac: true
     stableHostname: true
@@ -28,6 +28,5 @@ cluster:
   controlPlane:
     endpoint: https://${talos_virtual_ip}:6443
   network:
-    dnsDomain: ${kube_domain}
     podSubnets: ${format("%#v",split(",",pod_subnets))}
     serviceSubnets: ${format("%#v",split(",",service_subnets))}
