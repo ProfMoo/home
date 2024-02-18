@@ -37,6 +37,7 @@ variable "worker_nodes" {
     service_subnets = string
 
     talos_virtual_ip = string
+    ipv4_address     = string
   }))
 }
 
@@ -68,5 +69,6 @@ variable "control_plane" {
     service_subnets = string
 
     talos_virtual_ip = string
+    ipv4_address     = string
   }))
 }

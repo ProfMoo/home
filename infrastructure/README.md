@@ -67,3 +67,7 @@ As I'm beginning to get a handle on what this cluster should look like, I want t
 2. [x] Tearing out Flanel for Cilium.
 3. [] Fixing the structure of the `kubernetes` folder to make more sense in general.
 4. [] Change name of the git repo from `flux-system` to describe the git repo.
+
+## Notes
+
+1. I attempted for quite a while to avoid tedious manual declarations of IP addresses for each Kubernetes node. I found some level of success assining MAC addresses to the VMs, reading the DHCP-assigned Ipv4 addresses from the Unifi Router, then using that in the rest of the progress. But ultimately it was unsuccessful. The Unifi Router would begin to get confused with the introduction of virtual IPs, such as the Talos Virtual IP, and begin to return the Virtual IP when I needed the direct node IP. I had to scrap this idea unfortunately. Now we must assign each node an IP address in `main.tf` manually.

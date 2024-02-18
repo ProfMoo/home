@@ -14,12 +14,13 @@ machine:
   network:
     hostname: ${hostname}
     interfaces:
-      - interface: enx1ec8ee984946
+      # TODO: I need to manually set this for each node, which obviously doesn't work.
+      # Figure out wtf to do about this.
+      - interface: enxdedb31feb077
         # - deviceSelector:
         #     driver: virtio
         addresses:
           - ${nodes_subnet}
-        dhcp: true
         vip:
           ip: ${talos_virtual_ip}
     # NOTE: This tells any control plane nodes that intend to communicate with the control plane

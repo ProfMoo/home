@@ -36,6 +36,8 @@ module "cluster" {
 
       # Infrastructure network configuration
       talos_virtual_ip = "192.168.8.99"
+      ipv4_address     = "192.168.8.30"
+      mac_address      = "00:00:00:00:00:10"
 
       # Kubernetes network configuration
       nodes_subnet    = "192.168.8.0/24"

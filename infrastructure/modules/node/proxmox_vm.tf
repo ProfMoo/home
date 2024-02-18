@@ -1,9 +1,21 @@
 # NOTE: This creates the random mac addresses that we assign to the VMs
 resource "macaddress" "mac_addresses" {}
 
+resource "unifi_user" "this" {
+  mac  = macaddress.mac_addresses.address
+  name = var.name
+  note = "Provisioned via the Terraform client"
+
+  fixed_ip   = var.ipv4_address
+  network_id = var.vlan_id
+}
+
 resource "proxmox_virtual_environment_vm" "talos_node" {
   depends_on = [
-    macaddress.mac_addresses
+    macaddress.mac_addresses,
+    // NOTE: We need to wait for this assignment so that the VM doesn't start up 
+    // and get assigned an address via DHCP before the fixed IP is assigned to the MAC.
+    unifi_user.this,
   ]
 
   vm_id = var.id
@@ -29,7 +41,7 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
   initialization {
     ip_config {
       ipv4 {
-        address = "192.168.8.10/24"
+        address = format("%s/24", var.ipv4_address)
       }
     }
   }
