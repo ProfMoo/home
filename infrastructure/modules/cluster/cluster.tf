@@ -23,9 +23,9 @@ data "talos_cluster_kubeconfig" "this" {
   client_configuration = talos_machine_secrets.cluster.client_configuration
 
   # NOTE: This is the control-plane node to retrieve the kubeconfig from.
-  node = [for control_plane_node in var.control_plane : control_plane_node.talos_virtual_ip][0]
+  node = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
   # NOTE: Endpoint to use for the talosclient to get the kubeconfig. If not set, the node value will be used
-  endpoint = [for control_plane_node in var.control_plane : control_plane_node.talos_virtual_ip][0]
+  endpoint = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
 }
 
 output "kubeconfig" {

@@ -3,7 +3,6 @@ machine:
     kubernetes.io/role: ${node_type}
     kubernetes.io/zone: ${proxmox_node}
   certSANs:
-    - ${kube_api_dns}
     - ${talos_virtual_ip}
     - ${nodes_subnet}
     - 127.0.0.1
@@ -15,7 +14,7 @@ machine:
   network:
     hostname: ${hostname}
     interfaces:
-      - interface: enxea65bd9f2925
+      - interface: eno1
         # - deviceSelector:
         #     driver: virtio
         addresses:
@@ -42,8 +41,6 @@ machine:
     extensions:
       - image: "ghcr.io/siderolabs/qemu-guest-agent:${qemu_guest_agent_version}"
 cluster:
-  controlPlane:
-    endpoint: https://${talos_virtual_ip}:6443
   network:
     dnsDomain: ${kube_domain}
     podSubnets: ${format("%#v",split(",",pod_subnets))}
