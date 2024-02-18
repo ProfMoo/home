@@ -6,26 +6,18 @@ machine:
     extensions:
       - image: "ghcr.io/siderolabs/qemu-guest-agent:${qemu_guest_agent_version}"
   kubelet:
-    defaultRuntimeSeccompProfileEnabled: true # Enable container runtime default Seccomp profile.
-    disableManifestsDirectory: true # The `disableManifestsDirectory` field configures the kubelet to get static pod manifests from the /etc/kubernetes/manifests directory.
+    defaultRuntimeSeccompProfileEnabled: true
+    disableManifestsDirectory: true
     extraArgs:
       rotate-server-certificates: true
   network:
     hostname: ${hostname}
-    interfaces:
-      - interface: eth0
-        addresses:
-          - ${nodes_subnet}
-        routes:
-          - network: 0.0.0.0/0
-            gateway: ${subnet_gateway}
-        dhcp: true
-    # NOTE: This tells any worker nodes who need to communicate with the control plane to use
-    # the Talos virtual IP.
-    # extraHostEntries:
-    #   - ip: ${talos_virtual_ip}
-    #     aliases:
-    #       - ${kube_api_dns}
+    # NOTE: This tells any worker nodes who need to communicate with the control plane
+    # (which would use the Kube API DNS records to instead use the Talos virtual IP.
+    extraHostEntries:
+      - ip: ${talos_virtual_ip}
+        aliases:
+          - ${kube_api_dns}
   features:
     rbac: true
     stableHostname: true

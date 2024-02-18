@@ -65,5 +65,5 @@ As I'm beginning to get a handle on what this cluster should look like, I want t
 
 1. [x] Changing the VLAN so that Kubernetes is inside 192.168.2.x instead of the same 192.168.1.x as the rest of my home network.
 2. [x] Tearing out Flanel for Cilium.
-3. Fixing the structure of the `kubernetes` folder to make more sense in general.
-4. Change name of the git repo from `flux-system` to describe the git repo.
+3. [x] Fixing the structure of the `kubernetes` folder to make more sense in general.
+4. [x] Change name of the git repo from `flux-system` to describe the git repo.
