@@ -156,7 +156,7 @@ module "cluster" {
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
       ipv4_address     = "192.168.8.31"
-      mac_address      = "07:c2:9d:e4:8f:5b"
+      mac_address      = "d4:9f:6a:b1:5c:2d"
       subnet_gateway   = "192.168.8.1"
 
       # Internal kubernetes network configuration

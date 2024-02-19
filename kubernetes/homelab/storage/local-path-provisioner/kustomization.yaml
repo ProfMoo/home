@@ -10,11 +10,11 @@ metadata:
     # This was done with the startup/shutdown scripts in mind.
     substitution.flux.home.arpa/disabled: "true"
 spec:
-  path: ./kubernetes/clusters/homelab/storage/local-path-provisioner/app
+  path: ./kubernetes/homelab/storage/local-path-provisioner/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: profmoo-home
   interval: 30m
   retryInterval: 1m
   timeout: 5m
