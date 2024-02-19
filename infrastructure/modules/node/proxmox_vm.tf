@@ -1,7 +1,7 @@
 resource "unifi_user" "this" {
-  mac  = macaddress.mac_addresses.address
+  mac  = var.mac_address
   name = var.name
-  note = "Provisioned via the Terraform client"
+  note = "Provisioned via Terraform"
 
   fixed_ip   = var.ipv4_address
   network_id = var.vlan_id
@@ -9,9 +9,8 @@ resource "unifi_user" "this" {
 
 resource "proxmox_virtual_environment_vm" "talos_node" {
   depends_on = [
-    macaddress.mac_addresses,
-    // NOTE: We need to wait for this assignment so that the VM doesn't start up 
-    // and get assigned an address via DHCP before the fixed IP is assigned to the MAC.
+    // NOTE: We need to wait for this assignment so that the VM doesn't start up and get
+    // assigned an address via DHCP before the fixed IP is assigned to the MAC by the DHCP server.
     unifi_user.this,
   ]
 
@@ -35,17 +34,17 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
     dedicated = var.memory
   }
 
-  initialization {
-    ip_config {
-      ipv4 {
-        address = format("%s/24", var.ipv4_address)
-      }
-    }
-  }
+  // initialization {
+  //   ip_config {
+  //     ipv4 {
+  //       address = format("%s/24", unifi_user.this.fixed_ip)
+  //     }
+  //   }
+  // }
 
   network_device {
     bridge      = var.bridge_network_device
-    mac_address = macaddress.mac_addresses.address
+    mac_address = unifi_user.this.mac
     firewall    = false
     vlan_id     = var.vlan_id
     model       = "virtio"
@@ -55,7 +54,7 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
   # Talos functions by booting from the CDROM initially, then performing API-driven updates onto the disk, then rebooting from the disk.
   boot_order = ["scsi0", "ide2", "net0"]
 
-  # NOTE: This provides Talos a location to store its state when it's configured via the API.
+  # NOTE: This provides Talos a location to store its configured state when it's configured via the API.
   disk {
     datastore_id = var.datastore
     file_format  = "raw"
@@ -83,7 +82,8 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
     type = "l26"
   }
 
-  # Remove the node from Kubernetes on destroy
+  # NOTE: This runs a script against Kubernets on TF destroy. 
+  # Kubernetes nodes need to be drained before deleted, or else the cluster can end up in some really tricky states.
   provisioner "local-exec" {
     when    = destroy
     command = "echo '${self.name}' && ./bin/manage_nodes remove ${self.name}"

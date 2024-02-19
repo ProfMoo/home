@@ -1,13 +1,3 @@
-// locals {
-//   # NOTE: This value is the last octet of the first control plane node.
-//   # If node subnet is 192.168.2.0/24, then the first control plane node will have the IP 192.168.2.10/24
-//   # If subsequent control plane nodes are added, the IP will be incremented by 1, ex: 192.168.2.11/24
-//   control_plane_node_last_octet = 10
-//   # NOTE: We need the index of the provided map to be able to generate the IP address for the worker nodes,
-//   # so we create one here. This allows us to use each.key below.
-//   control_plane_node_map = { for index, value in var.control_plane : index => value }
-// }
-
 module "control_plane_node" {
   for_each = var.control_plane
 
@@ -56,6 +46,11 @@ module "control_plane_node_configuration" {
 
       qemu_guest_agent_version = each.value.qemu_guest_agent_version,
       hostname                 = each.value.name,
+
+      # NOTE: The auto-generated interface name is enx<mac_address_without_colons_and_lowercase>
+      # ex: enx000c29d3e3e3
+      interface    = format("enx%s", replace(lower(module.control_plane_node[each.key].mac_address), ":", "")),
+      ipv4_address = module.control_plane_node[each.key].ipv4_address,
 
       talos_virtual_ip = each.value.talos_virtual_ip,
       nodes_subnet     = each.value.nodes_subnet,
