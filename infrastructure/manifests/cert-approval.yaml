@@ -56,12 +56,10 @@ spec:
   selector:
     matchLabels:
       app: kubelet-csr-approver
-
   template:
     metadata:
       labels:
         app: kubelet-csr-approver
-
     spec:
       serviceAccountName: kubelet-csr-approver
       containers:
@@ -71,18 +69,15 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "500m"
-
           args:
             - -metrics-bind-address
             - ":8080"
             - -health-probe-bind-address
             - ":8081"
-
           livenessProbe:
             httpGet:
               path: /healthz
               port: 8081
-
           env:
             # NOTE: This makes the kubelet-csr-approver only approve CSRs that originate from a node with
             # a hostname that matches this regex. I've set this to .* since I have no consistent node naming scheme.
