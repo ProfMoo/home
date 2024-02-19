@@ -73,25 +73,35 @@ module "cluster" {
       pod_subnets     = "10.244.0.0/16"
       service_subnets = "10.96.0.0/12"
     },
-    // "control_plane_instance_2" = {
-    //   id                    = "1002"
-    //   name                  = "daft-punk"
-    //   description           = "Control plane instance in the Kubernetes homelab cluster"
-    //   tags                  = ["control-plane", "kubernetes"]
-    //   cpu_cores             = 2
-    //   memory                = 4096
-    //   disk_size             = "50"
-    //   datastore             = "disk2"
-    //   vlan_id               = "0"
-    //   bridge_network_device = "vmbr0"
-    //   proxmox_node_name     = "pve"
-    //   initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
+    "control_plane_instance_2" = {
+      id                    = "1002"
+      name                  = "daft-punk"
+      description           = "Control plane instance in the Kubernetes homelab cluster"
+      tags                  = ["control-plane", "kubernetes"]
+      cpu_cores             = 2
+      memory                = 4096
+      disk_size             = "50"
+      datastore             = "local-lvm"
+      vlan_id               = "2"
+      bridge_network_device = "vmbr0"
+      proxmox_node_name     = "pve"
+      initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
-    //   # This doesn't necessarily need to match the boot ISO. 
-    //   talos_version            = "1.6.4"
-    //   kubernetes_version       = "1.29.1"
-    //   qemu_guest_agent_version = "8.1.2"
-    // }
+      # This doesn't necessarily need to match the boot ISO. 
+      talos_version            = "1.6.4"
+      kubernetes_version       = "1.29.1"
+      qemu_guest_agent_version = "8.1.2"
+
+      # External kubernetes network configuration
+      talos_virtual_ip = "192.168.8.99"
+      ipv4_address     = "192.168.8.22"
+      mac_address      = "3e:4f:2c:9a:5d:1b"
+      subnet_gateway   = "192.168.8.1"
+
+      # Internal kubernetes network configuration
+      pod_subnets     = "10.244.0.0/16"
+      service_subnets = "10.96.0.0/12"
+    }
   }
 
   worker_nodes = {
@@ -124,44 +134,64 @@ module "cluster" {
       pod_subnets     = "10.244.0.0/16"
       service_subnets = "10.96.0.0/12"
     },
-    // "worker_node_instance_1" = {
-    //   id                    = "1101"
-    //   name                  = "fkj"
-    //   description           = "Worker node instance in the Kubernetes homelab cluster"
-    //   tags                  = ["worker-node", "kubernetes"]
-    //   cpu_cores             = 8
-    //   memory                = 32768 # 32GB
-    //   disk_size             = "50"
-    //   datastore             = "disk1"
-    //   vlan_id               = "0"
-    //   bridge_network_device = "vmbr0"
-    //   proxmox_node_name     = "pve"
-    //   initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
+    "worker_node_instance_1" = {
+      id                    = "1101"
+      name                  = "fkj"
+      description           = "Worker node instance in the Kubernetes homelab cluster"
+      tags                  = ["worker-node", "kubernetes"]
+      cpu_cores             = 10
+      memory                = 32768 # 32GB
+      disk_size             = "50"
+      datastore             = "local-lvm"
+      vlan_id               = "2"
+      bridge_network_device = "vmbr0"
+      proxmox_node_name     = "pve"
+      initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
-    //   # This doesn't necessarily need to match the boot ISO. 
-    //   talos_version            = "1.6.4"
-    //   kubernetes_version       = "1.29.1"
-    //   qemu_guest_agent_version = "8.1.2"
-    // },
-    // "worker_node_instance_2" = {
-    //   id                    = "1102"
-    //   name                  = "uppermost"
-    //   description           = "Worker node instance in the Kubernetes homelab cluster"
-    //   tags                  = ["worker-node", "kubernetes"]
-    //   cpu_cores             = 8
-    //   memory                = 32768 # 32GB
-    //   disk_size             = "50"
-    //   datastore             = "disk2"
-    //   vlan_id               = "0"
-    //   bridge_network_device = "vmbr0"
-    //   proxmox_node_name     = "pve"
-    //   initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
+      # This doesn't necessarily need to match the boot ISO. 
+      talos_version            = "1.6.4"
+      kubernetes_version       = "1.29.1"
+      qemu_guest_agent_version = "8.1.2"
 
-    //   # This doesn't necessarily need to match the boot ISO. 
-    //   talos_version            = "1.6.4"
-    //   kubernetes_version       = "1.29.1"
-    //   qemu_guest_agent_version = "8.1.2"
-    // }
+      # External kubernetes network configuration
+      talos_virtual_ip = "192.168.8.99"
+      ipv4_address     = "192.168.8.31"
+      mac_address      = "07:c2:9d:e4:8f:5b"
+      subnet_gateway   = "192.168.8.1"
+
+      # Internal kubernetes network configuration
+      pod_subnets     = "10.244.0.0/16"
+      service_subnets = "10.96.0.0/12"
+    },
+    "worker_node_instance_2" = {
+      id                    = "1102"
+      name                  = "uppermost"
+      description           = "Worker node instance in the Kubernetes homelab cluster"
+      tags                  = ["worker-node", "kubernetes"]
+      cpu_cores             = 10
+      memory                = 32768 # 32GB
+      disk_size             = "50"
+      datastore             = "local-lvm"
+      vlan_id               = "2"
+      bridge_network_device = "vmbr0"
+      proxmox_node_name     = "pve"
+      initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
+
+      # This doesn't necessarily need to match the boot ISO. 
+      talos_version            = "1.6.4"
+      kubernetes_version       = "1.29.1"
+      qemu_guest_agent_version = "8.1.2"
+
+      # External kubernetes network configuration
+      talos_virtual_ip = "192.168.8.99"
+      ipv4_address     = "192.168.8.32"
+      mac_address      = "d4:9f:6a:b1:5c:2e"
+      subnet_gateway   = "192.168.8.1"
+
+      # Internal kubernetes network configuration
+      pod_subnets     = "10.244.0.0/16"
+      service_subnets = "10.96.0.0/12"
+    }
   }
 }
 
