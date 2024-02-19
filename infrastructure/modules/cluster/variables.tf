@@ -22,22 +22,21 @@ variable "worker_nodes" {
     vlan_id               = string
     bridge_network_device = string
     proxmox_node_name     = string
-
-    initial_boot_iso = string
+    initial_boot_iso      = string
 
     talos_version            = string
     kubernetes_version       = string
     qemu_guest_agent_version = string
 
-    nodes_subnet   = string
-    subnet_gateway = string
-
-    # Subnet CIDRs separated by a comma
-    pod_subnets     = string
-    service_subnets = string
-
     talos_virtual_ip = string
     ipv4_address     = string
+    mac_address      = string
+
+    nodes_subnet   = string
+    subnet_gateway = string
+    # NOTE: The two values below are CIDRs separated by a comma
+    pod_subnets     = string
+    service_subnets = string
   }))
 }
 
@@ -54,21 +53,20 @@ variable "control_plane" {
     vlan_id               = string
     bridge_network_device = string
     proxmox_node_name     = string
-
-    initial_boot_iso = string
+    initial_boot_iso      = string
 
     talos_version            = string
     kubernetes_version       = string
     qemu_guest_agent_version = string
 
-    nodes_subnet   = string
-    subnet_gateway = string
-
-    # Subnet CIDRs separated by a comma
-    pod_subnets     = string
-    service_subnets = string
-
     talos_virtual_ip = string
     ipv4_address     = string
+    mac_address      = string
+
+    nodes_subnet   = string
+    subnet_gateway = string
+    # NOTE: The two values below are CIDRs separated by a comma
+    pod_subnets     = string
+    service_subnets = string
   }))
 }

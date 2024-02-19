@@ -16,7 +16,7 @@ machine:
     interfaces:
       # TODO: I need to manually set this for each node, which obviously doesn't work.
       # Figure out wtf to do about this.
-      - interface: enx7641c19a6ef6
+      - interface: enx527f2b3a41c
         # - deviceSelector:
         #     driver: virtio
         addresses:
