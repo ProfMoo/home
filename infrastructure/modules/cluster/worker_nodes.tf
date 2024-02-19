@@ -54,7 +54,6 @@ module "worker_node_configuration" {
       subnet_gateway = each.value.subnet_gateway,
 
       talos_virtual_ip = each.value.talos_virtual_ip,
-      nodes_subnet     = each.value.nodes_subnet,
       pod_subnets      = each.value.pod_subnets,
       service_subnets  = each.value.service_subnets,
     })
