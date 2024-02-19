@@ -14,7 +14,7 @@ machine:
   network:
     hostname: ${hostname}
     nameservers:
-      - 192.168.8.1
+      - ${subnet_gateway}
     interfaces:
       - interface: ${interface}
         addresses:
@@ -22,7 +22,7 @@ machine:
           - ${ipv4_address}/24
         routes:
           - network: 0.0.0.0/0
-            gateway: 192.168.8.1
+            gateway: ${subnet_gateway}
         vip:
           ip: ${talos_virtual_ip}
     # NOTE: This tells any control plane nodes that intend to communicate with the control plane
