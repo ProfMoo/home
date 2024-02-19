@@ -32,7 +32,6 @@ variable "control_plane" {
     ipv4_address     = string
     mac_address      = string
 
-    nodes_subnet   = string
     subnet_gateway = string
     # NOTE: The two values below are CIDRs separated by a comma
     pod_subnets     = string
@@ -63,7 +62,6 @@ variable "worker_nodes" {
     ipv4_address     = string
     mac_address      = string
 
-    nodes_subnet   = string
     subnet_gateway = string
     # NOTE: The two values below are CIDRs separated by a comma
     pod_subnets     = string
