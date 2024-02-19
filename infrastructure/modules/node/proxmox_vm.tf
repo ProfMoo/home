@@ -1,6 +1,3 @@
-# NOTE: This creates the random mac addresses that we assign to the VMs
-resource "macaddress" "mac_addresses" {}
-
 resource "unifi_user" "this" {
   mac  = macaddress.mac_addresses.address
   name = var.name

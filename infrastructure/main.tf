@@ -34,12 +34,12 @@ module "cluster" {
       kubernetes_version       = "1.29.1"
       qemu_guest_agent_version = "8.1.2"
 
-      # Infrastructure network configuration
+      # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
-      ipv4_address     = "192.168.8.30"
-      mac_address      = "00:00:00:00:00:10"
+      ipv4_address     = "192.168.8.20"
+      mac_address      = "52:74:F2:B3:A4:1C"
 
-      # Kubernetes network configuration
+      # Internal kubernetes network configuration
       nodes_subnet    = "192.168.8.0/24"
       subnet_gateway  = "192.168.8.1"
       pod_subnets     = "10.244.0.0/16"

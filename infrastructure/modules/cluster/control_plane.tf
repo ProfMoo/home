@@ -27,6 +27,7 @@ module "control_plane_node" {
   vlan_id               = each.value.vlan_id
   bridge_network_device = each.value.bridge_network_device
   ipv4_address          = each.value.ipv4_address
+  mac_address           = each.value.mac_address
 
   proxmox_node_name = each.value.proxmox_node_name
   initial_boot_iso  = each.value.initial_boot_iso

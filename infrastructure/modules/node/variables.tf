@@ -56,6 +56,11 @@ variable "ipv4_address" {
   description = "The ipv4 address that is assigned to the newly created VM"
 }
 
+variable "mac_address" {
+  type        = string
+  description = "The MAC address that is assigned to the newly created VM"
+}
+
 variable "proxmox_node_name" {
   type        = string
   description = "The Proxmox node to provision the VM on"

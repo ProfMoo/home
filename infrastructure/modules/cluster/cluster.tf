@@ -12,7 +12,8 @@ data "talos_client_configuration" "this" {
   )
   # NOTE: Endpoints to set in the generated config. 
   # These are the IPs that the talosctl commands use to find a talos control plane node.
-  endpoints = [for control_plane_node in var.control_plane : control_plane_node.talos_virtual_ip]
+  # Per the docs, this shouldn't be the VIP: https://www.talos.dev/v1.6/talos-guides/network/vip/#caveats
+  endpoints = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address]
 }
 
 resource "talos_machine_bootstrap" "node" {
@@ -21,19 +22,19 @@ resource "talos_machine_bootstrap" "node" {
   node                 = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
 }
 
-// data "talos_cluster_kubeconfig" "this" {
-//   depends_on = [
-//     talos_machine_bootstrap.node,
-//     data.talos_client_configuration.this
-//   ]
-//   client_configuration = talos_machine_secrets.cluster.client_configuration
+data "talos_cluster_kubeconfig" "this" {
+  depends_on = [
+    talos_machine_bootstrap.node,
+    data.talos_client_configuration.this
+  ]
+  client_configuration = talos_machine_secrets.cluster.client_configuration
 
-//   # NOTE: This is the control-plane node to retrieve the kubeconfig from.
-//   # (i.e. this is the node whose kubeconfig we are reading. It is not the node we are reading from)
-//   node = [for control_plane_node in var.control_plane : control_plane_node.talos_virtual_ip][0]
-//   # NOTE: Endpoint to use for the talosclient to get the kubeconfig. If not set, the node value will be used
-//   endpoint = [for control_plane_node in var.control_plane : control_plane_node.talos_virtual_ip][0]
-// }
+  # NOTE: This is the control-plane node to retrieve the kubeconfig from.
+  # (i.e. this is the node whose kubeconfig we are reading. It is not the node we are reading from)
+  node = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
+  # NOTE: Endpoint to use for the talosclient to get the kubeconfig. If not set, the node value will be used
+  endpoint = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
+}
 
 output "kubeconfig" {
   # value     = data.talos_cluster_kubeconfig.this.kubeconfig_raw
