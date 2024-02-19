@@ -37,8 +37,7 @@ data "talos_cluster_kubeconfig" "this" {
 }
 
 output "kubeconfig" {
-  # value     = data.talos_cluster_kubeconfig.this.kubeconfig_raw
-  value     = "5"
+  value     = data.talos_cluster_kubeconfig.this.kubeconfig_raw
   sensitive = true
 }
 

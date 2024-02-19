@@ -34,14 +34,6 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
     dedicated = var.memory
   }
 
-  // initialization {
-  //   ip_config {
-  //     ipv4 {
-  //       address = format("%s/24", unifi_user.this.fixed_ip)
-  //     }
-  //   }
-  // }
-
   network_device {
     bridge      = var.bridge_network_device
     mac_address = unifi_user.this.mac
