@@ -13,14 +13,16 @@ machine:
       rotate-server-certificates: true
   network:
     hostname: ${hostname}
+    nameservers:
+      - 192.168.8.1
     interfaces:
-      # TODO: I need to manually set this for each node, which obviously doesn't work.
-      # Figure out wtf to do about this.
-      - interface: enx527f2b3a41c
-        # - deviceSelector:
-        #     driver: virtio
+      - interface: ${interface}
         addresses:
           - ${nodes_subnet}
+          - ${ipv4_address}/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.8.1
         vip:
           ip: ${talos_virtual_ip}
     # NOTE: This tells any control plane nodes that intend to communicate with the control plane

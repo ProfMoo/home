@@ -9,7 +9,7 @@ variable "kubernetes_cluster_name" {
   description = "Kubernetes cluster name you wish for Talos to use"
 }
 
-variable "worker_nodes" {
+variable "control_plane" {
   type = map(object({
     id                    = string
     name                  = string
@@ -40,7 +40,7 @@ variable "worker_nodes" {
   }))
 }
 
-variable "control_plane" {
+variable "worker_nodes" {
   type = map(object({
     id                    = string
     name                  = string
