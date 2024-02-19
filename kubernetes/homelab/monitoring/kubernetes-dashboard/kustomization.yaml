@@ -6,11 +6,11 @@ metadata:
   name: kubernetes-dashboard
   namespace: flux-system
 spec:
-  path: ./kubernetes/clusters/homelab/monitoring/kubernetes-dashboard/app
+  path: ./kubernetes/homelab/monitoring/kubernetes-dashboard/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: profmoo-home
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease

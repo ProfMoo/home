@@ -58,15 +58,6 @@ There are some Kubernetes configurations, such as the `kube-proxy` configuration
 
 1. Enable Talos logs to be sent to a logging endpoint, similar to [this example](https://github.com/buroa/k8s-gitops/blob/860a6b47e39ae0a3c7b91c0ab9ed2294433913fa/talos/talconfig.yaml#L363).
 
-## Rebuild Cluster
-
-As I'm beginning to get a handle on what this cluster should look like, I want to pause and reset the cluster before putting any of my important applications inside of it. This list is the stuff that should be taken care of before important apps live on it:
-
-1. [x] Changing the VLAN so that Kubernetes is inside 192.168.8.x instead of the same 192.168.1.x as the rest of my home network.
-2. [x] Tearing out Flanel for Cilium.
-3. [] Fixing the structure of the `kubernetes` folder to make more sense in general.
-4. [] Change name of the git repo from `flux-system` to describe the git repo.
-
 ## Notes
 
 1. I attempted for quite a while to avoid tedious manual declarations of IP addresses for each Kubernetes node. I found some level of success assining MAC addresses to the VMs, reading the DHCP-assigned Ipv4 addresses from the Unifi Router, then using that in the rest of the progress. But ultimately it was unsuccessful. The Unifi Router would begin to get confused with the introduction of virtual IPs, such as the Talos Virtual IP, and begin to return the Virtual IP when I needed the direct node IP. I had to scrap this idea unfortunately. Now we must assign each node an IP address and MAC address in `main.tf` manually.

@@ -1,3 +1,6 @@
+# NOTE: It's critical to create the reservations in the DHCP server before creating the VMs
+# or else risk the VMs getting assigned a different IP address than the one we intend, which
+# would make it impossible to access via Terraform (without asking the DHCP server for the IP).
 resource "unifi_user" "this" {
   mac  = var.mac_address
   name = var.name
@@ -9,8 +12,8 @@ resource "unifi_user" "this" {
 
 resource "proxmox_virtual_environment_vm" "talos_node" {
   depends_on = [
-    // NOTE: We need to wait for this assignment so that the VM doesn't start up and get
-    // assigned an address via DHCP before the fixed IP is assigned to the MAC by the DHCP server.
+    # NOTE: We need to wait for this assignment so that the VM doesn't start up and get
+    # assigned an address via DHCP before the fixed IP is assigned to the MAC by the DHCP server.
     unifi_user.this,
   ]
 

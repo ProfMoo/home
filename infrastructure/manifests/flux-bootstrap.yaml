@@ -3,7 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
-  name: flux-system
+  name: profmoo-home
   namespace: flux-system
 spec:
   interval: 1m0s
@@ -21,8 +21,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./kubernetes/clusters/homelab
+  path: ./kubernetes/homelab
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: profmoo-home
