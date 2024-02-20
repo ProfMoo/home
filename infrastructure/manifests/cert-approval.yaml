@@ -94,9 +94,12 @@ spec:
             - name: BYPASS_HOSTNAME_CHECK
               value: "true"
       tolerations:
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/master
-          operator: Equal
-        - effect: NoSchedule
-          key: node-role.kubernetes.io/control-plane
-          operator: Equal
+        # Deploy to master nodes
+        - key: node-role.kubernetes.io/control-plane
+          effect: NoSchedule
+        - key: node.cloudprovider.kubernetes.io/uninitialized
+          effect: NoSchedule
+        - key: "node.cloudprovider.kubernetes.io/uninitialized"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
