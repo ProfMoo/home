@@ -25,12 +25,6 @@ machine:
             gateway: ${subnet_gateway}
         vip:
           ip: ${talos_virtual_ip}
-    # # NOTE: This tells any control plane nodes that intend to communicate with the control plane
-    # # via the virtual IP to use localhost instead.
-    # extraHostEntries:
-    #   - ip: 127.0.0.1
-    #     aliases:
-    #       - ${talos_virtual_ip}
   features:
     apidCheckExtKeyUsage: true
     kubePrism:
