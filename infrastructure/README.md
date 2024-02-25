@@ -20,20 +20,11 @@ This directory houses the code that transforms raw bare-metal machines into func
 
 1. Populate `main.tf` as desired.
 2. Run the desired Terraform commands (i.e. `terraform plan`, `terraform apply`).
-3. Once the Kubernetes cluster is successfully applied, run this command to get the necessary configs:
+3. Once the Kubernetes cluster is successfully applied, run this command to get the necessary configs loaded into your shell:
 
     ```bash
-    source get_configs
+    ./get_configs
     ```
-
-## Gotchas
-
-1. I currently use a forked version of the Unifi Terraform provider which fixes a missing IP bug. PR is [here](https://github.com/paultyng/terraform-provider-unifi/pull/430).
-2. For some reason the certs aren't correct on the initial cluster installation. Commands such as `kubectl logs` don't work as a result (but the cluster still functions as normal). To fix this, I needed to run the commands found in [this GitHub comment](https://github.com/kubernetes/kubeadm/issues/591#issuecomment-1257061416).
-
-I need to run the approval command for each new node in the cluster or else I get some weird warnings, can't view logs, the status of control-plane component is unknown, and more. This problem could probably be debugged and automated.
-
-UPDATE: Found the explanation and fix via [this project](https://github.com/postfinance/kubelet-csr-approver).
 
 ## Operations
 
