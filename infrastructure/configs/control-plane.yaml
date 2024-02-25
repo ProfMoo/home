@@ -1,7 +1,7 @@
 machine:
   nodeLabels:
-    kubernetes.io/role: ${node_type}
-    kubernetes.io/zone: ${proxmox_node}
+    drmoo.io/role: ${node_type}
+    drmoo.io/zone: ${proxmox_node}
   certSANs:
     - ${talos_virtual_ip}
     - ${ipv4_address}/24
