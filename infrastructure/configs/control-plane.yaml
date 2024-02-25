@@ -53,6 +53,7 @@ cluster:
       urls:
         - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/cilium.yaml
   proxy:
+    # Using Cilium as the proxy, so disabling kube-proxy
     disabled: true
   etcd:
     extraArgs:
