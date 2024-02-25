@@ -12,12 +12,12 @@ machine:
       rotate-server-certificates: true
   network:
     hostname: ${hostname}
-    # NOTE: This tells any worker nodes who need to communicate with the control plane
-    # (which would use the Kube API DNS records to instead use the Talos virtual IP.
-    extraHostEntries:
-      - ip: ${talos_virtual_ip}
-        aliases:
-          - kubernetes.default.svc.cluster.local
+    # # NOTE: This tells any worker nodes who need to communicate with the control plane
+    # # (which would use the Kube API DNS records to instead use the Talos virtual IP.
+    # extraHostEntries:
+    #   - ip: ${talos_virtual_ip}
+    #     aliases:
+    #       - kubernetes.default.svc.cluster.local
   features:
     rbac: true
     stableHostname: true
