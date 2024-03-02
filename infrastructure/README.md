@@ -26,6 +26,8 @@ This directory houses the code that transforms raw bare-metal machines into func
     ./get_configs
     ```
 
+4. Once the cluster is up and running, make sure to create the necessary Flux secret so that Flux can access the Git repository. Docs [here](https://fluxcd.io/flux/components/source/gitrepositories/#ready-gitrepository).
+
 ## Operations
 
 ### To add new nodes with new disks
