@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - ./repositories
   - ./podmonitor.yaml
-  - ./weave-gitops/kustomization.yaml
+#  - ./weave-gitops/kustomization.yaml
