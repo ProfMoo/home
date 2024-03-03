@@ -1,22 +1,19 @@
 ---
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: local-path-provisioner
-  namespace: storage
 spec:
   interval: 30m
-  timeout: 30m
   chart:
     spec:
-      # This is the chart location within the local-path-provisioner open source repository.
-      chart: ./deploy/chart/local-path-provisioner
+      chart: democratic-csi
+      version: 0.14.5
       sourceRef:
-        kind: GitRepository
-        name: local-path-provisioner
+        name: democratic-csi
+        kind: HelmRepository
         namespace: flux-system
-  maxHistory: 2
   install:
     remediation:
       retries: 3
@@ -27,48 +24,54 @@ spec:
   uninstall:
     keepHistory: false
   values:
-    image:
-      repository: docker.io/rancher/local-path-provisioner
-      tag: v0.0.26@sha256:aee53cadc62bd023911e7f077877d047c5b3c269f9bba25724d558654f43cea0
-    helperImage:
-      repository: docker.io/library/busybox
-      tag: latest
-    storageClass:
-      defaultClass: false
-    # NOTE: Do not enable Flux variable substitution on this HelmRelease
-    configmap:
-      setup: |-
-        #!/bin/sh
-        while getopts "m:s:p:" opt
-        do
-            case $opt in
-                p)
-                absolutePath=$OPTARG
-                ;;
-                s)
-                sizeInBytes=$OPTARG
-                ;;
-                m)
-                volMode=$OPTARG
-                ;;
-            esac
-        done
-        mkdir -m 0777 -p ${absolutePath}
-        chmod 701 ${absolutePath}/..
-      teardown: |-
-        #!/bin/sh
-        while getopts "m:s:p:" opt
-        do
-            case $opt in
-                p)
-                absolutePath=$OPTARG
-                ;;
-                s)
-                sizeInBytes=$OPTARG
-                ;;
-                m)
-                volMode=$OPTARG
-                ;;
-            esac
-        done
-        rm -rf ${absolutePath}
+    fullnameOverride: local-path-provisioner
+    csiDriver:
+      name: "org.democratic-csi.local-hostpath"
+      storageCapacity: true
+      attachRequired: false
+      fsGroupPolicy: File
+    storageClasses:
+      - name: local-hostpath
+        defaultClass: false
+        reclaimPolicy: Delete
+        volumeBindingMode: WaitForFirstConsumer
+        allowVolumeExpansion: true
+    controller:
+      strategy: node
+      externalProvisioner:
+        extraArgs:
+          - --leader-election=false
+          - --node-deployment=true
+          - --node-deployment-immediate-binding=false
+          - --feature-gates=Topology=true
+          - --strict-topology=true
+          - --enable-capacity=true
+          - --capacity-ownerref-level=1
+      externalResizer:
+        enabled: false
+      externalAttacher:
+        enabled: false
+      externalSnapshotter:
+        enabled: false
+    node:
+      driver:
+        extraVolumeMounts:
+          - name: local-storage
+            mountPath: /var/lib/csi-local-hostpath
+            mountPropagation: Bidirectional
+      extraVolumes:
+        - name: local-storage
+          hostPath:
+            path: /var/lib/csi-local-hostpath
+            type: DirectoryOrCreate
+    driver:
+      config:
+        driver: local-hostpath
+        local-hostpath:
+          # NOTE: Generally shareBasePath and controllerBasePath should be the same for this driver (i.e. local-path)
+          # NOTE: This path should be mounted into the csi-driver container above in the node section
+          shareBasePath: "/var/lib/csi-local-hostpath"
+          controllerBasePath: "/var/lib/csi-local-hostpath"
+          dirPermissionsMode: "0777"
+          dirPermissionsUser: 0
+          dirPermissionsGroup: 0
