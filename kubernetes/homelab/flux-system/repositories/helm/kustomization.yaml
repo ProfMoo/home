@@ -6,4 +6,5 @@ resources:
   - ./grafana.yaml
   - ./kubernetes-dashboard.yaml
   - ./prometheus-community.yaml
+  - ./democratic-csi.yaml
   - ./weaveworks.yaml
