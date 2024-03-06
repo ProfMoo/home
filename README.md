@@ -1,40 +1,31 @@
 # Moos Pasture
 
-This repository contains the configuration and code necessary to deploy and maintain my home stack. This currently includes mostly music configuration (ex: beets, qBittorrent, etc), but also includes various game servers and whatever other processes I want to run at home.
+This is a mono repository for my homelab Kubernetes cluster. I strictly adhere to Infrastructure as Code (IaC) and GitOps practices using tools like Kubernetes, Terraform, Talos, Flux, and soon Renovate, and GitHub Actions.
+
+This started as a way for me to house my music collection, but has grown into a fully fledged Kubernetes-based homelab with a dedicated server rack.
 
 ## Overview
 
 ![diagram](diagram.drawio.png)
 
-## Requirements
+### Infrastructure
 
-### Prerequisites
+I use [Talos](https://github.com/siderolabs/talos), [Terraform](https://github.com/hashicorp/terraform), and [Proxmox](https://github.com/proxmox) to spin up Kubernetes in a GitOps fashion in [this directory](./infrastructure).
 
-1. Docker installed on your system (I currently using `20.10.14`)
-2. Docker compose installed on your system (I currently using `v2.4.1`)
+Proxmox, a VM-management technology, is used to spin up VMs in the Proxmox cluster. These raw VMs are bootstrapped via Terraform with Talos configuration(s) that create a functional Kubernetes cluster with the initial cluster components (such as Flux) already deployed.
 
-### Quick Start
+### Kubernetes
 
-1. Ensure you have a `.env` file with your RED_API_KEY in the top level of this repository.
-2. Create a configuration file for your needs using this format:
-
-    ```yaml
-    TORRENT_DIR: mydir/torrent-files
-    DOWNLOAD_DIR: mydir/pre-process
-    MUSIC_LIBRARY_DIR: mydir/post-process
-    ```
-
-3. Run
-
-    ```bash
-    # local-truenas is the name of the configuration file in the `config` directory
-    ./up.sh local-truenas
-    ```
+I configure Kubernetes with GitOps via [Flux](https://github.com/fluxcd/flux2). The Flux controllers scans the [kubernetes](./kubernetes/) directory for `kustomization` files to apply to the cluster.
 
 ## Inspirations
 
-<https://github.com/FreekingDean/homelab>
+The [home-operations](https://discord.gg/home-operations) Discord group has been a huge inspiration for this repository, namely these repos:
 
-<https://github.com/onedr0p/home-ops>
+* <https://github.com/FreekingDean/homelab>
+* <https://github.com/onedr0p/home-ops>
 
-<https://github.com/zimmertr/TJs-Kubernetes-Service>
+One major change from the typical home operations Discord setup is my desire to setup the Kuberntes clusters in VMs. For those repositories, I drew great inspiration from these repos:
+
+* <https://github.com/zimmertr/TJs-Kubernetes-Service>
+* <https://github.com/kubebn/talos-proxmox-kaas>
