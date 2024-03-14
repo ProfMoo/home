@@ -2,7 +2,7 @@
 
 ## Sops
 
-I use sops to manage secrets in a gitops way. Good tutorial on sops [here](https://blog.gitguardian.com/a-comprehensive-guide-to-sops/).
+I use [`sops`](https://github.com/getsops/sops) to manage secrets in a GitOps way. Good tutorial on sops [here](https://blog.gitguardian.com/a-comprehensive-guide-to-sops/).
 
 ## Storage
 
