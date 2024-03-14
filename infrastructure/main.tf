@@ -112,7 +112,7 @@ module "cluster" {
       tags                  = ["worker-node", "kubernetes"]
       cpu_cores             = 10
       memory                = 32768 # 32GB
-      disk_size             = "50"
+      disk_size             = "100"
       datastore             = "local-lvm"
       vlan_id               = "2"
       bridge_network_device = "vmbr0"
@@ -141,8 +141,8 @@ module "cluster" {
       tags                  = ["worker-node", "kubernetes"]
       cpu_cores             = 10
       memory                = 32768 # 32GB
-      disk_size             = "50"
-      datastore             = "local-lvm"
+      disk_size             = "100"
+      datastore             = "disk1"
       vlan_id               = "2"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
@@ -170,8 +170,8 @@ module "cluster" {
       tags                  = ["worker-node", "kubernetes"]
       cpu_cores             = 10
       memory                = 32768 # 32GB
-      disk_size             = "50"
-      datastore             = "local-lvm"
+      disk_size             = "100"
+      datastore             = "disk2"
       vlan_id               = "2"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
