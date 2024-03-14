@@ -8,3 +8,4 @@ resources:
   - ./prometheus-community.yaml
   - ./democratic-csi.yaml
   - ./weaveworks.yaml
+  - ./kube-logging.yaml
