@@ -7,8 +7,8 @@ services:
       # WEB UI port
       - 8080:8080
       # Incoming connection ports from other torrent clietns
-      - 50105:50105
-      - 50105:50105/udp
+      - 50106:50106
+      - 50106:50106/udp
     environment:
       # NOTE: RED_API_KEY and OPS_SESSION_COOKIE are populated from a .env file
       RED_API_KEY: ${RED_API_KEY}
