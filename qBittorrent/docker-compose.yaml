@@ -5,7 +5,7 @@ services:
     container_name: qbittorrent
     ports:
       # WEB UI port
-      - 8080:8080
+      - 8085:8085
       # Incoming connection ports from other torrent clietns
       - 50106:50106
       - 50106:50106/udp
@@ -18,7 +18,7 @@ services:
       PUID: 0
       PGID: 0
       TZ: Etc/UTC
-      WEBUI_PORT: 8080
+      WEBUI_PORT: 8085
     volumes:
       # All the files on disk that qBittorrent uses to function. Includes configuration, cache, logs, etc.
       - ./config:/config
