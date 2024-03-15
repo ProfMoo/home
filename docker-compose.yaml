@@ -102,25 +102,24 @@ services:
       - qbittorrent
       - prowlarr
       - portainer
-  readarr:
-    container_name: readarr
-    image: ghcr.io/hotio/readarr:nightly-0.3.11.2319
-    ports:
-      - "8787:8787"
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - UMASK=002
-      - TZ=Etc/UTC
-    volumes:
-      - ${CONTAINER_VOLUME_DIR}/readarr:/config
-      - ${DATA_DIR}:/data
-    depends_on:
-      - qbittorrent
-      - prowlarr
-      - portainer
+  # readarr:
+  #   container_name: readarr
+  #   image: ghcr.io/hotio/readarr:nightly-0.3.11.2319
+  #   ports:
+  #     - "8787:8787"
+  #   environment:
+  #     - PUID=1000
+  #     - PGID=1000
+  #     - UMASK=002
+  #     - TZ=Etc/UTC
+  #   volumes:
+  #     - ${CONTAINER_VOLUME_DIR}/readarr:/config
+  #     - ${DATA_DIR}:/data
+  #   depends_on:
+  #     - qbittorrent
+  #     - prowlarr
+  #     - portainer
   # minecraft:
   #   extends:
   #     file: minecraft-server-3/docker-compose.yaml
   #     service: minecraft-server-3
-
