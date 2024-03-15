@@ -19,7 +19,7 @@ else
 fi
 
 if docker-compose build; then
-    docker-compose up --remove-orphans
+    docker-compose down --remove-orphans
 else
     echo "Docker compose build failed"
 fi
