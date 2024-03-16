@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-gui
+spec:
+  selector:
+    app.kubernetes.io/name: grafana
+  ports:
+    - protocol: TCP
+      name: gui
+      port: 3000
+      targetPort: 3000
+      nodePort: 30087
+  type: NodePort

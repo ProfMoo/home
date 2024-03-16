@@ -26,13 +26,11 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  # NOTE: Example here: https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/values.yaml
   values:
-    nameOverride: example
-
-    # given we use `nameOverride: example` if testReceiver is enabled we can send http metrics to http://example-test-receiver:8080
-    testReceiver:
-      enabled: true
-
+    monitoring:
+      serviceMonitor:
+        enabled: true
     logging:
       enabled: true
       clusterFlows:
@@ -40,17 +38,27 @@ spec:
           spec:
             match:
               - select: {}
-            globalOutputRefs: ["http"]
+            globalOutputRefs: ["loki"]
       clusterOutputs:
-        - name: http
+        # NOTE: This name needs to match the globalOutputRefs in the clusterFlows
+        - name: loki
           spec:
-            http:
-              endpoint: http://example-test-receiver:8080
-              content_type: application/json
+            loki:
+              url: http://loki:3100
               buffer:
-                type: memory
-                timekey: 1s
-                timekey_wait: 1s
+                timekey: 1m
+                timekey_wait: 30s
+                timekey_use_utc: true
+
+      # NOTE: Docs are here: https://kube-logging.dev/docs/configuration/extensions/kubernetes-event-tailer/
+      eventTailer:
+        name: sample
+        pvc:
+          accessModes:
+            - ReadWriteOnce
+          volumeMode: Filesystem
+        storage: 2Gi
+        storageClassName: standard
       fluentd:
         bufferStorageVolume:
           pvc:
