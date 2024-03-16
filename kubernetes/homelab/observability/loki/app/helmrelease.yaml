@@ -28,6 +28,7 @@ spec:
       namespace: storage
   values:
     loki:
+      auth_enabled: false
       commonConfig:
         replication_factor: 1
       storage:
@@ -48,3 +49,7 @@ spec:
           installOperator: false
       lokiCanary:
         enabled: false
+    minio:
+      enabled: false
+    test:
+      enabled: false
