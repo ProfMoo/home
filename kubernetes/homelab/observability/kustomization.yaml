@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./logging-operator/kustomization.yaml
-#  - ./loki/kustomization.yaml
+  - ./loki/kustomization.yaml
+  - ./grafana/kustomization.yaml
 #  - ./kubernetes-dashboard/kustomization.yaml
-#  - ./grafana/kustomization.yaml
+
