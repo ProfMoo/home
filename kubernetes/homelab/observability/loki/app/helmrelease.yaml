@@ -26,6 +26,8 @@ spec:
   dependsOn:
     - name: local-path-provisioner
       namespace: storage
+    - name: kube-prometheus-stack
+      namespace: observability
   values:
     loki:
       auth_enabled: false
