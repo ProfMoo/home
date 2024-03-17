@@ -4,6 +4,8 @@
         "freenas",
         "hostpath",
         "hyperconverged",
-        "iscsi"
+        "iscsi",
+        "kustomization",
+        "kustomize"
     ]
 }
