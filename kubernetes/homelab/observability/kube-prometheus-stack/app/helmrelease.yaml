@@ -38,6 +38,7 @@ spec:
       name: kube-state-metrics-configmap
       valuesKey: kube-state-metrics.yaml
   values:
+    # NOTE: Docs here: https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
       enabled: false
@@ -104,12 +105,13 @@ spec:
         replicas: 1
         retention: 2d
         retentionSize: 50GB
-        enableAdminAPI: true
-        walCompression: true
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
+        scrapeConfigSelectorNilUsesHelmValues: false
+        enableAdminAPI: true
+        walCompression: true
         enableFeatures:
           - auto-gomaxprocs
           - memory-snapshot-on-shutdown
