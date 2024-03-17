@@ -1,11 +1,14 @@
 {
     "cSpell.words": [
         "drmoo",
+        "fluxcd",
         "freenas",
+        "homelab",
         "hostpath",
         "hyperconverged",
         "iscsi",
         "kustomization",
-        "kustomize"
+        "kustomize",
+        "profmoo"
     ]
 }
