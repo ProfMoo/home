@@ -16,7 +16,7 @@ spec:
         kind: HelmRepository
         name: prometheus-community
         namespace: flux-system
-  maxHistory: 3
+  maxHistory: 5
   install:
     crds: CreateReplace
     timeout: 30m
@@ -89,12 +89,12 @@ spec:
       enabled: false
     coreDns:
       enabled: true
-    # NOTE: This Github comment explains the purpose of this webhook:
-    # https://github.com/prometheus-community/helm-charts/blob/0368ef87ac4c6ec572ae5bb31dcff3f7c01281e5/charts/kube-prometheus-stack/values.yaml#L2075-L2076
-    # It seems useful, but it continually causing the deployment issues due to an unauthorized error. Will revisit later.
     prometheusOperator:
       tls:
         enabled: false
+      # NOTE: This Github comment explains the purpose of this webhook:
+      # https://github.com/prometheus-community/helm-charts/blob/0368ef87ac4c6ec572ae5bb31dcff3f7c01281e5/charts/kube-prometheus-stack/values.yaml#L2075-L2076
+      # It seems useful, but it's continually causing the deployment issues due to an unauthorized error. Will revisit later.
       admissionWebhooks:
         patch:
           enabled: false
