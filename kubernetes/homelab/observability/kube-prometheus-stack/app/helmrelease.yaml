@@ -98,6 +98,8 @@ spec:
       admissionWebhooks:
         patch:
           enabled: false
+      patch:
+        enabled: true
     prometheus:
       ingress:
         enabled: false
