@@ -6,7 +6,7 @@ metadata:
   name: kube-prometheus-stack
   namespace: flux-system
 spec:
-  path: ./kubernetes/homelab/monitoring/kube-prometheus-stack/app
+  path: ./kubernetes/homelab/observability/kube-prometheus-stack/app
   prune: true
   sourceRef:
     kind: GitRepository
