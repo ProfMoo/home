@@ -91,4 +91,4 @@ cluster:
       # If the cluster startup fails for any reason, it can be difficult to debug without viewing logs.
       - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/cert-approval.yaml
       - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/flux-initialization.yaml
-      - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/flux-bootstrap.yaml
+      - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/flux-repo-bootstrap.yaml
