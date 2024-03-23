@@ -10,6 +10,7 @@ spec:
   ref:
     branch: master
   secretRef:
+    # This secret needs to already exist in the cluster for everything to wire up correctly.
     name: home-secret
   url: ssh://git@github.com/ProfMoo/home
 ---
