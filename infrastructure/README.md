@@ -67,12 +67,10 @@ I generated the Flux YAML via [this chart](https://artifacthub.io/packages/helm/
 
 ```bash
 helm template flux \
-    fluxcd-community/flux2 \
+    flux2/flux2 \
     --version 2.12.4 \
     --namespace flux-system
 ```
-
-I sourced this command from the [Talos installation guide](https://www.talos.dev/v1.6/kubernetes-guides/network/deploying-cilium/#method-1-helm-install) and [this Proxmox-based GitHub tutorial](https://github.com/kubebn/talos-proxmox-kaas).
 
 ### Cilium Installation
 
