@@ -72,6 +72,8 @@ helm template flux \
     --namespace flux-system
 ```
 
+The values available can be found [here](https://github.com/fluxcd-community/helm-charts/tree/main/charts/flux2).
+
 ### Cilium Installation
 
 I generated the Cilium YAML via this command:

@@ -26,7 +26,6 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-
   values:
     # NOTE: Values here: https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
     replicas: 1
@@ -87,6 +86,10 @@ spec:
         node-exporter-full:
           gnetId: 1860
           revision: 36
+          datasource: Prometheus
+        observability:
+          gnetId: 7752
+          revision: 5
           datasource: Prometheus
       flux:
         flux-cluster:
