@@ -29,7 +29,7 @@ spec:
     - name: kube-prometheus-stack
       namespace: observability
   values:
-    # NOTE: Values here: https://github.com/grafana/loki/tree/main/production/helm/loki
+    # NOTE: Values here: https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
     loki:
       auth_enabled: false
       commonConfig:
@@ -49,7 +49,7 @@ spec:
         metricsInstance:
           enabled: false
       selfMonitoring:
-        enabled: true
+        enabled: false
         grafanaAgent:
           installOperator: false
       lokiCanary:
