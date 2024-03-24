@@ -36,11 +36,16 @@ spec:
       clusterFlows:
         - name: all
           spec:
+            filters:
+              - tag_normaliser: {}
+              - parser:
+                  remove_key_name_field: true
+                  reserve_data: true
             match:
               - select: {}
             globalOutputRefs: ["loki"]
       clusterOutputs:
-        # NOTE: This name needs to match the globalOutputRefs in the clusterFlows
+        # NOTE: This name needs to match the globalOutputRefs in the clusterFlows above
         - name: loki
           spec:
             loki:
