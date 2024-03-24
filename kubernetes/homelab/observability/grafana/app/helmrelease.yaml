@@ -26,9 +26,7 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: local-path-provisioner
-      namespace: storage
+
   values:
     # NOTE: Values here: https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
     replicas: 1
