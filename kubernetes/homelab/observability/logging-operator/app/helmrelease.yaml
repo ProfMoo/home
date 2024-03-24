@@ -45,6 +45,7 @@ spec:
           spec:
             loki:
               url: http://loki:3100
+              configure_kubernetes_labels: true
               buffer:
                 timekey: 1m
                 timekey_wait: 30s
