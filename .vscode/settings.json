@@ -1,14 +1,24 @@
 {
     "cSpell.words": [
+        "apid",
+        "coredns",
+        "dashboardproviders",
+        "datasources",
         "drmoo",
         "fluxcd",
         "freenas",
+        "gitops",
+        "gnet",
         "homelab",
         "hostpath",
         "hyperconverged",
         "iscsi",
+        "kubelet",
         "kustomization",
         "kustomize",
-        "profmoo"
+        "minio",
+        "podmonitor",
+        "profmoo",
+        "siderolabs"
     ]
 }

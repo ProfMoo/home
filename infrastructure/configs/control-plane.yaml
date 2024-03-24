@@ -57,7 +57,7 @@ cluster:
       listen-metrics-urls: http://0.0.0.0:2381
   controllerManager:
     extraArgs:
-      # NOTE: Kubernetes manifests controlled by Talos require a special application process compared to most machineconfig changes.
+      # NOTE: Kubernetes manifests controlled by Talos require a special application process compared to most machine-config changes.
       # Source: https://github.com/siderolabs/talos/discussions/7835
       bind-address: 0.0.0.0
   scheduler:

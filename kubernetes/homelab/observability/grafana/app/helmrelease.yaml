@@ -88,7 +88,7 @@ spec:
         # Ref: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
         node-exporter-full:
           gnetId: 1860
-          revision: 29
+          revision: 36
           datasource: Prometheus
       flux:
         flux-cluster:
