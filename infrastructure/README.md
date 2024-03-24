@@ -5,7 +5,7 @@ This directory houses the code that transforms raw bare-metal machines into func
 ## Prerequisites
 
 1. Terraform installed (check [the providers file](./talos/providers.tf) for the specific version requirements)
-2. Install Proxmox VE v8.0+ on a baremetal machine (or more than one).
+2. Install Proxmox VE v8.0+ on a bare-metal machine (or more than one).
 3. Ensure you have a file named `aws-credentials` in the `talos` directory in the format:
 
     ```text
@@ -55,7 +55,7 @@ There are some Kubernetes configurations, such as the `kube-proxy` configuration
 
 ### IP Declaration
 
-I attempted for quite a while to avoid tedious manual declarations of IP addresses for each Kubernetes node. I found some level of success assining MAC addresses to the VMs, reading the DHCP-assigned IPv4 addresses from the Unifi Router, then using that in the rest of the progress. But ultimately it was unsuccessful. The Unifi Router would begin to get confused with the introduction of virtual IPs, such as the Talos Virtual IP, and begin to return the Virtual IP when I needed the direct node IP. I had to scrap this idea unfortunately. Now we must assign each node an IP address and MAC address in `main.tf` manually.
+I attempted for quite a while to avoid tedious manual declarations of IP addresses for each Kubernetes node. I found some level of success assigning MAC addresses to the VMs, reading the DHCP-assigned IPv4 addresses from the Unifi Router, then using that in the rest of the progress. But ultimately it was unsuccessful. The Unifi Router would begin to get confused with the introduction of virtual IPs, such as the Talos Virtual IP, and begin to return the Virtual IP when I needed the direct node IP. I had to scrap this idea unfortunately. Now we must assign each node an IP address and MAC address in `main.tf` manually.
 
 ### Component Installation
 
