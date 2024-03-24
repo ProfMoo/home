@@ -58,7 +58,7 @@ spec:
 
       # NOTE: Docs are here: https://kube-logging.dev/docs/configuration/extensions/kubernetes-event-tailer/
       eventTailer:
-        name: sample
+        name: event-tailer
         pvc:
           accessModes:
             - ReadWriteOnce
