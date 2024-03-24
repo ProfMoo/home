@@ -63,8 +63,8 @@ spec:
           accessModes:
             - ReadWriteOnce
           volumeMode: Filesystem
-        storage: 2Gi
-        storageClassName: local-hostpath
+          storage: 2Gi
+          storageClassName: local-hostpath
       fluentbit:
         metrics:
           serviceMonitor: true
