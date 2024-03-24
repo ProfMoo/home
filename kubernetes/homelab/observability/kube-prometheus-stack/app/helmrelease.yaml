@@ -107,6 +107,8 @@ spec:
         replicas: 1
         retention: 2d
         retentionSize: 50GB
+        externalLabels:
+          cluster: homelab
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
