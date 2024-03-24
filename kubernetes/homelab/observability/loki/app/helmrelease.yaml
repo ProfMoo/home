@@ -29,6 +29,7 @@ spec:
     - name: kube-prometheus-stack
       namespace: observability
   values:
+    # NOTE: Values here: https://github.com/grafana/loki/tree/main/production/helm/loki
     loki:
       auth_enabled: false
       commonConfig:
@@ -37,6 +38,8 @@ spec:
         type: "filesystem"
     singleBinary:
       replicas: 1
+      persistence:
+        storageClass: local-hostpath
     monitoring:
       dashboards:
         annotations:
