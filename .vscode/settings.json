@@ -5,6 +5,8 @@
         "dashboardproviders",
         "datasources",
         "drmoo",
+        "fluentbit",
+        "fluentd",
         "fluxcd",
         "freenas",
         "gitops",
@@ -17,8 +19,10 @@
         "kustomization",
         "kustomize",
         "minio",
+        "normaliser",
         "podmonitor",
         "profmoo",
-        "siderolabs"
+        "siderolabs",
+        "timekey"
     ]
 }

@@ -65,7 +65,12 @@ spec:
           volumeMode: Filesystem
         storage: 2Gi
         storageClassName: standard
+      fluentbit:
+        metrics:
+          serviceMonitor: true
       fluentd:
+        metrics:
+          serviceMonitor: true
         bufferStorageVolume:
           pvc:
             spec:
