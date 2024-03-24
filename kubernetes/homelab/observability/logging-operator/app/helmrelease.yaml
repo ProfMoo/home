@@ -33,6 +33,7 @@ spec:
         enabled: true
     logging:
       enabled: true
+      enableRecreateWorkloadOnImmutableFieldChange: true
       clusterFlows:
         - name: all
           spec:
