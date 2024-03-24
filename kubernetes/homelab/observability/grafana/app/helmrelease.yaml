@@ -30,6 +30,7 @@ spec:
     - name: local-path-provisioner
       namespace: storage
   values:
+    # NOTE: Values here: https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
     replicas: 1
     rbac:
       pspEnabled: false
@@ -66,11 +67,22 @@ spec:
     datasources:
       datasources.yaml:
         apiVersion: 1
+        deleteDatasources:
+          - { name: Loki, orgId: 1 }
+          - { name: Prometheus, orgId: 1 }
         datasources:
           - name: Prometheus
             type: prometheus
             access: proxy
             url: http://kube-prometheus-stack-prometheus:9090
+            isDefault: true
+          - name: Loki
+            type: loki
+            uid: loki
+            access: proxy
+            url: http://loki-gateway.observability.svc.cluster.local
+            jsonData:
+              maxLines: 250
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
