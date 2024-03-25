@@ -49,7 +49,7 @@ spec:
     kubelet:
       enabled: true
       serviceMonitor:
-        https: false
+        https: true
         insecureSkipVerify: true
         metricRelabelings:
           - action: replace
