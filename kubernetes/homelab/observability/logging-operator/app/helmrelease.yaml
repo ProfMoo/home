@@ -47,6 +47,9 @@ spec:
             loki:
               url: http://loki:3100
               configure_kubernetes_labels: true
+              flush_interval: 10s
+              flush_thread_count: 2
+              total_limit_size: 4GB
               buffer:
                 timekey: 1m
                 timekey_wait: 30s
