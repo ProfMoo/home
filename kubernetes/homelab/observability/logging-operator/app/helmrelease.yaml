@@ -45,7 +45,7 @@ spec:
         - name: loki
           spec:
             loki:
-              url: http://loki-headless:3100
+              url: http://loki:3100
               configure_kubernetes_labels: true
               buffer:
                 timekey: 1m
