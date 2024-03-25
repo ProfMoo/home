@@ -53,6 +53,9 @@ spec:
 
         frontend:
           max_outstanding_per_tenant: 4096
+
+        ingester:
+          max_chunk_age: 24h
       commonConfig:
         replication_factor: 1
       storage:

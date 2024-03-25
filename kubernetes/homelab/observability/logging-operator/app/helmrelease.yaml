@@ -48,8 +48,8 @@ spec:
               url: http://loki:3100
               configure_kubernetes_labels: true
               buffer:
-                flush_thread_count: 2
-                total_limit_size: 4GB
+                flush_thread_count: 4
+                total_limit_size: 10GB
                 timekey: 1m
                 timekey_wait: 30s
                 timekey_use_utc: true
@@ -77,7 +77,7 @@ spec:
         metrics:
           serviceMonitor: true
         scaling:
-          replicas: 2
+          replicas: 3
         resources:
           requests:
             cpu: 1

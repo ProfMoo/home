@@ -17,6 +17,8 @@
         "homelab",
         "hostpath",
         "hyperconverged",
+        "ingester",
+        "ipam",
         "iscsi",
         "kubelet",
         "kustomization",
