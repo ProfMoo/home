@@ -67,6 +67,8 @@ spec:
       enabled: true
     kubeApiServer:
       enabled: true
+      tlsConfig:
+        insecureSkipVerify: true
       serviceMonitor:
         metricRelabelings:
           # Drop high cardinality labels
