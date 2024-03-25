@@ -39,6 +39,8 @@ spec:
       valuesKey: kube-state-metrics.yaml
   values:
     # NOTE: Docs here: https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+    crds:
+      enabled: true
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
       enabled: false
@@ -52,10 +54,27 @@ spec:
           - action: replace
             sourceLabels: ["node"]
             targetLabel: instance
+          # Drop high cardinality labels
+          - action: labeldrop
+            regex: (uid)
+          - action: labeldrop
+            regex: (id|name)
+          - action: drop
+            sourceLabels: ["__name__"]
+            regex: (rest_client_request_duration_seconds_bucket|rest_client_request_duration_seconds_sum|rest_client_request_duration_seconds_count)
     kubeStateMetrics:
       enabled: true
     kubeApiServer:
       enabled: true
+      serviceMonitor:
+        metricRelabelings:
+          # Drop high cardinality labels
+          - action: drop
+            sourceLabels: ["__name__"]
+            regex: (apiserver|etcd|rest_client)_request(|_sli|_slo)_duration_seconds_bucket
+          - action: drop
+            sourceLabels: ["__name__"]
+            regex: (apiserver_response_sizes_bucket|apiserver_watch_events_sizes_bucket)
     kubeEtcd:
       enabled: true
       endpoints: &endpoints
@@ -87,6 +106,14 @@ spec:
       enabled: true
     grafana:
       enabled: false
+      forceDeployDashboards: true
+      sidecar:
+        dashboards:
+          annotations:
+            grafana_folder: Prometheus
+          multicluster:
+            etcd:
+              enabled: true
     coreDns:
       enabled: true
     prometheusOperator:
