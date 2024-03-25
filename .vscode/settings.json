@@ -24,6 +24,7 @@
         "kustomization",
         "kustomize",
         "minio",
+        "multicluster",
         "normaliser",
         "podmonitor",
         "profmoo",
