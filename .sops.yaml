@@ -2,7 +2,9 @@
 # NOTE: This file is used for sops creation, not for decryption.
 # When sops creates a new file, it will use the rules defined here.
 creation_rules:
-  - path_regex: kubernetes/.+\.secret(\.sops)?\.ya?ml
+  # These secrets are used by initial bootstrap and should also be decryptable via KMS.
+  # The KMS backup is useful since the age key can be recovered from the KMS key and the `age.bootstrap.sops.yaml` file.
+  - path_regex: kubernetes/.+\.bootstrap(\.sops)?\.ya?ml
     input_type: yaml
     encrypted_regex: ^(data|stringData)$
     key_groups:
@@ -10,6 +12,13 @@ creation_rules:
           - age1jzax78wrm0emunjs6gev7ahxzlzuazd3j6fwql2q532ymnsm8qvqtps9te
         kms:
           - arn: arn:aws:kms:us-east-1:912910253002:key/4e8ebbba-aa59-46c7-9ac7-b38b1bd1ef31
+  # These secrets are decrypted by Flux at deploy time and only need the age key.
+  - path_regex: kubernetes/.+\.secret(\.sops)?\.ya?ml
+    input_type: yaml
+    encrypted_regex: ^(data|stringData)$
+    key_groups:
+      - age:
+          - age1jzax78wrm0emunjs6gev7ahxzlzuazd3j6fwql2q532ymnsm8qvqtps9te
 stores:
   yaml:
     indent: 4
