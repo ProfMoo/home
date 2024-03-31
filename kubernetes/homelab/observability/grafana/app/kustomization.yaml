@@ -6,3 +6,4 @@ namespace: observability
 resources:
   - ./helmrelease.yaml
   - ./nodeport.yaml
+  - ./login.secret.sops.yaml
