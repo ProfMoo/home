@@ -2,7 +2,8 @@
 # NOTE: This file is used for sops creation, not for decryption.
 # When sops creates a new file, it will use the rules defined here.
 creation_rules:
-  # These secrets are used by initial bootstrap and should also be decryptable via KMS.
+  # These secrets are used during the initial bootstrapping phase and
+  # should also be decryptable byo both age and KMS.
   # The KMS backup is useful since the age key can be recovered from the KMS key and the `age.bootstrap.sops.yaml` file.
   - path_regex: kubernetes/.+\.bootstrap(\.sops)?\.ya?ml
     input_type: yaml
