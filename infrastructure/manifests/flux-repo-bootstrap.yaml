@@ -16,7 +16,7 @@ spec:
   ignore: |
     # exclude all
     /*
-    # include flux directories
+    # include Kubernetes flux directories
     !/kubernetes/homelab
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
