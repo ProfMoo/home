@@ -117,9 +117,9 @@ spec:
   valuesFrom:
     - targetPath: adminUser
       kind: Secret
-      name: grafana-secrets
-      valuesKey: admin_password
+      name: grafana-admin-login
+      valuesKey: username
     - targetPath: adminPassword
       kind: Secret
-      name: grafana-secrets
-      valuesKey: user_1_username
+      name: grafana-admin-login
+      valuesKey: password
