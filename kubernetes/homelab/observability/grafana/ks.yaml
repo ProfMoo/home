@@ -18,4 +18,8 @@ spec:
       namespace: observability
   interval: 30m
   retryInterval: 1m
-  timeout: 10m
+  timeout: 5m
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
