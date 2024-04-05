@@ -26,6 +26,15 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  valuesFrom:
+    - targetPath: adminUser
+      kind: Secret
+      name: grafana-admin-login
+      valuesKey: username
+    - targetPath: adminPassword
+      kind: Secret
+      name: grafana-admin-login
+      valuesKey: password
   values:
     # NOTE: Values here: https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
     replicas: 1
@@ -112,12 +121,3 @@ spec:
       enabled: false
     persistence:
       enabled: false
-  valuesFrom:
-    - targetPath: adminUser
-      kind: Secret
-      name: grafana-admin-login
-      valuesKey: username
-    - targetPath: adminPassword
-      kind: Secret
-      name: grafana-admin-login
-      valuesKey: password
