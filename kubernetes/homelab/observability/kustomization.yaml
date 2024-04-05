@@ -8,5 +8,5 @@ resources:
   - ./logging-operator/ks.yaml
   - ./loki/ks.yaml
   - ./grafana/ks.yaml
-#  - ./kubernetes-dashboard/kustomization.yaml
+#  - ./kubernetes-dashboard/ks.yaml
 
