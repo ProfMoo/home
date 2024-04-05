@@ -17,10 +17,6 @@ spec:
           image: prompve/prometheus-pve-exporter
           ports:
             - containerPort: 9221
-          volumeMounts:
-            - name: config-volume
-              mountPath: /etc/prometheus/pve.yml
-              subPath: pve.yml
           resources:
             requests:
               memory: "64Mi"
@@ -43,7 +39,3 @@ spec:
                   key: tokenValue
             - name: PVE_VERIFY_SSL
               value: "false"
-      volumes:
-        - name: config-volume
-          secret:
-            secretName: pve-config
