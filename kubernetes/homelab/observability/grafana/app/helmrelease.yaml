@@ -93,6 +93,9 @@ spec:
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/10347-proxmox-via-prometheus/
         proxmox:
+          # NOTE: This dashboard is raw JSON here because the version available on Grafana.com is broken.
+          # I've manually fixed it in the below JSON.
+          # TODO: Open PR against this repo with fixes: https://github.com/mittelab/proxmox-via-prometheus-dashboard/tree/main
           json: |
             {
               "annotations": {
