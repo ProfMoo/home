@@ -1,0 +1,23 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/podmonitor_v1.json
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: PodMonitor
+metadata:
+  name: proxmox-exporter
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: proxmox-exporter
+  podMetricsEndpoints:
+    - path: /pve
+      params:
+        module: [default]
+        cluster: ["1"]
+        node: ["1"]
+      relabelings:
+        - sourceLabels: [__address__]
+          targetLabel: __param_target
+        - sourceLabels: [__param_target]
+          targetLabel: instance
+        - targetLabel: __address__
+          replacement: 127.0.0.1:9221 # PVE exporter.
