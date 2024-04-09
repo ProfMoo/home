@@ -9,7 +9,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: proxmox-exporter
   podMetricsEndpoints:
-    - path: /pve?target=192.168.1.64
+    - path: /pve
       port: metrics
       params:
         module: [default]
