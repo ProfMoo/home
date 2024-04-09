@@ -17,6 +17,7 @@ spec:
           image: prompve/prometheus-pve-exporter
           ports:
             - containerPort: 9221
+              name: metrics
           resources:
             requests:
               memory: "64Mi"
