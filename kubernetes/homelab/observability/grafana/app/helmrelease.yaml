@@ -75,7 +75,7 @@ spec:
             isDefault: true
           - name: DS_PROMETHEUS
             type: prometheus
-            uid: prometheus
+            uid: DS_PROMETHEUS
             access: proxy
             url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090
           - name: Loki
