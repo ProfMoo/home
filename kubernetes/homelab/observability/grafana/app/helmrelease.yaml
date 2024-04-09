@@ -125,15 +125,11 @@ spec:
               "fiscalYearStartMonth": 0,
               "gnetId": 10347,
               "graphTooltip": 0,
-              "id": 1,
               "links": [],
               "liveNow": false,
               "panels": [
                 {
-                  "datasource": {
-                    "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
-                  },
+                  "datasource": {},
                   "description": "",
                   "fieldConfig": {
                     "defaults": {
@@ -710,10 +706,7 @@ spec:
                   "type": "timeseries"
                 },
                 {
-                  "datasource": {
-                    "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
-                  },
+                  "datasource": {},
                   "description": "",
                   "fieldConfig": {
                     "defaults": {
@@ -787,10 +780,12 @@ spec:
                         "type": "prometheus",
                         "uid": "${DS_PROMETHEUS}"
                       },
+                      "editorMode": "code",
                       "expr": "pve_cpu_usage_ratio{instance=\"$instance\"} / pve_cpu_usage_limit and on(id) pve_node_info",
                       "format": "time_series",
                       "intervalFactor": 1,
                       "legendFormat": "",
+                      "range": true,
                       "refId": "A"
                     }
                   ],
@@ -800,7 +795,7 @@ spec:
                 {
                   "datasource": {
                     "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
+                    "uid": "prometheus"
                   },
                   "fieldConfig": {
                     "defaults": {
@@ -882,7 +877,7 @@ spec:
                 {
                   "datasource": {
                     "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
+                    "uid": "prometheus"
                   },
                   "fieldConfig": {
                     "defaults": {
@@ -1011,7 +1006,7 @@ spec:
                 {
                   "datasource": {
                     "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
+                    "uid": "prometheus"
                   },
                   "description": "",
                   "fieldConfig": {
@@ -1098,7 +1093,7 @@ spec:
                 {
                   "datasource": {
                     "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
+                    "uid": "prometheus"
                   },
                   "description": "",
                   "fieldConfig": {
@@ -1252,7 +1247,7 @@ spec:
                 {
                   "datasource": {
                     "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
+                    "uid": "prometheus"
                   },
                   "fieldConfig": {
                     "defaults": {
@@ -1358,7 +1353,7 @@ spec:
                 {
                   "datasource": {
                     "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
+                    "uid": "prometheus"
                   },
                   "fieldConfig": {
                     "defaults": {
@@ -1450,11 +1445,13 @@ spec:
                         "type": "prometheus",
                         "uid": "${DS_PROMETHEUS}"
                       },
+                      "editorMode": "code",
                       "expr": "(pve_memory_usage_bytes{instance=\"$instance\"} / pve_memory_size_bytes * on(id, instance) group_left(name, type) pve_guest_info) and on(id, instance) pve_up == 1",
                       "format": "time_series",
                       "interval": "",
                       "intervalFactor": 4,
                       "legendFormat": "{{name}} ({{type}})",
+                      "range": true,
                       "refId": "A"
                     }
                   ],
@@ -1464,7 +1461,7 @@ spec:
                 {
                   "datasource": {
                     "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
+                    "uid": "prometheus"
                   },
                   "fieldConfig": {
                     "defaults": {
@@ -1552,7 +1549,7 @@ spec:
                 {
                   "datasource": {
                     "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
+                    "uid": "prometheus"
                   },
                   "description": "",
                   "fieldConfig": {
@@ -1647,7 +1644,7 @@ spec:
                 {
                   "datasource": {
                     "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
+                    "uid": "prometheus"
                   },
                   "fieldConfig": {
                     "defaults": {
@@ -1758,7 +1755,7 @@ spec:
                 {
                   "datasource": {
                     "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
+                    "uid": "prometheus"
                   },
                   "description": "",
                   "fieldConfig": {
@@ -1767,6 +1764,7 @@ spec:
                         "mode": "palette-classic"
                       },
                       "custom": {
+                        "axisBorderShow": false,
                         "axisCenteredZero": false,
                         "axisColorMode": "text",
                         "axisLabel": "",
@@ -1780,6 +1778,7 @@ spec:
                           "tooltip": false,
                           "viz": false
                         },
+                        "insertNulls": false,
                         "lineInterpolation": "linear",
                         "lineWidth": 2,
                         "pointSize": 5,
@@ -1803,7 +1802,8 @@ spec:
                         "mode": "absolute",
                         "steps": [
                           {
-                            "color": "green"
+                            "color": "green",
+                            "value": null
                           },
                           {
                             "color": "red",
@@ -1887,7 +1887,7 @@ spec:
                 {
                   "datasource": {
                     "type": "prometheus",
-                    "uid": "${DS_PROMETHEUS}"
+                    "uid": "prometheus"
                   },
                   "description": "",
                   "fieldConfig": {
@@ -1896,6 +1896,7 @@ spec:
                         "mode": "palette-classic"
                       },
                       "custom": {
+                        "axisBorderShow": false,
                         "axisCenteredZero": false,
                         "axisColorMode": "text",
                         "axisLabel": "",
@@ -1909,6 +1910,7 @@ spec:
                           "tooltip": false,
                           "viz": false
                         },
+                        "insertNulls": false,
                         "lineInterpolation": "linear",
                         "lineWidth": 2,
                         "pointSize": 5,
@@ -1933,7 +1935,8 @@ spec:
                         "mode": "absolute",
                         "steps": [
                           {
-                            "color": "green"
+                            "color": "green",
+                            "value": null
                           },
                           {
                             "color": "red",
@@ -2003,9 +2006,15 @@ spec:
                       "text": "192.168.1.64",
                       "value": "192.168.1.64"
                     },
+                    "datasource": {
+                      "type": "prometheus",
+                      "uid": "prometheus"
+                    },
                     "definition": "label_values(pve_node_info, instance)",
+                    "description": "The underlying PVE node we're querying for information.",
                     "hide": 0,
                     "includeAll": false,
+                    "label": "Instance",
                     "multi": false,
                     "name": "instance",
                     "options": [],
@@ -2056,9 +2065,9 @@ spec:
               "timezone": "",
               "title": "Proxmox via Prometheus",
               "uid": "Dp7Cd57Zza",
-              "version": 1,
+              "version": 2,
               "weekStart": ""
-            }
+            },
       flux:
         flux-cluster:
           url: https://raw.githubusercontent.com/fluxcd/flux2-monitoring-example/main/monitoring/configs/dashboards/cluster.json
