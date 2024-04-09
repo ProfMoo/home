@@ -90,6 +90,7 @@ spec:
           gnetId: 7752
           revision: 5
           datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/10347-proxmox-via-prometheus/
         proxmox:
           gnetId: 10347
           revision: 5

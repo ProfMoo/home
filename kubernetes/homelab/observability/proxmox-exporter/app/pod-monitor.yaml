@@ -16,3 +16,6 @@ spec:
         cluster: ["1"]
         node: ["1"]
         target: ["192.168.1.64"]
+      relabelings:
+        - sourceLabels: [__param_target]
+          targetLabel: instance
