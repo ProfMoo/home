@@ -17,5 +17,7 @@ spec:
         node: ["1"]
         target: ["192.168.1.64"]
       relabelings:
+        # NOTE: This relabeling ensures the 'instance' label is set to the IP of the underlying Proxmox node
+        # that we're querying for information (instead of the default, which would be the exporter IP).
         - sourceLabels: [__param_target]
           targetLabel: instance
