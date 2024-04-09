@@ -10,6 +10,7 @@ spec:
       app.kubernetes.io/name: proxmox-exporter
   podMetricsEndpoints:
     - path: /pve?target=192.168.1.64
+      targetPort: 9221
       params:
         module: [default]
         cluster: ["1"]
@@ -19,5 +20,3 @@ spec:
           targetLabel: __param_target
         - sourceLabels: [__param_target]
           targetLabel: instance
-        - targetLabel: __address__
-          replacement: 127.0.0.1:9221 # PVE exporter.
