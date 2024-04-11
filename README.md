@@ -29,3 +29,14 @@ One major change from the typical home operations Discord setup is my desire to 
 
 * <https://github.com/zimmertr/TJs-Kubernetes-Service>
 * <https://github.com/kubebn/talos-proxmox-kaas>
+
+## TODO
+
+Things to do before I'm ready to start moving apps on the k8s cluster for real:
+
+1. Get Kubernetes node logs sent to Loki. Such as etcd logs, kubelet logs. More info [here](https://www.talos.dev/v1.6/talos-guides/configuration/logging/). Example [here](https://github.com/buroa/k8s-gitops/blob/master/talos/talconfig.yaml).
+2. Fix weird error where only *some* of the API server and kubelet logs are getting scraped.
+3. Remove unnecessary Grafana dashboards
+4. Setup renovate for the Helm chart versions
+5. Setup TrueNAS storage.
+6. Move k8s nodes to the new SSD.
