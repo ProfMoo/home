@@ -106,7 +106,7 @@ spec:
         scheme: https
         insecureSkipVerify: true
     kubeProxy:
-      enabled: true
+      enabled: false
     grafana:
       enabled: false
       forceDeployDashboards: true
