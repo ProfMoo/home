@@ -95,7 +95,7 @@ spec:
       service:
         enabled: true
       serviceMonitor:
-        scheme: https
+        scheme: http
         insecureSkipVerify: true
     kubeScheduler:
       enabled: true
@@ -103,7 +103,7 @@ spec:
       service:
         enabled: true
       serviceMonitor:
-        scheme: https
+        scheme: http
         insecureSkipVerify: true
     kubeProxy:
       enabled: false
