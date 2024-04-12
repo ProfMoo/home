@@ -23,7 +23,7 @@ module "cluster" {
       cpu_cores             = 2
       memory                = 4096
       disk_size             = "50"
-      datastore             = "local-lvm"
+      datastore             = "disk2"
       vlan_id               = "2"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
@@ -52,7 +52,7 @@ module "cluster" {
       cpu_cores             = 2
       memory                = 4096
       disk_size             = "50"
-      datastore             = "local-lvm"
+      datastore             = "disk1"
       vlan_id               = "2"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
@@ -81,7 +81,7 @@ module "cluster" {
       cpu_cores             = 2
       memory                = 4096
       disk_size             = "50"
-      datastore             = "local-lvm"
+      datastore             = "disk3"
       vlan_id               = "2"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
@@ -113,7 +113,7 @@ module "cluster" {
       cpu_cores             = 10
       memory                = 32768 # 32GB
       disk_size             = "100"
-      datastore             = "local-lvm"
+      datastore             = "disk3"
       vlan_id               = "2"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
