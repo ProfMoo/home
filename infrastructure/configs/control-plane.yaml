@@ -3,13 +3,13 @@ machine:
     drmoo.io/role: ${node_type}
     drmoo.io/zone: ${proxmox_node}
   certSANs:
-    - ${talos_virtual_ip}
     - ${ipv4_address}/24
     - "kubernetes.default.svc.cluster.local"
     - 127.0.0.1
+    - ${talos_virtual_ip}
   kubelet:
     defaultRuntimeSeccompProfileEnabled: true
-    disableManifestsDirectory: true
+    disableManifestsDirectory: false
     extraArgs:
       rotate-server-certificates: true
   network:
@@ -47,6 +47,14 @@ cluster:
       name: custom
       urls:
         - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/cilium.yaml
+  apiServer:
+    resources:
+      requests:
+        cpu: 500m
+        memory: 500Mi
+      limits:
+        cpu: 1
+        memory: 1Gi
   proxy:
     # Using Cilium as the proxy, so disabling kube-proxy
     disabled: true
@@ -60,10 +68,24 @@ cluster:
       # NOTE: Kubernetes manifests controlled by Talos require a special application process compared to most machine-config changes.
       # Source: https://github.com/siderolabs/talos/discussions/7835
       bind-address: 0.0.0.0
+    resources:
+      requests:
+        cpu: 500m
+        memory: 500Mi
+      limits:
+        cpu: 1
+        memory: 1Gi
   scheduler:
     extraArgs:
       # NOTE: This enables Prometheus to scrape metrics from the control plane nodes
       bind-address: 0.0.0.0
+    resources:
+      requests:
+        cpu: 500m
+        memory: 500Mi
+      limits:
+        cpu: 1
+        memory: 1Gi
   inlineManifests:
     - name: fluxcd
       contents: |-

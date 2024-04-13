@@ -32,7 +32,8 @@ data "talos_cluster_kubeconfig" "this" {
   # NOTE: This is the control-plane node to retrieve the kubeconfig from.
   # (i.e. this is the node whose kubeconfig we are reading. It is not the node we are reading from)
   node = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
-  # NOTE: Endpoint to use for the talosclient to get the kubeconfig. If not set, the node value will be used
+  # NOTE: Endpoint to use for the talosclient to get the kubeconfig. If not set, the node value will be used.
+  # This is the endpoint that we reach out to to retrieve the kubeconfig.
   endpoint = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
 }
 
