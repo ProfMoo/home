@@ -17,10 +17,10 @@ machine:
     stableHostname: true
     apidCheckExtKeyUsage: true
 cluster:
+  network:
+    podSubnets: ${format("%#v",split(",",pod_subnets))}
+    serviceSubnets: ${format("%#v",split(",",service_subnets))}
   proxy:
     disabled: true
   controlPlane:
     endpoint: https://${talos_virtual_ip}:6443
-  network:
-    podSubnets: ${format("%#v",split(",",pod_subnets))}
-    serviceSubnets: ${format("%#v",split(",",service_subnets))}

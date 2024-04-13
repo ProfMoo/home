@@ -84,27 +84,12 @@ spec:
         - 192.168.8.20
         - 192.168.8.21
         - 192.168.8.22
-      service:
-        enabled: true
-      serviceMonitor:
-        scheme: http
-        insecureSkipVerify: true
     kubeControllerManager:
       enabled: true
       endpoints: *endpoints
-      service:
-        enabled: true
-      serviceMonitor:
-        scheme: http
-        insecureSkipVerify: true
     kubeScheduler:
       enabled: true
       endpoints: *endpoints
-      service:
-        enabled: true
-      serviceMonitor:
-        scheme: http
-        insecureSkipVerify: true
     kubeProxy:
       enabled: false
     grafana:
