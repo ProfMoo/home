@@ -1,4 +1,4 @@
-FROM linuxserver/qbittorrent:4.5.2
+FROM linuxserver/qbittorrent:113
 
 # Install custom fork of gazelle-origin with necessary dependencies
 RUN apk add py3-pip && apk add git && pip install bencoder && pip install git+https://github.com/ProfMoo/gazelle-origin@95be674662f54f489addfbf2fc02a28f42fd5fe9
