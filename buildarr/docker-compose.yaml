@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   buildarr:
-    image: callum027/buildarr:0.6
+    image: callum027/buildarr:0.7
     container_name: buildarr
     restart: always
     volumes:
