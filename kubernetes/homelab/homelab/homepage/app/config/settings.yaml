@@ -3,3 +3,9 @@ title: Moo's Pasture
 logpath: /tmp
 
 target: _self
+
+quicklaunch:
+  searchDescriptions: true
+  hideInternetSearch: true
+  showSearchSuggestions: true
+  hideVisitURL: true
