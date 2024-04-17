@@ -14,12 +14,12 @@
 
 - Torrents:
     - qBittorrent:
-        href: http://host.docker.internal:8080
+        href: http://localhost:8085
         icon: qbittorrent
         description: Torrent downloader (admin:adminadmin)
         widget:
           type: qbittorrent
-          url: http://host.docker.internal:8080
+          url: http://localhost:8085
           username: admin
           password: adminadmin
     - Betanin:
