@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: proxmox-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: proxmox-exporter
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: proxmox-exporter
+    spec:
+      containers:
+        - name: proxmox-exporter
+          image: prompve/prometheus-pve-exporter
+          ports:
+            - containerPort: 9221
+              name: metrics
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          env:
+            - name: PVE_USER
+              value: root@pam
+            - name: PVE_TOKEN_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: proxmox-token
+                  key: tokenName
+            - name: PVE_TOKEN_VALUE
+              valueFrom:
+                secretKeyRef:
+                  name: proxmox-token
+                  key: tokenValue
+            - name: PVE_VERIFY_SSL
+              value: "false"

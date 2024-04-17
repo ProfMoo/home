@@ -16,6 +16,22 @@ Going to have 3 kinds of storage for my k8s clusters:
 
 I might be able to use `democratic-csi` for all 3 of these, using these 3 drivers, respectively: `democratic-csi/local-hostpath`, `democratic-csi/freenas-api-nfs` & `democratic-csi/freenas-api-iscsi`, and `democratic-csi/node-manual`
 
+## Secrets
+
+At the top level of the `homelab` directory is two secrets that must be applied to the cluster for flux to function properly:
+
+* `age.secret.sops.yaml`: The age secret that Flux will use to decrypt secrets checked into the codebase.
+* `github.secret.sops.yaml`: The Github SSH keys and access token necessary for Flux to access this repository on github.com.
+
+These secrets can be decrypted by either an age key (defined in the top-level `.sops.yaml` file) OR a KMS key (ARN also defined in the top-level `.sops.yaml` file). Age is the primary key used to decrypt secrets by Flux at deploy time. KMS key can be used a backup to decrypt and recover the bootstrap secrets if needed.
+
+To deploy these secret during initial bootstrapping:
+
+    ```bash
+    sops --decrypt kubernetes/homelab/age.bootstrap.sops.yaml | kubectl apply --server-side --filename -
+    sops --decrypt kubernetes/homelab/github.bootstrap.sops.yaml | kubectl apply --server-side --filename -
+    ```
+
 ### Notes
 
 In the future, I might choose to go down a more "hyperconverged" route and manage storage directly from k8s (instead of having TrueNAS handle most of this). In that case, I'd need to migrate the `StorageClass` of most of my pods, which would be a big lift. To do that, there is a great article [here](https://gist.github.com/deefdragon/d58a4210622ff64088bd62a5d8a4e8cc).

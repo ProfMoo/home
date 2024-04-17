@@ -1,0 +1,23 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/podmonitor_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: proxmox-exporter
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: proxmox-exporter
+  podMetricsEndpoints:
+    - path: /pve
+      port: metrics
+      params:
+        module: [default]
+        cluster: ["1"]
+        node: ["1"]
+        target: ["192.168.1.64"]
+      relabelings:
+        # NOTE: This relabeling ensures the 'instance' label is set to the IP of the underlying Proxmox node
+        # that we're querying for information (instead of the default, which would be the exporter IP).
+        - sourceLabels: [__param_target]
+          targetLabel: instance

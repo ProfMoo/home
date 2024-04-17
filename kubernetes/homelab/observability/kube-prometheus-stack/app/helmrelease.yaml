@@ -1,0 +1,155 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2beta2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: observability
+spec:
+  interval: 30m
+  timeout: 30m
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: 58.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+  maxHistory: 5
+  install:
+    crds: CreateReplace
+    timeout: 30m
+    remediation:
+      retries: 5
+  upgrade:
+    cleanupOnFail: true
+    crds: CreateReplace
+    timeout: 30m
+    remediation:
+      retries: 5
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: local-path-provisioner
+      namespace: storage
+  valuesFrom:
+    - kind: ConfigMap
+      name: kube-state-metrics-configmap
+      valuesKey: kube-state-metrics.yaml
+  values:
+    # NOTE: Docs here: https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+    crds:
+      enabled: true
+    cleanPrometheusOperatorObjectNames: true
+    alertmanager:
+      enabled: false
+    nodeExporter:
+      enabled: true
+    kubelet:
+      enabled: true
+      serviceMonitor:
+        https: true
+        insecureSkipVerify: true
+        metricRelabelings:
+          - action: replace
+            sourceLabels: ["node"]
+            targetLabel: instance
+          # Drop high cardinality labels
+          - action: labeldrop
+            regex: (uid)
+          - action: labeldrop
+            regex: (id|name)
+          - action: drop
+            sourceLabels: ["__name__"]
+            regex: (rest_client_request_duration_seconds_bucket|rest_client_request_duration_seconds_sum|rest_client_request_duration_seconds_count)
+    kubeStateMetrics:
+      enabled: true
+    kubeApiServer:
+      enabled: true
+      tlsConfig:
+        insecureSkipVerify: true
+      serviceMonitor:
+        metricRelabelings:
+          # Drop high cardinality labels
+          - action: drop
+            sourceLabels: ["__name__"]
+            regex: (apiserver|etcd|rest_client)_request(|_sli|_slo)_duration_seconds_bucket
+          - action: drop
+            sourceLabels: ["__name__"]
+            regex: (apiserver_response_sizes_bucket|apiserver_watch_events_sizes_bucket)
+    kubeEtcd:
+      enabled: true
+      endpoints: &endpoints
+        - 192.168.8.20
+        - 192.168.8.21
+        - 192.168.8.22
+    kubeControllerManager:
+      enabled: true
+      endpoints: *endpoints
+    kubeScheduler:
+      enabled: true
+      endpoints: *endpoints
+    kubeProxy:
+      enabled: false
+    grafana:
+      enabled: false
+      forceDeployDashboards: true
+      sidecar:
+        dashboards:
+          annotations:
+            grafana_folder: Prometheus
+          multicluster:
+            etcd:
+              enabled: true
+    coreDns:
+      enabled: true
+    prometheusOperator:
+      tls:
+        enabled: true
+      # NOTE: This Github comment explains the purpose of this webhook:
+      # https://github.com/prometheus-community/helm-charts/blob/0368ef87ac4c6ec572ae5bb31dcff3f7c01281e5/charts/kube-prometheus-stack/values.yaml#L2075-L2076
+      # It seems useful, but it's continually causing the deployment issues due to an unauthorized error. Will revisit later.
+      admissionWebhooks:
+        patch:
+          enabled: true
+      patch:
+        enabled: true
+    prometheus:
+      ingress:
+        enabled: false
+      prometheusSpec:
+        replicas: 1
+        retention: 2d
+        retentionSize: 50GB
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        scrapeConfigSelectorNilUsesHelmValues: false
+        enableAdminAPI: true
+        walCompression: true
+        enableFeatures:
+          - auto-gomaxprocs
+          - memory-snapshot-on-shutdown
+          - new-service-discovery-manager
+        resources:
+          requests:
+            cpu: 300m
+            memory: 4Gi
+          limits:
+            memory: 8Gi
+        # NOTE: This is needed due to how Kubernetes handles filesystem permissions of hostPath PVCs.
+        # More info: https://github.com/prometheus/prometheus/issues/5976#issuecomment-881910837.
+        # I couldn't get the initContainer volume permission fix to work, so this is the next best thing.
+        securityContext:
+          runAsNonRoot: false
+          runAsUser: 0
+          runAsGroup: 0
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              storageClassName: local-hostpath
+              resources:
+                requests:
+                  storage: 60Gi

@@ -1,5 +1,5 @@
 # To get the token to log into the web UI, run this command:
-# kubectl -n monitoring get secret kubernetes-dashboard -o jsonpath='{.data.token}' | base64 -d
+# kubectl -n observability get secret kubernetes-dashboard -o jsonpath='{.data.token}' | base64 -d
 ---
 apiVersion: v1
 kind: ServiceAccount
