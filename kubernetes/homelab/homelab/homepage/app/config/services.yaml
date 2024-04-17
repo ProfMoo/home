@@ -3,14 +3,14 @@
       href: http://192.168.1.78:8096
       icon: jellyfin
       description: Media server (admin:)
-      widget:
-        type: jellyfin
-        url: http://192.168.1.78:8096
-        key: ac5afcc6811543d9814ec798c924b29c
-    - Feishin:
-      href: http://192.168.1.78:9180
-      icon: mdi-headphones
-      description: Music player
+    #   widget:
+    #     type: jellyfin
+    #     url: http://192.168.1.78:8096
+    #     key: ac5afcc6811543d9814ec798c924b29c
+    # - Feishin:
+    #   href: http://192.168.1.78:9180
+    #   icon: mdi-headphones
+    #   description: Music player
 # - Torrents:
 #     - qBittorrent:
 #       href: http://192.168.1.78:8080
