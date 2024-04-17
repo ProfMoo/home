@@ -1,8 +1,8 @@
 - Media:
-    - Jellyfin:
-      href: http://foobar:8096
-      icon: jellyfin
-      description: Media server (admin:)
+  - Jellyfin:
+    href: http://foobar:8096
+    icon: jellyfin
+    description: Media server (admin:)
     #   widget:
     #     type: jellyfin
     #     url: http://192.168.1.78:8096
