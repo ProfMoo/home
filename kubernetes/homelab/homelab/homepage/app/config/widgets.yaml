@@ -3,11 +3,6 @@
   memory: true
   disk: /
 
-- search:
-  provider: google
-  focus: true
-  target: _self
-
 - datetime:
   text_size: xl
   format:
