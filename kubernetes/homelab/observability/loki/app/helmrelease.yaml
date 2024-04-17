@@ -10,7 +10,7 @@ spec:
   chart:
     spec:
       chart: loki
-      version: 5.43.6
+      version: 5.47.1
       sourceRef:
         kind: HelmRepository
         name: grafana
@@ -24,41 +24,15 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: openebs
-      namespace: openebs-system
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
-    - name: vector-agent
+    - name: local-path-provisioner
+      namespace: storage
+    - name: kube-prometheus-stack
       namespace: observability
-    - name: vector-aggregator
-      namespace: observability
-  valuesFrom:
-    - targetPath: loki.structuredConfig.common.storage.s3.bucketnames
-      kind: ConfigMap
-      name: loki-bucket-v2
-      valuesKey: BUCKET_NAME
-    - targetPath: loki.structuredConfig.common.storage.s3.endpoint
-      kind: ConfigMap
-      name: loki-bucket-v2
-      valuesKey: BUCKET_HOST
-    - targetPath: loki.structuredConfig.common.storage.s3.access_key_id
-      kind: Secret
-      name: loki-bucket-v2
-      valuesKey: AWS_ACCESS_KEY_ID
-    - targetPath: loki.structuredConfig.common.storage.s3.secret_access_key
-      kind: Secret
-      name: loki-bucket-v2
-      valuesKey: AWS_SECRET_ACCESS_KEY
   values:
+    # NOTE: Values here: https://github.com/grafana/loki/blob/main/production/helm/loki/values.yaml
     loki:
       structuredConfig:
         auth_enabled: false
-        server:
-          log_level: info
-          http_listen_port: 3100
-          grpc_listen_port: 9095
-        memberlist:
-          join_members: ["loki-memberlist"]
         limits_config:
           retention_period: 14d
           enforce_metric_name: false
@@ -67,117 +41,35 @@ spec:
           max_cache_freshness_per_query: 10m
           split_queries_by_interval: 1h
           max_query_parallelism: 100
-          ingestion_rate_mb: 50
-          ingestion_burst_size_mb: 1000
-          per_stream_rate_limit: 5MB
-          per_stream_rate_limit_burst: 20MB
+          per_stream_rate_limit: 64M
+          per_stream_rate_limit_burst: 128M
+          ingestion_rate_mb: 64
+          ingestion_burst_size_mb: 128
           shard_streams:
             enabled: true
+
         query_scheduler:
           max_outstanding_requests_per_tenant: 4096
+
         frontend:
           max_outstanding_per_tenant: 4096
-        schema_config:
-          configs:
-            - from: "2022-01-11" # quote
-              store: boltdb-shipper
-              object_store: s3
-              schema: v12
-              index:
-                prefix: loki_index_
-                period: 24h
-        common:
-          path_prefix: /var/loki
-          replication_factor: 2
-          storage:
-            s3:
-              s3: null
-              insecure: true
-              s3forcepathstyle: true
-          ring:
-            kvstore:
-              store: memberlist
-        ruler:
-          enable_api: true
-          enable_alertmanager_v2: true
-          alertmanager_url: http://alertmanager-operated.observability.svc.cluster.local:9093
-          storage:
-            type: local
-            local:
-              directory: /rules
-          rule_path: /tmp/scratch
-          ring:
-            kvstore:
-              store: memberlist
-        distributor:
-          ring:
-            kvstore:
-              store: memberlist
-        compactor:
-          working_directory: /var/loki/boltdb-shipper-compactor
-          shared_store: s3
-          compaction_interval: 10m
-          retention_enabled: true
-          retention_delete_delay: 2h
-          retention_delete_worker_count: 150
+
         ingester:
-          max_chunk_age: 1h
-          lifecycler:
-            ring:
-              kvstore:
-                store: memberlist
-        analytics:
-          reporting_enabled: false
-    gateway:
-      replicas: 2
-      image:
-        registry: ghcr.io
-      ingress:
-        enabled: true
-        ingressClassName: internal
-        hosts:
-          - host: &host loki.devbu.io
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-    read:
-      replicas: 2
+          max_chunk_age: 24h
+      commonConfig:
+        replication_factor: 1
+      storage:
+        type: "filesystem"
+    singleBinary:
+      replicas: 1
       persistence:
-        storageClass: openebs-hostpath
-      extraVolumeMounts:
-        - name: rules
-          mountPath: /rules
-      extraVolumes:
-        - name: rules
-          emptyDir: {}
-    write:
-      replicas: 2
-      persistence:
-        storageClass: openebs-hostpath
-    backend:
-      replicas: 2
-      persistence:
-        storageClass: openebs-hostpath
-      extraVolumeMounts:
-        - name: rules
-          mountPath: /rules/fake
-        - name: scratch
-          mountPath: /tmp/scratch
-      extraVolumes:
-        - name: rules
-          configMap:
-            name: loki-alerting-rules
-        - name: scratch
-          emptyDir: {}
+        storageClass: local-hostpath
     monitoring:
       dashboards:
         annotations:
           grafana_folder: Loki
       serviceMonitor:
-        enabled: false
+        enabled: true
         metricsInstance:
           enabled: false
       selfMonitoring:
@@ -186,8 +78,7 @@ spec:
           installOperator: false
       lokiCanary:
         enabled: false
-    sidecar:
-      image:
-        repository: ghcr.io/kiwigrid/k8s-sidecar
+    minio:
+      enabled: false
     test:
       enabled: false

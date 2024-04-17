@@ -29,3 +29,13 @@ One major change from the typical home operations Discord setup is my desire to 
 
 * <https://github.com/zimmertr/TJs-Kubernetes-Service>
 * <https://github.com/kubebn/talos-proxmox-kaas>
+
+## TODO
+
+Things to do before I'm ready to start moving apps on the k8s cluster for real:
+
+1. Fix weird error where only *some* of the API server and kubelet logs are getting scraped.
+   1. Ongoing... believe it's due to the `aud` field being incorrectly assigned from the API server.
+2. Remove unnecessary Grafana dashboards
+3. Setup renovate for the Helm chart versions
+4. Setup TrueNAS storage.
