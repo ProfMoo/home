@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/homelab/default/goldpinger/app
+  path: ./kubernetes/homelab/homelab/goldpinger/app
   prune: true
   sourceRef:
     kind: GitRepository
