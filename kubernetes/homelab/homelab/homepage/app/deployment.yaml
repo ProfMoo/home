@@ -12,6 +12,7 @@ spec:
       labels:
         app.kubernetes.io/name: homepage
     spec:
+      serviceAccountName: homepage
       containers:
         - name: homepage
           image: ghcr.io/gethomepage/homepage:v0.8.11
@@ -29,7 +30,11 @@ spec:
             - name: homepage-config-volume
               # NOTE: Homepage expects this at a specific location, which we've matched here.
               mountPath: /app/config
+            - name: logs
+              mountPath: /app/config/logs
       volumes:
         - name: homepage-config-volume
           configMap:
             name: homepage-config
+        - name: logs
+          emptyDir: {}
