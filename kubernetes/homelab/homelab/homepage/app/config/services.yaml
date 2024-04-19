@@ -11,22 +11,10 @@
         href: http://192.168.1.78:9180
         icon: mdi-headphones
         description: Music player
-- Torrents:
-    - qBittorrent:
-        href: http://192.168.1.78:8080
-        icon: qbittorrent
-        description: Torrent downloader (admin:adminadmin)
-        widget:
-          type: qbittorrent
-          url: http://192.168.1.78:8080
-          username: admin
-          password: adminadmin
-    - Betanin:
-        href: http://192.168.1.78:9393
-        icon: betanin
-        description: Music tagging (user:pass)
 
-- Arr:
+- Infrastructure:
+
+- Torrents:
     - Prowlarr:
         href: http://192.168.1.78:9696
         icon: prowlarr.png
@@ -59,6 +47,19 @@
           type: readarr
           url: http://192.168.1.78:8787
           key: 0b7b093ea2c346548a2321c1b5c2b92a
+    - qBittorrent:
+        href: http://192.168.1.78:8080
+        icon: qbittorrent
+        description: Torrent downloader (admin:adminadmin)
+        widget:
+          type: qbittorrent
+          url: http://192.168.1.78:8080
+          username: admin
+          password: adminadmin
+    - Betanin:
+        href: http://192.168.1.78:9393
+        icon: betanin
+        description: Music tagging (user:pass)
 
 - Other:
     - TrueNAS:
