@@ -13,6 +13,15 @@
         description: Music player
 
 - Infrastructure:
+    - Grafana:
+        href: http://192.168.8.30:30087
+        icon: grafana
+        description: Observability (admin:admin)
+        widget:
+          type: grafana
+          url: http://192.168.8.30:30087
+          username: admin
+          password: admin
 
 - Torrents:
     - Prowlarr:
