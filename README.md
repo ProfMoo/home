@@ -6,7 +6,7 @@ This started as a way for me to house my music collection, but has grown into a 
 
 ## Overview
 
-![diagram](diagram.drawio.png)
+![diagram](./docs/diagram.drawio.png)
 
 ### Infrastructure
 
