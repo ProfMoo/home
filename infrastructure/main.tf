@@ -21,7 +21,7 @@ module "cluster" {
       description           = "Control plane instance in the Kubernetes homelab cluster"
       tags                  = ["control-plane", "kubernetes"]
       cpu_cores             = 2
-      memory                = 4096
+      memory                = 6144
       disk_size             = "50"
       datastore             = "disk2"
       vlan_id               = "2"
@@ -79,7 +79,7 @@ module "cluster" {
       description           = "Control plane instance in the Kubernetes homelab cluster"
       tags                  = ["control-plane", "kubernetes"]
       cpu_cores             = 2
-      memory                = 4096
+      memory                = 6144
       disk_size             = "50"
       datastore             = "disk3"
       vlan_id               = "2"
