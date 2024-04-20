@@ -9,3 +9,5 @@ quicklaunch:
   hideInternetSearch: true
   showSearchSuggestions: true
   hideVisitURL: true
+
+headerStyle: clean
