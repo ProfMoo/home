@@ -26,7 +26,6 @@ machine:
         vip:
           ip: ${talos_virtual_ip}
   features:
-    apidCheckExtKeyUsage: true
     kubePrism:
       enabled: true
       port: 7445
@@ -48,6 +47,9 @@ cluster:
       urls:
         - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/cilium.yaml
   apiServer:
+    extraArgs:
+      feature-gates: ServerSideApply=true
+      api-audiences: "https://192.168.8.20:6443,https://192.168.8.21:6443,https://192.168.8.22:6443"
     resources:
       requests:
         cpu: 500m
