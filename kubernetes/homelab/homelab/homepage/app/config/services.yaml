@@ -16,12 +16,20 @@
     - Grafana:
         href: http://192.168.8.30:30087
         icon: grafana
-        description: Observability (admin:admin)
+        description: Observability (username:password)
         widget:
           type: grafana
           url: http://192.168.8.30:30087
           username: username
           password: password
+    - Prometheus:
+        href: http://192.168.8.30:30086
+        icon: prometheus
+        description: Observability
+        widget:
+          type: prometheus
+          url: http://192.168.8.30:30086
+          fields: ["targets_up", "targets_down", "targets_total"]
 
 - Torrents:
     - Prowlarr:
