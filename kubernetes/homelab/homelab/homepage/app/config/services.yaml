@@ -20,8 +20,8 @@
         widget:
           type: grafana
           url: http://192.168.8.30:30087
-          username: admin
-          password: admin
+          username: username
+          password: password
 
 - Torrents:
     - Prowlarr:
@@ -57,12 +57,12 @@
           url: http://192.168.1.78:8787
           key: 0b7b093ea2c346548a2321c1b5c2b92a
     - qBittorrent:
-        href: http://192.168.1.78:8080
+        href: http://192.168.1.78:8085
         icon: qbittorrent
         description: Torrent downloader (admin:adminadmin)
         widget:
           type: qbittorrent
-          url: http://192.168.1.78:8080
+          url: http://192.168.1.78:8085
           username: admin
           password: adminadmin
     - Betanin:
@@ -99,12 +99,3 @@
         widget:
           type: minecraft
           url: udp://192.168.1.84:25565
-    - Portainer:
-        href: http://192.168.1.78:9000
-        icon: portainer
-        description: Container management GUI (admin:adminadminadmin)
-        widget:
-          type: portainer
-          url: http://192.168.1.78:9000
-          env: 2
-          key: "ptr_hgKHWDWYO1uaTWdjUxjbEQiYcAxz2lOXJM6j7CVnQIE="
