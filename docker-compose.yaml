@@ -1,14 +1,6 @@
 version: '3.8'
 
 services:
-  portainer:
-    extends:
-      file: portainer/docker-compose.yaml
-      service: portainer
-  homepage:
-    extends:
-      file: homepage/docker-compose.yaml
-      service: homepage
   beets:
     volumes:
       - ${MUSIC_DOWNLOAD_DIR}:/data/downloads/music
