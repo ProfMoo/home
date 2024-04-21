@@ -38,6 +38,19 @@ machine:
   install:
     extensions:
       - image: "ghcr.io/siderolabs/qemu-guest-agent:${qemu_guest_agent_version}"
+  files:
+    - op: overwrite
+      path: /etc/nfsmount.conf
+      permissions: 0o644
+      content: |
+        [ NFSMount_Global_Options ]
+        nfsvers=4.1
+        hard=True
+        noatime=True
+        nodiratime=True
+        rsize=131072
+        wsize=131072
+        nconnect=8
 cluster:
   network:
     podSubnets: ${format("%#v",split(",",pod_subnets))}

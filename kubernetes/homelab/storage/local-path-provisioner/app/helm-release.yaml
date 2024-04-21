@@ -24,6 +24,7 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  # NOTE: Values: https://github.com/democratic-csi/charts/blob/master/stable/democratic-csi/values.yaml
   values:
     fullnameOverride: local-path-provisioner
     csiDriver:
