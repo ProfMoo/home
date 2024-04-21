@@ -55,8 +55,11 @@ spec:
         enabled: false
       externalSnapshotter:
         enabled: false
+      driver:
+        image: docker.io/democraticcsi/democratic-csi:v1.8.4
     node:
       driver:
+        image: docker.io/democraticcsi/democratic-csi:v1.8.4
         extraVolumeMounts:
           - name: local-storage
             mountPath: /var/lib/csi-local-hostpath

@@ -10,6 +10,7 @@
         "customresourcedefinitions",
         "dashboardproviders",
         "datasources",
+        "democraticcsi",
         "DRAC",
         "drmoo",
         "fluentbit",
