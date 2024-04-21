@@ -24,6 +24,7 @@ spec:
   uninstall:
     keepHistory: false
   # NOTE: Values: https://github.com/democratic-csi/charts/blob/master/stable/democratic-csi/values.yaml
+  # Examples: https://github.com/democratic-csi/democratic-csi/blob/master/examples/freenas-api-nfs.yaml
   valuesFrom:
     - targetPath: driver.config.driver.httpConnection.apiKey
       kind: Secret
@@ -88,7 +89,7 @@ spec:
     csiDriver:
       name: "nfs"
     storageClasses:
-      - name: nfs
+      - name: freenas-api-nfs
         defaultClass: true
         reclaimPolicy: Delete
         volumeBindingMode: Immediate
@@ -123,7 +124,7 @@ spec:
           datasetPermissionsUser: 0
           datasetPermissionsGroup: 0
         nfs:
-          shareHost: 0.0.0.0
+          shareHost: 192.168.1.26
           shareAlldirs: false
           shareAllowedHosts: []
           shareAllowedNetworks: []
