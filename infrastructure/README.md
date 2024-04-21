@@ -101,7 +101,7 @@ helm template cilium \
     --set=securityContext.capabilities.cleanCiliumState="{NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}" \
     --set=cgroup.autoMount.enabled=false \
     --set=cgroup.hostRoot=/sys/fs/cgroup \
-    --set=k8sServiceHost="localhost" \
+    --set=k8sServiceHost="127.0.0.1" \
     --set=k8sServicePort="7445"
 ```
 
