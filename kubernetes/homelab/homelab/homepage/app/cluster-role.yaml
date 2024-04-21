@@ -17,6 +17,7 @@ rules:
       - networking.k8s.io
     resources:
       - ingresses
+      - ingresses/status
     verbs:
       - get
       - list

@@ -64,6 +64,7 @@ cluster:
       #   The weirdest part is that I've been unable to figure out *why* my configuration is different from everyone else.
       #
       # Workaround: I manually define the control plane node IPs here, so that the aud field has all the API server pod's nodes
+      #     https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/
       #   This is still not perfect, as some pods are displaying weird behavior (like for example now we can't scrape metrics from the API servers???)
       #   Hopefully at some point this all makes sense. The best guess I have right now has to do with the `externalCloudProvider` field that I set during Talos startup.
       #     https://www.talos.dev/v1.7/reference/configuration/v1alpha1/config/#Config.cluster.externalCloudProvider
