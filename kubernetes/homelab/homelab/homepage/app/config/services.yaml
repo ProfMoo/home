@@ -30,6 +30,10 @@
           type: prometheus
           url: http://192.168.8.30:30086
           fields: ["targets_up", "targets_down", "targets_total"]
+    - GoldPinger:
+        href: http://192.168.8.30:30080
+        icon: mdi-connection
+        description: Node connectivity
 
 - Torrents:
     - Prowlarr:
