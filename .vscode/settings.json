@@ -2,10 +2,12 @@
     "cSpell.words": [
         "alertmanager",
         "apid",
+        "apiextensions",
         "apiserver",
         "Betanin",
         "coredns",
         "crds",
+        "customresourcedefinitions",
         "dashboardproviders",
         "datasources",
         "drmoo",

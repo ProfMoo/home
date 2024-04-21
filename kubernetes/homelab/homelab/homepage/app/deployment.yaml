@@ -12,8 +12,7 @@ spec:
       labels:
         app.kubernetes.io/name: homepage
     spec:
-      serviceAccountName: homepage
-      automountServiceAccountToken: true
+      serviceAccount: homepage
       containers:
         - name: homepage
           image: ghcr.io/gethomepage/homepage:v0.8.11
