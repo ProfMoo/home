@@ -87,7 +87,7 @@ spec:
           memory: 200Mi
           ephemeral-storage: 5Gi
     csiDriver:
-      name: "nfs"
+      name: "org.democratic-csi.nfs"
     storageClasses:
       - name: freenas-api-nfs
         defaultClass: false
