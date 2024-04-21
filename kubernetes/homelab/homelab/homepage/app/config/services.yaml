@@ -83,6 +83,9 @@
         description: Music tagging (user:pass)
 
 - Other:
+    - Unifi:
+        href: http://192.168.1.1
+        icon: unifi
     - TrueNAS:
         href: http://truenas.local
         icon: truenas
@@ -94,16 +97,13 @@
     - TrueNAS OOBM:
         href: http://192.168.1.54
         icon: truenas
-    - Compute-1 iDRAC:
-        href: http://192.168.1.120
-        icon: dell
-    - Unifi:
-        href: http://192.168.1.1
-        icon: unifi
-    - Compute-1 Proxmox:
+    - Compute-1:
         href: http://192.168.1.64:8006
         icon: proxmox
         description: (root:admin)
+    - Compute-1 iDRAC:
+        href: http://192.168.1.120
+        icon: dell
     - Minecraft:
         href: udp://192.168.1.84:25565
         icon: minecraft
