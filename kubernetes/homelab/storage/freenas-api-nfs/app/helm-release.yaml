@@ -90,6 +90,7 @@ spec:
       name: "nfs"
     storageClasses:
       - name: freenas-api-nfs
+        defaultClass: false
         reclaimPolicy: Delete
         volumeBindingMode: Immediate
         allowVolumeExpansion: true
