@@ -50,6 +50,7 @@ cluster:
     extraArgs:
       feature-gates: ServerSideApply=true
       # For the life of me, I cannot figure out why I need to set this field.
+      #
       # Problem: I have been dealing with persistent inconsistency wrt Kubernetes pods authentication to the Kubernetes API server.
       #   This would usually show up when a new pod starts up - it would attempt to connect to the API server dozens of times before finally succeeding.
       #   It also affected Prometheus, as the Prometheus pod could only ever scrape *some* of the cluster components.
