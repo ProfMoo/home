@@ -116,8 +116,8 @@ spec:
           port: 80
           allowInsecure: true
         zfs:
-          datasetParentName: /mnt/vault/homelab/v
-          detachedSnapshotsDatasetParentName: /mnt/vault/homelab/s
+          datasetParentName: mnt/vault/homelab/v
+          detachedSnapshotsDatasetParentName: mnt/vault/homelab/s
           datasetEnableQuotas: true
           datasetEnableReservation: false
           datasetPermissionsMode: "0777"
