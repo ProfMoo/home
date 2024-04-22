@@ -11,8 +11,6 @@ services:
     extends:
       file: beets/docker-compose.yaml
       service: beets
-    depends_on:
-      - portainer
   qbittorrent:
     volumes:
       # If you change these locations inside the docker container, you must also change the config file
@@ -24,8 +22,6 @@ services:
     extends:
       file: qBittorrent/docker-compose.yaml
       service: qbittorrent
-    depends_on:
-      - portainer
   qbitmanage:
     volumes:
       # If you change these locations inside the docker container, you must also change the config file
@@ -36,7 +32,6 @@ services:
       service: qbitmanage
     depends_on:
       - qbittorrent
-      - portainer
   # jellyfin:
   #   extends:
   #     file: jellyfin/docker-compose.yaml
@@ -51,8 +46,6 @@ services:
     extends:
       file: prowlarr/docker-compose.yaml
       service: prowlarr
-    depends_on:
-      - portainer
   crossseed:
     extends:
       file: cross-seed/docker-compose.yaml
@@ -76,7 +69,6 @@ services:
     depends_on:
       - qbittorrent
       - prowlarr
-      - portainer
   sonarr:
     container_name: sonarr
     image: ghcr.io/hotio/sonarr:nightly
@@ -93,7 +85,6 @@ services:
     depends_on:
       - qbittorrent
       - prowlarr
-      - portainer
   # readarr:
   #   container_name: readarr
   #   image: ghcr.io/hotio/readarr:nightly-0.3.11.2319
