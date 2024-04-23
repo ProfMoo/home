@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./local-path-provisioner/ks.yaml
-#  - ./freenas-api-nfs/ks.yaml
+  - ./freenas-api-nfs/ks.yaml
