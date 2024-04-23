@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - ./truenas.secret.sops.yaml
   - ./helm-release.yaml
+  - ./test.yaml
