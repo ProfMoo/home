@@ -26,7 +26,7 @@ spec:
   # NOTE: Values: https://github.com/democratic-csi/charts/blob/master/stable/democratic-csi/values.yaml
   # Examples: https://github.com/democratic-csi/democratic-csi/blob/master/examples/freenas-api-nfs.yaml
   valuesFrom:
-    - targetPath: driver.config.driver.httpConnection.apiKey
+    - targetPath: driver.config.httpConnection.apiKey
       kind: Secret
       name: truenas-secrets
       valuesKey: apiKey
