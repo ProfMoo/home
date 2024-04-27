@@ -24,7 +24,7 @@ spec:
   uninstall:
     keepHistory: false
   # NOTE: Values: https://github.com/democratic-csi/charts/blob/master/stable/democratic-csi/values.yaml
-  # Examples: https://github.com/democratic-csi/democratic-csi/blob/master/examples/freenas-api-nfs.yaml
+  # Examples: https://github.com/democratic-csi/democratic-csi/blob/master/examples/freenas-api-iscsi.yaml
   valuesFrom:
     - targetPath: driver.config.httpConnection.apiKey
       kind: Secret
