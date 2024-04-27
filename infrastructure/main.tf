@@ -30,7 +30,7 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.6.4"
+      talos_version      = "1.7.0"
       kubernetes_version = "1.29.1"
 
       # External kubernetes network configuration
@@ -58,7 +58,7 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.6.4"
+      talos_version      = "1.7.0"
       kubernetes_version = "1.29.1"
 
       # External kubernetes network configuration
@@ -86,7 +86,7 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.6.4"
+      talos_version      = "1.7.0"
       kubernetes_version = "1.29.1"
 
       # External kubernetes network configuration
@@ -117,7 +117,7 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.6.4"
+      talos_version      = "1.7.0"
       kubernetes_version = "1.29.1"
 
       # External kubernetes network configuration
@@ -145,7 +145,7 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.6.4"
+      talos_version      = "1.7.0"
       kubernetes_version = "1.29.1"
 
       # External kubernetes network configuration
@@ -173,7 +173,7 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.6.4"
+      talos_version      = "1.7.0"
       kubernetes_version = "1.29.1"
 
       # External kubernetes network configuration

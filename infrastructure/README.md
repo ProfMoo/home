@@ -39,7 +39,7 @@ This directory houses the code that transforms raw bare-metal machines into func
 
 ### Upgrading Kubernetes
 
-Can perform a rolling upgrade with the TF provider and a standard TF workflow (or `talosctl` also works per [the docs](https://www.talos.dev/v1.6/kubernetes-guides/upgrading-kubernetes/)).
+Can perform a rolling upgrade with the TF provider and a standard TF workflow (or `talosctl` also works per [the docs](https://www.talos.dev/v1.7/kubernetes-guides/upgrading-kubernetes/)).
 
 ### Upgrade Talos
 
