@@ -36,8 +36,8 @@ machine:
       allowedKubernetesNamespaces:
         - kube-system
   install:
-    extensions:
-      - image: "ghcr.io/siderolabs/qemu-guest-agent:${qemu_guest_agent_version}"
+    # NOTE: Adjust this image to either 1. install new extensions and/or 2. upgrade Talos
+    image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.7.0
   files:
     - op: overwrite
       path: /etc/nfsmount.conf

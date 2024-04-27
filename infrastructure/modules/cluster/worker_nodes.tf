@@ -44,8 +44,7 @@ module "worker_node_configuration" {
       node_type    = "worker-node",
       proxmox_node = each.value.proxmox_node_name
 
-      qemu_guest_agent_version = each.value.qemu_guest_agent_version,
-      hostname                 = each.value.name,
+      hostname = each.value.name,
 
       # NOTE: The auto-generated interface name is enx<mac_address_without_colons_and_lowercase>
       # ex: enx000c29d3e3e3

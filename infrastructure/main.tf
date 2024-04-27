@@ -30,9 +30,8 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version            = "1.6.4"
-      kubernetes_version       = "1.29.1"
-      qemu_guest_agent_version = "8.1.2"
+      talos_version      = "1.6.4"
+      kubernetes_version = "1.29.1"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -59,9 +58,8 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version            = "1.6.4"
-      kubernetes_version       = "1.29.1"
-      qemu_guest_agent_version = "8.1.2"
+      talos_version      = "1.6.4"
+      kubernetes_version = "1.29.1"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -88,9 +86,8 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version            = "1.6.4"
-      kubernetes_version       = "1.29.1"
-      qemu_guest_agent_version = "8.1.2"
+      talos_version      = "1.6.4"
+      kubernetes_version = "1.29.1"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -120,9 +117,8 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version            = "1.6.4"
-      kubernetes_version       = "1.29.1"
-      qemu_guest_agent_version = "8.1.2"
+      talos_version      = "1.6.4"
+      kubernetes_version = "1.29.1"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -149,9 +145,8 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version            = "1.6.4"
-      kubernetes_version       = "1.29.1"
-      qemu_guest_agent_version = "8.1.2"
+      talos_version      = "1.6.4"
+      kubernetes_version = "1.29.1"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -178,9 +173,8 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO. 
-      talos_version            = "1.6.4"
-      kubernetes_version       = "1.29.1"
-      qemu_guest_agent_version = "8.1.2"
+      talos_version      = "1.6.4"
+      kubernetes_version = "1.29.1"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"

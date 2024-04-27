@@ -16,12 +16,19 @@ Going to have 3 kinds of storage for my k8s clusters:
 
 I might be able to use `democratic-csi` for all 3 of these, using these 3 drivers, respectively: `democratic-csi/local-hostpath`, `democratic-csi/freenas-api-nfs` & `democratic-csi/freenas-api-iscsi`, and `democratic-csi/node-manual`
 
+TODO:
+
+- Upgrade Talos
+- Upgrade k8s
+- Get system extension(s) in new image format
+- 2nd type of storage is one where the value of TrueNAS is up in the air. What if instead... just use rook/ceph for these things?
+
 ## Secrets
 
 At the top level of the `homelab` directory is two secrets that must be applied to the cluster for flux to function properly:
 
-* `age.secret.sops.yaml`: The age secret that Flux will use to decrypt secrets checked into the codebase.
-* `github.secret.sops.yaml`: The Github SSH keys and access token necessary for Flux to access this repository on github.com.
+- `age.secret.sops.yaml`: The age secret that Flux will use to decrypt secrets checked into the codebase.
+- `github.secret.sops.yaml`: The Github SSH keys and access token necessary for Flux to access this repository on github.com.
 
 These secrets can be decrypted by either an age key (defined in the top-level `.sops.yaml` file) OR a KMS key (ARN also defined in the top-level `.sops.yaml` file). Age is the primary key used to decrypt secrets by Flux at deploy time. KMS key can be used a backup to decrypt and recover the bootstrap secrets if needed.
 
