@@ -90,7 +90,7 @@ spec:
     csiDriver:
       name: "org.democratic-csi.iscsi"
     storageClasses:
-      - name: iscsi
+      - name: freenas-api-nfs
         defaultClass: false
         reclaimPolicy: Delete
         volumeBindingMode: Immediate
