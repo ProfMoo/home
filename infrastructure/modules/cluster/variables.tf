@@ -24,9 +24,8 @@ variable "control_plane" {
     proxmox_node_name     = string
     initial_boot_iso      = string
 
-    talos_version            = string
-    kubernetes_version       = string
-    qemu_guest_agent_version = string
+    talos_version      = string
+    kubernetes_version = string
 
     talos_virtual_ip = string
     ipv4_address     = string
@@ -54,9 +53,8 @@ variable "worker_nodes" {
     proxmox_node_name     = string
     initial_boot_iso      = string
 
-    talos_version            = string
-    kubernetes_version       = string
-    qemu_guest_agent_version = string
+    talos_version      = string
+    kubernetes_version = string
 
     talos_virtual_ip = string
     ipv4_address     = string
