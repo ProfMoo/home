@@ -5,6 +5,7 @@ machine:
   install:
     extensions:
       - image: "ghcr.io/siderolabs/qemu-guest-agent:${qemu_guest_agent_version}"
+      - image: "ghcr.io/siderolabs/iscsi-tools:0.1.4"
   kubelet:
     defaultRuntimeSeccompProfileEnabled: true
     disableManifestsDirectory: true

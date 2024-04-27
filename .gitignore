@@ -1,3 +1,4 @@
 .env
 kubeconfig
 talosconfig
+.DS_Store
