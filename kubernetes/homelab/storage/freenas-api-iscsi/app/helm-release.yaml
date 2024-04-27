@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: freenas-api-nfs
+  name: freenas-api-iscsi
 spec:
   interval: 30m
   chart:
