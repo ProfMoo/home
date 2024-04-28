@@ -151,11 +151,11 @@ spec:
         iscsiDirHostPathType: ""
         resources:
           requests:
-            cpu: 40m
-            memory: 50Mi
+            cpu: 50m
+            memory: 150Mi
             ephemeral-storage: 1Gi
           limits:
-            memory: 200Mi
+            memory: 300Mi
             ephemeral-storage: 5Gi
       image: democraticcsi/democratic-csi:v1.8.4
       driverRegistrar:
