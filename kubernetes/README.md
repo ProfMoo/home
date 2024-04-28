@@ -16,6 +16,13 @@ Going to have 3 kinds of storage for my k8s clusters:
 
 I might be able to use `democratic-csi` for all 3 of these, using these 3 drivers, respectively: `democratic-csi/local-hostpath`, `democratic-csi/freenas-api-nfs` & `democratic-csi/freenas-api-iscsi`, and `democratic-csi/node-manual`
 
+## Storage 2
+
+Now that I'm further along, I think I have an idea for how I'm wanna do storage in the future:
+
+    1. Run Ceph/Rook directly in k8s to replace option 1 & 2 from above. Can expose iSCSI or NFS mounts when needed. Then run volsync to backup these drives to TrueNAS.
+    2. When using the `/media` from the NAS, just do a simple NFS mount PVC in k8s (nothing fancy).
+
 ## Secrets
 
 At the top level of the `homelab` directory is two secrets that must be applied to the cluster for flux to function properly:
