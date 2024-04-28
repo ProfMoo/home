@@ -87,7 +87,8 @@ spec:
         type: persistentVolumeClaim
         storageClass: freenas-api-iscsi
         accessMode: ReadWriteOnce
-        size: 1Gi
+        size: 10Gi
+        retain: true
         globalMounts:
           - path: /data
       tmp:
