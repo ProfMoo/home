@@ -149,15 +149,15 @@ spec:
             value: /usr/local/sbin/iscsiadm
         iscsiDirHostPath: /usr/local/etc/iscsi
         iscsiDirHostPathType: ""
+        resources:
+          requests:
+            cpu: 40m
+            memory: 50Mi
+            ephemeral-storage: 1Gi
+          limits:
+            memory: 200Mi
+            ephemeral-storage: 5Gi
       image: democraticcsi/democratic-csi:v1.8.4
-      resources:
-        reqpuests:
-          cpu: 40m
-          memory: 50Mi
-          ephemeral-storage: 1Gi
-        limits:
-          memory: 200Mi
-          ehemeral-storage: 5Gi
       driverRegistrar:
         resources:
           requests:
