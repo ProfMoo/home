@@ -31,7 +31,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO. 
       talos_version      = "1.7.0"
-      kubernetes_version = "1.29.1"
+      kubernetes_version = "1.30.0"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -59,7 +59,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO. 
       talos_version      = "1.7.0"
-      kubernetes_version = "1.29.1"
+      kubernetes_version = "1.30.0"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -87,7 +87,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO. 
       talos_version      = "1.7.0"
-      kubernetes_version = "1.29.1"
+      kubernetes_version = "1.30.0"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -118,7 +118,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO. 
       talos_version      = "1.7.0"
-      kubernetes_version = "1.29.1"
+      kubernetes_version = "1.30.0"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -146,7 +146,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO. 
       talos_version      = "1.7.0"
-      kubernetes_version = "1.29.1"
+      kubernetes_version = "1.30.0"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -174,7 +174,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO. 
       talos_version      = "1.7.0"
-      kubernetes_version = "1.29.1"
+      kubernetes_version = "1.30.0"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
