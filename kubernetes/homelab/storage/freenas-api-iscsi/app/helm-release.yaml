@@ -128,8 +128,8 @@ spec:
           namePrefix: csi-
           nameSuffix: "-clustera"
           targetGroups:
-            - targetGroupPortalGroup: 8
-              targetGroupInitiatorGroup: 14
+            - targetGroupPortalGroup: 1
+              targetGroupInitiatorGroup: 1
               targetGroupAuthType: None
               targetGroupAuthGroup:
           extentInsecureTpc: true
