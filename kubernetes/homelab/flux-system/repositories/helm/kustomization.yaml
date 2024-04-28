@@ -10,3 +10,4 @@ resources:
   - ./democratic-csi.yaml
   - ./weaveworks.yaml
   - ./kube-logging.yaml
+  - ./bjw-s.yaml
