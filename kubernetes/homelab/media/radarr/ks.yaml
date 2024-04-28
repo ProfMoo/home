@@ -10,11 +10,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: freenas-api-iscsi
-      namespace: flux-system
-    - name: nas-media
-      namespace: flux-system
   path: ./kubernetes/homelab/media/radarr/app
   prune: true
   sourceRef:
