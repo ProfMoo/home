@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: freenas-api-iscsi
     - name: nas-media
-  path: ./kubernetes/homelab/apps/media/radarr/app
+  path: ./kubernetes/homelab/media/radarr/app
   prune: true
   sourceRef:
     kind: GitRepository

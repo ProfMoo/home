@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: freenas-api-iscsi
-  path: ./kubernetes/homelab/apps/media/nas-media/app
+  path: ./kubernetes/homelab/media/nas-media/app
   prune: true
   sourceRef:
     kind: GitRepository
