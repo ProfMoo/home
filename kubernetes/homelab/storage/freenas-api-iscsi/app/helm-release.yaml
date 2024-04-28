@@ -139,18 +139,17 @@ spec:
           extentRpm: "SSD"
           extentAvailThreshold: 0
     node:
+      # https://github.com/democratic-csi/democratic-csi?tab=readme-ov-file#talos
+      hostPID: true
       driver:
-        # https://github.com/democratic-csi/democratic-csi?tab=readme-ov-file#talos
-        hostPID: true
-        driver:
-          extraEnv:
-            - name: ISCSIADM_HOST_STRATEGY
-              value: nsenter
-            - name: ISCSIADM_HOST_PATH
-              value: /usr/local/sbin/iscsiadm
-          iscsiDirHostPath: /usr/local/etc/iscsi
-          iscsiDirHostPathType: ""
-        image: democraticcsi/democratic-csi:v1.8.4
+        extraEnv:
+          - name: ISCSIADM_HOST_STRATEGY
+            value: nsenter
+          - name: ISCSIADM_HOST_PATH
+            value: /usr/local/sbin/iscsiadm
+        iscsiDirHostPath: /usr/local/etc/iscsi
+        iscsiDirHostPathType: ""
+      image: democraticcsi/democratic-csi:v1.8.4
         resources:
           requests:
             cpu: 40m
