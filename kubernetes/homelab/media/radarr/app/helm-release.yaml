@@ -84,6 +84,11 @@ spec:
         globalMounts:
           - path: /config
       media:
-        existingClaim: nas-media
+        type: persistentVolumeClaim
+        storageClass: freenas-api-iscsi
+        accessMode: ReadWriteOnce
+        size: 1Gi
         globalMounts:
           - path: /data
+      tmp:
+        type: emptyDir
