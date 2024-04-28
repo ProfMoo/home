@@ -149,6 +149,7 @@ spec:
             value: /usr/local/sbin/iscsiadm
         iscsiDirHostPath: /usr/local/etc/iscsi
         iscsiDirHostPathType: ""
+        localtimeHostPath:
         resources:
           requests:
             cpu: 40m
