@@ -80,15 +80,15 @@ spec:
             port: 80
     persistence:
       config:
-        existingClaim: radarr
-        globalMounts:
-          - path: /config
-      media:
         type: persistentVolumeClaim
         storageClass: freenas-api-iscsi
         accessMode: ReadWriteOnce
         size: 10Gi
         retain: false
+        globalMounts:
+          - path: /config
+      media:
+        existingClaim: nas-media
         globalMounts:
           - path: /data
       tmp:
