@@ -14,7 +14,7 @@ spec:
     - name: freenas-api-iscsi
       namespace: flux-system
     - name: nas-media
-      namespace: media
+      namespace: flux-system
   path: ./kubernetes/homelab/media/radarr/app
   prune: true
   sourceRef:
