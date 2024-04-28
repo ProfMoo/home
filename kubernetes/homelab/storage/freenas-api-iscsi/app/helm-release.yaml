@@ -115,8 +115,8 @@ spec:
           port: 80
           allowInsecure: true
         zfs:
-          datasetParentName: vault/homelab/iscsi/v
-          detachedSnapshotsDatasetParentName: vault/homelab/iscsi/s
+          datasetParentName: vault/homelab/file/v
+          detachedSnapshotsDatasetParentName: vault/homelab/file/s
           zvolCompression:
           zvolDedup:
           zvolEnableReservation: false
