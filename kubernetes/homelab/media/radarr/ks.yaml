@@ -10,9 +10,9 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  # dependsOn:
-  #   - name: freenas-api-iscsi
-  #   - name: nas-media
+  dependsOn:
+    - name: freenas-api-iscsi
+    - name: nas-media
   path: ./kubernetes/homelab/media/radarr/app
   prune: true
   sourceRef:
