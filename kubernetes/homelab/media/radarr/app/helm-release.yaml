@@ -88,7 +88,7 @@ spec:
         storageClass: freenas-api-iscsi
         accessMode: ReadWriteOnce
         size: 10Gi
-        retain: true
+        retain: false
         globalMounts:
           - path: /data
       tmp:
