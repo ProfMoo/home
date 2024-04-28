@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: freenas-api-iscsi
-      namespace: storage
+      namespace: flux-system
     - name: nas-media
       namespace: media
   path: ./kubernetes/homelab/media/radarr/app
