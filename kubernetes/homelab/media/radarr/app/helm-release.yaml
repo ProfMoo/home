@@ -22,9 +22,9 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: freenas-api-iscsi
-      namespace: storage
+  # dependsOn:
+  #   - name: freenas-api-iscsi
+  #     namespace: storage
   values:
     controllers:
       radarr:
