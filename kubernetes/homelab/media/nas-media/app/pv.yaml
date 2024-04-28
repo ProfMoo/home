@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nas-media
+spec:
+  capacity:
+    storage: 30Ti
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: "192.168.1.26"
+    path: /vault/media
+  mountOptions:
+    - nfsvers=4.2
+    - nconnect=8
+    - hard
