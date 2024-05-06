@@ -4,7 +4,7 @@ metadata:
   name: radarr-gui
 spec:
   selector:
-    app.kubernetes.io/name: raddar
+    app.kubernetes.io/name: radarr
   ports:
     - protocol: TCP
       name: gui
