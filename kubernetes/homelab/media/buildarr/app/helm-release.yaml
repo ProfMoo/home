@@ -52,6 +52,7 @@ spec:
                 memory: 1Gi
     persistence:
       config:
-        type: emptyDir
+        type: configMap
+        identifier: buildarr-config-volume
         globalMounts:
           - path: /config
