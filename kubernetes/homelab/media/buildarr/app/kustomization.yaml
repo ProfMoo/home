@@ -4,3 +4,9 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./helm-release.yaml
+configMapGenerator:
+  - name: buildarr-config
+    files:
+      - buildarr.yml=./config/buildarr.yml
+generatorOptions:
+  disableNameSuffixHash: true

@@ -1,0 +1,27 @@
+buildarr:
+  watch_config: true
+  update_days:
+    - "monday"
+    - "tuesday"
+    - "wednesday"
+    - "thursday"
+    - "friday"
+    - "saturday"
+    - "sunday"
+  update_times:
+    - "02:30"
+
+radarr:
+  hostname: radarr # Defaults to `radarr`, or the instance name for instance-specific configs.
+  port: 7878 # Defaults to 7878.
+  protocol: http # Defaults to `http`.
+
+# prowlarr:
+#   instances:
+#     # Name of the instance as referred to by prowlarr.
+#     # Assign instance-specific configuration to it.
+#     prowlarr:
+#       hostname: host.docker.internal
+#       port: 9696
+#       protocol: http
+#       api_key: "0f7b3e4b022c48f188f9a0241beadce2"
