@@ -16,6 +16,11 @@ radarr:
   port: 80
   protocol: http
 
+sonarr:
+  hostname: sonarr
+  port: 80
+  protocol: http
+
 prowlarr:
   instances:
     # Name of the instance as referred to by prowlarr.
