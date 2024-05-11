@@ -12,9 +12,9 @@ buildarr:
     - "02:30"
 
 radarr:
-  hostname: radarr # Defaults to `radarr`, or the instance name for instance-specific configs.
-  port: 80 # Defaults to 7878.
-  protocol: http # Defaults to `http`.
+  hostname: radarr
+  port: 80
+  protocol: http
 
 prowlarr:
   instances:
