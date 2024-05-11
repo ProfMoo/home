@@ -59,6 +59,6 @@ spec:
     persistence:
       config:
         type: configMap
-        identifier: buildarr-config
+        name: buildarr-config
         globalMounts:
           - path: /config
