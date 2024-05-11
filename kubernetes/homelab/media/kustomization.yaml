@@ -7,4 +7,4 @@ resources:
   - ./nas-media/ks.yaml
   - ./radarr/ks.yaml
   - ./prowlarr/ks.yaml
-#  - ./buildarr/ks.yaml
+  - ./buildarr/ks.yaml
