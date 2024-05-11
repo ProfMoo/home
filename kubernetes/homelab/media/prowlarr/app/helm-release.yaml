@@ -38,7 +38,7 @@ spec:
               PROWLARR__LOG_LEVEL: info
               PROWLARR__AUTHENTICATION_METHOD: External
               PROWLARR__THEME: dark
-              PROWLARR__API_KEY: "foobarbazfoobarbazfoobarbazfoobarbaz"
+              PROWLARR__API_KEY: "foobarbazfoobarbazfoobarbazfooba"
               TZ: America/New_York
             probes:
               liveness: &probes
