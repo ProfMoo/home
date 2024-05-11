@@ -24,4 +24,4 @@ prowlarr:
       hostname: prowlarr
       port: 9696
       protocol: http
-      api_key: "foobarbaz"
+      api_key: "foobarbazfoobarbazfoobarbazfoobarbaz"
