@@ -13,7 +13,7 @@ buildarr:
 
 radarr:
   hostname: radarr # Defaults to `radarr`, or the instance name for instance-specific configs.
-  port: 7878 # Defaults to 7878.
+  port: 80 # Defaults to 7878.
   protocol: http # Defaults to `http`.
 
 prowlarr:
@@ -22,6 +22,6 @@ prowlarr:
     # Assign instance-specific configuration to it.
     prowlarr:
       hostname: prowlarr
-      port: 9696
+      port: 80
       protocol: http
       api_key: "foobarbazfoobarbazfoobarbazfooba"
