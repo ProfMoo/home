@@ -3,8 +3,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./namespace.yaml
-  - ./nas-media/ks.yaml
-  - ./radarr/ks.yaml
-  - ./prowlarr/ks.yaml
-  - ./buildarr/ks.yaml
+  - ./helm-release.yaml
+  - ./nodeport.yaml

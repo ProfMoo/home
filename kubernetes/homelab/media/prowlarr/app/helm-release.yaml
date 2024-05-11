@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: buildarr
+  name: prowlarr
 spec:
   interval: 30m
   chart:
@@ -22,22 +22,24 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  dependsOn:
-    - name: prowlarr
-      namespace: media
-    - name: radarr
-      namespace: media
-  # NOTE: More info on this Helm chart here: https://bjw-s.github.io/helm-charts/docs/common-library/
   values:
     controllers:
-      buildarr:
+      prowlarr:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: callum027/buildarr
-              tag: 0.7.8
+              repository: ghcr.io/onedr0p/prowlarr-develop
+              tag: 1.17.0.4448@sha256:7288d2eab91ac3e31071c97e8c511a675f3f7a02a13c28e8c964327f664a2bfc
             env:
-              BUILDARR_LOG_LEVEL: "debug"
+              PROWLARR__INSTANCE_NAME: Prowlarr
+              PROWLARR__PORT: &port 80
+              PROWLARR__LOG_LEVEL: info
+              PROWLARR__AUTHENTICATION_METHOD: External
+              PROWLARR__THEME: dark
+              PROWLARR__API_KEY: "foobarbaz"
+              TZ: America/New_York
             probes:
               liveness: &probes
                 enabled: true
@@ -45,7 +47,7 @@ spec:
                 spec:
                   httpGet:
                     path: /ping
-                    port: 80
+                    port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
@@ -56,9 +58,14 @@ spec:
                 cpu: 10m
               limits:
                 memory: 1Gi
+    service:
+      app:
+        controller: prowlarr
+        ports:
+          http:
+            port: *port
     persistence:
       config:
-        type: configMap
-        identifier: buildarr-config
-        globalMounts:
-          - path: /config
+        type: emptyDir
+      tmp:
+        type: emptyDir
