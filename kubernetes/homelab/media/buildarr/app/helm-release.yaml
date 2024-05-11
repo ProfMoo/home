@@ -38,19 +38,6 @@ spec:
               tag: 0.7.8
             env:
               BUILDARR_LOG_LEVEL: "debug"
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /ping
-                    port: 80
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 3
-              readiness: *probes
             resources:
               requests:
                 cpu: 10m
