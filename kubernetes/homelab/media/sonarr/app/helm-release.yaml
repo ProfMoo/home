@@ -40,6 +40,7 @@ spec:
               SONARR__PORT: 80
               SONARR__LOG_LEVEL: info
               SONARR__THEME: dark
+              SONARR__AUTH__APIKEY: "foobarbazfoobarbazfoobarbazfooba"
               TZ: America/New_York
             probes:
               liveness: &probes
