@@ -17,6 +17,7 @@ radarr:
       hostname: radarr
       port: 80
       protocol: http
+      api_key: "foobarbazfoobarbazfoobarbazfooba"
 
 sonarr:
   instances:
@@ -24,6 +25,7 @@ sonarr:
       hostname: sonarr
       port: 80
       protocol: http
+      api_key: "foobarbazfoobarbazfoobarbazfooba"
 
 prowlarr:
   instances:
