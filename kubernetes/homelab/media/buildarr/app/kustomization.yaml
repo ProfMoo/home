@@ -7,6 +7,7 @@ resources:
   # - ./helm-release.yaml
 configMapGenerator:
   - name: buildarr-config
+    namespace: media
     files:
       - buildarr.yml=./config/buildarr.yml
 generatorOptions:
