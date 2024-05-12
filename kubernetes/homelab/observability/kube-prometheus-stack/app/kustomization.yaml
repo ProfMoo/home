@@ -4,7 +4,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: observability
 resources:
-  - ./helmrelease.yaml
+  - ./helm-release.yaml
   - ./nodeport.yaml
 configMapGenerator:
   # NOTE: We generate a custom kube-state-metrics configuration so that we can inject the Flux CRDs

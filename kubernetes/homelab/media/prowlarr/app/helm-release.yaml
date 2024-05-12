@@ -22,6 +22,7 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
+  # NOTE: More info on this Helm chart here: https://bjw-s.github.io/helm-charts/docs/common-library/
   values:
     controllers:
       prowlarr:
