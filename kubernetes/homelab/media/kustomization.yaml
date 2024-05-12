@@ -8,4 +8,4 @@ resources:
   - ./radarr/ks.yaml
   - ./sonarr/ks.yaml
   - ./prowlarr/ks.yaml
-  - ./buildarr/ks.yaml
+#  - ./buildarr/ks.yaml
