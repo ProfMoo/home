@@ -25,6 +25,7 @@ spec:
   dependsOn:
     - name: freenas-api-iscsi
       namespace: storage
+  # NOTE: More info on this Helm chart here: https://bjw-s.github.io/helm-charts/docs/common-library/
   values:
     controllers:
       radarr:
