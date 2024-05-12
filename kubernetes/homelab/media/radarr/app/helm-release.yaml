@@ -40,7 +40,7 @@ spec:
               RADARR__PORT: 80
               RADARR__LOG_LEVEL: info
               RADARR__THEME: dark
-              RADARR__AUTH__APIKEY: "foobarbazfoobarbazfoobarbazfooba"
+              RADARR__API_KEY: "foobarbazfoobarbazfoobarbazfooba"
               TZ: America/New_York
             probes:
               liveness: &probes
