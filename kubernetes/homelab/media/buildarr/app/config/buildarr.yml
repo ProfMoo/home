@@ -109,29 +109,6 @@ prowlarr:
                   baseSettings.limitsUnit: Day
                 secret_fields:
                   apiKey: "${MORETHANTV_APIKEY}"
-              MyAnonamouse:
-                type: myanonamouse
-                enable: true
-                sync_profile: Standard
-                redirect: false
-                priority: 25
-                query_limit: null
-                grab_limit: null
-                tags: []
-                fields:
-                  baseUrl: https://www.myanonamouse.net/
-                  mamId: "${MYANONAMOUSE_MAMID}"
-                  searchType: All torrents
-                  freeleech: false
-                  searchInDescription: true
-                  searchInSeries: true
-                  searchInFilenames: true
-                  baseSettings.limitsUnit: Day
-                  torrentBaseSettings.appMinimumSeeders: null
-                  torrentBaseSettings.seedRatio: null
-                  torrentBaseSettings.seedTime: null
-                  torrentBaseSettings.packSeedTime: null
-                secret_fields: {}
               Orpheus:
                 type: orpheus
                 enable: true
