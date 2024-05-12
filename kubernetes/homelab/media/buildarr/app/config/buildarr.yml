@@ -12,14 +12,18 @@ buildarr:
     - "02:30"
 
 radarr:
-  hostname: radarr
-  port: 80
-  protocol: http
+  instances:
+    radarr:
+      hostname: radarr
+      port: 80
+      protocol: http
 
 sonarr:
-  hostname: sonarr
-  port: 80
-  protocol: http
+  instances:
+    sonarr:
+      hostname: sonarr
+      port: 80
+      protocol: http
 
 prowlarr:
   instances:
