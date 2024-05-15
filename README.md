@@ -2,7 +2,7 @@
 
 This is a mono repository for my homelab Kubernetes cluster. I strictly adhere to Infrastructure as Code (IaC) and GitOps practices using tools like Kubernetes, Terraform, Talos, Flux, and soon Renovate, and GitHub Actions.
 
-This started as a way for me to house my music collection, but has grown into a fully fledged Kubernetes-based homelab with a dedicated server rack.
+This project started as a means to house my music collection, but has grown into a fully fledged Kubernetes-based homelab with a dedicated server rack.
 
 ## Overview
 
