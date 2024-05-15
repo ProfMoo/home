@@ -1,5 +1,0 @@
-# Jellyfin
-
-### Login
-
-admin:<none>
