@@ -26,7 +26,7 @@ services:
       - ./scripts:/scripts
   qbitmanage:
     container_name: qbitmanage
-    image: bobokun/qbit_manage:v4.0.5
+    image: bobokun/qbit_manage:v4.1.3
     volumes:
       - ./qBitManageConfig/config.yaml:/app/config.yaml
     environment:
