@@ -69,7 +69,7 @@ spec:
             memory: 200Mi
             ephemeral-storage: 5Gi
       driver:
-        image: democraticcsi/democratic-csi:v1.8.4
+        image: democraticcsi/democratic-csi:v1.9.1
         resources:
           requests:
             cpu: 20m
@@ -135,7 +135,7 @@ spec:
           shareMapallGroup: ""
     node:
       driver:
-        image: democraticcsi/democratic-csi:v1.8.4
+        image: democraticcsi/democratic-csi:v1.9.1
         resources:
           requests:
             cpu: 40m
