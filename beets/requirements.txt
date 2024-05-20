@@ -1,6 +1,6 @@
 # NOTE: This is the beets commit that mulit-artist support was added
 git+https://github.com/beetbox/beets@f72261e44f5501a870c43721883f1e4980003324
-requests==2.31
+requests==2.32.0
 python3-discogs-client==2.7
 beetcamp==0.17.2
 beets-yearfixer==0.0.4
