@@ -11,3 +11,4 @@ resources:
   - ./weaveworks.yaml
   - ./kube-logging.yaml
   - ./bjw-s.yaml
+  - ./stakater.yaml
