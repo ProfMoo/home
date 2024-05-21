@@ -36,6 +36,7 @@ Things to do before I'm ready to start moving apps on the k8s cluster for real:
 
 1. Fix weird error where only *some* of the API server and kubelet logs are getting scraped.
    1. Ongoing... believe it's due to the `aud` field being incorrectly assigned from the API server.
-2. Remove unnecessary Grafana dashboards
-3. Setup renovate for the Helm chart versions
-4. Setup TrueNAS storage.
+2. Remove unnecessary Grafana dashboards.
+3.
+4. ~~Setup TrueNAS storage~~. Actually, just do Ceph/Rook with Volsync natively on the nodes for PVCs.
+5. Fix Renovate (currently, it doesn't really work consistently and uses ProfMoo Github credentials instead of its own). Also, I should setup Renovate to handle the Helm chart versions.
