@@ -29,15 +29,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
 
-env:
-  LOG_LEVEL: "${{ inputs.logLevel || 'debug' }}"
-  RENOVATE_AUTODISCOVER: true
-  RENOVATE_AUTODISCOVER_FILTER: "${{ github.repository }}"
-  RENOVATE_DRY_RUN: "${{ inputs.dryRun == true }}"
-  RENOVATE_PLATFORM: github
-  RENOVATE_PLATFORM_COMMIT: true
-  WORKFLOW_RENOVATE_VERSION: "${{ inputs.version || 'latest' }}"
-
 jobs:
   renovate:
     name: Renovate
@@ -47,8 +38,8 @@ jobs:
         uses: actions/create-github-app-token@v1
         id: app-token
         with:
-          app-id: "${{ secrets.BOT_APP_ID }}"
-          private-key: "${{ secrets.BOT_APP_PRIVATE_KEY }}"
+          app-id: "${{ secrets.RENOVATE_APP_ID }}"
+          private-key: "${{ secrets.RENOVATE_APP_PRIVATE_KEY }}"
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -61,3 +52,11 @@ jobs:
           configurationFile: .github/renovate.json5
           token: "${{ steps.app-token.outputs.token }}"
           renovate-version: "${{ env.WORKFLOW_RENOVATE_VERSION }}"
+        env:
+          LOG_LEVEL: "${{ inputs.logLevel || 'debug' }}"
+          RENOVATE_AUTODISCOVER: true
+          RENOVATE_AUTODISCOVER_FILTER: "${{ github.repository }}"
+          RENOVATE_DRY_RUN: "${{ inputs.dryRun == true }}"
+          RENOVATE_PLATFORM: github
+          RENOVATE_PLATFORM_COMMIT: true
+          WORKFLOW_RENOVATE_VERSION: "${{ inputs.version || 'latest' }}"
