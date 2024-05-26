@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./docs/repo.png" alt="diagram">
+</p>
+
 # Moos Pasture
 
 This is a mono repository for my homelab Kubernetes cluster. I strictly adhere to Infrastructure as Code (IaC) and GitOps practices using tools like Kubernetes, Terraform, Talos, Flux, and soon Renovate, and GitHub Actions.
