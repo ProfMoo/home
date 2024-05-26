@@ -2,11 +2,15 @@
   <img src="./docs/repo.png" alt="diagram" width="250" height="250">
 </p>
 
+<div align="center">
+
+[![GitHub Stars](https://img.shields.io/github/stars/ProfMoo/home.svg?color=3498DB)](https://github.com/ProfMoo/home/stargazers) [![GitHub last commit](https://img.shields.io/github/last-commit/ProfMoo/home?color=purple&style=flat-square)](https://github.com/ProfMoo/home/commits/main)
+
+</div>
+
 # [Moo's Pasture](https://github.com/ProfMoo/home)
 
 > A [onedr0p](https://github.com/onedr0p/home-ops) inspired project, with some [ProfMoo](https://github.com/ProfMoo) sprinkled in.
-
-[![GitHub Stars](https://img.shields.io/github/stars/ProfMoo/home.svg?color=3498DB)](https://github.com/ProfMoo/home/stargazers) [![GitHub last commit](https://img.shields.io/github/last-commit/ProfMoo/home?color=purple&style=flat-square)](https://github.com/ProfMoo/home/commits/main)
 
 ## 📖 Overview
 
