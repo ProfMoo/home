@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./docs/repo.png" alt="diagram" width="200" height="200">
+  <img src="./docs/repo.png" alt="diagram" width="250" height="250">
 </p>
 
 # [Moo's Pasture](https://github.com/ProfMoo/home)
