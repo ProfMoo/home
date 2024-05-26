@@ -9,4 +9,3 @@ resources:
   - ./loki/ks.yaml
   - ./grafana/ks.yaml
   - ./proxmox-exporter/ks.yaml
-#  - ./kubernetes-dashboard/ks.yaml
