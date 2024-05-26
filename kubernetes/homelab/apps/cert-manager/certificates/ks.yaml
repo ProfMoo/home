@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app certificates-import
+  name: &app certificates
   namespace: flux-system
 spec:
   targetNamespace: cert-manager
