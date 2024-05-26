@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - ./repositories
   - ./podmonitor.yaml
-  - ./flux.yaml
+  - ./flux/ks.yaml
