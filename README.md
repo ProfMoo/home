@@ -10,7 +10,7 @@
 
 # [Moo's Pasture](https://github.com/ProfMoo/home)
 
-> A [onedr0p](https://github.com/onedr0p/home-ops) inspired project, with some [ProfMoo](https://github.com/ProfMoo) sprinkled in.
+> A [onedr0p home-ops](https://github.com/onedr0p/home-ops) inspired project, with some [ProfMoo](https://github.com/ProfMoo) sprinkled in.
 
 ## Overview
 

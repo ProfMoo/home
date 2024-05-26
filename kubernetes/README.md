@@ -35,8 +35,8 @@ These secrets can be decrypted by either an age key (defined in the top-level `.
 To deploy these secret during initial bootstrapping:
 
 ```bash
-sops --decrypt kubernetes/homelab/age.bootstrap.sops.yaml | kubectl apply --server-side --filename -
-sops --decrypt kubernetes/homelab/github.bootstrap.sops.yaml | kubectl apply --server-side --filename -
+sops --decrypt kubernetes/homelab/apps/age.bootstrap.sops.yaml | kubectl apply --server-side --filename -
+sops --decrypt kubernetes/homelab/apps/github.bootstrap.sops.yaml | kubectl apply --server-side --filename -
 ```
 
 ### Secrets With Flux
