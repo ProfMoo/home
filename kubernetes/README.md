@@ -1,10 +1,8 @@
 # Kubernetes
 
-## Sops
-
-I use [`sops`](https://github.com/getsops/sops) to manage secrets in a GitOps way. Good tutorial on sops [here](https://blog.gitguardian.com/a-comprehensive-guide-to-sops/).
-
 ## Storage
+
+### Current
 
 Going to have 3 kinds of storage for my k8s clusters:
 
@@ -16,7 +14,7 @@ Going to have 3 kinds of storage for my k8s clusters:
 
 I might be able to use `democratic-csi` for all 3 of these, using these 3 drivers, respectively: `democratic-csi/local-hostpath`, `democratic-csi/freenas-api-nfs` & `democratic-csi/freenas-api-iscsi`, and `democratic-csi/node-manual`
 
-## Storage 2
+### Future
 
 Now that I'm further along, I think I have an idea for how I'm wanna do storage in the future:
 
@@ -25,19 +23,7 @@ Now that I'm further along, I think I have an idea for how I'm wanna do storage 
 
 ## Secrets
 
-At the top level of the `homelab` directory is two secrets that must be applied to the cluster for flux to function properly:
-
-- `age.secret.sops.yaml`: The age secret that Flux will use to decrypt secrets checked into the codebase.
-- `github.secret.sops.yaml`: The Github SSH keys and access token necessary for Flux to access this repository on github.com.
-
-These secrets can be decrypted by either an age key (defined in the top-level `.sops.yaml` file) OR a KMS key (ARN also defined in the top-level `.sops.yaml` file). Age is the primary key used to decrypt secrets by Flux at deploy time. KMS key can be used a backup to decrypt and recover the bootstrap secrets if needed.
-
-To deploy these secret during initial bootstrapping:
-
-```bash
-sops --decrypt kubernetes/homelab/apps/age.bootstrap.sops.yaml | kubectl apply --server-side --filename -
-sops --decrypt kubernetes/homelab/apps/github.bootstrap.sops.yaml | kubectl apply --server-side --filename -
-```
+I use [`sops`](https://github.com/getsops/sops) to manage secrets in a GitOps way. There's a good overview of sops [here](https://blog.gitguardian.com/a-comprehensive-guide-to-sops/).
 
 ### Secrets With Flux
 
@@ -144,3 +130,39 @@ View example [Fluxtomization](https://github.com/onedr0p/home-ops/blob/782ec8c15
 In the future, I might choose to go down a more "hyperconverged" route and manage storage directly from k8s (instead of having TrueNAS handle most of this). In that case, I'd need to migrate the `StorageClass` of most of my pods, which would be a big lift. To do that, there is a great article [here](https://gist.github.com/deefdragon/d58a4210622ff64088bd62a5d8a4e8cc).
 
 For this hyperconverged route, I might consider using [Harvester](https://github.com/harvester/harvester), which is a more cloud-native hypervisor and VM-management solution.
+
+## Bootstrapping
+
+The steps below are run after the cluster is created with Talos to start the flux-focused GitOps workflow. One the steps below are run, all the K8s cluster components and apps should install onto the cluster.
+
+### 1. Secrets
+
+In [this directory](./bootstrap), there are two secrets that must be applied to the cluster for flux to function properly:
+
+- `age.secret.sops.yaml`: The age secret that Flux will use to decrypt secrets checked into the codebase.
+- `github.secret.sops.yaml`: The Github SSH keys and access token necessary for Flux to access this repository on github.com.
+
+These secrets can be decrypted by either an age key (defined in the top-level `.sops.yaml` file) OR a KMS key (ARN also defined in the top-level `.sops.yaml` file). Age is the primary key used to decrypt secrets by Flux at deploy time. KMS key can be used a backup to decrypt and recover the bootstrap secrets if needed.
+
+To deploy these secret during initial bootstrapping:
+
+```bash
+sops --decrypt kubernetes/homelab/bootstrap/age.bootstrap.sops.yaml | kubectl apply --server-side --filename -
+sops --decrypt kubernetes/homelab/bootstrap/github.bootstrap.sops.yaml | kubectl apply --server-side --filename -
+```
+
+Most of the Kubernetes components are added via Flux defined in the [kubernetes directory](../kubernetes/). For the remaining components that are installed during cluster instantiation, the instructions are defined below.
+
+### 2. Flux Installation
+
+I used Kustomize to install the components necessary to bootstrap Flux using this command:
+
+```bash
+kubectl apply --server-side --kustomize kubernetes/homelab/bootstrap/flux/kustomization
+```
+
+Then, I install the my repo-specific Flux configuration using this command:
+
+```bash
+kubectl apply --server-side --kustomize kubernetes/homelab/bootstrap/flux/repo
+```

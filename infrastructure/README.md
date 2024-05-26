@@ -59,23 +59,6 @@ There are some Kubernetes configurations, such as the `kube-proxy` configuration
 
 I attempted for quite a while to avoid tedious manual declarations of IP addresses for each Kubernetes node. I found some level of success assigning MAC addresses to the VMs, reading the DHCP-assigned IPv4 addresses from the Unifi Router, then using that in the rest of the progress. But ultimately it was unsuccessful. The Unifi Router would begin to get confused with the introduction of virtual IPs, such as the Talos Virtual IP, and begin to return the Virtual IP when I needed the direct node IP. I had to scrap this idea unfortunately. Now we must assign each node an IP address and MAC address in `main.tf` manually.
 
-### Component Installation
-
-Most of the Kubernetes components are added via Flux defined in the [kubernetes directory](../kubernetes/). For the remaining components that are installed during cluster instantiation, the instructions are defined below.
-
-### Flux Installation
-
-I generated the Flux YAML via [this chart](https://artifacthub.io/packages/helm/fluxcd-community/flux2) using this command:
-
-```bash
-helm template flux \
-    flux2/flux2 \
-    --version 2.12.4 \
-    --namespace flux-system
-```
-
-The values available can be found [here](https://github.com/fluxcd-community/helm-charts/tree/main/charts/flux2).
-
 ### Cilium Installation
 
 I generated the Cilium YAML via this command:
