@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - ./externalsecret.yaml
   - ./issuers.yaml
+  - ./iam.secret.sops.yaml
