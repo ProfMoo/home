@@ -71,7 +71,7 @@ spec:
           namespaceSelector:
             any: true
       extraArgs:
-        default-ssl-certificate: network/drmoo-io-tls
+        default-ssl-certificate: networking/drmoo-io-tls
       terminationGracePeriodSeconds: 120
       topologySpreadConstraints:
         - maxSkew: 1
