@@ -12,18 +12,23 @@
     ":timezone(America/New_York)",
     "github>ProfMoo/home//.github/renovate/autoMerge.json5",
     "github>ProfMoo/home//.github/renovate/commitMessage.json5",
+    "github>ProfMoo/home//.github/renovate/labels.json5",
   ],
   dependencyDashboardTitle: "Renovate Dashboard 🤖",
   platformCommit: true,
   suppressNotifications: ["prEditedNotification", "prIgnoreNotification"],
   ignorePaths: ["**/*.sops.*"],
   flux: {
-    fileMatch: ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"],
+    fileMatch: ["(^|/)kubernetes/.+\\.ya?ml$"],
   },
   "helm-values": {
-    fileMatch: ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"],
+    fileMatch: ["(^|/)kubernetes/.+\\.ya?ml$"],
   },
   kubernetes: {
-    fileMatch: ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"],
+    fileMatch: ["(^|/)kubernetes/.+\\.ya?ml$"],
+  },
+  terraform: {
+    fileMatch: ["\\.tf$"],
+    versioning: "hashicorp",
   },
 }

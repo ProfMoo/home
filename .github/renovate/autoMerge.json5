@@ -12,7 +12,7 @@
       matchPackagePatterns: ["ghcr.io/bjw-s", "ghcr.io/onedr0p"],
     },
     {
-      description: "Auto merge helm",
+      description: "Auto merge helm updates for patch and minor versions",
       matchDatasources: ["helm"],
       automerge: true,
       automergeType: "branch",
@@ -20,7 +20,7 @@
       matchUpdateTypes: ["patch", "minor"],
     },
     {
-      description: ["Auto-merge GitHub Actions for minor and patch"],
+      description: ["Auto-merge GitHub Actions for patch and minor versions"],
       matchManagers: ["github-actions"],
       matchDatasources: ["github-tags"],
       automerge: true,
