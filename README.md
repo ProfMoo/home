@@ -46,8 +46,10 @@ One major change from the typical home operations Discord setup is my desire to 
 
 Things to do before I'm ready to start moving apps on the k8s cluster for real:
 
-1. Fix weird error where only *some* of the API server and kubelet logs are getting scraped.
+1. [ ]  Fix weird error where only *some* of the API server and kubelet logs are getting scraped.
    1. Ongoing... believe it's due to the `aud` field being incorrectly assigned from the API server.
-2. Remove unnecessary Grafana dashboards.
-3. ~~Setup TrueNAS storage~~. Actually, just do Ceph/Rook with Volsync natively on the nodes for PVCs.
-4. Fix Renovate (currently, it doesn't really work consistently and uses ProfMoo Github credentials instead of its own). Also, I should setup Renovate to handle the Helm chart versions.
+2. [ ] Remove unnecessary Grafana dashboards.
+3. [ ] ~~Setup TrueNAS storage~~. Actually, just do Ceph/Rook with Volsync natively on the nodes for PVCs.
+4. [ ] Fix Renovate (currently, it doesn't really work consistently and uses ProfMoo Github credentials instead of its own). Also, I should setup Renovate to handle the Helm chart versions.
+5. [ ] Install cert-manager, nginx-ingress, and MetalLB (or equivalent). This way I can have a consistent URL for my important endpoints.
+6. [ ] Fix the bootstrapping phase to be more consistent and upgradeable for Flux
