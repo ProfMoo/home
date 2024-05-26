@@ -1,16 +1,20 @@
 <p align="center">
-  <img src="./docs/repo.png" alt="diagram">
+  <img src="./docs/repo.png" alt="diagram" width="200" height="200">
 </p>
 
-# Moos Pasture
+# [Moo's Pasture](https://github.com/ProfMoo/home)
 
-This is a mono repository for my homelab Kubernetes cluster. I strictly adhere to Infrastructure as Code (IaC) and GitOps practices using tools like Kubernetes, Terraform, Talos, Flux, and soon Renovate, and GitHub Actions.
+> A [onedr0p](https://github.com/onedr0p/home-ops) inspired project, with some [ProfMoo](https://github.com/ProfMoo) sprinkled in.
 
-This project started as a means to house my music collection, but has grown into a fully fledged Kubernetes-based homelab with a dedicated server rack.
+[![GitHub Stars](https://img.shields.io/github/stars/ProfMoo/home.svg?color=3498DB)](https://github.com/ProfMoo/home/stargazers) [![GitHub last commit](https://img.shields.io/github/last-commit/ProfMoo/home?color=purple&style=flat-square)](https://github.com/ProfMoo/home/commits/main)
 
-## Overview
+## 📖 Overview
 
-![diagram](./docs/diagram.drawio.png)
+This is a mono repository for my homelab Kubernetes cluster. I strictly adhere to Infrastructure as Code (IaC) and GitOps practices using tools like Kubernetes, Terraform, Talos, Flux, Renovate, and GitHub Actions.
+
+<p align="center">
+  <img src="./docs/diagram.drawio.png" alt="diagram" width="500" height="500">
+</p>
 
 ### Infrastructure
 
