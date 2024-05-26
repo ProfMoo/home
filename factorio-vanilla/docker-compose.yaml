@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   factorio:
-    image: factoriotools/factorio:1.1.80
+    image: factoriotools/factorio:1.1.107
     environment:
       INSTANCE_NAME: "Coinbase"
       INSTANCE_DESC: "To the moon!"
