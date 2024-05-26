@@ -67,6 +67,18 @@ spec:
         ports:
           http:
             port: 80
+    ingress:
+      app:
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+        className: internal
+        hosts:
+          - host: "{{ .Release.Name }}.drmoo.io"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
     persistence:
       config:
         existingClaim: radarr
