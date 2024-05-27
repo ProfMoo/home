@@ -14,3 +14,4 @@ resources:
   - ./stakater.yaml
   - ./jetstack.yaml
   - ./ingress-nginx.yaml
+  - ./external-dns.yaml
