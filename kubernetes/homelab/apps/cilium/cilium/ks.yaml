@@ -1,26 +1,26 @@
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
-# apiVersion: kustomize.toolkit.fluxcd.io/v1
-# kind: Kustomization
-# metadata:
-#   name: &app cilium
-#   namespace: flux-system
-# spec:
-#   targetNamespace: cilium
-#   commonMetadata:
-#     labels:
-#       app.kubernetes.io/name: *app
-#   path: ./kubernetes/homelab/apps/cilium/cilium/app
-#   prune: false # never should be deleted
-#   sourceRef:
-#     kind: GitRepository
-#     name: profmoo-home
-#   wait: true
-#   # Needed for the Cilium Helm install to "takeover" the manual bootstrapped Cilium install
-#   force: true
-#   interval: 30m
-#   retryInterval: 1m
-#   timeout: 15m
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app cilium
+  namespace: flux-system
+spec:
+  targetNamespace: cilium
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/homelab/apps/cilium/cilium/app
+  prune: false # never should be deleted
+  sourceRef:
+    kind: GitRepository
+    name: profmoo-home
+  wait: true
+  # Needed for the Cilium Helm install to "takeover" the manual bootstrapped Cilium install
+  force: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 15m
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
