@@ -16,6 +16,8 @@ spec:
     kind: GitRepository
     name: profmoo-home
   wait: true
+  # Needed for the Cilium Helm install to "takeover" the manual bootstrapped Cilium install
+  force: true
   interval: 30m
   retryInterval: 1m
   timeout: 15m
