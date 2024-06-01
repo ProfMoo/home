@@ -74,7 +74,7 @@ spec:
               - path: /
                 service:
                   identifier: app
-                  port: http
+                  port: *port
     persistence:
       config:
         type: emptyDir
