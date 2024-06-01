@@ -2097,7 +2097,11 @@ spec:
     serviceMonitor:
       enabled: true
     ingress:
-      enabled: false
+      enabled: true
+      annotations:
+        external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+      ingressClassName: internal
+      hosts: ["grafana.drmoo.io"]
     imageRenderer:
       enabled: false
     persistence:
