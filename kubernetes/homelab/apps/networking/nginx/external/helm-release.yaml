@@ -29,7 +29,7 @@ spec:
       service:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: external.drmoo.io
-          io.cilium/lb-ipam-ips: 192.168.42.126
+          io.cilium/lb-ipam-ips: 192.168.8.126
       ingressClassResource:
         name: external
         default: false
@@ -72,7 +72,7 @@ spec:
           namespaceSelector:
             any: true
       extraArgs:
-        default-ssl-certificate: networking/drmoo-io-tls
+        default-ssl-certificate: cert-manager/drmoo-io-tls
       terminationGracePeriodSeconds: 120
       topologySpreadConstraints:
         - maxSkew: 1
