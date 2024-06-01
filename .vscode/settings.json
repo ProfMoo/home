@@ -42,6 +42,7 @@
         "kustomizations",
         "kustomize",
         "labeldrop",
+        "letsencrypt",
         "minio",
         "multicluster",
         "normaliser",
