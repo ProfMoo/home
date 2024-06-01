@@ -63,6 +63,18 @@ spec:
         ports:
           http:
             port: *port
+    ingress:
+      app:
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+        className: internal
+        hosts:
+          - host: "prowlarr.internal.drmoo.io"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
     persistence:
       config:
         type: emptyDir
