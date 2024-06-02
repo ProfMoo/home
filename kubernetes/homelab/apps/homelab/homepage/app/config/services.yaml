@@ -1,113 +1,113 @@
 - Media:
-    - Jellyfin:
-        href: http://foobar:8096
-        icon: jellyfin
-        description: Media server (admin:)
-        widget:
-          type: jellyfin
-          url: http://192.168.1.78:8096
-          key: ac5afcc6811543d9814ec798c924b29c
-    - Feishin:
-        href: http://192.168.1.78:9180
-        icon: mdi-headphones
-        description: Music player
+      - Jellyfin:
+            href: http://foobar:8096
+            icon: jellyfin
+            description: Media server (admin:)
+            widget:
+                type: jellyfin
+                url: http://192.168.1.78:8096
+                key: ac5afcc6811543d9814ec798c924b29c
+      - Feishin:
+            href: http://192.168.1.78:9180
+            icon: mdi-headphones
+            description: Music player
 
 - Infrastructure:
-    - Grafana:
-        href: http://192.168.8.30:30087
-        icon: grafana
-        description: Observability (username:password)
-        widget:
-          type: grafana
-          url: http://192.168.8.30:30087
-          username: username
-          password: password
-    - Prometheus:
-        href: http://192.168.8.30:30086
-        icon: prometheus
-        description: Observability
-        widget:
-          type: prometheus
-          url: http://192.168.8.30:30086
-          fields: ["targets_up", "targets_down", "targets_total"]
-    - GoldPinger:
-        href: http://192.168.8.30:30080
-        icon: mdi-connection
-        description: Node connectivity
+      - Grafana:
+            href: https://grafana.drmoo.io
+            icon: grafana
+            description: Observability (username:password)
+            widget:
+                type: grafana
+                url: https://grafana.drmoo.io
+                username: username
+                password: password
+      - Prometheus:
+            href: https://prometheus.drmoo.io
+            icon: prometheus
+            description: Observability
+            widget:
+                type: prometheus
+                url: https://prometheus.drmoo.io
+                fields: ["targets_up", "targets_down", "targets_total"]
+      - GoldPinger:
+            href: http://192.168.8.30:30080
+            icon: mdi-connection
+            description: Node connectivity
 
 - Torrents:
-    - Prowlarr:
-        href: http://192.168.1.78:9696
-        icon: prowlarr.png
-        description: Tracker indexer wrapper (admin:admin)
-        widget:
-          type: prowlarr
-          url: http://192.168.1.78:9696
-          key: 0f7b3e4b022c48f188f9a0241beadce2
-    - Radarr:
-        href: http://192.168.1.78:7878
-        icon: radarr.png
-        description: Movie torrent manager (admin:admin)
-        widget:
-          type: radarr
-          url: http://192.168.1.78:7878
-          key: 3332dc6cd509473eaf4be1a93bb3f1a7
-    - Sonarr:
-        href: http://192.168.1.78:8989
-        icon: sonarr.png
-        description: TV series torrent manager (admin:admin)
-        widget:
-          type: sonarr
-          url: http://192.168.1.78:8989
-          key: 4adbf087ecba48a4a46e6f911f5aded4
-    # - Readarr:
-    #     href: http://192.168.1.78:8787
-    #     icon: readarr.png
-    #     description: Book & eBook torrent manager (admin:admin)
-    #     widget:
-    #       type: readarr
-    #       url: http://192.168.1.78:8787
-    #       key: 0b7b093ea2c346548a2321c1b5c2b92a
-    - qBittorrent:
-        href: http://192.168.1.78:8085
-        icon: qbittorrent
-        description: Torrent downloader (admin:adminadmin)
-        widget:
-          type: qbittorrent
-          url: http://192.168.1.78:8085
-          username: admin
-          password: adminadmin
-    - Betanin:
-        href: http://192.168.1.78:9393
-        icon: betanin
-        description: Music tagging (user:pass)
+      - Prowlarr:
+            href: https://prowlarr.drmoo.io
+            icon: prowlarr.png
+            description: Tracker indexer wrapper (admin:admin)
+            widget:
+                type: prowlarr
+                url: http://192.168.1.78:9696
+                key: 0f7b3e4b022c48f188f9a0241beadce2
+      - Radarr:
+            href: http://192.168.1.78:7878
+            icon: radarr.png
+            description: Movie torrent manager (admin:admin)
+            widget:
+                type: radarr
+                url: http://192.168.1.78:7878
+                key: 3332dc6cd509473eaf4be1a93bb3f1a7
+      - Sonarr:
+            href: http://192.168.1.78:8989
+            icon: sonarr.png
+            description: TV series torrent manager (admin:admin)
+            widget:
+                type: sonarr
+                url: http://192.168.1.78:8989
+                key: 4adbf087ecba48a4a46e6f911f5aded4
+      # - Readarr:
+      #     href: http://192.168.1.78:8787
+      #     icon: readarr.png
+      #     description: Book & eBook torrent manager (admin:admin)
+      #     widget:
+      #       type: readarr
+      #       url: http://192.168.1.78:8787
+      #       key: 0b7b093ea2c346548a2321c1b5c2b92a
+      - qBittorrent:
+            href: http://192.168.1.78:8085
+            icon: qbittorrent
+            description: Torrent downloader (admin:adminadmin)
+            widget:
+                type: qbittorrent
+                url: http://192.168.1.78:8085
+                username: admin
+                password: adminadmin
+      - Betanin:
+            href: http://192.168.1.78:9393
+            icon: betanin
+            description: Music tagging (user:pass)
 
 - Other:
-    - Unifi:
-        href: http://192.168.1.1
-        icon: unifi
-    - TrueNAS:
-        href: http://truenas.local
-        icon: truenas
-        description: TrueNas server
-        widget:
-          type: truenas
-          url: http://truenas.local
-          key: 1-WYckrNh6X7L1w3Bhwm8PUGn6N3n1JCjXsEUWnD870nhloTnqeVuiFbTHs6CQfAyF
-    - TrueNAS OOBM:
-        href: http://192.168.1.54
-        icon: truenas
-    - Compute-1:
-        href: http://192.168.1.64:8006
-        icon: proxmox
-        description: (root:admin)
-    - Compute-1 iDRAC:
-        href: http://192.168.1.120
-        icon: dell
-    - Minecraft:
-        href: udp://192.168.1.84:25565
-        icon: minecraft
-        description: OBKiddos
-        widget:
-          type: minecraft
-          url: udp://192.168.1.84:25565
+      - Unifi:
+            href: http://192.168.1.1
+            icon: unifi
+      - TrueNAS:
+            href: http://truenas.local
+            icon: truenas
+            description: TrueNas server
+            widget:
+                type: truenas
+                url: http://truenas.local
+                key: 1-WYckrNh6X7L1w3Bhwm8PUGn6N3n1JCjXsEUWnD870nhloTnqeVuiFbTHs6CQfAyF
+      - TrueNAS OOBM:
+            href: http://192.168.1.54
+            icon: truenas
+      - Compute-1:
+            href: http://192.168.1.64:8006
+            icon: proxmox
+            description: (root:admin)
+      - Compute-1 iDRAC:
+            href: http://192.168.1.120
+            icon: dell
+      - Minecraft:
+            href: udp://192.168.1.84:25565
+            icon: minecraft
+            description: OBKiddos
+            widget:
+                type: minecraft
+                url: udp://192.168.1.84:25565

@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: homepage
+spec:
+  ingressClassName: internal
+  rules:
+    - host: home.drmoo.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: homepage
+                port:
+                  number: 3000
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - "*.drmoo.io"
+      secretName: drmoo-io-tls
