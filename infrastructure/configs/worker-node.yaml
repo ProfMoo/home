@@ -3,7 +3,8 @@ machine:
     drmoo.io/role: ${node_type}
     drmoo.io/zone: ${proxmox_node}
   install:
-    # NOTE: Adjust this image to either 1. install new extensions and/or 2. upgrade Talos
+    # Docs: https://www.talos.dev/v1.7/learn-more/image-factory/
+    # Adjust this image to either 1. install new extensions and/or 2. upgrade Talos
     # 1. Go to https://factory.talos.dev/ and generate a new path
     # 2. Pass in a different 'talos_version'
     image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:${talos_version}

@@ -9,7 +9,7 @@ machine:
     - ${talos_virtual_ip}
   kubelet:
     defaultRuntimeSeccompProfileEnabled: true
-    disableManifestsDirectory: false
+    disableManifestsDirectory: true
     extraArgs:
       rotate-server-certificates: true
   network:
@@ -43,7 +43,8 @@ machine:
       allowedKubernetesNamespaces:
         - system-upgrade
   install:
-    # NOTE: Adjust this image to either 1. install new extensions and/or 2. upgrade Talos
+    # Docs: https://www.talos.dev/v1.7/learn-more/image-factory/
+    # Adjust this image to either 1. install new extensions and/or 2. upgrade Talos
     # 1. Go to https://factory.talos.dev/ and generate a new path
     # 2. Pass in a different 'talos_version'
     image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:${talos_version}
@@ -65,9 +66,7 @@ cluster:
     podSubnets: ${format("%#v",split(",",pod_subnets))}
     serviceSubnets: ${format("%#v",split(",",service_subnets))}
     cni:
-      name: custom
-      urls:
-        - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/cilium.yaml
+      name: none
   controlPlane:
     endpoint: https://${talos_virtual_ip}:6443
   apiServer:
@@ -98,10 +97,10 @@ cluster:
     resources:
       requests:
         cpu: 500m
-        memory: 500Mi
+        memory: 1Gi
       limits:
         cpu: 1
-        memory: 1Gi
+        memory: 2Gi
   proxy:
     # Using Cilium as the proxy, so disabling kube-proxy
     disabled: true
@@ -151,11 +150,7 @@ cluster:
         kind: Namespace
         metadata:
             name: cilium
+            annotations:
+              kustomize.toolkit.fluxcd.io/prune: disabled
             labels:
               pod-security.kubernetes.io/enforce: "privileged"
-  externalCloudProvider:
-    enabled: true
-    manifests:
-      # NOTE: We include the cert-approval in the bootstrap manifests since it enables viewing pod logs.
-      # If the cluster startup fails for any reason, it can be difficult to debug without viewing logs.
-      - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/cert-approval.yaml

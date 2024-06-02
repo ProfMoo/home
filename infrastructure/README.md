@@ -58,34 +58,3 @@ There are some Kubernetes configurations, such as the `kube-proxy` configuration
 ### IP Declaration
 
 I attempted for quite a while to avoid tedious manual declarations of IP addresses for each Kubernetes node. I found some level of success assigning MAC addresses to the VMs, reading the DHCP-assigned IPv4 addresses from the Unifi Router, then using that in the rest of the progress. But ultimately it was unsuccessful. The Unifi Router would begin to get confused with the introduction of virtual IPs, such as the Talos Virtual IP, and begin to return the Virtual IP when I needed the direct node IP. I had to scrap this idea unfortunately. Now we must assign each node an IP address and MAC address in `main.tf` manually.
-
-### Cilium Installation
-
-I generated the Cilium YAML via this command:
-
-```bash
-helm template cilium \
-    cilium/cilium \
-    --version 1.13.2 \
-    --namespace cilium \
-    --set ipam.mode=kubernetes \
-    --set tunnel=disabled \
-    --set bpf.masquerade=true \
-    --set endpointRoutes.enabled=true \
-    --set kubeProxyReplacement=strict \
-    --set autoDirectNodeRoutes=true \
-    --set localRedirectPolicy=true \
-    --set operator.rollOutPods=true \
-    --set rollOutCiliumPods=true \
-    --set ipv4NativeRoutingCIDR="10.244.0.0/16" \
-    --set hubble.relay.enabled=true \
-    --set hubble.ui.enabled=true \
-    --set securityContext.capabilities.ciliumAgent="{CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}" \
-    --set=securityContext.capabilities.cleanCiliumState="{NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}" \
-    --set=cgroup.autoMount.enabled=false \
-    --set=cgroup.hostRoot=/sys/fs/cgroup \
-    --set=k8sServiceHost="127.0.0.1" \
-    --set=k8sServicePort="7445"
-```
-
-I sourced this command from the [Talos installation guide](https://www.talos.dev/v1.6/kubernetes-guides/network/deploying-cilium/#method-1-helm-install) and [this Proxmox-based GitHub tutorial](https://github.com/kubebn/talos-proxmox-kaas).

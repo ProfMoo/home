@@ -119,7 +119,7 @@ postBuild:
 
 View example [Fluxtomization](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/flux/apps.yaml), [Helm Release](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/apps/monitoring/kube-prometheus-stack/helm-release.yaml), and corresponding [Secret](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/config/cluster-secrets.sops.yaml).
 
-#### Final Thoughts
+#### Final Secrets Thoughts
 
 - TODO: For the first **three methods** consider using a tool like [stakater/reloader](https://github.com/stakater/Reloader) to restart the pod when the secret changes. Using reloader on a pod using a secret provided by Flux Variable Substitution will lead to pods being restarted during any change to the secret while related to the pod or not.
 
@@ -135,7 +135,15 @@ For this hyperconverged route, I might consider using [Harvester](https://github
 
 The steps below are run after the cluster is created with Talos to start the flux-focused GitOps workflow. One the steps below are run, all the K8s cluster components and apps should install onto the cluster.
 
-### 1. Secrets
+### 1. CNI
+
+After the initial Talos cluster creation (with the CNI set to none), the cluster will be waiting for a CNI to be installed ([docs](https://www.talos.dev/v1.7/kubernetes-guides/network/deploying-cilium/)). This is the first component that must be installed after raw infra is provisioned.
+
+```bash
+helm upgrade --install cilium cilium/cilium --namespace cilium --values kubernetes/homelab/apps/cilium/cilium/app/helm-values.yaml
+```
+
+### 2. Secrets
 
 In [this directory](./bootstrap), there are two secrets that must be applied to the cluster for flux to function properly:
 
@@ -153,7 +161,7 @@ sops --decrypt kubernetes/homelab/bootstrap/github.bootstrap.sops.yaml | kubectl
 
 Most of the Kubernetes components are added via Flux defined in the [kubernetes directory](../kubernetes/). For the remaining components that are installed during cluster instantiation, the instructions are defined below.
 
-### 2. Flux Installation
+### 3. Flux Installation
 
 I used Kustomize to install the components necessary to bootstrap Flux using this command:
 
