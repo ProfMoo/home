@@ -26,6 +26,9 @@ machine:
         vip:
           ip: ${talos_virtual_ip}
   features:
+    rbac: true
+    stableHostname: true
+    apidCheckExtKeyUsage: true
     # https://www.talos.dev/v1.7/talos-guides/network/host-dns/
     hostDNS:
       enabled: true
@@ -65,9 +68,10 @@ cluster:
       name: custom
       urls:
         - https://raw.githubusercontent.com/ProfMoo/home/master/infrastructure/manifests/cilium.yaml
+  controlPlane:
+    endpoint: https://${talos_virtual_ip}:6443
   apiServer:
     extraArgs:
-      feature-gates: ServerSideApply=true
       # For the life of me, I cannot figure out why I need to set this field.
       #
       # Problem: I have been dealing with persistent inconsistency wrt Kubernetes pods authentication to the Kubernetes API server.
@@ -90,7 +94,7 @@ cluster:
       #   Perhaps this flag, which I use to apply configuration to the cluster, actually enables some specific configuration to interact with cloud providers.
       #   Namely, this might tell the cluster to set specific values so that the external cloud provider can control authentication, similar to this article:
       #     https://www.talos.dev/v1.7/advanced/machine-config-oauth/#configuration
-      api-audiences: "https://192.168.8.20:6443,https://192.168.8.21:6443,https://192.168.8.22:6443"
+      # api-audiences: "https://192.168.8.20:6443,https://192.168.8.21:6443,https://192.168.8.22:6443"
     resources:
       requests:
         cpu: 500m
