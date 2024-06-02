@@ -31,8 +31,7 @@ machine:
     apidCheckExtKeyUsage: true
     # https://www.talos.dev/v1.7/talos-guides/network/host-dns/
     hostDNS:
-      enabled: true
-      resolveMemberNames: true
+      enabled: false
     kubePrism:
       enabled: true
       port: 7445
@@ -49,6 +48,8 @@ machine:
     # 2. Pass in a different 'talos_version'
     # To upgrade:
     #   talosctl --nodes <node> upgrade --image factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.7.4 --preserve=true
+    # --preserve must be set to true or else the local-host-path volumes will be removed and pods that rely on it won't be able to start
+    # without completely wiping the underlying PVCs and PVs.
     image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:${talos_version}
   files:
     - op: overwrite

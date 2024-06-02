@@ -18,9 +18,7 @@ machine:
   features:
     # https://www.talos.dev/v1.7/talos-guides/network/host-dns/
     hostDNS:
-      enabled: true
-      resolveMemberNames: true
-      forwardKubeDNSToHost: true
+      enabled: false
     rbac: true
     stableHostname: true
     apidCheckExtKeyUsage: true

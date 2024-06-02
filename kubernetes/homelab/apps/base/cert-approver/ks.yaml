@@ -1,0 +1,20 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app cert-approver
+  namespace: base
+spec:
+  path: ./kubernetes/homelab/apps/base/cert-approver/app
+  targetNamespace: base
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: profmoo-home
+  interval: 30m
+  retryInterval: 2m
+  timeout: 3m
