@@ -70,30 +70,6 @@ cluster:
   controlPlane:
     endpoint: https://${talos_virtual_ip}:6443
   apiServer:
-    extraArgs:
-      # For the life of me, I cannot figure out why I need to set this field.
-      #
-      # Problem: I have been dealing with persistent inconsistency wrt Kubernetes pods authentication to the Kubernetes API server.
-      #   This would usually show up when a new pod starts up - it would attempt to connect to the API server dozens of times before finally succeeding.
-      #   It also affected Prometheus, as the Prometheus pod could only ever scrape *some* of the cluster components.
-      #
-      # Investigation: The tokens that were being loaded into the Kubernetes pods would have the `aud` field of the JWT data be only one control plane node.
-      #   Ex: { "aud": "https://192.168.8.20:6443" }
-      #   This node would be the node that the API server who was asked for a token is running on.
-      #   The "aud" field determines *who* the token is meant for. Meaning that the token is self-limiting and therefore only authenticates to API server pods running on that particular node.
-      #   This doesn't match what other Talos/homelab users see on their tokens (or anyone else I can find on the internet)
-      #   Most users would have all the control plane nodes (like I've done below) or a load-balanced endpoint across all the nodes.
-      #   The weirdest part is that I've been unable to figure out *why* my configuration is different from everyone else.
-      #
-      # Workaround: I manually define the control plane node IPs here, so that the aud field has all the API server pod's nodes
-      #     https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/
-      #   This is still not perfect, as some pods are displaying weird behavior (like for example now we can't scrape metrics from the API servers???)
-      #   Hopefully at some point this all makes sense. The best guess I have right now has to do with the `externalCloudProvider` field that I set during Talos startup.
-      #     https://www.talos.dev/v1.7/reference/configuration/v1alpha1/config/#Config.cluster.externalCloudProvider
-      #   Perhaps this flag, which I use to apply configuration to the cluster, actually enables some specific configuration to interact with cloud providers.
-      #   Namely, this might tell the cluster to set specific values so that the external cloud provider can control authentication, similar to this article:
-      #     https://www.talos.dev/v1.7/advanced/machine-config-oauth/#configuration
-      # api-audiences: "https://192.168.8.20:6443,https://192.168.8.21:6443,https://192.168.8.22:6443"
     resources:
       requests:
         cpu: 500m
