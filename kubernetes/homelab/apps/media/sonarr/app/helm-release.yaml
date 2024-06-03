@@ -65,6 +65,24 @@ spec:
         ports:
           http:
             port: 80
+    ingress:
+      app:
+        tls:
+          - hosts:
+              - "*.drmoo.io"
+            secretName: drmoo-io-tls
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/secret-name: "drmoo-io-tls"
+        className: internal
+        hosts:
+          - host: "sonarr.drmoo.io"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
     persistence:
       config:
         existingClaim: sonarr
