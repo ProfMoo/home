@@ -22,10 +22,10 @@ spec:
           resources:
             requests:
               memory: "256Mi"
-              cpu: "100m"
+              cpu: "250m"
             limits:
-              memory: "512Mi"
-              cpu: "200m"
+              memory: "1Gi"
+              cpu: "500m"
           volumeMounts:
             - name: homepage-config-volume
               # NOTE: Homepage expects this at a specific location, which we've matched here.
