@@ -43,7 +43,7 @@
             widget:
                 type: prowlarr
                 url: http://192.168.1.78:9696
-                key: 0f7b3e4b022c48f188f9a0241beadce2
+                key: foobarbazfoobarbazfoobarbazfooba
       - Radarr:
             href: https://radarr.drmoo.io
             icon: radarr.png
@@ -51,7 +51,7 @@
             widget:
                 type: radarr
                 url: https://radarr.drmoo.io
-                key: 3332dc6cd509473eaf4be1a93bb3f1a7
+                key: foobarbazfoobarbazfoobarbazfooba
       - Sonarr:
             href: https://sonarr.drmoo.io
             icon: sonarr.png
@@ -59,7 +59,7 @@
             widget:
                 type: sonarr
                 url: https://sonarr.drmoo.io
-                key: 4adbf087ecba48a4a46e6f911f5aded4
+                key: foobarbazfoobarbazfoobarbazfooba
       # - Readarr:
       #     href: http://192.168.1.78:8787
       #     icon: readarr.png
