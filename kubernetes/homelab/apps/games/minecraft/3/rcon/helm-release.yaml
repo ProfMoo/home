@@ -25,19 +25,13 @@ spec:
   # NOTE: Values here: https://github.com/itzg/minecraft-server-charts/blob/master/charts/minecraft/values.yaml
   values:
     rconWeb:
-      # Sets the initial user as an admin
-      isAdmin: false
-      # Sets the initial user's username
-      username: admin
-      # Sets the initial user's password
-      password: ""
       # Name of existing secret with UI password
-      passwordExistingSecret:
-      passwordKey: "password"
+      passwordExistingSecret: rcon-secret
+      passwordKey: rcon-gui-password
       # The initial game you wish to control (minecraft / rust / csgo / other)
       game: minecraft
       # The display name of the initial server (if unset; defaults to value of RWA_GAME)
-      serverName: minecraft
+      serverName: minecraft-3
       # The initial RCON server to control
       rconHost: 127.0.0.1
       # The port number of the initial RCON server to control
@@ -45,8 +39,8 @@ spec:
       # The password for the initial RCON server to control
       rconPassword: ""
       # Name of existing secret with RCON password
-      rconPasswordExistingSecret:
-      rconPasswordKey: "rcon-password"
+      rconPasswordExistingSecret: rcon-secret
+      rconPasswordKey: rcon-password
       # Prevent the initial user user executing these commands
       restrictCommands: []
       # Hide this list of widgets from the initial user
