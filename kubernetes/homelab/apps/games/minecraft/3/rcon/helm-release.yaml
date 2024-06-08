@@ -22,8 +22,10 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
-  # NOTE: Values here: https://github.com/itzg/minecraft-server-charts/blob/master/charts/minecraft/values.yaml
+  # NOTE: Values here: https://github.com/itzg/minecraft-server-charts/blob/master/charts/rcon-web-admin/values.yaml
   values:
+    # Username: "admin"
+    # Password: in secret
     rconWeb:
       # Name of existing secret with UI password
       passwordExistingSecret: rcon-secret
@@ -48,7 +50,7 @@ spec:
       # Prevent the initial user changing options in the widget options tab
       immutableWidgetOptions: false
       # Enables 'web rcon' if supported by the game server
-      websocketRcon: false
+      websocketRcon: true
     ingress:
       enabled: true
       className: internal
