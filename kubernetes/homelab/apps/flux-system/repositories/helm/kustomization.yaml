@@ -16,3 +16,4 @@ resources:
   - ./ingress-nginx.yaml
   - ./external-dns.yaml
   - ./cilium.yaml
+  - ./minecraft.yaml
