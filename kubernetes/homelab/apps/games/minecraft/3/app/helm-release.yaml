@@ -51,7 +51,7 @@ spec:
         enabled: true
         withGeneratedPassword: false
         port: 25575
-        existingSecret: rcon-secret
+        existingSecret: rcon-secret-3
         secretKey: rcon-password
     persistence:
       dataDir:
