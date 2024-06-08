@@ -1,0 +1,56 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: sonarr
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: minecraft
+      version: 4.19.0
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  dependsOn:
+    - name: freenas-api-iscsi
+      namespace: storage
+  # NOTE: Values here: https://github.com/itzg/minecraft-server-charts/blob/master/charts/minecraft/values.yaml
+  values:
+    resources:
+      requests:
+        memory: 4Gi
+        cpu: 500m
+    workloadAsStatefulSet: true
+    strategyType: RollingUpdate
+    minecraftServer:
+      # This must be overridden, since we can't accept this for the user.
+      eula: "TRUE"
+      # One of: LATEST, SNAPSHOT, or a specific version (ie: "1.7.9").
+      version: "LATEST"
+      # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE"
+      type: "VANILLA"
+      # One of: peaceful, easy, normal, and hard
+      difficulty: normal
+      # This sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
+      maxWorldSize: 20000
+      # If you adjust this, you may need to adjust resources.requests above to match.
+      memory: 3000M
+    persistence:
+      dataDir:
+        # Set this to false if you don't care to persist state between restarts.
+        enabled: true
+        Size: 50Gi
+        accessModes:
+          - ReadWriteOnce
+        existingClaim: minecraft-1
