@@ -92,6 +92,21 @@ spec:
     storageClasses:
       - name: freenas-api-iscsi
         defaultClass: false
+        reclaimPolicy: Delete
+        volumeBindingMode: Immediate
+        allowVolumeExpansion: true
+        parameters:
+          fsType: ext4
+          detachedVolumesFromSnapshots: "false"
+        mountOptions: []
+        secrets:
+          provisioner-secret:
+          controller-publish-secret:
+          node-stage-secret:
+          node-publish-secret:
+          controller-expand-secret:
+      - name: freenas-api-iscsi-retain
+        defaultClass: false
         reclaimPolicy: Retain
         volumeBindingMode: Immediate
         allowVolumeExpansion: true

@@ -92,6 +92,23 @@ spec:
     storageClasses:
       - name: freenas-api-nfs
         defaultClass: false
+        reclaimPolicy: Delete
+        volumeBindingMode: Immediate
+        allowVolumeExpansion: true
+        parameters:
+          fsType: nfs
+          detachedVolumesFromSnapshots: "false"
+        mountOptions:
+          - noatime
+          - nfsvers=3
+        secrets:
+          provisioner-secret:
+          controller-publish-secret:
+          node-stage-secret:
+          node-publish-secret:
+          controller-expand-secret:
+      - name: freenas-api-nfs-retain
+        defaultClass: false
         reclaimPolicy: Retain
         volumeBindingMode: Immediate
         allowVolumeExpansion: true
