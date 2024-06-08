@@ -33,7 +33,7 @@ spec:
       # The display name of the initial server (if unset; defaults to value of RWA_GAME)
       serverName: minecraft-3
       # The initial RCON server to control
-      rconHost: minecraft-3-minecraft
+      rconHost: minecraft-3-minecraft-rcon
       # The port number of the initial RCON server to control
       rconPort: 25575
       # The password for the initial RCON server to control
