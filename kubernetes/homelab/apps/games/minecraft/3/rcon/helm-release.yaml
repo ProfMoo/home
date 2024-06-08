@@ -1,0 +1,71 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: minecraft-3
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: rcon-web-admin
+      version: 1.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: minecraft
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  # NOTE: Values here: https://github.com/itzg/minecraft-server-charts/blob/master/charts/minecraft/values.yaml
+  values:
+    rconWeb:
+      # Sets the initial user as an admin
+      isAdmin: false
+      # Sets the initial user's username
+      username: admin
+      # Sets the initial user's password
+      password: ""
+      # Name of existing secret with UI password
+      passwordExistingSecret:
+      passwordKey: "password"
+      # The initial game you wish to control (minecraft / rust / csgo / other)
+      game: minecraft
+      # The display name of the initial server (if unset; defaults to value of RWA_GAME)
+      serverName: minecraft
+      # The initial RCON server to control
+      rconHost: 127.0.0.1
+      # The port number of the initial RCON server to control
+      rconPort: 25575
+      # The password for the initial RCON server to control
+      rconPassword: ""
+      # Name of existing secret with RCON password
+      rconPasswordExistingSecret:
+      rconPasswordKey: "rcon-password"
+      # Prevent the initial user user executing these commands
+      restrictCommands: []
+      # Hide this list of widgets from the initial user
+      restrictWidgets: []
+      # Prevent the initial user changing options in the widget options tab
+      immutableWidgetOptions: false
+      # Enables 'web rcon' if supported by the game server
+      websocketRcon: false
+    ingress:
+      enabled: true
+      className: internal
+      annotations:
+        external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+        cert-manager.io/cluster-issuer: "letsencrypt-production"
+        cert-manager.io/secret-name: "drmoo-io-tls"
+      host: minecraft-3.drmoo.io
+      path: /
+      pathType: ImplementationSpecific
+      tls:
+        - hosts:
+            - "*.drmoo.io"
+          secretName: drmoo-io-tls
