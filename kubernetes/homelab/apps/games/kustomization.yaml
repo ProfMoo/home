@@ -5,4 +5,4 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./minecraft/1/ks.yaml
-  # - ./minecraft/3/ks.yaml
+  - ./minecraft/3/ks.yaml
