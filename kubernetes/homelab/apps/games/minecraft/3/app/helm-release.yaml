@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: minecraft-1
+  name: minecraft-3
 spec:
   interval: 30m
   chart:
@@ -49,8 +49,9 @@ spec:
       motd: "Moo's Pasture"
     persistence:
       dataDir:
+        # Set this to false if you don't care to persist state between restarts.
         enabled: true
         Size: 50Gi
         accessModes:
           - ReadWriteOnce
-        existingClaim: minecraft-1
+        existingClaim: minecraft-3
