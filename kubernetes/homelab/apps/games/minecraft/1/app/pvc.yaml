@@ -1,12 +1,12 @@
 ---
-kind: PersistentVolumeClaim
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
   name: minecraft-1
+  namespace: games
 spec:
-  storageClassName: freenas-api-iscsi-retain
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 50Gi
