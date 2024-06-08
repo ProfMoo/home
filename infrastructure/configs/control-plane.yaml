@@ -31,7 +31,9 @@ machine:
     apidCheckExtKeyUsage: true
     # https://www.talos.dev/v1.7/talos-guides/network/host-dns/
     hostDNS:
-      enabled: false
+      enabled: true
+      resolveMemberNames: true
+      forwardKubeDNSToHost: false
     kubePrism:
       enabled: true
       port: 7445

@@ -39,7 +39,7 @@ spec:
             - name: PORT
               value: "8080"
             - name: HOSTS_TO_RESOLVE
-              value: "kubernetes.default.svc.cluster.local"
+              value: "kubernetes.default.svc.cluster.local,google.com"
             # injecting real hostname will make for easier to understand graphs/metrics
             - name: HOSTNAME
               valueFrom:
