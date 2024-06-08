@@ -28,7 +28,7 @@ spec:
     # Password: in secret
     rconWeb:
       # Name of existing secret with UI password
-      passwordExistingSecret: rcon-secret
+      passwordExistingSecret: rcon-secret-3
       passwordKey: rcon-gui-password
       # The initial game you wish to control (minecraft / rust / csgo / other)
       game: minecraft
@@ -41,7 +41,7 @@ spec:
       # The password for the initial RCON server to control
       rconPassword: ""
       # Name of existing secret with RCON password
-      rconPasswordExistingSecret: rcon-secret
+      rconPasswordExistingSecret: rcon-secret-3
       rconPasswordKey: rcon-password
       # Prevent the initial user user executing these commands
       restrictCommands: []
