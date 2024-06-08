@@ -42,7 +42,7 @@
             description: Tracker indexer wrapper (admin:admin)
             widget:
                 type: prowlarr
-                url: http://192.168.1.78:9696
+                url: https://prowlarr.drmoo.io
                 key: foobarbazfoobarbazfoobarbazfooba
       - Radarr:
             href: https://radarr.drmoo.io
