@@ -4,7 +4,7 @@ apiVersion: v1
 metadata:
   name: minecraft-1
 spec:
-  storageClassName: freenas-api-iscsi
+  storageClassName: freenas-api-iscsi-retain
   accessModes:
     - ReadWriteOnce
   resources:
