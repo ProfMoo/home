@@ -47,6 +47,12 @@ spec:
       gameMode: survival
       # Message of the Day
       motd: "Moo's Pasture - Moo, Moo, Bitch"
+    rcon:
+      enabled: true
+      withGeneratedPassword: false
+      port: 25575
+      existingSecret: rcon-secret
+      secretKey: rcon-password
     persistence:
       dataDir:
         # Set this to false if you don't care to persist state between restarts.
