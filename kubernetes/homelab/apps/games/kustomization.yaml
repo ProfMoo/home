@@ -7,4 +7,4 @@ resources:
   - ./minecraft/1/ks.yaml
   - ./minecraft/2/ks.yaml
   - ./minecraft/3/ks.yaml
-  - ./factorio/1/ks.yaml
+#  - ./factorio/1/ks.yaml
