@@ -24,6 +24,9 @@ spec:
       retries: 3
   # NOTE: Values here: https://github.com/SQLJames/factorio-server-charts/blob/main/charts/factorio-server-charts/values.yaml
   values:
+    securityContext:
+      runAsUser: 0
+      runAsGroup: 0
     image:
       repository: "factoriotools/factorio"
       pullPolicy: Always
