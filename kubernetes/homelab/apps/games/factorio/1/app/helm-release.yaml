@@ -103,6 +103,7 @@ spec:
           name: "Squeak Through_1.8.2.zip"
     rcon:
       external: true
+      type: ClusterIP
       passwordSecret: "factorio-1"
     map_settings:
       pollution:
