@@ -24,6 +24,12 @@ spec:
       retries: 3
   # NOTE: Values here: https://github.com/SQLJames/factorio-server-charts/blob/main/charts/factorio-server-charts/values.yaml
   values:
+    image:
+      repository: "factoriotools/factorio"
+      pullPolicy: Always
+      # NOTE: We use 'stable' here rather than 'latest' because Steam matches the stable version
+      # and we want to be able to connect to the server from Steam launchers
+      tag: "stable"
     resources:
       ## We have to ensure that factorio have enough computing resources available.
       #  We set here an absolute minimum.
