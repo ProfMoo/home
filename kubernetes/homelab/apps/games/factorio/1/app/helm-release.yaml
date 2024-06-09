@@ -35,6 +35,8 @@ spec:
       enabled: true
       dataDir:
         existingClaim: "factorio-1"
+    serverPassword:
+      passwordSecret: "factorio-1"
     mods:
       enabled: true
       # in order to use the mods portal you will need to specify the username and token in the server_settings.
@@ -52,6 +54,15 @@ spec:
         - Milestones
         - VehicleSnap
         - PasteSignals
+        - WireShortcuts
+        - show-max-underground-distance
+        # graphics
+        - factoriohd_base
+        - factoriohd_logistics
+        - factoriohd_military
+        - factoriohd_modpack
+        - factoriohd_production
+        - factoriohd_terrain
         # spaceX
         - alien-biomes
         - alien-biomes-hr-terrain
@@ -81,6 +92,9 @@ spec:
       unofficial:
         - url: "https://github.com/Suprcheese/Squeak-Through/archive/refs/tags/1.8.2.zip"
           name: "Squeak Through_1.8.2.zip"
+    rcon:
+      external: true
+      passwordSecret: "factorio-1"
     map_settings:
       pollution:
         enemy_attack_pollution_consumption_modifier: 0.5
@@ -88,7 +102,100 @@ spec:
         time_factor: 0.0000005
         destroy_factor: 0.0005
         pollution_factor: 0.00000025
+    ## @param factorioServer.save_name Factorio save name
+    ## @param factorioServer.generate_new_save Generate a new save if `save_name` is not found
+    ## @param factorioServer.update_mods_on_start Update mods on server start
+    ## @param factorioServer.load_latest_save Lets the game know if you want to load the latest save
+    factorioServer:
+      # specify a save name
+      save_name: "server"
+      # Generate a New Save
+      generate_new_save: false
+      # Update mods on start
+      update_mods_on_start: false
+      # lets the game know if you want to load the latest save
+      load_latest_save: true
 
+    import_save:
+      # enable save importer
+      enabled: false
+      # url to download save from (http or https only).
+      # if no url is specified, saves can still be manually imported by placing the file in "/factorio/save-importer/import"
+      source_url: ""
+      # reimport from the source_url if the checksum of the file changes
+      reimport_on_change: false
+      # reimport from the source_url AND OVERWRITE PREVIOUS SAVE every time pod is initialized. good for demos or testing
+      reimport_every_time: false
+    account:
+      # Existing secret containing a valid factorio.com username and either a password or a token
+      # Example:
+      #
+      # apiVersion: v1
+      # kind: Secret
+      # metadata:
+      #   name: account-secret
+      # data:
+      #   username: <username in base64>
+      #   password: <password in base64>
+      #
+      # accountSecret: account-secret
+      accountSecret: "factorio-com-account-1"
+    server_settings:
+      # Your Instance Name
+      name: OBFam
+      # Your Instance Description
+      description: "Moo's Pasture - Moo, Moo, Bitch!"
+      tags:
+        - obfam
+        - space
+      # Maximum number of players allowed, admins can join even a full server. 0 means unlimited.
+      max_players: 0
+      # Game visibility
+      visibility:
+        # Game will be published on the official Factorio matching server
+        public: false
+        # Game will be broadcast on LAN
+        lan: true
+
+      # When set to true, the server will only allow clients that have a valid Factorio.com account
+      require_user_verification: false
+      # optional, default value is 0. 0 means unlimited.
+      max_upload_in_kilobytes_per_second: 0
+      # optional, default value is 5. 0 means unlimited.
+      max_upload_slots: 5
+      # optional one tick is 16ms in default speed, default value is 0. 0 means no minimum.
+      minimum_latency_in_ticks: 0
+      # Players that played on this map already can join even when the max player limit was reached.
+      ignore_player_limit_for_returning_players: false
+      # possible values are, true, false and admins-only
+      allow_commands: admins-only
+      # Autosave interval in minutes
+      autosave_interval: 10
+      # server autosave slots, it is cycled through when the server autosaves.
+      autosave_slots: 5
+      # How many minutes until someone is kicked when doing nothing, 0 for never.
+      afk_autokick_interval: 0
+      # Whether should the server be paused when no players are present.
+      auto_pause: true
+      # specifies if anyone can pause or only admins
+      only_admins_can_pause_the_game: true
+      # Whether autosaves should be saved only on server or also on all connected clients. Default is true.
+      autosave_only_on_server: true
+      #  Highly experimental feature, enable only at your own
+      #  risk of losing your saves. On UNIX systems, server will fork itself to create an
+      #  autosave. Autosaving on connected Windows clients will be disabled regardless of
+      #  autosave_only_on_server option.
+      non_blocking_saving: false
+      #  Long network messages are split into segments that are sent
+      #  over multiple ticks. Their size depends on the number of peers currently connected.
+      #  Increasing the segment size will increase upload bandwidth requirement for the server
+      #  and download bandwidth requirement for clients. This setting only affects server
+      #  outbound messages. Changing these settings can have a negative impact on connection
+      #  stability for some clients.
+      minimum_segment_size: 25
+      minimum_segment_size_peer_count: 20
+      maximum_segment_size: 100
+      maximum_segment_size_peer_count: 10
     map_gen_settings:
       water: 1.5
       starting_area: 2
