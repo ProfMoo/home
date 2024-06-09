@@ -48,7 +48,7 @@ spec:
       # One of: creative, survival, adventure, spectator
       gameMode: survival
       # Message of the Day
-      motd: "Moo's Pasture - Moo, Moo, Bitch"
+      motd: "Moo's Pasture 1 - Moo, Moo, Bitch"
     persistence:
       dataDir:
         enabled: true
