@@ -45,8 +45,6 @@ spec:
       passwordSecret: "factorio-1"
     mods:
       enabled: true
-      # in order to use the mods portal you will need to specify the username and token in the server_settings.
-      # name is determined by the url, it will be the last part of the url, not the title of the mod.
       portal:
         # https://spaceexploration.miraheze.org/wiki/Recommended_Mods#Required_Dependencies
         # Recommended
@@ -134,18 +132,6 @@ spec:
       # reimport from the source_url AND OVERWRITE PREVIOUS SAVE every time pod is initialized. good for demos or testing
       reimport_every_time: false
     account:
-      # Existing secret containing a valid factorio.com username and either a password or a token
-      # Example:
-      #
-      # apiVersion: v1
-      # kind: Secret
-      # metadata:
-      #   name: account-secret
-      # data:
-      #   username: <username in base64>
-      #   password: <password in base64>
-      #
-      # accountSecret: account-secret
       accountSecret: "factorio-com-account-1"
     server_settings:
       # Your Instance Name
