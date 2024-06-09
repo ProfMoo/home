@@ -30,6 +30,10 @@ spec:
       # NOTE: We use 'stable' here rather than 'latest' because Steam matches the stable version
       # and we want to be able to connect to the server from Steam launchers
       tag: "stable"
+    service:
+      type: NodePort
+      port: 31497
+      nodePort: 30200
     resources:
       ## We have to ensure that factorio have enough computing resources available.
       #  We set here an absolute minimum.
