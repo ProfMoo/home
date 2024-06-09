@@ -31,9 +31,9 @@ spec:
       # and we want to be able to connect to the server from Steam launchers
       tag: "stable"
     service:
-      type: NodePort
-      port: 31497
-      nodePort: 30200
+      # Setting this to ClusterIP so that the Deployment doesn't set hostNetwork (IDK why it does that, makes no sense)
+      # https://github.com/SQLJames/factorio-server-charts/blob/98d5b4ceb83b38abccc8515ef560e61f9a4e96bf/charts/factorio-server-charts/templates/deployment.yaml#L27
+      type: ClusterIP
     resources:
       ## We have to ensure that factorio have enough computing resources available.
       #  We set here an absolute minimum.
