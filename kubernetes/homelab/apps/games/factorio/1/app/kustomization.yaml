@@ -8,3 +8,4 @@ resources:
   - ./pv.yaml
   - ./pvc.yaml
   - ./helm-release.yaml
+  - ./nodeport.yaml
