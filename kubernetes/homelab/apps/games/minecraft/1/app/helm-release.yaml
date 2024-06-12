@@ -55,7 +55,7 @@ spec:
       ops: ProfMoo
       # List with URLs and paths to jar files, additionally may be a directory with jars
       # This works for both mods and plugins depending on server type
-      modURLS:
+      modUrls:
         [
           "https://github.com/sladkoff/minecraft-prometheus-exporter/releases/download/v3.1.0/minecraft-prometheus-exporter-3.1.0.jar",
         ]
