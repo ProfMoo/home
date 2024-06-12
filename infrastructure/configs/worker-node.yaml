@@ -15,6 +15,9 @@ machine:
       rotate-server-certificates: true
   network:
     hostname: ${hostname}
+    nameservers:
+      - 8.8.8.8
+      - 1.1.1.1
   features:
     # https://www.talos.dev/v1.7/talos-guides/network/host-dns/
     hostDNS:

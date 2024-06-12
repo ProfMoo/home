@@ -15,7 +15,8 @@ machine:
   network:
     hostname: ${hostname}
     nameservers:
-      - ${subnet_gateway}
+      - 8.8.8.8
+      - 1.1.1.1
     interfaces:
       - interface: ${interface}
         addresses:
