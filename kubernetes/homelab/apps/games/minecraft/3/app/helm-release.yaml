@@ -37,8 +37,8 @@ spec:
       eula: "TRUE"
       # One of: LATEST, SNAPSHOT, or a specific version (ie: "1.7.9").
       version: "LATEST"
-      # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE"
-      type: "VANILLA"
+      # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE", etc.
+      type: "FABRIC"
       # One of: peaceful, easy, normal, and hard
       difficulty: normal
       # This sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
@@ -53,6 +53,13 @@ spec:
       whitelist: ProfMoo,bamxmejia,KittyDonut1009,00Rem00,Seanzz,The9thCobra,Mint_Moose
       # A comma-separated list of player names who should be admins.
       ops: ProfMoo
+      # A list of Modrinth project slugs with optional version after colon
+      modrinth:
+        projects: ["fabricexporter"]
+        # Downloads Modrinth project dependencies marked as optional
+        optionalDependencies: false
+        # The version type is used to determine the newest version to use from each project. The allowed values are: release, beta, alpha
+        allowedVersionType: release
       rcon:
         enabled: true
         withGeneratedPassword: false
