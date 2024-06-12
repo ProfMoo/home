@@ -38,7 +38,7 @@ spec:
       # One of: LATEST, SNAPSHOT, or a specific version (ie: "1.7.9").
       version: "LATEST"
       # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE"
-      type: "VANILLA"
+      type: "FABRIC"
       # One of: peaceful, easy, normal, and hard
       difficulty: normal
       # This sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
@@ -53,6 +53,13 @@ spec:
       whitelist: ProfMoo,bamxmejia,KittyDonut1009,00Rem00,Seanzz,The9thCobra,Mint_Moose
       # A comma-separated list of player names who should be admins.
       ops: ProfMoo
+      # List with URLs and paths to jar files, additionally may be a directory with jars
+      # This works for both mods and plugins depending on server type
+      modURLS:
+        [
+          "https://github.com/sladkoff/minecraft-prometheus-exporter/releases/download/v3.1.0/minecraft-prometheus-exporter-3.1.0.jar",
+        ]
+
     persistence:
       dataDir:
         enabled: true
