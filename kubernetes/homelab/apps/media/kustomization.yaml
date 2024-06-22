@@ -9,3 +9,4 @@ resources:
   - ./sonarr/ks.yaml
   - ./prowlarr/ks.yaml
   - ./buildarr/ks.yaml
+  - ./qbittorrent/ks.yaml
