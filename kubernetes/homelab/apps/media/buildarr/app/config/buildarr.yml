@@ -449,14 +449,13 @@ radarr:
             enable_color_impaired_mode: false
             movie_info_language: english
             ui_language: english
-
-sonarr:
-  instances:
-    sonarr:
-      hostname: sonarr.media.svc.cluster.local
-      port: 80
-      protocol: http
-      api_key: "foobarbazfoobarbazfoobarbazfooba"
+# sonarr:
+#   instances:
+#     sonarr:
+#       hostname: sonarr.media.svc.cluster.local
+#       port: 80
+#       protocol: http
+#       api_key: "foobarbazfoobarbazfoobarbazfooba"
 # prowlarr:
 #   instances:
 #     # Name of the instance as referred to by prowlarr.
