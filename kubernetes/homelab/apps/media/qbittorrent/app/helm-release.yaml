@@ -46,8 +46,8 @@ spec:
                     resource: limits.memory
                     divisor: 1Mi
               QBT_Preferences__WebUI__AlternativeUIEnabled: "false"
-              QBT_Preferences__WebUI__LocalHostAuth: "false"
-              QBT_Preferences__WebUI__UseUPNP: "false"
+              QBT_Preferences__WebUI__LocalHostAuth: false
+              QBT_Preferences__WebUI__UseUPNP: false
             probes:
               liveness:
                 enabled: false
