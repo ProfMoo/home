@@ -48,6 +48,8 @@ spec:
               QBT_Preferences__WebUI__AlternativeUIEnabled: "false"
               QBT_Preferences__WebUI__LocalHostAuth: "false"
               QBT_Preferences__WebUI__UseUPNP: "false"
+              QBT_Preferences__WebUI__Username: "admin"
+              QBT_Preferences__WebUI__Password_PBKDF2: "@ByteArray(ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==)"
             probes:
               liveness:
                 enabled: false
