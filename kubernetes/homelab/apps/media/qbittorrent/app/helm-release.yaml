@@ -69,17 +69,23 @@ spec:
                 memory: 12Gi
     service:
       app:
-        controller: qbittorrent
+        controller: *app
+        nameOverride: *app
+        ports:
+          http:
+            port: *port
+      bittorrent:
+        controller: *app
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: 192.168.8.122
         ports:
-          http:
-            port: *port
-          bittorrent:
-            enabled: true
+          bittorrent-tcp:
             port: *bittorrentPort
             protocol: TCP
+          bittorrent-udp:
+            port: *bittorrentPort
+            protocol: UDP
     ingress:
       app:
         annotations:
