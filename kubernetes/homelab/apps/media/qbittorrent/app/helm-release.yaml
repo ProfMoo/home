@@ -106,8 +106,6 @@ spec:
                   identifier: app
                   port: http
     persistence:
-      config:
-        existingClaim: qbittorrent
       media:
         existingClaim: nas-media
         globalMounts:
