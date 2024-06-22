@@ -46,7 +46,6 @@ spec:
                     resource: limits.memory
                     divisor: 1Mi
               QBT_Preferences__WebUI__AlternativeUIEnabled: "true"
-              QBT_Preferences__WebUI__RootFolder: "/add-ons/VueTorrent"
               QBT_Preferences__WebUI__LocalHostAuth: false
               QBT_Preferences__WebUI__UseUPNP: false
             probes:
