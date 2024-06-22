@@ -14,7 +14,7 @@ buildarr:
 radarr:
   instances:
     radarr:
-      hostname: radarr
+      hostname: radarr.media.svc.cluster.local
       port: 80
       protocol: http
       api_key: "foobarbazfoobarbazfoobarbazfooba"
@@ -453,7 +453,7 @@ radarr:
 sonarr:
   instances:
     sonarr:
-      hostname: sonarr
+      hostname: sonarr.media.svc.cluster.local
       port: 80
       protocol: http
       api_key: "foobarbazfoobarbazfoobarbazfooba"
@@ -463,7 +463,7 @@ prowlarr:
     # Name of the instance as referred to by prowlarr.
     # Assign instance-specific configuration to it.
     prowlarr:
-      hostname: prowlarr
+      hostname: prowlarr.media.svc.cluster.local
       port: 80
       protocol: http
       api_key: "foobarbazfoobarbazfoobarbazfooba"
@@ -635,29 +635,6 @@ prowlarr:
                 enable_interactive_search: true
                 enable_automatic_search: true
                 minimum_seeders: 1
-        download_clients:
-          delete_unmanaged: false
-          definitions:
-            qBittorrent:
-              enable: true
-              priority: 1
-              tags: []
-              type: qbittorrent
-              host: qbittorrent.media.svc.cluster.local
-              port: 8080
-              use_ssl: false
-              url_base: null
-              username: admin
-              password: adminadmin
-              category: prowlarr
-              client_priority: last
-              initial_state: start
-              category_mappings: {}
-        notifications:
-          delete_unmanaged: false
-          definitions: {}
-        tags:
-          definitions: []
         general:
           host:
             bind_address: "*"
