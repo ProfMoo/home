@@ -360,8 +360,8 @@ radarr:
                 priority: 1
                 tags: []
                 type: qbittorrent
-                hostname: 192.168.1.78
-                port: 8085
+                hostname: qbittorrent.media.svc.cluster.local
+                port: 8080
                 use_ssl: false
                 url_base: null
                 username: admin
@@ -643,8 +643,8 @@ prowlarr:
               priority: 1
               tags: []
               type: qbittorrent
-              host: 192.168.1.78
-              port: 8085
+              host: qbittorrent.media.svc.cluster.local
+              port: 8080
               use_ssl: false
               url_base: null
               username: admin
