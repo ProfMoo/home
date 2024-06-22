@@ -37,7 +37,7 @@ spec:
               tag: 4.6.5@sha256:251916c90b09018e747b775f4924da711d8b4545b5b959030eb428571b38be2f
             env:
               TZ: America/New_York
-              QBITTORRENT__PORT: &port 80
+              QBITTORRENT__PORT: &port 8080
               QBITTORRENT__BT_PORT: &bittorrentPort 50413
               QBT_Application__MemoryWorkingSetLimit:
                 valueFrom:
@@ -45,14 +45,10 @@ spec:
                     containerName: app
                     resource: limits.memory
                     divisor: 1Mi
-              QBT_Preferences__WebUI__AlternativeUIEnabled: false
+              QBT_Preferences__WebUI__AlternativeUIEnabled: "true"
+              QBT_Preferences__WebUI__RootFolder: "/add-ons/VueTorrent"
               QBT_Preferences__WebUI__LocalHostAuth: false
-              QBT_BitTorrent__Session__Interface: eth0
-              QBT_BitTorrent__Session__InterfaceAddress:
-                valueFrom:
-                  fieldRef:
-                    fieldPath: status.podIP
-              QBT_BitTorrent__Session__InterfaceName: eth0
+              QBT_Preferences__WebUI__UseUPNP: false
             probes:
               liveness: &probes
                 enabled: true
