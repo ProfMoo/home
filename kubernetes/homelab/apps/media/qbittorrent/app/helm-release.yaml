@@ -56,7 +56,7 @@ spec:
               QBT_BitTorrent__Session__MaxActiveTorrents: 10000
               QBT_BitTorrent__Session__MaxActiveUploads: 50
               QBT_AutoRun__Enabled: "true"
-              QBT_AutoRun__Program: /custom-scripts/post_download.sh "%N" "%L" "%G" "%F" "%R" "%D" "%C" "%Z" "%T" "%I" "%J" "%K"
+              QBT_AutoRun__Program: '/custom-scripts/post_download.sh \"%N\" \"%L\" \"%G\" \"%F\" \"%R\" \"%D\" \"%C\" \"%Z\" \"%T\" \"%I\" \"%J\" \"%K\"'
               RED_API_KEY:
                 valueFrom:
                   secretKeyRef:
