@@ -10,3 +10,4 @@ resources:
   - ./prowlarr/ks.yaml
   - ./buildarr/ks.yaml
   - ./qbittorrent/ks.yaml
+  - ./qbittorrent-exporter/ks.yaml
