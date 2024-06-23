@@ -25,6 +25,7 @@ spec:
   dependsOn:
     - name: freenas-api-iscsi
       namespace: storage
+  # NOTE: More info on this Helm chart here: https://bjw-s.github.io/helm-charts/docs/common-library/
   values:
     controllers:
       qbittorrent:
@@ -50,9 +51,16 @@ spec:
               QBT_Preferences__WebUI__UseUPNP: "false"
               QBT_Preferences__WebUI__Username: "admin"
               QBT_Preferences__WebUI__Password_PBKDF2: "@ByteArray(ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==)"
-            envFrom:
-              - secretRef:
-                  name: tracker-api-keys
+              RED_API_KEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: tracker-api-keys
+                    key: RED_API_KEY
+              OPS_SESSION_COOKIE:
+                valueFrom:
+                  secretKeyRef:
+                    name: tracker-api-keys
+                    key: OPS_SESSION_COOKIE
             probes:
               liveness:
                 enabled: false
