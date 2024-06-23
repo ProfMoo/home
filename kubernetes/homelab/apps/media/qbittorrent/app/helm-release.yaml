@@ -124,3 +124,7 @@ spec:
         existingClaim: nas-media
         globalMounts:
           - path: /data
+      scripts:
+        enabled: true
+        type: configMap
+        name: post-download-scripts
