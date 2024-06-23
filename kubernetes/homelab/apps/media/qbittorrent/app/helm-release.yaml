@@ -51,6 +51,12 @@ spec:
               QBT_Preferences__WebUI__UseUPNP: "false"
               QBT_Preferences__WebUI__Username: "admin"
               QBT_Preferences__WebUI__Password_PBKDF2: "@ByteArray(ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==)"
+              QBT_BitTorrent__Session__DefaultSavePath: "/data/downloads"
+              QBT_BitTorrent__Session__MaxActiveDownloads: 50
+              QBT_BitTorrent__Session__MaxActiveTorrents: 10000
+              QBT_BitTorrent__Session__MaxActiveUploads: 50
+              QBT_AutoRun__Enabled: "true"
+              QBT_AutoRun__Program: '/scripts/post_download.sh \"%N\" \"%L\" \"%G\" \"%F\" \"%R\" \"%D\" \"%C\" \"%Z\" \"%T\" \"%I\" \"%J\" \"%K\"'
               RED_API_KEY:
                 valueFrom:
                   secretKeyRef:
