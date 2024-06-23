@@ -1,8 +1,10 @@
 #!/bin/bash
 
 # This script installs the necessary dependencies for the post-download scripts to run successfully.
+#
 # If any of the dependencies are already installed, the script will skip the installation process for that dependency.
 # (i.e. this script is idempotent)
+#
 # It's worth noting that this script will not handle upgrades - this is meant to live in the qBittorrent container, where the installation
 # will be wiped on restart.
 
