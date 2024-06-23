@@ -9,16 +9,16 @@
 # Converting bash script inputs into readable env vars
 
 ROOT_PATH=$1
-echo "ROOT_PATH: $ROOT_PATH"
+echo "[gazelle_origin]: ROOT_PATH: $ROOT_PATH"
 
 INFO_HASH=$2
-echo "INFO_HASH: $INFO_HASH"
+echo "[gazelle_origin]: INFO_HASH: $INFO_HASH"
 
 CURRENT_TRACKER_OR_CAT=$3
 # NOTE: Not printing this because it could contain secret announce URL
 
 ROOT_BASE=$(basename "$ROOT_PATH")
-echo "ROOT_BASE: $ROOT_BASE"
+echo "[gazelle_origin]: ROOT_BASE: $ROOT_BASE"
 
 if [[ $CURRENT_TRACKER_OR_CAT != "" ]]; then
   if [[ "$CURRENT_TRACKER_OR_CAT" == *"flacsfor.me"* || "$CURRENT_TRACKER_OR_CAT" == *"RED"* ]]; then
@@ -43,5 +43,5 @@ if [[ $CURRENT_TRACKER_OR_CAT != "" ]]; then
     echo "[gazelle_origin]: No match on download '$ROOT_PATH' with category/tracker of '$CURRENT_TRACKER_OR_CAT'. Load again in a matching category, or redownload live, to reprocess."
   fi
 else
-  echo "No matches on '$ROOT_PATH' (tracker environment variable is blank). Load again in a matching category, or redownload live, to reprocess."
+  echo "[gazelle_origin]: No matches on '$ROOT_PATH' (tracker environment variable is blank). Load again in a matching category, or redownload live, to reprocess."
 fi

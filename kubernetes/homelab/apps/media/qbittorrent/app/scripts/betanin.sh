@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PATH=$1
-echo "PATH: $PATH"
+echo "[betanin]: PATH: $PATH"
 
 echo "[betanin]: Adding new torrent '$PATH' to betanin queue..."
 

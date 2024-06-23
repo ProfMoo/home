@@ -40,9 +40,15 @@ echo "INFO_HASH_V2: $INFO_HASH_V2"
 TORRENT_ID="${12}"
 echo "TORRENT_ID: $TORRENT_ID"
 
-echo "[post_download]: Running post-download scripts..."
-
 echo "[post_download]: Tag(s) of torrent: ${TAGS}"
+
+echo "[post_download]: Ensuring dependencies are installed..."
+
+source $DIR/download_dependencies.sh
+
+echo "[post_download]: Done downloading dependencies."
+
+echo "[post_download]: Running post-download scripts..."
 
 if [[ "$TAGS" == *"movies"* ]] || [[ "$SAVE_PATH" == *"movies"* ]]; then
     echo "[post_download]: Torrent is category 'movie'. No post-download scripts for 'movies'"
