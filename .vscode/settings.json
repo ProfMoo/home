@@ -64,6 +64,7 @@
         "readyz",
         "relabelings",
         "Resizer",
+        "seedbox",
         "SETGID",
         "SETUID",
         "siderolabs",
