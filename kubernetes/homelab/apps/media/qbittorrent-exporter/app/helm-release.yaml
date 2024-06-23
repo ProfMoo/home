@@ -33,6 +33,8 @@ spec:
               EXPORTER_PORT: &port 8000
               QBITTORRENT_HOST: qbittorrent.media.svc.cluster.local
               QBITTORRENT_PORT: 8080
+              QBITTORRENT_USER: "admin"
+              QBITTORRENT_PASS: "adminadmin"
             probes:
               liveness:
                 enabled: true
