@@ -4,43 +4,41 @@
 DIR="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Reassigning all the inputs from qBittorrent to a human-readable name
-TORRENT_NAME=$1
+TORRENT_NAME=${1#%}
 echo "TORRENT_NAME: $TORRENT_NAME"
 
-CATEGORY=$2
+CATEGORY=${2#%}
 echo "CATEGORY: $CATEGORY"
 
-TAGS=$3
+TAGS=${3#%}
 echo "TAGS: $TAGS"
 
-CONTENT_PATH=$4
+CONTENT_PATH=${4#%}
 echo "CONTENT_PATH: $CONTENT_PATH"
 
-ROOT_PATH=$5
+ROOT_PATH=${5#%}
 echo "ROOT_PATH: $ROOT_PATH"
 
-SAVE_PATH=$6
+SAVE_PATH=${6#%}
 echo "SAVE_PATH: $SAVE_PATH"
 
-NUMBER_OF_FILES=$7
+NUMBER_OF_FILES=${7#%}
 echo "NUMBER_OF_FILES: $NUMBER_OF_FILES"
 
-TORRENT_SIZE=$8
+TORRENT_SIZE=${8#%}
 echo "TORRENT_SIZE: $TORRENT_SIZE"
 
-CURRENT_TRACKER=$9
+CURRENT_TRACKER=${9#%}
 echo "CURRENT_TRACKER: $CURRENT_TRACKER"
 
-INFO_HASH_V1="${10}"
+INFO_HASH_V1="${10#%}"
 echo "INFO_HASH_V1: $INFO_HASH_V1"
 
-INFO_HASH_V2="${11}"
+INFO_HASH_V2="${11#%}"
 echo "INFO_HASH_V2: $INFO_HASH_V2"
 
-TORRENT_ID="${12}"
+TORRENT_ID="${12#%}"
 echo "TORRENT_ID: $TORRENT_ID"
-
-echo "[post_download]: Tag(s) of torrent: ${TAGS}"
 
 echo "[post_download]: Ensuring dependencies are installed..."
 
