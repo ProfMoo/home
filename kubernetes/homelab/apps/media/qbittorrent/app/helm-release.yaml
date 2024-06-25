@@ -131,3 +131,7 @@ spec:
         enabled: true
         type: configMap
         name: post-download-scripts
+      config:
+        existingClaim: qbittorrent
+        globalMounts:
+          - path: /config
