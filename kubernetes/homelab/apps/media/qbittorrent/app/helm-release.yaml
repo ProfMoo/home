@@ -34,7 +34,7 @@ spec:
         initContainers:
           scripts:
             image:
-              repository: docker pull ghcr.io/hlesey/busybox
+              repository: ghcr.io/hlesey/busybox
               tag: 1.36.1
             command: ["sh", "-c", "chmod -R +x /custom-scripts"]
         containers:
