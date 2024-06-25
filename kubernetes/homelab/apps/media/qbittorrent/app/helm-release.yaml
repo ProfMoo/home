@@ -31,12 +31,12 @@ spec:
       qbittorrent:
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
-          scripts:
-            image:
-              repository: ghcr.io/hlesey/busybox
-              tag: 1.36.1
-            command: ["sh", "-c", "chmod -R +x /custom-scripts"]
+        # initContainers:
+        #   scripts:
+        #     image:
+        #       repository: ghcr.io/hlesey/busybox
+        #       tag: 1.36.1
+        #     command: ["sh", "-c", "chmod -R +x /custom-scripts"]
         containers:
           app:
             image:
@@ -136,6 +136,7 @@ spec:
       custom-scripts:
         enabled: true
         type: configMap
+        defaultMode: 0755
         name: post-download-scripts
       config:
         existingClaim: qbittorrent
