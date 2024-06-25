@@ -31,6 +31,12 @@ spec:
       qbittorrent:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          scripts:
+            image:
+              repository: docker pull ghcr.io/hlesey/busybox
+              tag: 1.36.1
+            command: ["sh", "-c", "chmod -R +x /custom-scripts"]
         containers:
           app:
             image:
