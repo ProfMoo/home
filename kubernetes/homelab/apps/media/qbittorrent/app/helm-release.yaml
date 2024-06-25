@@ -136,7 +136,7 @@ spec:
       custom-scripts:
         enabled: true
         type: configMap
-        defaultMode: 0755
+        defaultMode: 0777
         name: post-download-scripts
       config:
         existingClaim: qbittorrent
