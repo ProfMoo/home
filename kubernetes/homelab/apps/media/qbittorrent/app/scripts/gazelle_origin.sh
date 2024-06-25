@@ -3,7 +3,7 @@
 # NOTE: This post-download script has been moved to a separate file (rather than being in the qBittorrent config directly)
 # to provide a more familiar testing/development environment
 
-# This scripts assumes that both RED_API_KEY and OPS_SESSION_COOKIE environment variables are configured correctly
+# This scripts assumes that both RED_API_KEY and OPS_API_KEY environment variables are configured correctly
 # For more info about these variables, refer here: https://github.com/ProfMoo/gazelle-origin#installation
 
 # Converting bash script inputs into readable env vars
@@ -33,7 +33,7 @@ if [[ $CURRENT_TRACKER_OR_CAT != "" ]]; then
   elif [[ "$CURRENT_TRACKER_OR_CAT" == *"opsfet.ch"* || "$CURRENT_TRACKER_OR_CAT" == *"ORP"* ]]; then
     echo "[gazelle_origin]: Grabbing torrent info for '${ROOT_BASE}' from OPS..."
 
-    if ! gazelle-origin -t ops -o "$ROOT_PATH"/origin.yaml --api-key "${OPS_SESSION_COOKIE}" "${INFO_HASH}"; then
+    if ! gazelle-origin -t ops -o "$ROOT_PATH"/origin.yaml --api-key "${OPS_API_KEY}" "${INFO_HASH}"; then
       echo "[gazelle_origin]: Grabbing torrent info for '${ROOT_BASE}' from OPS failed."
     else
       echo "[gazelle_origin]: Grabbing torrent info for '${ROOT_BASE}' from OPS succeeded."

@@ -70,11 +70,11 @@ spec:
                   secretKeyRef:
                     name: tracker-api-keys
                     key: RED_API_KEY
-              OPS_SESSION_COOKIE:
+              OPS_API_KEY:
                 valueFrom:
                   secretKeyRef:
                     name: tracker-api-keys
-                    key: OPS_SESSION_COOKIE
+                    key: OPS_API_KEY
             probes:
               liveness:
                 enabled: false
