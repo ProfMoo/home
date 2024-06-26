@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:1.8
+FROM hashicorp/terraform:1.9
 
 COPY src .
 
