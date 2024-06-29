@@ -7,4 +7,3 @@ resources:
   - ./proxmox-token.secret.sops.yaml
   - ./pod-monitor.yaml
   - ./deployment.yaml
-  - ./nodeport.yaml

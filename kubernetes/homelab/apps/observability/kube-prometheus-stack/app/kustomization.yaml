@@ -5,7 +5,6 @@ kind: Kustomization
 namespace: observability
 resources:
   - ./helm-release.yaml
-  - ./nodeport.yaml
 configMapGenerator:
   # NOTE: We generate a custom kube-state-metrics configuration so that we can inject the Flux CRDs
   # into the kube-state-metrics deployment. This is necessary because the kube-state-metrics only watches

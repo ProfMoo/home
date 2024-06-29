@@ -5,5 +5,4 @@ kind: Kustomization
 namespace: observability
 resources:
   - ./helm-release.yaml
-  - ./nodeport.yaml
   - ./login.secret.sops.yaml
