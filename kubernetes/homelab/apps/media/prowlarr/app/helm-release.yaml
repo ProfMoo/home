@@ -83,6 +83,8 @@ spec:
                   port: *port
     persistence:
       config:
-        type: emptyDir
+        existingClaim: prowlarr
+        globalMounts:
+          - path: /config
       tmp:
         type: emptyDir
