@@ -11,40 +11,40 @@ services:
     extends:
       file: beets/docker-compose.yaml
       service: beets
-  qbittorrent:
-    volumes:
-      # If you change these locations inside the docker container, you must also change the config file
-      - ${INPUT_TORRENT_DIR}:/input
-      - ${DOWNLOAD_DIR}:/data/downloads
-      # NOTE: This needs to be mounted at this precise location because that's where qBittorrent looks for the files
-      # TODO: Figure out if I can configure qBittorrent where to look for these torrents
-      - ${ACTIVE_TORRENTS}:/config/qBittorrent/BT_backup
-    extends:
-      file: qBittorrent/docker-compose.yaml
-      service: qbittorrent
-  qbitmanage:
-    volumes:
-      # If you change these locations inside the docker container, you must also change the config file
-      - ${ACTIVE_TORRENTS}:/active-torrents
-      - ${DOWNLOAD_DIR}:/data/downloads
-    extends:
-      file: qBittorrent/docker-compose.yaml
-      service: qbitmanage
-    depends_on:
-      - qbittorrent
+  # qbittorrent:
+  #   volumes:
+  #     # If you change these locations inside the docker container, you must also change the config file
+  #     - ${INPUT_TORRENT_DIR}:/input
+  #     - ${DOWNLOAD_DIR}:/data/downloads
+  #     # NOTE: This needs to be mounted at this precise location because that's where qBittorrent looks for the files
+  #     # TODO: Figure out if I can configure qBittorrent where to look for these torrents
+  #     - ${ACTIVE_TORRENTS}:/config/qBittorrent/BT_backup
+  #   extends:
+  #     file: qBittorrent/docker-compose.yaml
+  #     service: qbittorrent
+  # qbitmanage:
+  #   volumes:
+  #     # If you change these locations inside the docker container, you must also change the config file
+  #     - ${ACTIVE_TORRENTS}:/active-torrents
+  #     - ${DOWNLOAD_DIR}:/data/downloads
+  #   extends:
+  #     file: qBittorrent/docker-compose.yaml
+  #     service: qbitmanage
+  #   depends_on:
+  #     - qbittorrent
   # feishin:
   #   extends:
   #     file: feishin/docker-compose.yaml
   #     service: feishin
   #   # depends_on:
   #   #   - jellyfin
-  crossseed:
-    extends:
-      file: cross-seed/docker-compose.yaml
-      service: cross-seed
-    depends_on:
-      - qbittorrent
-      - prowlarr
+  # crossseed:
+  #   extends:
+  #     file: cross-seed/docker-compose.yaml
+  #     service: cross-seed
+  #   depends_on:
+  #     - qbittorrent
+  #     - prowlarr
   # minecraft:
   #   extends:
   #     file: minecraft-server-3/docker-compose.yaml
