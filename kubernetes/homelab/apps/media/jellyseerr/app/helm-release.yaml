@@ -3,13 +3,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: radarr
+  name: jellyseerr
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 3.1.0
+      version: 3.2.1
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -25,48 +25,53 @@ spec:
   dependsOn:
     - name: freenas-api-iscsi
       namespace: storage
-  # NOTE: More info on this Helm chart here: https://bjw-s.github.io/helm-charts/docs/common-library/
   values:
     controllers:
-      radarr:
+      jellyseerr:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: ghcr.io/onedr0p/radarr-develop
-              tag: 5.5.1.8747@sha256:4ae36e5329fa90aa95e180a9abad4856e147500f65cf7262a193f08a2480a136
+              repository: fallenbagel/jellyseerr
+              tag: 1.9.2
             env:
-              RADARR__AUTHENTICATION_METHOD: External
-              RADARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
-              RADARR__INSTANCE_NAME: Radarr
-              RADARR__PORT: 80
-              RADARR__LOG_LEVEL: info
-              RADARR__THEME: dark
-              RADARR__API_KEY: "foobarbazfoobarbazfoobarbazfooba"
               TZ: America/New_York
+              LOG_LEVEL: "info"
+              PORT: &port 80
             probes:
               liveness: &probes
                 enabled: true
                 custom: true
                 spec:
                   httpGet:
-                    path: /ping
-                    port: 80
+                    path: /status
+                    port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
-            resources:
-              requests:
-                cpu: 10m
-              limits:
-                memory: 1Gi
+              startup:
+                enabled: false
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
     service:
       app:
-        controller: radarr
+        controller: jellyseerr
         ports:
           http:
-            port: 80
+            port: *port
     ingress:
       app:
         tls:
@@ -79,7 +84,7 @@ spec:
           cert-manager.io/secret-name: "drmoo-io-tls"
         className: internal
         hosts:
-          - host: "radarr.drmoo.io"
+          - host: "request.drmoo.io"
             paths:
               - path: /
                 service:
@@ -87,12 +92,16 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: radarr
+        existingClaim: jellyseerr
         globalMounts:
-          - path: /config
-      media:
-        existingClaim: nas-media
+          - path: /app/config
+      cache:
+        existingClaim: jellyseerr-cache
         globalMounts:
-          - path: /data
+          - path: /app/config/cache
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /app/config/logs
       tmp:
         type: emptyDir

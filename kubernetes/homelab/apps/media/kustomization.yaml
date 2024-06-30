@@ -12,3 +12,4 @@ resources:
   - ./qbittorrent/ks.yaml
   - ./qbittorrent-exporter/ks.yaml
   - ./recyclarr/ks.yaml
+  - ./jellyseerr/ks.yaml

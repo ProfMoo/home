@@ -39,6 +39,7 @@
         "ipam",
         "iscsi",
         "jellyfin",
+        "jellyseerr",
         "jetstack",
         "kubelet",
         "kustomization",
