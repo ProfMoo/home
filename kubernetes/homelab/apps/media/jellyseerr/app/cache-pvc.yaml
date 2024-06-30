@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: jellyseerr
+  name: jellyseerr-cache
 spec:
   storageClassName: freenas-api-iscsi-retain
   accessModes:
