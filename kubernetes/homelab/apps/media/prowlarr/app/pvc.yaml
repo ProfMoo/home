@@ -4,7 +4,7 @@ apiVersion: v1
 metadata:
   name: prowlarr
 spec:
-  storageClassName: freenas-api-iscsi
+  storageClassName: freenas-api-iscsi-retain
   accessModes:
     - ReadWriteOnce
   resources:
