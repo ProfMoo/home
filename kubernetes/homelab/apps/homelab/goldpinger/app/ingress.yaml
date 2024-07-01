@@ -2,14 +2,13 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: goldpinger
+  labels:
+    app: goldpinger
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
     cert-manager.io/secret-name: drmoo-io-tls
     external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-  name: goldpinger
-  labels:
-    app: goldpinger
-  namespace: homelab
 spec:
   ingressClassName: internal
   rules:
