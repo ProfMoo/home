@@ -46,7 +46,6 @@ spec:
               - --unregistered
               - --server=qbittorrent.media.svc.cluster.local
               - --port=8080
-              - --dry-run
             env:
               TZ: *timeZone
             resources:
@@ -69,7 +68,6 @@ spec:
               - --include-tag=unregistered
               - --server=qbittorrent.media.svc.cluster.local
               - --port=8080
-              - --dry-run
           expired:
             <<: *container
             args:
@@ -79,7 +77,6 @@ spec:
               - --include-tag=expired
               - --server=qbittorrent.media.svc.cluster.local
               - --port=8080
-              - --dry-run
         pod:
           restartPolicy: OnFailure
           securityContext: &podSecurityContext
@@ -118,7 +115,6 @@ spec:
               - --process-seeding
               - --server=qbittorrent.media.svc.cluster.local
               - --port=8080
-              - --dry-run
         pod:
           securityContext: *podSecurityContext
     persistence:
