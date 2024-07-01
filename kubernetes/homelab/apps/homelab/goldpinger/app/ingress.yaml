@@ -1,0 +1,29 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    cert-manager.io/secret-name: drmoo-io-tls
+    external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+  name: goldpinger
+  labels:
+    app: goldpinger
+  namespace: homelab
+spec:
+  ingressClassName: internal
+  rules:
+    - host: goldpinger.drmoo.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: goldpinger
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - "*.drmoo.io"
+      secretName: drmoo-io-tls

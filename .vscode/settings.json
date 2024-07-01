@@ -24,6 +24,7 @@
         "freenas",
         "gitops",
         "gnet",
+        "goldpinger",
         "gomaxprocs",
         "healthz",
         "helmcharts",

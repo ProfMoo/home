@@ -6,4 +6,4 @@ resources:
   - ./service-account.yaml
   - ./cluster-role-binding.yaml
   - ./daemon-set.yaml
-  - ./node-port.yaml
+  - ./ingress.yaml
