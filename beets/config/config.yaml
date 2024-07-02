@@ -6,7 +6,8 @@ include:
 
 plugins:
   - discogs
-  # NOTE: These data sources have commented out some because they've been inconsistent.
+  # NOTE: These data sources have commented out because they've been inconsistent.
+  # MusicBrainz (and discogs at times) are the only reliable sources.
   # More info in the README
   # - spotify
   # - bandcamp
@@ -42,58 +43,58 @@ asciify_paths: true
 import:
   # The log file location
   log: /beets/log.txt
-  
-  # Either yes or no, controlling whether metadata (e.g., ID3) tags are written to files when using beet import. 
+
+  # Either yes or no, controlling whether metadata (e.g., ID3) tags are written to files when using beet import.
   # Defaults to yes. The -w and -W command-line options override this setting.
   write: yes
 
   # Either yes or no, indicating whether to copy files into the library directory when using beet import. Defaults to yes. Can be overridden with the -c and -C command-line options.
   # The option is ignored if move is enabled (i.e., beets can move or copy files but it doesn’t make sense to do both).
   copy: yes
-  
-  # Either yes or no, indicating whether to move files into the library directory when using beet import. 
+
+  # Either yes or no, indicating whether to move files into the library directory when using beet import.
   # Defaults to no.
   move: no
 
   # Controlling whether an interrupted import is picked up during the next import
   resume: yes
 
-  # Either yes or no, controlling whether imported directories are recorded and whether 
+  # Either yes or no, controlling whether imported directories are recorded and whether
   # these recorded directories are skipped during the next import.
   incremental: yes
-  # Either yes or no, controlling whether skipped directories are recorded in the incremental list. When set to yes, 
-  # skipped directories won’t be recorded, and beets will try to import them again later. 
+  # Either yes or no, controlling whether skipped directories are recorded in the incremental list. When set to yes,
+  # skipped directories won’t be recorded, and beets will try to import them again later.
   # When set to no, skipped directories will be recorded, and skipped later. Default to 'no'
   incremental_skip_later: no
 
-  # Either yes or no (default), controlling whether to ask for a manual decision from the user 
+  # Either yes or no (default), controlling whether to ask for a manual decision from the user
   # when the importer is unsure how to proceed. This corresponds to the --quiet flag to beet import.
   # Setting this to no in the configuration so that it's possible to run
-  # 'beet import' without quiet on the running process. 
+  # 'beet import' without quiet on the running process.
   # However, the script that runs continuously calls 'beet import -q'
   quiet: no
-  # Either skip (default) or asis, specifying what should happen in 
+  # Either skip (default) or asis, specifying what should happen in
   # quiet mode (see the -q flag to import, above) when there is no strong recommendation.
   quiet_fallback: skip
 
   # https://beets.readthedocs.io/en/stable/reference/config.html#from-scratch
   from_scratch: no
 
-  # One of apply, skip, asis, or none, indicating which option should be 
-  # the default when selecting an action for a given match. 
-  # This is the action that will be taken when you type return without an option letter. 
+  # One of apply, skip, asis, or none, indicating which option should be
+  # the default when selecting an action for a given match.
+  # This is the action that will be taken when you type return without an option letter.
   default_action: apply
 
-  # Either ask (default), asis or skip. Specifies what should happen during an interactive import session when there is no recommendation. 
+  # Either ask (default), asis or skip. Specifies what should happen during an interactive import session when there is no recommendation.
   # Useful when you are only interested in processing medium and strong recommendations interactively.
   none_rec_action: ask
 
-  # Either skip, keep, remove, merge or ask. Controls how duplicates are treated in import task. 
-  # “skip” means that new item(album or track) will be skipped; 
-  # “keep” means keep both old and new items; 
-  # “remove” means remove old item; 
-  # “merge” means merge into one album; 
-  # “ask” means the user should be prompted for the action each time. 
+  # Either skip, keep, remove, merge or ask. Controls how duplicates are treated in import task.
+  # “skip” means that new item(album or track) will be skipped;
+  # “keep” means keep both old and new items;
+  # “remove” means remove old item;
+  # “merge” means merge into one album;
+  # “ask” means the user should be prompted for the action each time.
   # The default is ask.
   duplicate_action: keep
 
@@ -260,8 +261,8 @@ check:
 
 # Docs: https://beets.readthedocs.io/en/stable/plugins/unimported.html
 unimported:
-    ignore_extensions: jpg png zip jepg log cue yaml db
-    ignore_subdirectories: NonMusic data temp
+  ignore_extensions: jpg png zip jepg log cue yaml db
+  ignore_subdirectories: NonMusic data temp
 
 lastgenre: # Fetches tags from Last.fm and assigns them as genres to your albums and items.
   auto: yes # Fetch genres automatically during import. Default: yes.
