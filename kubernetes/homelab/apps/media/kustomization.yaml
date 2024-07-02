@@ -12,3 +12,4 @@ resources:
   - ./qbittorrent/ks.yaml
   - ./recyclarr/ks.yaml
   - ./jellyseerr/ks.yaml
+  - ./cross-seed/ks.yaml
