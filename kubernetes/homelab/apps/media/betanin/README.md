@@ -134,3 +134,23 @@ beet ls album:"Hollow World" -f 'id: $id path: $path | $artist - $artists - $alb
 ### Login
 
 user:pass
+
+### Docker-Compose
+
+```yaml
+version: "3.9"
+services:
+  beets:
+    build: .
+    container_name: beets
+    environment:
+      UID: 1000
+      GID: 1000
+    volumes:
+      # Loading files from this repository
+      - ./config:/b/.config/beets/
+      - ./scripts:/scripts
+    ports:
+      - 9393:9393
+    restart: unless-stopped
+```
