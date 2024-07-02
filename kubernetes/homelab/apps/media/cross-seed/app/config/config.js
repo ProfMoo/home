@@ -17,4 +17,5 @@ module.exports = {
   matchMode: "safe",
   skipRecheck: true,
   outputDir: "/config",
+  // We don't use this, but it's required for the app to start for some reason.
 }

@@ -8,8 +8,13 @@ resources:
   - ./radarr/ks.yaml
   - ./sonarr/ks.yaml
   - ./prowlarr/ks.yaml
+  # Buildarr is currently a bit too unstable to use. Though I like the concept,
+  # I haven't found a lot of success with it. I'm putting it on hold for now.
   #  - ./buildarr/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./recyclarr/ks.yaml
   - ./jellyseerr/ks.yaml
-  - ./cross-seed/ks.yaml
+  # Putting cross-seed on hold until v6 comes out.
+  # There are breaking changes compared to v5, so it's likely not worth the time to upgrade right now.
+  # https://www.cross-seed.org/docs/v6-migration
+  # - ./cross-seed/ks.yaml
