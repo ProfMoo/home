@@ -56,3 +56,4 @@ One major change from the typical home operations Discord setup is my desire to 
 8. [ ] Move over all applications from windows machine:
    1. [ ] Betanin (needs custom Docker build)
    2. [ ] Jellyfin (needs GPU)
+   3. [ ] Roon (might need a completely different setup to accomplish this)
