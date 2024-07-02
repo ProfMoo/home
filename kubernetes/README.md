@@ -125,6 +125,26 @@ View example [Fluxtomization](https://github.com/onedr0p/home-ops/blob/782ec8c15
 
 - The last method should be used when all other methods are not an option, or used when you have a “global” secret used by numerous HelmReleases across the cluster.
 
+### Kustomization Wait & DependOn
+
+When managing dependencies between HelmReleases and Flux Kustomizations (i.e. KS), there are some import configuration flags that could have a large impact on developer experience: `wait` and `dependsOn`. As a quick overview: there are two bits of configuration that are relevant here:
+
+`wait: true` only marks the Kustomization as successful if all the resources it creates are healthy
+`wait: false` just does a kubectl apply -k and then says 'all good, chief'
+`dependsOn` tells either the KS or the HelmRelease to confirm the health of another KS or HelmRelease before trying to apply. The health of the KS/HelmRelease could depend on HealthChecks or `wait`
+
+There are two camps here, mostly: You can either handle the dependencies via dependsOn at the KS level, or at the HelmRelease level. There are pros and cons to each:
+
+If you do it at the KS level, you'll run into situations where a KS fails to apply but then you have to wait for it to timeout before it notices you pushed a change and applies that instead, so it's a bit more clunky
+
+Doing it at the HR level is a bit nicer in terms of developer experience, but it has limitations. For example, if your KS applies manifests that are not helm releases, then you can't really do depends on at the HR level, so you'll have to mix and match.
+
+As a rule of thumb, if your KS only applies a HelmRelease (and associated configmaps, secrets etc), then you can set wait to false in the KS and implement your depends on at the HR level.
+
+If you need to apply other things that depend on a HR, think applying your cert-manager cluster issuers as raw manifests, but they depend on the cert-manager HR, then you must do it at the KS level
+
+Thanks to `mirceanton` for the overview in the [Home Operations discord server](https://discord.gg/home-operations).
+
 ### Notes
 
 In the future, I might choose to go down a more "hyperconverged" route and manage storage directly from k8s (instead of having TrueNAS handle most of this). In that case, I'd need to migrate the `StorageClass` of most of my pods, which would be a big lift. To do that, there is a great article [here](https://gist.github.com/deefdragon/d58a4210622ff64088bd62a5d8a4e8cc).
