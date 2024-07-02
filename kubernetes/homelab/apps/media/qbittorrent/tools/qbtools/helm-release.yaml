@@ -46,6 +46,8 @@ spec:
               - --unregistered
               - --server=qbittorrent.media.svc.cluster.local
               - --port=8080
+              - --username=admin
+              - --password=adminadmin
             env:
               TZ: *timeZone
             resources:
@@ -68,6 +70,8 @@ spec:
               - --include-tag=unregistered
               - --server=qbittorrent.media.svc.cluster.local
               - --port=8080
+              - --username=admin
+              - --password=adminadmin
           expired:
             <<: *container
             args:
@@ -77,6 +81,8 @@ spec:
               - --include-tag=expired
               - --server=qbittorrent.media.svc.cluster.local
               - --port=8080
+              - --username=admin
+              - --password=adminadmin
         pod:
           restartPolicy: OnFailure
           securityContext: &podSecurityContext
@@ -115,6 +121,8 @@ spec:
               - --process-seeding
               - --server=qbittorrent.media.svc.cluster.local
               - --port=8080
+              - --username=admin
+              - --password=adminadmin
         pod:
           securityContext: *podSecurityContext
     persistence:
