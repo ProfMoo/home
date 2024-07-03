@@ -32,7 +32,7 @@ metadata:
   name: &app betanin
   namespace: flux-system
 spec:
-  targetNamespace: media
+  targetNamespace: flux-system
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
