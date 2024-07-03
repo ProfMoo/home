@@ -7,6 +7,10 @@ resources:
   - ./pvc.yaml
   - ./helm-release.yaml
 configMapGenerator:
+  - name: betanin-config
+    files:
+      - config.yaml=./config/config.yaml
+      - secret.yaml=./config/secret.yaml
   - name: helpful-scripts
     files:
       - delete-from-disk.sh=./scripts/delete-from-disk.sh
