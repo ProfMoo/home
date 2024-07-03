@@ -36,6 +36,9 @@ spec:
             image:
               repository: ghcr.io/profmoo/betanin
               tag: latest@sha256:334ff437b1e4f0995cf979d5f98f6a1ac93e00ab77a9930017c5dee6f9b405dc
+            env:
+              UID: 0
+              GUID: 0
             probes:
               liveness:
                 enabled: false
@@ -59,6 +62,7 @@ spec:
         runAsNonRoot: false
         runAsUser: 0
         runAsGroup: 0
+        fsGroupChangePolicy: OnRootMismatch
         fsGroup: 0
     service:
       app:
