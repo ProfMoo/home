@@ -26,7 +26,9 @@ threaded: yes
 verbose: no
 
 # NOTE: This assumes that the music directory is mounted here
-directory: /music
+directory: /data/media/music
+
+# NOTE: This makes a large assumption that the beets dir is located at /beets
 library: /beets/beets.db
 # Pointing beets to the file where we keep the list of directories
 # we've already imported.

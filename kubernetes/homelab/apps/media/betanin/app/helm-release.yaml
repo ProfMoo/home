@@ -100,16 +100,26 @@ spec:
         name: helpful-scripts
       # These configs need to mounted as specific locations:
       # https://github.com/sentriz/betanin/blob/master/docker-entry
+      # NOTE: This config is the complex config.yaml that defines beets behavior.
       beets-config:
         type: configMap
         name: beets-config
         globalMounts:
           - path: /b/.config/beets/
+      # NOTE: This config is the simple config.toml that defines betanin behavior.
       betanin-config:
         type: configMap
         name: betanin-config
         globalMounts:
           - path: /b/.config/betanin/
+      # NOTE: This data is the larger beets DB which keeps information about the entire music library.
+      # It is extremely important and can't be lost. The mount location for this is determined the configuration in config.yaml
+      beets:
+        existingClaim: beets
+        globalMounts:
+          - path: /beets/
+      # NOTE: This data is the smaller betanin DB which keeps information about the individual imports.
+      # This populates the betanin GUI.
       data:
         existingClaim: betanin
         globalMounts:
