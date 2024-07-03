@@ -93,21 +93,24 @@ spec:
         existingClaim: nas-media
         globalMounts:
           - path: /data
+      scripts:
+        enabled: true
+        type: configMap
+        defaultMode: 0777
+        name: helpful-scripts
+      # These configs need to mounted as specific locations:
+      # https://github.com/sentriz/betanin/blob/master/docker-entry
       beets-config:
         type: configMap
         name: beets-config
         globalMounts:
           - path: /b/.config/beets/
-      config:
-        existingClaim: betanin
+      betanin-config:
+        type: configMap
+        name: betanin-config
         globalMounts:
           - path: /b/.config/betanin/
       data:
         existingClaim: betanin-data
         globalMounts:
           - path: /b/.local/share/betanin/
-      scripts:
-        enabled: true
-        type: configMap
-        defaultMode: 0777
-        name: helpful-scripts

@@ -9,7 +9,10 @@ resources:
 configMapGenerator:
   - name: beets-config
     files:
-      - config.yaml=./config/config.yaml
+      - config.yaml=./beets-config/config.yaml
+  - name: betanin-config
+    files:
+      - config.toml=./betanin-config/config.toml
   - name: helpful-scripts
     files:
       - delete-from-disk.sh=./scripts/delete-from-disk.sh
