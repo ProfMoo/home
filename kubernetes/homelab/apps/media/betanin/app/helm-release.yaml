@@ -53,10 +53,10 @@ spec:
               - "betanin"
             resources:
               requests:
-                cpu: 10m
-                memory: 128Mi
+                cpu: 100m
+                memory: 512Mi
               limits:
-                memory: 256Mi
+                memory: 1Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: false
