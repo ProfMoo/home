@@ -53,8 +53,7 @@ spec:
                 spec:
                   failureThreshold: 30
                   periodSeconds: 5
-            args:
-              - "exec"
+            command:
               - "betanin"
             resources:
               requests:
