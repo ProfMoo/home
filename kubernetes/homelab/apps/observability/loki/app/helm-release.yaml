@@ -66,6 +66,7 @@ spec:
         storageClass: local-hostpath
     monitoring:
       dashboards:
+        enabled: true
         annotations:
           grafana_folder: Loki
       serviceMonitor:
