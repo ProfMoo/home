@@ -79,6 +79,7 @@ spec:
               - --exclude-category=manual
               - --exclude-tag=activity:24h
               - --exclude-tag=activity:7d
+              - --exclude-tag=activity:30d
               - --include-tag=expired
               - --server=qbittorrent.media.svc.cluster.local
               - --port=8080
