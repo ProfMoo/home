@@ -111,6 +111,6 @@ spec:
         globalMounts:
           - path: /b/.config/betanin/
       data:
-        existingClaim: betanin-data
+        existingClaim: betanin
         globalMounts:
           - path: /b/.local/share/betanin/
