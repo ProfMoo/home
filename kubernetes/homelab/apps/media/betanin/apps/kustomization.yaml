@@ -3,11 +3,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./cross-seed.secret.sops.yaml
+  - ./betanin.secret.sops.yaml
+  - ./pvc.yaml
   - ./helm-release.yaml
 configMapGenerator:
-  - name: cross-seed-configmap
+  - name: helpful-scripts
     files:
-      - ./config/config.js
+      - delete-from-disk.sh=./scripts/delete-from-disk.sh
+      - disambiguation.sh=./scripts/disambiguation.sh
 generatorOptions:
   disableNameSuffixHash: true

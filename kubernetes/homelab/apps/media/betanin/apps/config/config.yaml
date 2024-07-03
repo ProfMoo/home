@@ -1,7 +1,7 @@
 # # A list of extra configuration files to include. IMPORTANT: Most configurations don't work in external files.
 # So unless the beets documentation says that a config key/value can be moved to a separate file, assume it must be left in this singular config.
 include:
-  # Secret strings (REDACTED) like usernames and passwords. This file should be in .gitignore.
+  # Secret strings (REDACTED) like usernames and passwords.
   - secrets.yaml
 
 plugins:

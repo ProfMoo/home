@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: cross-seed
+  name: betanin
 spec:
   interval: 30m
   chart:
@@ -28,7 +28,7 @@ spec:
       namespace: media
   values:
     controllers:
-      cross-seed:
+      betanin:
         annotations:
           reloader.stakater.com/auto: "true"
         pod:
@@ -43,32 +43,13 @@ spec:
             image:
               repository: ghcr.io/profmoo/betanin
               tag: sha256:5c0e34afc0c9b4f3dacff547f7d5417b82ecd987945f743c90c671dc1915eb2a
-            args:
-              - daemon
-            env:
-              CROSSSEED_PORT: &port 2468
-              PROWLARR_API_KEY:
-                valueFrom:
-                  secretKeyRef:
-                    name: cross-seed
-                    key: PROWLARR_API_KEY
-              QBT_USERNAME:
-                valueFrom:
-                  secretKeyRef:
-                    name: cross-seed
-                    key: QBT_USERNAME
-              QBT_PASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: cross-seed
-                    key: QBT_PASSWORD
             probes:
               liveness:
-                enabled: true
+                enabled: false
               readiness:
-                enabled: true
+                enabled: false
               startup:
-                enabled: true
+                enabled: false
                 spec:
                   failureThreshold: 30
                   periodSeconds: 5
@@ -86,17 +67,39 @@ spec:
                   - ALL
     service:
       app:
-        controller: cross-seed
+        controller: betanin
         ports:
           http:
-            port: *port
+            port: 9393
+    ingress:
+      app:
+        tls:
+          - hosts:
+              - "*.drmoo.io"
+            secretName: drmoo-io-tls
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/secret-name: "drmoo-io-tls"
+        className: internal
+        hosts:
+          - host: "betanin.drmoo.io"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
     persistence:
-      config:
-        type: emptyDir
-      config-file:
-        type: configMap
-        name: cross-seed-configmap
+      media:
+        existingClaim: nas-media
         globalMounts:
-          - path: /config/config.js
-            subPath: config.js
-            readOnly: true
+          - path: /data
+      config:
+        existingClaim: betanin
+        globalMounts:
+          - path: /b/.config/beets/
+      scripts:
+        enabled: true
+        type: configMap
+        defaultMode: 0777
+        name: helpful-scripts
