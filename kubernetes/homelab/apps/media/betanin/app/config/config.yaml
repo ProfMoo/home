@@ -1,9 +1,3 @@
-# # A list of extra configuration files to include. IMPORTANT: Most configurations don't work in external files.
-# So unless the beets documentation says that a config key/value can be moved to a separate file, assume it must be left in this singular config.
-include:
-  # Secret strings (REDACTED) like usernames and passwords.
-  - secrets.yaml
-
 plugins:
   - discogs
   # NOTE: These data sources have commented out because they've been inconsistent.
@@ -204,6 +198,7 @@ paths:
   comp: Compilations/$album%aunique{}/$track $title
 
 discogs:
+  user_token: "${DISCOGS_USER_TOKEN}"
   source_weight: 0.7
   extra_tags: [year]
 
