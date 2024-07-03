@@ -26,8 +26,6 @@ spec:
   dependsOn:
     - name: qbittorrent
       namespace: media
-    - name: prowlarr
-      namespace: media
   values:
     controllers:
       cross-seed:
@@ -43,8 +41,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/cross-seed/cross-seed
-              tag: 5.9.2
+              repository: ghcr.io/profmoo/betanin
+              tag: sha256:5c0e34afc0c9b4f3dacff547f7d5417b82ecd987945f743c90c671dc1915eb2a
             args:
               - daemon
             env:
