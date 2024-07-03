@@ -48,6 +48,7 @@ One major change from the typical home operations Discord setup is my desire to 
 6. [X] Fix the bootstrapping phase to be more consistent and upgradeable for Flux
 7. [ ] Figure out the correct way to expose endpoints outside my local network (via Cloudflare)
 8. [ ] Move over all applications from windows machine:
-   1. [ ] Betanin (needs custom Docker build)
+   1. [X] Betanin (needs custom Docker build)
    2. [ ] Jellyfin (needs GPU)
    3. [ ] Roon (might need a completely different setup to accomplish this)
+   4. [ ] Factorio (need to figure out filesystem permission issue)
