@@ -8,6 +8,7 @@ metadata:
   name: &app betanin-secrets
   namespace: flux-system
 spec:
+  targetNamespace: flux-system
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -32,7 +33,7 @@ metadata:
   name: &app betanin
   namespace: flux-system
 spec:
-  targetNamespace: flux-system
+  targetNamespace: media
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
