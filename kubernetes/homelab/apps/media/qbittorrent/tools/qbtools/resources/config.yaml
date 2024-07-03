@@ -3,24 +3,24 @@ trackers:
   - name: animebytes
     urls: ["animebytes.tv"]
     required_seed_ratio: 1.01
-    required_seed_days: 100.1
+    required_seed_days: 365.1
   - name: anthelion
     urls: ["anthelion.me"]
     required_seed_ratio: 1.01
-    required_seed_days: 100.1
+    required_seed_days: 365.1
   - name: morethantv
     urls: ["morethantv.me"]
     required_seed_ratio: 1.01
-    required_seed_days: 100.1
+    required_seed_days: 365.1
   - name: myanonamouse
     urls: ["myanonamouse.net"]
     required_seed_ratio: 1.01
-    required_seed_days: 100.1
+    required_seed_days: 365.1
   - name: orpheus
     urls: ["opsfet.ch"]
-    required_seed_ratio: 2.01
-    required_seed_days: 100.1
+    required_seed_ratio: 5.01
+    required_seed_days: 365.1
   - name: redacted
     urls: ["flacsfor.me"]
-    required_seed_ratio: 2.01
-    required_seed_days: 100.1
+    required_seed_ratio: 5.01
+    required_seed_days: 365.1
