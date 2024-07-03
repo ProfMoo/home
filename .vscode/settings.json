@@ -9,6 +9,7 @@
         "brainz",
         "buildarr",
         "buroa",
+        "Ceph",
         "coredns",
         "crds",
         "customresourcedefinitions",
@@ -58,6 +59,7 @@
         "torznab",
         "truenas",
         "unifi",
+        "Volsync",
         "weaveworks"
     ]
 }

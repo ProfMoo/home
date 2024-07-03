@@ -34,7 +34,7 @@ I configure Kubernetes with GitOps via [Flux](https://github.com/fluxcd/flux2). 
 
 The [home-operations](https://discord.gg/home-operations) Discord group has been a huge inspiration for this repository. In particular, the repos by [onedr0p](https://github.com/onedr0p/home-ops), [bjw-s](https://github.com/bjw-s/home-ops), and [buroa](https://github.com/buroa/k8s-gitops).
 
-One major change from the typical home operations Discord setup is my desire to setup the Kuberntes clusters in VMs. For those repositories, I drew great inspiration from the two repos [here](https://github.com/zimmertr/TJs-Kubernetes-Service) and [here](https://github.com/kubebn/talos-proxmox-kaas).
+One major change from the typical home operations Discord setup is my desire to setup the Kubernetes clusters in VMs. For those repositories, I drew great inspiration from the two repos [here](https://github.com/zimmertr/TJs-Kubernetes-Service) and [here](https://github.com/kubebn/talos-proxmox-kaas).
 
 ## TODO
 
