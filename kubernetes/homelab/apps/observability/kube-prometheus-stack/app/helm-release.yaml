@@ -95,13 +95,6 @@ spec:
     grafana:
       enabled: false
       forceDeployDashboards: true
-      sidecar:
-        dashboards:
-          annotations:
-            grafana_folder: Prometheus
-          multicluster:
-            etcd:
-              enabled: true
     coreDns:
       enabled: true
     prometheusOperator:
