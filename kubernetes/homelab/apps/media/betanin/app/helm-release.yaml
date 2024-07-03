@@ -42,7 +42,7 @@ spec:
           app:
             image:
               repository: ghcr.io/profmoo/betanin
-              tag: latest@sha256:5c0e34afc0c9b4f3dacff547f7d5417b82ecd987945f743c90c671dc1915eb2a
+              tag: latest@sha256:334ff437b1e4f0995cf979d5f98f6a1ac93e00ab77a9930017c5dee6f9b405dc
             probes:
               liveness:
                 enabled: false
