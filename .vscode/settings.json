@@ -38,6 +38,7 @@
         "jellyseerr",
         "jetstack",
         "kubelet",
+        "kustomization",
         "kustomizations",
         "kustomize",
         "minio",

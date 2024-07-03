@@ -20,9 +20,6 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
-  # NOTE: This enable this to recreate resources on immutable fields changes
-  # Docs: https://github.com/fluxcd/kustomize-controller/blob/main/docs/spec/v1/kustomizations.md#recommended-settings
-  force: true
   decryption:
     provider: sops
     secretRef:
@@ -51,9 +48,6 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
-  # NOTE: This enable this to recreate resources on immutable fields changes
-  # Docs: https://github.com/fluxcd/kustomize-controller/blob/main/docs/spec/v1/kustomizations.md#recommended-settings
-  force: true
   postBuild:
     substituteFrom:
       - kind: Secret
