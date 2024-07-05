@@ -13,7 +13,7 @@
             description: Request system
             widget:
                 type: jellyseerr
-                url: https://request.drmoo.io
+                url: http://jellyseer.media.svc.cluster.local:80
                 key: MTcxOTc4NTA3MzM0NTgyMjE3OTYwLTU2NGItNGI4MC05Nzg4LWJjYmNhYmI5NTExNg==
       - Feishin:
             href: http://192.168.1.78:9180
@@ -27,7 +27,7 @@
             description: Observability (username:password)
             widget:
                 type: grafana
-                url: https://grafana.drmoo.io
+                url: http://grafana.observability.svc.cluster.local:80
                 username: username
                 password: password
       - Prometheus:
@@ -36,7 +36,7 @@
             description: Observability
             widget:
                 type: prometheus
-                url: https://prometheus.drmoo.io
+                url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:80
                 fields: ["targets_up", "targets_down", "targets_total"]
       - GoldPinger:
             href: http://192.168.8.30:30080
@@ -50,7 +50,7 @@
             description: Tracker indexer wrapper (admin:admin)
             widget:
                 type: prowlarr
-                url: https://prowlarr.drmoo.io:80
+                url: http://prowlarr.media.svc.cluster.local:80
                 key: foobarbazfoobarbazfoobarbazfooba
       - Radarr:
             href: https://radarr.drmoo.io
@@ -58,7 +58,7 @@
             description: Movie torrent manager (admin:admin)
             widget:
                 type: radarr
-                url: https://radarr.drmoo.io:80
+                url: http://radarr.media.svc.cluster.local:80
                 key: foobarbazfoobarbazfoobarbazfooba
       - Sonarr:
             href: https://sonarr.drmoo.io
@@ -66,7 +66,7 @@
             description: TV series torrent manager (admin:admin)
             widget:
                 type: sonarr
-                url: https://sonarr.drmoo.io:80
+                url: http://sonarr.media.svc.cluster.local:80
                 key: foobarbazfoobarbazfoobarbazfooba
       # - Readarr:
       #     href: http://192.168.1.78:8787
@@ -82,7 +82,7 @@
             description: Torrent downloader (admin:adminadmin)
             widget:
                 type: qbittorrent
-                url: https://qb.drmoo.io:80
+                url: http://qbittorrent.media.svc.cluster.local:80
                 username: admin
                 password: adminadmin
       - Betanin:
