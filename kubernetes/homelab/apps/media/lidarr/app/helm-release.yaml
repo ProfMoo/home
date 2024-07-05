@@ -35,13 +35,12 @@ spec:
               repository: ghcr.io/onedr0p/lidarr-develop
               tag: 2.4.1.4234@sha256:78ee9b58cb41ce6674dcd1e181cab857419a5cc24423cf772f9bd80fe469f517
             env:
-              TZ: ${CONFIG_TIMEZONE}
-              LIDARR__INSTANCE_NAME: Lidarr
+              LIDARR__APP__THEME: dark
+              LIDARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              LIDARR__LOG__LEVEL: info
+              LIDARR__AUTH__APIKEY: "foobarbazfoobarbazfoobarbazfooba"
               LIDARR__SERVER__PORT: &port 80
-              LIDARR__LOG_LEVEL: info
-              LIDARR__AUTHENTICATION_METHOD: External
-              LIDARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
-              LIDARR__THEME: dark
+              TZ: America/New_York
             probes:
               liveness: &probes
                 enabled: true
