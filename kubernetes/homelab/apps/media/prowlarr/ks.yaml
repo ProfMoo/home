@@ -19,6 +19,24 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
-  # NOTE: This enable this to recreate resources on immutable fields changes
-  # Docs: https://github.com/fluxcd/kustomize-controller/blob/main/docs/spec/v1/kustomizations.md#recommended-settings
-  force: true
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: prowlarr-exporter
+  namespace: flux-system
+spec:
+  targetNamespace: media
+  dependsOn:
+    - name: prowlarr
+      namespace: flux-system
+  path: ./kubernetes/homelab/apps/media/prowlarr/exporter
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: profmoo-home
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
