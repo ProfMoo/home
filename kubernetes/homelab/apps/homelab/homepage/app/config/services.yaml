@@ -15,10 +15,10 @@
                 type: jellyseerr
                 url: http://jellyseer.media.svc.cluster.local:80
                 key: MTcxOTc4NTA3MzM0NTgyMjE3OTYwLTU2NGItNGI4MC05Nzg4LWJjYmNhYmI5NTExNg==
-      - Feishin:
-            href: http://192.168.1.78:9180
-            icon: mdi-headphones
-            description: Music player
+      #   - Feishin:
+      #         href: http://192.168.1.78:9180
+      #         icon: mdi-headphones
+      #         description: Music player
 
 - Infrastructure:
       - Grafana:
@@ -82,7 +82,7 @@
             description: Torrent downloader (admin:adminadmin)
             widget:
                 type: qbittorrent
-                url: http://qbittorrent.media.svc.cluster.local:80
+                url: http://qbittorrent.media.svc.cluster.local:8080
                 username: admin
                 password: adminadmin
       - Betanin:
