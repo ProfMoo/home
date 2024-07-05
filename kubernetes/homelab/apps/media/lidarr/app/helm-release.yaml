@@ -37,7 +37,7 @@ spec:
             env:
               TZ: ${CONFIG_TIMEZONE}
               LIDARR__INSTANCE_NAME: Lidarr
-              LIDARR__PORT: &port 8686
+              LIDARR__PORT: &port 80
               LIDARR__LOG_LEVEL: info
               LIDARR__AUTHENTICATION_METHOD: External
               LIDARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
@@ -49,7 +49,7 @@ spec:
                 spec:
                   httpGet:
                     path: /ping
-                    port: 80
+                    port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
@@ -71,7 +71,7 @@ spec:
         controller: lidarr
         ports:
           http:
-            port: 80
+            port: *port
     ingress:
       app:
         tls:
