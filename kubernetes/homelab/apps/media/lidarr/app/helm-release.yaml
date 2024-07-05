@@ -37,7 +37,7 @@ spec:
             env:
               TZ: ${CONFIG_TIMEZONE}
               LIDARR__INSTANCE_NAME: Lidarr
-              LIDARR__PORT: &port 80
+              LIDARR__SERVER__PORT: &port 80
               LIDARR__LOG_LEVEL: info
               LIDARR__AUTHENTICATION_METHOD: External
               LIDARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
