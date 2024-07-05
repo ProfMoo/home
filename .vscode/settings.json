@@ -41,6 +41,7 @@
         "kustomization",
         "kustomizations",
         "kustomize",
+        "lidarr",
         "minio",
         "multus",
         "ocirepositories",

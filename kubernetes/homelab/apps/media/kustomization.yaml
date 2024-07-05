@@ -19,3 +19,4 @@ resources:
   # https://www.cross-seed.org/docs/v6-migration
   # - ./cross-seed/ks.yaml
   - ./betanin/ks.yaml
+  - ./lidarr/ks.yaml
