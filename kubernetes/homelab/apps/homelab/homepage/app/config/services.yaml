@@ -100,7 +100,7 @@
             description: TrueNas server
             widget:
                 type: truenas
-                url: http://truenas.local
+                url: http://192.168.1.26
                 key: 1-WYckrNh6X7L1w3Bhwm8PUGn6N3n1JCjXsEUWnD870nhloTnqeVuiFbTHs6CQfAyF
       - TrueNAS OOBM:
             href: http://192.168.1.54
