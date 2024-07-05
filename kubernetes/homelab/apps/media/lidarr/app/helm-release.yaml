@@ -37,6 +37,8 @@ spec:
             env:
               LIDARR__APP__THEME: dark
               LIDARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              LIDARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
+              LIDARR__AUTH__METHOD: External
               LIDARR__AUTHENTICATION_METHOD: External
               LIDARR__LOG__LEVEL: info
               LIDARR__AUTH__APIKEY: "foobarbazfoobarbazfoobarbazfooba"
