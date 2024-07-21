@@ -16,6 +16,7 @@ module.exports = {
   duplicateCategories: true,
   matchMode: "safe",
   skipRecheck: true,
+  // NOTE: We don't actually use this folder because we inject the downloaded torrents directly into the torrent client,
+  // but we need to include this directory in the container for cross-seed to startup correctly.
   outputDir: "/config",
-  // We don't use this, but it's required for the app to start for some reason.
 }
