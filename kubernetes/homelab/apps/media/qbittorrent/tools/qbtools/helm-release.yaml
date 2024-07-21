@@ -76,7 +76,10 @@ spec:
             <<: *container
             args:
               - prune
+              # Don't prune torrents that are manually marked to be kept
               - --exclude-category=manual
+              # Don't prune torrents that I upload
+              - --exclude-category=upload
               - --exclude-tag=activity:24h
               - --exclude-tag=activity:7d
               - --exclude-tag=activity:30d
