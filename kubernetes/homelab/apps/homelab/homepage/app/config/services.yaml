@@ -39,7 +39,7 @@
                 url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:8080
                 fields: ["targets_up", "targets_down", "targets_total"]
       - GoldPinger:
-            href: http://192.168.8.30:30080
+            href: https://goldpinger.drmoo.io
             icon: mdi-connection
             description: Node connectivity
 
@@ -86,7 +86,7 @@
                 username: admin
                 password: adminadmin
       - Betanin:
-            href: http://betanin.media.svc.cluster.local:9393
+            href: http://betanin.drmoo.io
             icon: betanin
             description: Music tagging (user:pass)
 
