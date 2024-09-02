@@ -3,6 +3,10 @@
         - abbr: GH
           icon: github.png
           href: https://github.com/ProfMoo
+    - Kubernetes Apps:
+        - abbr: K8s
+          icon: kubernetes.ong
+          href: https://kubesearch.dev
 
 # To browse more icons, check here:
 # https://pictogrammers.com/library/mdi/
