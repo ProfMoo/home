@@ -1,0 +1,125 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: home-assistant
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  dependsOn:
+    - name: freenas-api-iscsi
+      namespace: storage
+  values:
+    controllers:
+      home-assistant:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: ghcr.io/onedr0p/home-assistant
+              tag: 2024.8.3@sha256:4c66f07029ce461e2e57991968977eea759bf231caa4ced7116d478a6e5bcb37
+            env:
+              TZ: America/New_York
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: { drop: ["ALL"] }
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 2Gi
+          code-server:
+            image:
+              repository: ghcr.io/coder/code-server
+              tag: 4.92.2@sha256:f32cfa5e7cc768f60969f1d2183fc4c7aa093b80b93c365535e83f79ccf004f2
+            args:
+              [
+                "--auth",
+                "none",
+                "--user-data-dir",
+                "/config/.vscode",
+                "--extensions-dir",
+                "/config/.vscode",
+                "--port",
+                "12321",
+                "/config",
+              ]
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 512Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 568
+        runAsGroup: 568
+        fsGroup: 568
+        fsGroupChangePolicy: OnRootMismatch
+        seccompProfile: { type: RuntimeDefault }
+    service:
+      app:
+        controller: home-assistant
+        ports:
+          http:
+            port: 8123
+          code-server:
+            port: 12321
+    ingress:
+      app:
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+        className: external
+        hosts:
+          - host: hass.drmoo.io
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+      code-server:
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+        className: internal
+        hosts:
+          - host: hass-code.drmoo.io
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: code-server
+    persistence:
+      config:
+        existingClaim: home-assistant
+        globalMounts:
+          - path: /config
+      logs:
+        type: emptyDir
+        globalMounts:
+          - path: /config/logs
+      tts:
+        type: emptyDir
+        globalMounts:
+          - path: /config/tts
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
