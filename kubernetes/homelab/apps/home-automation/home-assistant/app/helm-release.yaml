@@ -87,7 +87,7 @@ spec:
       app:
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-        className: external
+        className: internal
         hosts:
           - host: hass.drmoo.io
             paths:
