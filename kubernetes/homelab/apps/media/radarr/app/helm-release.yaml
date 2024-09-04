@@ -38,7 +38,7 @@ spec:
               RADARR__AUTHENTICATION_METHOD: External
               RADARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
               RADARR__INSTANCE_NAME: Radarr
-              RADARR__PORT: 80
+              RADARR__PORT: &port 80
               RADARR__LOG_LEVEL: info
               RADARR__THEME: dark
               RADARR__API_KEY: "foobarbazfoobarbazfoobarbazfooba"
