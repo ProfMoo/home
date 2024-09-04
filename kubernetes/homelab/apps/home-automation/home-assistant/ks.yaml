@@ -10,7 +10,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/homelab/apps/media/home-assistant/app
+  path: ./kubernetes/homelab/apps/home-automation/home-assistant/app
   prune: true
   sourceRef:
     kind: GitRepository
