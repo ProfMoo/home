@@ -3,6 +3,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  # Pre Flux-Kustomizations
   - ./namespace.yaml
-  - ./home-assistant/ks.yaml
-  - ./zigbee2mqtt/ks.yaml
+  # Flux-Kustomizations
+  - ./emqx/ks.yaml
