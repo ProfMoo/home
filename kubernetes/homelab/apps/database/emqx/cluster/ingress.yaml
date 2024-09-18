@@ -5,6 +5,8 @@ metadata:
   name: emqx-dashboard
   annotations:
     external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    cert-manager.io/secret-name: "drmoo-io-tls"
 spec:
   ingressClassName: internal
   rules:
