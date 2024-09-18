@@ -18,3 +18,4 @@ resources:
   - ./cilium.yaml
   - ./minecraft.yaml
   - ./factorio.yaml
+  - ./emqx.yaml
