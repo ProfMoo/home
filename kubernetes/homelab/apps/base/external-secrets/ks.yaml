@@ -6,14 +6,12 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: "./kubernetes/main/apps/kube-system/external-secrets/app"
+  path: "./kubernetes/homelab/apps/base/external-secrets/app"
   prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
   wait: true
-  dependsOn:
-    - name: cert-manager-self-signed-issuers
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -21,7 +19,7 @@ metadata:
   name: cluster-apps-external-secrets-bitwarden
   namespace: flux-system
 spec:
-  path: ./kubernetes/main/apps/kube-system/external-secrets/bitwarden
+  path: ./kubernetes/homelab/apps/base/external-secrets/bitwarden
   prune: true
   sourceRef:
     kind: GitRepository
@@ -41,7 +39,7 @@ metadata:
   name: cluster-apps-external-secrets-stores
   namespace: flux-system
 spec:
-  path: ./kubernetes/main/apps/kube-system/external-secrets/stores
+  path: ./kubernetes/homelab/apps/base/external-secrets/stores
   prune: true
   sourceRef:
     kind: GitRepository
