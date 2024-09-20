@@ -26,10 +26,6 @@ spec:
     name: profmoo-home
   wait: true
   interval: 30m
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: vault-secrets
   dependsOn:
     - name: external-secrets
 ---
