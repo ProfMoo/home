@@ -7,6 +7,6 @@ beetcamp==0.17.2
 beets-yearfixer==0.0.5
 pylast==4.4.0
 beets-extrafiles==0.0.7
-beets-check==0.13.0
+beets-check==0.15.0
 # NOTE: This is my personal fork of beets-originquery which includes support for additional tags
 git+https://github.com/ProfMoo/beets-originquery@8a6e604d8fc968b55a0ddc792981317679fb8215
