@@ -19,3 +19,4 @@ resources:
   - ./minecraft.yaml
   - ./factorio.yaml
   - ./emqx.yaml
+  - ./external-secrets.yaml
