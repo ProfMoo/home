@@ -28,6 +28,8 @@ spec:
   values:
     controllers:
       bitwarden:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
