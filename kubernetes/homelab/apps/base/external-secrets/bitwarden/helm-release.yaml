@@ -33,25 +33,11 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/roxedus/bw
-              tag: 2024.9.0@sha256:15f242f095775f2ea2b5040d3fafa70ab75ea78cc1ddecd6e874a5801a1b75cd
+              repository: ghcr.io/larivierec/bitwarden-cli
+              tag: 2024.9.0@sha256:65780055899dd5821267f14064c58c06be94608ba5e7c54c17cc13ef1918c8d0
             envFrom:
               - secretRef:
                   name: bitwarden-apikey
-            securityContext:
-              readOnlyRootFilesystem: true
-            command: ["sh", "-c"]
-            args:
-              - |
-                echo "Starting up bitwarden CLI container"
-                echo "Setting Bitwarden server"
-                bw config server $BW_HOST
-                echo "Logging in with APIKey"
-                BW_CLIENTID="${BW_CLIENTID}" BW_CLIENTSECRET="${BW_CLIENTSECRET}" bw login --apikey
-                echo "Unlocking vault with password"
-                export BW_SESSION=$(bw unlock --passwordenv BW_PASSWORD --raw)
-                # Ensures the Bitwarden vault is unlocked - fails out otherwise
-                bw unlock --check
             probes:
               liveness:
                 enabled: true
