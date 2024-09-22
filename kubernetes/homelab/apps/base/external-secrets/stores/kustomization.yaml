@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ./secret-store.yaml
   - ./test-secret.yaml
+  - ./test-secret-2.yaml

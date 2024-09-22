@@ -32,10 +32,7 @@ spec:
       serviceMonitor:
         enabled: true
         interval: 1m
-    # certController:
-    #   serviceMonitor:
-    #     enabled: true
-    #     interval: 1m
-    # https://cert-manager.io/docs/configuration/selfsigned/#bootstrapping-ca-issuers
-    # bitwarden-sdk-server:
-    #   enabled: true
+    certController:
+      serviceMonitor:
+        enabled: true
+        interval: 1m
