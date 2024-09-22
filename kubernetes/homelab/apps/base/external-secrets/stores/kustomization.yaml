@@ -4,3 +4,11 @@ kind: Kustomization
 resources:
   - ./secret-store.yaml
   - ./cluster-secrets.yaml
+vars:
+  - name: NAMESPACE
+    objref:
+      apiVersion: v1
+      kind: Namespace
+      name: base
+    fieldref:
+      fieldpath: metadata.namespace
