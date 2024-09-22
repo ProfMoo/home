@@ -67,8 +67,3 @@ spec:
         ports:
           http:
             port: 8087
-    persistence:
-      tmp:
-        type: emptyDir
-        globalMounts:
-          - path: /tmp
