@@ -38,6 +38,8 @@ spec:
             envFrom:
               - secretRef:
                   name: bitwarden-apikey
+            securityContext:
+              readOnlyRootFilesystem: true
             probes:
               liveness:
                 enabled: true
