@@ -44,8 +44,10 @@ spec:
             args:
               - |
                 echo "Starting up bitwarden CLI container"
+                echo "Setting Bitwarden server"
+                bw config server "${BW_HOST}"
                 echo "Logging in with APIKey"
-                BW_CLIENTID='${BW_CLIENTID}' BW_CLIENTSECRET='${BW_CLIENTSECRET}' bw login --apikey
+                BW_CLIENTID="${BW_CLIENTID}" BW_CLIENTSECRET="${BW_CLIENTSECRET}" bw login --apikey
                 echo "Unlocking vault with password"
                 export BW_SESSION=$(bw unlock --passwordenv BW_PASSWORD --raw)
                 # Ensures the bitwarden vault is unlocked - fails out otherwise
