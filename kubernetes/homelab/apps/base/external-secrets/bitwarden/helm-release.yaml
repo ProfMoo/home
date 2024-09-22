@@ -45,7 +45,7 @@ spec:
               - |
                 echo "Starting up bitwarden CLI container"
                 echo "Setting Bitwarden server"
-                bw config server ${BW_HOST}
+                bw config server $BW_HOST
                 echo "Logging in with APIKey"
                 BW_CLIENTID="${BW_CLIENTID}" BW_CLIENTSECRET="${BW_CLIENTSECRET}" bw login --apikey
                 echo "Unlocking vault with password"
