@@ -31,8 +31,8 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/larivierec/bitwarden-cli
-              tag: 2024.8.2@sha256:d7e0fddb9b054d6b5600623a955de96f3cfe5afe993642c3af3a1112da41fc04
+              repository: ghcr.io/roxedus/bw
+              tag: 2024.9.0@sha256:15f242f095775f2ea2b5040d3fafa70ab75ea78cc1ddecd6e874a5801a1b75cd
             envFrom:
               - secretRef:
                   name: bitwarden-apikey
@@ -65,3 +65,8 @@ spec:
         ports:
           http:
             port: 8087
+    persistence:
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
