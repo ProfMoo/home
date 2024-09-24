@@ -87,6 +87,8 @@ spec:
       app:
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          cert-manager.io/secret-name: drmoo-io-tls
         className: internal
         hosts:
           - host: hass.drmoo.io
@@ -98,6 +100,8 @@ spec:
       code-server:
         annotations:
           external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+          cert-manager.io/cluster-issuer: letsencrypt-production
+          cert-manager.io/secret-name: drmoo-io-tls
         className: internal
         hosts:
           - host: hass-code.drmoo.io
