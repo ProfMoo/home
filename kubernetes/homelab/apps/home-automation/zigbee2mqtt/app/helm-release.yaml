@@ -115,3 +115,5 @@ spec:
     persistence:
       config:
         existingClaim: zigbee2mqtt
+        globalMounts:
+          - path: /config
