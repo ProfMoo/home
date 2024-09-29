@@ -5,10 +5,8 @@ kind: Kustomization
 metadata:
   name: &app cloudflared
   namespace: flux-system
-  labels:
-    substitution.flux.home.arpa/enabled: "true"
 spec:
-  targetNamespace: network
+  targetNamespace: networking
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -19,7 +17,7 @@ spec:
   prune: false
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: profmoo-home
   wait: true
   interval: 30m
   retryInterval: 1m
