@@ -5,13 +5,17 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    sops = {
+      source  = "carlpett/sops"
+      version = "1.0.0"
+    }
   }
   backend "s3" {
     bucket = "sobrien-home"
     key    = "home"
     region = "us-east-1"
     # To authenticate to access the state (not the actual terraform commands)
-    shared_credentials_file = "./aws-credentials"
+    shared_credentials_files = ["./aws-credentials"]
   }
 }
 

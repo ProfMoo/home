@@ -14,7 +14,7 @@ This directory houses the code that transforms raw bare-metal machines into func
     aws_secret_access_key = <redacted>
     ```
 
-    This provides authentication to the AWS S3 bucket backend that stores the TF state
+    This provides authentication to the AWS S3 bucket backend that stores the TF state AND the KMS secret to decrypt the sops file.
 
 ## How To Use
 

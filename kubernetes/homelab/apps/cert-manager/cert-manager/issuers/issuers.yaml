@@ -12,12 +12,11 @@ spec:
       name: letsencrypt-production
     solvers:
       - dns01:
-          route53:
-            region: us-west-2
-            accessKeyID: AKIA5JDNQ7PFOCK4NS65
-            secretAccessKeySecretRef:
-              name: route53-credentials
-              key: secret-access-key
+          cloudflare:
+            email: obshane96@gmail.com
+            apiKeySecretRef:
+              name: cloudflare-secret
+              key: CLOUDFLARE_API_KEY
         selector:
           dnsZones: ["drmoo.io"]
 ---
@@ -34,11 +33,10 @@ spec:
       name: letsencrypt-staging
     solvers:
       - dns01:
-          route53:
-            region: us-west-2
-            accessKeyID: <AWS_ACCESS_KEY_ID>
-            secretAccessKeySecretRef:
-              name: route53-credentials
-              key: secret-access-key
+          cloudflare:
+            email: obshane96@gmail.com
+            apiKeySecretRef:
+              name: cloudflare-secret
+              key: CLOUDFLARE_API_KEY
         selector:
           dnsZones: ["drmoo.io"]
