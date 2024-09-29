@@ -35,7 +35,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/homelab/apps/networking/external-dns/unifi
+  path: ./kubernetes/homelab/apps/networking/external-dns/cloudflare
   prune: false
   sourceRef:
     kind: GitRepository
