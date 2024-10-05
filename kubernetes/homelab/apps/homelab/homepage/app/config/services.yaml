@@ -28,6 +28,10 @@
       - Zigbee Radio:
             href: http://192.168.1.38
             description: Zigbee radio webpage
+      - EMQX Cluster:
+            href: https://emqx.drmoo.io
+            description: MQTT Cluster
+
 
 - Infrastructure:
       - Grafana:
@@ -79,7 +83,7 @@
                 key: foobarbazfoobarbazfoobarbazfooba
       - Lidarr:
             href: https://lidarr.drmoo.io
-            icon: sonarr.png
+            icon: lidarr.png
             description: TV series torrent manager (admin:admin)
             widget:
                 type: lidarr
