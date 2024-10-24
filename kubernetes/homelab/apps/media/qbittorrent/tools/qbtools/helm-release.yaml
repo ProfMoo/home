@@ -36,7 +36,7 @@ spec:
           tagging: &container
             image:
               repository: ghcr.io/buroa/qbtools
-              tag: v0.15.3@sha256:68c211301e88ae942629cf05793f860675467aac5cdc7b7500b394f294f62eac
+              tag: v0.19.5@sha256:e9482d3d40c1ab58f50664ad3a24f2d5627d210f1ea140c7f44f516d0bf5f204
             args:
               - tagging
               - --added-on
