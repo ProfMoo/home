@@ -567,7 +567,7 @@ radarr:
 #                 grab_limit: 100
 #                 tags: []
 #                 fields:
-#                   baseUrl: https://redacted.ch/
+#                   baseUrl: https://redacted.sh/
 #                   useFreeleechToken: true
 #                   baseSettings.limitsUnit: Day
 #                   torrentBaseSettings.appMinimumSeeders: null
