@@ -68,7 +68,7 @@ spec:
               - prune
               - --exclude-tag=expired
               - --include-tag=unregistered
-              # These two tags below are included in the unregistered purning process
+              # These two tags below are included in the unregistered pruning process
               # because of potential downtime of the tracker. I *believe* that at some point, RED went down
               # and then all my torrents were marked as unregistered. I had to re-add them all manually.
               # Don't prune torrents that are manually marked to be kept
