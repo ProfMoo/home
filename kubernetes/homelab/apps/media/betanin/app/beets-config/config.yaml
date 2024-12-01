@@ -192,7 +192,7 @@ aunique:
 
 # Docs: https://beets.readthedocs.io/en/stable/reference/pathformat.html#aunique
 paths:
-  default: $albumartist/$album%aunique{}/$track $title
+  default: "%title{$albumartist}/$album%aunique{}/$track $title"
   # NOTE: I think the commented out singleton configuration is better, but this needs to be
   # fully tested before it's turned on. We don't want to lose playlist entries when shifting a lot of hard-to-identify singles.
   # singleton: $artist/Non-Album/$title
