@@ -61,7 +61,7 @@ First, to get the full scope of the situation, run this command, which tells you
 You can also use the built-in script:
 
    ```bash
-   /scripts/disambig.sh "<release_name>"
+   /scripts/disambiguation.sh "<release_name>"
    ```
 
 > **NOTE**
