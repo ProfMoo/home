@@ -27,7 +27,8 @@ There are times (i.e. I mess something up) where a PVC makes a new PV instead of
 3. Delete the new PV and the PVC in question:
 
     ```bash
-
+    kubectl delete pv <pv-name>
+    kubectl delete pvc <pvc-name>
     ```
 
     The old PV and PVC will hang (i.e. be stuck in terminating). Just ignore that and keep pressing forward.
