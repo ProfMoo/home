@@ -14,7 +14,7 @@ spec:
       - dns01:
           cloudflare:
             email: obshane96@gmail.com
-            apiKeySecretRef:
+            apiTokenSecretRef:
               name: cloudflare-secret
               key: CLOUDFLARE_API_KEY
         selector:
@@ -35,7 +35,7 @@ spec:
       - dns01:
           cloudflare:
             email: obshane96@gmail.com
-            apiKeySecretRef:
+            apiTokenSecretRef:
               name: cloudflare-secret
               key: CLOUDFLARE_API_KEY
         selector:
