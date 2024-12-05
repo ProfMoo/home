@@ -14,7 +14,7 @@
 
 ## Overview
 
-This is a mono repository for my homelab Kubernetes cluster. I strictly adhere to Infrastructure as Code (IaC) and GitOps practices using tools like Kubernetes, Terraform, Talos, Flux, Renovate, and GitHub Actions.
+A mono-repository for my homelab Kubernetes cluster. I strictly adhere to Infrastructure as Code (IaC) and GitOps practices using tools like Kubernetes, Terraform, Talos, Flux, Renovate, and GitHub Actions.
 
 <p align="center">
   <img src="./docs/diagram.drawio.png" alt="diagram" width="500" height="500">
@@ -46,3 +46,4 @@ One major change from the typical home operations Discord setup is my desire to 
    1. [ ] Jellyfin (needs GPU)
    2. [ ] Roon (might need a completely different setup to accomplish this)
    3. [ ] Factorio (need to figure out filesystem permission issue)
+5. [ ] Switch over to use local storage and volsync to my TrueNas cluster instead of the democractic-csi storage class.
