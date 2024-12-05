@@ -191,13 +191,19 @@ aunique:
   bracket: "()"
 
 # Docs: https://beets.readthedocs.io/en/stable/reference/pathformat.html#aunique
+# NOTE: We %title{} everything here due to a super impactful downstream affect of using beets on a Linux system
+# and then mounting the music library into a Windows system. Linux is case-sensitive, while Windows is case-insensitive.
+# This means that if we don't use %title{} on the paths, we could end up with two distinct directories on Linux
+# which Windows can't tell apart in a share (such as SMB).
+# This can get *nasty* and end up in a lot of indeterminate behavior.
+# There are fellow beets users discussing this here: https://github.com/beetbox/beets/discussions/5104
 paths:
-  default: "%title{$albumartist}/$album%aunique{}/$track $title"
+  default: "%title{$albumartist}/%title{$album%aunique{}}/%title{$track} %title{$title}"
   # NOTE: I think the commented out singleton configuration is better, but this needs to be
   # fully tested before it's turned on. We don't want to lose playlist entries when shifting a lot of hard-to-identify singles.
   # singleton: $artist/Non-Album/$title
-  singleton: Non-Album/$artist/$title
-  comp: Compilations/$album%aunique{}/$track $title
+  singleton: "Non-Album/%title{$artist}/%title{$title}"
+  comp: Compilations/%title{$album%aunique{}}/%title{$track} %title{$title}
 
 discogs:
   user_token: "${DISCOGS_USER_TOKEN}"
