@@ -69,6 +69,10 @@ spec:
               limits:
                 memory: 256Mi
     defaultPodOptions:
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+        runAsGroup: 0
       topologySpreadConstraints:
         - maxSkew: 1
           topologyKey: kubernetes.io/hostname
