@@ -11,3 +11,5 @@ Artists:
 * Seventh Stitch (haven't diagnosed full issue yet)
 
 * Tyler, The Creator (can't see old albums, completely fucked)
+
+* Fred Again...
