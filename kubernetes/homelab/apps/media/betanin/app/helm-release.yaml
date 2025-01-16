@@ -71,7 +71,7 @@ spec:
                 "/config/.vscode",
                 "--port",
                 "12321",
-                "/config",
+                "/beets",
               ]
             resources:
               requests:
