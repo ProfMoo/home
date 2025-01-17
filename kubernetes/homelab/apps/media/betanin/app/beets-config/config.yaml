@@ -1,8 +1,8 @@
 plugins:
-  - discogs
-  # NOTE: These data sources have commented out because they've been inconsistent.
-  # MusicBrainz (and discogs at times) are the only reliable sources.
+  # NOTE: These data sources have commented out because the best option is to 
+  # use one consistent datasource.
   # More info in the README
+  # - discogs
   # - spotify
   # - bandcamp
   # - deezer
