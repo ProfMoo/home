@@ -77,8 +77,8 @@ spec:
               startup:
                 enabled: false
     service:
-      master:
-        controller: master
+      navidrome:
+        controller: navidrome
         ports:
           http:
             port: *port
