@@ -102,12 +102,9 @@ spec:
                   port: http
     persistence:
       config:
-        enabled: true
-        existingClaim: "${VOLSYNC_CLAIM}"
-        advancedMounts:
-          main:
-            main:
-              - path: /config
+        existingClaim: navidrome
+        globalMounts:
+          - path: /config
       media:
         existingClaim: nas-media
         globalMounts:
