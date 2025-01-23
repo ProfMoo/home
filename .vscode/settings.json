@@ -1,8 +1,15 @@
 {
-    "cSpell.checkOnlyEnabledFileTypes": true,
-    "cSpell.enableFiletypes": [
-        "md"
+    "[yaml, yml]": {
+        "editor.defaultFormatter": "bluebrown.yamlfmt"
+    },
+    "yamlfmt.args": [
+        "-c",
+        ".yamlfmt.yaml"
     ],
+    "cSpell.checkOnlyEnabledFileTypes": true,
+    "cSpell.enabledFileTypes": {
+        "md": true
+    },
     "cSpell.words": [
         "animebytes",
         "betanin",
@@ -10,7 +17,7 @@
         "brainz",
         "buildarr",
         "buroa",
-        "Ceph",
+        "ceph",
         "cloudflared",
         "coredns",
         "crds",
@@ -58,7 +65,7 @@
         "rcon",
         "readarr",
         "recyclarr",
-        "Roon",
+        "roon",
         "seedbox",
         "siderolabs",
         "sonarr",
@@ -66,7 +73,7 @@
         "torznab",
         "truenas",
         "unifi",
-        "Volsync",
+        "volsync",
         "weaveworks"
     ]
 }
