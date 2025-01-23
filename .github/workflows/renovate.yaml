@@ -1,7 +1,6 @@
 ---
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: "Renovate"
-
 on:
   workflow_dispatch:
     inputs:
@@ -24,11 +23,9 @@ on:
     paths:
       - .github/renovate.json5
       - .github/renovate/**.json5
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
-
 jobs:
   renovate:
     name: Renovate
@@ -40,12 +37,10 @@ jobs:
         with:
           app-id: "${{ secrets.RENOVATE_APP_ID }}"
           private-key: "${{ secrets.RENOVATE_APP_PRIVATE_KEY }}"
-
       - name: Checkout
         uses: actions/checkout@v4
         with:
           token: "${{ steps.app-token.outputs.token }}"
-
       - name: Renovate
         uses: renovatebot/github-action@v41.0.10
         with:

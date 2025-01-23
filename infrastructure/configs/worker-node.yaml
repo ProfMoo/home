@@ -1,3 +1,4 @@
+---
 machine:
   nodeLabels:
     drmoo.io/role: ${node_type}

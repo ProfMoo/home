@@ -1,142 +1,139 @@
+---
 - Home:
-      - Jellyfin:
-            href: http://192.168.1.78:8096
-            icon: jellyfin
-            description: Media server (admin:)
-            widget:
-                type: jellyfin
-                url: http://192.168.1.78:8096
-                key: ac5afcc6811543d9814ec798c924b29c
-      - Jellyseerr:
-            href: https://request.drmoo.io
-            icon: jellyseerr
-            description: Request system
-            widget:
-                type: jellyseerr
-                url: http://jellyseer.media.svc.cluster.local:80
-                key: MTcxOTc4NTA3MzM0NTgyMjE3OTYwLTU2NGItNGI4MC05Nzg4LWJjYmNhYmI5NTExNg==
-      - Home Assistant:
-            href: https://hass.drmoo.io
-            icon: homeassistant
-            description: Home assistant
-            widget:
-                type: homeassistant
-                url: http://home-assistant.home-automation.svc.cluster.local:8123
-      - Zigbee2MQTT:
-            href: https://zigbee.drmoo.io
-            description: Zigbee coordinator
-      - Zigbee Radio:
-            href: http://192.168.1.38
-            description: Zigbee radio webpage
-      - EMQX Cluster:
-            href: https://emqx.drmoo.io
-            description: MQTT Cluster
-
-
+    - Jellyfin:
+        href: http://192.168.1.78:8096
+        icon: jellyfin
+        description: Media server (admin:)
+        widget:
+          type: jellyfin
+          url: http://192.168.1.78:8096
+          key: ac5afcc6811543d9814ec798c924b29c
+    - Jellyseerr:
+        href: https://request.drmoo.io
+        icon: jellyseerr
+        description: Request system
+        widget:
+          type: jellyseerr
+          url: http://jellyseer.media.svc.cluster.local:80
+          key: MTcxOTc4NTA3MzM0NTgyMjE3OTYwLTU2NGItNGI4MC05Nzg4LWJjYmNhYmI5NTExNg==
+    - Home Assistant:
+        href: https://hass.drmoo.io
+        icon: homeassistant
+        description: Home assistant
+        widget:
+          type: homeassistant
+          url: http://home-assistant.home-automation.svc.cluster.local:8123
+    - Zigbee2MQTT:
+        href: https://zigbee.drmoo.io
+        description: Zigbee coordinator
+    - Zigbee Radio:
+        href: http://192.168.1.38
+        description: Zigbee radio webpage
+    - EMQX Cluster:
+        href: https://emqx.drmoo.io
+        description: MQTT Cluster
 - Infrastructure:
-      - Grafana:
-            href: https://grafana.drmoo.io
-            icon: grafana
-            description: Observability (username:password)
-            widget:
-                type: grafana
-                url: http://grafana.observability.svc.cluster.local:80
-                username: username
-                password: password
-      - Prometheus:
-            href: https://prometheus.drmoo.io
-            icon: prometheus
-            description: Observability
-            widget:
-                type: prometheus
-                url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:8080
-                fields: ["targets_up", "targets_down", "targets_total"]
-      - GoldPinger:
-            href: https://goldpinger.drmoo.io
-            icon: mdi-connection
-            description: Node connectivity
-
+    - Grafana:
+        href: https://grafana.drmoo.io
+        icon: grafana
+        description: Observability (username:password)
+        widget:
+          type: grafana
+          url: http://grafana.observability.svc.cluster.local:80
+          username: username
+          password: password
+    - Prometheus:
+        href: https://prometheus.drmoo.io
+        icon: prometheus
+        description: Observability
+        widget:
+          type: prometheus
+          url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:8080
+          fields: ["targets_up", "targets_down", "targets_total"]
+    - GoldPinger:
+        href: https://goldpinger.drmoo.io
+        icon: mdi-connection
+        description: Node connectivity
 - Torrents:
-      - Prowlarr:
-            href: https://prowlarr.drmoo.io
-            icon: prowlarr.png
-            description: Tracker indexer wrapper (admin:admin)
-            widget:
-                type: prowlarr
-                url: http://prowlarr.media.svc.cluster.local:80
-                key: foobarbazfoobarbazfoobarbazfooba
-      - Radarr:
-            href: https://radarr.drmoo.io
-            icon: radarr.png
-            description: Movie torrent manager (admin:admin)
-            widget:
-                type: radarr
-                url: http://radarr.media.svc.cluster.local:80
-                key: foobarbazfoobarbazfoobarbazfooba
-      - Sonarr:
-            href: https://sonarr.drmoo.io
-            icon: sonarr.png
-            description: TV series torrent manager (admin:admin)
-            widget:
-                type: sonarr
-                url: http://sonarr.media.svc.cluster.local:80
-                key: foobarbazfoobarbazfoobarbazfooba
-      - Lidarr:
-            href: https://lidarr.drmoo.io
-            icon: lidarr.png
-            description: TV series torrent manager (admin:admin)
-            widget:
-                type: lidarr
-                url: http://lidarr.media.svc.cluster.local:80
-                key: foobarbazfoobarbazfoobarbazfooba
-      # - Readarr:
-      #     href: http://192.168.1.78:8787
-      #     icon: readarr.png
-      #     description: Book & eBook torrent manager (admin:admin)
-      #     widget:
-      #       type: readarr
-      #       url: http://192.168.1.78:8787
-      #       key: 0b7b093ea2c346548a2321c1b5c2b92a
-      - qBittorrent:
-            href: https://qb.drmoo.io
-            icon: qbittorrent
-            description: Torrent downloader (admin:adminadmin)
-            widget:
-                type: qbittorrent
-                url: http://qbittorrent.media.svc.cluster.local:8080
-                username: admin
-                password: adminadmin
-      - Betanin:
-            href: http://betanin.drmoo.io
-            icon: betanin
-            description: Music tagging (user:pass)
-
+    - Prowlarr:
+        href: https://prowlarr.drmoo.io
+        icon: prowlarr.png
+        description: Tracker indexer wrapper (admin:admin)
+        widget:
+          type: prowlarr
+          url: http://prowlarr.media.svc.cluster.local:80
+          key: foobarbazfoobarbazfoobarbazfooba
+    - Radarr:
+        href: https://radarr.drmoo.io
+        icon: radarr.png
+        description: Movie torrent manager (admin:admin)
+        widget:
+          type: radarr
+          url: http://radarr.media.svc.cluster.local:80
+          key: foobarbazfoobarbazfoobarbazfooba
+    - Sonarr:
+        href: https://sonarr.drmoo.io
+        icon: sonarr.png
+        description: TV series torrent manager (admin:admin)
+        widget:
+          type: sonarr
+          url: http://sonarr.media.svc.cluster.local:80
+          key: foobarbazfoobarbazfoobarbazfooba
+    - Lidarr:
+        href: https://lidarr.drmoo.io
+        icon: lidarr.png
+        description: TV series torrent manager (admin:admin)
+        widget:
+          type: lidarr
+          url: http://lidarr.media.svc.cluster.local:80
+          key: foobarbazfoobarbazfoobarbazfooba
+    # - Readarr:
+    #     href: http://192.168.1.78:8787
+    #     icon: readarr.png
+    #     description: Book & eBook torrent manager (admin:admin)
+    #     widget:
+    #       type: readarr
+    #       url: http://192.168.1.78:8787
+    #       key: 0b7b093ea2c346548a2321c1b5c2b92a
+    - qBittorrent:
+        href: https://qb.drmoo.io
+        icon: qbittorrent
+        description: Torrent downloader (admin:adminadmin)
+        widget:
+          type: qbittorrent
+          url: http://qbittorrent.media.svc.cluster.local:8080
+          username: admin
+          password: adminadmin
+    - Betanin:
+        href: http://betanin.drmoo.io
+        icon: betanin
+        description: Music tagging (user:pass)
 - Other:
-      - Unifi:
-            href: http://192.168.1.1
-            icon: unifi
-      - TrueNAS:
-            href: http://truenas.local
-            icon: truenas
-            description: TrueNas server
-            widget:
-                type: truenas
-                url: http://192.168.1.26
-                key: 1-WYckrNh6X7L1w3Bhwm8PUGn6N3n1JCjXsEUWnD870nhloTnqeVuiFbTHs6CQfAyF
-      - TrueNAS OOBM:
-            href: http://192.168.1.54
-            icon: truenas
-      - Compute-1:
-            href: http://192.168.1.64:8006
-            icon: proxmox
-            description: (root:admin)
-      - Compute-1 iDRAC:
-            href: http://192.168.1.120
-            icon: dell
-      - Minecraft:
-            href: udp://minecraft-3-minecraft.games.svc.cluster.local:25565
-            icon: minecraft
-            description: OBKiddos
-            widget:
-                type: minecraft
-                url: udp://minecraft-3-minecraft.games.svc.cluster.local:25565
+    - Unifi:
+        href: http://192.168.1.1
+        icon: unifi
+    - TrueNAS:
+        href: http://truenas.local
+        icon: truenas
+        description: TrueNas server
+        widget:
+          type: truenas
+          url: http://192.168.1.26
+          key: 1-WYckrNh6X7L1w3Bhwm8PUGn6N3n1JCjXsEUWnD870nhloTnqeVuiFbTHs6CQfAyF
+    - TrueNAS OOBM:
+        href: http://192.168.1.54
+        icon: truenas
+    - Compute-1:
+        href: http://192.168.1.64:8006
+        icon: proxmox
+        description: (root:admin)
+    - Compute-1 iDRAC:
+        href: http://192.168.1.120
+        icon: dell
+    - Minecraft:
+        href: udp://minecraft-3-minecraft.games.svc.cluster.local:25565
+        icon: minecraft
+        description: OBKiddos
+        widget:
+          type: minecraft
+          url: udp://minecraft-3-minecraft.games.svc.cluster.local:25565

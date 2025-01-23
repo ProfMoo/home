@@ -63,7 +63,7 @@ spec:
                   - ALL
         containers:
           unregistered:
-            <<: *container
+            !!merge <<: *container
             args:
               - prune
               - --exclude-tag=expired
@@ -80,7 +80,7 @@ spec:
               - --username=admin
               - --password=adminadmin
           expired:
-            <<: *container
+            !!merge <<: *container
             args:
               - prune
               # Don't prune torrents that are manually marked to be kept
@@ -104,11 +104,11 @@ spec:
       orphaned:
         type: cronjob
         cronjob:
-          <<: *cronjob
+          !!merge <<: *cronjob
           schedule: "@daily"
         containers:
           app:
-            <<: *container
+            !!merge <<: *container
             args:
               - orphaned
               # Don't prune torrents that are manually marked to be kept
@@ -125,7 +125,7 @@ spec:
         pod:
           restartPolicy: OnFailure
           securityContext:
-            <<: *podSecurityContext
+            !!merge <<: *podSecurityContext
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
             supplementalGroups:
@@ -133,7 +133,7 @@ spec:
       reannounce:
         containers:
           app:
-            <<: *container
+            !!merge <<: *container
             args:
               - reannounce
               - --process-seeding
