@@ -5,8 +5,12 @@
           href: https://github.com/ProfMoo
     - Kubernetes Apps:
         - abbr: K8s
-          icon: kubernetes.ong
+          icon: kubernetes.png
           href: https://kubesearch.dev
+    - Kubernetes Spec:
+        - abbr: K8s Spec
+          icon: kubernetes.png
+          href: https://kubespec.dev/
 
 # To browse more icons, check here:
 # https://pictogrammers.com/library/mdi/
