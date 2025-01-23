@@ -1,3 +1,4 @@
+---
 - Developer:
     - Github:
         - abbr: GH
@@ -11,7 +12,6 @@
         - abbr: K8s Spec
           icon: kubernetes.png
           href: https://kubespec.dev/
-
 # To browse more icons, check here:
 # https://pictogrammers.com/library/mdi/
 - Trackers:
@@ -39,7 +39,6 @@
         - abbr: MAM
           icon: mdi-book-open-variant
           href: https://myanonamouse.net/
-
 - Entertainment:
     - YouTube:
         - abbr: YT

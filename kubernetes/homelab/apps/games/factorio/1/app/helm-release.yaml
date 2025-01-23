@@ -128,7 +128,6 @@ spec:
       update_mods_on_start: false
       # lets the game know if you want to load the latest save
       load_latest_save: true
-
     import_save:
       # enable save importer
       enabled: false
@@ -157,7 +156,6 @@ spec:
         public: false
         # Game will be broadcast on LAN
         lan: true
-
       # When set to true, the server will only allow clients that have a valid Factorio.com account
       require_user_verification: false
       # optional, default value is 0. 0 means unlimited.

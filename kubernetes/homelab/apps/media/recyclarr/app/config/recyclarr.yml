@@ -107,7 +107,6 @@ sonarr:
           - name: Web 1080p
           - name: Web 720p
           - name: Any
-
 radarr:
   radarr:
     base_url: http://radarr.media.svc.cluster.local

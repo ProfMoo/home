@@ -47,13 +47,10 @@ spec:
           ingestion_burst_size_mb: 128
           shard_streams:
             enabled: true
-
         query_scheduler:
           max_outstanding_requests_per_tenant: 4096
-
         frontend:
           max_outstanding_per_tenant: 4096
-
         ingester:
           max_chunk_age: 24h
       commonConfig:
