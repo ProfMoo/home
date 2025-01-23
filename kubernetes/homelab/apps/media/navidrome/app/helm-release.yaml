@@ -77,7 +77,7 @@ spec:
               startup:
                 enabled: false
     service:
-      navidrome:
+      app:
         controller: navidrome
         ports:
           http:
