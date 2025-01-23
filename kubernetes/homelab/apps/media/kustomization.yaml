@@ -20,3 +20,4 @@ resources:
   # - ./cross-seed/ks.yaml
   - ./betanin/ks.yaml
   - ./lidarr/ks.yaml
+  - ./navidrome/ks.yaml
