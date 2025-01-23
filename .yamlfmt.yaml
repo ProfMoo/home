@@ -1,4 +1,8 @@
 ---
+doublestar: true
+include:
+  - "**/*.yaml"
+  - "**/*.yml"
 formatter:
   type: basic
   include_document_start: true
