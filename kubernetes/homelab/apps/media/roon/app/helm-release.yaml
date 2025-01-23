@@ -38,6 +38,35 @@ spec:
                 memory: 4Gi
             env:
               TZ: America/New_York
+            ports:
+              - containerPort: 9101
+                protocol: TCP
+              - containerPort: 9102
+                protocol: TCP
+              - containerPort: 9103
+                protocol: TCP
+              - containerPort: 9104
+                protocol: TCP
+              - containerPort: 9105
+                protocol: TCP
+              - containerPort: 9106
+                protocol: TCP
+              - containerPort: 9107
+                protocol: TCP
+              - containerPort: 9108
+                protocol: TCP
+              - containerPort: 9109
+                protocol: TCP
+              - containerPort: 9110
+                protocol: TCP
+              - containerPort: 9003
+                protocol: UDP
+    service:
+      app:
+        controller: roon
+        ports:
+          http:
+            port: 9100
     ingress:
       app:
         tls:

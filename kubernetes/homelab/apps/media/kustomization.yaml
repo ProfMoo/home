@@ -21,3 +21,4 @@ resources:
   - ./betanin/ks.yaml
   - ./lidarr/ks.yaml
   - ./navidrome/ks.yaml
+  - ./roon/ks.yaml
