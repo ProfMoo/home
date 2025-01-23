@@ -1,6 +1,7 @@
 ---
-# NOTE: This file is used for sops creation, not for decryption.
+# NOTE: This file is used for sops-based secret creation, not for decryption.
 # When sops creates a new file, it will use the rules defined here.
+# The instructions on how to decode each secret is embedded into the secret YAMLs themselves.
 creation_rules:
   # These secrets are used during infrastructure creation.
   # Namely: used in operations with Terraform, Proxmox, and similar.
