@@ -58,9 +58,6 @@ spec:
               ND_REVERSEPROXYUSERHEADER: Remote-User
               ND_REVERSEPROXYWHITELIST: 10.0.0.0/8
               ND_SCANSCHEDULE: "@every 1h"
-            envFrom:
-              - secretRef:
-                  name: navidrome-secret
             probes:
               liveness: &probes
                 enabled: true
