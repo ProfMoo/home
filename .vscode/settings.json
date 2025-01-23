@@ -3,7 +3,7 @@
         "editor.defaultFormatter": "bluebrown.yamlfmt"
     },
     "yamlfmt.args": [
-        "-c",
+        "-conf",
         ".yamlfmt.yaml"
     ],
     "cSpell.checkOnlyEnabledFileTypes": true,
@@ -54,6 +54,7 @@
         "lidarr",
         "minio",
         "multus",
+        "navidrome",
         "ocirepositories",
         "oobm",
         "podmonitor",

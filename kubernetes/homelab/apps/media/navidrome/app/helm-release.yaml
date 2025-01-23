@@ -1,0 +1,115 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: navidrome
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 3.6.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      strategy: rollback
+      retries: 3
+  # NOTE: More info on this Helm chart here: https://bjw-s.github.io/helm-charts/docs/common-library/
+  values:
+    controllers:
+      navidrome:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        pod:
+          securityContext:
+            runAsUser: 2000
+            runAsGroup: 2000
+            runAsNonRoot: true
+            fsGroup: 2000
+            fsGroupChangePolicy: OnRootMismatch
+        containers:
+          app:
+            image:
+              repository: ghcr.io/navidrome/navidrome
+              tag: 0.54.4@sha256:5c15cb7792c8e0b3a3bed212609c2072ba70bbff91e6ddff651ba2829101d4c1
+            resources:
+              requests:
+                cpu: 100m
+              limits:
+                memory: 4Gi
+            env:
+              TZ: America/New_York
+              ND_AUTHREQUESTLIMIT: 0
+              ND_DATAFOLDER: /config
+              ND_ENABLEGRAVATAR: true
+              ND_ENABLESHARING: true
+              ND_LOGLEVEL: info
+              ND_MUSICFOLDER: /data/media/music
+              ND_PORT: &port 8080
+              ND_PROMETHEUS_ENABLED: true
+              ND_REVERSEPROXYUSERHEADER: Remote-User
+              ND_REVERSEPROXYWHITELIST: 10.0.0.0/8
+              ND_SCANSCHEDULE: "@every 1h"
+            envFrom:
+              - secretRef:
+                  name: navidrome-secret
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
+    service:
+      master:
+        controller: master
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        tls:
+          - hosts:
+              - "*.drmoo.io"
+            secretName: drmoo-io-tls
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/secret-name: "drmoo-io-tls"
+        className: internal
+        hosts:
+          - host: "navidrome.drmoo.io"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      config:
+        enabled: true
+        existingClaim: "${VOLSYNC_CLAIM}"
+        advancedMounts:
+          main:
+            main:
+              - path: /config
+      media:
+        existingClaim: nas-media
+        globalMounts:
+          - path: /data
+            readOnly: true
