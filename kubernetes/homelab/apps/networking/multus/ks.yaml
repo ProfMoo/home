@@ -10,8 +10,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-    annotations:
-      pod-security.kubernetes.io/enforce: privileged
   path: ./kubernetes/homelab/apps/networking/multus/app
   prune: true
   sourceRef:
