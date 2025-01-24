@@ -61,6 +61,14 @@ spec:
                 protocol: TCP
               - containerPort: 9003
                 protocol: UDP
+    defaultPodOptions:
+      annotations:
+        k8s.v1.cni.cncf.io/networks: |
+          [{
+            "name": "multus-main",
+            "namespace": "networking",
+            "ips": ["192.168.1.200/24"]
+          }]
     service:
       app:
         controller: roon
