@@ -14,8 +14,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
-    namespace: flux-system
+    name: profmoo-home
   wait: false
   interval: 30m
   retryInterval: 1m
@@ -38,8 +37,7 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
-    namespace: flux-system
+    name: profmoo-home
   wait: false
   interval: 30m
   retryInterval: 1m
