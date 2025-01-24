@@ -7,3 +7,4 @@ resources:
   - ./nginx/ks.yaml
   - ./external-dns/ks.yaml
   - ./cloudflared/ks.yaml
+  - ./multus/ks.yaml
