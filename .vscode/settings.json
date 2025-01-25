@@ -27,6 +27,10 @@
     },
     // Dockerfile settings
     "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+    },
+    // Shell script settings
+    "[shellscript, dotenv, ignore, gitignore]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
     // Spellcheck settings

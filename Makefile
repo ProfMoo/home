@@ -10,7 +10,7 @@
 # shfmt
 
 .PHONY: lint
-lint: lint-yaml lint-markdown lint-terraform lint-docker
+lint: lint-yaml lint-markdown lint-terraform lint-docker lint-shell
 
 .PHONY: lint-yaml
 lint-yaml:
@@ -36,8 +36,15 @@ lint-docker:
 	@ find . -type f -name "*Dockerfile*" -not -path "*/\.*" | xargs hadolint --config .hadolint.yaml
 	@ echo "==> Done linting Dockerfiles"
 
+.PHONY: lint-shell
+lint-shell:
+	@ echo "==> Linting shell scripts..."
+	@ shfmt --diff .
+	@ echo "==> Done linting shell scripts"
+
+
 .PHONY: format
-format: format-yaml format-markdown format-terraform format-docker
+format: format-yaml format-markdown format-terraform format-shell
 
 .PHONY: format-yaml
 format-yaml:
@@ -57,8 +64,8 @@ format-terraform:
 	@ terraform fmt -recursive
 	@ echo "==> Done formatting Terraform files"
 
-.PHONY: format-docker
-format-docker:
-	@ echo "==> Formatting Dockerfiles..."
-	@ shfmt -write **/*Dockerfile*
-	@ echo "==> Done formatting Dockerfiles"
+.PHONY: format-shell
+format-shell:
+	@ echo "==> Formatting shell scripts..."
+	@ shfmt --write .
+	@ echo "==> Done formatting shell scripts"
