@@ -8,7 +8,7 @@
 # markdownlint-cli2
 
 .PHONY: lint
-lint: lint-yaml lint-markdown
+lint: lint-yaml lint-markdown lint-terraform
 
 .PHONY: lint-yaml
 lint-yaml:
@@ -21,6 +21,12 @@ lint-markdown:
 	@ echo "==> Linting Markdown files..."
 	@ markdownlint-cli2 --config .markdownlint-cli2.yaml
 	@ echo "==> Done linting Markdown files"
+
+.PHONY: lint-terraform
+lint-terraform:
+	@ echo "==> Linting Terraform files..."
+	@ terraform fmt -check -recursive -diff
+	@ echo "==> Done linting Terraform files"
 
 .PHONY: format
 format: format-yaml format-markdown

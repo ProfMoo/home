@@ -1,10 +1,12 @@
 {
+    // General editor settings
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
     "files.associations": {
         "*.tf": "terraform",
         "*.tfvars": "terraform"
     },
+    // YAML settings
     "[yaml, yml]": {
         "editor.defaultFormatter": "bluebrown.yamlfmt"
     },
@@ -12,15 +14,18 @@
         "-conf",
         ".yamlfmt.yaml"
     ],
+    // Markdown settings
     "[md, markdown]": {
         "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
     },
     "markdownlint.config": {
         "extends": ".markdownlint-cli2.yaml"
     },
+    // Terraform settings
     "[tf, hcl]": {
         "editor.defaultFormatter": "hashicorp.terraform"
     },
+    // Spellcheck settings
     "cSpell.checkOnlyEnabledFileTypes": true,
     "cSpell.enabledFileTypes": {
         "md": true
