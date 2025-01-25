@@ -32,7 +32,7 @@ This directory houses the code that transforms raw bare-metal machines into func
 
 ### To add new nodes with new disks
 
-1. Navigate to relevant node in Proxmox GUI -> Disks -> LVM-Thin -> Create: Thinpool
+1. Navigate to relevant node in Proxmox GUI -> Disks -> LVM-Thin -> "Create: Thinpool"
 2. Select new disk by block device name (`lsblk` might help show available nodes on the node). Example names: `/dev/sda`, `/dev/sdb`, `/dev/sdc`.
 3. Give the disk a name. I've chosen to increment the disks by the bay #. Example: Bay #3 -> `disk3`
 4. Hit "Create".

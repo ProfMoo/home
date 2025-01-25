@@ -10,6 +10,16 @@
     "cSpell.enabledFileTypes": {
         "md": true
     },
+    "cSpell.languageSettings": [
+        {
+            "languageId": "*",
+            "enabled": false
+        },
+        {
+            "languageId": "markdown",
+            "enabled": true
+        }
+    ],
     "cSpell.words": [
         "animebytes",
         "betanin",
@@ -71,6 +81,7 @@
         "siderolabs",
         "sonarr",
         "talosctl",
+        "thinpool",
         "torznab",
         "truenas",
         "unifi",
