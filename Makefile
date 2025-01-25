@@ -1,3 +1,12 @@
+# Binaries needed for local development:
+# talosctl
+# kubectl
+# flux
+# terraform
+# docker
+# yamlfmt
+# markdownlint-cli2
+
 .PHONY: format
 format: format-yaml
 
@@ -10,5 +19,5 @@ format-yaml:
 .PHONY: formay-markdown
 format-markdown:
 	@ echo "==> Formatting Markdown files..."
-	@ markdownfmt --config .markdownlint.yaml "**/*.md"
+	@ markdownlint-cli2 --config .markdownlint.yaml "**/*.md"
 	@ echo "==> Done formatting Markdown files"
