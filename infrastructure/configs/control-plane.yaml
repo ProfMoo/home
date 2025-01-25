@@ -31,7 +31,7 @@ machine:
     rbac: true
     stableHostname: true
     apidCheckExtKeyUsage: true
-    # https://www.talos.dev/v1.7/talos-guides/network/host-dns/
+    # https://www.talos.dev/v1.9/talos-guides/network/host-dns/
     hostDNS:
       enabled: true
       resolveMemberNames: true
@@ -46,7 +46,7 @@ machine:
       allowedKubernetesNamespaces:
         - system-upgrade
   install:
-    # Docs: https://www.talos.dev/v1.7/learn-more/image-factory/
+    # Docs: https://www.talos.dev/v1.9/learn-more/image-factory/
     # Adjust this image to either 1. install new extensions and/or 2. upgrade Talos
     # 1. Go to https://factory.talos.dev/ and generate a new path
     # 2. Pass in a different 'talos_version'

@@ -157,7 +157,7 @@ The steps below are run after the cluster is created with Talos to start the flu
 
 ### 1. CNI
 
-After the initial Talos cluster creation (with the CNI set to none), the cluster will be waiting for a CNI to be installed ([docs](https://www.talos.dev/v1.7/kubernetes-guides/network/deploying-cilium/)). This is the first component that must be installed after raw infra is provisioned.
+After the initial Talos cluster creation (with the CNI set to none), the cluster will be waiting for a CNI to be installed ([docs](https://www.talos.dev/v1.9/kubernetes-guides/network/deploying-cilium/)). This is the first component that must be installed after raw infra is provisioned.
 
 ```bash
 helm upgrade --install cilium cilium/cilium --namespace cilium --values kubernetes/homelab/apps/cilium/cilium/app/helm-values.yaml
