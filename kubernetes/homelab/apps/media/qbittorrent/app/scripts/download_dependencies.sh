@@ -11,47 +11,47 @@
 # Install py3-pip and git to enable python package installations
 echo "[download_dependencies] Checking if pip is installed..."
 if command -v pip >/dev/null; then
-    echo "[download_dependencies] pip is already installed. Continuing."
+	echo "[download_dependencies] pip is already installed. Continuing."
 else
-    echo "[download_dependencies] pip is not installed. Installing..."
-    apk add --no-cache py3-pip
-    echo "[download_dependencies] pip finished installing."
+	echo "[download_dependencies] pip is not installed. Installing..."
+	apk add --no-cache py3-pip
+	echo "[download_dependencies] pip finished installing."
 fi
 
 echo "[download_dependencies] Checking if git is installed..."
 if command -v git >/dev/null; then
-    echo "[download_dependencies] Git is already installed. Continuing."
+	echo "[download_dependencies] Git is already installed. Continuing."
 else
-    echo "[download_dependencies] Git is not installed. Installing..."
-    apk add --no-cache git
-    echo "[download_dependencies] Git finished installing."
+	echo "[download_dependencies] Git is not installed. Installing..."
+	apk add --no-cache git
+	echo "[download_dependencies] Git finished installing."
 fi
 
 # Install custom fork of gazelle-origin with necessary dependencies. We want to override system packages if necessary.
 echo "[download_dependencies] Checking if bencoder is installed..."
 if pip show bencoder >/dev/null; then
-    echo "[download_dependencies] Bencoder is already installed. Continuing."
+	echo "[download_dependencies] Bencoder is already installed. Continuing."
 else
-    echo "[download_dependencies] Beconder is not installed. Installing..."
-    pip install bencoder --break-system-packages
-    echo "[download_dependencies] Bencoder finished installing."
+	echo "[download_dependencies] Beconder is not installed. Installing..."
+	pip install bencoder --break-system-packages
+	echo "[download_dependencies] Bencoder finished installing."
 fi
 
 echo "[download_dependencies] Checking if gazelle-origin is installed..."
 if pip show gazelle-origin >/dev/null; then
-    echo "[download_dependencies] Gazelle-origin is already installed. Continuing."
+	echo "[download_dependencies] Gazelle-origin is already installed. Continuing."
 else
-    echo "[download_dependencies] Gazelle-origin is not installed. Installing..."
-    pip install git+https://github.com/ProfMoo/gazelle-origin@95be674662f54f489addfbf2fc02a28f42fd5fe9 --break-system-packages
-    echo "[download_dependencies] Gazelle-origin finished installing."
+	echo "[download_dependencies] Gazelle-origin is not installed. Installing..."
+	pip install git+https://github.com/ProfMoo/gazelle-origin@95be674662f54f489addfbf2fc02a28f42fd5fe9 --break-system-packages
+	echo "[download_dependencies] Gazelle-origin finished installing."
 fi
 
 # Install curl to ensure the post-download betanin script has the necessary dependencies
 echo "[download_dependencies] Checking if curl is installed..."
 if command -v curl >/dev/null; then
-    echo "[download_dependencies] Curl is already installed. Continuing."
+	echo "[download_dependencies] Curl is already installed. Continuing."
 else
-    echo "[download_dependencies] Curl is not installed. Installing..."
-    apk add --no-cache curl
-    echo "[download_dependencies] Curl finished installing."
+	echo "[download_dependencies] Curl is not installed. Installing..."
+	apk add --no-cache curl
+	echo "[download_dependencies] Curl finished installing."
 fi

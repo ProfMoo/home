@@ -1,4 +1,6 @@
-.env
+# Configuration for the cluster that contains sensitive info
 kubeconfig
 talosconfig
+
+# MacOS cruft
 .DS_Store
