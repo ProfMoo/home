@@ -6,6 +6,12 @@
         "-conf",
         ".yamlfmt.yaml"
     ],
+    "[md, markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+    },
+    "markdownlint.config": {
+        "extends": ".markdownlint.yaml"
+    },
     "cSpell.checkOnlyEnabledFileTypes": true,
     "cSpell.enabledFileTypes": {
         "md": true
