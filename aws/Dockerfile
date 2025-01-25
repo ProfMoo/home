@@ -1,5 +1,7 @@
 FROM hashicorp/terraform:1.9
 
+WORKDIR /terraform
+
 COPY src .
 
 COPY aws-credentials /aws-credentials

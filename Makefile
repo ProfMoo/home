@@ -6,9 +6,10 @@
 # docker
 # yamlfmt
 # markdownlint-cli2
+# hadolint
 
 .PHONY: lint
-lint: lint-yaml lint-markdown lint-terraform
+lint: lint-yaml lint-markdown lint-terraform lint-docker
 
 .PHONY: lint-yaml
 lint-yaml:
@@ -28,8 +29,14 @@ lint-terraform:
 	@ terraform fmt -check -recursive -diff
 	@ echo "==> Done linting Terraform files"
 
+.PHONY: lint-docker
+lint-docker:
+	@ echo "==> Linting Dockerfiles..."
+	@ find . -type f -name "*Dockerfile*" -not -path "*/\.*" | xargs hadolint --config .hadolint.yaml
+	@ echo "==> Done linting Dockerfiles"
+
 .PHONY: format
-format: format-yaml format-markdown
+format: format-yaml format-markdown format-terraform
 
 .PHONY: format-yaml
 format-yaml:
@@ -42,3 +49,9 @@ format-markdown:
 	@ echo "==> Formatting Markdown files..."
 	@ markdownlint-cli2 --config .markdownlint-cli2.yaml "**/*.md" --fix
 	@ echo "==> Done formatting Markdown files"
+
+.PHONY: format-terraform
+format-terraform:
+	@ echo "==> Formatting Terraform files..."
+	@ terraform fmt -recursive
+	@ echo "==> Done formatting Terraform files"
