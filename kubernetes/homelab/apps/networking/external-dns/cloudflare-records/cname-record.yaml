@@ -8,6 +8,6 @@ spec:
   endpoints:
     - dnsName: drmoo.io
       recordType: CNAME
-      # NOTE: This record is simply for mapping the root domain to my global IP.
-      # Just because a record is created doesn't mean access will be granted.
+      # NOTE: This record is simply for mapping my domain to my apartment's WAN IP.
+      # Just because this record is created doesn't mean drmoo.io will provide access to anything.
       targets: ["100.1.168.155"]
