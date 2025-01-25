@@ -1,4 +1,10 @@
 {
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "files.associations": {
+        "*.tf": "terraform",
+        "*.tfvars": "terraform"
+    },
     "[yaml, yml]": {
         "editor.defaultFormatter": "bluebrown.yamlfmt"
     },
@@ -11,6 +17,9 @@
     },
     "markdownlint.config": {
         "extends": ".markdownlint-cli2.yaml"
+    },
+    "[tf, hcl]": {
+        "editor.defaultFormatter": "hashicorp.terraform"
     },
     "cSpell.checkOnlyEnabledFileTypes": true,
     "cSpell.enabledFileTypes": {

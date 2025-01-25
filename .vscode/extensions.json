@@ -1,15 +1,13 @@
 {
     "recommendations": [
         "davidanson.vscode-markdownlint",
-        "streetsidesoftware.code-spell-checker",
-        "hediet.vscode-drawio",
-        "exiasr.hadolint",
-        "hashicorp.hcl",
-        "hashicorp.terraform",
-        "fredwangwang.vscode-hcl-format",
         "yzhang.markdown-all-in-one",
         "bierner.markdown-preview-github-styles",
         "darkriszty.markdown-table-prettify",
+        "streetsidesoftware.code-spell-checker",
+        "hediet.vscode-drawio",
+        "exiasr.hadolint",
+        "hashicorp.terraform",
         "foxundermoon.shell-format"
     ]
 }
