@@ -1,0 +1,25 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debug-cloudflared
+  namespace: networking
+spec:
+  shareProcessNamespace: true
+  nodeName: uppermost # Same as target pod
+  containers:
+    - name: debugger
+      image: ubuntu:22.04
+      command: ['sleep', 'infinity']
+      volumeMounts:
+        - name: cloudflared-creds
+          mountPath: /etc/cloudflared/creds
+        - name: cloudflared-config
+          mountPath: /etc/cloudflared/config
+  volumes:
+    - name: cloudflared-creds
+      secret:
+        secretName: cloudflared-tunnel-secret
+    - name: cloudflared-config
+      configMap:
+        name: cloudflared-configmap
