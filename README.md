@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD041 -->
 <p align="center">
   <img src="./docs/repo.png" alt="diagram" width="250" height="250">
 </p>
