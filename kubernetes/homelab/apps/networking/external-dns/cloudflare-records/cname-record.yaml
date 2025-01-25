@@ -4,13 +4,10 @@ apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
   name: domain-record
-  annotations:
-    external-dns.alpha.kubernetes.io/provider: cloudflare
-    external-dns.alpha.kubernetes.io/target: "100.1.168.155"
 spec:
   endpoints:
     - dnsName: drmoo.io
-      recordType: CNAME
+      recordType: A
       # NOTE: This record is simply for mapping my domain to my apartment's WAN IP.
       # Just because this record is created doesn't mean drmoo.io will provide access to anything.
       targets: ["100.1.168.155"]
