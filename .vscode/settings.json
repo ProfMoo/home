@@ -25,6 +25,10 @@
     "[tf, hcl]": {
         "editor.defaultFormatter": "hashicorp.terraform"
     },
+    // Dockerfile settings
+    "[dockerfile]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
     // Spellcheck settings
     "cSpell.checkOnlyEnabledFileTypes": true,
     "cSpell.enabledFileTypes": {

@@ -7,6 +7,7 @@
 # yamlfmt
 # markdownlint-cli2
 # hadolint
+# shfmt
 
 .PHONY: lint
 lint: lint-yaml lint-markdown lint-terraform lint-docker
@@ -36,7 +37,7 @@ lint-docker:
 	@ echo "==> Done linting Dockerfiles"
 
 .PHONY: format
-format: format-yaml format-markdown format-terraform
+format: format-yaml format-markdown format-terraform format-docker
 
 .PHONY: format-yaml
 format-yaml:
@@ -55,3 +56,9 @@ format-terraform:
 	@ echo "==> Formatting Terraform files..."
 	@ terraform fmt -recursive
 	@ echo "==> Done formatting Terraform files"
+
+.PHONY: format-docker
+format-docker:
+	@ echo "==> Formatting Dockerfiles..."
+	@ shfmt -write **/*Dockerfile*
+	@ echo "==> Done formatting Dockerfiles"
