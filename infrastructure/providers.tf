@@ -6,7 +6,7 @@ terraform {
     }
     talos = {
       source  = "siderolabs/talos"
-      version = "0.5.0"
+      version = "0.7.1"
     }
     unifi = {
       source  = "paultyng/unifi"

@@ -29,9 +29,9 @@ module "cluster" {
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
-      # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.7.5"
-      kubernetes_version = "1.30.1"
+      # This doesn't necessarily need to match the boot ISO.
+      talos_version      = "1.9.2"
+      kubernetes_version = "1.32.1"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -57,9 +57,9 @@ module "cluster" {
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
-      # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.7.5"
-      kubernetes_version = "1.30.1"
+      # This doesn't necessarily need to match the boot ISO.
+      talos_version      = "1.9.2"
+      kubernetes_version = "1.32.1"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -85,9 +85,9 @@ module "cluster" {
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
-      # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.7.5"
-      kubernetes_version = "1.30.1"
+      # This doesn't necessarily need to match the boot ISO.
+      talos_version      = "1.9.2"
+      kubernetes_version = "1.32.1"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -116,9 +116,9 @@ module "cluster" {
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
-      # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.7.5"
-      kubernetes_version = "1.30.1"
+      # This doesn't necessarily need to match the boot ISO.
+      talos_version      = "1.9.2"
+      kubernetes_version = "1.32.1"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -144,9 +144,9 @@ module "cluster" {
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
-      # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.7.5"
-      kubernetes_version = "1.30.1"
+      # This doesn't necessarily need to match the boot ISO.
+      talos_version      = "1.9.2"
+      kubernetes_version = "1.32.1"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -172,9 +172,9 @@ module "cluster" {
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
 
-      # This doesn't necessarily need to match the boot ISO. 
-      talos_version      = "1.7.5"
-      kubernetes_version = "1.30.1"
+      # This doesn't necessarily need to match the boot ISO.
+      talos_version      = "1.9.2"
+      kubernetes_version = "1.32.1"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"

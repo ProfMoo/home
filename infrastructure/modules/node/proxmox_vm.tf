@@ -45,9 +45,13 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
     model       = "virtio"
   }
 
-  # NOTE: The boot order is important because we want the VM to boot from the CDROM first, then the disk.
+  # NOTE: The boot order is important because we want the VM to boot from the CDROM first (ide2), then the disk (scsi0).
   # Talos functions by booting from the CDROM initially, then performing API-driven updates onto the disk, then rebooting from the disk.
-  boot_order = ["scsi0", "ide2", "net0"]
+  boot_order = [
+    "scsi0", # Main disk for OS
+    "ide2",  # Secondary Master (CD-ROM)
+    "net0"   # Network boot
+  ]
 
   # NOTE: This provides Talos a location to store its configured state when it's configured via the API.
   disk {
@@ -77,7 +81,7 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
     type = "l26"
   }
 
-  # NOTE: This runs a script against Kubernets on TF destroy. 
+  # NOTE: This runs a script against Kubernets on TF destroy.
   # Kubernetes nodes need to be drained before deleted, or else the cluster can end up in some really tricky states.
   provisioner "local-exec" {
     when    = destroy

@@ -49,6 +49,13 @@ The Talos TF provider is relatively under-featured for upgrades ([Example of lac
 
 There are some Kubernetes configurations, such as the `kube-proxy` configuration, which `talosctl` manages but only touches during Kubernetes bootstraps/upgrades. [Here](https://github.com/siderolabs/talos/discussions/7835) is a good example. To update a resource whose state is entirely within Kubernetes, but the config is managed via Talos, refer to the [upgrading Kubernetes section](#upgrading-kubernetes) above
 
+### Upgrading Multiple Version
+
+Talos & Kubernetes versions are linked quite closely. If you're multiple versions behind on each:
+
+* Upgrade them in lock step (i.e. upgrade Talos one minor version, then Kubernetes one minor version). If this isn't done, weird stuff can start to happen.
+* Upgrade Talos's minor version first, then Kubernetes's minor version.
+
 ## TODOs
 
 1. Enable Talos logs to be sent to a logging endpoint, similar to [this example](https://github.com/buroa/k8s-gitops/blob/860a6b47e39ae0a3c7b91c0ab9ed2294433913fa/talos/talconfig.yaml#L363).
