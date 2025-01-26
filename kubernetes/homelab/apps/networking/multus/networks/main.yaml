@@ -10,7 +10,7 @@ spec:
       "name": "multus-main",
       "plugins": [
         {
-          "type": "ipvlan",
+          "type": "macvlan",
           "master": "ens18",
           "mode": "bridge",
           "ipam": {
