@@ -71,7 +71,7 @@ cluster:
     cni:
       name: none
   controlPlane:
-    endpoint: https://${talos_virtual_ip}:6443
+    endpoint: https://192.168.8.20:6443
   apiServer:
     resources:
       requests:
