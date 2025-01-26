@@ -9,8 +9,6 @@ cgroup:
   automount:
     enabled: false
   hostRoot: /sys/fs/cgroup
-containerRuntime:
-  integration: containerd
 cni:
   exclusive: false
 enableRuntimeDeviceDetection: true

@@ -12,5 +12,3 @@ configMapGenerator:
       - values.yaml=./helm-values.yaml
 configurations:
   - kustomize-config.yaml
-generatorOptions:
-  disableNameSuffixHash: true
