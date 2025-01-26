@@ -1,10 +1,13 @@
 ---
+# Explanation of each field can be found in the Cilium documentation:
+# https://github.com/cilium/cilium/blob/main/install/kubernetes/cilium/values.yaml
 autoDirectNodeRoutes: true
 bandwidthManager:
   enabled: true
   bbr: true
 bpf:
   masquerade: true
+  preallocateMaps: true
 cgroup:
   automount:
     enabled: false
