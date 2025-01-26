@@ -12,6 +12,8 @@ cgroup:
   automount:
     enabled: false
   hostRoot: /sys/fs/cgroup
+# Might need this for Multus:
+# https://github.com/siderolabs/talos/discussions/7914#discussioncomment-7457510
 cni:
   exclusive: false
 enableRuntimeDeviceDetection: true
