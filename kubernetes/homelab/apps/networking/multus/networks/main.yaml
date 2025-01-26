@@ -10,13 +10,13 @@ spec:
       "name": "multus-main",
       "plugins": [
         {
-          "type": "macvlan",
+          "type": "ipvlan",
           "master": "ens18",
           "mode": "bridge",
           "ipam": {
             "type": "static",
             "routes": [
-              {"dst": "192.168.8.0/24", "gw": "192.168.8.1"}
+              {"dst": "192.168.8.0/16", "gw": "192.168.8.1"}
             ]
           }
         }
