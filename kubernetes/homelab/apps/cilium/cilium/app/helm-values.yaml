@@ -11,6 +11,8 @@ cgroup:
   hostRoot: /sys/fs/cgroup
 containerRuntime:
   integration: containerd
+cni:
+  exclusive: false
 enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
@@ -18,8 +20,6 @@ hubble:
   enabled: false
 ipam:
   mode: kubernetes
-cni:
-  exclusive: false
 ipv4NativeRoutingCIDR: 10.42.0.0/16
 k8sServiceHost: 127.0.0.1
 k8sServicePort: 7445
