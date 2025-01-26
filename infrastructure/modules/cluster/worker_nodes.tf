@@ -47,9 +47,6 @@ module "worker_node_configuration" {
       hostname      = each.value.name,
       talos_version = each.value.talos_version,
 
-      # NOTE: The auto-generated interface name is enx<mac_address_without_colons_and_lowercase>
-      # ex: enx000c29d3e3e3
-      interface      = format("enx%s", replace(lower(module.worker_nodes[each.key].mac_address), ":", "")),
       ipv4_address   = module.worker_nodes[each.key].ipv4_address,
       subnet_gateway = each.value.subnet_gateway,
 

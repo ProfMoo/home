@@ -19,14 +19,16 @@ machine:
       - 8.8.8.8
       - 1.1.1.1
     interfaces:
-      - interface: ${interface}
-        addresses:
+      - addresses:
           - ${ipv4_address}/24
         routes:
           - network: 0.0.0.0/0
             gateway: ${subnet_gateway}
         vip:
           ip: ${talos_virtual_ip}
+        deviceSelector:
+          # Device hardware (MAC) address, supports matching by wildcard.
+          hardwareAddr: '${mac_address}'
   features:
     rbac: true
     stableHostname: true
