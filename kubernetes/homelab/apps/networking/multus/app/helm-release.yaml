@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s/helm-charts/app-template-3.6.1/charts/other/app-template/schemas/helmrelease-helm-v2beta2.schema.json
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
@@ -21,7 +22,10 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
+  # NOTE: More info on this Helm chart here: https://bjw-s.github.io/helm-charts/docs/common-library/
   values:
+    foo: bar
+    baz: bizz
     controllers:
       multus:
         type: daemonset
@@ -48,6 +52,16 @@ spec:
               privileged: true
     defaultPodOptions:
       hostNetwork: true
+    # tolerations:
+    #   # Deploy to master nodes
+    #   - key: node-role.kubernetes.io/control-plane
+    #     effect: NoSchedule
+    #   - key: node.cloudprovider.kubernetes.io/uninitialized
+    #     effect: NoSchedule
+    #   - key: "node.cloudprovider.kubernetes.io/uninitialized"
+    #     operator: "Equal"
+    #     value: "true"
+    #     effect: "NoSchedule"
     persistence:
       etc-cni-net-d:
         type: hostPath

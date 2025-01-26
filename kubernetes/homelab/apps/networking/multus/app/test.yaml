@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: sample-pod
+  name: network-test-pod
   namespace: networking
   annotations:
     k8s.v1.cni.cncf.io/networks: |

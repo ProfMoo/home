@@ -33,6 +33,14 @@
     "[shellscript, dotenv, ignore, gitignore]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
+    // YAML schemas
+    "yaml.schemas": {
+        "kubernetes": [
+            "./kubernetes/**/*.yml",
+            "./kubernetes/**/*.yaml"
+        ]
+    },
+    "yaml.schemaStore.enable": true,
     // Spellcheck settings
     "cSpell.checkOnlyEnabledFileTypes": true,
     "cSpell.enabledFileTypes": {
