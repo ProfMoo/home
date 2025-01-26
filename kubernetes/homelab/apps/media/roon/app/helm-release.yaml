@@ -67,7 +67,8 @@ spec:
           [{
             "name": "multus-main",
             "namespace": "networking",
-            "ips": ["192.168.8.200/24"]
+            "mac": "43:23:d9:05:b5:db",
+            "ips": ["192.168.1.200/24"]
           }]
     service:
       app:
