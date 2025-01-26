@@ -8,14 +8,17 @@ spec:
     {
       "cniVersion": "0.3.1",
       "name": "multus-main",
-      "type": "macvlan",
-      "master": "ens18",
-      "mode": "bridge",
-      "ipam": {
-        "type": "static",
-        "routes": [
-          { "dst": "192.168.0.0/16" }
-        ],
-        "gateway": "192.168.8.1"
-      }
+      "plugins": [
+        {
+          "type": "macvlan",
+          "master": "ens18",
+          "mode": "bridge",
+          "ipam": {
+            "type": "static",
+            "routes": [
+              {"dst": "192.168.1.0/16", "gw": "192.168.8.1"}
+            ]
+          }
+        }
+      ]
     }
