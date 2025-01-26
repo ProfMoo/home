@@ -50,16 +50,6 @@ spec:
               privileged: true
     defaultPodOptions:
       hostNetwork: true
-    # tolerations:
-    #   # Deploy to master nodes
-    #   - key: node-role.kubernetes.io/control-plane
-    #     effect: NoSchedule
-    #   - key: node.cloudprovider.kubernetes.io/uninitialized
-    #     effect: NoSchedule
-    #   - key: "node.cloudprovider.kubernetes.io/uninitialized"
-    #     operator: "Equal"
-    #     value: "true"
-    #     effect: "NoSchedule"
     persistence:
       etc-cni-net-d:
         type: hostPath
