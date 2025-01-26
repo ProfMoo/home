@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-pod
+  namespace: networking
+  annotations:
+    k8s.v1.cni.cncf.io/networks: |
+      [{
+        "name": "multus-main",
+        "namespace": "networking",
+        "mac": "43:23:d9:05:b5:db",
+        "ips": ["192.168.1.201/24"]
+      }]
+spec:
+  containers:
+    - name: networking-pod
+      command: ["/bin/bash", "-c", "trap : TERM INT; sleep infinity & wait"]
+      image: nicolaka/netshoot
