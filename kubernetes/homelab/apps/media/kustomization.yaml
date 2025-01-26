@@ -17,7 +17,6 @@ resources:
   # Putting cross-seed on hold until v6 comes out.
   # There are breaking changes compared to v5, so it's likely not worth the time to upgrade right now.
   # https://www.cross-seed.org/docs/v6-migration
-  # - ./cross-seed/ks.yaml
   - ./betanin/ks.yaml
   - ./lidarr/ks.yaml
   - ./navidrome/ks.yaml
