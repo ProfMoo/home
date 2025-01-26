@@ -10,7 +10,7 @@ metadata:
         "name": "multus-main",
         "namespace": "networking",
         "mac": "43:23:d9:05:b5:db",
-        "ips": ["192.168.1.201/24"]
+        "ips": ["192.168.8.201/24"]
       }]
 spec:
   containers:
