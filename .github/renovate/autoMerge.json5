@@ -1,31 +1,52 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
-  packageRules: [
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
     {
-      description: [
-        "Auto-merge container digests updates for trusted containers",
+      "description": [
+        "Auto-merge container digests updates for trusted containers"
       ],
-      matchDatasources: ["docker"],
-      automerge: true,
-      automergeType: "branch",
-      matchUpdateTypes: ["digest"],
-      matchPackagePatterns: ["ghcr.io/bjw-s", "ghcr.io/onedr0p"],
+      "matchDatasources": [
+        "docker"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "matchUpdateTypes": [
+        "digest"
+      ],
+      "matchPackagePatterns": [
+        "ghcr.io/bjw-s",
+        "ghcr.io/onedr0p"
+      ]
     },
     {
-      description: "Auto merge helm updates for patch and minor versions",
-      matchDatasources: ["helm"],
-      automerge: true,
-      automergeType: "branch",
-      ignoreTests: false,
-      matchUpdateTypes: ["patch", "minor"],
+      "description": "Auto merge helm updates for patch and minor versions",
+      "matchDatasources": [
+        "helm"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": false,
+      "matchUpdateTypes": [
+        "patch",
+        "minor"
+      ]
     },
     {
-      description: ["Auto-merge GitHub Actions for patch and minor versions"],
-      matchManagers: ["github-actions"],
-      matchDatasources: ["github-tags"],
-      automerge: true,
-      automergeType: "branch",
-      matchUpdateTypes: ["minor", "patch"],
-    },
-  ],
+      "description": [
+        "Auto-merge GitHub Actions for patch and minor versions"
+      ],
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchDatasources": [
+        "github-tags"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
+    }
+  ]
 }

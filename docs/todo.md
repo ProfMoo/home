@@ -10,3 +10,5 @@
 4. [ ] Switch over to use local storage and volsync to my TrueNas cluster instead of the democratic-csi storage class.
 5. [ ] Fix my beets path by doing a raw SQLite query, described [here](https://discourse.beets.io/t/library-db-still-has-old-path-after-moving-collection-to-a-new-location/2331).
    1. [ ] Consider standing up a little IDE (similar to what I have for HASS) that I can run beets queries in and modify the SQLite DB.
+6. [ ] Migrate to Flux Operator using [this PR](https://github.com/onedr0p/home-ops/pull/8624) as a guide.
+7. [ ] System Upgrade Controller.
