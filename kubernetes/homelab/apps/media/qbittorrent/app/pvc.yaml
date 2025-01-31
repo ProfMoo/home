@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: qbittorrent
+  name: qbittorrent-replicated
 spec:
   storageClassName: freenas-api-iscsi-retain
   accessModes:

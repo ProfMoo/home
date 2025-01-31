@@ -12,6 +12,15 @@ Make a job from a cronjob:
 kubectl create job example-job --from=cronjob/example-cronjob
 ```
 
+## Delete All Errored Pods
+
+```bash
+# Delete pods in Error state across all namespaces
+kubectl get pods --all-namespaces --field-selector status.phase=Failed -o custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name | tail -n +2 | while read namespace pod; do
+    kubectl delete pod -n $namespace $pod
+done
+```
+
 ## Reassign a PVC to an Old PV
 
 There are times (i.e. I mess something up) where a PVC makes a new PV instead of re-binding to the old PV as desired. In this scenario, the best remedy is as such:
