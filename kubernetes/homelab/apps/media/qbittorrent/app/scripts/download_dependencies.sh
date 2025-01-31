@@ -42,7 +42,7 @@ if pip show gazelle-origin >/dev/null; then
 	echo "[download_dependencies] Gazelle-origin is already installed. Continuing."
 else
 	echo "[download_dependencies] Gazelle-origin is not installed. Installing..."
-	pip install git+https://github.com/ProfMoo/gazelle-origin@95be674662f54f489addfbf2fc02a28f42fd5fe9 --break-system-packages
+	pip install git+https://github.com/ProfMoo/gazelle-origin@793242ff3efb9e42a9f4869e4de38c5d923d9ab7 --break-system-packages
 	echo "[download_dependencies] Gazelle-origin finished installing."
 fi
 
