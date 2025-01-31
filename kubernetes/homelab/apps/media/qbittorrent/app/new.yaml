@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: copy
-      image: ubuntu:22.04
+      image: ubuntu:24.04
       command:
         - /bin/sh
         - -c
