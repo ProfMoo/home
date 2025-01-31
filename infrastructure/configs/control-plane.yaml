@@ -27,7 +27,6 @@ machine:
         vip:
           ip: ${talos_virtual_ip}
         deviceSelector:
-          # Device hardware (MAC) address, supports matching by wildcard.
           hardwareAddr: '${mac_address}'
   features:
     rbac: true

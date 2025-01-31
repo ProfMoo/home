@@ -1,4 +1,4 @@
-# NOTE: It's critical to create the reservations in the DHCP server before creating the VMs
+# NOTE: It's critical to create the reservations in the DHCP server here before creating the VMs
 # or else risk the VMs getting assigned a different IP address than the one we intend, which
 # would make it impossible to access via Terraform (without asking the DHCP server for the IP).
 resource "unifi_user" "this" {
@@ -42,6 +42,14 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
     mac_address = unifi_user.this.mac
     firewall    = false
     vlan_id     = var.vlan_id
+    model       = "virtio"
+  }
+
+  network_device {
+    bridge      = var.bridge_network_device
+    mac_address = "94:96:cc:43:7d:75"
+    firewall    = false
+    vlan_id     = "1"
     model       = "virtio"
   }
 

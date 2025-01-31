@@ -19,6 +19,11 @@ machine:
     nameservers:
       - 8.8.8.8
       - 1.1.1.1
+    interfaces:
+      - addresses:
+          - 192.168.1.73/24
+        deviceSelector:
+          hardwareAddr: '94:96:cc:43:7d:75'
   features:
     # https://www.talos.dev/v1.9/talos-guides/network/host-dns/
     hostDNS:
