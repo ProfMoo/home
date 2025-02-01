@@ -161,12 +161,12 @@ aunique:
 # This can get *nasty* and end up in a lot of indeterminate behavior.
 # There are fellow beets users discussing this here: https://github.com/beetbox/beets/discussions/5104
 paths:
-  default: "%title{$albumartist}/%title{$album%aunique{}}/%title{$track} %title{$title}"
+  default: "%title{$albumartist}/$album%aunique{}/$track $title"
   # NOTE: I think the commented out singleton configuration is better, but this needs to be
   # fully tested before it's turned on. We don't want to lose playlist entries when shifting a lot of hard-to-identify singles.
   # singleton: $artist/Non-Album/$title
-  singleton: "Non-Album/%title{$artist}/%title{$title}"
-  comp: Compilations/%title{$album%aunique{}}/%title{$track} %title{$title}
+  singleton: Non-Album/$artist/$title
+  comp: Compilations/$album%aunique{}/$track $title
 discogs:
   user_token: "${DISCOGS_USER_TOKEN}"
   source_weight: 0.7
