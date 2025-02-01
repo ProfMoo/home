@@ -16,15 +16,15 @@ module "cluster" {
 
   control_plane = {
     "control_plane_instance_0" = {
-      id                    = "1000"
-      name                  = "porter-robinson"
-      description           = "Control plane instance in the Kubernetes homelab cluster"
-      tags                  = ["control-plane", "kubernetes"]
-      cpu_cores             = 2
-      memory                = 6144
-      disk_size             = "50"
-      datastore             = "disk2"
-      vlan_id               = "2"
+      id          = "1000"
+      name        = "porter-robinson"
+      description = "Control plane instance in the Kubernetes homelab cluster"
+      tags        = ["control-plane", "kubernetes"]
+      cpu_cores   = 2
+      memory      = 6144
+      disk_size   = "50"
+      datastore   = "disk2"
+
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
@@ -35,9 +35,18 @@ module "cluster" {
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
-      ipv4_address     = "192.168.8.20"
-      mac_address      = "52:74:f2:b3:a4:1c"
-      subnet_gateway   = "192.168.8.1"
+
+      # VLAN 2 configuration
+      vlan_id        = "2"
+      ipv4_address   = "192.168.8.20"
+      mac_address    = "52:74:f2:b3:a4:1c"
+      subnet_gateway = "192.168.8.1"
+
+      # VLAN 1 configuration
+      vlan1_id             = "1"
+      vlan1_ipv4_address   = "192.168.1.120"
+      vlan1_mac_address    = "03:95:40:42:a6:c6"
+      vlan1_subnet_gateway = "192.168.1.1"
 
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
@@ -52,7 +61,6 @@ module "cluster" {
       memory                = 6144
       disk_size             = "50"
       datastore             = "disk1"
-      vlan_id               = "2"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
@@ -63,9 +71,18 @@ module "cluster" {
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
-      ipv4_address     = "192.168.8.21"
-      mac_address      = "e4:92:a3:d1:b6:7f"
-      subnet_gateway   = "192.168.8.1"
+
+      # VLAN 2 configuration
+      vlan_id        = "2"
+      ipv4_address   = "192.168.8.21"
+      mac_address    = "e4:92:a3:d1:b6:7f"
+      subnet_gateway = "192.168.8.1"
+
+      # VLAN 1 configuration
+      vlan1_id             = "1"
+      vlan1_ipv4_address   = "192.168.1.121"
+      vlan1_mac_address    = "79:44:ed:4a:2f:51"
+      vlan1_subnet_gateway = "192.168.1.1"
 
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
@@ -80,7 +97,6 @@ module "cluster" {
       memory                = 6144
       disk_size             = "50"
       datastore             = "disk3"
-      vlan_id               = "2"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
@@ -91,9 +107,18 @@ module "cluster" {
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
-      ipv4_address     = "192.168.8.22"
-      mac_address      = "3e:4f:2c:9a:5d:1b"
-      subnet_gateway   = "192.168.8.1"
+
+      # VLAN 2 configuration
+      vlan_id        = "2"
+      ipv4_address   = "192.168.8.22"
+      mac_address    = "3e:4f:2c:9a:5d:1b"
+      subnet_gateway = "192.168.8.1"
+
+      # VLAN 1 configuration
+      vlan1_id             = "1"
+      vlan1_ipv4_address   = "192.168.1.122"
+      vlan1_mac_address    = "bd:f6:2d:eb:6a:1a"
+      vlan1_subnet_gateway = "192.168.1.1"
 
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
@@ -103,15 +128,15 @@ module "cluster" {
 
   worker_nodes = {
     "worker_node_instance_0" = {
-      id                    = "1100"
-      name                  = "madeon"
-      description           = "Worker node instance in the Kubernetes homelab cluster"
-      tags                  = ["worker-node", "kubernetes"]
-      cpu_cores             = 10
-      memory                = 32768 # 32GB
-      disk_size             = "100"
-      datastore             = "disk3"
-      vlan_id               = "2"
+      id          = "1100"
+      name        = "madeon"
+      description = "Worker node instance in the Kubernetes homelab cluster"
+      tags        = ["worker-node", "kubernetes"]
+      cpu_cores   = 10
+      memory      = 32768 # 32GB
+      disk_size   = "100"
+      datastore   = "disk3"
+
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
@@ -122,9 +147,18 @@ module "cluster" {
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
-      ipv4_address     = "192.168.8.30"
-      mac_address      = "e4:f8:b3:a2:b1:c6"
-      subnet_gateway   = "192.168.8.1"
+
+      # VLAN 2 configuration
+      vlan_id        = "2"
+      ipv4_address   = "192.168.8.30"
+      mac_address    = "e4:f8:b3:a2:b1:c6"
+      subnet_gateway = "192.168.8.1"
+
+      # VLAN 1 configuration
+      vlan1_id             = "1"
+      vlan1_ipv4_address   = "192.168.1.130"
+      vlan1_mac_address    = "36:12:89:49:02:00"
+      vlan1_subnet_gateway = "192.168.1.1"
 
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
@@ -139,7 +173,6 @@ module "cluster" {
       memory                = 32768 # 32GB
       disk_size             = "100"
       datastore             = "disk1"
-      vlan_id               = "2"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
@@ -150,9 +183,17 @@ module "cluster" {
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
-      ipv4_address     = "192.168.8.31"
-      mac_address      = "d4:9f:6a:b1:5c:2d"
-      subnet_gateway   = "192.168.8.1"
+
+      vlan_id        = "2"
+      ipv4_address   = "192.168.8.31"
+      mac_address    = "d4:9f:6a:b1:5c:2d"
+      subnet_gateway = "192.168.8.1"
+
+      # VLAN 1 configuration
+      vlan1_id             = "1"
+      vlan1_ipv4_address   = "192.168.1.131"
+      vlan1_mac_address    = "26:12:89:49:02:00"
+      vlan1_subnet_gateway = "192.168.1.1"
 
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
@@ -167,7 +208,6 @@ module "cluster" {
       memory                = 32768 # 32GB
       disk_size             = "100"
       datastore             = "disk2"
-      vlan_id               = "2"
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_6_1_iso.talos_iso_id
@@ -178,9 +218,17 @@ module "cluster" {
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
-      ipv4_address     = "192.168.8.32"
-      mac_address      = "d4:9f:6a:b1:5c:2e"
-      subnet_gateway   = "192.168.8.1"
+
+      # # VLAN 2 configuration
+      # vlan_id        = "2"
+      # ipv4_address   = "192.168.8.32"
+      # mac_address    = "d4:9f:6a:b1:5c:2e"
+      # subnet_gateway = "192.168.8.1"
+
+      vlan_id        = "1"
+      ipv4_address   = "192.168.1.132"
+      mac_address    = "94:96:cc:43:7d:75"
+      subnet_gateway = "192.168.1.1"
 
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"

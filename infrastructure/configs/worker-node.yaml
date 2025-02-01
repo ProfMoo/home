@@ -21,9 +21,19 @@ machine:
       - 1.1.1.1
     interfaces:
       - addresses:
-          - 192.168.1.73/24
+          - "${ipv4_address}/24"
+        routes:
+          - network: "${ipv4_address}/24"
+            gateway: "${subnet_gateway}"
         deviceSelector:
-          hardwareAddr: '94:96:cc:43:7d:75'
+          hardwareAddr: "${mac_address}"
+      - addresses:
+          - "${vlan1_ipv4_address}/24"
+        routes:
+          - network: "${vlan1_ipv4_address}/24"
+            gateway: "${vlan1_subnet_gateway}"
+        deviceSelector:
+          hardwareAddr: "${vlan1_mac_address}"
   features:
     # https://www.talos.dev/v1.9/talos-guides/network/host-dns/
     hostDNS:

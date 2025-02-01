@@ -7,7 +7,7 @@ metadata:
   annotations:
     k8s.v1.cni.cncf.io/networks: |
       [{
-        "name": "vlan-1",
+        "name": "multus-vlan-1",
         "namespace": "networking",
         "mac": "43:23:d9:05:b5:db",
         "ips": ["192.168.1.201/24"]

@@ -19,7 +19,6 @@ variable "control_plane" {
     memory                = number
     disk_size             = number
     datastore             = string
-    vlan_id               = string
     bridge_network_device = string
     proxmox_node_name     = string
     initial_boot_iso      = string
@@ -28,10 +27,17 @@ variable "control_plane" {
     kubernetes_version = string
 
     talos_virtual_ip = string
-    ipv4_address     = string
-    mac_address      = string
 
+    vlan_id        = string
+    ipv4_address   = string
+    mac_address    = string
     subnet_gateway = string
+
+    vlan1_id             = string
+    vlan1_ipv4_address   = string
+    vlan1_mac_address    = string
+    vlan1_subnet_gateway = string
+
     # NOTE: The two values below are CIDRs separated by a comma
     pod_subnets     = string
     service_subnets = string
@@ -48,7 +54,6 @@ variable "worker_nodes" {
     memory                = number
     disk_size             = number
     datastore             = string
-    vlan_id               = string
     bridge_network_device = string
     proxmox_node_name     = string
     initial_boot_iso      = string
@@ -57,10 +62,17 @@ variable "worker_nodes" {
     kubernetes_version = string
 
     talos_virtual_ip = string
-    ipv4_address     = string
-    mac_address      = string
 
+    vlan_id        = string
+    ipv4_address   = string
+    mac_address    = string
     subnet_gateway = string
+
+    vlan1_id             = string
+    vlan1_ipv4_address   = string
+    vlan1_mac_address    = string
+    vlan1_subnet_gateway = string
+
     # NOTE: The two values below are CIDRs separated by a comma
     pod_subnets     = string
     service_subnets = string

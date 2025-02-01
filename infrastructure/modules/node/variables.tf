@@ -61,6 +61,26 @@ variable "mac_address" {
   description = "The MAC address that is assigned to the newly created VM"
 }
 
+variable "vlan1_id" {
+  type        = string
+  description = "The ID of the VLAN to use for the VM. This should correspond to a VLAN on the gateway of the network."
+}
+
+variable "vlan1_ipv4_address" {
+  type        = string
+  description = "The ipv4 address that is assigned to the newly created VM on VLAN 1"
+}
+
+variable "vlan1_mac_address" {
+  type        = string
+  description = "The MAC address that is assigned to the newly created VM on VLAN 1"
+}
+
+variable "vlan1_subnet_gateway" {
+  type        = string
+  description = "The subnet gateway that is assigned to the newly created VM on VLAN 1"
+}
+
 variable "proxmox_node_name" {
   type        = string
   description = "The Proxmox node to provision the VM on"
