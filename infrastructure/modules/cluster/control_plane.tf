@@ -19,11 +19,6 @@ module "control_plane_node" {
   ipv4_address          = each.value.ipv4_address
   mac_address           = each.value.mac_address
 
-  vlan1_id             = each.value.vlan1_id
-  vlan1_ipv4_address   = each.value.vlan1_ipv4_address
-  vlan1_mac_address    = each.value.vlan1_mac_address
-  vlan1_subnet_gateway = each.value.vlan1_subnet_gateway
-
   proxmox_node_name = each.value.proxmox_node_name
   initial_boot_iso  = each.value.initial_boot_iso
   proxmox_pool      = proxmox_virtual_environment_pool.pool.pool_id
@@ -55,10 +50,6 @@ module "control_plane_node_configuration" {
       mac_address    = module.control_plane_node[each.key].mac_address,
       ipv4_address   = module.control_plane_node[each.key].ipv4_address,
       subnet_gateway = each.value.subnet_gateway,
-
-      vlan1_ipv4_address   = each.value.vlan1_ipv4_address,
-      vlan1_mac_address    = each.value.vlan1_mac_address,
-      vlan1_subnet_gateway = each.value.vlan1_subnet_gateway,
 
       talos_virtual_ip = each.value.talos_virtual_ip,
       pod_subnets      = each.value.pod_subnets,

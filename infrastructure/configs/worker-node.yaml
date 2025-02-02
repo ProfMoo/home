@@ -19,21 +19,6 @@ machine:
     nameservers:
       - 8.8.8.8
       - 1.1.1.1
-    interfaces:
-      - addresses:
-          - "${ipv4_address}/24"
-        routes:
-          - network: "${ipv4_address}/24"
-            gateway: "${subnet_gateway}"
-        deviceSelector:
-          hardwareAddr: "${mac_address}"
-      - addresses:
-          - "${vlan1_ipv4_address}/24"
-        routes:
-          - network: "${vlan1_ipv4_address}/24"
-            gateway: "${vlan1_subnet_gateway}"
-        deviceSelector:
-          hardwareAddr: "${vlan1_mac_address}"
   features:
     # https://www.talos.dev/v1.9/talos-guides/network/host-dns/
     hostDNS:
