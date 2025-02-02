@@ -1,13 +1,3 @@
-module "talos_1_6_1_iso" {
-  source = "./modules/talos-iso"
-
-  # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
-  talos_image_datastore = "local"
-
-  talos_version            = "1.9.2"
-  talos_image_storage_node = "pve"
-}
-
 module "talos_1_9_2_iso" {
   source = "./modules/talos-iso"
 

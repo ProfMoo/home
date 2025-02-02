@@ -3,14 +3,14 @@ resource "talos_machine_secrets" "cluster" {}
 data "talos_client_configuration" "this" {
   cluster_name         = var.kubernetes_cluster_name
   client_configuration = talos_machine_secrets.cluster.client_configuration
-  # NOTE: Nodes to set in the generated config. 
+  # NOTE: Nodes to set in the generated config.
   # These are the IPs of the nodes that the talosctl commands affect.
   # We put ALL the kubernetes nodes in here.
   nodes = concat(
     [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address],
     [for worker_node in module.worker_nodes : worker_node.ipv4_address]
   )
-  # NOTE: Endpoints to set in the generated config. 
+  # NOTE: Endpoints to set in the generated config.
   # These are the IPs that the talosctl commands use to find a talos control plane node.
   # Per the docs, this shouldn't be the VIP: https://www.talos.dev/v1.6/talos-guides/network/vip/#caveats
   endpoints = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address]
@@ -22,7 +22,8 @@ resource "talos_machine_bootstrap" "node" {
   node                 = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
 }
 
-data "talos_cluster_kubeconfig" "this" {
+
+resource "talos_cluster_kubeconfig" "this" {
   depends_on = [
     talos_machine_bootstrap.node,
     data.talos_client_configuration.this
@@ -38,7 +39,7 @@ data "talos_cluster_kubeconfig" "this" {
 }
 
 output "kubeconfig" {
-  value     = data.talos_cluster_kubeconfig.this.kubeconfig_raw
+  value     = resource.talos_cluster_kubeconfig.this.kubeconfig_raw
   sensitive = true
 }
 
