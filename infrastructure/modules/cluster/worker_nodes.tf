@@ -41,7 +41,7 @@ module "worker_node_configuration" {
 
   config_patches = [
     templatefile("configs/worker-node.yaml", {
-      node_type    = "worker-node",
+      node_type    = "worker",
       proxmox_node = each.value.proxmox_node_name
 
       hostname      = each.value.name,

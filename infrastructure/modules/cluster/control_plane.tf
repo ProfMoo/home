@@ -41,7 +41,7 @@ module "control_plane_node_configuration" {
 
   config_patches = [
     templatefile("configs/control-plane.yaml", {
-      node_type    = "control-plane",
+      node_type    = "controlplane",
       proxmox_node = each.value.proxmox_node_name,
 
       hostname      = each.value.name,

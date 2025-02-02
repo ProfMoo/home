@@ -1,5 +1,6 @@
 ---
 machine:
+  type: ${node_type}
   nodeLabels:
     drmoo.io/role: ${node_type}
     drmoo.io/zone: ${proxmox_node}
