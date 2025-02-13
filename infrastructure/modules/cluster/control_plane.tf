@@ -24,40 +24,49 @@ module "control_plane_node" {
   proxmox_pool      = proxmox_virtual_environment_pool.pool.pool_id
 }
 
-module "control_plane_node_configuration" {
-  for_each = var.control_plane
+locals {
+  control_plane_configs = {
+    for key, node in var.control_plane : node.name => templatefile(
+      "configs/controlplane.yaml",
+      {
+        node_type    = "controlplane",
+        proxmox_node = node.proxmox_node_name
 
-  source = "../talos-node"
+        hostname      = node.name,
+        talos_version = node.talos_version,
 
-  talos_machine_type      = "controlplane"
-  talos_cluster_secrets   = talos_machine_secrets.cluster
-  kubernetes_cluster_name = var.kubernetes_cluster_name
+        mac_address    = module.control_plane_node[key].mac_address,
+        ipv4_address   = module.control_plane_node[key].ipv4_address,
+        subnet_gateway = node.subnet_gateway,
 
-  node_ip             = module.control_plane_node[each.key].ipv4_address
-  cluster_endpoint_ip = module.control_plane_node[each.key].ipv4_address
+        talos_virtual_ip = node.talos_virtual_ip,
+        pod_subnets      = node.pod_subnets,
+        service_subnets  = node.service_subnets,
 
-  kubernetes_version = each.value.kubernetes_version
-  talos_version      = each.value.talos_version
-
-  config_patches = [
-    templatefile("configs/control-plane.yaml", {
-      node_type    = "controlplane",
-      proxmox_node = each.value.proxmox_node_name,
-
-      hostname      = each.value.name,
-      talos_version = each.value.talos_version,
-
-      mac_address    = module.control_plane_node[each.key].mac_address,
-      ipv4_address   = module.control_plane_node[each.key].ipv4_address,
-      subnet_gateway = each.value.subnet_gateway,
-
-      talos_virtual_ip = each.value.talos_virtual_ip,
-      pod_subnets      = each.value.pod_subnets,
-      service_subnets  = each.value.service_subnets,
-    }),
-  ]
+        # Secrets
+        token                       = data.sops_file.talos_secrets.data["talos.machineconfig.trustdinfo.token"]
+        client_ca_crt               = data.sops_file.talos_secrets.data["talos.client.ca_certificate"]
+        client_key                  = data.sops_file.talos_secrets.data["talos.client.client_key"]
+        cluster_id                  = data.sops_file.talos_secrets.data["talos.machineconfig.cluster.id"]
+        cluster_secret              = data.sops_file.talos_secrets.data["talos.machineconfig.cluster.secret"]
+        cluster_token               = data.sops_file.talos_secrets.data["talos.machineconfig.secrets.bootstraptoken"]
+        secretbox_encryption_secret = data.sops_file.talos_secrets.data["talos.machineconfig.secrets.secretboxencryptionsecret"]
+        cluster_ca_crt              = data.sops_file.talos_secrets.data["talos.machineconfig.certs.os.crt"]
+        cluster_ca_key              = data.sops_file.talos_secrets.data["talos.machineconfig.certs.os.key"]
+        aggregator_ca_crt           = data.sops_file.talos_secrets.data["talos.machineconfig.certs.k8saggregator.crt"]
+        aggregator_ca_key           = data.sops_file.talos_secrets.data["talos.machineconfig.certs.k8saggregator.key"]
+        service_account_key         = data.sops_file.talos_secrets.data["talos.machineconfig.certs.k8sserviceaccount.key"]
+        etcd_ca_crt                 = data.sops_file.talos_secrets.data["talos.machineconfig.certs.etcd.crt"]
+        etcd_ca_key                 = data.sops_file.talos_secrets.data["talos.machineconfig.certs.etcd.key"]
+      }
+    )
+  }
 }
 
 output "control_plane_nodes_ips" {
   value = { for key, instance in module.control_plane_node : key => { "ipv4_address" : instance.ipv4_address, "mac_address" : instance.mac_address } }
+}
+
+output "control_plane_configs" {
+  value = local.control_plane_configs
 }

@@ -20,17 +20,33 @@ This directory houses the code that transforms raw bare-metal machines into func
 
 1. Populate `main.tf` as desired.
 2. Run the desired Terraform commands (i.e. `terraform plan`, `terraform apply`).
-3. Once the Kubernetes cluster is successfully applied, run this command to get the necessary configs loaded into your shell:
+3. Run this command to create the per-node Talos configs:
 
     ```bash
-    ./get_configs
+    ./create_talos_node_configs
     ```
 
-4. Once the cluster is up and running, make sure to create the necessary Flux secret so that Flux can access the Git repository. Docs [here](https://fluxcd.io/flux/components/source/gitrepositories/#ready-gitrepository).
+4. Apply (or dry-run apply) to the desired Talos cluster nodes:
+
+    ```bash
+    # Dry run
+    talosctl apply-config -n skrillex --file ./nodes/skrillex.yaml --dry-run
+    # Apply
+    talosctl apply-config -n skrillex --file ./nodes/skrillex.yaml
+    ```
+
+5. Once the Kubernetes cluster is successfully applied, run this command to get the necessary configs loaded into your shell:
+
+    ```bash
+    ./get_local_configs
+    ```
+
+6. Once the cluster is up and running, make sure to create the necessary Flux secret so that Flux can access the Git repository. Docs [here](https://fluxcd.io/flux/components/source/gitrepositories/#ready-gitrepository).
+7. Follow the Kubernetes bootstrapping steps defined [here](../kubernetes/README.md#bootstrapping)
 
 ## Operations
 
-### To add new nodes with new disks
+### Adding New Disks To Proxmox
 
 1. Navigate to relevant node in Proxmox GUI -> Disks -> LVM-Thin -> "Create: Thinpool"
 2. Select new disk by block device name (`lsblk` might help show available nodes on the node). Example names: `/dev/sda`, `/dev/sdb`, `/dev/sdc`.
@@ -41,7 +57,7 @@ This directory houses the code that transforms raw bare-metal machines into func
 
 Can perform a rolling upgrade with the TF provider and a standard TF workflow (or `talosctl` also works per [the docs](https://www.talos.dev/v1.9/kubernetes-guides/upgrading-kubernetes/)).
 
-### Upgrade Talos
+### Upgrading Talos
 
 The Talos TF provider is relatively under-featured for upgrades ([Example of lack of features here](https://github.com/siderolabs/terraform-provider-talos/issues/140#issue-2055027252)). So it's best to use `talosctl` and follow the more production-ready upgrade path [here](https://www.talos.dev/v1.9/talos-guides/upgrading-talos/).
 
@@ -49,11 +65,11 @@ The Talos TF provider is relatively under-featured for upgrades ([Example of lac
 
 There are some Kubernetes configurations, such as the `kube-proxy` configuration, which `talosctl` manages but only touches during Kubernetes bootstraps/upgrades. [Here](https://github.com/siderolabs/talos/discussions/7835) is a good example. To update a resource whose state is entirely within Kubernetes, but the config is managed via Talos, refer to the [upgrading Kubernetes section](#upgrading-kubernetes) above
 
-### Upgrading Multiple Version
+### Upgrading Multiple Version Of Talos of Kubernetes At Once
 
 Talos & Kubernetes versions are linked quite closely. If you're multiple versions behind on each:
 
-* Upgrade them in lock step (i.e. upgrade Talos one minor version, then Kubernetes one minor version). If this isn't done, weird stuff can start to happen.
+* Upgrade them in lock step (i.e. upgrade Talos one minor version, then Kubernetes one minor version). If this isn't done, weird stuff can start to happen. (Trust me)
 * Upgrade Talos's minor version first, then Kubernetes's minor version.
 
 ## TODOs

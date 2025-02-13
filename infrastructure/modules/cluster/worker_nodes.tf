@@ -24,40 +24,47 @@ module "worker_nodes" {
   proxmox_pool      = proxmox_virtual_environment_pool.pool.pool_id
 }
 
-module "worker_node_configuration" {
-  for_each = var.worker_nodes
 
-  source = "../talos-node"
+data "sops_file" "talos_secrets" {
+  source_file = "secrets.talos.sops.yaml"
+  input_type  = "yaml"
+}
 
-  talos_machine_type      = "worker"
-  talos_cluster_secrets   = talos_machine_secrets.cluster
-  kubernetes_cluster_name = var.kubernetes_cluster_name
+locals {
+  worker_node_configs = {
+    for key, node in var.worker_nodes : node.name => templatefile(
+      "configs/worker.yaml",
+      {
+        node_type    = "worker",
+        proxmox_node = node.proxmox_node_name
 
-  cluster_endpoint_ip = module.worker_nodes[each.key].ipv4_address
-  node_ip             = module.worker_nodes[each.key].ipv4_address
+        hostname      = node.name,
+        talos_version = node.talos_version,
 
-  kubernetes_version = each.value.kubernetes_version
-  talos_version      = each.value.talos_version
+        mac_address    = module.worker_nodes[key].mac_address,
+        ipv4_address   = module.worker_nodes[key].ipv4_address,
+        subnet_gateway = node.subnet_gateway,
 
-  config_patches = [
-    templatefile("configs/worker-node.yaml", {
-      node_type    = "worker",
-      proxmox_node = each.value.proxmox_node_name
+        talos_virtual_ip = node.talos_virtual_ip,
+        pod_subnets      = node.pod_subnets,
+        service_subnets  = node.service_subnets,
 
-      hostname      = each.value.name,
-      talos_version = each.value.talos_version,
-
-      mac_address    = module.worker_nodes[each.key].mac_address,
-      ipv4_address   = module.worker_nodes[each.key].ipv4_address,
-      subnet_gateway = each.value.subnet_gateway,
-
-      talos_virtual_ip = each.value.talos_virtual_ip,
-      pod_subnets      = each.value.pod_subnets,
-      service_subnets  = each.value.service_subnets,
-    })
-  ]
+        # Secrets
+        token          = data.sops_file.talos_secrets.data["talos.machineconfig.trustdinfo.token"]
+        client_ca_crt  = data.sops_file.talos_secrets.data["talos.client.ca_certificate"]
+        cluster_id     = data.sops_file.talos_secrets.data["talos.machineconfig.cluster.id"]
+        cluster_secret = data.sops_file.talos_secrets.data["talos.machineconfig.cluster.secret"]
+        cluster_token  = data.sops_file.talos_secrets.data["talos.machineconfig.secrets.bootstraptoken"]
+        cluster_ca_crt = data.sops_file.talos_secrets.data["talos.machineconfig.certs.os.crt"]
+      }
+    )
+  }
 }
 
 output "worker_nodes_ips" {
   value = { for key, instance in module.worker_nodes : key => { "ipv4_address" : instance.ipv4_address, "mac_address" : instance.mac_address } }
+}
+
+output "worker_node_configs" {
+  value = local.worker_node_configs
 }

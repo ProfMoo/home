@@ -7,6 +7,9 @@
 # Kubernetes configuration file
 .kubeconfig
 
+# Talos node configurations
+nodes/
+
 # MacOS
 .DS_Store
 

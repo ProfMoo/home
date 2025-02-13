@@ -1,6 +1,14 @@
 ---
+version: v1alpha1
+debug: false
+persist: true
 machine:
   type: ${node_type}
+  token: ${token} # The `token` is used by a machine to join the PKI of the cluster.
+  # The root certificate authority of the PKI.
+  ca:
+    crt: ${client_ca_crt}
+    key: ""
   nodeLabels:
     drmoo.io/role: ${node_type}
     drmoo.io/zone: ${proxmox_node}
@@ -9,8 +17,11 @@ machine:
     # Adjust this image to either 1. install new extensions and/or 2. upgrade Talos
     # 1. Go to https://factory.talos.dev/ and generate a new path
     # 2. Pass in a different 'talos_version'
-    image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:${talos_version}
+    image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.9.2
+    disk: /dev/sda # The disk used for installations.
+    wipe: false # Indicates if the installation disk should be wiped at installation time.
   kubelet:
+    image: ghcr.io/siderolabs/kubelet:v1.32.1
     defaultRuntimeSeccompProfileEnabled: true
     disableManifestsDirectory: true
     extraArgs:
@@ -29,6 +40,10 @@ machine:
         deviceSelector:
           hardwareAddr: '${mac_address}'
   features:
+    # https://www.talos.dev/v1.9/kubernetes-guides/configuration/kubeprism/
+    kubePrism:
+      enabled: true
+      port: 7445
     # https://www.talos.dev/v1.9/talos-guides/network/host-dns/
     hostDNS:
       enabled: true
@@ -51,10 +66,25 @@ machine:
         wsize=131072
         nconnect=8
 cluster:
+  clusterName: homelab
+  id: ${cluster_id} # Globally unique identifier for this cluster (base64 encoded random 32 bytes).
+  secret: ${cluster_secret} # Shared secret of cluster (base64 encoded random 32 bytes).
+  # NOTE: This is needed to join the cluster
+  token: ${cluster_token} # The [bootstrap token](https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/) used to join the cluster.
+  controlPlane:
+    endpoint: https://${talos_virtual_ip}:6443
   network:
+    # The CNI used.
+    cni:
+      name: none # Name of CNI to use.
+    dnsDomain: cluster.local # The domain used by Kubernetes DNS.
     podSubnets: ${format("%#v",split(",",pod_subnets))}
     serviceSubnets: ${format("%#v",split(",",service_subnets))}
   proxy:
     disabled: true
-  controlPlane:
-    endpoint: https://${talos_virtual_ip}:6443
+  ca:
+    crt: ${cluster_ca_crt}
+    key: ""
+  # NOTE: This is needed so that Talos nodes can discover each other.
+  discovery:
+    enabled: true

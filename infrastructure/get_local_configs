@@ -1,0 +1,9 @@
+#!/bin/bash
+
+terraform output -raw talosconfig >$HOME/.talos/config2
+
+terraform output -json talos_secrets >secrets.json
+
+terraform output -raw kubeconfig >$HOME/.kube/config
+
+kubie ctx

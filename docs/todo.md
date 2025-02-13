@@ -12,3 +12,4 @@
    1. [ ] Consider standing up a little IDE (similar to what I have for HASS) that I can run beets queries in and modify the SQLite DB.
 6. [ ] Migrate to Flux Operator using [this PR](https://github.com/onedr0p/home-ops/pull/8624) as a guide.
 7. [ ] System Upgrade Controller.
+8. [ ] Work on pre-emptions for k8s so that the most important pods are always scheduled.

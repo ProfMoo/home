@@ -29,12 +29,6 @@ provider "registry.terraform.io/carlpett/sops" {
   constraints = "1.1.1"
   hashes = [
     "h1:0lv+4VCaIRTkBAMXmCxSJC1dsYPuoyBAvnrLsofcseA=",
-    "h1:AM1mG6OjcEL8hIr0PPel85i0HUlLZH8BZer5Dq7uiOM=",
-    "h1:FDG2jSsAr/tWk/w5zuPGovEtCqKxxosCYPlA5msBhec=",
-    "h1:WCfQL+3Nf73jZ40NkduHIBze7vOtYeyXb4t1xoa/3as=",
-    "h1:cl4VtE/cu7gL2DmwXEiNfD9xpv66Xzr4IeUzlGgfMZ0=",
-    "h1:hqyownSt8teS7g0+XDOxmAtuAHB5kDNQkW1voBhLmZU=",
-    "h1:iKoZfVYPK2awiHuf2k0F9CyDjfnYYwoaNC9/pxINU8E=",
     "zh:175ec198e1b4d1cad1ae559ebe8cdf574617805010c22dfb8af93a2057ba8332",
     "zh:2b550b2372f71408e7b47b099f314d981bbb82b263cb55248a36a9af8afd44a1",
     "zh:684544ed3460c34585b090b5de1d4e0caf8eba8e6ba50ad0734cda818a6c86f0",
@@ -68,20 +62,7 @@ provider "registry.terraform.io/ivoronin/macaddress" {
   version     = "0.3.2"
   constraints = "0.3.2"
   hashes = [
-    "h1:5PyH5rVvKEW1DlKGbnQctmerpZv43Nvibr57YuYC7cU=",
-    "h1:B0R53J9/zzDxqGyt+ws1MDYbABLhQGsBlcsRc57ABws=",
     "h1:LS/VDOR+qyThCjz+7ZnXxar/Jo/au6tfqdmHf3h8hMY=",
-    "h1:QiRjL1H2KmiGJzEvN836ziTzpo0i1MfHRNPwLyQPVH8=",
-    "h1:RvdeeoC1ir5s5NWfZmxuKpS4DbJV8WnV+s2HqG/+ZwM=",
-    "h1:TMuFa8VjHeObDGuL/8ItZwiifWtCmy6TneOEcG87eq0=",
-    "h1:XCsqiDxDV8SuOUc2BnxnWCtchWQoq0c/Un7pgrzZ7EI=",
-    "h1:jJ/LOHNgy5hDoVfE+Si4YoRQ0jpCGAAZFMF21lGE0nw=",
-    "h1:k+zs8EBFvZsyThl7HnafxNVRxGb/2OCNhFOsn7IvKSI=",
-    "h1:odGJMVDUJRVbSin/o5OJ656Wx8LOAptkQyqpy5ED6Z4=",
-    "h1:qljDuVDK8zTK17+RlTRAa2VkDYct42GDtNnkf6ULozU=",
-    "h1:yk0ASl2cAoc/22tvpi9Kke+WvowgXGq0QwaP93IQ+S0=",
-    "h1:zXAkTBYC77P4s+Xp4YwXG3eopmBFuuzujP5Vd5bq+SA=",
-    "h1:zZysXR45WEu/C+zpEOrOK92tRKhJoinjhpSgIcLZL4o=",
     "zh:00cb168d9210ed88cfa7de8a33d5666b2cf6660a5d20a7a96348b8b902833eca",
     "zh:1366458320df0b6f1132e59b5410931c0c5626bbf27b05b29dd311311a710e9b",
     "zh:2e8102c7f6046665c95b806752d692843f2e846554f7eba85690cd2087c9048a",

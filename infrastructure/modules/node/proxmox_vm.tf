@@ -1,6 +1,7 @@
-# NOTE: It's critical to create the reservations in the DHCP server here before creating the VMs
+# NOTE: It's critical to create this reservation in the DHCP server here before creating the VMs
 # or else risk the VMs getting assigned a different IP address than the one we intend, which
 # would make it impossible to access via Terraform (without asking the DHCP server for the IP).
+# This means we wouldn't be able to apply the Talos configuration to the node.
 resource "unifi_user" "this" {
   mac  = var.mac_address
   name = var.name

@@ -1,4 +1,6 @@
-resource "talos_machine_secrets" "cluster" {}
+resource "talos_machine_secrets" "cluster" {
+  talos_version = "v1.9.2"
+}
 
 data "talos_client_configuration" "this" {
   cluster_name         = var.kubernetes_cluster_name
@@ -22,7 +24,6 @@ resource "talos_machine_bootstrap" "node" {
   node                 = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
 }
 
-
 resource "talos_cluster_kubeconfig" "this" {
   depends_on = [
     talos_machine_bootstrap.node,
@@ -45,5 +46,10 @@ output "kubeconfig" {
 
 output "talosconfig" {
   value     = data.talos_client_configuration.this.talos_config
+  sensitive = true
+}
+
+output "talos_secrets" {
+  value     = talos_machine_secrets.cluster
   sensitive = true
 }

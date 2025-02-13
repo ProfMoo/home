@@ -30,7 +30,8 @@ terraform {
 }
 
 data "sops_file" "provider_credentials" {
-  source_file = "secrets.sops.yaml"
+  source_file = "secrets.providers.sops.yaml"
+  input_type  = "yaml"
 }
 
 provider "proxmox" {

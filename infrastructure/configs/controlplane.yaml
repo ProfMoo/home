@@ -1,15 +1,25 @@
 ---
+version: v1alpha1
+debug: false
+persist: true
 machine:
   type: ${node_type}
+  # The `token` is used by a machine to join the PKI of the cluster.
+  token: ${token}
+  # The root certificate authority of the PKI.
+  ca:
+    crt: ${client_ca_crt}
+    key: ${client_key}
   nodeLabels:
     drmoo.io/role: ${node_type}
-    drmoo.io/zone: ${proxmox_node}
+    drmoo.io/zone: pve
   certSANs:
     - ${ipv4_address}/24
     - "kubernetes.default.svc.cluster.local"
     - 127.0.0.1
     - ${talos_virtual_ip}
   kubelet:
+    image: ghcr.io/siderolabs/kubelet:v1.32.1
     defaultRuntimeSeccompProfileEnabled: true
     disableManifestsDirectory: true
     extraArgs:
@@ -33,6 +43,7 @@ machine:
     rbac: true
     stableHostname: true
     apidCheckExtKeyUsage: true
+    diskQuotaSupport: true
     # https://www.talos.dev/v1.9/talos-guides/network/host-dns/
     hostDNS:
       enabled: true
@@ -52,7 +63,9 @@ machine:
     # Adjust this image to either 1. install new extensions and/or 2. upgrade Talos
     # 1. Go to https://factory.talos.dev/ and generate a new path
     # 2. Pass in a different 'talos_version'
-    image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:${talos_version}
+    image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.9.2
+    disk: /dev/sda # The disk used for installations.
+    wipe: false # Indicates if the installation disk should be wiped at installation time.
   files:
     - op: overwrite
       path: /etc/nfsmount.conf
@@ -67,14 +80,61 @@ machine:
         wsize=131072
         nconnect=8
 cluster:
+  clusterName: homelab
+  id: ${cluster_id} # Globally unique identifier for this cluster (base64 encoded random 32 bytes).
+  secret: ${cluster_secret} # Shared secret of cluster (base64 encoded random 32 bytes).
+  # NOTE: This is needed to join the cluster
+  # The [bootstrap token](https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/) used to join the cluster.
+  token: ${cluster_token}
+  # A key used for the [encryption of secret data at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/).
+  secretboxEncryptionSecret: ${secretbox_encryption_secret}
   network:
+    # The CNI used.
+    cni:
+      name: none # Name of CNI to use.
+    dnsDomain: cluster.local # The domain used by Kubernetes DNS.
+    # The pod subnet CIDR.
     podSubnets: ${format("%#v",split(",",pod_subnets))}
     serviceSubnets: ${format("%#v",split(",",service_subnets))}
-    cni:
-      name: none
+  ca:
+    crt: ${cluster_ca_crt}
+    key: ${cluster_ca_key}
+  # The base64 encoded aggregator certificate authority used by Kubernetes for front-proxy certificate generation.
+  aggregatorCA:
+    crt: ${aggregator_ca_crt}
+    key: ${aggregator_ca_key}
+  # The base64 encoded private key for service account token generation.
+  serviceAccount:
+    key: ${service_account_key}
   controlPlane:
     endpoint: https://${talos_virtual_ip}:6443
   apiServer:
+    image: registry.k8s.io/kube-apiserver:v1.32.1
+    certSANs:
+      - ${ipv4_address}
+    disablePodSecurityPolicy: true
+    admissionControl:
+      - name: PodSecurity
+        configuration:
+          apiVersion: pod-security.admission.config.k8s.io/v1alpha1
+          defaults:
+            audit: restricted
+            audit-version: latest
+            enforce: baseline
+            enforce-version: latest
+            warn: restricted
+            warn-version: latest
+          exemptions:
+            namespaces:
+              - kube-system
+            runtimeClasses: []
+            usernames: []
+          kind: PodSecurityConfiguration
+    auditPolicy:
+      apiVersion: audit.k8s.io/v1
+      kind: Policy
+      rules:
+        - level: Metadata
     resources:
       requests:
         cpu: 500m
@@ -83,14 +143,19 @@ cluster:
         cpu: 1
         memory: 2Gi
   proxy:
+    image: registry.k8s.io/kube-proxy:v1.32.1
     # Using Cilium as the proxy, so disabling kube-proxy
     disabled: true
   etcd:
+    ca:
+      crt: ${etcd_ca_crt}
+      key: ${etcd_ca_key}
     extraArgs:
       # NOTE: We need to override the default bind address so that the /metrics endpoint is able to be scraped by Prometheus
       # Further discussion: https://github.com/siderolabs/talos/discussions/7799
       listen-metrics-urls: http://0.0.0.0:2381
   controllerManager:
+    image: registry.k8s.io/kube-controller-manager:v1.32.1
     extraArgs:
       # NOTE: Kubernetes manifests controlled by Talos require a special application process compared to most machine-config changes.
       # Source: https://github.com/siderolabs/talos/discussions/7835
@@ -102,7 +167,10 @@ cluster:
       limits:
         cpu: 1
         memory: 1Gi
+  discovery:
+    enabled: true
   scheduler:
+    image: registry.k8s.io/kube-scheduler:v1.32.1
     extraArgs:
       # NOTE: This enables Prometheus to scrape metrics from the control plane nodes
       bind-address: 0.0.0.0

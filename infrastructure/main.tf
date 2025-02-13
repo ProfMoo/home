@@ -9,6 +9,8 @@ module "talos_1_9_2_iso" {
   talos_image_storage_node = "pve"
 }
 
+
+
 module "cluster" {
   source = "./modules/cluster"
 
@@ -131,74 +133,74 @@ module "cluster" {
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
 
-      # VLAN 2 configuration
+      # VLAN 1 configuration
       vlan_id        = "2"
-      ipv4_address   = "192.168.8.40"
-      mac_address    = "e4:f8:b3:a2:b1:c7"
+      ipv4_address   = "192.168.8.120"
+      mac_address    = "e4:f8:b3:a2:b1:c8"
       subnet_gateway = "192.168.8.1"
 
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
       service_subnets = "10.96.0.0/12"
     },
-    # "worker_node_instance_1" = {
-    #   id                    = "1101"
-    #   name                  = "fkj"
-    #   description           = "Worker node instance in the Kubernetes homelab cluster"
-    #   tags                  = ["worker-node", "kubernetes"]
-    #   cpu_cores             = 10
-    #   memory                = 32768 # 32GB
-    #   disk_size             = "100"
-    #   datastore             = "disk1"
-    #   bridge_network_device = "vmbr0"
-    #   proxmox_node_name     = "pve"
-    #   initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
+    "worker_node_instance_1" = {
+      id                    = "1101"
+      name                  = "flume"
+      description           = "Worker node instance in the Kubernetes homelab cluster"
+      tags                  = ["worker-node", "kubernetes"]
+      cpu_cores             = 10
+      memory                = 32768 # 32GB
+      disk_size             = "100"
+      datastore             = "disk1"
+      bridge_network_device = "vmbr0"
+      proxmox_node_name     = "pve"
+      initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
 
-    #   # This doesn't necessarily need to match the boot ISO.
-    #   talos_version      = "1.9.2"
-    #   kubernetes_version = "1.32.1"
+      # This doesn't necessarily need to match the boot ISO.
+      talos_version      = "1.9.2"
+      kubernetes_version = "1.32.1"
 
-    #   # External kubernetes network configuration
-    #   talos_virtual_ip = "192.168.8.99"
+      # External kubernetes network configuration
+      talos_virtual_ip = "192.168.8.99"
 
-    #   vlan_id        = "2"
-    #   ipv4_address   = "192.168.8.31"
-    #   mac_address    = "d4:9f:6a:b1:5c:2d"
-    #   subnet_gateway = "192.168.8.1"
+      vlan_id        = "2"
+      ipv4_address   = "192.168.8.121"
+      mac_address    = "d4:9f:6a:b1:5c:2f"
+      subnet_gateway = "192.168.8.1"
 
-    #   # Internal kubernetes network configuration
-    #   pod_subnets     = "10.244.0.0/16"
-    #   service_subnets = "10.96.0.0/12"
-    # },
-    # "worker_node_instance_2" = {
-    #   id                    = "1102"
-    #   name                  = "uppermost"
-    #   description           = "Worker node instance in the Kubernetes homelab cluster"
-    #   tags                  = ["worker-node", "kubernetes"]
-    #   cpu_cores             = 10
-    #   memory                = 32768 # 32GB
-    #   disk_size             = "100"
-    #   datastore             = "disk2"
-    #   bridge_network_device = "vmbr0"
-    #   proxmox_node_name     = "pve"
-    #   initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
+      # Internal kubernetes network configuration
+      pod_subnets     = "10.244.0.0/16"
+      service_subnets = "10.96.0.0/12"
+    },
+    "worker_node_instance_2" = {
+      id                    = "1102"
+      name                  = "jon-hopkins"
+      description           = "Worker node instance in the Kubernetes homelab cluster"
+      tags                  = ["worker-node", "kubernetes"]
+      cpu_cores             = 10
+      memory                = 32768 # 32GB
+      disk_size             = "100"
+      datastore             = "disk2"
+      bridge_network_device = "vmbr0"
+      proxmox_node_name     = "pve"
+      initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
 
-    #   # This doesn't necessarily need to match the boot ISO.
-    #   talos_version      = "1.9.2"
-    #   kubernetes_version = "1.32.1"
+      # This doesn't necessarily need to match the boot ISO.
+      talos_version      = "1.9.2"
+      kubernetes_version = "1.32.1"
 
-    #   # External kubernetes network configuration
-    #   talos_virtual_ip = "192.168.8.99"
+      # External kubernetes network configuration
+      talos_virtual_ip = "192.168.8.99"
 
-    #   vlan_id        = "1"
-    #   ipv4_address   = "192.168.1.82"
-    #   mac_address    = "94:96:cc:43:7d:75"
-    #   subnet_gateway = "192.168.1.1"
+      vlan_id        = "2"
+      ipv4_address   = "192.168.8.122"
+      mac_address    = "94:96:cc:43:7d:76"
+      subnet_gateway = "192.168.8.1"
 
-    #   # Internal kubernetes network configuration
-    #   pod_subnets     = "10.244.0.0/16"
-    #   service_subnets = "10.96.0.0/12"
-    # }
+      # Internal kubernetes network configuration
+      pod_subnets     = "10.244.0.0/16"
+      service_subnets = "10.96.0.0/12"
+    }
   }
 }
 
@@ -217,5 +219,15 @@ output "kubeconfig" {
 
 output "talosconfig" {
   value     = module.cluster.talosconfig
+  sensitive = true
+}
+
+output "worker_node_configs" {
+  value     = module.cluster.worker_node_configs
+  sensitive = true
+}
+
+output "control_plane_configs" {
+  value     = module.cluster.control_plane_configs
   sensitive = true
 }
