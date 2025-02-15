@@ -21,8 +21,6 @@ endpointRoutes:
   enabled: true
 envoy:
   enabled: false
-hubble:
-  enabled: false
 ipam:
   mode: kubernetes
 ipv4NativeRoutingCIDR: 10.42.0.0/16
@@ -37,8 +35,6 @@ loadBalancer:
   algorithm: maglev
   mode: dsr
 localRedirectPolicy: true
-operator:
-  rollOutPods: true
 rollOutCiliumPods: true
 routingMode: native
 securityContext:
@@ -59,3 +55,58 @@ securityContext:
       - NET_ADMIN
       - SYS_ADMIN
       - SYS_RESOURCE
+hubble:
+  enabled: true
+  metrics:
+    enabled:
+      - dns:query
+      - drop
+      - tcp
+      - flow
+      - port-distribution
+      - icmp
+      - http
+    serviceMonitor:
+      enabled: true
+    dashboards:
+      enabled: true
+      annotations:
+        grafana_folder: Cilium
+  relay:
+    enabled: true
+    rollOutPods: true
+    prometheus:
+      serviceMonitor:
+        enabled: true
+  ui:
+    enabled: true
+    rollOutPods: true
+    ingress:
+      enabled: true
+      annotations:
+        external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+      className: internal
+      hosts: ["hubble.drmoo.io"]
+      tls:
+        - hosts:
+            - "*.drmoo.io"
+          secretName: drmoo-io-tls
+operator:
+  rollOutPods: true
+  prometheus:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  dashboards:
+    enabled: true
+    annotations:
+      grafana_folder: Cilium
+prometheus:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+    trustCRDsExist: true
+dashboards:
+  enabled: true
+  annotations:
+    grafana_folder: Cilium
