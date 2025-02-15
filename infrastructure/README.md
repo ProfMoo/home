@@ -41,8 +41,7 @@ This directory houses the code that transforms raw bare-metal machines into func
     ./get_local_configs
     ```
 
-6. Once the cluster is up and running, make sure to create the necessary Flux secret so that Flux can access the Git repository. Docs [here](https://fluxcd.io/flux/components/source/gitrepositories/#ready-gitrepository).
-7. Follow the Kubernetes bootstrapping steps defined [here](../kubernetes/README.md#bootstrapping)
+6. Follow the Kubernetes bootstrapping steps defined [here](../kubernetes/README.md#bootstrapping)
 
 ## Operations
 

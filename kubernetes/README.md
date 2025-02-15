@@ -34,18 +34,12 @@ There are a few components that need to installed manually before the cluster ca
 
 After the initial Talos cluster creation (with the CNI set to none), the cluster will be waiting for a CNI to be installed ([docs](https://www.talos.dev/v1.9/kubernetes-guides/network/deploying-cilium/)).
 
-Additionally, we must install Flux itself. Flux is responsible for installing the rest of the cluster.
+To start, install Flux itself. Flux is responsible for installing the rest of the cluster's apps and services.
 
-To do this, we use `helmfile`:
+To do this, use `helmfile`:
 
 ```bash
 helmfile --file kubernetes/homelab/bootstrap/helmfile.yaml apply  --skip-diff-on-install --suppress-diff
-```
-
-Then, I install the my repo-specific Flux configuration using this command:
-
-```bash
-kubectl apply --server-side --kustomize kubernetes/homelab/bootstrap/flux/repo
 ```
 
 ## Storage

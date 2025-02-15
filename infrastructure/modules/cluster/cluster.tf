@@ -1,10 +1,11 @@
-resource "talos_machine_secrets" "cluster" {
-  talos_version = "v1.9.2"
-}
-
 data "talos_client_configuration" "this" {
-  cluster_name         = var.kubernetes_cluster_name
-  client_configuration = talos_machine_secrets.cluster.client_configuration
+  cluster_name = var.kubernetes_cluster_name
+  client_configuration = {
+    ca_certificate     = data.sops_file.talos_secrets.data["talos.client.ca_certificate"]
+    client_certificate = data.sops_file.talos_secrets.data["talos.client.client_certificate"]
+    client_key         = data.sops_file.talos_secrets.data["talos.client.client_key"]
+  }
+
   # NOTE: Nodes to set in the generated config.
   # These are the IPs of the nodes that the talosctl commands affect.
   # We put ALL the kubernetes nodes in here.
@@ -19,9 +20,14 @@ data "talos_client_configuration" "this" {
 }
 
 resource "talos_machine_bootstrap" "node" {
-  client_configuration = talos_machine_secrets.cluster.client_configuration
-  endpoint             = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
-  node                 = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
+  client_configuration = {
+    ca_certificate     = data.sops_file.talos_secrets.data["talos.client.ca_certificate"]
+    client_certificate = data.sops_file.talos_secrets.data["talos.client.client_certificate"]
+    client_key         = data.sops_file.talos_secrets.data["talos.client.client_key"]
+  }
+
+  endpoint = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
+  node     = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
 }
 
 resource "talos_cluster_kubeconfig" "this" {
@@ -29,8 +35,11 @@ resource "talos_cluster_kubeconfig" "this" {
     talos_machine_bootstrap.node,
     data.talos_client_configuration.this
   ]
-  client_configuration = talos_machine_secrets.cluster.client_configuration
-
+  client_configuration = {
+    ca_certificate     = data.sops_file.talos_secrets.data["talos.client.ca_certificate"]
+    client_certificate = data.sops_file.talos_secrets.data["talos.client.client_certificate"]
+    client_key         = data.sops_file.talos_secrets.data["talos.client.client_key"]
+  }
   # NOTE: This is the control-plane node to retrieve the kubeconfig from.
   # (i.e. this is the node whose kubeconfig we are reading. It is not the node we are reading from)
   node = [for control_plane_node in module.control_plane_node : control_plane_node.ipv4_address][0]
@@ -49,7 +58,3 @@ output "talosconfig" {
   sensitive = true
 }
 
-output "talos_secrets" {
-  value     = talos_machine_secrets.cluster
-  sensitive = true
-}
