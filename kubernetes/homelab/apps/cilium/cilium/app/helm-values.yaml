@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/cilium/cilium/refs/heads/main/install/kubernetes/cilium/values.schema.json
 # Explanation of each field can be found in the Cilium documentation:
 # https://github.com/cilium/cilium/blob/main/install/kubernetes/cilium/values.yaml
 autoDirectNodeRoutes: true
@@ -12,7 +13,7 @@ cgroup:
   automount:
     enabled: false
   hostRoot: /sys/fs/cgroup
-# Might need this for Multus:
+# This needs to be false to use Multus because Multus is technically a CNI plugin
 # https://github.com/siderolabs/talos/discussions/7914#discussioncomment-7457510
 cni:
   exclusive: false
