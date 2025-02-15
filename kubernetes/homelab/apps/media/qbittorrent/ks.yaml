@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: nas-media
   path: ./kubernetes/homelab/apps/media/qbittorrent/app
-  prune: true
+  prune: false # revert to true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -41,7 +41,7 @@ spec:
     - name: qbittorrent
     - name: nas-media
   path: ./kubernetes/homelab/apps/media/qbittorrent/tools
-  prune: true
+  prune: false # revert to true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -64,7 +64,7 @@ spec:
   dependsOn:
     - name: qbittorrent
   path: ./kubernetes/homelab/apps/media/qbittorrent/exporter
-  prune: true
+  prune: false # revert to true
   sourceRef:
     kind: GitRepository
     name: profmoo-home

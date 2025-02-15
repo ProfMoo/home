@@ -19,5 +19,5 @@ resources:
   # https://www.cross-seed.org/docs/v6-migration
   - ./betanin/ks.yaml
   - ./lidarr/ks.yaml
-  - ./navidrome/ks.yaml
-  - ./roon/ks.yaml
+  # - ./navidrome/ks.yaml
+  # - ./roon/ks.yaml

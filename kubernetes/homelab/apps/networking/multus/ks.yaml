@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/networking/multus/app
-  prune: true
+  prune: false # revert to true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -34,7 +34,7 @@ spec:
   dependsOn:
     - name: multus
   path: ./kubernetes/homelab/apps/networking/multus/networks
-  prune: true
+  prune: false # revert to true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
