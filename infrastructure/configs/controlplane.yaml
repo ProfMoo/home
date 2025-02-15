@@ -182,17 +182,6 @@ cluster:
         cpu: 1
         memory: 1Gi
   inlineManifests:
-    - name: fluxcd
-      contents: |-
-        apiVersion: v1
-        kind: Namespace
-        metadata:
-            name: flux-system
-            labels:
-              app.kubernetes.io/instance: flux-system
-              app.kubernetes.io/part-of: flux
-              pod-security.kubernetes.io/warn: restricted
-              pod-security.kubernetes.io/warn-version: latest
     - name: cilium
       contents: |-
         apiVersion: v1

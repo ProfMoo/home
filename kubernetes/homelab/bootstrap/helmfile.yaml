@@ -1,0 +1,32 @@
+---
+# yaml-language-server: $schema=https://json.schemastore.org/helmfile
+helmDefaults:
+  force: true
+  timeout: 600
+  wait: true
+  waitForJobs: true
+  # We need namespaces such as `flux-system` to exist already.
+  createNamespace: true
+# repositories:
+#   - name: cilium
+#     url: https://helm.cilium.io
+#   - name: jetstack
+#     url: https://charts.jetstack.io
+releases:
+  # - name: cilium
+  #   namespace: kube-system
+  #   chart: cilium/cilium
+  #   version: 1.17.1
+  #   values: ['kubernetes/homelab/apps/kube-system/cilium/app/helm-values.yaml']
+  - name: flux-operator
+    namespace: flux-system
+    chart: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator
+    version: 0.14.0
+    values: ['../apps/flux-system/flux-operator/app/helm-values.yaml']
+  - name: flux-instance
+    namespace: flux-system
+    chart: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-instance
+    version: 0.14.0
+    values: ['../apps/flux-system/flux-operator/instance/helm-values.yaml']
+    needs: ['flux-system/flux-operator']
+    wait: false

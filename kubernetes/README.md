@@ -1,5 +1,53 @@
 # Kubernetes
 
+## Overview
+
+* Code in the [`bootstrap`](./homelab/bootstrap/) dir is used to bootstrap the cluster.
+
+* Code in the [`apps`](./homelab/apps/) dir is sync'd to the cluster after the cluster has been bootstrapped.
+
+## Bootstrapping
+
+The steps below are run after the cluster is created with Talos to start the flux-focused GitOps workflow. One the steps below are run, all the K8s cluster components and apps should install onto the cluster.
+
+### 1. Secrets
+
+In [this directory](./bootstrap), there are two secrets that must be applied to the cluster for flux to function properly:
+
+* `age.secret.sops.yaml`: The age secret that Flux will use to decrypt secrets checked into the codebase.
+* `github.secret.sops.yaml`: The Github SSH keys and access token necessary for Flux to access this repository on github.com.
+
+These secrets can be decrypted by either an age key (defined in the top-level `.sops.yaml` file) OR a KMS key (ARN also defined in the top-level `.sops.yaml` file). Age is the primary key used to decrypt secrets by Flux at deploy time. KMS key can be used a backup to decrypt and recover the bootstrap secrets if needed.
+
+To deploy these secret during initial bootstrapping:
+
+```bash
+sops --decrypt kubernetes/homelab/bootstrap/age.bootstrap.sops.yaml | kubectl apply --server-side --filename -
+sops --decrypt kubernetes/homelab/bootstrap/github.bootstrap.sops.yaml | kubectl apply --server-side --filename -
+```
+
+Most of the Kubernetes components are added via Flux defined in the [kubernetes directory](../kubernetes/). For the remaining components that are installed during cluster instantiation, the instructions are defined below.
+
+### 2. Helmfile Installation
+
+There are a few components that need to installed manually before the cluster can start updating itself.
+
+After the initial Talos cluster creation (with the CNI set to none), the cluster will be waiting for a CNI to be installed ([docs](https://www.talos.dev/v1.9/kubernetes-guides/network/deploying-cilium/)).
+
+Additionally, we must install Flux itself. Flux is responsible for installing the rest of the cluster.
+
+To do this, we use `helmfile`:
+
+```bash
+helmfile --file kubernetes/homelab/bootstrap/helmfile.yaml apply  --skip-diff-on-install --suppress-diff
+```
+
+Then, I install the my repo-specific Flux configuration using this command:
+
+```bash
+kubectl apply --server-side --kustomize kubernetes/homelab/bootstrap/flux/repo
+```
+
 ## Storage
 
 ### Current
@@ -74,8 +122,8 @@ View example [Helm Release](https://github.com/onedr0p/home-ops/blob/782ec8c15ca
 
 > _The Flux HelmRelease option `valuesFrom` can inject a secret item into the Helm values of a `HelmRelease`_
 >
-> - _Does not work with merging array values_
-> - _Care needed with keys that contain dot notation in the name_
+> * _Does not work with merging array values_
+> * _Care needed with keys that contain dot notation in the name_
 
 ```yaml
 valuesFrom:
@@ -121,9 +169,9 @@ View example [Fluxtomization](https://github.com/onedr0p/home-ops/blob/782ec8c15
 
 #### Final Secrets Thoughts
 
-- TODO: For the first **three methods** consider using a tool like [stakater/reloader](https://github.com/stakater/Reloader) to restart the pod when the secret changes. Using reloader on a pod using a secret provided by Flux Variable Substitution will lead to pods being restarted during any change to the secret while related to the pod or not.
+* TODO: For the first **three methods** consider using a tool like [stakater/reloader](https://github.com/stakater/Reloader) to restart the pod when the secret changes. Using reloader on a pod using a secret provided by Flux Variable Substitution will lead to pods being restarted during any change to the secret while related to the pod or not.
 
-- The last method should be used when all other methods are not an option, or used when you have a “global” secret used by numerous HelmReleases across the cluster.
+* The last method should be used when all other methods are not an option, or used when you have a “global” secret used by numerous HelmReleases across the cluster.
 
 ### Kustomization Wait & DependOn
 
@@ -150,47 +198,3 @@ Thanks to `mirceanton` for the overview in the [Home Operations discord server](
 In the future, I might choose to go down a more "hyperconverged" route and manage storage directly from k8s (instead of having TrueNAS handle most of this). In that case, I'd need to migrate the `StorageClass` of most of my pods, which would be a big lift. To do that, there is a great article [here](https://gist.github.com/deefdragon/d58a4210622ff64088bd62a5d8a4e8cc).
 
 For this hyperconverged route, I might consider using [Harvester](https://github.com/harvester/harvester), which is a more cloud-native hypervisor and VM-management solution.
-
-## Bootstrapping
-
-The steps below are run after the cluster is created with Talos to start the flux-focused GitOps workflow. One the steps below are run, all the K8s cluster components and apps should install onto the cluster.
-
-### 1. CNI
-
-After the initial Talos cluster creation (with the CNI set to none), the cluster will be waiting for a CNI to be installed ([docs](https://www.talos.dev/v1.9/kubernetes-guides/network/deploying-cilium/)). This is the first component that must be installed after raw infra is provisioned.
-
-```bash
-helm upgrade --install cilium cilium/cilium --namespace cilium --values kubernetes/homelab/apps/cilium/cilium/app/helm-values.yaml
-```
-
-### 2. Secrets
-
-In [this directory](./bootstrap), there are two secrets that must be applied to the cluster for flux to function properly:
-
-- `age.secret.sops.yaml`: The age secret that Flux will use to decrypt secrets checked into the codebase.
-- `github.secret.sops.yaml`: The Github SSH keys and access token necessary for Flux to access this repository on github.com.
-
-These secrets can be decrypted by either an age key (defined in the top-level `.sops.yaml` file) OR a KMS key (ARN also defined in the top-level `.sops.yaml` file). Age is the primary key used to decrypt secrets by Flux at deploy time. KMS key can be used a backup to decrypt and recover the bootstrap secrets if needed.
-
-To deploy these secret during initial bootstrapping:
-
-```bash
-sops --decrypt kubernetes/homelab/bootstrap/age.bootstrap.sops.yaml | kubectl apply --server-side --filename -
-sops --decrypt kubernetes/homelab/bootstrap/github.bootstrap.sops.yaml | kubectl apply --server-side --filename -
-```
-
-Most of the Kubernetes components are added via Flux defined in the [kubernetes directory](../kubernetes/). For the remaining components that are installed during cluster instantiation, the instructions are defined below.
-
-### 3. Flux Installation
-
-I used Kustomize to install the components necessary to bootstrap Flux using this command:
-
-```bash
-kubectl apply --server-side --kustomize kubernetes/homelab/bootstrap/flux/kustomization
-```
-
-Then, I install the my repo-specific Flux configuration using this command:
-
-```bash
-kubectl apply --server-side --kustomize kubernetes/homelab/bootstrap/flux/repo
-```
