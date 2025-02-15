@@ -11,4 +11,4 @@ configMapGenerator:
     files:
       - values.yaml=./helm-values.yaml
 configurations:
-  - kustomizeconfig.yaml
+  - kustomize-config.yaml
