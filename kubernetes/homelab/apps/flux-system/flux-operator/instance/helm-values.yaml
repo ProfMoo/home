@@ -15,15 +15,16 @@ instance:
     kind: GitRepository
     url: https://github.com/ProfMoo/home
     ref: refs/heads/master
-    path: kubernetes/homelab/apps
+    path: kubernetes/homelab/bootstrap/repo
     interval: 1h
     name: profmoo-home
+    pullSecret: home-secret
   commonMetadata:
     labels:
       app.kubernetes.io/name: flux
   kustomize:
     patches:
-      - # Add Sops decryption to 'flux-system' Kustomization
+      - # Add Sops decryption to 'profmoo-home' Kustomization
         patch: |
           - op: add
             path: /spec/decryption

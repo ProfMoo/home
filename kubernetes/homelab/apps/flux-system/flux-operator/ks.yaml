@@ -30,6 +30,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  dependsOn:
+    - name: flux-operator
   interval: 30m
   path: ./kubernetes/apps/flux-system/flux-operator/instance
   prune: false
@@ -51,6 +53,8 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  dependsOn:
+    - name: flux-operator
   interval: 30m
   path: ./kubernetes/apps/flux-system/flux-operator/addons
   prune: false
