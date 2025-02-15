@@ -7,7 +7,7 @@ metadata:
   namespace: flux-system
 spec:
   path: ./kubernetes/homelab/apps/storage/local-path-provisioner/app
-  prune: false # revert to true
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home

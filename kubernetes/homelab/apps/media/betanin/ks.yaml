@@ -13,7 +13,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/media/betanin/secrets
-  prune: false # revert to true
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -41,7 +41,7 @@ spec:
   dependsOn:
     - name: betanin-secrets
       namespace: flux-system
-  prune: false # revert to true
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home

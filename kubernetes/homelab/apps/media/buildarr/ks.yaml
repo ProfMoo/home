@@ -12,7 +12,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/media/buildarr/secrets
-  prune: false # revert to true
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -40,7 +40,7 @@ spec:
   dependsOn:
     - name: buildarr-secrets
       namespace: flux-system
-  prune: false # revert to true
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home

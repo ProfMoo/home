@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/media/lidarr/app
-  prune: false # revert to true
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -32,7 +32,7 @@ spec:
     - name: lidarr
       namespace: flux-system
   path: ./kubernetes/homelab/apps/media/lidarr/exporter
-  prune: false # revert to true
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home

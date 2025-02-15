@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: emqx-cluster
   path: ./kubernetes/homelab/apps/home-automation/zigbee2mqtt/app
-  prune: false # revert to true
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
