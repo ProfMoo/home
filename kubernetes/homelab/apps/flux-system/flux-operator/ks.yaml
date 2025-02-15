@@ -10,7 +10,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   interval: 30m
-  path: ./kubernetes/apps/flux-system/flux-operator/app
+  path: ./kubernetes/homelab/apps/flux-system/flux-operator/app
   prune: false
   sourceRef:
     kind: GitRepository
@@ -33,7 +33,7 @@ spec:
   dependsOn:
     - name: flux-operator
   interval: 30m
-  path: ./kubernetes/apps/flux-system/flux-operator/instance
+  path: ./kubernetes/homelab/apps/flux-system/flux-operator/instance
   prune: false
   sourceRef:
     kind: GitRepository
@@ -55,8 +55,9 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: flux-operator
+    - name: flux-instance
   interval: 30m
-  path: ./kubernetes/apps/flux-system/flux-operator/addons
+  path: ./kubernetes/homelab/apps/flux-system/flux-operator/addons
   prune: false
   sourceRef:
     kind: GitRepository

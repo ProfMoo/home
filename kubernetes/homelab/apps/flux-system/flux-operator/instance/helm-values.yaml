@@ -13,7 +13,7 @@ instance:
     - notification-controller
   sync:
     kind: GitRepository
-    url: https://github.com/ProfMoo/home
+    url: ssh://git@github.com/ProfMoo/home
     ref: refs/heads/master
     path: kubernetes/homelab/bootstrap/repo
     interval: 1h
