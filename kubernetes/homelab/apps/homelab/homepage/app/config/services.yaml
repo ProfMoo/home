@@ -14,7 +14,7 @@
         description: Request system
         widget:
           type: jellyseerr
-          url: http://jellyseer.media.svc.cluster.local:80
+          url: http://jellyseerr.media.svc.cluster.local:80
           key: MTcxOTc4NTA3MzM0NTgyMjE3OTYwLTU2NGItNGI4MC05Nzg4LWJjYmNhYmI5NTExNg==
     - Home Assistant:
         href: https://hass.drmoo.io
