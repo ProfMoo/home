@@ -20,3 +20,4 @@ resources:
   - ./factorio.yaml
   - ./emqx.yaml
   - ./external-secrets.yaml
+  - ./controlplaneio.yaml
