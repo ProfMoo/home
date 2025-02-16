@@ -130,6 +130,9 @@
     - Compute-1 iDRAC:
         href: http://192.168.1.120
         icon: dell
+    - Compute-2 iDRAC:
+        href: http://192.168.1.102
+        icon: dell
     - Minecraft:
         href: udp://minecraft-3-minecraft.games.svc.cluster.local:25565
         icon: minecraft
