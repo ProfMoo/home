@@ -45,10 +45,10 @@
     - Prometheus:
         href: https://prometheus.drmoo.io
         icon: prometheus
-        description: Observability
+        description: Metrics
         widget:
           type: prometheus
-          url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:8080
+          url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090
           fields: ["targets_up", "targets_down", "targets_total"]
     - GoldPinger:
         href: https://goldpinger.drmoo.io
