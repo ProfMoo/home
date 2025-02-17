@@ -124,11 +124,11 @@
         href: http://192.168.1.54
         icon: truenas
     - Compute-1:
-        href: http://192.168.1.64:8006
+        href: http://pve.0.internal.drmoo.io:8006
         icon: proxmox
         description: (root:admin)
     - Compute-2:
-        href: http://192.168.1.65:8006
+        href: http://pve.1.internal.drmoo.io:8006
         icon: proxmox
         description: (root:admin)
     - Compute-1 iDRAC:
