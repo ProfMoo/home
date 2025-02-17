@@ -9,8 +9,6 @@ module "talos_1_9_2_iso" {
   talos_image_storage_node = "pve"
 }
 
-
-
 module "cluster" {
   source = "./modules/cluster"
 
@@ -29,7 +27,7 @@ module "cluster" {
       datastore   = "disk2"
 
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve0"
+      proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO.
@@ -59,7 +57,7 @@ module "cluster" {
       disk_size             = "50"
       datastore             = "disk1"
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve0"
+      proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO.
@@ -89,7 +87,7 @@ module "cluster" {
       disk_size             = "50"
       datastore             = "disk3"
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve0"
+      proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO.
@@ -123,7 +121,7 @@ module "cluster" {
       datastore   = "disk3"
 
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve0"
+      proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO.
@@ -153,7 +151,7 @@ module "cluster" {
       disk_size             = "100"
       datastore             = "disk1"
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve0"
+      proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO.
@@ -182,7 +180,7 @@ module "cluster" {
       disk_size             = "100"
       datastore             = "disk2"
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve0"
+      proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
 
       # This doesn't necessarily need to match the boot ISO.

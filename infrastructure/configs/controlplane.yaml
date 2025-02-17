@@ -12,7 +12,7 @@ machine:
     key: ${client_key}
   nodeLabels:
     drmoo.io/role: ${node_type}
-    drmoo.io/zone: pve
+    drmoo.io/zone: ${proxmox_node}
   certSANs:
     - ${ipv4_address}/24
     - "kubernetes.default.svc.cluster.local"
