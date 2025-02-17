@@ -127,12 +127,18 @@
         href: http://192.168.1.64:8006
         icon: proxmox
         description: (root:admin)
+    - Compute-2:
+        href: http://192.168.1.65:8006
+        icon: proxmox
+        description: (root:admin)
     - Compute-1 iDRAC:
         href: http://192.168.1.120
         icon: dell
+        description: (root:calvin)
     - Compute-2 iDRAC:
         href: http://192.168.1.102
         icon: dell
+        description: (root:MA33M93PFYX3)
     - Minecraft:
         href: udp://minecraft-3-minecraft.games.svc.cluster.local:25565
         icon: minecraft
