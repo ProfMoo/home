@@ -1,0 +1,12 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+set: [pipefail]
+shopt: [globstar]
+includes:
+  talos: .taskfiles/talos
+  kubernetes: .taskfiles/kubernetes
+tasks:
+  default:
+    cmd: task --list
+    silent: true

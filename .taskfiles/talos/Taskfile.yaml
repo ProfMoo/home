@@ -1,0 +1,8 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: '3'
+tasks:
+  shutdown-node:
+    desc: Shutdown a node via talosctl [NODES=required]
+    cmds:
+      - talosctl WTF --timeout=5m0s --wait --nodes={{.NODES}}
