@@ -6,19 +6,19 @@ mkdir -p nodes
 # Get the worker node configs from the Terraform output
 # and write them to individual files
 terraform output -json worker_node_configs |
-    jq -rc 'to_entries[]' |
-    while IFS= read -r entry; do
-        key=$(echo "$entry" | jq -r '.key')
-        value=$(echo "$entry" | jq -r '.value')
-        echo "$value" >"nodes/${key}.yaml"
-    done
+	jq -rc 'to_entries[]' |
+	while IFS= read -r entry; do
+		key=$(echo "$entry" | jq -r '.key')
+		value=$(echo "$entry" | jq -r '.value')
+		echo "$value" >"nodes/${key}.yaml"
+	done
 
 # Get the control plane configs from the Terraform output
 # and write them to individual files
 terraform output -json control_plane_configs |
-    jq -rc 'to_entries[]' |
-    while IFS= read -r entry; do
-        key=$(echo "$entry" | jq -r '.key')
-        value=$(echo "$entry" | jq -r '.value')
-        echo "$value" >"nodes/${key}.yaml"
-    done
+	jq -rc 'to_entries[]' |
+	while IFS= read -r entry; do
+		key=$(echo "$entry" | jq -r '.key')
+		value=$(echo "$entry" | jq -r '.value')
+		echo "$value" >"nodes/${key}.yaml"
+	done
