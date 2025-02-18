@@ -3,5 +3,3 @@
 terraform output -raw talosconfig >$HOME/.talos/config
 
 terraform output -raw kubeconfig >$HOME/.kube/config
-
-kubie ctx
