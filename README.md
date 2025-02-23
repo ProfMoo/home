@@ -36,3 +36,7 @@ I configure Kubernetes with GitOps via [Flux](https://github.com/fluxcd/flux2). 
 The [home-operations Discord group](https://discord.gg/home-operations) has been a huge inspiration for this repository. In particular, the repos by [onedr0p](https://github.com/onedr0p/home-ops), [bjw-s](https://github.com/bjw-s/home-ops), and [buroa](https://github.com/buroa/k8s-gitops).
 
 One major change from the typical home-operations setup is that I configured Kubernetes inside VMs instead of bare-metal. For that modification, I drew great inspiration from the two repos [here](https://github.com/zimmertr/TJs-Kubernetes-Service) and [here](https://github.com/kubebn/talos-proxmox-kaas).
+
+## Local Dev
+
+Some binaries needed for local development: `talosctl` `kubectl` `flux` `terraform` `docker` `yamlfmt` `markdownlint-cli2` `hadolint` `shfmt`

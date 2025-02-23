@@ -7,7 +7,7 @@ tasks:
     cmds:
       - talosctl WTF --timeout=5m0s --wait --nodes={{.NODES}}
   apply:
-    desc: Diff the local Talos configs with the live nodes
+    desc: Apply the local Talos configs to the live nodes
     cmds:
       - |-
         for f in $(find infrastructure/nodes -maxdepth 1 -type f -name '*.yaml'); do

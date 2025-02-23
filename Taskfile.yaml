@@ -6,6 +6,8 @@ shopt: [globstar]
 includes:
   talos: .taskfiles/talos
   kubernetes: .taskfiles/kubernetes
+  linting: .taskfiles/linting
+  formatting: .taskfiles/formatting
 tasks:
   default:
     cmd: task --list

@@ -1,0 +1,41 @@
+---
+version: "3"
+tasks:
+  lint:
+    desc: "Run all linters"
+    deps:
+      - lint-yaml
+      - lint-markdown
+      - lint-terraform
+      - lint-docker
+      - lint-shell
+  lint-yaml:
+    desc: "Lint YAML files"
+    cmds:
+      - echo "==> Linting YAML files..."
+      - yamlfmt -conf .yamlfmt.yaml -lint
+      - echo "==> Done linting YAML files"
+  lint-markdown:
+    desc: "Lint Markdown files"
+    cmds:
+      - echo "==> Linting Markdown files..."
+      - markdownlint-cli2 --config .markdownlint-cli2.yaml
+      - echo "==> Done linting Markdown files"
+  lint-terraform:
+    desc: "Lint Terraform files"
+    cmds:
+      - echo "==> Linting Terraform files..."
+      - terraform fmt -check -recursive -diff
+      - echo "==> Done linting Terraform files"
+  lint-docker:
+    desc: "Lint Dockerfiles"
+    cmds:
+      - echo "==> Linting Dockerfiles..."
+      - find . -type f -name "*Dockerfile*" -not -path "*/\.*" | xargs hadolint --config .hadolint.yaml
+      - echo "==> Done linting Dockerfiles"
+  lint-shell:
+    desc: "Lint shell scripts"
+    cmds:
+      - echo "==> Linting Shell scripts..."
+      - shfmt -d .
+      - echo "==> Done linting Shell scripts"

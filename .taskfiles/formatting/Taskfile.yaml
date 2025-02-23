@@ -1,0 +1,34 @@
+---
+version: "3"
+tasks:
+  format:
+    desc: "Run all formatters"
+    deps:
+      - format-yaml
+      - format-markdown
+      - format-terraform
+      - format-shell
+  format-yaml:
+    desc: "Format YAML files"
+    cmds:
+      - echo "==> Formatting YAML files..."
+      - yamlfmt -conf .yamlfmt.yaml
+      - echo "==> Done formatting YAML files"
+  format-markdown:
+    desc: "Format Markdown files"
+    cmds:
+      - echo "==> Formatting Markdown files..."
+      - markdownlint-cli2 --config .markdownlint-cli2.yaml "**/*.md" --fix
+      - echo "==> Done formatting Markdown files"
+  format-terraform:
+    desc: "Format Terraform files"
+    cmds:
+      - echo "==> Formatting Terraform files..."
+      - terraform fmt -recursive
+      - echo "==> Done formatting Terraform files"
+  format-shell:
+    desc: "Format Shell scripts"
+    cmds:
+      - echo "==> Formatting shell scripts..."
+      - shfmt --write .
+      - echo "==> Done formatting shell scripts"

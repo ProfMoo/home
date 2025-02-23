@@ -45,7 +45,7 @@ locals {
 
         # Secrets
         token                       = data.sops_file.talos_secrets.data["talos.machineconfig.trustdinfo.token"]
-        client_ca_crt               = data.sops_file.talos_secrets.data["talos.client.ca_certificate"]
+        client_ca_crt               = data.sops_file.talos_secrets.data["talos.client.client_certificate"]
         client_key                  = data.sops_file.talos_secrets.data["talos.client.client_key"]
         cluster_id                  = data.sops_file.talos_secrets.data["talos.machineconfig.cluster.id"]
         cluster_secret              = data.sops_file.talos_secrets.data["talos.machineconfig.cluster.secret"]
