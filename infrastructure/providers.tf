@@ -38,6 +38,7 @@ provider "proxmox" {
   endpoint  = "https://192.168.1.64:8006/api2/json"
   api_token = data.sops_file.provider_credentials.data["secrets.proxmox.token"]
   insecure  = true
+
   ssh {
     agent    = true
     username = "root"

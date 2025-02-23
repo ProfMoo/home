@@ -6,3 +6,25 @@ tasks:
     desc: Shutdown a node via talosctl [NODES=required]
     cmds:
       - talosctl WTF --timeout=5m0s --wait --nodes={{.NODES}}
+  apply:
+    desc: Diff the local Talos configs with the live nodes
+    cmds:
+      - |-
+        for f in $(find infrastructure/nodes -maxdepth 1 -type f -name '*.yaml'); do
+          name=$(basename "$f" .yaml)
+          echo "================================================================================"
+          echo "Applying config for node: $name"
+          talosctl apply-config --nodes="$name" --file="$f"
+          echo "================================================================================"
+        done
+  apply-dry-run:
+    desc: Diff the local Talos configs with the live nodes
+    cmds:
+      - |-
+        for f in $(find infrastructure/nodes -maxdepth 1 -type f -name '*.yaml'); do
+          name=$(basename "$f" .yaml)
+          echo "================================================================================"
+          echo "Applying config for node: $name"
+          talosctl apply-config --nodes="$name" --file="$f" --dry-run
+          echo "================================================================================"
+        done
