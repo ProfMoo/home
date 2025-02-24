@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Create nodes directory if it doesn't exist
-mkdir -p nodes
+# Delete old nodes directory
+rm -r nodes
+
+# Create nodes directory
+mkdir nodes
 
 # Get the worker node configs from the Terraform output
 # and write them to individual files

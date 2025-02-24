@@ -156,7 +156,7 @@ module "cluster" {
     },
     "worker_node_instance_1" = {
       id                    = "1101"
-      name                  = "flume"
+      name                  = "mat-zo"
       description           = "Worker node instance in the Kubernetes homelab cluster"
       tags                  = ["worker-node", "kubernetes"]
       cpu_cores             = 10
@@ -175,10 +175,10 @@ module "cluster" {
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
 
-      vlan_id        = "2"
-      ipv4_address   = "192.168.8.121"
-      mac_address    = "d4:9f:6a:b1:5c:2f"
-      subnet_gateway = "192.168.8.1"
+      vlan_id        = "1"
+      ipv4_address   = "192.168.1.141"
+      mac_address    = "d4:9f:6a:b1:5c:4f"
+      subnet_gateway = "192.168.1.1"
 
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
