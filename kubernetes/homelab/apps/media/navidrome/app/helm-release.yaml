@@ -39,7 +39,7 @@ spec:
           app:
             image:
               repository: ghcr.io/navidrome/navidrome
-              tag: 0.54.4@sha256:5c15cb7792c8e0b3a3bed212609c2072ba70bbff91e6ddff651ba2829101d4c1
+              tag: 0.55.0@sha256:2a1d37af7901d8dec5a7c7147600469f39b6e6137f857ead61124b3b709f0953
             resources:
               requests:
                 cpu: 100m
