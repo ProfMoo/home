@@ -9,3 +9,4 @@ resources:
   - ./loki/ks.yaml
   - ./grafana/ks.yaml
   - ./proxmox-exporter/ks.yaml
+  - ./redfish-exporter/ks.yaml
