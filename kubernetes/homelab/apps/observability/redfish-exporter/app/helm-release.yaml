@@ -70,7 +70,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: *port
+            port: 9610
     serviceMonitor:
       app:
         serviceName: *app
