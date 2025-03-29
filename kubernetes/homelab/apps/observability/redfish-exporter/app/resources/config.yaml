@@ -1,7 +1,7 @@
 ---
 enabled: true
 config:
-  hosts:
+  host:
     "192.168.1.120":
       username: root
       password: calvin
