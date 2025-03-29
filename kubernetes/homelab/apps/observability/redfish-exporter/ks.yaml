@@ -6,7 +6,7 @@ metadata:
   name: &app redfish-exporter
   namespace: flux-system
 spec:
-  targetNamespace: homelab
+  targetNamespace: observability
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
