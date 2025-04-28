@@ -47,3 +47,15 @@ tasks:
       kubectl wait --for=condition=available --namespace {{.NS}} deployment/{{.DEPLOY}} --timeout=300s
     requires:
       vars: [NS, DEPLOY, CLAIM]
+  delete-error-pods:
+    desc: Delete all pods in Error state [NS=all]
+    cmd: |
+      if [ "{{.NS}}" = "all" ]; then
+        echo "==> Deleting Error pods across all namespaces..."
+        kubectl get pods --all-namespaces | grep Error | awk '{print "-n "$1, $2}' | xargs -L1 kubectl delete pod
+      else
+        echo "==> Deleting Error pods in namespace {{.NS}}..."
+        kubectl get pods -n {{.NS}} | grep Error | awk '{print $1}' | xargs -L1 kubectl delete pod -n {{.NS}}
+      fi
+    vars:
+      NS: '{{.NS | default "all"}}'
