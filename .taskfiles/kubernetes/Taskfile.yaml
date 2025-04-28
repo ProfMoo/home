@@ -24,3 +24,26 @@ tasks:
       - kubectl get nodes {{.NODE}}
       - kubectl node-shell --version
       - which kubectl
+  reset-pvc:
+    desc: Scale down deployment, delete PVC, and make PV available [NS=default] [DEPLOY=required] [CLAIM=required]
+    cmd: |
+      echo "==> Scaling down deployment {{.DEPLOY}}..."
+      kubectl scale deployment {{.DEPLOY}} --replicas=0 --namespace {{.NS}}
+
+      echo "==> Waiting for pods to terminate..."
+      kubectl wait --for=delete --namespace {{.NS}} pods --selector=app={{.DEPLOY}} --timeout=60s
+
+      echo "==> Deleting PVC {{.CLAIM}}..."
+      kubectl delete pvc {{.CLAIM}} --namespace {{.NS}}
+
+      echo "==> Patching PV to make it available..."
+      PV=$(kubectl get pv -o json | jq -r '.items[] | select(.spec.claimRef.name == "{{.CLAIM}}") | .metadata.name')
+      kubectl patch pv $PV -p '{"spec":{"claimRef": null}}'
+
+      echo "==> Scaling up deployment {{.DEPLOY}}..."
+      kubectl scale deployment {{.DEPLOY}} --replicas=1 --namespace {{.NS}}
+
+      echo "==> Waiting for pod to be ready..."
+      kubectl wait --for=condition=available --namespace {{.NS}} deployment/{{.DEPLOY}} --timeout=300s
+    requires:
+      vars: [NS, DEPLOY, CLAIM]

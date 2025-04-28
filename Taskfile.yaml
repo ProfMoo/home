@@ -5,7 +5,7 @@ set: [pipefail]
 shopt: [globstar]
 includes:
   talos: .taskfiles/talos
-  kubernetes: .taskfiles/kubernetes
+  k: .taskfiles/kubernetes
   linting: .taskfiles/linting
   formatting: .taskfiles/formatting
 tasks:
