@@ -97,7 +97,7 @@ module "cluster" {
       cpu_cores             = 2
       memory                = 6144
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve2"
+      proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso_pve2.talos_iso_id
 
       disk_size = "50"
@@ -166,7 +166,7 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
 
       disk_size = "100"
-      datastore = "disk1"
+      datastore = "disk2"
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
@@ -176,9 +176,9 @@ module "cluster" {
       talos_virtual_ip = "192.168.8.99"
 
       vlan_id        = "1"
-      ipv4_address   = "192.168.1.141"
+      ipv4_address   = "192.168.8.141"
       mac_address    = "d4:9f:6a:b1:5c:4f"
-      subnet_gateway = "192.168.1.1"
+      subnet_gateway = "192.168.8.1"
 
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
