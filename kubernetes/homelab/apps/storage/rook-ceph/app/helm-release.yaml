@@ -23,6 +23,8 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
+  # Values available here:
+  # https://github.com/rook/rook/blob/master/deploy/charts/rook-ceph/values.yaml
   values:
     csi:
       cephFSKernelMountOptions: ms_mode=prefer-crc
