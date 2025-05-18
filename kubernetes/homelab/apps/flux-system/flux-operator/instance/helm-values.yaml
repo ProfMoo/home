@@ -3,7 +3,7 @@
 instance:
   distribution:
     # renovate: datasource=github-releases depName=fluxcd/flux2
-    version: 2.4.0
+    version: "2.x"
   cluster:
     networkPolicy: false
   components:
