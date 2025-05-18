@@ -21,3 +21,4 @@ resources:
   - ./emqx.yaml
   - ./external-secrets.yaml
   - ./controlplaneio.yaml
+  - ./rook-ceph.yaml
