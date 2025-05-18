@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: external
   rules:
-    - host: flux-webhook.devbu.io
+    - host: flux-webhook.drmoo.io
       http:
         paths:
           - path: /hook/

@@ -3,8 +3,5 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - ./namespace.yaml
-  - ./local-path-provisioner/ks.yaml
-  - ./freenas-api-nfs/ks.yaml
-  - ./freenas-api-iscsi/ks.yaml
-  - ./rook-ceph/ks.yaml
+  - ./externalsecret.yaml
+  - ./helmrelease.yaml
