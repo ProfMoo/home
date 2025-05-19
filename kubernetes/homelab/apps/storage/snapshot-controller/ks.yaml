@@ -4,7 +4,14 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app snapshot-controller
-  namespace: &namespace kube-system
+  namespace: &namespace flux-system
+  annotations:
+    fluxcd.io/description: |
+      Snapshot Controller is a Kubernetes controller that manages volume snapshots.
+      It provides a way to create, delete, and restore snapshots of persistent volumes.
+      This is useful for backup and disaster recovery purposes.
+      The controller works with various storage providers and integrates with Kubernetes
+      to provide a seamless experience for managing snapshots.
 spec:
   targetNamespace: *namespace
   commonMetadata:
