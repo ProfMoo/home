@@ -23,7 +23,7 @@ spec:
       name: snapshot-controller
       namespace: *namespace
   interval: 1h
-  path: ./kubernetes/homelab/app/storage/snapshot-controller/app
+  path: ./kubernetes/homelab/apps/storage/snapshot-controller/app
   prune: true
   retryInterval: 2m
   sourceRef:
