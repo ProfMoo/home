@@ -22,3 +22,4 @@ resources:
   - ./external-secrets.yaml
   - ./controlplaneio.yaml
   - ./rook-ceph.yaml
+  - ./piraeus.yaml
