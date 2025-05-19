@@ -13,7 +13,7 @@ metadata:
       The controller works with various storage providers and integrates with Kubernetes
       to provide a seamless experience for managing snapshots.
 spec:
-  targetNamespace: *namespace
+  targetNamespace: storage
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
