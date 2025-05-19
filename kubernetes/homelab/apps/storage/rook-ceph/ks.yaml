@@ -33,6 +33,7 @@ metadata:
   name: &app rook-ceph-cluster
   namespace: flux-system
 spec:
+  targetNamespace: storage
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
