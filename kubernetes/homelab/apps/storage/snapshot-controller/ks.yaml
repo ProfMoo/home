@@ -25,6 +25,7 @@ spec:
   interval: 1h
   path: ./kubernetes/homelab/apps/storage/snapshot-controller/app
   prune: true
+  force: true
   retryInterval: 2m
   sourceRef:
     kind: GitRepository
