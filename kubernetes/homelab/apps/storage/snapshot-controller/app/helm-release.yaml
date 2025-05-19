@@ -5,6 +5,7 @@ kind: HelmRelease
 metadata:
   name: snapshot-controller
 spec:
+  timeout: 5m
   interval: 1h
   chart:
     spec:
