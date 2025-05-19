@@ -41,7 +41,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: rook-ceph
+    - name: rook-ceph-operator
       namespace: flux-system
       # - name: volsync
       #   namespace: volsync-system
