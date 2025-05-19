@@ -26,6 +26,8 @@ spec:
   # Values available here:
   # https://github.com/rook/rook/blob/master/deploy/charts/rook-ceph-cluster/values.yaml
   values:
+    # This default to rook-ceph if not set:
+    # https://rook.io/docs/rook/latest-release/Helm-Charts/ceph-cluster-chart/#installing
     operatorNamespace: storage
     monitoring:
       enabled: true
