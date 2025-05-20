@@ -92,7 +92,7 @@ spec:
       - name: freenas-api-iscsi
         defaultClass: false
         reclaimPolicy: Delete
-        volumeBindingMode: Immediate
+        volumeBindingMode: WaitForFirstCustomer
         allowVolumeExpansion: true
         parameters:
           fsType: ext4
@@ -107,7 +107,7 @@ spec:
       - name: freenas-api-iscsi-retain
         defaultClass: false
         reclaimPolicy: Retain
-        volumeBindingMode: Immediate
+        volumeBindingMode: WaitForFirstCustomer
         allowVolumeExpansion: true
         parameters:
           fsType: ext4
