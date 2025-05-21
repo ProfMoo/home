@@ -70,6 +70,7 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
       file_format  = "raw"
       interface    = var.storage_cluster_disk_interface
       size         = var.storage_cluster_disk_size
+      serial       = "storage_cluster_disk"
     }
   }
 

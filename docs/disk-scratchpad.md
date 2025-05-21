@@ -24,15 +24,16 @@ To get more info about a specific disk:
 
 ```bash
 talosctl get disk sdb --nodes=192.168.8.120 -o yaml
+talosctl get volumeconfigs -n=192.168.8.120
 ```
 
 We need to add disk information to Talos so it knows where/how to mount the disk(s).
 
 ```yaml
 disks:
-    - device: /dev/disk/by-id/virtio-storage_cluster_disk
-      partitions:
-        - mountpoint: /var/ceph
+- device: /dev/sdb
+    partitions:
+    - mountpoint: /var/mnt/extra
 ```
 
 ## Kubernetes
