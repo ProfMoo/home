@@ -26,13 +26,6 @@ machine:
     disableManifestsDirectory: true
     extraArgs:
       rotate-server-certificates: true
-  # disks:
-  #   # This value with 'by-id' is assigned from the standard Linux device naming convention.
-  #   # The device is available at `sdb` (default Kernel names) or `/dev/disk/by-id/virtio-storage_cluster_disk` (persistent names based on hardware info).
-  #   # But I can't figure out why I can't get by-id to show up.
-  #   - device: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_storage_cluster_disk
-  #     partitions:
-  #       - mountpoint: /var/mnt/extra
   sysctls:
     # These values are useful for Ceph's traffic patterns - especially for replication.
     vm.nr_hugepages: "1024"

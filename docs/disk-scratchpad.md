@@ -27,7 +27,7 @@ talosctl get disk sdb --nodes=192.168.8.120 -o yaml
 talosctl get volumeconfigs -n=192.168.8.120
 ```
 
-We need to add disk information to Talos so it knows where/how to mount the disk(s).
+DO NOT add the disk to Talos disk mount like this:
 
 ```yaml
 disks:
@@ -35,5 +35,7 @@ disks:
     partitions:
     - mountpoint: /var/mnt/extra
 ```
+
+We avoid this because this will actually format the drive as a filesystem. Ceph requires RAW disk.
 
 ## Kubernetes
