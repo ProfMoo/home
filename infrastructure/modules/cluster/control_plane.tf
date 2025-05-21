@@ -14,6 +14,8 @@ module "control_plane_node" {
   disk_size = each.value.disk_size
   datastore = each.value.datastore
 
+  enable_storage_cluster = false
+
   vlan_id               = each.value.vlan_id
   bridge_network_device = each.value.bridge_network_device
   ipv4_address          = each.value.ipv4_address

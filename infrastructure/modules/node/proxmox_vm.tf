@@ -62,7 +62,18 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
     size         = var.disk_size
   }
 
-  # NOTE: This loads the Talos onto disk via block storage.
+  # This block is used to provide storage for the storage cluster (i.e. Rook/Ceph).
+  dynamic "disk" {
+    for_each = var.enable_storage_cluster ? [1] : []
+    content {
+      datastore_id = var.storage_cluster_datastore_id
+      file_format  = "raw"
+      interface    = var.storage_cluster_disk_interface
+      size         = var.storage_cluster_disk_size
+    }
+  }
+
+  # NOTE: This loads the Talos ISO onto disk via block storage.
   cdrom {
     enabled   = true
     file_id   = var.initial_boot_iso

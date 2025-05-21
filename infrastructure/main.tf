@@ -41,6 +41,8 @@ module "cluster" {
       disk_size = "50"
       datastore = "disk2"
 
+      enable_storage_cluster = false
+
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
       kubernetes_version = "1.32.1"
@@ -72,6 +74,8 @@ module "cluster" {
       disk_size = "50"
       datastore = "disk1"
 
+      enable_storage_cluster = false
+
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
       kubernetes_version = "1.32.1"
@@ -102,6 +106,8 @@ module "cluster" {
 
       disk_size = "50"
       datastore = "disk3"
+
+      enable_storage_cluster = false
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
@@ -137,6 +143,12 @@ module "cluster" {
       disk_size = "100"
       datastore = "disk3"
 
+      enable_storage_cluster         = true
+      storage_cluster_datastore_id   = "disk3"
+      storage_cluster_disk_interface = "scsi1"
+      storage_cluster_disk_size      = 100
+
+
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
       kubernetes_version = "1.32.1"
@@ -168,6 +180,8 @@ module "cluster" {
       disk_size = "100"
       datastore = "disk2"
 
+      enable_storage_cluster = false
+
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
       kubernetes_version = "1.32.1"
@@ -198,6 +212,8 @@ module "cluster" {
       disk_size = "100"
       datastore = "disk2"
 
+      enable_storage_cluster = false
+
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
       kubernetes_version = "1.32.1"
@@ -227,6 +243,8 @@ module "cluster" {
 
       disk_size = "450"
       datastore = "disk1"
+
+      enable_storage_cluster = false
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"

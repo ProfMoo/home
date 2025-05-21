@@ -17,11 +17,12 @@ variable "control_plane" {
     tags                  = list(string)
     cpu_cores             = number
     memory                = number
-    disk_size             = number
-    datastore             = string
     bridge_network_device = string
     proxmox_node_name     = string
     initial_boot_iso      = string
+
+    disk_size = number
+    datastore = string
 
     talos_version      = string
     kubernetes_version = string
@@ -47,11 +48,16 @@ variable "worker_nodes" {
     tags                  = list(string)
     cpu_cores             = number
     memory                = number
-    disk_size             = number
-    datastore             = string
     bridge_network_device = string
     proxmox_node_name     = string
     initial_boot_iso      = string
+
+    disk_size                      = number
+    datastore                      = string
+    enable_storage_cluster         = bool
+    storage_cluster_datastore_id   = optional(string)
+    storage_cluster_disk_interface = optional(string)
+    storage_cluster_disk_size      = optional(number)
 
     talos_version      = string
     kubernetes_version = string

@@ -26,6 +26,15 @@ machine:
     disableManifestsDirectory: true
     extraArgs:
       rotate-server-certificates: true
+  disks:
+    - device: /dev/disk/by-id/virtio-storage_cluster_disk
+      partitions:
+        - mountpoint: /var/ceph
+  sysctls:
+    # These values are useful for Ceph's traffic patterns - especially for replication.
+    vm.nr_hugepages: "1024"
+    net.core.rmem_max: "16777216"
+    net.core.wmem_max: "16777216"
   network:
     hostname: ${hostname}
     nameservers:
