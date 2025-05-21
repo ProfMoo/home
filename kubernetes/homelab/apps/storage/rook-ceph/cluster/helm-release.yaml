@@ -84,7 +84,7 @@ spec:
       storage:
         useAllNodes: true
         useAllDevices: false
-        devicePathFilter: /dev/sdb
+        devicePathFilter: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_storage_cluster_disk
         config:
           osdsPerDevice: "1"
     cephBlockPools:
