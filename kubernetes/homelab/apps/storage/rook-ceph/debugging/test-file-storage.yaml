@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: test-claim-ceph-filesystem
+  name: test-claim-ceph-filesystem-delete-later
 spec:
   storageClassName: ceph-filesystem-wffc
   accessModes:
@@ -10,3 +10,30 @@ spec:
   resources:
     requests:
       storage: 1Gi
+---
+# To read file:
+# k exec -n storage -it test-ceph-filesystem-pod -- cat /data/test-file.txt
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-ceph-filesystem-pod
+  namespace: storage
+spec:
+  containers:
+    - name: test-container
+      image: busybox:stable
+      command: ["sh", "-c", "echo 'Testing Ceph Filesystem...' > /data/test-file.txt; tail -f /dev/null"]
+      resources:
+        limits:
+          cpu: "0.05"
+          memory: "128Mi"
+        requests:
+          cpu: "0.01"
+          memory: "64Mi"
+      volumeMounts:
+        - name: test-volume
+          mountPath: /data
+  volumes:
+    - name: test-volume
+      persistentVolumeClaim:
+        claimName: test-claim-ceph-filesystem-delete-later
