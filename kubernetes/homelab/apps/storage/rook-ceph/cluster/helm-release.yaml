@@ -95,11 +95,11 @@ spec:
             size: 3
         storageClass:
           enabled: true
-          name: ceph-block
+          name: ceph-block-wffc
           isDefault: false
           reclaimPolicy: Delete
           allowVolumeExpansion: true
-          volumeBindingMode: Immediate
+          volumeBindingMode: WaitForFirstConsumer
           mountOptions: ["discard"]
           parameters:
             compression_mode: aggressive
@@ -153,11 +153,11 @@ spec:
         storageClass:
           enabled: true
           isDefault: false
-          name: ceph-filesystem
+          name: ceph-filesystem-wffc
           pool: data0
           reclaimPolicy: Delete
           allowVolumeExpansion: true
-          volumeBindingMode: Immediate
+          volumeBindingMode: WaitForFirstConsumer
           parameters:
             csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
             csi.storage.k8s.io/provisioner-secret-namespace: storage
