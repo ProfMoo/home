@@ -115,6 +115,7 @@ cluster:
     disablePodSecurityPolicy: true
     extraArgs:
       feature-gates: MutatingAdmissionPolicy=true
+      runtime-config: admissionregistration.k8s.io/v1alpha1=true
     admissionControl:
       - name: PodSecurity
         configuration:
