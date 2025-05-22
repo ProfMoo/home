@@ -1,4 +1,6 @@
 ---
+# Docs for this file can be found here:
+# https://gethomepage.dev/widgets/
 - Home:
     - Jellyfin:
         href: http://192.168.1.78:8096
@@ -35,11 +37,8 @@
 - Infrastructure:
     - Rook:
         href: https://rook.drmoo.io
-        icon: rook
+        icon: mdi-database
         description: Rook storage cluster
-        widget:
-          type: rook
-          url: http://rook-ceph-mgr-dashboard.storage.svc.cluster.local:9100
     - Grafana:
         href: https://grafana.drmoo.io
         icon: grafana
