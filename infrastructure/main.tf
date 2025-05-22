@@ -333,7 +333,7 @@ output "control_plane_configs" {
   sensitive = true
 }
 
-# Automaticlaly regen's the Talos node configuration files.
+# Automatically regens the Talos node configuration files.
 resource "null_resource" "generate_talos_configs" {
   triggers = {
     # Only trigger when control plane or worker configurations change
@@ -345,5 +345,20 @@ resource "null_resource" "generate_talos_configs" {
 
   provisioner "local-exec" {
     command = "${path.module}/create_talos_node_configs"
+  }
+}
+
+# Automatically repopulates the local Talosctl and Kubectl configurations.
+resource "null_resource" "generate_talos_configs" {
+  triggers = {
+    # Only trigger when control plane or worker configurations change
+    control_plane_changes = sha256(jsonencode(module.cluster.control_plane_configs))
+    worker_changes        = sha256(jsonencode(module.cluster.worker_node_configs))
+  }
+
+  depends_on = [module.cluster]
+
+  provisioner "local-exec" {
+    command = "${path.module}/get_local_configs"
   }
 }
