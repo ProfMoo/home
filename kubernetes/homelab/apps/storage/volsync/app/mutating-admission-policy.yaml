@@ -12,7 +12,6 @@ apiVersion: admissionregistration.k8s.io/v1alpha1
 kind: MutatingAdmissionPolicy
 metadata:
   name: volsync-mover-jitter
-  namespace: volsync-system
 spec:
   matchConstraints:
     resourceRules:
@@ -24,9 +23,11 @@ spec:
     - name: has-volsync-job-name-prefix
       expression: >
         object.metadata.name.startsWith("volsync-src-")
+
     - name: has-volsync-created-by-labels
       expression: >
         object.metadata.labels["app.kubernetes.io/created-by"] == "volsync"
+
   failurePolicy: Fail
   reinvocationPolicy: IfNeeded
   mutations:
@@ -73,19 +74,24 @@ spec:
     - name: has-volsync-job-name-prefix
       expression: >
         object.metadata.name.startsWith("volsync-")
+
     - name: has-volsync-created-by-labels
       expression: >
         object.metadata.labels["app.kubernetes.io/created-by"] == "volsync"
+
     - name: repository-volume-does-not-exist
       expression: >
         !object.spec.template.spec.volumes.exists(item, item.name == "repository")
+
   failurePolicy: Fail
   reinvocationPolicy: IfNeeded
   mutations:
     - patchType: JSONPatch
       jsonPatch:
-        expression: >
+        expression: >-
           [
+
+
             JSONPatch{
               op: "add", path: "/spec/template/spec/containers/0/volumeMounts/-",
               value: Object.spec.template.spec.containers.volumeMounts{
