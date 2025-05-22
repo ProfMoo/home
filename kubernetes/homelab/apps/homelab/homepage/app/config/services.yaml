@@ -33,6 +33,13 @@
         href: https://emqx.drmoo.io
         description: MQTT Cluster
 - Infrastructure:
+    - Rook:
+        href: https://rook.drmoo.io
+        icon: rook
+        description: Rook storage cluster
+        widget:
+          type: rook
+          url: http://rook-ceph-mgr-dashboard.storage.svc.cluster.local:9100
     - Grafana:
         href: https://grafana.drmoo.io
         icon: grafana

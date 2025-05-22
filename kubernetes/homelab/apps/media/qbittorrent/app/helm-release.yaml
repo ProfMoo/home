@@ -133,6 +133,6 @@ spec:
         defaultMode: 0777
         name: post-download-scripts
       config:
-        existingClaim: qbittorrent-replicated
+        existingClaim: qbittorrent
         globalMounts:
           - path: /config
