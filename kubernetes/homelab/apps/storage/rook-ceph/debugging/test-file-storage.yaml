@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: test-claim-ceph-filesystem-delete-later
+  name: test-claim-ceph-filesystem
 spec:
   storageClassName: ceph-filesystem-wffc
   accessModes:
@@ -36,4 +36,4 @@ spec:
   volumes:
     - name: test-volume
       persistentVolumeClaim:
-        claimName: test-claim-ceph-filesystem-delete-later
+        claimName: test-claim-ceph-filesystem
