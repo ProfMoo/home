@@ -1,5 +1,6 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/controlplaneio-fluxcd/charts/refs/heads/main/charts/flux-instance/values.schema.json
+# Chart link: https://github.com/controlplaneio-fluxcd/charts/tree/main/charts/flux-instance
 instance:
   distribution:
     # renovate: datasource=github-releases depName=fluxcd/flux2
@@ -83,7 +84,7 @@ instance:
         patch: |
           - op: add
             path: /spec/template/spec/containers/0/args/-
-            value: --helm-cache-max-size=10
+            value: --helm-cache-max-size=15
           - op: add
             path: /spec/template/spec/containers/0/args/-
             value: --helm-cache-ttl=60m

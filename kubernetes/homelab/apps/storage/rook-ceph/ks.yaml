@@ -52,7 +52,7 @@ spec:
       namespace: storage
     - apiVersion: ceph.rook.io/v1
       kind: CephCluster
-      name: rook-ceph
+      name: storage
       namespace: storage
   healthCheckExprs:
     - apiVersion: ceph.rook.io/v1
@@ -61,16 +61,12 @@ spec:
       current: status.ceph.health in ['HEALTH_OK', 'HEALTH_WARN']
   interval: 1h
   path: ./kubernetes/homelab/apps/storage/rook-ceph/cluster
-  postBuild:
-    substitute:
-      APP: *app
-      GATUS_SUBDOMAIN: rook
   prune: true
   retryInterval: 2m
   sourceRef:
     kind: GitRepository
     name: profmoo-home
-  timeout: 15m
+  timeout: 20m
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
