@@ -10,6 +10,12 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../components/volsync
+  postBuild:
+    substitute:
+      APP: *app
+      VOLSYNC_CAPACITY: 5Gi
   dependsOn:
     - name: nas-media
   path: ./kubernetes/homelab/apps/media/qbittorrent/app

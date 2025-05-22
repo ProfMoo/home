@@ -35,6 +35,7 @@ spec:
       jsonPatch:
         expression: >
           [
+
             JSONPatch{
               op: "add", path: "/spec/template/spec/initContainers",
               value: []
@@ -49,6 +50,7 @@ spec:
               }
             }
           ]
+
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.0/mutatingadmissionpolicybinding-admissionregistration-v1alpha1.json
 apiVersion: admissionregistration.k8s.io/v1alpha1
@@ -92,6 +94,7 @@ spec:
           [
 
 
+
             JSONPatch{
               op: "add", path: "/spec/template/spec/containers/0/volumeMounts/-",
               value: Object.spec.template.spec.containers.volumeMounts{
@@ -104,8 +107,8 @@ spec:
               value: Object.spec.template.spec.volumes{
                 name: "repository",
                 nfs: Object.spec.template.spec.volumes.nfs{
-                  server: "expanse.internal",
-                  path: "/mnt/eros/Volsync"
+                  server: "192.168.1.26:80",
+                  path: "/mnt/vault/homelab/volsync"
                 }
               }
             }
