@@ -12,9 +12,8 @@ spec:
       app.kubernetes.io/name: bitwarden
   ingress:
     - fromEndpoints:
-        - matchLabels:
-            app.kubernetes.io/instance: external-secrets
-            app.kubernetes.io/name: external-secrets
+        - matchExpressions:
+            - {key: app.kubernetes.io/instance, operator: In, values: [external-secrets]}
       toPorts:
         - ports:
             - port: "8087"
