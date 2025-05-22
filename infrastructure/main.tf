@@ -59,6 +59,11 @@ module "cluster" {
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
       service_subnets = "10.96.0.0/12"
+
+      kubernetes_node_labels = {
+        "drmoo.io/role" : "controlplane"
+        "drmoo.io/zone" : "pve"
+      }
     },
     "control_plane_instance_1" = {
       id                    = "1001"
@@ -92,6 +97,11 @@ module "cluster" {
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
       service_subnets = "10.96.0.0/12"
+
+      kubernetes_node_labels = {
+        "drmoo.io/role" : "controlplane"
+        "drmoo.io/zone" : "pve"
+      }
     },
     "control_plane_instance_2" = {
       id                    = "1002"
@@ -125,6 +135,11 @@ module "cluster" {
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
       service_subnets = "10.96.0.0/12"
+
+      kubernetes_node_labels = {
+        "drmoo.io/role" : "controlplane"
+        "drmoo.io/zone" : "pve"
+      }
     }
   }
 
@@ -164,6 +179,11 @@ module "cluster" {
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
       service_subnets = "10.96.0.0/12"
+
+      kubernetes_node_labels = {
+        "drmoo.io/role" : "worker"
+        "drmoo.io/zone" : "pve"
+      }
     },
     "worker_node_instance_1" = {
       id                    = "1101"
@@ -199,6 +219,11 @@ module "cluster" {
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
       service_subnets = "10.96.0.0/12"
+
+      kubernetes_node_labels = {
+        "drmoo.io/role" : "worker"
+        "drmoo.io/zone" : "pve"
+      }
     },
     "worker_node_instance_2" = {
       id                    = "1102"
@@ -234,6 +259,11 @@ module "cluster" {
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
       service_subnets = "10.96.0.0/12"
+
+      kubernetes_node_labels = {
+        "drmoo.io/role" : "worker"
+        "drmoo.io/zone" : "pve"
+      }
     }
     "worker_node_instance_3" = {
       id                    = "1103"
@@ -266,6 +296,11 @@ module "cluster" {
       # Internal kubernetes network configuration
       pod_subnets     = "10.244.0.0/16"
       service_subnets = "10.96.0.0/12"
+
+      kubernetes_node_labels = {
+        "drmoo.io/role" : "worker"
+        "drmoo.io/zone" : "pve2"
+      }
     }
   }
 }
@@ -296,4 +331,19 @@ output "worker_node_configs" {
 output "control_plane_configs" {
   value     = module.cluster.control_plane_configs
   sensitive = true
+}
+
+# Automaticlaly regen's the Talos node configuration files.
+resource "null_resource" "generate_talos_configs" {
+  triggers = {
+    # Only trigger when control plane or worker configurations change
+    control_plane_changes = sha256(jsonencode(module.cluster.control_plane_configs))
+    worker_changes        = sha256(jsonencode(module.cluster.worker_node_configs))
+  }
+
+  depends_on = [module.cluster]
+
+  provisioner "local-exec" {
+    command = "${path.module}/create_talos_node_configs"
+  }
 }

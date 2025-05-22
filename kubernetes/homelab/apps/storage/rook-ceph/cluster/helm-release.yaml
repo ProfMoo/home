@@ -48,6 +48,8 @@ spec:
           path: /
     toolbox:
       enabled: true
+    # https://rook.io/docs/rook/latest-release/Helm-Charts/ceph-cluster-chart/#ceph-cluster-spec
+    # Specificaly the CRD: https://rook.io/docs/rook/latest-release/CRDs/Cluster/ceph-cluster-crd/
     cephClusterSpec:
       cephConfig:
         global:
@@ -89,6 +91,28 @@ spec:
         devicePathFilter: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_storage_cluster_disk.*
         config:
           osdsPerDevice: "1"
+      # To control where various services will be scheduled by kubernetes, use the placement configuration sections below.
+      # The example under 'all' would have all services scheduled on kubernetes nodes labeled with 'role=rook-node' and
+      # the OSDs would specifically only be created on nodes labeled with 'role=rook-osd-node'.
+      placement:
+        all:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: role
+                      operator: In
+                      values:
+                        - rook-node
+        osd:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: role
+                      operator: In
+                      values:
+                        - rook-osd-node
     cephBlockPools:
       - name: ceph-blockpool
         spec:

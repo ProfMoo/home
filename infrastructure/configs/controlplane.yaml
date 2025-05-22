@@ -11,8 +11,9 @@ machine:
     crt: ${client_ca_crt}
     key: ${client_key}
   nodeLabels:
-    drmoo.io/role: ${node_type}
-    drmoo.io/zone: ${proxmox_node}
+%{ for key, value in kubernetes_node_labels ~}
+    ${key}: ${value}
+%{ endfor ~}
   certSANs:
     - ${ipv4_address}/24
     - "kubernetes.default.svc.cluster.local"

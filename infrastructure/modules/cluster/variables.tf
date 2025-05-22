@@ -37,6 +37,8 @@ variable "control_plane" {
     # NOTE: The two values below are CIDRs separated by a comma
     pod_subnets     = string
     service_subnets = string
+
+    kubernetes_node_labels = map(string)
   }))
 }
 
@@ -72,5 +74,7 @@ variable "worker_nodes" {
     # NOTE: The two values below are CIDRs separated by a comma
     pod_subnets     = string
     service_subnets = string
+
+    kubernetes_node_labels = map(string)
   }))
 }

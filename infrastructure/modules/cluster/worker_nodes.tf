@@ -61,6 +61,8 @@ locals {
         cluster_secret = data.sops_file.talos_secrets.data["talos.machineconfig.cluster.secret"]
         cluster_token  = data.sops_file.talos_secrets.data["talos.machineconfig.secrets.bootstraptoken"]
         cluster_ca_crt = data.sops_file.talos_secrets.data["talos.machineconfig.certs.os.crt"]
+
+        kubernetes_node_labels = node.kubernetes_node_labels
       }
     )
   }

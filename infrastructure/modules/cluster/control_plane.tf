@@ -60,6 +60,8 @@ locals {
         service_account_key         = data.sops_file.talos_secrets.data["talos.machineconfig.certs.k8sserviceaccount.key"]
         etcd_ca_crt                 = data.sops_file.talos_secrets.data["talos.machineconfig.certs.etcd.crt"]
         etcd_ca_key                 = data.sops_file.talos_secrets.data["talos.machineconfig.certs.etcd.key"]
+
+        kubernetes_node_labels = node.kubernetes_node_labels
       }
     )
   }

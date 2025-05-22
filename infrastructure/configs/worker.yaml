@@ -10,8 +10,9 @@ machine:
     crt: ${client_ca_crt}
     key: ""
   nodeLabels:
-    drmoo.io/role: ${node_type}
-    drmoo.io/zone: ${proxmox_node}
+%{ for key, value in kubernetes_node_labels ~}
+    ${key}: ${value}
+%{ endfor ~}
   install:
     # Docs: https://www.talos.dev/v1.9/learn-more/image-factory/
     # Adjust this image to either 1. install new extensions and/or 2. upgrade Talos
