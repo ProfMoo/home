@@ -113,6 +113,8 @@ cluster:
     certSANs:
       - ${ipv4_address}
     disablePodSecurityPolicy: true
+    extraArgs:
+      feature-gates: MutatingAdmissionPolicy=true
     admissionControl:
       - name: PodSecurity
         configuration:
