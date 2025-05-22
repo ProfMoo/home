@@ -33,9 +33,8 @@ spec:
   mutations:
     - patchType: JSONPatch
       jsonPatch:
-        expression: >
+        expression: |
           [
-
             JSONPatch{
               op: "add", path: "/spec/template/spec/initContainers",
               value: []
@@ -50,7 +49,6 @@ spec:
               }
             }
           ]
-
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/yannh/kubernetes-json-schema/refs/heads/master/v1.32.0/mutatingadmissionpolicybinding-admissionregistration-v1alpha1.json
 apiVersion: admissionregistration.k8s.io/v1alpha1
@@ -90,9 +88,8 @@ spec:
   mutations:
     - patchType: JSONPatch
       jsonPatch:
-        expression: >-
+        expression: |-
           [
-
             JSONPatch{
               op: "add", path: "/spec/template/spec/containers/0/volumeMounts/-",
               value: Object.spec.template.spec.containers.volumeMounts{
