@@ -14,3 +14,7 @@ spec:
     - fromEndpoints:
         - matchLabels:
             app.kubernetes.io/instance: external-secrets
+      toPorts:
+        - ports:
+            - port: "8087"
+              protocol: TCP
