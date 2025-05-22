@@ -100,16 +100,17 @@ spec:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
                 - matchExpressions:
-                    - key: role
+                    - key: drmoo.io/storage
                       operator: In
                       values:
                         - rook-node
+                        - rook-osd-node
         osd:
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
                 - matchExpressions:
-                    - key: role
+                    - key: drmoo.io/storage
                       operator: In
                       values:
                         - rook-osd-node

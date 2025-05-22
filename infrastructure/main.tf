@@ -183,6 +183,7 @@ module "cluster" {
       kubernetes_node_labels = {
         "drmoo.io/role" : "worker"
         "drmoo.io/zone" : "pve"
+        "drmoo.io/storage" : "rook-osd-node"
       }
     },
     "worker_node_instance_1" = {
@@ -223,6 +224,7 @@ module "cluster" {
       kubernetes_node_labels = {
         "drmoo.io/role" : "worker"
         "drmoo.io/zone" : "pve"
+        "drmoo.io/storage" : "rook-osd-node"
       }
     },
     "worker_node_instance_2" = {
@@ -263,6 +265,7 @@ module "cluster" {
       kubernetes_node_labels = {
         "drmoo.io/role" : "worker"
         "drmoo.io/zone" : "pve"
+        "drmoo.io/storage" : "rook-osd-node"
       }
     }
     "worker_node_instance_3" = {
@@ -349,11 +352,11 @@ resource "null_resource" "generate_talos_configs" {
 }
 
 # Automatically repopulates the local Talosctl and Kubectl configurations.
-resource "null_resource" "generate_talos_configs" {
+resource "null_resource" "generate_cli_configs" {
   triggers = {
-    # Only trigger when control plane or worker configurations change
-    control_plane_changes = sha256(jsonencode(module.cluster.control_plane_configs))
-    worker_changes        = sha256(jsonencode(module.cluster.worker_node_configs))
+    # Only trigger when the CLI configs change
+    kubeconfig_changes  = sha256(jsonencode(module.cluster.kubeconfig))
+    talosconfig_changes = sha256(jsonencode(module.cluster.talosconfig))
   }
 
   depends_on = [module.cluster]
