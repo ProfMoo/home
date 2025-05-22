@@ -15,3 +15,6 @@ configMapGenerator:
       - post_download.sh=./scripts/post_download.sh
 generatorOptions:
   disableNameSuffixHash: true
+  # NOTE: This ensures that flux does not try to substitute any variables in the scripts
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
