@@ -2,6 +2,12 @@
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: '3'
 tasks:
+  network-debug:
+    desc: Stand up network debugging pod [NS=default]
+    interactive: true
+    cmd: kubectl run -n {{.NS}} tmp-shell --rm -i --tty --image nicolaka/netshoot
+    vars:
+      NS: '{{.NS | default "default"}}'
   browse-pvc:
     desc: Mount a PVC to an temp container [NS=default] [CLAIM=required]
     interactive: true
