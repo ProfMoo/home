@@ -59,3 +59,15 @@ tasks:
       fi
     vars:
       NS: '{{.NS | default "all"}}'
+  delete-csu-pods:
+    desc: Delete all pods in ContainerStatusUnknown state [NS=all]
+    cmd: |
+      if [ "{{.NS}}" = "all" ]; then
+        echo "==> Deleting ContainerStatusUnknown pods across all namespaces..."
+        kubectl get pods --all-namespaces | grep ContainerStatusUnknown | awk '{print "-n "$1, $2}' | xargs -L1 kubectl delete pod
+      else
+        echo "==> Deleting ContainerStatusUnknown pods in namespace {{.NS}}..."
+        kubectl get pods -n {{.NS}} | grep ContainerStatusUnknown | awk '{print $1}' | xargs -L1 kubectl delete pod -n {{.NS}}
+      fi
+    vars:
+      NS: '{{.NS | default "all"}}'
