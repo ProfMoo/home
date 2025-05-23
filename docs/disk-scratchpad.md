@@ -56,3 +56,19 @@ We avoid this because this will actually format the drive as a filesystem. Ceph 
 ## Kubernetes
 
 We don't need to do anything special to the K8s nodes to configure Rook/Ceph. Rook/Ceph actually works directly with the disk.
+
+## Volsync
+
+```bash
+k describe pvc qbittorrent
+
+k describe replicationdestinations.volsync.backube -n media qbittorrent-dst
+k describe replicationsources.volsync.backube -n media qbittorrent
+
+k describe volumesnapshotclasses.snapshot.storage.k8s.io csi-ceph-blockpool
+k get volumesnapshotclasses.snapshot.storage.k8s.io csi-ceph-blockpool -o yaml
+
+k describe volumesnapshot -n media volsync-qbittorrent-src
+
+k get csidrivers.storage.k8s.io storage.rbd.csi.ceph.com -o yaml
+```

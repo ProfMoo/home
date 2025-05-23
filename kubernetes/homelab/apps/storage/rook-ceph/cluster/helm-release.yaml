@@ -144,8 +144,6 @@ spec:
       name: csi-ceph-blockpool
       isDefault: false
       deletionPolicy: Delete
-    # NOTE: After disabling the filesystem, the filesystem can be removed with the following commands:
-    # ceph fs fail ceph-filesystem && ceph fs rm ceph-filesystem --yes-i-really-mean-it
     cephFileSystems:
       - name: &cephFileSystemName ceph-filesystem
         spec:
@@ -198,45 +196,3 @@ spec:
       isDefault: false
       deletionPolicy: Delete
     cephObjectStores: []
-    # - name: ceph-objectstore
-    #   spec:
-    #     metadataPool:
-    #       failureDomain: host
-    #       replicated:
-    #         size: 3
-    #     dataPool:
-    #       failureDomain: host
-    #       erasureCoded:
-    #         dataChunks: 2
-    #         codingChunks: 1
-    #     preservePoolsOnDelete: true
-    #     gateway:
-    #       hostNetwork: false
-    #       port: 80
-    #       resources:
-    #         requests:
-    #           cpu: 100m
-    #           memory: 1Gi
-    #         limits:
-    #           memory: 2Gi
-    #       instances: 2
-    #       priorityClassName: system-cluster-critical
-    #     healthCheck:
-    #       bucket:
-    #         interval: 60s
-    #   storageClass:
-    #     enabled: true
-    #     name: ceph-bucket
-    #     reclaimPolicy: Delete
-    #     volumeBindingMode: Immediate
-    #     parameters:
-    #       region: us-east-1
-    #   ingress:
-    #     enabled: true
-    #     annotations:
-    #       nginx.ingress.kubernetes.io/proxy-body-size: "0"
-    #       nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-    #     ingressClassName: internal
-    #     host:
-    #       name: rgw.devbu.io
-    #       path: /

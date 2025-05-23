@@ -103,7 +103,7 @@ spec:
                 name: "repository",
                 nfs: Object.spec.template.spec.volumes.nfs{
                   server: "192.168.1.26:80",
-                  path: "/mnt/vault/homelab/volsync"
+                  path: "/mnt/vault/volsync"
                 }
               }
             }
