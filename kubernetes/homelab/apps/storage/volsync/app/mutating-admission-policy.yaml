@@ -105,11 +105,6 @@ spec:
                   server: "192.168.1.26",
                   path: "/mnt/vault/volsync"
                 },
-                mountOptions: Object.spec.template.spec.volumes.mountOptions{
-                  "nfsvers=4.2",
-                  "nconnect=8",
-                  "hard"
-                }
               }
             }
           ]
