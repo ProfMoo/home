@@ -5,7 +5,7 @@ metadata:
   name: test-claim-ceph-block-delete-later
   namespace: storage
 spec:
-  storageClassName: ceph-block-wffc
+  storageClassName: ceph-block
   accessModes:
     - ReadWriteOnce
   resources:
