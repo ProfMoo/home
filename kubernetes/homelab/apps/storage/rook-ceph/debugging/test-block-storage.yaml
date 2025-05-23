@@ -2,7 +2,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: test-claim-ceph-block-delete-later
+  name: test-claim-ceph-block
   namespace: storage
 spec:
   storageClassName: ceph-block
@@ -37,4 +37,4 @@ spec:
   volumes:
     - name: test-volume
       persistentVolumeClaim:
-        claimName: test-claim-ceph-block-delete-later
+        claimName: test-claim-ceph-block
