@@ -124,9 +124,7 @@ spec:
                   port: http
     persistence:
       media:
-        type: nfs
-        server: 192.168.8.248
-        path: /mnt/vault/media
+        existingClaim: nas-media
         globalMounts:
           - path: /data
       custom-scripts:
