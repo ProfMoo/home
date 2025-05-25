@@ -16,8 +16,6 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 5Gi
-  dependsOn:
-    - name: nas-media
   path: ./kubernetes/homelab/apps/media/qbittorrent/app
   prune: true
   sourceRef:
@@ -45,7 +43,6 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: qbittorrent
-    - name: nas-media
   path: ./kubernetes/homelab/apps/media/qbittorrent/tools
   prune: true
   sourceRef:
