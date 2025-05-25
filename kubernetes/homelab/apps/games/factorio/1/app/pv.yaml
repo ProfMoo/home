@@ -10,7 +10,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    server: "192.168.1.26"
+    server: "192.168.8.248"
     path: /mnt/vault/factorio/factorio-1
   mountOptions:
     - nfsvers=4.2
