@@ -146,6 +146,7 @@ spec:
         globalMounts:
           - path: /beets/
       # NOTE: This data is the smaller betanin DB which keeps information about the individual imports.
+      # i.e. When each individual import was done, what files were imported, etc.
       # This populates the betanin GUI.
       data:
         existingClaim: betanin
