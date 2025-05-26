@@ -83,7 +83,7 @@ spec:
                   port: *port
     persistence:
       config:
-        existingClaim: prowlarr
+        existingClaim: prowlarr-blockstorage
         globalMounts:
           - path: /config
       tmp:
