@@ -5,4 +5,5 @@ kind: Kustomization
 resources:
   - ./config-pvc.yaml
   - ./cache-pvc.yaml
+  - ./cache.yaml
   - ./helm-release.yaml
