@@ -91,7 +91,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: sonarr
+        existingClaim: sonarr-blockstorage
         globalMounts:
           - path: /config
       media:
