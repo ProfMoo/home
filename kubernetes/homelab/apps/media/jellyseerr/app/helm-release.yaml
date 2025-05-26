@@ -97,11 +97,11 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: jellyseerr
+        existingClaim: jellyseerr-blockstorage
         globalMounts:
           - path: /app/config
       cache:
-        existingClaim: jellyseerr-cache
+        existingClaim: jellyseerr-cache-blockstorage
         globalMounts:
           - path: /app/config/cache
       logs:
