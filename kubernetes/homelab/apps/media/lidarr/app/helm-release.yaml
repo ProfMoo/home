@@ -94,7 +94,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: lidarr
+        existingClaim: lidarr-blockstorage
         globalMounts:
           - path: /config
       media:
