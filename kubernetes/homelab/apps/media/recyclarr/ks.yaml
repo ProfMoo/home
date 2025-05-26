@@ -10,6 +10,13 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../common/volsync
+  postBuild:
+    substitute:
+      APP: *app
+      PVC_NAME: recyclarr-blockstorage
+      VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/recyclarr/app
   prune: true
   sourceRef:

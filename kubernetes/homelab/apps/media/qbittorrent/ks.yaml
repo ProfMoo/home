@@ -15,6 +15,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      PVC_NAME: qbittorrent
       VOLSYNC_CAPACITY: 5Gi
   path: ./kubernetes/homelab/apps/media/qbittorrent/app
   prune: true
