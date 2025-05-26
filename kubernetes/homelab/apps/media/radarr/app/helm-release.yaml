@@ -87,7 +87,7 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: radarr
+        existingClaim: radarr-blockstorage
         globalMounts:
           - path: /config
       media:
