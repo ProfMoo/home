@@ -63,7 +63,7 @@ spec:
         seccompProfile: {type: RuntimeDefault}
     persistence:
       config:
-        existingClaim: recyclarr
+        existingClaim: recyclarr-blockstorage
       config-file:
         type: configMap
         name: recyclarr-configmap
