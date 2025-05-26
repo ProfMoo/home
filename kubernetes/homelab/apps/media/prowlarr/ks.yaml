@@ -15,7 +15,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      PVC_NAME: sonarr-blockstorage
+      PVC_NAME: prowlarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/prowlarr/app
   prune: true
