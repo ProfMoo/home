@@ -142,13 +142,13 @@ spec:
       # NOTE: This data is the larger beets DB which keeps information about the entire music library.
       # It is extremely important and can't be lost. The mount location for this is determined the configuration in config.yaml
       beets:
-        existingClaim: beets
+        existingClaim: beets-blockstorage
         globalMounts:
           - path: /beets/
       # NOTE: This data is the smaller betanin DB which keeps information about the individual imports.
       # i.e. When each individual import was done, what files were imported, etc.
       # This populates the betanin GUI.
       data:
-        existingClaim: betanin
+        existingClaim: betanin-blockstorage
         globalMounts:
           - path: /b/.local/share/betanin/
