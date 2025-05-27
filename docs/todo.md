@@ -14,3 +14,4 @@
 7. [ ] System Upgrade Controller.
 8. [ ] Work on pre-emptions for k8s so that the most important pods are always scheduled.
 9. [ ] Move fluxtomization to specific namespaces instead of having them all in `flux-system`
+10. [ ] Fix renovate so that I actually get a net benefit from the tool.
