@@ -23,7 +23,7 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: freenas-api-iscsi
+    - name: rook-ceph-cluster
       namespace: storage
   values:
     controllers:
