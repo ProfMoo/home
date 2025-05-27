@@ -85,11 +85,11 @@ spec:
                   port: http
     persistence:
       config:
-        existingClaim: zwave
+        existingClaim: zwave-blockstorage
         globalMounts:
           - path: /usr/src/app/store
       config-cache:
-        existingClaim: zwave-cache
+        existingClaim: zwave-cache-blockstorage
         globalMounts:
           - path: /usr/src/app/store/.config-db
       tmp:
