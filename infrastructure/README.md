@@ -35,13 +35,7 @@ This directory houses the code that transforms raw bare-metal machines into func
     talosctl apply-config -n skrillex --file ./nodes/skrillex.yaml
     ```
 
-5. Once the Kubernetes cluster is successfully applied, run this command to get the necessary configs loaded into your shell:
-
-    ```bash
-    ./get_local_configs
-    ```
-
-6. Follow the Kubernetes bootstrapping steps defined [here](../kubernetes/README.md#bootstrapping)
+5. Follow the Kubernetes bootstrapping steps defined [here](../kubernetes/README.md#bootstrapping)
 
 ## Operations
 
