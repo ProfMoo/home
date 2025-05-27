@@ -30,6 +30,33 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
+  name: &app beets-pvc
+  namespace: flux-system
+spec:
+  targetNamespace: media
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  components:
+    - ../../../../common/volsync
+  postBuild:
+    substitute:
+      APP: *app
+      PVC_NAME: beets-blockstorage
+      VOLSYNC_CAPACITY: 10Gi
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: profmoo-home
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
   name: &app betanin
   namespace: flux-system
 spec:
@@ -38,6 +65,16 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/media/betanin/app
+  components:
+    - ../../../../common/volsync
+  postBuild:
+    substitute:
+      APP: *app
+      PVC_NAME: betanin-blockstorage
+      VOLSYNC_CAPACITY: 10Gi
+    substituteFrom:
+      - kind: Secret
+        name: betanin-secrets
   dependsOn:
     - name: betanin-secrets
       namespace: flux-system
@@ -54,7 +91,3 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
-  postBuild:
-    substituteFrom:
-      - kind: Secret
-        name: betanin-secrets
