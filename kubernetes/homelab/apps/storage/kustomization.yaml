@@ -5,8 +5,6 @@ kind: Kustomization
 resources:
   - ./namespace.yaml
   - ./local-path-provisioner/ks.yaml
-  - ./freenas-api-nfs/ks.yaml
-  - ./freenas-api-iscsi/ks.yaml
   - ./volsync/ks.yaml
   - ./snapshot-controller/ks.yaml
   - ./rook-ceph/ks.yaml
