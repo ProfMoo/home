@@ -10,6 +10,13 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../common/volsync
+  postBuild:
+    substitute:
+      APP: *app
+      PVC_NAME: zwave-blockstorage
+      VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/home-automation/zwave/app
   prune: true
   sourceRef:

@@ -10,6 +10,13 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../common/volsync
+  postBuild:
+    substitute:
+      APP: *app
+      PVC_NAME: zigbee2mqtt-blockstorage
+      VOLSYNC_CAPACITY: 10Gi
   dependsOn:
     - name: emqx-cluster
   path: ./kubernetes/homelab/apps/home-automation/zigbee2mqtt/app
