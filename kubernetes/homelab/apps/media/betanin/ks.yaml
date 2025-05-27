@@ -44,6 +44,7 @@ spec:
       APP: *app
       PVC_NAME: beets-blockstorage
       VOLSYNC_CAPACITY: 10Gi
+  path: ./kubernetes/homelab/apps/media/betanin/beets-pvc
   prune: true
   sourceRef:
     kind: GitRepository
