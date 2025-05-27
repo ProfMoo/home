@@ -4,7 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: kbench-pvc-1
 spec:
-  storageClassName: freenas-api-iscsi
+  storageClassName: ceph-blockpool
   accessModes:
     - ReadWriteOnce
   resources:
@@ -16,7 +16,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: kbench-pvc-2
 spec:
-  storageClassName: freenas-api-nfs # replace with your storage class
+  storageClassName: ceph-filesystem
   accessModes:
     - ReadWriteOnce
   resources:
