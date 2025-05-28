@@ -59,7 +59,13 @@ spec:
                 cpu: 10m
               limits:
                 memory: 1Gi
-    service:
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+    ervice:
       app:
         controller: prowlarr
         ports:
