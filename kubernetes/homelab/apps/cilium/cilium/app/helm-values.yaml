@@ -17,7 +17,6 @@ cgroup:
 # https://github.com/siderolabs/talos/discussions/7914#discussioncomment-7457510
 cni:
   exclusive: false
-devices: ens18
 enableRuntimeDeviceDetection: true
 endpointRoutes:
   enabled: true
