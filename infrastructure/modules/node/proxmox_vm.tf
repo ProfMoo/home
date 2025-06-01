@@ -56,13 +56,13 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
   }
 
   // Giving it another NIC
-  # network_device {
-  #   bridge      = var.bridge_network_device
-  #   mac_address = unifi_user.default_vlan.mac
-  #   firewall    = false
-  #   vlan_id     = "1"
-  #   model       = "virtio"
-  # }
+  network_device {
+    bridge      = var.bridge_network_device
+    mac_address = unifi_user.default_vlan.mac
+    firewall    = false
+    vlan_id     = "1"
+    model       = "virtio"
+  }
 
   # NOTE: The boot order is important because we want the VM to boot from the CDROM first (ide2), then the disk (scsi0).
   # Talos functions by booting from the CDROM initially, then performing API-driven updates onto the disk, then rebooting from the disk.
