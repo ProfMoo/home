@@ -39,6 +39,10 @@
         href: https://rook.drmoo.io
         icon: mdi-database
         description: Rook storage cluster
+    - Cilium:
+        href: https://hubble.drmoo.io
+        icon: mdi-lan
+        description: Network packet visualization
     - Grafana:
         href: https://grafana.drmoo.io
         icon: grafana
