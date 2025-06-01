@@ -45,6 +45,13 @@ machine:
             gateway: ${subnet_gateway}
         deviceSelector:
           hardwareAddr: '${mac_address}'
+      - addresses:
+          - 192.168.1.140/24
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 192.168.1.1
+        deviceSelector:
+          hardwareAddr: 'e4:f8:b3:a2:c1:d8'
   features:
     # https://www.talos.dev/v1.9/kubernetes-guides/configuration/kubeprism/
     kubePrism:

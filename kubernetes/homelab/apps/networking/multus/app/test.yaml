@@ -13,6 +13,12 @@ metadata:
         "ips": ["192.168.1.201/24"]
       }]
 spec:
+  nodeSelector:
+    kubernetes.io/hostname: skrillex
+  tolerations:
+    - key: "node.kubernetes.io/unschedulable"
+      operator: "Exists"
+      effect: "NoSchedule"
   containers:
     - name: networking-pod
       command: ["/bin/bash", "-c", "trap : TERM INT; sleep infinity & wait"]
