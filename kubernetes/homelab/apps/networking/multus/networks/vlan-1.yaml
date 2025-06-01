@@ -12,7 +12,6 @@ spec:
         {
           "type": "ipvlan",
           "master": "ens18.1",
-          "mode": "bridge",
           "ipam": {
             "type": "static",
             "routes": [
