@@ -10,9 +10,8 @@ spec:
       "name": "multus-vlan-1",
       "plugins": [
         {
-          "type": "macvlan",
+          "type": "ipvlan",
           "master": "ens19",
-          "mode": "bridge",
           "ipam": {
             "type": "static",
             "routes": [
