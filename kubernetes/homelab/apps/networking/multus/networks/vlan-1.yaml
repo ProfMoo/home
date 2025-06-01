@@ -12,10 +12,11 @@ spec:
         {
           "type": "macvlan",
           "master": "ens19",
+          "mode": "bridge",
           "ipam": {
             "type": "static",
             "routes": [
-              {"dst": "192.168.1.0/24", "gw": "192.168.1.1"}
+              {"dst": "192.168.0.0/16", "gw": "192.168.1.1"}
             ]
           }
         }
