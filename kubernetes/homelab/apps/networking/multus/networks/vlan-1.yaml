@@ -21,16 +21,6 @@ spec:
               {"dst": "192.168.0.0/16", "gw": "192.168.1.1"}
             ]
           }
-        },
-        {
-          "type": "tuning",
-          "capabilities": {
-              "mac": true
-          },
-          "sysctl": {
-            "net.ipv6.conf.net1.accept_ra": "1",
-            "net.ipv6.conf.net1.accept_ra_rt_info_max_plen": "128"
-          }
         }
       ]
     }
