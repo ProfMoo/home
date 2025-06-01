@@ -11,14 +11,14 @@ resource "unifi_user" "this" {
   network_id = var.vlan_id
 }
 
-resource "unifi_user" "default_vlan" {
-  mac  = "e4:f8:b3:a2:c1:d8"
-  name = var.name
-  note = "Provisioned via Terraform"
+# resource "unifi_user" "default_vlan" {
+#   mac  = "e4:f8:b3:a2:c1:d8"
+#   name = var.name
+#   note = "Provisioned via Terraform"
 
-  fixed_ip   = "192.168.1.140"
-  network_id = "1"
-}
+#   fixed_ip   = "192.168.1.140"
+#   network_id = "1"
+# }
 
 resource "proxmox_virtual_environment_vm" "talos_node" {
   depends_on = [
@@ -56,13 +56,13 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
   }
 
   // Giving it another NIC
-  network_device {
-    bridge      = var.bridge_network_device
-    mac_address = unifi_user.default_vlan.mac
-    firewall    = false
-    vlan_id     = "1"
-    model       = "virtio"
-  }
+  # network_device {
+  #   bridge      = var.bridge_network_device
+  #   mac_address = unifi_user.default_vlan.mac
+  #   firewall    = false
+  #   vlan_id     = "1"
+  #   model       = "virtio"
+  # }
 
   # NOTE: The boot order is important because we want the VM to boot from the CDROM first (ide2), then the disk (scsi0).
   # Talos functions by booting from the CDROM initially, then performing API-driven updates onto the disk, then rebooting from the disk.
