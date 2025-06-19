@@ -10,7 +10,7 @@ metadata:
         "name": "multus-vlan-1",
         "namespace": "networking",
         "mac": "43:23:d9:05:b5:db",
-        "ips": ["192.168.1.202/24"]
+        "ips": ["192.168.1.200/24"]
       }]
 spec:
   nodeSelector:
@@ -23,3 +23,13 @@ spec:
     - name: networking-pod
       command: ["/bin/bash", "-c", "trap : TERM INT; sleep infinity & wait"]
       image: nicolaka/netshoot
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi
+      securityContext:
+        capabilities:
+          add: ["NET_ADMIN"]

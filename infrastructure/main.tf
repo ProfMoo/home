@@ -172,8 +172,8 @@ module "cluster" {
 
       # VLAN 2 configuration
       vlan_id        = "2"
-      ipv4_address   = "192.168.8.120"
-      mac_address    = "e4:f8:b3:a2:b1:c8"
+      ipv4_address   = "192.168.8.124"
+      mac_address    = "e4:f8:b3:a2:b1:e1"
       subnet_gateway = "192.168.8.1"
 
       # Internal kubernetes network configuration
