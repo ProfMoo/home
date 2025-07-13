@@ -64,7 +64,7 @@ spec:
         disable: false
       csi:
         readAffinity:
-          enabled: false
+          enabled: true
       dashboard:
         enabled: true
         urlPrefix: /
