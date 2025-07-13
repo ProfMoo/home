@@ -96,10 +96,10 @@ spec:
       # When a k8s node is recreated, a new OSD can be created, join the cluster, and be replicated to. But the old one might persist indefinitely.
       removeOSDsIfOutAndSafeToRemove: true
       # To control where various services will be scheduled by kubernetes, use the placement configuration sections below.
-      # The example under 'all' would have all services scheduled on kubernetes nodes labeled with 'role=rook-node' and
-      # the OSDs would specifically only be created on nodes labeled with 'role=rook-osd-node'.
+      # Only restrict storage-providing components (OSDs, mons, mgrs) to storage nodes
+      # Allow CSI components on all nodes so any node can mount Ceph volumes
       placement:
-        all:
+        osd:
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
@@ -109,6 +109,15 @@ spec:
                       values:
                         - rook-osd-node
         mon:
+          nodeAffinity:
+            requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: drmoo.io/storage
+                      operator: In
+                      values:
+                        - rook-osd-node
+        mgr:
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
