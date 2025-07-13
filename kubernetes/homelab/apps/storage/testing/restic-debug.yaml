@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: restic-debug
+  namespace: media
+spec:
+  containers:
+    - name: restic
+      image: docker.io/restic/restic:latest
+      command: ["/bin/sh"]
+      args: ["-c", "sleep 3600"]
+      env:
+        - name: RESTIC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: betanin-volsync-secret
+              key: RESTIC_PASSWORD
+        - name: RESTIC_REPOSITORY
+          value: "/repository/betanin"
+      volumeMounts:
+        - name: repository
+          mountPath: /repository
+  volumes:
+    - name: repository
+      nfs:
+        server: 192.168.8.248
+        path: /mnt/vault/volsync
+  restartPolicy: Never

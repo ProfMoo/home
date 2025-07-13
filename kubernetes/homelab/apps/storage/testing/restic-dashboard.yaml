@@ -1,0 +1,182 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: restic-dashboard-script
+  namespace: media
+data:
+  dashboard.sh: |
+    #!/bin/bash
+
+    generate_html() {
+      cat << 'HTML'
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>VolSync Backup Dashboard</title>
+      <meta http-equiv="refresh" content="300">
+      <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .app-section { background: white; margin: 20px 0; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .app-title { color: #333; border-bottom: 2px solid #4CAF50; padding-bottom: 10px; }
+        .repo-section { margin: 15px 0; }
+        .repo-title { color: #666; font-weight: bold; }
+        .snapshot-list { font-family: monospace; background: #f8f8f8; padding: 10px; border-radius: 4px; }
+        .status { padding: 5px 10px; border-radius: 4px; font-weight: bold; }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .header { text-align: center; color: #333; }
+        .last-updated { text-align: center; color: #666; font-style: italic; }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1 class="header">🔄 VolSync Backup Dashboard</h1>
+        <p class="last-updated">Last updated: $(date)</p>
+    HTML
+    }
+
+    generate_app_section() {
+      local app=$1
+      local namespace=${2:-media}
+
+      echo "<div class='app-section'>"
+      echo "<h2 class='app-title'>📦 $app</h2>"
+
+      # Local repository
+      echo "<div class='repo-section'>"
+      echo "<h3 class='repo-title'>🏠 Local Repository (NFS)</h3>"
+
+      if RESTIC_PASSWORD=$(kubectl -n $namespace get secret ${app}-volsync-secret -o jsonpath='{.data.RESTIC_PASSWORD}' 2>/dev/null | base64 -d) && \
+         RESTIC_REPOSITORY="/repository/$app" restic snapshots --compact 2>/dev/null; then
+        echo "<div class='status success'>✅ Accessible</div>"
+        echo "<div class='snapshot-list'>"
+        RESTIC_REPOSITORY="/repository/$app" restic snapshots --compact 2>/dev/null | head -10
+        echo "</div>"
+      else
+        echo "<div class='status error'>❌ Error accessing repository</div>"
+      fi
+      echo "</div>"
+
+      # Remote repository (if exists)
+      if kubectl -n $namespace get secret ${app}-volsync-r2-secret >/dev/null 2>&1; then
+        echo "<div class='repo-section'>"
+        echo "<h3 class='repo-title'>☁️ Remote Repository (R2)</h3>"
+
+        if RESTIC_PASSWORD=$(kubectl -n $namespace get secret ${app}-volsync-r2-secret -o jsonpath='{.data.RESTIC_PASSWORD}' 2>/dev/null | base64 -d) && \
+           RESTIC_REPOSITORY=$(kubectl -n $namespace get secret ${app}-volsync-r2-secret -o jsonpath='{.data.RESTIC_REPOSITORY}' 2>/dev/null | base64 -d) && \
+           restic snapshots --compact 2>/dev/null; then
+          echo "<div class='status success'>✅ Accessible</div>"
+          echo "<div class='snapshot-list'>"
+          restic snapshots --compact 2>/dev/null | head -10
+          echo "</div>"
+        else
+          echo "<div class='status error'>❌ Error accessing repository</div>"
+        fi
+        echo "</div>"
+      fi
+
+      echo "</div>"
+    }
+
+    while true; do
+      {
+        generate_html
+
+        # Get all apps with replication sources
+        for app in $(kubectl -n media get replicationsources -o jsonpath='{.items[*].metadata.name}' | tr ' ' '\n' | grep -v '\-r2$' | sort); do
+          generate_app_section "$app" "media"
+        done
+
+        echo "</div></body></html>"
+      } > /tmp/dashboard.html
+
+      # Start simple HTTP server if not running
+      if ! pgrep -f "python.*8080" > /dev/null; then
+        cd /tmp && python3 -m http.server 8080 &
+      fi
+
+      sleep 300  # Update every 5 minutes
+    done
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restic-dashboard
+  namespace: media
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: restic-dashboard
+  template:
+    metadata:
+      labels:
+        app: restic-dashboard
+    spec:
+      containers:
+        - name: dashboard
+          image: docker.io/restic/restic:latest
+          command: ["/bin/sh"]
+          args: ["-c", "apk add --no-cache python3 && /scripts/dashboard.sh"]
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: repository
+              mountPath: /repository
+            - name: scripts
+              mountPath: /scripts
+          env:
+            - name: PATH
+              value: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      volumes:
+        - name: repository
+          nfs:
+            server: 192.168.8.248
+            path: /mnt/vault/volsync
+        - name: scripts
+          configMap:
+            name: restic-dashboard-script
+            defaultMode: 0755
+      serviceAccountName: default
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: restic-dashboard
+  namespace: media
+spec:
+  selector:
+    app: restic-dashboard
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: restic-dashboard
+  namespace: media
+  annotations:
+    external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+    cert-manager.io/cluster-issuer: "letsencrypt-production"
+    cert-manager.io/secret-name: "drmoo-io-tls"
+spec:
+  ingressClassName: internal
+  tls:
+    - hosts:
+        - "volsync.drmoo.io"
+      secretName: drmoo-io-tls
+  rules:
+    - host: "volsync.drmoo.io"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: restic-dashboard
+                port:
+                  number: 8080

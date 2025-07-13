@@ -4,10 +4,11 @@ version: '3'
 set: [pipefail]
 shopt: [globstar]
 includes:
-  talos: .taskfiles/talos
+  t: .taskfiles/talos
   k: .taskfiles/kubernetes
-  linting: .taskfiles/linting
-  formatting: .taskfiles/formatting
+  l: .taskfiles/linting
+  f: .taskfiles/formatting
+  v: .taskfiles/volsync
 tasks:
   default:
     cmd: task --list
