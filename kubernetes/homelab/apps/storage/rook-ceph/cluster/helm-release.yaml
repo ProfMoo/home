@@ -91,6 +91,10 @@ spec:
         devicePathFilter: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_storage_cluster_disk.*
         config:
           osdsPerDevice: "1"
+      # NOTE: This is helpful in scenarios where there will be OSDs correctly inactive in the cluster.
+      # A scenario where this might happen is when a Kubernetes node is removed or recreated from scratch and the OSDs are not directly removed from the cluster.
+      # When a k8s node is recreated, a new OSD can be created, join the cluster, and be replicated to. But the old one might persist indefinitely.
+      removeOSDsIfOutAndSafeToRemove: true
       # To control where various services will be scheduled by kubernetes, use the placement configuration sections below.
       # The example under 'all' would have all services scheduled on kubernetes nodes labeled with 'role=rook-node' and
       # the OSDs would specifically only be created on nodes labeled with 'role=rook-osd-node'.
