@@ -26,6 +26,8 @@ spec:
   values:
     controllers:
       prowlarr:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
@@ -65,7 +67,7 @@ spec:
         runAsUser: 0
         runAsGroup: 0
         fsGroup: 0
-    ervice:
+    service:
       app:
         controller: prowlarr
         ports:
