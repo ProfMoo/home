@@ -50,6 +50,7 @@ spec:
       enabled: true
     # https://rook.io/docs/rook/latest-release/Helm-Charts/ceph-cluster-chart/#ceph-cluster-spec
     # Specificaly the CRD: https://rook.io/docs/rook/latest-release/CRDs/Cluster/ceph-cluster-crd/
+    # Even more specifically, the ceph configuration options: https://docs.ceph.com/en/latest/rados/configuration/general-config-ref/
     cephClusterSpec:
       cephConfig:
         global:
@@ -63,7 +64,7 @@ spec:
         disable: false
       csi:
         readAffinity:
-          enabled: true
+          enabled: false
       dashboard:
         enabled: true
         urlPrefix: /
