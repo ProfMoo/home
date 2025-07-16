@@ -29,7 +29,7 @@ spec:
                 name: {{ ENV.APP }}-volsync-r2-secret
           resources: {}
       volumes:
-        - name: repository
-          nfs:
-            server: expanse.internal
-            path: /mnt/eros/Volsync
+      - name: repository
+        nfs:
+          server: 192.168.8.248
+          path: /mnt/vault/volsync
