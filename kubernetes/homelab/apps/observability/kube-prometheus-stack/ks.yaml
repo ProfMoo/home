@@ -16,6 +16,7 @@ spec:
       kind: HelmRelease
       name: kube-prometheus-stack
       namespace: observability
+  wait: true
   interval: 30m
   retryInterval: 1m
   timeout: 30m
