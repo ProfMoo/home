@@ -160,7 +160,7 @@ View example [Fluxtomization](https://github.com/onedr0p/home-ops/blob/782ec8c15
 
 When managing dependencies between HelmReleases and Flux Kustomizations (i.e. KS), there are some import configuration flags that could have a large impact on developer experience: `wait` and `dependsOn`. As a quick overview: there are two bits of configuration that are relevant here:
 
-`wait: true` only marks the Kustomization as successful if all the resources it creates are healthy
+`wait: false` only marks the Kustomization as successful if all the resources it creates are healthy
 `wait: false` just does a kubectl apply -k and then says 'all good, chief'
 `dependsOn` tells either the KS or the HelmRelease to confirm the health of another KS or HelmRelease before trying to apply. The health of the KS/HelmRelease could depend on HealthChecks or `wait`
 

@@ -11,12 +11,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: profmoo-home
-  healthChecks:
-    - apiVersion: helm.toolkit.fluxcd.io/v2
-      kind: HelmRelease
-      name: kube-prometheus-stack
-      namespace: observability
-  wait: true
+  wait: false
   interval: 30m
   retryInterval: 1m
   timeout: 30m

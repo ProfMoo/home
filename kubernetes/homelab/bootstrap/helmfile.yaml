@@ -3,7 +3,7 @@
 helmDefaults:
   force: true
   timeout: 600
-  wait: true
+  wait: false
   waitForJobs: true
   # We need namespaces such as `flux-system` to exist already.
   createNamespace: true
