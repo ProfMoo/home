@@ -58,12 +58,12 @@ spec:
           cert-manager.io/cluster-issuer: "letsencrypt-production"
           cert-manager.io/secret-name: "drmoo-io-tls"
         hosts:
-          - host: "radarr.drmoo.io"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+          - "radarr.drmoo.io"
+        paths:
+          - "/":
+            service:
+              identifier: app
+              port: http
       alertmanagerSpec:
         alertmanagerConfiguration:
           name: alertmanager
