@@ -22,8 +22,21 @@ spec:
       runAsUser: ${VOLSYNC_PUID:=1000}
       runAsGroup: ${VOLSYNC_PGID:=1000}
       fsGroup: ${VOLSYNC_PGID:=1000}
+    # NOTE: This ensures the volsync mover pod runs on the same node as the app that's using the PVC.
+    # This is important since the current storage configuration can't mount a PVC to multiple nodes at the same time.
+    moverAffinity:
+      podAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: app.kubernetes.io/name
+                  operator: In
+                  values:
+                    - "${APP}"
+            topologyKey: kubernetes.io/hostname
     retain:
       hourly: 24
       daily: 7
       weekly: 4
       monthly: 4
+`
