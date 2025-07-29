@@ -67,7 +67,7 @@ module "cluster" {
     },
     "control_plane_instance_1" = {
       id                    = "1001"
-      name                  = "mr-carmack"
+      name                  = "fox-stevenson"
       description           = "Control plane instance in the Kubernetes homelab cluster"
       tags                  = ["control-plane", "kubernetes"]
       cpu_cores             = 2
@@ -90,8 +90,8 @@ module "cluster" {
 
       # VLAN 2 configuration
       vlan_id        = "2"
-      ipv4_address   = "192.168.8.21"
-      mac_address    = "e4:92:a3:d1:b6:7f"
+      ipv4_address   = "192.168.8.24"
+      mac_address    = "e4:92:a3:d1:bc:8e"
       subnet_gateway = "192.168.8.1"
 
       # Internal kubernetes network configuration

@@ -16,3 +16,11 @@
 9. [ ] Move fluxtomization to specific namespaces instead of having them all in `flux-system`
 10. [ ] Fix renovate so that I actually get a net benefit from the tool.
 11. [ ] Add the Cloudflare `minecraft.drmoo.io` DNS record to TF (or try the TF operator!!!)
+
+## July 27th, 2025
+
+* Pretty sure the Rook/Ceph issue is isolated to `bonobo` and is because of faulty RAM. Was seeing some telling kernel and dmesg logs.
+  * Going to run `memtest+` on the RAM overnight to see what the situation is
+* Not sure what the NFS issue is - some nodes struggle to connect at times and truenas.local lags out.
+  * Update TrueNAS
+  * Try to get a node working again

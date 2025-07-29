@@ -65,9 +65,11 @@ machine:
       content: |
         [ NFSMount_Global_Options ]
         nfsvers=4.2
-        hard=True
+        soft=True
         noatime=True
-        nconnect=8
+        nconnect=4
+        rsize=65536
+        wsize=65536
 cluster:
   clusterName: homelab
   id: ${cluster_id} # Globally unique identifier for this cluster (base64 encoded random 32 bytes).
