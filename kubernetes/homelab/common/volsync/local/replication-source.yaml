@@ -9,31 +9,32 @@ spec:
   trigger:
     schedule: "0 * * * *"
   restic:
-    copyMethod: "${VOLSYNC_COPYMETHOD:=Snapshot}"
+    copyMethod: Snapshot
     pruneIntervalDays: 14
     repository: "${APP}-volsync-secret"
-    volumeSnapshotClassName: "${VOLSYNC_SNAPSHOTCLASS:=csi-ceph-blockpool}"
-    cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:=2Gi}"
-    cacheStorageClassName: "${VOLSYNC_CACHE_SNAPSHOTCLASS:=ceph-block}"
-    cacheAccessModes: ["${VOLSYNC_CACHE_ACCESSMODES:=ReadWriteOnce}"]
-    storageClassName: "${VOLSYNC_STORAGECLASS:=ceph-block}"
-    accessModes: ["${VOLSYNC_SNAP_ACCESSMODES:=ReadWriteOnce}"]
+    volumeSnapshotClassName: csi-ceph-blockpool
+    cacheCapacity: 2Gi
+    cacheStorageClassName: ceph-block
+    cacheAccessModes: ["ReadWriteOnce"]
+    storageClassName: ceph-block
+    accessModes: ["ReadWriteOnce"]
     moverSecurityContext:
-      runAsUser: ${VOLSYNC_PUID:=1000}
-      runAsGroup: ${VOLSYNC_PGID:=1000}
-      fsGroup: ${VOLSYNC_PGID:=1000}
-    # NOTE: This ensures the volsync mover pod runs on the same node as the app that's using the PVC.
-    # This is important since the current storage configuration can't mount a PVC to multiple nodes at the same time.
+      runAsUser: 1000
+      runAsGroup: 1000
+      fsGroup: 1000
+    # NOTE: For CronJobs and other intermittent workloads, this template doesn't use pod affinity
+    # since the target pods aren't always running. Instead, it relies on Ceph's ability to
+    # mount the PVC on any available node. You can optionally add nodeAffinity if needed.
     moverAffinity:
-      podAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            preference:
               matchExpressions:
-                - key: app.kubernetes.io/name
-                  operator: In
+                - key: kubernetes.io/hostname
+                  operator: NotIn
                   values:
-                    - "${APP}"
-            topologyKey: kubernetes.io/hostname
+                    - "${VOLSYNC_EXCLUDE_NODE:=none}"
     retain:
       hourly: 24
       daily: 7
