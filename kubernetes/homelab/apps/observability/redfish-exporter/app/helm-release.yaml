@@ -35,19 +35,6 @@ spec:
             args:
               - serve
               - --config=/etc/redfish_exporter/config.yaml
-            probes:
-              liveness:
-                enabled: true
-                spec:
-                  httpGet:
-                    path: /healthz
-                    port: metrics
-              readiness:
-                enabled: true
-                spec:
-                  httpGet:
-                    path: /healthz
-                    port: metrics
             resources:
               requests:
                 cpu: 10m
