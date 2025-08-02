@@ -14,7 +14,7 @@ releases:
   - name: cilium
     namespace: cilium
     chart: cilium/cilium
-    version: 1.17.1
+    version: 1.18.0
     values: ['../apps/cilium/cilium/app/helm-values.yaml']
   - name: flux-operator
     namespace: flux-system
