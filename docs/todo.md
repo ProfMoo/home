@@ -15,7 +15,7 @@
 8. [ ] Work on pre-emptions for k8s so that the most important pods are always scheduled.
 9. [ ] Move fluxtomization to specific namespaces instead of having them all in `flux-system`
 10. [ ] Fix renovate so that I actually get a net benefit from the tool.
-11. [ ] Add the Cloudflare `minecraft.drmoo.io` DNS record to TF (or try the TF operator!!!)
+11. [ ] Add the Cloudflare `minecraft.drmoo.io` DNS record to TF (or try the TF operator!!!). It's currently manually entered on the CF website.
 
 ## July 27th, 2025
 
@@ -24,3 +24,23 @@
 * Not sure what the NFS issue is - some nodes struggle to connect at times and truenas.local lags out.
   * Update TrueNAS
   * Try to get a node working again
+
+### Logs
+
+```text
+*arr logs:
+
+System.IO.IOException: I/O error : '/config/config.xml'
+
+rbd storage pod logs:
+
+E0713 20:26:21.470936  173611 utils.go:270] ID: 106 Req-ID: 0001-0007-storage-0000000000000001-e309164c-4f7e-4f45-8fc4-f90b57e9eecd GRPC error: rpc error: code = Internal desc = rbd: map failed with error an error (exit status 108) occurred while running rbd args: [--id csi-rbd-node -m 192.168.8.119:3300,192.168.8.122:3300,192.168.8.124:3300 --keyfile=***stripped*** map ceph-blockpool/csi-vol-e309164c-4f7e-4f45-8fc4-f90b57e9eecd --device-type krbd --options noudev --options read_from_replica=localize,crush_location=host:bonobo], rbd error output: rbd: sysfs write failed
+rbd: map failed: (108) Cannot send after transport endpoint shutdown
+W0713 20:26:44.595674  173611 rbd_attach.go:488] ID: 120 Req-ID: 0001-0007-storage-0000000000000001-5ef909c0-14f7-4df1-a4a4-19bbd7bfcd63
+
+dmesg logs:
+
+traps: Sonarr[164778] general protection fault ip:7f784f3d7468 sp:7ffd89385f70 error:0 in libcoreclr.so
+traps: Sonarr[171372] general protection fault ip:7f248642f468 sp:7fff15c2a030 error:0 in libcoreclr.so
+traps: Sonarr[172096] general protection fault ip:7fb4b7d9b468 sp:7ffe2af14990 error:0 in libcoreclr.so
+```
