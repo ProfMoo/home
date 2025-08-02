@@ -1,8 +1,8 @@
 ---
 host:
-  endpoint: "192.168.1.120"
-  username: "root"
-  password: "calvin"
+  endpoint: 192.168.1.120
+  username: root
+  password: calvin
 logLevel: debug
 web:
   address: 0.0.0.0
