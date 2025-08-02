@@ -29,7 +29,7 @@
         href: https://zigbee.drmoo.io
         description: Zigbee coordinator
     - Zigbee Radio:
-        href: http://192.168.1.38
+        href: http://192.168.1.148
         description: Zigbee radio webpage
     - EMQX Cluster:
         href: https://emqx.drmoo.io
