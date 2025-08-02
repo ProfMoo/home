@@ -7,3 +7,4 @@ resources:
   - ./home-assistant/ks.yaml
   - ./zigbee2mqtt/ks.yaml
   - ./zwave/ks.yaml
+  - ./music-assistant/ks.yaml
