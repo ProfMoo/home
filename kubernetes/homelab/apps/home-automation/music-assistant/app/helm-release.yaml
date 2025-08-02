@@ -83,6 +83,6 @@ spec:
       media:
         type: nfs
         server: 192.168.8.248
-        path: /mnt/vault/media/music
+        path: /mnt/vault/media/media/music
         globalMounts:
           - path: /data
