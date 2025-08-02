@@ -47,6 +47,7 @@ spec:
                 drop:
                   - ALL
     defaultPodOptions:
+      hostNetwork: true
       securityContext:
         runAsNonRoot: true
         runAsUser: 568
