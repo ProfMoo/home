@@ -18,46 +18,11 @@ resource "proxmox_virtual_environment_file" "ubuntu_cloud_image" {
   node_name    = "pve2"
 
   source_file {
-    path      = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
-    file_name = "ubuntu-22.04-cloudimg.img"
+    path      = "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
+    file_name = "ubuntu-24.04-cloudimg.img"
   }
 }
 
-# Cloud-init configuration file to enable password authentication
-resource "proxmox_virtual_environment_file" "cloud_config" {
-  content_type = "snippets"
-  datastore_id = "local"
-  node_name    = "pve2"
-
-  source_raw {
-    data = <<-EOF
-      #cloud-config
-      users:
-        - name: ${local.ubuntu_username}
-          passwd: ${local.ubuntu_password}
-          lock_passwd: false
-          sudo: ALL=(ALL) NOPASSWD:ALL
-          shell: /bin/bash
-          ssh_pwauth: true
-
-      ssh_pwauth: true
-      disable_root: false
-
-      package_update: true
-      packages:
-        - qemu-guest-agent
-
-      runcmd:
-        - systemctl enable qemu-guest-agent
-        - systemctl start qemu-guest-agent
-        - sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
-        - sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-        - systemctl restart sshd
-    EOF
-
-    file_name = "ubuntu-roon-cloud-config.yaml"
-  }
-}
 
 # DHCP Reservation for Ubuntu Roon VM on VLAN 1
 resource "unifi_user" "ubuntu_roon" {
@@ -74,10 +39,9 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
   depends_on = [
     unifi_user.ubuntu_roon,
     proxmox_virtual_environment_file.ubuntu_cloud_image,
-    proxmox_virtual_environment_file.cloud_config,
   ]
 
-  vm_id = "2000" # Choose an available VM ID
+  vm_id = "2001" # Changed from 2000 to force VM recreation with proper cloud-init
 
   node_name = "pve2"
   name      = "ubuntu-roon"
@@ -113,7 +77,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
     size         = 128 # Resize to 128GB for OS, Roon, and database
   }
 
-  # Cloud-init configuration (inline)
+  # Cloud-init configuration to enable password authentication
   initialization {
     user_account {
       username = local.ubuntu_username
@@ -130,8 +94,6 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
     dns {
       servers = ["8.8.8.8", "1.1.1.1"] # Use public DNS directly, skip local resolver
     }
-
-    user_data_file_id = proxmox_virtual_environment_file.cloud_config.id
   }
 
   # Enable QEMU guest agent for better VM management
@@ -184,8 +146,21 @@ output "ubuntu_roon_password" {
   sensitive   = true
 }
 
-# After applying this configuration, a few things needs to be installed:
-# sudo apt update && sudo apt install ubuntu-desktop-minimal firefox ffmpeg cifs-utils
-# wget https://download.roonlabs.net/builds/roonserver-installer-linuxx64.sh
-# chmod +x roonserver-installer-linuxx64.sh
-# sudo ./roonserver-installer-linuxx64.sh
+# 1. After applying this configuration, a few things needs to be installed:
+#   sudo apt update && sudo apt install ubuntu-desktop-minimal firefox ffmpeg cifs-utils bzip2
+# 2. Access desktop GUI:
+#   sudo systemctl enable gdm3 && sudo systemctl start gdm3
+#   OR just 'reboot'
+# 3. Download and install Roon Server:
+#   wget https://download.roonlabs.net/builds/roonserver-installer-linuxx64.sh
+#   chmod +x roonserver-installer-linuxx64.sh
+#   sudo ./roonserver-installer-linuxx64.sh
+
+# To mount storage (e.g. NFS share from NAS @ 192.168.1.26):
+# 1. Install NFS client:
+#   sudo apt update && sudo apt install nfs-common
+# 2. Mount the NFS share:
+#   sudo mkdir -p /mnt/music
+#   sudo mount -t nfs 192.168.1.26:/path/to/music /mnt/music
+# 3. Make it persistent across reboots:
+#   echo "192.168.1.26:/path/to/music /mnt/music nfs defaults 0 0" | sudo tee -a /etc/fstab
