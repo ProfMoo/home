@@ -14,6 +14,8 @@ Artists:
 
 * Fred Again...
 
+* Adele?
+
 ## Library Problem
 
 Also have [this problem](https://discourse.beets.io/t/library-db-still-has-old-path-after-moving-collection-to-a-new-location/2331)
@@ -49,13 +51,13 @@ WHERE
 Random SQL:
 
 ```sql
-select * from albums limit 100; 
+select * from albums limit 100;
 
-select count(*) from albums limit 100; 
+select count(*) from albums limit 100;
 
-select * from items limit 100; 
+select * from items limit 100;
 
-select count(*) from items; 
+select count(*) from items;
 
 select * from items WHERE album_id = '1';
 

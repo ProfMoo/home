@@ -23,7 +23,6 @@ resource "proxmox_virtual_environment_file" "ubuntu_cloud_image" {
   }
 }
 
-
 # DHCP Reservation for Ubuntu Roon VM on VLAN 1
 resource "unifi_user" "ubuntu_roon" {
   mac  = "52:54:00:0f:42:44" # Unique MAC address for the Ubuntu Roon VM
