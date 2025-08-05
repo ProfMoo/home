@@ -56,7 +56,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
 
   # Memory Configuration - Plenty for Ubuntu + Roon
   memory {
-    dedicated = 8192 # 8GB for comfortable Ubuntu desktop + Roon Server
+    dedicated = 8192
   }
 
   # Network Configuration for VLAN 1

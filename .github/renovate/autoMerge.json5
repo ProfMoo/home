@@ -19,13 +19,76 @@
       ]
     },
     {
-      "description": "Auto merge helm updates for patch and minor versions",
+      "description": "qBittorrent (app-template) minor versions require 7 days before auto-merge",
       "matchDatasources": [
         "helm"
       ],
+      "matchPackageNames": [
+        "app-template"
+      ],
+      "matchFileNames": [
+        "**/qbittorrent/**"
+      ],
       "automerge": true,
       "automergeType": "branch",
-      "ignoreTests": false,
+      "ignoreTests": true,
+      "requiredStatusChecks": null,
+      "minimumReleaseAge": "7 days",
+      "matchUpdateTypes": [
+        "minor"
+      ]
+    },
+    {
+      "description": "qBittorrent (app-template) patch versions auto-merge immediately",
+      "matchDatasources": [
+        "helm"
+      ],
+      "matchPackageNames": [
+        "app-template"
+      ],
+      "matchFileNames": [
+        "**/qbittorrent/**"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": true,
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": [
+        "patch"
+      ]
+    },
+    {
+      "description": "Auto merge helm updates for patch and minor versions (excluding app-template)",
+      "matchDatasources": [
+        "helm"
+      ],
+      "excludePackageNames": [
+        "app-template"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": true,
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": [
+        "patch",
+        "minor"
+      ]
+    },
+    {
+      "description": "Auto merge app-template updates immediately (except qBittorrent)",
+      "matchDatasources": [
+        "helm"
+      ],
+      "matchPackageNames": [
+        "app-template"
+      ],
+      "excludePackageFiles": [
+        "**/qbittorrent/**"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": true,
+      "requiredStatusChecks": null,
       "matchUpdateTypes": [
         "patch",
         "minor"
