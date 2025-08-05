@@ -1,0 +1,3 @@
+# Proxmox configuration for Homepage
+# This file is required by Homepage v1.0+ even if you don't use Proxmox
+# Leave empty if you don't have Proxmox integration
