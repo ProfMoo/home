@@ -20,6 +20,9 @@ spec:
           ports:
             - containerPort: 3000
               name: homepage
+          env:
+            - name: HOMEPAGE_ALLOWED_HOSTS
+              value: "home.drmoo.io,localhost"
           resources:
             requests:
               memory: "256Mi"
