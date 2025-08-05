@@ -23,6 +23,11 @@ spec:
           env:
             - name: HOMEPAGE_ALLOWED_HOSTS
               value: "home.drmoo.io,localhost"
+          securityContext:
+            runAsNonRoot: false
+            runAsUser: 0
+            runAsGroup: 0
+            fsGroup: 0
           resources:
             requests:
               memory: "256Mi"
