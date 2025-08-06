@@ -24,6 +24,7 @@
 * Not sure what the NFS issue is - some nodes struggle to connect at times and truenas.local lags out.
   * Update TrueNAS
   * Try to get a node working again
+  * I am seeing correlation between the NFS issue and the sporadic overload/pause of Proxmox VMs. It's almost like the Proxmox VM pinning CPU causes everything to break on the node and somehow messes up NFS. Gotta figure out a way to reserve CPU for critical processes perhaps?
 
 ### Logs
 
