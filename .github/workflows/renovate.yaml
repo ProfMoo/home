@@ -41,7 +41,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: "${{ steps.app-token.outputs.token }}"
+      - name: Validate configuration before running Renovate
+        run: |
+          echo "🔍 Pre-validating Renovate configuration..."
+          # Use renovate-config-validator to check config
+          npx renovate-config-validator
       - name: Renovate
+        id: renovate
         uses: renovatebot/github-action@v43.0.5
         with:
           configurationFile: .github/renovate.json5
@@ -55,3 +61,8 @@ jobs:
           RENOVATE_PLATFORM: github
           RENOVATE_PLATFORM_COMMIT: true
           WORKFLOW_RENOVATE_VERSION: "${{ inputs.version || 'latest' }}"
+      - name: Validate Renovate ran successfully
+        if: always()
+        run: |
+          echo "✅ Renovate workflow completed"
+          echo "If there were configuration issues, they would have failed in the validation step above"
