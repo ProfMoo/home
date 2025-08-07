@@ -42,6 +42,12 @@
       "(^|/)kubernetes/.+\\.ya?ml$"
     ]
   },
+  "helmfile": {
+    "fileMatch": [
+      "helmfile\\.ya?ml$",
+      "**/helmfile\\.ya?ml$"
+    ]
+  },
   "terraform": {
     "fileMatch": [
       "\\.tf$"

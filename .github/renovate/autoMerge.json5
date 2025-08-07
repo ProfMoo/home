@@ -112,6 +112,42 @@
         "minor",
         "patch"
       ]
+    },
+    {
+      "description": "Auto-merge raw Kubernetes deployment updates for trusted images",
+      "matchManagers": [
+        "kubernetes"
+      ],
+      "matchDatasources": [
+        "docker"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": true,
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": [
+        "patch",
+        "minor",
+        "digest"
+      ],
+      "matchPackagePatterns": [
+        "ghcr.io/gethomepage/",
+        "postfinance/"
+      ]
+    },
+    {
+      "description": "Auto-merge Helmfile chart updates for patch and minor versions",
+      "matchManagers": [
+        "helmfile"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": true,
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": [
+        "patch",
+        "minor"
+      ]
     }
   ]
 }
