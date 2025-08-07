@@ -17,7 +17,10 @@
       ],
       "matchPackagePatterns": [
         "ghcr.io/bjw-s",
-        "ghcr.io/home-operations"
+        "ghcr.io/home-operations",
+        "ghcr.io/esanchezm",
+        "postfinance/",
+        "ghcr.io/gethomepage/"
       ]
     },
     {
@@ -133,6 +136,20 @@
       "matchPackagePatterns": [
         "ghcr.io/gethomepage/",
         "postfinance/"
+      ]
+    },
+    {
+      "description": "Auto-merge Flux HelmRelease chart updates for patch and minor versions",
+      "matchManagers": [
+        "flux"
+      ],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": true,
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": [
+        "patch",
+        "minor"
       ]
     },
     {
