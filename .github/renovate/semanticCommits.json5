@@ -8,7 +8,7 @@
       "matchUpdateTypes": [
         "major"
       ],
-      "commitMessagePrefix": "feat(container)!: ",
+      "commitMessagePrefix": "feat(container-image)!: ",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": " ( {{currentVersion}} → {{newVersion}} )"
     },
@@ -20,7 +20,7 @@
         "minor"
       ],
       "semanticCommitType": "feat",
-      "semanticCommitScope": "container",
+      "semanticCommitScope": "container-image",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -32,7 +32,7 @@
         "patch"
       ],
       "semanticCommitType": "fix",
-      "semanticCommitScope": "container",
+      "semanticCommitScope": "container-image",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -44,7 +44,7 @@
         "digest"
       ],
       "semanticCommitType": "chore",
-      "semanticCommitScope": "container",
+      "semanticCommitScope": "container-image",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentDigestShort}} → {{newDigestShort}} )"
     },
@@ -90,7 +90,7 @@
       "matchUpdateTypes": [
         "major"
       ],
-      "commitMessagePrefix": "feat(helm)!: ",
+      "commitMessagePrefix": "feat(helm-chart)!: ",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -102,7 +102,7 @@
         "minor"
       ],
       "semanticCommitType": "feat",
-      "semanticCommitScope": "helm",
+      "semanticCommitScope": "helm-chart",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -114,7 +114,77 @@
         "patch"
       ],
       "semanticCommitType": "fix",
-      "semanticCommitScope": "helm",
+      "semanticCommitScope": "helm-chart",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
+    },
+    {
+      "matchManagers": [
+        "flux"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "commitMessagePrefix": "feat(flux-helmrelease)!: ",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
+    },
+    {
+      "matchManagers": [
+        "flux"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "semanticCommitType": "feat",
+      "semanticCommitScope": "flux-helmrelease",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
+    },
+    {
+      "matchManagers": [
+        "flux"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "semanticCommitType": "fix",
+      "semanticCommitScope": "flux-helmrelease",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
+    },
+    {
+      "matchManagers": [
+        "helmfile"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "commitMessagePrefix": "feat(helmfile)!: ",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
+    },
+    {
+      "matchManagers": [
+        "helmfile"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "semanticCommitType": "feat",
+      "semanticCommitScope": "helmfile",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
+    },
+    {
+      "matchManagers": [
+        "helmfile"
+      ],
+      "matchUpdateTypes": [
+        "patch"
+      ],
+      "semanticCommitType": "fix",
+      "semanticCommitScope": "helmfile",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
