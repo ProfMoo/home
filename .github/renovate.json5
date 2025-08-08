@@ -22,8 +22,7 @@
     "prEditedNotification",
     "prIgnoreNotification"
   ],
-  // Force enable automerge despite unable to read branch protection
-  "ignoreBranchProtection": true,
+  "ignoreTests": true,
   // Ignoring sops secrets
   "ignorePaths": [
     "**/*.sops.*"
