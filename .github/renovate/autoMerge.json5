@@ -9,7 +9,7 @@
         "docker"
       ],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "matchUpdateTypes": [
         "patch",
         "minor",
@@ -35,7 +35,7 @@
         "**/qbittorrent/**"
       ],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "ignoreTests": true,
       "requiredStatusChecks": null,
       "minimumReleaseAge": "7 days",
@@ -55,7 +55,7 @@
         "**/qbittorrent/**"
       ],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "ignoreTests": true,
       "requiredStatusChecks": null,
       "matchUpdateTypes": [
@@ -71,7 +71,7 @@
         "app-template"
       ],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "ignoreTests": true,
       "requiredStatusChecks": null,
       "matchUpdateTypes": [
@@ -91,7 +91,7 @@
         "**/qbittorrent/**"
       ],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "ignoreTests": true,
       "requiredStatusChecks": null,
       "matchUpdateTypes": [
@@ -110,7 +110,7 @@
         "github-tags"
       ],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "matchUpdateTypes": [
         "minor",
         "patch"
@@ -125,7 +125,7 @@
         "docker"
       ],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "ignoreTests": true,
       "requiredStatusChecks": null,
       "matchUpdateTypes": [
@@ -144,7 +144,7 @@
         "flux"
       ],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "ignoreTests": true,
       "requiredStatusChecks": null,
       "matchUpdateTypes": [
@@ -158,7 +158,7 @@
         "helmfile"
       ],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "ignoreTests": true,
       "requiredStatusChecks": null,
       "matchUpdateTypes": [
