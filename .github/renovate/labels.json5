@@ -38,7 +38,7 @@
         "docker"
       ],
       "addLabels": [
-        "renovate/container"
+        "renovate/container-image"
       ]
     },
     {
@@ -46,7 +46,7 @@
         "helm"
       ],
       "addLabels": [
-        "renovate/helm"
+        "renovate/helm-chart"
       ]
     },
     {
@@ -72,6 +72,22 @@
       ],
       "addLabels": [
         "renovate/github-action"
+      ]
+    },
+    {
+      "matchManagers": [
+        "flux"
+      ],
+      "addLabels": [
+        "renovate/flux-helmrelease"
+      ]
+    },
+    {
+      "matchManagers": [
+        "helmfile"
+      ],
+      "addLabels": [
+        "renovate/helmfile"
       ]
     }
   ]
