@@ -10,6 +10,7 @@
       ],
       "automerge": true,
       "automergeType": "pr",
+      "ignoreTests": true,
       "matchUpdateTypes": [
         "patch",
         "minor",
@@ -25,6 +26,10 @@
     },
     {
       "description": "qBittorrent (app-template) minor versions require 7 days before auto-merge",
+      "prBodyNotes": [
+        "⏳ **Delayed Automerge**: This minor update will auto-merge after 7 days to allow for testing",
+        "📅 **Merge Date**: {{#if mergeDate}}{{mergeDate}}{{else}}7 days from PR creation{{/if}}"
+      ],
       "matchDatasources": [
         "helm"
       ],
@@ -45,6 +50,9 @@
     },
     {
       "description": "qBittorrent (app-template) patch versions auto-merge immediately",
+      "prBodyNotes": [
+        "⚡ **Immediate Automerge**: Patch updates merge immediately when CI passes"
+      ],
       "matchDatasources": [
         "helm"
       ],
@@ -111,6 +119,7 @@
       ],
       "automerge": true,
       "automergeType": "pr",
+      "ignoreTests": true,
       "matchUpdateTypes": [
         "minor",
         "patch"

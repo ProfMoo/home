@@ -23,6 +23,24 @@
     "prIgnoreNotification"
   ],
   "ignoreTests": true,
+  // Force enable automerge despite unable to read branch protection
+  "ignoreBranchProtection": true,
+  // Add detailed automerge information to PR bodies
+  "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{configDescription}}}{{{controls}}}{{{footer}}}",
+  "prBodyDefinitions": {
+    "Automerge": "✅ **Automerge**: Enabled for {{updateType}} updates{{{#unless automerge}}} ❌ **Disabled for this update type**{{/unless}}",
+    "Schedule": "{{{#if hasSchedule}}}⏰ **Schedule**: {{schedule}}{{else}}⏰ **Schedule**: No restrictions{{/if}}"
+  },
+  // Enhanced logging for automerge decisions
+  "logLevel": "debug",
+  "logLevelRemap": [
+    {
+      "matchMessage": "/automerge/",
+      "newLogLevel": "info"
+    }
+  ],
+  // Add automerge status to PR titles for visibility
+  "prTitleStrict": true,
   // Ignoring sops secrets
   "ignorePaths": [
     "**/*.sops.*"

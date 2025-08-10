@@ -9,6 +9,7 @@
         "major"
       ],
       "commitMessagePrefix": "feat(container-image)!: ",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": " ( {{currentVersion}} → {{newVersion}} )"
     },
@@ -21,6 +22,7 @@
       ],
       "semanticCommitType": "feat",
       "semanticCommitScope": "container-image",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -33,6 +35,7 @@
       ],
       "semanticCommitType": "fix",
       "semanticCommitScope": "container-image",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -45,6 +48,7 @@
       ],
       "semanticCommitType": "chore",
       "semanticCommitScope": "container-image",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentDigestShort}} → {{newDigestShort}} )"
     },
@@ -56,8 +60,9 @@
         "major"
       ],
       "commitMessagePrefix": "feat(terraform)!: ",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
     {
       "matchDatasources": [
@@ -68,8 +73,9 @@
       ],
       "semanticCommitType": "feat",
       "semanticCommitScope": "terraform",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
     {
       "matchDatasources": [
@@ -80,8 +86,9 @@
       ],
       "semanticCommitType": "fix",
       "semanticCommitScope": "terraform",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
     {
       "matchDatasources": [
@@ -91,6 +98,7 @@
         "major"
       ],
       "commitMessagePrefix": "feat(helm-chart)!: ",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -103,6 +111,7 @@
       ],
       "semanticCommitType": "feat",
       "semanticCommitScope": "helm-chart",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -115,6 +124,7 @@
       ],
       "semanticCommitType": "fix",
       "semanticCommitScope": "helm-chart",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -126,6 +136,7 @@
         "major"
       ],
       "commitMessagePrefix": "feat(flux-helmrelease)!: ",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -138,6 +149,7 @@
       ],
       "semanticCommitType": "feat",
       "semanticCommitScope": "flux-helmrelease",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -150,6 +162,7 @@
       ],
       "semanticCommitType": "fix",
       "semanticCommitScope": "flux-helmrelease",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -161,6 +174,7 @@
         "major"
       ],
       "commitMessagePrefix": "feat(helmfile)!: ",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -173,6 +187,7 @@
       ],
       "semanticCommitType": "feat",
       "semanticCommitScope": "helmfile",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -185,6 +200,7 @@
       ],
       "semanticCommitType": "fix",
       "semanticCommitScope": "helmfile",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -197,6 +213,7 @@
         "major"
       ],
       "commitMessagePrefix": "feat(github-release)!: ",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -210,6 +227,7 @@
       ],
       "semanticCommitType": "feat",
       "semanticCommitScope": "github-release",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -223,6 +241,7 @@
       ],
       "semanticCommitType": "fix",
       "semanticCommitScope": "github-release",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -234,6 +253,7 @@
         "major"
       ],
       "commitMessagePrefix": "feat(github-action)!: ",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -246,6 +266,7 @@
       ],
       "semanticCommitType": "feat",
       "semanticCommitScope": "github-action",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
@@ -258,6 +279,7 @@
       ],
       "semanticCommitType": "fix",
       "semanticCommitScope": "github-action",
+      "commitMessageAction": "update",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     }
