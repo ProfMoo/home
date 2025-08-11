@@ -22,7 +22,8 @@
         "ghcr.io/esanchezm",
         "ghcr.io/music-assistant/",
         "postfinance/",
-        "ghcr.io/gethomepage/"
+        "ghcr.io/gethomepage/",
+        "ghcr.io/kashalls/external-dns-unifi-webhook/"
       ]
     },
     {
