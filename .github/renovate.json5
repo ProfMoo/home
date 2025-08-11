@@ -23,8 +23,6 @@
     "prIgnoreNotification"
   ],
   "ignoreTests": true,
-  // Force enable automerge despite unable to read branch protection
-  "ignoreBranchProtection": true,
   // Add detailed automerge information to PR bodies
   "prBodyTemplate": "{{{header}}}{{{table}}}{{{notes}}}{{{changelogs}}}{{{configDescription}}}{{{controls}}}{{{footer}}}",
   "prBodyDefinitions": {
