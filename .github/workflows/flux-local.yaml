@@ -72,19 +72,15 @@ jobs:
           persist-credentials: false
           ref: "${{ github.event.repository.default_branch }}"
 
-      - name: Run flux-local diff
+      - name: Run flux-local test
         uses: docker://ghcr.io/allenporter/flux-local:v7.8.0
         with:
           args: >-
-            diff ${{ matrix.resource }}
-            --unified 6
-            --path /github/workspace/pull
-            --path-orig /github/workspace/default
-            --strip-attrs "helm.sh/chart,checksum/config,app.kubernetes.io/version,chart"
-            --limit-bytes 10000
+            test
             --all-namespaces
-            --sources "flux-system"
-            --output-file diff.patch
+            --enable-helm
+            --path /github/workspace/kubernetes/homelab/apps/flux-system/flux-operator/instance/repo
+            --verbose
 
       - name: Generate Diff
         id: diff
