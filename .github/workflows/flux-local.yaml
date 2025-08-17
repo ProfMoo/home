@@ -44,7 +44,6 @@ jobs:
             --all-namespaces
             --enable-helm
             --path /github/workspace
-            --kustomization-file kubernetes/homelab/apps/flux-system/flux-operator/repo/ks.yaml
             --verbose
 
   diff:
@@ -81,7 +80,6 @@ jobs:
             --unified 6
             --path /github/workspace/pull
             --path-orig /github/workspace/default
-            --kustomization-file kubernetes/homelab/apps/flux-system/flux-operator/repo/ks.yaml
             --strip-attrs "helm.sh/chart,checksum/config,app.kubernetes.io/version,chart"
             --limit-bytes 10000
             --all-namespaces
