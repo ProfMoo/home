@@ -78,8 +78,8 @@ jobs:
           args: >-
             diff ${{ matrix.resource }}
             --unified 6
-            --path /github/workspace/pull/kubernetes/homelab/apps/flux-system/flux-operator/instance/repo
-            --path-orig /github/workspace/default/kubernetes/homelab/apps/flux-system/flux-operator/instance/repo
+            --path /github/workspace/pull/kubernetes/homelab/apps/flux-system/flux-operator/repo
+            --path-orig /github/workspace/default/kubernetes/homelab/apps/flux-system/flux-operator/repo
             --strip-attrs "helm.sh/chart,checksum/config,app.kubernetes.io/version,chart"
             --limit-bytes 10000
             --all-namespaces
