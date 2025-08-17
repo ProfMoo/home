@@ -16,7 +16,7 @@ instance:
     kind: GitRepository
     url: ssh://git@github.com/ProfMoo/home
     ref: refs/heads/master
-    path: kubernetes/homelab/apps/flux-system/flux-operator/instance/repo
+    path: kubernetes/homelab/repo
     interval: 1h
     name: profmoo-home
     pullSecret: home-secret
