@@ -43,7 +43,7 @@ jobs:
             test
             --all-namespaces
             --enable-helm
-            --path /github/workspace/kubernetes/homelab/apps/flux-system/flux-operator/instance/repo
+            --path /github/workspace/kubernetes/homelab/apps/flux-system/flux-operator/repo
             --verbose
 
   diff:
