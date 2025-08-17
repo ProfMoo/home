@@ -8,6 +8,7 @@ metadata:
 spec:
   path: ./kubernetes/homelab/apps/base/cert-approver/app
   targetNamespace: base
+  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

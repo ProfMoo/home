@@ -6,6 +6,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
+  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -22,6 +23,7 @@ metadata:
   name: &app external-secrets-bitwarden
   namespace: flux-system
 spec:
+  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -46,6 +48,7 @@ metadata:
   name: &app external-secrets-stores
   namespace: flux-system
 spec:
+  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

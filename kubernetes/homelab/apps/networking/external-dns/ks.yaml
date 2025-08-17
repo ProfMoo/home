@@ -7,6 +7,7 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: networking
+  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -32,6 +33,7 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: networking
+  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -55,6 +57,7 @@ spec:
   targetNamespace: networking
   dependsOn:
     - name: external-dns-cloudflare
+  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

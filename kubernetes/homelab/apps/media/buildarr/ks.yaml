@@ -8,6 +8,7 @@ metadata:
   name: &app buildarr-secrets
   namespace: flux-system
 spec:
+  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -33,6 +34,7 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: media
+  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
