@@ -26,8 +26,8 @@ machine:
     extraArgs:
       rotate-server-certificates: true
       # Reserve CPU and memory for system services
-      system-reserved: "cpu=500m,memory=1Gi,ephemeral-storage=1Gi"
-      kube-reserved: "cpu=500m,memory=1Gi,ephemeral-storage=1Gi"
+      system-reserved: "cpu=250m,memory=500Mi,ephemeral-storage=1Gi"
+      kube-reserved: "cpu=250m,memory=500Mi,ephemeral-storage=1Gi"
       eviction-hard: "memory.available<500Mi,nodefs.available<10%"
       eviction-soft: "memory.available<1Gi,nodefs.available<15%"
       eviction-soft-grace-period: "memory.available=1m30s,nodefs.available=2m"
@@ -173,11 +173,11 @@ cluster:
         - level: Metadata
     resources:
       requests:
+        cpu: 250m
+        memory: 500Mi
+      limits:
         cpu: 500m
         memory: 1Gi
-      limits:
-        cpu: 1
-        memory: 2Gi
   proxy:
     image: registry.k8s.io/kube-proxy:v1.33.4
     # Using Cilium as the proxy, so disabling kube-proxy
@@ -212,10 +212,10 @@ cluster:
       bind-address: 0.0.0.0
     resources:
       requests:
-        cpu: 500m
+        cpu: 250m
         memory: 500Mi
       limits:
-        cpu: 1
+        cpu: 500m
         memory: 1Gi
   inlineManifests:
     - name: cilium
