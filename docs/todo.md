@@ -29,6 +29,10 @@
 
 ### Logs
 
+#### NFS Issues
+
+#### Ceph Issues
+
 ```text
 *arr logs:
 
@@ -40,7 +44,7 @@ E0713 20:26:21.470936  173611 utils.go:270] ID: 106 Req-ID: 0001-0007-storage-00
 rbd: map failed: (108) Cannot send after transport endpoint shutdown
 W0713 20:26:44.595674  173611 rbd_attach.go:488] ID: 120 Req-ID: 0001-0007-storage-0000000000000001-5ef909c0-14f7-4df1-a4a4-19bbd7bfcd63
 
-dmesg logs:
+dmesg logs (talosctl dmesg -n bonobo -f):
 
 traps: Sonarr[164778] general protection fault ip:7f784f3d7468 sp:7ffd89385f70 error:0 in libcoreclr.so
 traps: Sonarr[171372] general protection fault ip:7f248642f468 sp:7fff15c2a030 error:0 in libcoreclr.so
