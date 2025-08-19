@@ -115,4 +115,3 @@ cluster:
   # NOTE: This is needed so that Talos nodes can discover each other.
   discovery:
     enabled: true
-  coreDNS:
