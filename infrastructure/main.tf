@@ -45,7 +45,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
-      kubernetes_version = "1.32.1"
+      kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -83,7 +83,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
-      kubernetes_version = "1.32.1"
+      kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -121,7 +121,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
-      kubernetes_version = "1.32.1"
+      kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -165,7 +165,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
-      kubernetes_version = "1.32.1"
+      kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -207,7 +207,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
-      kubernetes_version = "1.32.1"
+      kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -248,7 +248,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
-      kubernetes_version = "1.32.1"
+      kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -286,7 +286,7 @@ module "cluster" {
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.9.2"
-      kubernetes_version = "1.32.1"
+      kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"

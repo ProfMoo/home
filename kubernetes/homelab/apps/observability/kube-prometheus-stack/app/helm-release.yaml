@@ -115,8 +115,8 @@ spec:
       enabled: true
       endpoints: &endpoints
         - 192.168.8.20
-        - 192.168.8.21
         - 192.168.8.22
+        - 192.168.8.24
     kubeControllerManager:
       enabled: true
       endpoints: *endpoints
