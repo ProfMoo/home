@@ -26,11 +26,11 @@ machine:
     extraArgs:
       rotate-server-certificates: true
       # Reserve CPU and memory for system services
-      # system-reserved: "cpu=500m,memory=1Gi,ephemeral-storage=1Gi"
-      # kube-reserved: "cpu=500m,memory=1Gi,ephemeral-storage=1Gi"
-      # eviction-hard: "memory.available<500Mi,nodefs.available<10%"
-      # eviction-soft: "memory.available<1Gi,nodefs.available<15%"
-      # eviction-soft-grace-period: "memory.available=1m30s,nodefs.available=2m"
+      system-reserved: "cpu=500m,memory=1Gi,ephemeral-storage=1Gi"
+      kube-reserved: "cpu=500m,memory=1Gi,ephemeral-storage=1Gi"
+      eviction-hard: "memory.available<500Mi,nodefs.available<10%"
+      eviction-soft: "memory.available<1Gi,nodefs.available<15%"
+      eviction-soft-grace-period: "memory.available=1m30s,nodefs.available=2m"
   network:
     hostname: ${hostname}
     nameservers:
@@ -192,6 +192,13 @@ cluster:
       # NOTE: We need to override the default bind address so that the /metrics endpoint is able to be scraped by Prometheus
       # Further discussion: https://github.com/siderolabs/talos/discussions/7799
       listen-metrics-urls: http://0.0.0.0:2381
+    resources:
+      requests:
+        cpu: 250m
+        memory: 256Mi
+      limits:
+        cpu: 1
+        memory: 1Gi
   controllerManager:
     image: registry.k8s.io/kube-controller-manager:v1.32.1
     extraArgs:
@@ -207,6 +214,14 @@ cluster:
         memory: 1Gi
   discovery:
     enabled: true
+  coreDNS:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 70Mi
+      limits:
+        cpu: 500m
+        memory: 170Mi
   scheduler:
     image: registry.k8s.io/kube-scheduler:v1.32.1
     extraArgs:
