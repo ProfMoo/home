@@ -1,4 +1,4 @@
-FROM hashicorp/terraform:1.12
+FROM hashicorp/terraform:1.13
 
 WORKDIR /terraform
 
