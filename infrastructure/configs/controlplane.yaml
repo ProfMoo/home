@@ -1,4 +1,5 @@
 ---
+# TODO: Add critical cluster components to the highest priority class
 version: v1alpha1
 debug: false
 persist: true
@@ -25,12 +26,12 @@ machine:
     disableManifestsDirectory: true
     extraArgs:
       rotate-server-certificates: true
-      # Reserve CPU and memory for system services
-      system-reserved: "cpu=250m,memory=500Mi,ephemeral-storage=1Gi"
-      kube-reserved: "cpu=250m,memory=500Mi,ephemeral-storage=1Gi"
-      eviction-hard: "memory.available<500Mi,nodefs.available<10%"
+      # Conservative resource reservations for production stability
+      system-reserved: "cpu=250m,memory=512Mi,ephemeral-storage=1Gi"
+      kube-reserved: "cpu=500m,memory=1Gi,ephemeral-storage=1Gi"
+      eviction-hard: "memory.available<512Mi,nodefs.available<10%"
       eviction-soft: "memory.available<1Gi,nodefs.available<15%"
-      eviction-soft-grace-period: "memory.available=1m30s,nodefs.available=2m"
+      eviction-soft-grace-period: "memory.available=2m,nodefs.available=2m"
   network:
     hostname: ${hostname}
     nameservers:
@@ -65,18 +66,6 @@ machine:
         - os:admin
       allowedKubernetesNamespaces:
         - system-upgrade
-  # Ensure critical system services have CPU priority
-  sysctls:
-    # Protect against memory pressure and improve system responsiveness
-    vm.panic_on_oom: "0"
-    vm.overcommit_memory: "1"
-    kernel.panic: "10"
-    kernel.pid_max: "4194304"
-    # Network optimizations for high load
-    net.core.rmem_default: "262144"
-    net.core.rmem_max: "16777216"
-    net.core.wmem_default: "262144"
-    net.core.wmem_max: "16777216"
   # logging:
   #   destinations:
   #     - name: loki
@@ -174,10 +163,8 @@ cluster:
     resources:
       requests:
         cpu: 250m
-        memory: 500Mi
-      limits:
-        cpu: 500m
-        memory: 1Gi
+        memory: 512Mi
+      # No limits - critical component should not be throttled
   proxy:
     image: registry.k8s.io/kube-proxy:v1.33.4
     # Using Cilium as the proxy, so disabling kube-proxy
@@ -187,8 +174,6 @@ cluster:
       crt: ${etcd_ca_crt}
       key: ${etcd_ca_key}
     extraArgs:
-      # NOTE: We need to override the default bind address so that the /metrics endpoint is able to be scraped by Prometheus
-      # Further discussion: https://github.com/siderolabs/talos/discussions/7799
       listen-metrics-urls: http://0.0.0.0:2381
   controllerManager:
     image: registry.k8s.io/kube-controller-manager:v1.33.4
@@ -198,11 +183,9 @@ cluster:
       bind-address: 0.0.0.0
     resources:
       requests:
-        cpu: 500m
-        memory: 500Mi
-      limits:
-        cpu: 1
-        memory: 1Gi
+        cpu: 200m
+        memory: 512Mi
+      # No limits - critical component should not be throttled
   discovery:
     enabled: true
   scheduler:
@@ -213,10 +196,8 @@ cluster:
     resources:
       requests:
         cpu: 250m
-        memory: 500Mi
-      limits:
-        cpu: 500m
-        memory: 1Gi
+        memory: 512Mi
+      # No limits - critical component should not be throttled
   inlineManifests:
     - name: cilium
       contents: |-

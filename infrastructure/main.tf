@@ -20,6 +20,17 @@ module "talos_1_9_2_iso_pve2" {
   talos_image_storage_node = "pve2"
 }
 
+module "talos_1_10_6_iso_pve2" {
+  source = "./modules/talos-iso"
+
+  # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
+  talos_image_datastore = "local"
+
+  talos_version = "1.10.6"
+  # The Proxmox node identifier for the storage location of the Talos image
+  talos_image_storage_node = "pve2"
+}
+
 module "cluster" {
   source = "./modules/cluster"
 
@@ -32,8 +43,8 @@ module "cluster" {
       name                  = "porter-robinson"
       description           = "Control plane instance in the Kubernetes homelab cluster"
       tags                  = ["control-plane", "kubernetes"]
-      cpu_cores             = 2
-      memory                = 6144
+      cpu_cores             = 3
+      memory                = 8096
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
@@ -44,7 +55,7 @@ module "cluster" {
       enable_storage_cluster = false
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.9.2"
+      talos_version      = "1.10.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
@@ -70,8 +81,8 @@ module "cluster" {
       name                  = "fox-stevenson"
       description           = "Control plane instance in the Kubernetes homelab cluster"
       tags                  = ["control-plane", "kubernetes"]
-      cpu_cores             = 2
-      memory                = 6144
+      cpu_cores             = 3
+      memory                = 8096
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
@@ -82,7 +93,7 @@ module "cluster" {
       enable_storage_cluster = false
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.9.2"
+      talos_version      = "1.10.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
@@ -108,11 +119,11 @@ module "cluster" {
       name                  = "daft-punk"
       description           = "Control plane instance in the Kubernetes homelab cluster"
       tags                  = ["control-plane", "kubernetes"]
-      cpu_cores             = 2
-      memory                = 6144
+      cpu_cores             = 3
+      memory                = 8096
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_9_2_iso_pve2.talos_iso_id
+      proxmox_node_name     = "pve2"
+      initial_boot_iso      = module.talos_1_10_6_iso_pve2.talos_iso_id
 
       disk_size = "50"
       datastore = "disk3"
@@ -120,7 +131,7 @@ module "cluster" {
       enable_storage_cluster = false
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.9.2"
+      talos_version      = "1.10.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
@@ -138,7 +149,7 @@ module "cluster" {
 
       kubernetes_node_labels = {
         "drmoo.io/role" : "controlplane"
-        "drmoo.io/zone" : "pve"
+        "drmoo.io/zone" : "pve2"
       }
     }
   }
@@ -164,7 +175,7 @@ module "cluster" {
       storage_cluster_disk_size      = 100
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.9.2"
+      talos_version      = "1.10.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
@@ -206,7 +217,7 @@ module "cluster" {
       storage_cluster_disk_size      = 100
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.9.2"
+      talos_version      = "1.10.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
@@ -247,7 +258,7 @@ module "cluster" {
       storage_cluster_disk_size      = 100
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.9.2"
+      talos_version      = "1.10.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
@@ -273,7 +284,7 @@ module "cluster" {
       name                  = "bonobo"
       description           = "Worker node instance in the Kubernetes homelab cluster"
       tags                  = ["worker-node", "kubernetes"]
-      cpu_cores             = 60
+      cpu_cores             = 56
       memory                = 114688 # 112GB
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve2"
@@ -285,7 +296,7 @@ module "cluster" {
       enable_storage_cluster = false
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.9.2"
+      talos_version      = "1.10.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
