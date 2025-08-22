@@ -15,6 +15,8 @@
 7. [ ] System Upgrade Controller.
 8. [ ] Work on preemptions for k8s so that the most important pods are always scheduled.
 9. [ ] Move fluxtomization to specific namespaces instead of having them all in `flux-system`
+   1. [ ] Also do this for OCI Resources (i.e. Helm charts) (<https://github.com/onedr0p/home-ops/pull/8706>)
+   2. [ ] Move bootstrap to values.yaml (<https://github.com/onedr0p/home-ops/pull/9671>)
 10. [x] Fix renovate so that I actually get a net benefit from the tool.
 11. [ ] Add the Cloudflare `minecraft.drmoo.io` DNS record to TF (or try the TF operator!!!). It's currently manually entered on the CF website.
 
