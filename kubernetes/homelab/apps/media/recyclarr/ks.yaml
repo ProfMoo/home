@@ -18,7 +18,7 @@ spec:
       PVC_NAME: recyclarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/recyclarr/app
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home

@@ -18,7 +18,7 @@ spec:
       PVC_NAME: navidrome
       VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/navidrome/app
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home

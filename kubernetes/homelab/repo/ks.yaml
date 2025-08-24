@@ -9,7 +9,7 @@ metadata:
 spec:
   interval: 5m0s
   path: kubernetes/homelab/apps
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home

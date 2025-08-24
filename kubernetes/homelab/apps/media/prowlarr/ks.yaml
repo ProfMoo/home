@@ -18,7 +18,7 @@ spec:
       PVC_NAME: prowlarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/prowlarr/app
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -39,7 +39,7 @@ spec:
     - name: prowlarr
       namespace: flux-system
   path: ./kubernetes/homelab/apps/media/prowlarr/exporter
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home

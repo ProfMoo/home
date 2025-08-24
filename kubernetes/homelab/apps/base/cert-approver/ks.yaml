@@ -11,7 +11,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home
