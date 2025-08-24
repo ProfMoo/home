@@ -7,7 +7,6 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: media
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -19,7 +18,7 @@ spec:
       PVC_NAME: lidarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/lidarr/app
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -40,7 +39,7 @@ spec:
     - name: lidarr
       namespace: flux-system
   path: ./kubernetes/homelab/apps/media/lidarr/exporter
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home

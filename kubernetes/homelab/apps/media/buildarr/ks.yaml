@@ -8,12 +8,11 @@ metadata:
   name: &app buildarr-secrets
   namespace: flux-system
 spec:
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/media/buildarr/secrets
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -34,7 +33,6 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: media
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -42,7 +40,7 @@ spec:
   dependsOn:
     - name: buildarr-secrets
       namespace: flux-system
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home

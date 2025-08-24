@@ -7,7 +7,6 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: cert-manager
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

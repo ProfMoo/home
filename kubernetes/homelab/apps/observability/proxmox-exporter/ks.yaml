@@ -8,7 +8,6 @@ metadata:
 spec:
   path: ./kubernetes/homelab/apps/observability/proxmox-exporter/app
   targetNamespace: observability
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

@@ -6,7 +6,6 @@ metadata:
   name: &app flux-operator
   namespace: flux-system
 spec:
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -28,7 +27,6 @@ metadata:
   name: &app flux-instance
   namespace: flux-system
 spec:
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -52,7 +50,6 @@ metadata:
   name: &app flux-addons
   namespace: flux-system
 spec:
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

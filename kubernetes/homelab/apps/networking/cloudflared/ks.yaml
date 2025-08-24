@@ -7,7 +7,6 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: networking
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

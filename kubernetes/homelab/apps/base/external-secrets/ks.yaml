@@ -6,12 +6,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/base/external-secrets/app
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -23,12 +22,11 @@ metadata:
   name: &app external-secrets-bitwarden
   namespace: flux-system
 spec:
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/base/external-secrets/bitwarden
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -48,12 +46,11 @@ metadata:
   name: &app external-secrets-stores
   namespace: flux-system
 spec:
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/base/external-secrets/stores
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home

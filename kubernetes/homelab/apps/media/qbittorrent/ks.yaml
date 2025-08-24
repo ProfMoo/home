@@ -7,7 +7,6 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: media
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -19,7 +18,7 @@ spec:
       PVC_NAME: qbittorrent
       VOLSYNC_CAPACITY: 5Gi
   path: ./kubernetes/homelab/apps/media/qbittorrent/app
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -40,14 +39,13 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: media
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: qbittorrent
   path: ./kubernetes/homelab/apps/media/qbittorrent/tools
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -64,14 +62,13 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: media
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: qbittorrent
   path: ./kubernetes/homelab/apps/media/qbittorrent/exporter
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home

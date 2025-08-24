@@ -7,12 +7,11 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: base
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/base/priority-classes/app
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home

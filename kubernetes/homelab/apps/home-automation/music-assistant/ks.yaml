@@ -14,7 +14,6 @@ spec:
       APP: *app
       PVC_NAME: music-assistant
       VOLSYNC_CAPACITY: 5Gi
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

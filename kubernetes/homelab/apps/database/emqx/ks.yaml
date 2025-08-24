@@ -7,7 +7,6 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: database
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -29,7 +28,6 @@ metadata:
   namespace: flux-system
 spec:
   targetNamespace: database
-  suspend: true # remove later
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
