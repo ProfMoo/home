@@ -22,7 +22,7 @@ spec:
       namespace: storage
   interval: 1h
   path: ./kubernetes/homelab/apps/storage/rook-ceph/operator
-  prune: true
+  prune: false # revert later
   retryInterval: 2m
   sourceRef:
     kind: GitRepository
@@ -61,7 +61,7 @@ spec:
       current: status.ceph.health in ['HEALTH_OK', 'HEALTH_WARN']
   interval: 1h
   path: ./kubernetes/homelab/apps/storage/rook-ceph/cluster
-  prune: true
+  prune: false # revert later
   retryInterval: 2m
   sourceRef:
     kind: GitRepository
@@ -84,7 +84,7 @@ spec:
       namespace: flux-system
   interval: 1h
   path: ./kubernetes/homelab/apps/storage/rook-ceph/debugging
-  prune: true
+  prune: false # revert later
   force: true
   retryInterval: 2m
   sourceRef:

@@ -7,7 +7,7 @@ metadata:
   namespace: flux-system
 spec:
   path: ./kubernetes/homelab/apps/observability/loki/app
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home

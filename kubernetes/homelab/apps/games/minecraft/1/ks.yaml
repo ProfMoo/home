@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/games/minecraft/1/app
-  prune: true
+  prune: false # revert later
   sourceRef:
     kind: GitRepository
     name: profmoo-home
