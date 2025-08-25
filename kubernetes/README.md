@@ -18,10 +18,10 @@ The steps below are run after the cluster is created with Talos to start the flu
 
 In [this directory](./bootstrap), there are two secrets that must be applied to the cluster for flux to function properly:
 
-* `age.secret.sops.yaml`: The age secret that Flux will use to decrypt secrets checked into the codebase.
-* `github.secret.sops.yaml`: The Github SSH keys and access token necessary for Flux to access this repository on github.com.
+* `age.secret.sops.yaml`: The age secret that Flux will use to decrypt secrets checked into the codebase. Primarily, this particular deployment is used by Flux to decrypt the `sops-age` secret that is deployed to each namespace.
+* `github.secret.sops.yaml`: The Github SSH keys and access token necessary for Flux to access this repository on `github.com`.
 
-These secrets can be decrypted by either an age key (defined in the top-level `.sops.yaml` file) OR a KMS key (ARN also defined in the top-level `.sops.yaml` file). Age is the primary key used to decrypt secrets by Flux at deploy time. KMS key can be used a backup to decrypt and recover the bootstrap secrets if needed.
+These bootstrap secrets can be decrypted by either an age key (defined in the top-level `.sops.yaml` file) OR a KMS key (ARN also defined in the top-level `.sops.yaml` file). Age is a locally managed secret that should be used in most cases. KMS key can be used a backup to decrypt and recover the bootstrap secrets if needed.
 
 To deploy these secret during initial bootstrapping:
 
@@ -62,9 +62,9 @@ I use [`sops`](https://github.com/getsops/sops) to manage secrets in a GitOps wa
 
 ### Secrets With Flux
 
-To properly ensure secrets are GitOps-ified and still kept secret across the wide array of apps in this repo, there are numerous methods in which an app can be supplied secrets. Here’s a breakdown of some common methods using the tools in this repo: [Flux](https://fluxcd.io/) and [SOPS](https://github.com/mozilla/sops).
+To properly ensure secrets are GitOps-ified and still kept secret across the wide array of apps in this repo, there are numerous methods in which an app can be supplied secrets. This section describes numerous ways to supply secrets with [Flux](https://fluxcd.io/) and [SOPS](https://github.com/mozilla/sops).
 
-_This guide will not be covering how to integrate SOPS into Flux initially (i.e. bootstrapping SOPS with Flux during initial setup). For that be sure to check out the [Flux documentation on integrating SOPS](https://fluxcd.io/docs/guides/mozilla-sops/)_
+_This guide will not be covering how to integrate SOPS into Flux initially (i.e. bootstrapping SOPS with Flux during initial setup). For that, check out the [Flux documentation on integrating SOPS](https://fluxcd.io/docs/guides/mozilla-sops/). This guide is also not covering [External Secrets](https://external-secrets.io/latest/), which is also used in this repository._
 
 For the first three examples, the following secret will be used:.
 
@@ -153,12 +153,6 @@ postBuild:
 ```
 
 View example [Fluxtomization](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/flux/apps.yaml), [Helm Release](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/apps/monitoring/kube-prometheus-stack/helm-release.yaml), and corresponding [Secret](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/config/cluster-secrets.sops.yaml).
-
-#### Final Secrets Thoughts
-
-* TODO: For the first **three methods** consider using a tool like [stakater/reloader](https://github.com/stakater/Reloader) to restart the pod when the secret changes. Using reloader on a pod using a secret provided by Flux Variable Substitution will lead to pods being restarted during any change to the secret while related to the pod or not.
-
-* The last method should be used when all other methods are not an option, or used when you have a “global” secret used by numerous HelmReleases across the cluster.
 
 ### Kustomization Wait & DependOn
 

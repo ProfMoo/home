@@ -42,7 +42,6 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
-      namespace: flux-system
   targetNamespace: *namespace
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
