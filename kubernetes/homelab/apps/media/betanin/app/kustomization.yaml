@@ -1,9 +1,6 @@
 ---
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - ./helm-release.yaml
 configMapGenerator:
   - name: beets-config
     files:
@@ -17,3 +14,6 @@ configMapGenerator:
       - disambiguation.sh=./scripts/disambiguation.sh
 generatorOptions:
   disableNameSuffixHash: true
+kind: Kustomization
+resources:
+  - ./helm-release.yaml

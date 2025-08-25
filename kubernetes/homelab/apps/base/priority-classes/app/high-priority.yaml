@@ -1,8 +1,8 @@
 ---
 apiVersion: scheduling.k8s.io/v1
+description: "High priority for important pods"
+globalDefault: false
 kind: PriorityClass
 metadata:
   name: high-priority
 value: 100
-globalDefault: false
-description: "High priority for important pods"

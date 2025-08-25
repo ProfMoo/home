@@ -14,6 +14,10 @@ tasks:
       - echo "==> Formatting YAML files..."
       - yamlfmt -conf .yamlfmt.yaml
       - echo "==> Done formatting YAML files"
+  alphabetize-yaml:
+    desc: "Alphabetize YAML files"
+    cmds:
+      - find kubernetes/ -name "*.yaml" -o -name "*.yml" | xargs -I {} yq eval -i 'sort_keys(.)' {}
   format-markdown:
     desc: "Format Markdown files"
     cmds:

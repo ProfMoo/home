@@ -4,8 +4,6 @@ kind: Secret
 metadata:
   name: sops-age
   namespace: flux-system
-stringData:
-  age.agekey: ENC[AES256_GCM,data:b/mSHo3MzQaI8leVf88p9V9xWGjNF9fi0nNfhzCFrKV6wcu/3PAv1z7LomnCzKWv3gowp8wecmPnhmHMhVpm4OXYwhuoTV8Ueoc=,iv:5QYEu2TizOEU+nhOzauS5V+wBaP54OoaQIZxRmkGdBI=,tag:IOBwoaC+l6kHrxkU4MMAhg==,type:str]
 sops:
   kms:
     - arn: arn:aws:kms:us-east-1:912910253002:key/4e8ebbba-aa59-46c7-9ac7-b38b1bd1ef31
@@ -30,3 +28,5 @@ sops:
   pgp: []
   encrypted_regex: ^(data|stringData)$
   version: 3.8.1
+stringData:
+  age.agekey: ENC[AES256_GCM,data:b/mSHo3MzQaI8leVf88p9V9xWGjNF9fi0nNfhzCFrKV6wcu/3PAv1z7LomnCzKWv3gowp8wecmPnhmHMhVpm4OXYwhuoTV8Ueoc=,iv:5QYEu2TizOEU+nhOzauS5V+wBaP54OoaQIZxRmkGdBI=,tag:IOBwoaC+l6kHrxkU4MMAhg==,type:str]

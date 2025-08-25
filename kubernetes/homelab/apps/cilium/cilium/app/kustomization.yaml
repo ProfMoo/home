@@ -1,9 +1,6 @@
 ---
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - ./helm-release.yaml
 # NOTE: This Cilium configuration is placed in a separate file so that the bootstrapping scripts can also access it.
 # If the configuration values were embedded in the HelmRelease, a bootstrapping script would struggle to extract it.
 configMapGenerator:
@@ -12,3 +9,6 @@ configMapGenerator:
       - values.yaml=./helm-values.yaml
 configurations:
   - kustomize-config.yaml
+kind: Kustomization
+resources:
+  - ./helm-release.yaml

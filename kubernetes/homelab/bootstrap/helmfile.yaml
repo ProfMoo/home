@@ -7,9 +7,6 @@ helmDefaults:
   waitForJobs: true
   # We need namespaces such as `flux-system` to exist already.
   createNamespace: true
-repositories:
-  - name: cilium
-    url: https://helm.cilium.io
 releases:
   - name: cilium
     namespace: cilium
@@ -28,3 +25,6 @@ releases:
     values: ['../apps/flux-system/flux-operator/instance/helm-values.yaml']
     needs: ['flux-system/flux-operator']
     wait: false
+repositories:
+  - name: cilium
+    url: https://helm.cilium.io
