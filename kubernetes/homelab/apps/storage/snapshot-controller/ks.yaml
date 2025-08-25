@@ -24,7 +24,7 @@ spec:
       namespace: *namespace
   interval: 1h
   path: ./kubernetes/homelab/apps/storage/snapshot-controller/app
-  prune: false # revert later
+  prune: true
   wait: false
   force: true
   retryInterval: 2m

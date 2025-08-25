@@ -20,7 +20,7 @@ spec:
       namespace: *namespace
   interval: 1h
   path: ./kubernetes/homelab/apps/storage/volsync/app
-  prune: false # revert later
+  prune: true
   wait: false
   retryInterval: 2m
   sourceRef:

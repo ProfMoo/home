@@ -18,7 +18,7 @@ spec:
       PVC_NAME: radarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/radarr/app
-  prune: false # revert later
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -40,7 +40,7 @@ spec:
     - name: radarr
       namespace: *namespace
   path: ./kubernetes/homelab/apps/media/radarr/exporter
-  prune: false # revert later
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home

@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/observability/redfish-exporter/app
-  prune: false # revert later
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home

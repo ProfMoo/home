@@ -9,7 +9,7 @@ spec:
   path: ./kubernetes/homelab/apps/storage/local-path-provisioner/app
   targetNamespace: *namespace
   wait: false
-  prune: false # revert later
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home

@@ -18,7 +18,7 @@ spec:
       PVC_NAME: lidarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/lidarr/app
-  prune: false # revert later
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -40,7 +40,7 @@ spec:
     - name: lidarr
       namespace: *namespace
   path: ./kubernetes/homelab/apps/media/lidarr/exporter
-  prune: false # revert later
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home

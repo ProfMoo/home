@@ -8,7 +8,7 @@ metadata:
 spec:
   path: ./kubernetes/homelab/apps/observability/logging-operator/app
   targetNamespace: *namespace
-  prune: false # revert later
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home

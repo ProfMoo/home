@@ -18,7 +18,7 @@ spec:
       PVC_NAME: jellyseerr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/jellyseerr/app
-  prune: false # revert later
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home

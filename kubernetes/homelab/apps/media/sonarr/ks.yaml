@@ -18,7 +18,7 @@ spec:
       PVC_NAME: sonarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/sonarr/app
-  prune: false # revert later
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -40,7 +40,7 @@ spec:
     - name: sonarr
       namespace: *namespace
   path: ./kubernetes/homelab/apps/media/sonarr/exporter
-  prune: false # revert later
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
