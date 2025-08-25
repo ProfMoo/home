@@ -4,9 +4,9 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app rook-ceph-operator
-  namespace: flux-system
+  namespace: &namespace storage
 spec:
-  targetNamespace: storage
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -22,6 +22,7 @@ spec:
       namespace: storage
   interval: 1h
   path: ./kubernetes/homelab/apps/storage/rook-ceph/operator
+  wait: false
   prune: false # revert later
   retryInterval: 2m
   sourceRef:
@@ -35,9 +36,9 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app rook-ceph-cluster
-  namespace: flux-system
+  namespace: &namespace storage
 spec:
-  targetNamespace: storage
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -50,11 +51,11 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: rook-ceph-cluster
-      namespace: storage
+      namespace: *namespace
     - apiVersion: ceph.rook.io/v1
       kind: CephCluster
       name: storage
-      namespace: storage
+      namespace: *namespace
   healthCheckExprs:
     - apiVersion: ceph.rook.io/v1
       kind: CephCluster
@@ -63,6 +64,7 @@ spec:
   interval: 1h
   path: ./kubernetes/homelab/apps/storage/rook-ceph/cluster
   prune: false # revert later
+  wait: false
   retryInterval: 2m
   sourceRef:
     kind: GitRepository
@@ -75,18 +77,19 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app rook-ceph-debugging
-  namespace: flux-system
+  namespace: &namespace storage
 spec:
-  targetNamespace: storage
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: rook-ceph-cluster
-      namespace: flux-system
+      namespace: *namespace
   interval: 1h
   path: ./kubernetes/homelab/apps/storage/rook-ceph/debugging
   prune: false # revert later
+  wait: false
   force: true
   retryInterval: 2m
   sourceRef:

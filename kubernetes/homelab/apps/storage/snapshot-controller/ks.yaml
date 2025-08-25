@@ -4,7 +4,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app snapshot-controller
-  namespace: flux-system
+  namespace: &namespace storage
   annotations:
     fluxcd.io/description: |
       Snapshot Controller is a Kubernetes controller that manages volume snapshots.
@@ -13,7 +13,7 @@ metadata:
       The controller works with various storage providers and integrates with Kubernetes
       to provide a seamless experience for managing snapshots.
 spec:
-  targetNamespace: storage
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -21,10 +21,11 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: snapshot-controller
-      namespace: storage
+      namespace: *namespace
   interval: 1h
   path: ./kubernetes/homelab/apps/storage/snapshot-controller/app
   prune: false # revert later
+  wait: false
   force: true
   retryInterval: 2m
   sourceRef:

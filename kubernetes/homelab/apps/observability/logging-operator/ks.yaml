@@ -4,9 +4,10 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: logging-operator
-  namespace: flux-system
+  namespace: &namespace observability
 spec:
   path: ./kubernetes/homelab/apps/observability/logging-operator/app
+  targetNamespace: *namespace
   prune: false # revert later
   sourceRef:
     kind: GitRepository
@@ -16,8 +17,9 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: logging-operator
-      namespace: observability
+      namespace: *namespace
   interval: 30m
+  wait: false
   retryInterval: 1m
   timeout: 3m
   # NOTE: This enable this to recreate resources on immutable fields changes

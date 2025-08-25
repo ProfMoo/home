@@ -4,9 +4,9 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app external-dns-unifi
-  namespace: flux-system
+  namespace: &namespace networking
 spec:
-  targetNamespace: networking
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -20,19 +20,15 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 15m
-  decryption:
-    provider: sops
-    secretRef:
-      name: sops-age
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app external-dns-cloudflare
-  namespace: flux-system
+  namespace: &namespace networking
 spec:
-  targetNamespace: networking
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -52,11 +48,12 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app cloudflare-records
-  namespace: flux-system
+  namespace: &namespace networking
 spec:
-  targetNamespace: networking
+  targetNamespace: *namespace
   dependsOn:
     - name: external-dns-cloudflare
+      namespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

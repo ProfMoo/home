@@ -4,9 +4,9 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app volsync
-  namespace: flux-system
+  namespace: &namespace storage
 spec:
-  targetNamespace: storage
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
@@ -17,10 +17,11 @@ spec:
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
       name: volsync
-      namespace: storage
+      namespace: *namespace
   interval: 1h
   path: ./kubernetes/homelab/apps/storage/volsync/app
   prune: false # revert later
+  wait: false
   retryInterval: 2m
   sourceRef:
     kind: GitRepository

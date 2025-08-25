@@ -4,9 +4,11 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: local-path-provisioner
-  namespace: flux-system
+  namespace: &namespace storage
 spec:
   path: ./kubernetes/homelab/apps/storage/local-path-provisioner/app
+  targetNamespace: *namespace
+  wait: false
   prune: false # revert later
   sourceRef:
     kind: GitRepository
