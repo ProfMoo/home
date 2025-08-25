@@ -16,7 +16,7 @@ spec:
       namespace: *namespace
   interval: 30m
   path: ./kubernetes/homelab/apps/flux-system/flux-operator/app
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -40,7 +40,7 @@ spec:
       namespace: *namespace
   interval: 30m
   path: ./kubernetes/homelab/apps/flux-system/flux-operator/instance
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -66,7 +66,7 @@ spec:
       namespace: *namespace
   interval: 30m
   path: ./kubernetes/homelab/apps/flux-system/flux-operator/addons
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
