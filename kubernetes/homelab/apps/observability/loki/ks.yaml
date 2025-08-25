@@ -11,6 +11,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: profmoo-home
+    namespace: flux-system
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2
       kind: HelmRelease
