@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: cert-manager-issuers
   path: ./kubernetes/homelab/apps/cert-manager/certificates/app
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
