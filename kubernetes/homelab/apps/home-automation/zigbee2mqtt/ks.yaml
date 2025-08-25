@@ -19,6 +19,7 @@ spec:
       VOLSYNC_CAPACITY: 10Gi
   dependsOn:
     - name: emqx-cluster
+      namespace: database
   path: ./kubernetes/homelab/apps/home-automation/zigbee2mqtt/app
   prune: false # revert later
   sourceRef:
