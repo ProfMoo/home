@@ -16,6 +16,7 @@ spec:
     kind: GitRepository
     name: profmoo-home
     namespace: flux-system
+  wait: false
   interval: 30m
   retryInterval: 2m
   timeout: 3m

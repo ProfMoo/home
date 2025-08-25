@@ -14,6 +14,7 @@ spec:
     kind: GitRepository
     name: profmoo-home
     namespace: flux-system
+  wait: false
   # Enables this ks object to decrypt the secret sops-age,
   # which is then used to place the decrypted sops-age secret into each namespace.
   decryption:
