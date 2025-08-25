@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   path: ./kubernetes/homelab/apps/database/emqx/app
-  prune: false # revert later
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
@@ -35,7 +35,7 @@ spec:
   dependsOn:
     - name: emqx
   path: ./kubernetes/homelab/apps/database/emqx/cluster
-  prune: false # revert later
+  prune: true
   sourceRef:
     kind: GitRepository
     name: profmoo-home
