@@ -78,12 +78,12 @@ jobs:
           args: >-
             diff ${{ matrix.resource }}
             --unified 6
-            --path /github/workspace/pull/kubernetes/homelab/apps
-            --path-orig /github/workspace/default/kubernetes/homelab/apps
+            --path /github/workspace/pull/kubernetes/homelab/repo
+            --path-orig /github/workspace/default/kubernetes/homelab/repo
             --strip-attrs "helm.sh/chart,checksum/config,app.kubernetes.io/version,chart"
             --limit-bytes 10000
             --all-namespaces
-            --sources "flux-system"
+            --sources "profmoo-home"
             --output-file diff.patch
 
       - name: Generate Diff
