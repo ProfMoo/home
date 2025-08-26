@@ -14,7 +14,7 @@ spec:
     - ../../../../components/volsync
   dependsOn:
     - name: rook-ceph-cluster
-      namespace: rook-ceph
+      namespace: storage
   interval: 30m
   path: ./kubernetes/homelab/apps/media/jellyfin/app
   postBuild:
@@ -26,7 +26,7 @@ spec:
   retryInterval: 2m
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: profmoo-home
     namespace: flux-system
   timeout: 5m
   wait: false
