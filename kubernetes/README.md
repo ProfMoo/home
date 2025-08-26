@@ -8,7 +8,7 @@
 
 * Code in the [`common`](./homelab/common/) is basically a YAML template containing common components. Ex: All the `volsync` configuration needed for a fully-backed up PVC
 
-* The [`repo`](./homelab/repo/) dir is the Kustomization that kicks off the whole process. It finds the rest of the Kustomizations in the cluster.
+* The [`repo`](./homelab/repo/) dir is the Kustomization that kicks off the whole process. It finds the rest of the Kustomization YAMLs in the cluster.
 
 ## Bootstrapping
 
