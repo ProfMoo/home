@@ -5,7 +5,7 @@ metadata:
   name: minecraft-3
 spec:
   selector:
-    app.kubernetes.io/instance: minecraft-3-minecraft
+    app.kubernetes.io/instance: minecraft-3
   ports:
     - protocol: TCP
       name: gui
