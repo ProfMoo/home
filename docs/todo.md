@@ -19,6 +19,7 @@
    2. [ ] Move bootstrap to values.yaml (<https://github.com/onedr0p/home-ops/pull/9671>)
 10. [x] Fix renovate so that I actually get a net benefit from the tool.
 11. [ ] Add the Cloudflare `minecraft.drmoo.io` DNS record to TF (or try the TF operator!!!). It's currently manually entered on the CF website.
+12. [ ] Move Minecraft svcs off of Nodeport to use L2 cilium.
 
 ## July 27th, 2025
 
