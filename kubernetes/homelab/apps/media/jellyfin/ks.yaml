@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
-    - ../../../../components/volsync
+    - ../../../../common/volsync
   dependsOn:
     - name: rook-ceph-cluster
       namespace: storage
