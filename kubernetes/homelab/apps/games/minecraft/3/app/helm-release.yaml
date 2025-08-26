@@ -50,7 +50,7 @@ spec:
       # Message of the Day
       motd: "Moo's Pasture 3 - Moo, Moo, Bitch"
       # A comma-separated list of player names to whitelist.
-      whitelist: ProfMoo,bamxmejia,KittyDonut1009,00Rem00,Seanzz,The9thCobra,Mint_Moose
+      whitelist: ProfMoo,bamxmejia,KittyDonut1009,00Rem00,Seanzz,The9thCobra,linderson9
       # A comma-separated list of player names who should be admins.
       ops: ProfMoo
       # A list of Modrinth project slugs with optional version after colon
