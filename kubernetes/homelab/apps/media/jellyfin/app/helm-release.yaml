@@ -49,7 +49,7 @@ spec:
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              capabilities: {drop: ["ALL"]}
             resources:
               requests:
                 cpu: 100m
@@ -68,13 +68,41 @@ spec:
         ports:
           http:
             port: *port
-    route:
+    ingress:
       app:
-        hostnames: ["{{ .Release.Name }}.turbo.ac"]
-        parentRefs:
-          - name: internal
-            namespace: kube-system
-            sectionName: https
+        tls:
+          - hosts:
+              - "*.drmoo.io"
+            secretName: drmoo-io-tls
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/secret-name: "drmoo-io-tls"
+        className: internal
+        hosts:
+          - host: "{{ .Release.Name }}.drmoo.io"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+      external:
+        tls:
+          - hosts:
+              - "*.drmoo.io"
+            secretName: drmoo-io-tls
+        annotations:
+          external-dns.alpha.kubernetes.io/target: external.drmoo.io
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/secret-name: "drmoo-io-tls"
+        className: external
+        hosts:
+          - host: "movies.drmoo.io"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
@@ -86,10 +114,10 @@ spec:
           - path: /config/metadata
       media:
         type: nfs
-        server: expanse.internal
-        path: /mnt/eros/Media
+        server: 192.168.8.248
+        path: /mnt/vault/media
         globalMounts:
-          - path: /media
+          - path: /data
             readOnly: true
       tmpfs:
         type: emptyDir
