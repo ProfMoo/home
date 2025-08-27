@@ -59,7 +59,7 @@ spec:
           - "/"
       alertmanagerSpec:
         alertmanagerConfiguration:
-          name: alertmanager
+          name: alertmanager-config
           global:
             resolveTimeout: 5m
         externalUrl: https://alertmanager.drmoo.io
