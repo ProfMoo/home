@@ -1,9 +1,9 @@
 ---
-originRequest:
-  originServerName: external.drmoo.io
 ingress:
   - hostname: drmoo.io
     service: https://nginx-external-controller.networking.svc.cluster.local:443
   - hostname: "*.drmoo.io"
     service: https://nginx-external-controller.networking.svc.cluster.local:443
   - service: http_status:404
+originRequest:
+  originServerName: external.drmoo.io

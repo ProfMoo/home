@@ -1,10 +1,10 @@
 ---
-title: Moo's Pasture
+headerStyle: clean
 logpath: /tmp
-target: _self
 quicklaunch:
   searchDescriptions: true
   hideInternetSearch: true
   showSearchSuggestions: true
   hideVisitURL: true
-headerStyle: clean
+target: _self
+title: Moo's Pasture
