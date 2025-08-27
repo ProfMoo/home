@@ -115,7 +115,7 @@ spec:
       media:
         type: nfs
         server: 192.168.8.248
-        path: /mnt/vault/media/books
+        path: /mnt/vault/media/media/books
         globalMounts:
           - path: /data
             readOnly: true
