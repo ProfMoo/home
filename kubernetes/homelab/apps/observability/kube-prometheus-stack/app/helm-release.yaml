@@ -59,7 +59,7 @@ spec:
           - "/"
       alertmanagerSpec:
         alertmanagerConfiguration:
-          name: alertmanager-config
+          name: alertmanager-kube-prometheus-stack
           global:
             resolveTimeout: 5m
         externalUrl: https://alertmanager.drmoo.io
