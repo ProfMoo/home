@@ -47,6 +47,10 @@
         - abbr: AIT
           icon: mdi-movies
           href: https://aither.cc/
+    - BeyondHD:
+        - abbr: BHD
+          icon: mdi-movies
+          href: https://beyond-hd.me/
 - Entertainment:
     - YouTube:
         - abbr: YT
