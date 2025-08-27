@@ -1,0 +1,131 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: audiobookshelf
+  namespace: default
+spec:
+  interval: 1h
+  chart:
+    spec:
+      chart: app-template
+      version: 4.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  install:
+    remediation:
+      retries: -1
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    controllers:
+      audiobookshelf:
+        pod:
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1001
+            runAsGroup: 1001
+            fsGroup: 1001
+            fsGroupChangePolicy: OnRootMismatch
+            seccompProfile: {type: RuntimeDefault}
+        containers:
+          app:
+            image:
+              repository: ghcr.io/advplyr/audiobookshelf
+              tag: 2.29.0@sha256:dd4a3079d26bfe9f0ea63de3e3eff483dfa25fef05ef850a5a9d121dca3794b2
+            env:
+              TZ: "America/New_York"
+              AUDIOBOOKSHELF_UID: 1001
+              AUDIOBOOKSHELF_GID: 1001
+              CONFIG_PATH: /config
+              METADATA_PATH: /config/metadata
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /healthcheck
+                    port: &port 80
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 50m
+                memory: 100Mi
+              limits:
+                memory: 500Mi
+    service:
+      app:
+        primary: true
+        controller: audiobookshelf
+        ports:
+          http:
+            port: *port
+    ingress:
+      app:
+        tls:
+          - hosts:
+              - "*.drmoo.io"
+            secretName: drmoo-io-tls
+        annotations:
+          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/secret-name: "drmoo-io-tls"
+        className: internal
+        hosts:
+          - host: "bookshelf.drmoo.io"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+      external:
+        tls:
+          - hosts:
+              - "*.drmoo.io"
+            secretName: drmoo-io-tls
+        annotations:
+          external-dns.alpha.kubernetes.io/target: external.drmoo.io
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+          cert-manager.io/secret-name: "drmoo-io-tls"
+        className: external
+        hosts:
+          - host: "books.drmoo.io"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
+    persistence:
+      config:
+        existingClaim: "{{ .Release.Name }}"
+        globalMounts:
+          - path: /config
+      cache:
+        type: emptyDir
+        globalMounts:
+          - path: /.npm
+      media:
+        type: nfs
+        server: 192.168.8.248
+        path: /mnt/vault/media/books
+        globalMounts:
+          - path: /data
+            readOnly: true
+      tmpfs:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp

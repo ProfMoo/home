@@ -25,3 +25,4 @@ resources:
   # Putting down Roon for now until I can figure out how to get Multus working on my cluster
   # - ./roon/ks.yaml
   - ./jellyfin/ks.yaml
+  - ./audiobookshelf/ks.yaml
