@@ -4,7 +4,6 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: audiobookshelf
-  namespace: default
 spec:
   interval: 1h
   chart:
