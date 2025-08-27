@@ -39,6 +39,14 @@
         - abbr: MAM
           icon: mdi-book-open-variant
           href: https://myanonamouse.net/
+    - Concertos:
+        - abbr: CON
+          icon: mdi-music
+          href: https://concertos.live/
+    - Aither:
+        - abbr: AIT
+          icon: mdi-movies
+          href: https://aither.cc/
 - Entertainment:
     - YouTube:
         - abbr: YT
