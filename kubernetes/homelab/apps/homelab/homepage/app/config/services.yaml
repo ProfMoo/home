@@ -150,9 +150,9 @@
         icon: dell
         description: (root:MA33M93PFYX3)
     - Minecraft:
-        href: udp://minecraft-3-minecraft.games.svc.cluster.local:25565
+        href: udp://minecraft-3.games.svc.cluster.local:25565
         icon: minecraft
         description: OBKiddos
         widget:
           type: minecraft
-          url: udp://minecraft-3-minecraft.games.svc.cluster.local:25565
+          url: udp://minecraft-3.games.svc.cluster.local:25565
