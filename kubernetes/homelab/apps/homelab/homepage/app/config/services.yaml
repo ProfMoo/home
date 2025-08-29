@@ -3,13 +3,13 @@
 # https://gethomepage.dev/widgets/
 - Home:
     - Jellyfin:
-        href: http://192.168.1.78:8096
+        href: https://jellyfin.drmoo.io
         icon: jellyfin
         description: Media server (admin:)
         widget:
           type: jellyfin
-          url: http://192.168.1.78:8096
-          key: ac5afcc6811543d9814ec798c924b29c
+          url: https://jellyfin.drmoo.io
+          key: f58cd19c3e6749f585f580fb11d7d180
     - Jellyseerr:
         href: https://request.drmoo.io
         icon: jellyseerr
