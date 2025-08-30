@@ -7,7 +7,6 @@ resources:
   - ./alertmanager-config.yaml
   - ./oci-repository.yaml
   - ./external-secret.yaml
-  - ./alertmanager-config.yaml
   - ./helm-release.yaml
 configMapGenerator:
   # NOTE: We generate a custom kube-state-metrics configuration so that we can inject the Flux CRDs
