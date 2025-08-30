@@ -12,4 +12,10 @@ resources:
   - ./loki/ks.yaml
   - ./grafana/ks.yaml
   - ./proxmox-exporter/ks.yaml
-  - ./redfish-exporter/ks.yaml
+  # Disabling so this stops crashing constantly.
+  # Having trouble with the pod connecting to iDRAC IPs on startup.
+  # Have yet to connect it successfully even once.
+  # I am able to run the code locally and it connects perfectly OK.
+  # There is something wrong/different about the k8s setup.
+  # - ./redfish-exporter/ks.yaml
+  - ./gatus/ks.yaml
