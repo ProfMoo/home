@@ -62,8 +62,6 @@ spec:
           name: alertmanager
           global:
             resolveTimeout: 5m
-        secrets:
-          - alertmanager-kube-prometheus-stack
         externalUrl: https://alertmanager.drmoo.io
         storage:
           volumeClaimTemplate:
