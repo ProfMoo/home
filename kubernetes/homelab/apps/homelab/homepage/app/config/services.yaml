@@ -60,6 +60,10 @@
           type: prometheus
           url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090
           fields: ["targets_up", "targets_down", "targets_total"]
+    - AlertManager:
+        href: https://alertmanager.drmoo.io
+        icon: alertmanager
+        description: Alerts
     - GoldPinger:
         href: https://goldpinger.drmoo.io
         icon: mdi-connection
@@ -152,7 +156,21 @@
     - Minecraft:
         href: udp://minecraft-3.games.svc.cluster.local:25565
         icon: minecraft
-        description: OBKiddos
+        description: OBKiddos 3
         widget:
           type: minecraft
           url: udp://minecraft-3.games.svc.cluster.local:25565
+    - Minecraft:
+        href: udp://minecraft-2.games.svc.cluster.local:25565
+        icon: minecraft
+        description: OBKiddos 2
+        widget:
+          type: minecraft
+          url: udp://minecraft-2.games.svc.cluster.local:25565
+    - Minecraft:
+        href: udp://minecraft-1.games.svc.cluster.local:25565
+        icon: minecraft
+        description: OBKiddos 1
+        widget:
+          type: minecraft
+          url: udp://minecraft-1.games.svc.cluster.local:25565
