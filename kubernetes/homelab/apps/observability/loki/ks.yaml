@@ -6,6 +6,7 @@ metadata:
   name: loki
   namespace: &namespace observability
 spec:
+  targetNamespace: *namespace
   path: ./kubernetes/homelab/apps/observability/loki/app
   prune: true
   sourceRef:
