@@ -35,7 +35,7 @@ metrics:
       - {color: "red", min: 76, max: 9999}
     title: CPU
   - name: cluster_memory_usage
-    query: rround(sum(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / sum(node_memory_MemTotal_bytes) * 100, 0.1)
+    query: round(sum(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / sum(node_memory_MemTotal_bytes) * 100, 0.1)
     suffix: "%"
     colors:
       - {color: green, min: 0, max: 35}
