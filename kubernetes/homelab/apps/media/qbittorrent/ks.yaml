@@ -12,12 +12,13 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../common/volsync
-    - ../../../../common/gatus/guarded
+    - ../../../../common/gatus/http-check
   postBuild:
     substitute:
       APP: *app
       PVC_NAME: qbittorrent
       GATUS_SUBDOMAIN: qb
+      GATUS_PATH: /api/v2/app/preferences
       VOLSYNC_CAPACITY: 5Gi
   path: ./kubernetes/homelab/apps/media/qbittorrent/app
   prune: true
