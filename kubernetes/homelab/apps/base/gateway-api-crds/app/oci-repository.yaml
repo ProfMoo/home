@@ -12,21 +12,3 @@ spec:
   ref:
     tag: 1.3.0
   url: oci://ghcr.io/wiremind/wiremind-helm-charts/gateway-api-crds
----
-# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: gateway-api-crds
-spec:
-  interval: 1h
-  chartRef:
-    kind: OCIRepository
-    name: gateway-api-crds
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
