@@ -16,11 +16,18 @@ releases:
     chart: oci://ghcr.io/home-operations/charts-mirror/cilium
     version: 1.18.1
     values: ['./values.yaml.gotmpl']
+  - name: spegel
+    namespace: base
+    chart: oci://ghcr.io/spegel-org/helm-charts/spegel
+    version: 0.3.0
+    values: ['./values.yaml.gotmpl']
+    needs: ['cilium/cilium']
   - name: cert-manager
     namespace: cert-manager
     chart: oci://quay.io/jetstack/charts/cert-manager
     version: v1.18.2
     values: ['./values.yaml.gotmpl']
+    needs: ['base/spegel']
   - name: flux-operator
     namespace: flux-system
     chart: oci://ghcr.io/controlplaneio-fluxcd/charts/flux-operator

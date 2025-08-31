@@ -16,13 +16,14 @@
 8. [ ] Work on preemptions for k8s so that the most important pods are always scheduled.
 9. [X] Move fluxtomization to specific namespaces instead of having them all in `flux-system`
    1. [ ] Also do this for OCI Resources (i.e. Helm charts) (<https://github.com/onedr0p/home-ops/pull/8706>)
-   2. [ ] Move bootstrap to values.yaml (<https://github.com/onedr0p/home-ops/pull/9671>)
+   2. [X] Move bootstrap to values.yaml (<https://github.com/onedr0p/home-ops/pull/9671>)
 10. [x] Fix renovate so that I actually get a net benefit from the tool.
 11. [ ] Add the Cloudflare `minecraft.drmoo.io` DNS record to TF (or try the TF operator!!!). It's currently manually entered on the CF website.
 12. [ ] Move Minecraft svcs off of Nodeport to use L2 cilium.
 13. [ ] Jellyfin MV organizational improvements. Doc with recommendations [here](https://github.com/mystoragebox/Jellyfin-Music-Video-Tutorial). Generally Jellyfin navigation isn't great currently.
 14. [ ] Replace qbtools with tqm. qbtools is deprecated per [this README](https://github.com/buroa/qbtools).
 15. [ ] Manage coredns in Flux. That's how onedr0p does it. [Link](https://github.com/onedr0p/home-ops/blob/5899f27553d145b40d029be4eb34d8e254a7cc23/talos/machineconfig.yaml.j2#L147) and [link](https://github.com/onedr0p/home-ops/blob/5899f27553d145b40d029be4eb34d8e254a7cc23/kubernetes/apps/kube-system/coredns/ks.yaml#L23).
+16. [ ] Add spegel
 
 ## July 27th, 2025
 
