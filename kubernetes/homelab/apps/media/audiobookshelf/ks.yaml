@@ -12,10 +12,13 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../common/volsync
+    - ../../../../common/gatus/external
   postBuild:
     substitute:
       APP: *app
       PVC_NAME: audiobookshelf
+      GATUS_SUBDOMAIN: books
+      GATUS_PATH: /healthcheck
       VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/audiobookshelf/app
   prune: true
