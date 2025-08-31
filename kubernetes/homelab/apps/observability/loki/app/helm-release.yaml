@@ -7,14 +7,9 @@ metadata:
 spec:
   interval: 30m
   timeout: 15m
-  chart:
-    spec:
-      chart: loki
-      version: 5.47.1
-      sourceRef:
-        kind: HelmRepository
-        name: grafana
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: loki
   install:
     remediation:
       retries: 3
@@ -57,10 +52,27 @@ spec:
         replication_factor: 1
       storage:
         type: "filesystem"
+      schemaConfig:
+        configs:
+          - from: "2024-04-01" # quote
+            store: tsdb
+            object_store: filesystem
+            schema: v13
+            index:
+              prefix: loki_index_
+              period: 24h
     singleBinary:
       replicas: 1
       persistence:
         storageClass: local-hostpath
+    gateway:
+      replicas: 0
+    backend:
+      replicas: 0
+    read:
+      replicas: 0
+    write:
+      replicas: 0
     monitoring:
       dashboards:
         enabled: true
