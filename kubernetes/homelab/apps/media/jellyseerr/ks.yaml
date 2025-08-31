@@ -12,10 +12,13 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../common/volsync
+    - ../../../../components/gatus/external
   postBuild:
     substitute:
       APP: *app
       PVC_NAME: jellyseerr-blockstorage
+      GATUS_PATH: /api/v1/status
+      GATUS_SUBDOMAIN: request
       VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/jellyseerr/app
   prune: true
