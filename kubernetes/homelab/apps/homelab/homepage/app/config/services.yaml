@@ -18,6 +18,13 @@
           type: jellyseerr
           url: http://jellyseerr.media.svc.cluster.local:80
           key: MTcxOTc4NTA3MzM0NTgyMjE3OTYwLTU2NGItNGI4MC05Nzg4LWJjYmNhYmI5NTExNg==
+    - Gatus:
+        href: https://status.drmoo.io
+        icon: gatus
+        description: Status page
+        widget:
+          type: gatus
+          url: https://status.drmoo.io
     - Home Assistant:
         href: https://hass.drmoo.io
         icon: homeassistant
