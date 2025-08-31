@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   interval: 1h
-  path: ./kubernetes/homelab/app/base/gateway-api-crds/app
+  path: ./kubernetes/homelab/apps/base/gateway-api-crds/app
   prune: true
   retryInterval: 2m
   sourceRef:
