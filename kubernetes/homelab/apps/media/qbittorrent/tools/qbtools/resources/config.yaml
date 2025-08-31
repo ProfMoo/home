@@ -27,12 +27,12 @@ trackers:
   - name: concertos
     urls: ["concertos.live"]
     required_seed_ratio: 2.01
-    required_seed_days: 50.1
+    required_seed_days: 100.1
   - name: aither
     urls: ["aither.cc"]
     required_seed_ratio: 2.01
-    required_seed_days: 50.1
+    required_seed_days: 100.1
   - name: beyondhd
     urls: ["beyond-hd.me"]
     required_seed_ratio: 2.01
-    required_seed_days: 50.1
+    required_seed_days: 100.1
