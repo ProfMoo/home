@@ -21,6 +21,7 @@
 11. [ ] Add the Cloudflare `minecraft.drmoo.io` DNS record to TF (or try the TF operator!!!). It's currently manually entered on the CF website.
 12. [ ] Move Minecraft svcs off of Nodeport to use L2 cilium.
 13. [ ] Jellyfin MV organizational improvements. Doc with recommendations [here](https://github.com/mystoragebox/Jellyfin-Music-Video-Tutorial). Generally Jellyfin navigation isn't great currently.
+14. [ ] Replace qbtools with tqm. qbtools is deprecated per [this README](https://github.com/buroa/qbtools).
 
 ## July 27th, 2025
 
