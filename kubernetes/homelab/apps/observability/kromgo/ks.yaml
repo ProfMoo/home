@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   components:
-    - ../../../../common/gatus/external
+    - ../../../../common/gatus/http-check
   interval: 1h
   path: ./kubernetes/homelab/apps/observability/kromgo/app
   postBuild:

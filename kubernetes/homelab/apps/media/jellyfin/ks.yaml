@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../common/volsync
-    - ../../../../common/gatus/external
+    - ../../../../common/gatus/http-check
   dependsOn:
     - name: rook-ceph-cluster
       namespace: storage

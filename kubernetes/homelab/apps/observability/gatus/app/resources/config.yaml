@@ -18,7 +18,7 @@ connectivity:
     interval: 1m
 endpoints:
   - name: flux-webhook
-    group: external
+    group: http-check
     url: https://flux-webhook.drmoo.io
     interval: 1m
     client:
