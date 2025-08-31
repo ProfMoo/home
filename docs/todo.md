@@ -23,7 +23,7 @@
 13. [ ] Jellyfin MV organizational improvements. Doc with recommendations [here](https://github.com/mystoragebox/Jellyfin-Music-Video-Tutorial). Generally Jellyfin navigation isn't great currently.
 14. [ ] Replace qbtools with tqm. qbtools is deprecated per [this README](https://github.com/buroa/qbtools).
 15. [ ] Manage coredns in Flux. That's how onedr0p does it. [Link](https://github.com/onedr0p/home-ops/blob/5899f27553d145b40d029be4eb34d8e254a7cc23/talos/machineconfig.yaml.j2#L147) and [link](https://github.com/onedr0p/home-ops/blob/5899f27553d145b40d029be4eb34d8e254a7cc23/kubernetes/apps/kube-system/coredns/ks.yaml#L23).
-16. [ ] Add spegel
+16. [X] Add spegel for more stable image pulling
 
 ## July 27th, 2025
 
