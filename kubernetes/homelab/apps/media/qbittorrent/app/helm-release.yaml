@@ -83,6 +83,7 @@ spec:
     service:
       app:
         controller: qbittorrent
+        forceRename: qbittorrent
         ports:
           http:
             port: *port
