@@ -19,3 +19,4 @@ resources:
   # There is something wrong/different about the k8s setup.
   # - ./redfish-exporter/ks.yaml
   - ./gatus/ks.yaml
+  - ./kromgo/ks.yaml
