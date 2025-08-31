@@ -22,6 +22,8 @@ spec:
     controllers:
       multus:
         type: daemonset
+        serviceAccount:
+          identifier: multus
         initContainers:
           cni-plugins:
             image:
@@ -58,6 +60,5 @@ spec:
         globalMounts:
           - path: /host/opt/cni/bin
     serviceAccount:
-      resourceIdentifier:
+      multus:
         enabled: true
-        forceRename: multus
