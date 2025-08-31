@@ -76,6 +76,8 @@ spec:
               - --exclude-tag=manual
               # Don't prune torrents that I upload
               - --exclude-tag=upload
+              - --exclude-tag=added:1d
+              - --with-data
               - --server=qbittorrent.media.svc.cluster.local
               - --port=8080
               - --username=admin
@@ -89,9 +91,8 @@ spec:
               - --exclude-tag=manual
               # Don't prune torrents that I upload
               - --exclude-tag=upload
-              - --exclude-tag=activity:24h
-              - --exclude-tag=activity:7d
-              - --exclude-tag=activity:30d
+              - --exclude-tag=added:1d
+              - --with-data
               - --server=qbittorrent.media.svc.cluster.local
               - --port=8080
               - --username=admin
@@ -122,6 +123,7 @@ spec:
               - --port=8080
               - --username=admin
               - --password=adminadmin
+              - --dry-run
         pod:
           restartPolicy: OnFailure
           securityContext:
