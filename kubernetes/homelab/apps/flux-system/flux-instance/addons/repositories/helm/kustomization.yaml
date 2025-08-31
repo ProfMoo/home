@@ -7,8 +7,6 @@ resources:
   - ./democratic-csi.yaml
   - ./weaveworks.yaml
   - ./kube-logging.yaml
-  - ./bjw-s.yaml
-  - ./stakater.yaml
   - ./jetstack.yaml
   - ./ingress-nginx.yaml
   - ./external-dns.yaml
