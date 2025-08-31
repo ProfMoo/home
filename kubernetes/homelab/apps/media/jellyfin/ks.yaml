@@ -12,6 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../common/volsync
+    - ../../../../common/gatus/external
   dependsOn:
     - name: rook-ceph-cluster
       namespace: storage
@@ -21,6 +22,8 @@ spec:
     substitute:
       APP: *app
       PVC_NAME: jellyfin
+      GATUS_PATH: /health
+      GATUS_SUBDOMAIN: movies
       VOLSYNC_CAPACITY: 10Gi
   prune: true
   retryInterval: 2m
