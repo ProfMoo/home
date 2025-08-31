@@ -12,7 +12,7 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../common/volsync
-    - ../../../../components/gatus/external
+    - ../../../../common/gatus/external
   postBuild:
     substitute:
       APP: *app
