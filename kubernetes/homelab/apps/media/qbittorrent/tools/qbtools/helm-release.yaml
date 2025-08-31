@@ -122,7 +122,6 @@ spec:
               - --port=8080
               - --username=admin
               - --password=adminadmin
-              - --dry-run
         pod:
           restartPolicy: OnFailure
           securityContext:
