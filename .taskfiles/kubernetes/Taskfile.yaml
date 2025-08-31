@@ -104,7 +104,7 @@ tasks:
   force-es-sync:
     desc: Force sync an external secret
     cmd: |
-      kubectl annotate externalsecret {{.NAME}} -n {{.NS}} force-sync=$(date +%s) --overwrite
+      kubectl annotate externalsecret {{.ES}} -n {{.NS}} force-sync=$(date +%s) --overwrite
     vars:
-      NAME: '{{.NAME | default "my-external-secret"}}'
+      ES: '{{.ES | default "my-external-secret"}}'
       NS: '{{.NS | default "default"}}'
