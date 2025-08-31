@@ -9,11 +9,12 @@ spec:
   path: ./kubernetes/homelab/apps/observability/kube-prometheus-stack/app
   targetNamespace: *namespace
   components:
-    - ../../../../common/gatus/guarded
+    - ../../../../common/gatus/external
   postBuild:
     substitute:
       APP: *app
       GATUS_SUBDOMAIN: prometheus
+      GATUS_PATH: /-/healthy
   prune: true
   sourceRef:
     kind: GitRepository
