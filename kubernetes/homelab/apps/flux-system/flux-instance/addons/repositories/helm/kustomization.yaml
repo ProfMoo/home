@@ -5,7 +5,6 @@ kind: Kustomization
 resources:
   - ./metrics-server.yaml
   - ./democratic-csi.yaml
-  - ./weaveworks.yaml
   - ./kube-logging.yaml
   - ./jetstack.yaml
   - ./ingress-nginx.yaml
@@ -15,4 +14,3 @@ resources:
   - ./emqx.yaml
   - ./external-secrets.yaml
   - ./rook-ceph.yaml
-  - ./piraeus.yaml
