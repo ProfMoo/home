@@ -13,4 +13,3 @@ resources:
   - ./factorio.yaml
   - ./emqx.yaml
   - ./external-secrets.yaml
-  - ./rook-ceph.yaml

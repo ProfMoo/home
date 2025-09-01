@@ -9,7 +9,7 @@ spec:
   timeout: 20m
   chartRef:
     kind: OCIRepository
-    name: rook-ceph
+    name: rook-ceph-cluster
   install:
     remediation:
       retries: 3
