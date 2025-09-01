@@ -150,28 +150,6 @@ tasks:
     preconditions:
       - kubectl --namespace {{.NS}} get secret {{.APP}}-volsync-secret
       - test -f {{.VOLSYNC_RESOURCES_DIR}}/restic-stats.yaml.j2
-  list-all-snapshots:
-    desc: List snapshots for all apps in a namespace [NS=default]
-    cmds:
-      - |
-        echo "=== VolSync Backup Overview ==="
-        echo ""
-        for app in $(kubectl --namespace {{.NS}} get replicationsources -o jsonpath='{.items[*].metadata.name}' | tr ' ' '\n' | sort); do
-          echo "📦 App: $app"
-          echo "  Local Repository:"
-
-          # Try to get snapshots directly, with better error handling
-          if kubectl --namespace {{.NS}} get secret ${app}-volsync-secret >/dev/null 2>&1; then
-            task volsync:list-local-snapshots NS={{.NS}} APP=$app 2>/dev/null || echo "    ❌ Error accessing local repository"
-          else
-            echo "    ❌ No local secret found"
-          fi
-          echo ""
-        done
-    vars:
-      NS: '{{.NS | default "media"}}'
-    preconditions:
-      - which kubectl
   cleanup-restic-pod:
     desc: Cleanup restic pod for an app
     internal: true
