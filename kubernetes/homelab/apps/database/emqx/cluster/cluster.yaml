@@ -33,6 +33,7 @@ spec:
         reloader.stakater.com/auto: "true"
     spec:
       replicas: 3
+      maxUnavailable: 1
       envFrom:
         - secretRef:
             name: emqx-secret
