@@ -53,3 +53,7 @@ There are times (i.e. I mess something up) where a PVC makes a new PV instead of
 ## Rook/Ceph
 
 Remove OSD docs: <https://rook.io/docs/rook/latest-release/Storage-Configuration/Advanced/ceph-osd-mgmt/#purge-the-osd-with-kubectl>
+
+```bash
+kubectl rook-ceph -n storage ceph pg
+```
