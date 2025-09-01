@@ -7,14 +7,9 @@ metadata:
 spec:
   interval: 1h
   timeout: 20m
-  chart:
-    spec:
-      chart: rook-ceph-cluster
-      version: v1.18.1
-      sourceRef:
-        kind: HelmRepository
-        name: rook-ceph
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: rook-ceph
   install:
     remediation:
       retries: 3

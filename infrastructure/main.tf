@@ -293,7 +293,10 @@ module "cluster" {
       disk_size = "450"
       datastore = "disk1"
 
-      enable_storage_cluster = false
+      enable_storage_cluster         = true
+      storage_cluster_datastore_id   = "disk2"
+      storage_cluster_disk_interface = "scsi1"
+      storage_cluster_disk_size      = 450
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.10.6"
@@ -314,6 +317,7 @@ module "cluster" {
       kubernetes_node_labels = {
         "drmoo.io/role" : "worker"
         "drmoo.io/zone" : "pve2"
+        "drmoo.io/storage" : "rook-osd-node"
       }
     }
   }
