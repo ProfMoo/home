@@ -50,4 +50,6 @@ There are times (i.e. I mess something up) where a PVC makes a new PV instead of
 
 5. Inspect and ensure everything looks right. You should see the PV, PVC, and pod all successfully quit at around the same time. Then, the pod should start back up, ask for the PVC, and the PVC<->PV should bind.
 
-## Rollback a PVC to an Old Snapshot
+## Rook/Ceph
+
+Remove OSD docs: <https://rook.io/docs/rook/latest-release/Storage-Configuration/Advanced/ceph-osd-mgmt/#purge-the-osd-with-kubectl>

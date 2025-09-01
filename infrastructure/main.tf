@@ -166,13 +166,13 @@ module "cluster" {
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
 
-      disk_size = "100"
+      disk_size = "200"
       datastore = "disk3"
 
       enable_storage_cluster         = true
       storage_cluster_datastore_id   = "disk3"
       storage_cluster_disk_interface = "scsi1"
-      storage_cluster_disk_size      = 100
+      storage_cluster_disk_size      = 200
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.10.6"
@@ -208,13 +208,13 @@ module "cluster" {
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
 
-      disk_size = "100"
+      disk_size = "200"
       datastore = "disk2"
 
       enable_storage_cluster         = true
       storage_cluster_datastore_id   = "disk2"
       storage_cluster_disk_interface = "scsi1"
-      storage_cluster_disk_size      = 100
+      storage_cluster_disk_size      = 200
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.10.6"
@@ -238,47 +238,47 @@ module "cluster" {
         "drmoo.io/storage" : "rook-osd-node"
       }
     },
-    "worker_node_instance_2" = {
-      id                    = "1102"
-      name                  = "jon-hopkins"
-      description           = "Worker node instance in the Kubernetes homelab cluster"
-      tags                  = ["worker-node", "kubernetes"]
-      cpu_cores             = 10
-      memory                = 32768 # 32GB
-      bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
+    # "worker_node_instance_2" = {
+    #   id                    = "1102"
+    #   name                  = "jon-hopkins"
+    #   description           = "Worker node instance in the Kubernetes homelab cluster"
+    #   tags                  = ["worker-node", "kubernetes"]
+    #   cpu_cores             = 10
+    #   memory                = 32768 # 32GB
+    #   bridge_network_device = "vmbr0"
+    #   proxmox_node_name     = "pve"
+    #   initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
 
-      disk_size = "100"
-      datastore = "disk2"
+    #   disk_size = "100"
+    #   datastore = "disk2"
 
-      enable_storage_cluster         = true
-      storage_cluster_datastore_id   = "disk2"
-      storage_cluster_disk_interface = "scsi1"
-      storage_cluster_disk_size      = 100
+    #   enable_storage_cluster         = true
+    #   storage_cluster_datastore_id   = "disk2"
+    #   storage_cluster_disk_interface = "scsi1"
+    #   storage_cluster_disk_size      = 100
 
-      # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.10.6"
-      kubernetes_version = "1.33.4"
+    #   # This doesn't necessarily need to match the boot ISO.
+    #   talos_version      = "1.10.6"
+    #   kubernetes_version = "1.33.4"
 
-      # External kubernetes network configuration
-      talos_virtual_ip = "192.168.8.99"
+    #   # External kubernetes network configuration
+    #   talos_virtual_ip = "192.168.8.99"
 
-      vlan_id        = "2"
-      ipv4_address   = "192.168.8.122"
-      mac_address    = "94:96:cc:43:7d:76"
-      subnet_gateway = "192.168.8.1"
+    #   vlan_id        = "2"
+    #   ipv4_address   = "192.168.8.122"
+    #   mac_address    = "94:96:cc:43:7d:76"
+    #   subnet_gateway = "192.168.8.1"
 
-      # Internal kubernetes network configuration
-      pod_subnets     = "10.244.0.0/16"
-      service_subnets = "10.96.0.0/12"
+    #   # Internal kubernetes network configuration
+    #   pod_subnets     = "10.244.0.0/16"
+    #   service_subnets = "10.96.0.0/12"
 
-      kubernetes_node_labels = {
-        "drmoo.io/role" : "worker"
-        "drmoo.io/zone" : "pve"
-        "drmoo.io/storage" : "rook-osd-node"
-      }
-    }
+    #   kubernetes_node_labels = {
+    #     "drmoo.io/role" : "worker"
+    #     "drmoo.io/zone" : "pve"
+    #     "drmoo.io/storage" : "rook-osd-node"
+    #   }
+    # }
     "worker_node_instance_3" = {
       id                    = "1103"
       name                  = "bonobo"
