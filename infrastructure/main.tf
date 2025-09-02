@@ -266,7 +266,7 @@ module "cluster" {
         },
         {
           datastore_id   = "disk3"
-          disk_interface = "scsi1"
+          disk_interface = "scsi2"
           size           = 400
         }
       ]
