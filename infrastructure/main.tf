@@ -160,8 +160,8 @@ module "cluster" {
       name                  = "skrillex"
       description           = "Worker node instance in the Kubernetes homelab cluster"
       tags                  = ["worker-node", "kubernetes"]
-      cpu_cores             = 10
-      memory                = 32768 # 32GB
+      cpu_cores             = 15
+      memory                = 49152 # 48GB
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
@@ -202,8 +202,8 @@ module "cluster" {
       name                  = "mat-zo"
       description           = "Worker node instance in the Kubernetes homelab cluster"
       tags                  = ["worker-node", "kubernetes"]
-      cpu_cores             = 10
-      memory                = 32768 # 32GB
+      cpu_cores             = 15
+      memory                = 49152 # 48GB
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
