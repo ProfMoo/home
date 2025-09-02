@@ -169,10 +169,13 @@ module "cluster" {
       disk_size = "200"
       datastore = "disk3"
 
-      enable_storage_cluster         = true
-      storage_cluster_datastore_id   = "disk3"
-      storage_cluster_disk_interface = "scsi1"
-      storage_cluster_disk_size      = 200
+      storage_disks = [
+        {
+          datastore_id   = "disk3"
+          disk_interface = "scsi1"
+          size           = 200
+        }
+      ]
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.10.6"
@@ -211,10 +214,13 @@ module "cluster" {
       disk_size = "200"
       datastore = "disk2"
 
-      enable_storage_cluster         = true
-      storage_cluster_datastore_id   = "disk2"
-      storage_cluster_disk_interface = "scsi1"
-      storage_cluster_disk_size      = 200
+      storage_disks = [
+        {
+          datastore_id   = "disk2"
+          disk_interface = "scsi1"
+          size           = 200
+        }
+      ]
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.10.6"
@@ -252,10 +258,18 @@ module "cluster" {
       disk_size = "450"
       datastore = "disk1"
 
-      enable_storage_cluster         = true
-      storage_cluster_datastore_id   = "disk2"
-      storage_cluster_disk_interface = "scsi1"
-      storage_cluster_disk_size      = 450
+      storage_disks = [
+        {
+          datastore_id   = "disk2"
+          disk_interface = "scsi1"
+          size           = 450
+        },
+        {
+          datastore_id   = "disk3"
+          disk_interface = "scsi1"
+          size           = 400
+        }
+      ]
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.10.6"

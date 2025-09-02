@@ -14,10 +14,7 @@ module "worker_nodes" {
   disk_size = each.value.disk_size
   datastore = each.value.datastore
 
-  enable_storage_cluster         = each.value.enable_storage_cluster
-  storage_cluster_datastore_id   = each.value.storage_cluster_datastore_id
-  storage_cluster_disk_interface = each.value.storage_cluster_disk_interface
-  storage_cluster_disk_size      = each.value.storage_cluster_disk_size
+  storage_disks = each.value.storage_disks
 
   vlan_id               = each.value.vlan_id
   bridge_network_device = each.value.bridge_network_device

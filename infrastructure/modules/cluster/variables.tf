@@ -54,12 +54,13 @@ variable "worker_nodes" {
     proxmox_node_name     = string
     initial_boot_iso      = string
 
-    disk_size                      = number
-    datastore                      = string
-    enable_storage_cluster         = bool
-    storage_cluster_datastore_id   = optional(string)
-    storage_cluster_disk_interface = optional(string)
-    storage_cluster_disk_size      = optional(number)
+    disk_size = number
+    datastore = string
+    storage_disks = optional(list(object({
+      datastore_id   = string
+      disk_interface = string
+      size           = number
+    })), [])
 
     talos_version      = string
     kubernetes_version = string

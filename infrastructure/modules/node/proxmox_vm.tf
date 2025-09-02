@@ -82,13 +82,13 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
 
   # This block is used to provide storage for the storage cluster (i.e. Rook/Ceph).
   dynamic "disk" {
-    for_each = var.enable_storage_cluster ? [1] : []
+    for_each = var.storage_disks
     content {
-      datastore_id = var.storage_cluster_datastore_id
+      datastore_id = disk.value.datastore_id
       file_format  = "raw"
-      interface    = var.storage_cluster_disk_interface
-      size         = var.storage_cluster_disk_size
-      serial       = "storage_cluster_disk"
+      interface    = disk.value.disk_interface
+      size         = disk.value.size
+      serial       = disk.key == 0 ? "storage_cluster_disk" : "storage_cluster_${disk.key}"
     }
   }
 

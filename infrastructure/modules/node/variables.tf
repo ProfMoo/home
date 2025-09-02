@@ -45,28 +45,14 @@ variable "datastore" {
   default     = "local-lvm" # The default name for the data partitiion available to VMs in Proxmox
 }
 
-variable "enable_storage_cluster" {
-  type        = bool
-  description = "Whether to enable the storage cluster for the VM. This is used for Rook/Ceph."
-  default     = false
-}
-
-variable "storage_cluster_datastore_id" {
-  type        = string
-  description = "The datastore ID for the storage cluster. This is used for Rook/Ceph."
-  default     = ""
-}
-
-variable "storage_cluster_disk_interface" {
-  type        = string
-  description = "The disk interface for the storage cluster. This is used for Rook/Ceph."
-  default     = ""
-}
-
-variable "storage_cluster_disk_size" {
-  type        = number
-  description = "The disk size (in GB) for the storage cluster. This is used for Rook/Ceph."
-  default     = 50
+variable "storage_disks" {
+  type = list(object({
+    datastore_id   = string
+    disk_interface = string
+    size           = number
+  }))
+  description = "List of storage disks for the storage cluster. This is used for Rook/Ceph. If provided, storage cluster will be automatically enabled."
+  default     = []
 }
 
 variable "bridge_network_device" {
