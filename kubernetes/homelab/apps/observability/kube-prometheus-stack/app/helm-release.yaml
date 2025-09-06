@@ -188,7 +188,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: local-hostpath
+              storageClassName: ceph-block-ephemeral
               resources:
                 requests:
                   storage: 60Gi
