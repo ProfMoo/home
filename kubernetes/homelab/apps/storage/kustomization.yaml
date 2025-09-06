@@ -7,7 +7,6 @@ components:
   - ../../common/all-namespaces
 resources:
   - ./namespace.yaml
-  - ./local-path-provisioner/ks.yaml
   - ./volsync/ks.yaml
   - ./snapshot-controller/ks.yaml
   - ./rook-ceph/ks.yaml
