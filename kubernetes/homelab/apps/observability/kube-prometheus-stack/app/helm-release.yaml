@@ -6,20 +6,20 @@ metadata:
   name: kube-prometheus-stack
 spec:
   interval: 30m
-  timeout: 30m
+  timeout: 5m
   chartRef:
     kind: OCIRepository
     name: kube-prometheus-stack
   maxHistory: 5
   install:
     crds: CreateReplace
-    timeout: 30m
+    timeout: 5m
     remediation:
       retries: 5
   upgrade:
     cleanupOnFail: true
     crds: CreateReplace
-    timeout: 30m
+    timeout: 5m
     remediation:
       retries: 5
   uninstall:
@@ -160,6 +160,11 @@ spec:
           registry: docker.io
           repository: prompp/prompp
           tag: 2.53.2-0.4.0
+        securityContext:
+          fsGroup: 64535
+          runAsGroup: 64535
+          runAsNonRoot: true
+          runAsUser: 64535
         replicas: 1
         retention: 4d
         retentionSize: 50GB
