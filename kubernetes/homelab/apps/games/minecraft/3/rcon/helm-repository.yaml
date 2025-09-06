@@ -3,8 +3,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: minecraft
-  namespace: flux-system
+  name: rcon-web-admin
 spec:
   interval: 2h
   url: https://itzg.github.io/minecraft-server-charts/
