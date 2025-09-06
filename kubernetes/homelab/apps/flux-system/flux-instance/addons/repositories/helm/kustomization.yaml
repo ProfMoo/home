@@ -5,7 +5,6 @@ kind: Kustomization
 resources:
   - ./democratic-csi.yaml
   - ./kube-logging.yaml
-  - ./jetstack.yaml
   - ./ingress-nginx.yaml
   - ./minecraft.yaml
   - ./factorio.yaml
