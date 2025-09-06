@@ -50,11 +50,17 @@ helmfile --file kubernetes/homelab/bootstrap/helmfile.yaml apply  --skip-diff-on
 
 Going to have 3 kinds of storage for my k8s clusters:
 
-1. Storage that I'd like to persist across pod restarts, but it's really not a big deal if I lose this data. Ex: prometheus data. This data is usually specific to k8s and doesn't have a particular need to persist outside of Kubernetes. Local node data is fine here, replication isn't needed. I use Rancher's `local-hostpath` for this.
+1. Storage that I'd like to persist across pod restarts, but it's really not a big deal if I lose this data. Ex: prometheus data. This data is usually specific to k8s and doesn't have a particular need to persist outside of Kubernetes. Local node data is fine here, replication isn't needed. I use a less resilient and compression-lite Rook/Ceph `StorageClass` for this.
 
-2. Storage that I'd like to be able to create on the fly (i.e. not pre-existing folders). This is important data and would like to maintain good backups of it, but the total size is relatively small. I used Rook/Ceph for these use-cases, with Volsync as the designated backup/restore/snapshot tool.
+2. Storage that is critical and can't be lost without significant sadness. Examples include application configuration that's stored in filesystem and Radarr movie lists. This is important data and would like to maintain good backups of it, but the total size is relatively small. I use a robustly replicated Rook/Ceph `StorageClass` for these use-cases, with Volsync as the designated backup/restore/snapshot tool.
 
-3. For that media storage that is pre-created (i.e. my existing media) and is both HUGE and CRITICAL. This data is 100% critical to the homelab and CANNOT be lost. As such, the k8s control plane can't be trusted with this data and instead it will be managed by TrueNAS (i.e. software and configuration that I don't maintain) and mounted to pods via NFS PVs. For this type of storage, I'll try to use the `node-manual` CSI driver (example [here](https://github.com/democratic-csi/democratic-csi/blob/master/examples/node-manual-nfs-pv.yaml))
+3. For that media storage that is pre-created (i.e. my existing media) and is both HUGE and CRITICAL. This data is 100% critical to the homelab and CANNOT be lost. As such, the k8s control plane can't be trusted with this data and instead it will be managed by TrueNAS (i.e. software and configuration that I don't maintain) and mounted to pods via NFS PVs. For this type of storage, I'll try to use the `node-manual` CSI driver ([example](https://github.com/democratic-csi/democratic-csi/blob/master/examples/node-manual-nfs-pv.yaml))
+
+### Future
+
+In the future, I might choose to go down a more "hyperconverged" route and manage storage directly from k8s (instead of having TrueNAS handle the critical NFS data). In that case, I'd need to migrate the `StorageClass` of most of my pods, which would be a big lift. To do that, I've found the [`pv-migrate`](https://github.com/utkuozdemir/pv-migrate) tool to be of great use.
+
+For this hyperconverged route, I might consider using [Harvester](https://github.com/harvester/harvester), which is a more cloud-native hypervisor and VM-management solution.
 
 ## Secrets
 
@@ -173,9 +179,3 @@ As a rule of thumb, if your KS only applies a HelmRelease (and associated config
 If you need to apply other things that depend on a HR, think applying your cert-manager cluster issuers as raw manifests, but they depend on the cert-manager HR, then you must do it at the KS level
 
 Thanks to `mirceanton` for the overview in the [Home Operations discord server](https://discord.gg/home-operations).
-
-### Future
-
-In the future, I might choose to go down a more "hyperconverged" route and manage storage directly from k8s (instead of having TrueNAS handle the critical NFS data). In that case, I'd need to migrate the `StorageClass` of most of my pods, which would be a big lift. To do that, I've found the [`pv-migrate`](https://github.com/utkuozdemir/pv-migrate) tool to be of great use.
-
-For this hyperconverged route, I might consider using [Harvester](https://github.com/harvester/harvester), which is a more cloud-native hypervisor and VM-management solution.
