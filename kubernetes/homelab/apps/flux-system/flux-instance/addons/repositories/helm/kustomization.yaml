@@ -6,4 +6,3 @@ resources:
   - ./ingress-nginx.yaml
   - ./minecraft.yaml
   - ./factorio.yaml
-  - ./emqx.yaml
