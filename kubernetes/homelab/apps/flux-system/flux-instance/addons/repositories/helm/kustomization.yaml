@@ -7,7 +7,6 @@ resources:
   - ./kube-logging.yaml
   - ./jetstack.yaml
   - ./ingress-nginx.yaml
-  - ./external-dns.yaml
   - ./minecraft.yaml
   - ./factorio.yaml
   - ./emqx.yaml
