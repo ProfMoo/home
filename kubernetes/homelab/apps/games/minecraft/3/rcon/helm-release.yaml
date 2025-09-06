@@ -6,6 +6,8 @@ metadata:
   name: minecraft-3-rcon
 spec:
   interval: 30m
+  # Can't switch this over to chartRef until this PR is merged in:
+  # https://github.com/itzg/minecraft-server-charts/pull/273
   chart:
     spec:
       chart: rcon-web-admin
