@@ -156,8 +156,12 @@ spec:
         ingressClassName: internal
         hosts: ["prometheus.drmoo.io"]
       prometheusSpec:
+        image:
+          registry: docker.io
+          repository: prompp/prompp
+          tag: 2.53.2-0.4.0
         replicas: 1
-        retention: 2d
+        retention: 4d
         retentionSize: 50GB
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
