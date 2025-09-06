@@ -2,10 +2,9 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: test-claim-ceph-block
-  namespace: storage
+  name: test-claim-ceph-block-ephemeral
 spec:
-  storageClassName: ceph-block
+  storageClassName: ceph-block-ephemeral
   accessModes:
     - ReadWriteOnce
   resources:
@@ -13,12 +12,11 @@ spec:
       storage: 1Gi
 ---
 # To read file:
-# k exec -n storage -it test-ceph-block-pod -- cat /data/test-file.txt
+# k exec -n storage -it test-ceph-block-ephemeral-pod -- cat /data/test-file.txt
 apiVersion: v1
 kind: Pod
 metadata:
-  name: test-ceph-block-pod
-  namespace: storage
+  name: test-ceph-block-ephemeral-pod
 spec:
   containers:
     - name: test-container
@@ -37,4 +35,4 @@ spec:
   volumes:
     - name: test-volume
       persistentVolumeClaim:
-        claimName: test-claim-ceph-block
+        claimName: test-claim-ceph-block-ephemeral
