@@ -7,4 +7,4 @@ components:
   - ../../common/all-namespaces
 resources:
   - ./namespace.yaml
-  - ./emqx/ks.yaml
+  # - ./emqx/ks.yaml
