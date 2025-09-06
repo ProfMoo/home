@@ -5,6 +5,7 @@ kind: Kustomization
 resources:
   - ./factorio.secret.sops.yaml
   - ./website.secret.sops.yaml
+  - ./helm-repository.yaml
   - ./pv.yaml
   - ./pvc.yaml
   - ./helm-release.yaml

@@ -6,14 +6,9 @@ metadata:
   name: nginx-external
 spec:
   interval: 30m
-  chart:
-    spec:
-      chart: ingress-nginx
-      version: 4.13.2
-      sourceRef:
-        kind: HelmRepository
-        name: ingress-nginx
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: nginx-external
   install:
     remediation:
       retries: 3
