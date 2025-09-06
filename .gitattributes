@@ -6,3 +6,4 @@
 *.sh linguist-detectable linguist-language=SHELL
 *.yml linguist-detectable linguist-language=YAML
 *.yaml linguist-detectable linguist-language=YAML
+*.yaml.j2 linguist-detectable linguist-language=YAML
