@@ -25,6 +25,7 @@
 15. [ ] Manage coredns in Flux. That's how onedr0p does it. [Link](https://github.com/onedr0p/home-ops/blob/5899f27553d145b40d029be4eb34d8e254a7cc23/talos/machineconfig.yaml.j2#L147) and [link](https://github.com/onedr0p/home-ops/blob/5899f27553d145b40d029be4eb34d8e254a7cc23/kubernetes/apps/kube-system/coredns/ks.yaml#L23).
 16. [X] Add spegel for more stable image pulling
 17. [ ] Read [this](https://blog.nfreak.tv/music-stack/) and revamp music perhaps?
+18. [ ] For k8s 1.34 upgrade, check [this message](https://discord.com/channels/673534664354430999/942576972943491113/1410643392785944708).
 
 ## July 27th, 2025
 
