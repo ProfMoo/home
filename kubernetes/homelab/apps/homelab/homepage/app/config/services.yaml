@@ -38,9 +38,9 @@
     - Zigbee Radio:
         href: http://192.168.1.148
         description: Zigbee radio webpage
-    - EMQX Cluster:
-        href: https://emqx.drmoo.io
-        description: MQTT Cluster
+    - Mosquitto:
+        href: https://mosquitto.drmoo.io
+        description: MQTT Broker
 - Infrastructure:
     - Rook:
         href: https://rook.drmoo.io
