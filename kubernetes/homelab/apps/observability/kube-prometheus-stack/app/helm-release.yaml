@@ -24,9 +24,6 @@ spec:
       retries: 5
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: local-path-provisioner
-      namespace: storage
   valuesFrom:
     - kind: ConfigMap
       name: kube-state-metrics-configmap

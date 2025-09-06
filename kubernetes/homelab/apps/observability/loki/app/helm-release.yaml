@@ -19,8 +19,6 @@ spec:
       strategy: rollback
       retries: 3
   dependsOn:
-    - name: local-path-provisioner
-      namespace: storage
     - name: kube-prometheus-stack
       namespace: observability
   values:
