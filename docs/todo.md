@@ -26,6 +26,8 @@
 16. [X] Add spegel for more stable image pulling
 17. [ ] Read [this](https://blog.nfreak.tv/music-stack/) and revamp music perhaps?
 18. [ ] For k8s 1.34 upgrade, check [this message](https://discord.com/channels/673534664354430999/942576972943491113/1410643392785944708).
+19. [ ] Setup automatic transcoding for Jellyfin videos.
+20. [ ] Move ALL STORAGE to Ceph -> bye bye TrueNAS.
 
 ## July 27th, 2025
 
