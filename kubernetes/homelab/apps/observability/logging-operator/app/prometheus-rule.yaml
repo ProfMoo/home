@@ -1,0 +1,20 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/prometheusrule_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: logging-operator-rules
+spec:
+  groups:
+    - name: logging-operator.rules
+      rules:
+        - alert: FluentdBufferFillingUp
+          expr: |
+            fluentd_output_status_buffer_total_bytes{type="loki"} > 2^28
+          for: 5m
+          annotations:
+            summary: >
+              Fluentd buffer is filling up. This usually means the logging operator is misconfigured or Loki is unavailable. 2^28 bytes is 256MiB.
+
+          labels:
+            severity: warning

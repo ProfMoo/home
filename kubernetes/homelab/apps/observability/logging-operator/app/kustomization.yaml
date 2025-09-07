@@ -6,3 +6,4 @@ namespace: observability
 resources:
   - ./oci-repository.yaml
   - ./helm-release.yaml
+  - ./prometheus-rule.yaml
