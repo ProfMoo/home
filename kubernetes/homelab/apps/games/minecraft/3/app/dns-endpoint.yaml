@@ -1,0 +1,11 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/externaldns.k8s.io/dnsendpoint_v1alpha1.json
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: minecraft-3
+spec:
+  endpoints:
+    - dnsName: minecraft.drmoo.io
+      recordType: A
+      targets: ["100.1.168.155"]
