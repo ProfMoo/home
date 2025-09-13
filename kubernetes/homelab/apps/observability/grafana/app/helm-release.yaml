@@ -148,6 +148,11 @@ spec:
           gnetId: 7752
           revision: 5
           datasource: Prometheus
+        smartctl:
+          # renovate: depName="Smartctl Exporter"
+          gnetId: 20204
+          revision: 1
+          datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/10347-proxmox-via-prometheus/
         media:
           json: |
