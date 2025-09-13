@@ -21,3 +21,4 @@ resources:
   - ./gatus/ks.yaml
   - ./kromgo/ks.yaml
   - ./unpoller/ks.yaml
+  - ./smartctl-exporter/ks.yaml
