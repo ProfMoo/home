@@ -70,6 +70,7 @@ spec:
       datasources.yaml:
         apiVersion: 1
         deleteDatasources:
+          - {name: Alertmanager, orgId: 1}
           - {name: Loki, orgId: 1}
           - {name: Prometheus, orgId: 1}
         datasources:
@@ -141,6 +142,30 @@ spec:
         observability:
           gnetId: 7752
           revision: 5
+          datasource: Prometheus
+        unpoller-client-dpi:
+          # renovate: depName="Unpoller - Client DPI"
+          gnetId: 11310
+          datasource: Prometheus
+        unpoller-sites:
+          # renovate: depName="Unpoller - Sites"
+          gnetId: 11311
+          datasource: Prometheus
+        unpoller-usw:
+          # renovate: depName="Unpoller - USW"
+          gnetId: 11312
+          datasource: Prometheus
+        unpoller-usg:
+          # renovate: depName="Unpoller - USG"
+          gnetId: 11313
+          datasource: Prometheus
+        unpoller-uap:
+          # renovate: depName="Unpoller - UAP"
+          gnetId: 11314
+          datasource: Prometheus
+        unpoller-clients:
+          # renovate: depName="Unpoller - Clients"
+          gnetId: 11315
           datasource: Prometheus
         smartctl:
           # renovate: depName="Smartctl Exporter"
