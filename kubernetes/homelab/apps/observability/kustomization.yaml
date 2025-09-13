@@ -20,3 +20,4 @@ resources:
   # - ./redfish-exporter/ks.yaml
   - ./gatus/ks.yaml
   - ./kromgo/ks.yaml
+  - ./unpoller/ks.yaml
