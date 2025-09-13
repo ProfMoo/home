@@ -143,10 +143,6 @@ spec:
           gnetId: 7752
           revision: 5
           datasource: Prometheus
-        unpoller-client-dpi:
-          # renovate: depName="Unpoller - Client DPI"
-          gnetId: 11310
-          datasource: Prometheus
         unpoller-sites:
           # renovate: depName="Unpoller - Sites"
           gnetId: 11311
