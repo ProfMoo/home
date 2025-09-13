@@ -150,22 +150,27 @@ spec:
         unpoller-sites:
           # renovate: depName="Unpoller - Sites"
           gnetId: 11311
+          revision: 5
           datasource: Prometheus
         unpoller-usw:
           # renovate: depName="Unpoller - USW"
           gnetId: 11312
+          revision: 9
           datasource: Prometheus
         unpoller-usg:
           # renovate: depName="Unpoller - USG"
           gnetId: 11313
+          revision: 9
           datasource: Prometheus
         unpoller-uap:
           # renovate: depName="Unpoller - UAP"
           gnetId: 11314
+          revision: 10
           datasource: Prometheus
         unpoller-clients:
           # renovate: depName="Unpoller - Clients"
           gnetId: 11315
+          revision: 9
           datasource: Prometheus
         smartctl:
           # renovate: depName="Smartctl Exporter"
