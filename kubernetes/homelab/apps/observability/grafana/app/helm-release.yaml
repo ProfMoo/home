@@ -121,12 +121,6 @@ spec:
           revision: 6
           datasource:
             - {name: DS_PROMETHEUS, value: Prometheus}
-        envoy:
-          # renovate: depName="Envoy Proxy Monitoring gRPC"
-          gnetId: 23239
-          revision: 1
-          datasource:
-            - {name: DS_AFRANET_PROMETHEUS, value: Prometheus}
         external-dns:
           # renovate: depName="External-dns"
           gnetId: 15038
