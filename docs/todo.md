@@ -29,6 +29,11 @@
 17. [ ] For k8s 1.34 upgrade, check [this message](https://discord.com/channels/673534664354430999/942576972943491113/1410643392785944708).
 18. [ ] Setup automatic transcoding for Jellyfin videos.
 19. [ ] Move ALL STORAGE to Ceph -> bye bye TrueNAS.
+20. [ ] Add NUT monitoring to my power sources
+21. [ ] Add unpoller
+22. [ ] Move to the bridge networking setup on my raw boxes. This way, multiple actual network cards back up the same network interface and I'm more resilient to failures.
+23. [ ] Add multus so I can add Roon to k8s.
+    1. [ ] Also HA
 
 ## July 27th, 2025
 
