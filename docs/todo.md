@@ -34,6 +34,7 @@
 22. [ ] Move to the bridge networking setup on my raw boxes. This way, multiple actual network cards back up the same network interface and I'm more resilient to failures.
 23. [ ] Add multus so I can add Roon to k8s.
     1. [ ] Also HA
+24. [ ] Add GPU support to my cluster. Example PR [here](https://github.com/onedr0p/home-ops/pull/9780).
 
 ## July 27th, 2025
 
