@@ -12,6 +12,6 @@ resources:
   - ./cert-approver/ks.yaml
   - ./external-secrets/ks.yaml
   - ./priority-classes/ks.yaml
-  #  - ./spegel/ks.yaml
+  - ./spegel/ks.yaml
   - ./gateway-api-crds/ks.yaml
   - ./descheduler/ks.yaml

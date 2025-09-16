@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://json.schemastore.org/helmfile
 
 # This helmfile is for installing Custom Resource Definitions (CRDs) from Helm charts.
-# It is not intended to be used with helmfile apply or sync.
+# It is not intended to be used with 'helmfile apply' or 'helmfile sync'.
 helmDefaults:
   args: ['--include-crds', '--no-hooks'] # Prevent helmfile apply or sync
 releases:
