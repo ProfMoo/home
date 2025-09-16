@@ -8,6 +8,7 @@
         "hediet.vscode-drawio",
         "exiasr.hadolint",
         "hashicorp.terraform",
-        "foxundermoon.shell-format"
+        "foxundermoon.shell-format",
+        "signageos.signageos-vscode-sops"
     ]
 }
