@@ -15,7 +15,7 @@
 7. [ ] System Upgrade Controller.
 8. [ ] Work on preemptions for k8s so that the most important pods are always scheduled.
 9. [X] Move fluxtomization to specific namespaces instead of having them all in `flux-system`
-   1. [ ] Also do this for OCI Resources (i.e. Helm charts) (<https://github.com/onedr0p/home-ops/pull/8706>)
+   1. [X] Also do this for OCI Resources (i.e. Helm charts) (<https://github.com/onedr0p/home-ops/pull/8706>)
    2. [X] Move bootstrap to values.yaml (<https://github.com/onedr0p/home-ops/pull/9671>)
 10. [x] Fix renovate so that I actually get a net benefit from the tool.
 11. [X] ~~Add the Cloudflare `minecraft.drmoo.io` DNS record to TF (or try the TF operator!!!). It's currently manually entered on the CF website.~~ Used the `DNSEndpoint` from `external-dns`.
@@ -29,11 +29,12 @@
 17. [ ] For k8s 1.34 upgrade, check [this message](https://discord.com/channels/673534664354430999/942576972943491113/1410643392785944708).
 18. [ ] Setup automatic transcoding for Jellyfin videos.
 19. [ ] Move ALL STORAGE to Ceph -> bye bye TrueNAS.
+    1. [ ] Finally figure out why some of the PGs won't replicate to the 3rd instance :thinking:
 20. [ ] Add NUT monitoring to my power sources
-21. [ ] Add unpoller
+21. [X] Add unpoller
 22. [ ] Move to the bridge networking setup on my raw boxes. This way, multiple actual network cards back up the same network interface and I'm more resilient to failures.
 23. [ ] Add multus so I can add Roon to k8s.
-    1. [ ] Also HA
+    1. [ ] Also HomeAssistant
 24. [ ] Add GPU support to my cluster. Example PR [here](https://github.com/onedr0p/home-ops/pull/9780).
 
 ## July 27th, 2025
