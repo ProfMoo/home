@@ -18,6 +18,10 @@ releases:
     namespace: kube-system
     chart: oci://ghcr.io/wiremind/wiremind-helm-charts/gateway-api-crds
     version: 1.3.0
+  - name: envoy-gateway
+    namespace: network
+    chart: oci://docker.io/envoyproxy/gateway-helm
+    version: 1.5.0
   - name: keda
     namespace: observability
     chart: oci://ghcr.io/home-operations/charts-mirror/keda
