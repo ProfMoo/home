@@ -13,7 +13,7 @@ spec:
     - name: certificates
       namespace: cert-manager
   interval: 1h
-  path: ./kubernetes/homelab/apps/network/envoy-gateway/app
+  path: ./kubernetes/homelab/apps/networking/envoy-gateway/app
   prune: true
   sourceRef:
     kind: GitRepository
