@@ -7,3 +7,4 @@ resources:
   - ./helm-release.yaml
   - ./observability.yaml
   - ./oci-repository.yaml
+  - ./certificates.yaml
