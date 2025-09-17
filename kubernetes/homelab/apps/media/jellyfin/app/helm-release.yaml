@@ -105,6 +105,12 @@ spec:
                 service:
                   identifier: app
                   port: http
+          - host: "moovies.drmoo.io"
+            paths:
+              - path: /
+                service:
+                  identifier: app
+                  port: http
     persistence:
       config:
         existingClaim: "{{ .Release.Name }}"
