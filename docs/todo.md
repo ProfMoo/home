@@ -33,9 +33,10 @@
 20. [ ] Add NUT monitoring to my power sources
 21. [X] Add unpoller
 22. [ ] Move to the bridge networking setup on my raw boxes. This way, multiple actual network cards back up the same network interface and I'm more resilient to failures.
-23. [ ] Add multus so I can add Roon to k8s.
-    1. [ ] Also HomeAssistant
+23. [ ] Add multus so I can add Roon to k8s and finally have all my running processes in k8s.
+    1. [ ] Also HomeAssistant in my home network.
 24. [ ] Add GPU support to my cluster. Example PR [here](https://github.com/onedr0p/home-ops/pull/9780).
+25. [ ] Actually use Lidarr to download new music?
 
 ## July 27th, 2025
 
