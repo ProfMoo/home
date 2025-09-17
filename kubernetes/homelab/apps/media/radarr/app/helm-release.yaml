@@ -86,6 +86,14 @@ spec:
                 service:
                   identifier: app
                   port: http
+    route:
+      app:
+        hostnames:
+          - "radarr-2.drmoo.io"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
     persistence:
       config:
         existingClaim: radarr-blockstorage
