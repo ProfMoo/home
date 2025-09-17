@@ -41,7 +41,6 @@ spec:
     policy: sync
     sources:
       - "ingress"
-      - "service"
       - "crd"
       - "gateway-httproute"
     txtOwnerId: default
