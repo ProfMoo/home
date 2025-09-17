@@ -56,7 +56,10 @@ spec:
     extraArgs:
       - --ignore-ingress-tls-spec
     policy: sync
-    sources: ["ingress", "service"]
+    sources:
+      - "ingress"
+      - "service"
+      - "gateway-httproute"
     txtOwnerId: main
     txtPrefix: k8s.main.
     domainFilters: ["drmoo.io"]

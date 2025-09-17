@@ -88,8 +88,6 @@ spec:
                   port: http
     route:
       app:
-        annotations:
-          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
         hostnames:
           - "radarr-2.drmoo.io"
         parentRefs:

@@ -38,7 +38,11 @@ spec:
       - --ingress-class=external
     triggerLoopOnEvent: true
     policy: sync
-    sources: ["crd", "ingress"]
+    sources:
+      - "ingress"
+      - "service"
+      - "crd"
+      - "gateway-httproute"
     txtOwnerId: default
     txtPrefix: k8s.
     domainFilters: ["drmoo.io"]
