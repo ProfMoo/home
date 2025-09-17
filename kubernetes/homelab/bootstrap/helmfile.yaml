@@ -14,7 +14,7 @@ releases:
   - name: cilium
     namespace: cilium
     chart: oci://ghcr.io/home-operations/charts-mirror/cilium
-    version: 1.18.1
+    version: 1.18.2
     values: ['./values.yaml.gotmpl']
   - name: coredns
     namespace: kube-system
