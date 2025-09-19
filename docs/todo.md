@@ -26,17 +26,19 @@
 14. [X] Manage coredns in Flux. That's how onedr0p does it. [Link](https://github.com/onedr0p/home-ops/blob/5899f27553d145b40d029be4eb34d8e254a7cc23/talos/machineconfig.yaml.j2#L147) and [link](https://github.com/onedr0p/home-ops/blob/5899f27553d145b40d029be4eb34d8e254a7cc23/kubernetes/apps/kube-system/coredns/ks.yaml#L23).
 15. [X] Add spegel for more stable image pulling
 16. [ ] Read [this](https://blog.nfreak.tv/music-stack/) and revamp music perhaps?
-17. [ ] For k8s 1.34 upgrade, check [this message](https://discord.com/channels/673534664354430999/942576972943491113/1410643392785944708).
-18. [ ] Setup automatic transcoding for Jellyfin videos.
-19. [ ] Move ALL STORAGE to Ceph -> bye bye TrueNAS.
+17. [X] Replace ingress with Gateway API
+18. [ ] For k8s 1.34 upgrade, check [this message](https://discord.com/channels/673534664354430999/942576972943491113/1410643392785944708).
+19. [ ] Setup automatic transcoding for Jellyfin videos.
+20. [ ] Move ALL STORAGE to Ceph -> bye bye TrueNAS.
     1. [ ] Finally figure out why some of the PGs won't replicate to the 3rd instance :thinking:
-20. [ ] Add NUT monitoring to my power sources
-21. [X] Add unpoller
-22. [ ] Move to the bridge networking setup on my raw boxes. This way, multiple actual network cards back up the same network interface and I'm more resilient to failures.
-23. [ ] Add multus so I can add Roon to k8s and finally have all my running processes in k8s.
+21. [ ] Add NUT monitoring to my power sources
+22. [X] Add unpoller
+23. [ ] Move to the bridge networking setup on my raw boxes. This way, multiple actual network cards back up the same network interface and I'm more resilient to failures.
+24. [ ] Add multus so I can add Roon to k8s and finally have all my running processes in k8s.
     1. [ ] Also HomeAssistant in my home network.
-24. [ ] Add GPU support to my cluster. Example PR [here](https://github.com/onedr0p/home-ops/pull/9780).
-25. [ ] Actually use Lidarr to download new music?
+25. [ ] Add GPU support to my cluster. Example PR [here](https://github.com/onedr0p/home-ops/pull/9780).
+26. [ ] Actually use Lidarr to download new music?
+27. [ ] Fix kromgo
 
 ## July 27th, 2025
 
