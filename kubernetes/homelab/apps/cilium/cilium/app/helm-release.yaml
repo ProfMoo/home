@@ -17,6 +17,7 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
+  # Values can be found here: https://docs.cilium.io/en/stable/helm-reference/
   values:
     # Explanation of each field can be found in the Cilium documentation:
     # https://github.com/cilium/cilium/blob/main/install/kubernetes/cilium/values.yaml
@@ -101,15 +102,7 @@ spec:
         enabled: true
         rollOutPods: true
         ingress:
-          enabled: true
-          annotations:
-            external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-          className: internal
-          hosts: ["hubble.drmoo.io"]
-          tls:
-            - hosts:
-                - "*.drmoo.io"
-              secretName: drmoo-io-tls
+          enabled: false
     operator:
       rollOutPods: true
       prometheus:

@@ -27,20 +27,16 @@ spec:
     monitoring:
       enabled: true
       createPrometheusRules: true
-    ingress:
+    route:
       dashboard:
-        annotations:
-          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          cert-manager.io/secret-name: "drmoo-io-tls"
-        tls:
-          - hosts:
-              - "*.drmoo.io"
-            secretName: drmoo-io-tls
-        ingressClassName: internal
         host:
           name: rook.drmoo.io
           path: /
+          pathType: PathPrefix
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+            sectionName: https
     toolbox:
       enabled: true
     # https://rook.io/docs/rook/latest-release/Helm-Charts/ceph-cluster-chart/#ceph-cluster-spec
