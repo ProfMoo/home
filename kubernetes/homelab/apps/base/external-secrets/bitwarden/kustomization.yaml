@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - ./apikey.secret.sops.yaml
   - ./helm-release.yaml
-  - ./network-policy.yaml
