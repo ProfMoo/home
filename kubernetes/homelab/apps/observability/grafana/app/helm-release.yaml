@@ -11395,18 +11395,15 @@ spec:
         searchNamespace: ALL
     serviceMonitor:
       enabled: true
-    ingress:
-      enabled: true
-      tls:
-        - hosts:
-            - "*.drmoo.io"
-          secretName: drmoo-io-tls
-      annotations:
-        external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-        cert-manager.io/cluster-issuer: "letsencrypt-production"
-        cert-manager.io/secret-name: "drmoo-io-tls"
-      ingressClassName: internal
-      hosts: ["grafana.drmoo.io"]
+    route:
+      main:
+        enabled: true
+        hostnames:
+          - grafana.drmoo.io
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
     imageRenderer:
       enabled: false
     persistence:
