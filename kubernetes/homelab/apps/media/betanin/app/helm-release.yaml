@@ -75,9 +75,9 @@ spec:
         controller: betanin
         ports:
           http:
-            port: 9393
+            port: &port 9393
           code-server:
-            port: 12321
+            port: &code-port 12321
     route:
       app:
         hostnames:
@@ -86,6 +86,10 @@ spec:
           - name: envoy-internal
             namespace: networking
             sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
       code-server:
         hostnames:
           - "beets-code.drmoo.io"
@@ -93,6 +97,10 @@ spec:
           - name: envoy-internal
             namespace: networking
             sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *code-port
     persistence:
       media:
         type: nfs
