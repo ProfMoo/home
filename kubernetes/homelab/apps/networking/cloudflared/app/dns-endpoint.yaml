@@ -3,7 +3,7 @@
 apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
-  name: cloudflared
+  name: cloudflared-external-drmoo-io
 spec:
   endpoints:
     - dnsName: external.drmoo.io
