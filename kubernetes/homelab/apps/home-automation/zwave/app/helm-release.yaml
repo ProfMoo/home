@@ -60,24 +60,14 @@ spec:
             port: *port
           websocket:
             port: 3000
-    ingress:
+    route:
       app:
-        tls:
-          - hosts:
-              - "*.drmoo.io"
-            secretName: drmoo-io-tls
-        annotations:
-          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          cert-manager.io/secret-name: "drmoo-io-tls"
-        className: internal
-        hosts:
-          - host: "zwave.drmoo.io"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames:
+          - "zwave.drmoo.io"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
     persistence:
       config:
         existingClaim: zwave-blockstorage

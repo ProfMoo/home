@@ -87,20 +87,14 @@ spec:
         ports:
           http:
             port: *port
-    ingress:
+    route:
       app:
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          cert-manager.io/secret-name: "drmoo-io-tls"
-          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-        className: internal
-        hosts:
-          - host: zigbee.drmoo.io
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames:
+          - "zigbee.drmoo.io"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
     persistence:
       config:
         existingClaim: zigbee2mqtt-blockstorage

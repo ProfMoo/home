@@ -55,41 +55,21 @@ spec:
         ports:
           http:
             port: *port
-    ingress:
+    route:
       app:
-        tls:
-          - hosts:
-              - "*.drmoo.io"
-            secretName: drmoo-io-tls
-        annotations:
-          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          cert-manager.io/secret-name: "drmoo-io-tls"
-        className: internal
-        hosts:
-          - host: "request.drmoo.io"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames:
+          - "jellyseer.drmoo.io"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
       external:
-        tls:
-          - hosts:
-              - "*.drmoo.io"
-            secretName: drmoo-io-tls
-        annotations:
-          external-dns.alpha.kubernetes.io/target: external.drmoo.io
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          cert-manager.io/secret-name: "drmoo-io-tls"
-        className: external
-        hosts:
-          - host: "request.drmoo.io"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames:
+          - "request.drmoo.io"
+        parentRefs:
+          - name: envoy-external
+            namespace: networking
+            sectionName: https
     persistence:
       config:
         existingClaim: jellyseerr-blockstorage

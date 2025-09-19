@@ -67,33 +67,21 @@ spec:
             port: 8123
           code-server:
             port: 12321
-    ingress:
+    route:
       app:
-        annotations:
-          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          cert-manager.io/secret-name: drmoo-io-tls
-        className: internal
-        hosts:
-          - host: hass.drmoo.io
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+        hostnames:
+          - "hass.drmoo.io"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
       code-server:
-        annotations:
-          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-          cert-manager.io/cluster-issuer: letsencrypt-production
-          cert-manager.io/secret-name: drmoo-io-tls
-        className: internal
-        hosts:
-          - host: hass-code.drmoo.io
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: code-server
+        hostnames:
+          - "hass-code.drmoo.io"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
     persistence:
       config:
         existingClaim: home-assistant-blockstorage

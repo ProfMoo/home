@@ -34,6 +34,12 @@ spec:
     replicas: 1
     rbac:
       pspEnabled: false
+    env:
+      GF_DATE_FORMATS_USE_BROWSER_LOCALE: true
+      GF_EXPLORE_ENABLED: true
+      GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
+      GF_SECURITY_ANGULAR_SUPPORT_ENABLED: true
+      GF_SERVER_ROOT_URL: https://grafana.drmoo.io
     grafana.ini:
       analytics:
         check_for_updates: false
@@ -11395,18 +11401,15 @@ spec:
         searchNamespace: ALL
     serviceMonitor:
       enabled: true
-    ingress:
-      enabled: true
-      tls:
-        - hosts:
-            - "*.drmoo.io"
-          secretName: drmoo-io-tls
-      annotations:
-        external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-        cert-manager.io/cluster-issuer: "letsencrypt-production"
-        cert-manager.io/secret-name: "drmoo-io-tls"
-      ingressClassName: internal
-      hosts: ["grafana.drmoo.io"]
+    route:
+      main:
+        enabled: true
+        hostnames:
+          - grafana.drmoo.io
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
     imageRenderer:
       enabled: false
     persistence:

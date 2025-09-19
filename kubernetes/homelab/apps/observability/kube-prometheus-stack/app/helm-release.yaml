@@ -38,21 +38,15 @@ spec:
     cleanPrometheusOperatorObjectNames: true
     alertmanager:
       enabled: true
-      ingress:
-        enabled: true
-        ingressClassName: internal
-        tls:
-          - hosts:
-              - "*.drmoo.io"
-            secretName: drmoo-io-tls
-        annotations:
-          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          cert-manager.io/secret-name: "drmoo-io-tls"
-        hosts:
-          - "alertmanager.drmoo.io"
-        paths:
-          - "/"
+      route:
+        main:
+          enabled: true
+          hostnames:
+            - alertmanager.drmoo.io
+          parentRefs:
+            - name: envoy-internal
+              namespace: networking
+              sectionName: https
       alertmanagerSpec:
         alertmanagerConfiguration:
           name: alertmanager
@@ -140,23 +134,21 @@ spec:
       patch:
         enabled: true
     prometheus:
-      ingress:
-        enabled: true
-        tls:
-          - hosts:
-              - "*.drmoo.io"
-            secretName: drmoo-io-tls
-        annotations:
-          external-dns.alpha.kubernetes.io/target: internal.drmoo.io
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
-          cert-manager.io/secret-name: "drmoo-io-tls"
-        ingressClassName: internal
-        hosts: ["prometheus.drmoo.io"]
+      route:
+        main:
+          enabled: true
+          hostnames:
+            - prometheus.drmoo.io
+          parentRefs:
+            - name: envoy-internal
+              namespace: networking
+              sectionName: https
       prometheusSpec:
         image:
           registry: docker.io
           repository: prompp/prompp
           tag: 2.53.2-0.4.0
+        externalUrl: httpse://prometheus.drmoo.io/
         securityContext:
           fsGroup: 64535
           runAsGroup: 64535
