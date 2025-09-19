@@ -148,6 +148,7 @@ spec:
           registry: docker.io
           repository: prompp/prompp
           tag: 2.53.2-0.4.0
+          externalUrl: https://prometheus.drmoo.io/
         securityContext:
           fsGroup: 64535
           runAsGroup: 64535
