@@ -58,7 +58,7 @@ spec:
     route:
       app:
         hostnames:
-          - "jellyseer.drmoo.io"
+          - "jellyseerr.drmoo.io"
         parentRefs:
           - name: envoy-internal
             namespace: networking
