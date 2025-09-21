@@ -22,3 +22,4 @@ resources:
   - ./kromgo/ks.yaml
   - ./unpoller/ks.yaml
   - ./smartctl-exporter/ks.yaml
+  - ./silence-operator/ks.yaml
