@@ -35,7 +35,7 @@ spec:
           pathType: PathPrefix
         parentRefs:
           - name: envoy-internal
-            namespace: network
+            namespace: networking
             sectionName: https
     toolbox:
       enabled: true
