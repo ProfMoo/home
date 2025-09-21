@@ -68,13 +68,16 @@ spec:
             port: *healthPort
     route:
       external:
-        enabled: true
         hostnames:
           - kromgo.drmoo.io
         parentRefs:
           - name: envoy-external
             namespace: networking
             sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: http
+                port: *port
     persistence:
       config-file:
         type: configMap
