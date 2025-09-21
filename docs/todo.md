@@ -39,6 +39,7 @@
 25. [ ] Add GPU support to my cluster. Example PR [here](https://github.com/onedr0p/home-ops/pull/9780).
 26. [ ] Actually use Lidarr to download new music?
 27. [ ] Fix kromgo
+28. [ ] Add GPU support to the cluster with the new 'claims' system. Example PR [here](https://github.com/onedr0p/home-ops/pull/9793/files)
 
 ## July 27th, 2025
 
