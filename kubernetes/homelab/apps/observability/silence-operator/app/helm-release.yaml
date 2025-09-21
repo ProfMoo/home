@@ -19,8 +19,8 @@ spec:
   values:
     alertmanagerAddress: http://kube-prometheus-stack-alertmanager:9093
     image:
-      name: quay.io
-      repository: giantswarm/silence-operator
+      registry: quay.io
+      name: giantswarm/silence-operator
       tag: 0.19.0
     networkPolicy:
       enabled: false
