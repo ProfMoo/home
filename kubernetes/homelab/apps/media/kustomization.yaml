@@ -26,3 +26,4 @@ resources:
   # - ./roon/ks.yaml
   - ./jellyfin/ks.yaml
   - ./audiobookshelf/ks.yaml
+  - ./wizarr/ks.yaml
