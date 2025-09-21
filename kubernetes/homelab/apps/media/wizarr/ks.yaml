@@ -12,10 +12,12 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../common/volsync
+    - ../../../../common/gatus/http-check
   postBuild:
     substitute:
       APP: *app
       PVC_NAME: wizarr
+      GATUS_SUBDOMAIN: users
       VOLSYNC_CAPACITY: 10Gi
   path: ./kubernetes/homelab/apps/media/wizarr/app
   prune: true
