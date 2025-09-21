@@ -47,14 +47,14 @@ spec:
           - "wizarr.drmoo.io"
         parentRefs:
           - name: envoy-internal
-            namespace: network
+            namespace: networking
             sectionName: https
       external:
         hostnames:
           - "users.drmoo.io"
         parentRefs:
           - name: envoy-external
-            namespace: network
+            namespace: networking
             sectionName: https
     persistence:
       config:
