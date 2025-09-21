@@ -36,10 +36,11 @@
 23. [ ] Move to the bridge networking setup on my raw boxes. This way, multiple actual network cards back up the same network interface and I'm more resilient to failures.
 24. [ ] Add multus so I can add Roon to k8s and finally have all my running processes in k8s.
     1. [ ] Also HomeAssistant in my home network.
-25. [ ] Add GPU support to my cluster. Example PR [here](https://github.com/onedr0p/home-ops/pull/9780).
+25. [ ] Add GPU support to my cluster.
+    1. [ ] Example PR [here](https://github.com/onedr0p/home-ops/pull/9780).
+    2. [ ] And [here](https://github.com/onedr0p/home-ops/pull/9793/files)
 26. [ ] Actually use Lidarr to download new music?
-27. [ ] Fix kromgo
-28. [ ] Add GPU support to the cluster with the new 'claims' system. Example PR [here](https://github.com/onedr0p/home-ops/pull/9793/files)
+27. [X] Fix kromgo
 
 ## July 27th, 2025
 
