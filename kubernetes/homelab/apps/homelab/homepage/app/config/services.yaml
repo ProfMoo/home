@@ -17,7 +17,7 @@
         widget:
           type: jellyseerr
           url: http://jellyseerr.media.svc.cluster.local:80
-          key: MTcxOTc4NTA3MzM0NTgyMjE3OTYwLTU2NGItNGI4MC05Nzg4LWJjYmNhYmI5NTExNg==
+          key: MTc1ODQyMzQ3MTg3NDUyZTg0NWM4LTJhYjYtNDJkZC1hNDI4LWE1OTQ3ODZmMGRmYQ==
     - Gatus:
         href: https://status.drmoo.io
         icon: gatus
