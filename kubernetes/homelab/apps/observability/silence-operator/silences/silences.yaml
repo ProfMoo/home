@@ -3,7 +3,7 @@
 apiVersion: observability.giantswarm.io/v1alpha2
 kind: Silence
 metadata:
-  name: ceph-node-nfsmount-diskspace-warning
+  name: kube-memory-overcommit
 spec:
   matchers:
     - name: alertname
