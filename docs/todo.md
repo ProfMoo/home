@@ -41,6 +41,7 @@
     2. [ ] And [here](https://github.com/onedr0p/home-ops/pull/9793/files)
 26. [ ] Actually use Lidarr to download new music?
 27. [X] Fix kromgo
+28. [ ] Ensure flux takes over the CRDs that come from the Helmfile
 
 ## July 27th, 2025
 
