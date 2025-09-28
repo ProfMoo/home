@@ -42,6 +42,7 @@
 26. [ ] Actually use Lidarr to download new music?
 27. [X] Fix kromgo
 28. [ ] Ensure flux takes over the CRDs that come from the Helmfile
+29. [ ] Quiet fans? Link [here](https://blog.hessindustria.com/quiet-fans-on-dell-poweredge-servers-via-ipmi/)
 
 ## July 27th, 2025
 
