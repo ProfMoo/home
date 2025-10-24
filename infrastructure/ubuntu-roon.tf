@@ -15,7 +15,7 @@ locals {
 resource "proxmox_virtual_environment_file" "ubuntu_cloud_image" {
   content_type = "iso"
   datastore_id = "local"
-  node_name    = "pve2"
+  node_name    = "pve4"
 
   source_file {
     path      = "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
@@ -42,7 +42,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
 
   vm_id = "2001" # Changed from 2000 to force VM recreation with proper cloud-init
 
-  node_name = "pve2"
+  node_name = "pve4"
   name      = "ubuntu-roon"
 
   description = "Ubuntu VM for Roon Server - Login: ${local.ubuntu_username}/${local.ubuntu_password}"
@@ -50,13 +50,13 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
 
   # CPU Configuration - Good performance for Roon Server
   cpu {
-    cores = 4      # 4 cores for good DSP/upsampling performance
+    cores = 3      # 4 cores for good DSP/upsampling performance
     type  = "host" # Use host CPU type for best performance
   }
 
   # Memory Configuration - Plenty for Ubuntu + Roon
   memory {
-    dedicated = 8192
+    dedicated = 7168
   }
 
   # Network Configuration for VLAN 1
@@ -64,8 +64,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
     bridge      = "vmbr0"
     mac_address = unifi_user.ubuntu_roon.mac
     firewall    = false
-    # vlan_id     = 1        # Remove VLAN tagging - use native/untagged
-    model = "virtio" # VirtIO for best performance
+    model       = "virtio" # VirtIO for best performance
   }
 
   # Main disk for Ubuntu + Roon (imported from cloud image)
