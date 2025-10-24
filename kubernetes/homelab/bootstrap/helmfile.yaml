@@ -14,12 +14,12 @@ releases:
   - name: cilium
     namespace: cilium
     chart: oci://ghcr.io/home-operations/charts-mirror/cilium
-    version: 1.18.2
+    version: 1.18.3
     values: ['./values.yaml.gotmpl']
   - name: coredns
     namespace: kube-system
     chart: oci://ghcr.io/coredns/charts/coredns
-    version: 1.44.3
+    version: 1.45.0
     values: ['./values.yaml.gotmpl']
     needs: ['cilium/cilium']
   - name: spegel
@@ -31,7 +31,7 @@ releases:
   - name: cert-manager
     namespace: cert-manager
     chart: oci://quay.io/jetstack/charts/cert-manager
-    version: v1.19.0
+    version: v1.19.1
     values: ['./values.yaml.gotmpl']
     needs: ['base/spegel']
   - name: flux-operator
