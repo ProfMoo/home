@@ -13,9 +13,6 @@ spec:
   components:
     - ../../../../common/volsync
     - ../../../../common/gatus/http-check
-  dependsOn:
-    - name: rook-ceph-cluster
-      namespace: storage
   interval: 30m
   path: ./kubernetes/homelab/apps/media/jellyfin/app
   postBuild:
