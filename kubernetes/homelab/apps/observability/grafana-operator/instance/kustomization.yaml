@@ -7,4 +7,4 @@ resources:
   - ./grafana.yaml
   - ./datasources.yaml
   - ./http-route.yaml
-  - ./servic-emonitor.yaml
+  - ./service-monitor.yaml
