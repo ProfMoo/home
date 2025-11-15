@@ -3,11 +3,11 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: kubernetes-observability
+  name: kubernetes-api-server
 spec:
   instanceSelector:
     matchLabels:
-      dashboards: grafana
+      grafana.drmoo.io/instance: main
   grafanaCom:
     id: 7752
     revision: 5

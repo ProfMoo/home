@@ -7,7 +7,7 @@ metadata:
 spec:
   instanceSelector:
     matchLabels:
-      dashboards: grafana
+      grafana.drmoo.io/instance: main
   grafanaCom:
     # renovate: depName="Cloudflare Tunnels (cloudflared)"
     id: 17457

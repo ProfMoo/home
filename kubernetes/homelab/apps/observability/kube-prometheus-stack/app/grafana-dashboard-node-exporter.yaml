@@ -7,7 +7,7 @@ metadata:
 spec:
   instanceSelector:
     matchLabels:
-      dashboards: grafana
+      grafana.drmoo.io/instance: main
   grafanaCom:
     # Ref: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
     id: 1860

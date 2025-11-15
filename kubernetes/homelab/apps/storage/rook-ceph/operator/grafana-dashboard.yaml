@@ -7,7 +7,7 @@ metadata:
 spec:
   instanceSelector:
     matchLabels:
-      dashboards: grafana
+      grafana.drmoo.io/instance: main
   grafanaCom:
     # renovate: depName="Ceph Cluster"
     id: 2842
@@ -24,7 +24,7 @@ metadata:
 spec:
   instanceSelector:
     matchLabels:
-      dashboards: grafana
+      grafana.drmoo.io/instance: main
   grafanaCom:
     # renovate: depName="Ceph - OSD (Single)"
     id: 5336
