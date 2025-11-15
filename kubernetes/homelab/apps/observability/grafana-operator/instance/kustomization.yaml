@@ -5,6 +5,6 @@ kind: Kustomization
 namespace: observability
 resources:
   - ./grafana.yaml
-  - ./grafana-datasources.yaml
+  - ./datasources.yaml
   - ./http-route.yaml
   - ./servic-emonitor.yaml
