@@ -10,7 +10,7 @@ resources:
   - ./kube-prometheus-stack/ks.yaml
   - ./logging-operator/ks.yaml
   - ./loki/ks.yaml
-  - ./grafana/ks.yaml
+  - ./grafana-operator/ks.yaml
   - ./proxmox-exporter/ks.yaml
   # Disabling so this stops crashing constantly.
   # Having trouble with the pod connecting to iDRAC IPs on startup.

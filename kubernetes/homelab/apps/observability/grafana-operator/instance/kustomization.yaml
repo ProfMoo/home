@@ -2,8 +2,9 @@
 # yaml-language-server: $schema=https://json.schemastore.org/kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: observability
 resources:
-  - ./external-secret.yaml
-  - ./grafana-dashboard.yaml
-  - ./oci-repository.yaml
-  - ./helm-release.yaml
+  - ./grafana.yaml
+  - ./grafana-datasources.yaml
+  - ./httproute.yaml
+  - ./servic-emonitor.yaml
