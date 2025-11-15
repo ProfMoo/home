@@ -6,6 +6,7 @@ metadata:
   name: grafana
   labels:
     grafana.drmoo.io/instance: main
+# NOTE: Spec: https://grafana.github.io/grafana-operator/docs/api/#grafanaspec
 spec:
   config:
     analytics:
