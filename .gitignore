@@ -4,3 +4,6 @@ talosconfig
 
 # MacOS cruft
 .DS_Store
+
+# sops
+*.decrypted~*
