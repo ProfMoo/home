@@ -37,7 +37,9 @@ spec:
               - |
                 bw config server ${BW_HOST}
 
-                export BW_SESSION=$(BW_CLIENTID=${BW_CLIENTID} BW_CLIENTSECRET=${BW_CLIENTSECRET} bw login --apikey --raw)
+                BW_CLIENTID=${BW_CLIENTID} BW_CLIENTSECRET=${BW_CLIENTSECRET} bw login --apikey
+
+                export BW_SESSION=$(bw unlock ${BW_PASSWORD} --raw)
 
                 bw unlock --check
 
