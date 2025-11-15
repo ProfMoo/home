@@ -5,6 +5,7 @@ kind: GrafanaDatasource
 metadata:
   name: prometheus
 spec:
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main
@@ -25,6 +26,7 @@ kind: GrafanaDatasource
 metadata:
   name: loki
 spec:
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main
@@ -44,6 +46,7 @@ kind: GrafanaDatasource
 metadata:
   name: alertmanager
 spec:
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main

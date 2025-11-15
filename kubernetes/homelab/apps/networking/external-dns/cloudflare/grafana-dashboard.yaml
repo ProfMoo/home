@@ -5,6 +5,7 @@ kind: GrafanaDashboard
 metadata:
   name: external-dns
 spec:
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main

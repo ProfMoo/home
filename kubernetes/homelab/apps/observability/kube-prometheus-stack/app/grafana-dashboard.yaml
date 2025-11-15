@@ -5,6 +5,7 @@ kind: GrafanaDashboard
 metadata:
   name: kubernetes-api-server
 spec:
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main

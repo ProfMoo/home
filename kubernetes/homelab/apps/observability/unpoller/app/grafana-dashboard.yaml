@@ -5,6 +5,7 @@ kind: GrafanaDashboard
 metadata:
   name: unpoller-sites
 spec:
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main
@@ -22,6 +23,7 @@ kind: GrafanaDashboard
 metadata:
   name: unpoller-usw
 spec:
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main
@@ -39,6 +41,7 @@ kind: GrafanaDashboard
 metadata:
   name: unpoller-usg
 spec:
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main
@@ -56,6 +59,7 @@ kind: GrafanaDashboard
 metadata:
   name: unpoller-uap
 spec:
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main
@@ -73,6 +77,7 @@ kind: GrafanaDashboard
 metadata:
   name: unpoller-clients
 spec:
+  allowCrossNamespaceImport: true
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main
