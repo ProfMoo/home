@@ -6,5 +6,5 @@ namespace: observability
 resources:
   - ./grafana.yaml
   - ./grafana-datasources.yaml
-  - ./httproute.yaml
+  - ./http-route.yaml
   - ./servic-emonitor.yaml
