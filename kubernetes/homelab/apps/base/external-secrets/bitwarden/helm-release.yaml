@@ -30,16 +30,17 @@ spec:
             command:
               - /bin/sh
               - -c
+            # NOTE: Needed to insert a custom entrypoint here because the existing entrypoint.sh has a strong assumption that
+            # you use just username/password auth, which we can't do because we require 2FA (i.e. OTP).
+            # Original entrypoint here: https://external-secrets.io/v0.8.5/examples/bitwarden/
             args:
               - |
-                set -e
-                
                 bw config server ${BW_HOST}
-                
+
                 export BW_SESSION=$(BW_CLIENTID=${BW_CLIENTID} BW_CLIENTSECRET=${BW_CLIENTSECRET} bw login --apikey --raw)
-                
+
                 bw unlock --check
-                
+
                 echo 'Running `bw server` on port 8087'
                 bw serve --hostname 0.0.0.0 #--disable-origin-protection
             envFrom:
