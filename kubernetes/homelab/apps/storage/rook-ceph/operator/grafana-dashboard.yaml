@@ -41,7 +41,7 @@ metadata:
 spec:
   instanceSelector:
     matchLabels:
-      dashboards: grafana
+      grafana.drmoo.io/instance: main
   grafanaCom:
     # renovate: depName="Ceph - Pools"
     id: 5342

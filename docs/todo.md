@@ -43,6 +43,7 @@
 27. [X] Fix kromgo
 28. [ ] Ensure flux takes over the CRDs that come from the Helmfile
 29. [ ] Quiet fans? Link [here](https://blog.hessindustria.com/quiet-fans-on-dell-poweredge-servers-via-ipmi/)
+30. [ ] Setup alert for when my secrets aren't syncing from Bitwarden.
 
 ## July 27th, 2025
 
