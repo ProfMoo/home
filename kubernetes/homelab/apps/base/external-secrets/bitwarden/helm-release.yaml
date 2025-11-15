@@ -52,12 +52,14 @@ spec:
                 custom: true
                 spec:
                   exec:
-                    command: ["sh", "-c", "curl -X POST -s http://127.0.0.1:8087/sync | jq -e '.success == true'"]
-                  timeoutSeconds: 5
-              readiness:
-                enabled: false
-              startup:
-                enabled: false
+                    command:
+                      - sh
+                      - -c
+                      - /healthcheck.sh
+                  initialDelaySeconds: 20
+                  failureThreshold: 5
+                  timeoutSeconds: 3
+                  periodSeconds: 240
             resources:
               requests:
                 memory: 256Mi
