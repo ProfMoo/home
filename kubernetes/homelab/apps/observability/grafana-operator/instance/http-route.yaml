@@ -1,0 +1,18 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: grafana
+  annotations:
+    external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+spec:
+  parentRefs:
+    - name: envoy-internal
+      namespace: networking
+      sectionName: https
+  hostnames:
+    - grafana.drmoo.io
+  rules:
+    - backendRefs:
+        - name: grafana-service
+          port: 3000

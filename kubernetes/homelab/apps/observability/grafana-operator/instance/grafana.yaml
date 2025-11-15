@@ -1,0 +1,74 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafana_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: grafana
+  labels:
+    grafana.drmoo.io/instance: main
+spec:
+  config:
+    analytics:
+      check_for_updates: "false"
+      check_for_plugin_updates: "false"
+      feedback_links_enabled: "false"
+      reporting_enabled: "false"
+    auth.anonymous:
+      enabled: "true"
+      org_id: "1"
+      org_name: Main Org.
+      org_role: Viewer
+    date_formats:
+      use_browser_locale: "true"
+    explore:
+      enabled: "true"
+    log:
+      mode: console
+    news:
+      news_feed_enabled: "false"
+    plugins:
+      allow_loading_unsigned_plugins: natel-discrete-panel,pr0ps-trackmap-panel,panodata-map-panel
+      plugin_admin_enabled: "false"
+    security:
+      angular_support_enabled: "true"
+    server:
+      enable_gzip: "true"
+      root_url: https://grafana.drmoo.io
+  deployment:
+    spec:
+      replicas: 1
+      strategy:
+        type: Recreate
+      template:
+        spec:
+          containers:
+            - name: grafana
+              env:
+                - name: GF_SECURITY_ADMIN_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-admin-login
+                      key: username
+                - name: GF_SECURITY_ADMIN_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: grafana-admin-login
+                      key: password
+              securityContext:
+                allowPrivilegeEscalation: false
+                readOnlyRootFilesystem: true
+                capabilities: {drop: ["ALL"]}
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 472
+            runAsGroup: 472
+            fsGroup: 472
+            fsGroupChangePolicy: OnRootMismatch
+  persistentVolumeClaim:
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: ceph-block

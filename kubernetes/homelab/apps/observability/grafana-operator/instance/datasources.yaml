@@ -1,0 +1,58 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadatasource_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: prometheus
+spec:
+  instanceSelector:
+    matchLabels:
+      grafana.drmoo.io/instance: main
+  datasource:
+    name: Prometheus
+    type: prometheus
+    uid: prometheus
+    access: proxy
+    url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090
+    isDefault: true
+    jsonData:
+      timeInterval: 30s
+    editable: true
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadatasource_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: loki
+spec:
+  instanceSelector:
+    matchLabels:
+      grafana.drmoo.io/instance: main
+  datasource:
+    name: Loki
+    type: loki
+    uid: loki
+    access: proxy
+    url: http://loki-gateway.observability.svc.cluster.local:80
+    jsonData:
+      maxLines: 250
+    editable: true
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadatasource_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: alertmanager
+spec:
+  instanceSelector:
+    matchLabels:
+      grafana.drmoo.io/instance: main
+  datasource:
+    name: Alertmanager
+    type: alertmanager
+    uid: alertmanager
+    access: proxy
+    url: http://alertmanager-operated.observability.svc.cluster.local:9093
+    jsonData:
+      implementation: prometheus
+    editable: true

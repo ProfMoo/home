@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: node-exporter-full
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: grafana
+  grafanaCom:
+    # Ref: https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+    id: 1860
+    revision: 36
+  datasources:
+    - inputName: DS_PROMETHEUS
+      datasourceName: Prometheus

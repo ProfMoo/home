@@ -5,6 +5,8 @@ kind: Kustomization
 namespace: observability
 resources:
   - ./alertmanager-config.yaml
+  - ./grafana-dashboard.yaml
+  - ./grafana-dashboard-node-exporter.yaml
   - ./oci-repository.yaml
   - ./external-secret.yaml
   - ./helm-release.yaml
