@@ -27,6 +27,21 @@ spec:
             image:
               repository: ghcr.io/roxedus/bw
               tag: 2024.11.0@sha256:dbb0a965ddf57c78ab550f262b0fa90bfccd96439af87d659387897596882200
+            command:
+              - /bin/sh
+              - -c
+            args:
+              - |
+                set -e
+                
+                bw config server ${BW_HOST}
+                
+                export BW_SESSION=$(BW_CLIENTID=${BW_CLIENTID} BW_CLIENTSECRET=${BW_CLIENTSECRET} bw login --apikey --raw)
+                
+                bw unlock --check
+                
+                echo 'Running `bw server` on port 8087'
+                bw serve --hostname 0.0.0.0 #--disable-origin-protection
             envFrom:
               - secretRef:
                   name: bitwarden-apikey
