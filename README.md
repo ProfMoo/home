@@ -57,6 +57,10 @@ Proxmox, a VM-management technology, is used to spin up VMs in the Proxmox clust
 
 I configure Kubernetes with GitOps via [Flux](https://github.com/fluxcd/flux2). The Flux controllers scans the [kubernetes](./kubernetes/) directory for `kustomization` files to apply to the cluster.
 
+### Hardware
+
+TODO: List hardware here.
+
 ## Inspirations
 
 The [home-operations Discord group](https://discord.gg/home-operations) has been a huge inspiration for this repository. In particular, the repos by [onedr0p](https://github.com/onedr0p/home-ops), [bjw-s](https://github.com/bjw-s/home-ops), and [buroa](https://github.com/buroa/k8s-gitops).

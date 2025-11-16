@@ -153,6 +153,10 @@
         href: http://192.168.1.102
         icon: dell
         description: (root:MA33M93PFYX3)
+    - Compute-3:
+        href: http://192.168.1.187
+        icon: supermicro
+        description: (ADMIN:ADMIN)
     - Minecraft:
         href: udp://minecraft-3.games.svc.cluster.local:25565
         icon: minecraft
