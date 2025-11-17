@@ -15,7 +15,7 @@ locals {
 resource "proxmox_virtual_environment_file" "ubuntu_cloud_image" {
   content_type = "iso"
   datastore_id = "local"
-  node_name    = "pve4"
+  node_name    = "pve5"
 
   source_file {
     path      = "https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img"
@@ -56,7 +56,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
 
   # Memory Configuration - Plenty for Ubuntu + Roon
   memory {
-    dedicated = 7168
+    dedicated = 14336
   }
 
   # Network Configuration for VLAN 1
@@ -73,6 +73,14 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
     file_id      = proxmox_virtual_environment_file.ubuntu_cloud_image.id
     interface    = "scsi0"
     size         = 128 # Resize to 128GB for OS, Roon, and database
+  }
+
+  # I migrated Roon in Proxmos and the disk image is confusing the TF provider, forcing a recreation (which I don't wanna do right now).
+  # For now, I'll just ignore disk changes.
+  lifecycle {
+    ignore_changes = [
+      disk,
+    ]
   }
 
   # Cloud-init configuration to enable password authentication

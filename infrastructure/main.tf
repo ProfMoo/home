@@ -9,18 +9,7 @@ module "talos_1_9_2_iso" {
   talos_image_storage_node = "pve"
 }
 
-module "talos_1_9_2_iso_pve2" {
-  source = "./modules/talos-iso"
-
-  # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
-  talos_image_datastore = "local"
-
-  talos_version = "1.9.2"
-  # The Proxmox node identifier for the storage location of the Talos image
-  talos_image_storage_node = "pve2"
-}
-
-module "talos_1_10_6_iso_pve2" {
+module "talos_1_10_6_iso_pve1" {
   source = "./modules/talos-iso"
 
   # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
@@ -28,7 +17,18 @@ module "talos_1_10_6_iso_pve2" {
 
   talos_version = "1.10.6"
   # The Proxmox node identifier for the storage location of the Talos image
-  talos_image_storage_node = "pve2"
+  talos_image_storage_node = "pve"
+}
+
+module "talos_1_10_6_iso_pve5" {
+  source = "./modules/talos-iso"
+
+  # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
+  talos_image_datastore = "local"
+
+  talos_version = "1.10.6"
+  # The Proxmox node identifier for the storage location of the Talos image
+  talos_image_storage_node = "pve5"
 }
 
 module "cluster" {
@@ -47,7 +47,7 @@ module "cluster" {
       memory                = 8096
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
+      initial_boot_iso      = module.talos_1_10_6_iso_pve1.talos_iso_id
 
       disk_size = "50"
       datastore = "disk2"
@@ -85,7 +85,7 @@ module "cluster" {
       memory                = 8096
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
+      initial_boot_iso      = module.talos_1_10_6_iso_pve1.talos_iso_id
 
       disk_size = "50"
       datastore = "disk1"
@@ -115,18 +115,18 @@ module "cluster" {
       }
     },
     "control_plane_instance_2" = {
-      id                    = "1002"
-      name                  = "daft-punk"
+      id                    = "1003"
+      name                  = "fred-again"
       description           = "Control plane instance in the Kubernetes homelab cluster"
       tags                  = ["control-plane", "kubernetes"]
       cpu_cores             = 3
-      memory                = 8096
+      memory                = 8096 # 8GB (of 256GB)
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve2"
-      initial_boot_iso      = module.talos_1_10_6_iso_pve2.talos_iso_id
+      proxmox_node_name     = "pve5"
+      initial_boot_iso      = module.talos_1_10_6_iso_pve5.talos_iso_id
 
-      disk_size = "50"
-      datastore = "disk3"
+      disk_size = "450"
+      datastore = "disk2"
 
       enable_storage_cluster = false
 
@@ -149,7 +149,7 @@ module "cluster" {
 
       kubernetes_node_labels = {
         "drmoo.io/role" : "controlplane"
-        "drmoo.io/zone" : "pve2"
+        "drmoo.io/zone" : "pve5"
       }
     }
   }
@@ -164,7 +164,7 @@ module "cluster" {
       memory                = 81920 # 80GB
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
+      initial_boot_iso      = module.talos_1_10_6_iso_pve1.talos_iso_id
 
       disk_size = "200"
       datastore = "disk3"
@@ -206,10 +206,10 @@ module "cluster" {
       description           = "Worker node instance in the Kubernetes homelab cluster"
       tags                  = ["worker-node", "kubernetes"]
       cpu_cores             = 15
-      memory                = 49152 # 48GB
+      memory                = 81920 # 80GB
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_9_2_iso.talos_iso_id
+      initial_boot_iso      = module.talos_1_10_6_iso_pve1.talos_iso_id
 
       disk_size = "200"
       datastore = "disk2"
@@ -249,32 +249,19 @@ module "cluster" {
         "drmoo.io/storage" : "rook-osd-node"
       }
     },
-    "worker_node_instance_3" = {
-      id                    = "1103"
-      name                  = "bonobo"
+    "worker_node_instance_4" = {
+      id                    = "1105"
+      name                  = "moody-good"
       description           = "Worker node instance in the Kubernetes homelab cluster"
       tags                  = ["worker-node", "kubernetes"]
-      cpu_cores             = 56
-      memory                = 114688 # 112GB
+      cpu_cores             = 50     # (out of 56)
+      memory                = 243712 # 238GB (out of 256GB)
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve2"
-      initial_boot_iso      = module.talos_1_9_2_iso_pve2.talos_iso_id
+      proxmox_node_name     = "pve5"
+      initial_boot_iso      = module.talos_1_10_6_iso_pve5.talos_iso_id
 
       disk_size = "450"
-      datastore = "disk1"
-
-      storage_disks = [
-        {
-          datastore_id   = "disk2"
-          disk_interface = "scsi1"
-          size           = 450
-        },
-        {
-          datastore_id   = "disk3"
-          disk_interface = "scsi2"
-          size           = 400
-        }
-      ]
+      datastore = "disk3"
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.10.6"
@@ -285,7 +272,7 @@ module "cluster" {
 
       vlan_id        = "2"
       ipv4_address   = "192.168.8.123"
-      mac_address    = "94:96:cc:43:7d:79"
+      mac_address    = "94:96:cc:43:7d:80"
       subnet_gateway = "192.168.8.1"
 
       # Internal kubernetes network configuration
@@ -294,7 +281,7 @@ module "cluster" {
 
       kubernetes_node_labels = {
         "drmoo.io/role" : "worker"
-        "drmoo.io/zone" : "pve2"
+        "drmoo.io/zone" : "pve5"
         "drmoo.io/storage" : "rook-osd-node"
       }
     }
