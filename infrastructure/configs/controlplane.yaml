@@ -21,7 +21,7 @@ machine:
     - 127.0.0.1
     - ${talos_virtual_ip}
   kubelet:
-    image: ghcr.io/siderolabs/kubelet:v1.33.4
+    image: ghcr.io/siderolabs/kubelet:v1.34.2
     defaultRuntimeSeccompProfileEnabled: true
     disableManifestsDirectory: true
     extraArgs:
@@ -136,13 +136,13 @@ cluster:
   controlPlane:
     endpoint: https://${talos_virtual_ip}:6443
   apiServer:
-    image: registry.k8s.io/kube-apiserver:v1.33.4
+    image: registry.k8s.io/kube-apiserver:v1.34.2
     certSANs:
       - ${ipv4_address}
     disablePodSecurityPolicy: true
     extraArgs:
       feature-gates: MutatingAdmissionPolicy=true
-      runtime-config: admissionregistration.k8s.io/v1alpha1=true
+      runtime-config: admissionregistration.k8s.io/v1beta1=true
     admissionControl:
       - name: PodSecurity
         configuration:
@@ -171,7 +171,7 @@ cluster:
         memory: 512Mi
       # No limits - critical component should not be throttled
   proxy:
-    image: registry.k8s.io/kube-proxy:v1.33.4
+    image: registry.k8s.io/kube-proxy:v1.34.2
     # Using Cilium as the proxy, so disabling kube-proxy
     disabled: true
   etcd:
@@ -181,7 +181,7 @@ cluster:
     extraArgs:
       listen-metrics-urls: http://0.0.0.0:2381
   controllerManager:
-    image: registry.k8s.io/kube-controller-manager:v1.33.4
+    image: registry.k8s.io/kube-controller-manager:v1.34.2
     extraArgs:
       # NOTE: Kubernetes manifests controlled by Talos require a special application process compared to most machine-config changes.
       # Source: https://github.com/siderolabs/talos/discussions/7835
@@ -194,7 +194,7 @@ cluster:
   discovery:
     enabled: true
   scheduler:
-    image: registry.k8s.io/kube-scheduler:v1.33.4
+    image: registry.k8s.io/kube-scheduler:v1.34.2
     extraArgs:
       # NOTE: This enables Prometheus to scrape metrics from the control plane nodes
       bind-address: 0.0.0.0

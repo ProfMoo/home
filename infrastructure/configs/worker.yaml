@@ -22,7 +22,7 @@ machine:
     disk: /dev/sda # The disk used for installations.
     wipe: false # Indicates if the installation disk should be wiped at installation time.
   kubelet:
-    image: ghcr.io/siderolabs/kubelet:v1.33.4
+    image: ghcr.io/siderolabs/kubelet:v1.34.2
     defaultRuntimeSeccompProfileEnabled: true
     disableManifestsDirectory: true
     extraArgs:
