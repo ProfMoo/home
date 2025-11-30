@@ -101,6 +101,9 @@ machine:
         hard=True
         nconnect=16
         noatime=True
+  kernel:
+    modules:
+      - name: nbd
 cluster:
   clusterName: homelab
   id: ${cluster_id} # Globally unique identifier for this cluster (base64 encoded random 32 bytes).
