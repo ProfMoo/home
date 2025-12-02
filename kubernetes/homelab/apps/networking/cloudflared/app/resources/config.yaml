@@ -3,7 +3,7 @@ originRequest:
   originServerName: external.drmoo.io
 ingress:
   - hostname: ssh.drmoo.io
-    service: ssh://ssh-bastion.networking.svc.cluster.local:2222
+    service: tcp://ssh-bastion.networking.svc.cluster.local:2222
   - hostname: drmoo.io
     service: https://envoy-external.networking.svc.cluster.local:443
   - hostname: "*.drmoo.io"

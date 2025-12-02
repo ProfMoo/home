@@ -24,6 +24,7 @@ metadata:
 type: Opaque
 stringData:
   # This pub key is the one that is generated on my Macbook Pro M2.
+  # Connect with: cloudflared access ssh --hostname ssh.drmoo.io --destination ssh-bastion:2222
   authorized_keys: |
     ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDSlrb7Tmgn3FQyPwywZwR7vTt17PkeoxbFng+uYpX6AIu10SLUP6h7CT43ySgctHn6kF1jDqBNxzjhc053GBP+JxbTeaxW32JOyzf9CMYeb9OmpQk5US+EToT2iSBX9gVwapKZ8P0FVgdHIS2jO5VQY3nsCB63/9jo7BmmJ7StAbxin4p0X5NrpFUXgW7ATwQeyrt23CI20IvC6rm24lbAuyUwPx2ONnlNdQoM2u9DApTMjiSHOKzjtFZB968TrLQjJQ+pHorDu45QAGrqMzBbR44TSjeffIe/GFb1fxfXxhJlU0EuFYmetwQ/zgj5uQBFuJeuxzI6Dgv57BgYH2v7HcMxpX5ZfBwd1nVtHSx1fgGF3TknYLnH8Ej93hs4nQDFXG8GH4vJtdcLwLjUrpV1JOiOkGtBJ25pWDehltRGq6brecKHGHYnM0A7xQvLEcAn3VASqYpm5Pl6GO0l/Pm40dlC41SZS18KQNDQUcTypSuosPilPSSvRTKbzD6ZMQ0= drmoo@Shanes-MBP.local
 ---
