@@ -41,17 +41,24 @@ spec:
       labels:
         app: ssh-bastion
     spec:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
       containers:
         - name: ssh
           image: linuxserver/openssh-server:latest
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
           ports:
             - containerPort: 2222
               name: ssh
           env:
             - name: PUID
-              value: "1000"
+              value: "0"
             - name: PGID
-              value: "1000"
+              value: "0"
             - name: TZ
               value: "America/New_York"
             - name: USER_NAME
@@ -62,24 +69,12 @@ spec:
               value: "false"
             - name: PUBLIC_KEY_FILE
               value: "/config/.ssh/authorized_keys"
-          lifecycle:
-            postStart:
-              exec:
-                command:
-                  - /bin/sh
-                  - -c
-                  - |
-                    mkdir -p /config/.ssh-writable
-                    cp /config/.ssh-ro/authorized_keys /config/.ssh-writable/authorized_keys
-                    chmod 600 /config/.ssh-writable/authorized_keys
-                    chown 1000:1000 /config/.ssh-writable/authorized_keys
-                    rm -rf /config/.ssh
-                    ln -s /config/.ssh-writable /config/.ssh
           volumeMounts:
             - name: config
               mountPath: /config
             - name: ssh-keys
-              mountPath: /config/.ssh-ro
+              mountPath: /config/.ssh/authorized_keys
+              subPath: authorized_keys
             - name: kubeconfig
               mountPath: /root/.kube
               readOnly: true
