@@ -20,6 +20,8 @@ apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
   name: bastion-internal-drmoo-io
+  annotations:
+    external-dns.alpha.kubernetes.io/target: "internal.drmoo.io"
 spec:
   endpoints:
     - dnsName: bastion.drmoo.io
