@@ -21,7 +21,7 @@ kind: DNSEndpoint
 metadata:
   name: bastion-internal-drmoo-io
   annotations:
-    external-dns.alpha.kubernetes.io/target: "internal.drmoo.io"
+    external-dns.alpha.kubernetes.io/target: internal.drmoo.io
 spec:
   endpoints:
     - dnsName: bastion.drmoo.io
