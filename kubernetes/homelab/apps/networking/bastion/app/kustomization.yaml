@@ -5,5 +5,4 @@ kind: Kustomization
 namespace: networking
 resources:
   - ./ssh-bastion.yaml
-  - ./dns-endpoint.yaml
   - ./service.yaml
