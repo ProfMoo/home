@@ -24,7 +24,7 @@ metadata:
 type: Opaque
 stringData:
   # This pub key is the one that is generated on my Macbook Pro M2.
-  # Connect with: ssh -p 2222 admin@192.168.8.120 (via WireGuard)
+  # Connect with: ssh -p 2222 admin@192.168.8.140 (via WireGuard)
   authorized_keys: |
     ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM8ntPUI7WlqUlOlpGr9YkaoZ6Cv6dvuil90n70gpFmv obshane96@gmail.com
 ---
