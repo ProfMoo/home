@@ -24,4 +24,4 @@ spec:
   endpoints:
     - dnsName: bastion.drmoo.io
       recordType: CNAME
-      targets: ["internal.drmoo.io"]
+      targets: ["192.168.8.140"]
