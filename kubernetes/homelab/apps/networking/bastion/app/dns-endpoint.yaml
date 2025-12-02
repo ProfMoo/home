@@ -25,5 +25,5 @@ metadata:
 spec:
   endpoints:
     - dnsName: bastion.drmoo.io
-      recordType: CNAME
+      recordType: A
       targets: ["192.168.8.140"]
