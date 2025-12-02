@@ -66,8 +66,7 @@ spec:
             - name: config
               mountPath: /config
             - name: ssh-keys
-              mountPath: /config/.ssh/authorized_keys
-              subPath: authorized_keys
+              mountPath: /config/.ssh
             - name: kubeconfig
               mountPath: /root/.kube
               readOnly: true
