@@ -7,3 +7,4 @@ resources:
   - ./ssh-bastion.yaml
   - ./dns-endpoint.yaml
   - ./http-route.yaml
+  - ./service.yaml

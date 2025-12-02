@@ -118,15 +118,3 @@ spec:
                   items:
                     - key: ca.crt
                       path: ca.crt
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: ssh-bastion
-spec:
-  selector:
-    app: ssh-bastion
-  ports:
-    - port: 2222
-      targetPort: 2222
-      name: ssh
