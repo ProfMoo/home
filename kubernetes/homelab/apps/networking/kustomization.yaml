@@ -11,3 +11,4 @@ resources:
   - ./cloudflared/ks.yaml
   - ./multus/ks.yaml
   - ./envoy-gateway/ks.yaml
+  - ./bastion/ks.yaml

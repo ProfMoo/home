@@ -3,7 +3,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: &app cloudflared
+  name: &app cloudflared-bastion
   namespace: &namespace networking
 spec:
   targetNamespace: *namespace
@@ -11,11 +11,9 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: external-dns-cloudflare
+    - name: cloudflared
       namespace: networking
-    - name: external-secrets-stores
-      namespace: base
-  path: ./kubernetes/homelab/apps/networking/cloudflared/app
+  path: ./kubernetes/homelab/apps/networking/bastion/app
   prune: true
   sourceRef:
     kind: GitRepository
