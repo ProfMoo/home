@@ -62,11 +62,24 @@ spec:
               value: "false"
             - name: PUBLIC_KEY_FILE
               value: "/config/.ssh/authorized_keys"
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - /bin/sh
+                  - -c
+                  - |
+                    mkdir -p /config/.ssh-writable
+                    cp /config/.ssh-ro/authorized_keys /config/.ssh-writable/authorized_keys
+                    chmod 600 /config/.ssh-writable/authorized_keys
+                    chown 1000:1000 /config/.ssh-writable/authorized_keys
+                    rm -rf /config/.ssh
+                    ln -s /config/.ssh-writable /config/.ssh
           volumeMounts:
             - name: config
               mountPath: /config
             - name: ssh-keys
-              mountPath: /config/.ssh
+              mountPath: /config/.ssh-ro
             - name: kubeconfig
               mountPath: /root/.kube
               readOnly: true
