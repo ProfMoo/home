@@ -5,5 +5,5 @@ kind: Kustomization
 resources:
   - ./oci-repository.yaml
   - ./helm-release.yaml
-  # - ./mutating-admission-policy.yaml
+  - ./mutating-admission-policy.yaml
   - ./prometheus-rule.yaml
