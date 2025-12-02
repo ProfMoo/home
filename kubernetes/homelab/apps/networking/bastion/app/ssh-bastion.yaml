@@ -46,6 +46,22 @@ spec:
         runAsUser: 0
         runAsGroup: 0
         fsGroup: 0
+      initContainers:
+        - name: copy-ssh-keys
+          image: busybox:latest
+          command:
+            - sh
+            - -c
+            - |
+              mkdir -p /config/.ssh
+              cp /tmp/keys/authorized_keys /config/.ssh/authorized_keys
+              chmod 600 /config/.ssh/authorized_keys
+              chown 0:0 /config/.ssh/authorized_keys
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: ssh-keys
+              mountPath: /tmp/keys
       containers:
         - name: ssh
           image: linuxserver/openssh-server:latest
@@ -73,9 +89,6 @@ spec:
           volumeMounts:
             - name: config
               mountPath: /config
-            - name: ssh-keys
-              mountPath: /config/.ssh/authorized_keys
-              subPath: authorized_keys
             - name: kubeconfig
               mountPath: /root/.kube
               readOnly: true
