@@ -5,6 +5,9 @@ kind: DNSEndpoint
 metadata:
   name: cloudflared-ssh-drmoo-io
 spec:
+  # NOTE: This external endpoint doesn't quite work. I am having issues figuring out the precise protocols that
+  # cloudflared needs to connect. But the internal VPN-on endpoint should work.
+  # Might need to make an external envoy route to get this working in the future.
   endpoints:
     - dnsName: ssh.drmoo.io
       recordType: CNAME

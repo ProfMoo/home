@@ -6,7 +6,7 @@ metadata:
   name: ssh-bastion
 spec:
   parentRefs:
-    - name: envoy-external
+    - name: envoy-internal
       namespace: networking
       sectionName: https
   hostnames:
