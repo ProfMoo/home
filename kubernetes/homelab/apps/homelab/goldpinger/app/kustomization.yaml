@@ -7,4 +7,4 @@ resources:
   - ./cluster-role-binding.yaml
   - ./daemon-set.yaml
   - ./service.yaml
-  - ./ingress.yaml
+  - ./http-route.yaml
