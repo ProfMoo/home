@@ -22,7 +22,7 @@ spec:
       mode: GrafanaOperator
       grafanaOperator:
         matchLabels:
-          grafana.internal/instance: main
+          grafana.drmoo.io/instance: main
     service:
       registry:
         hostPort: 29999
