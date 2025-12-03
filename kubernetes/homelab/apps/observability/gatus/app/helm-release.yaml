@@ -35,9 +35,9 @@ spec:
             resources:
               requests:
                 cpu: 10m
-                memory: 512Mi
+                memory: 64Mi
               limits:
-                memory: 2Gi
+                memory: 512Mi
             restartPolicy: Always
         containers:
           app:
@@ -69,9 +69,9 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 512Mi
+                memory: 64Mi
               limits:
-                memory: 2Gi
+                memory: 512Gi
         statefulset:
           volumeClaimTemplates:
             - name: config
@@ -141,12 +141,9 @@ spec:
     serviceAccount:
       gatus: {}
     persistence:
-      config:
-        type: emptyDir
       config-file:
         type: configMap
         name: "{{ .Release.Name }}-configmap"
         globalMounts:
           - path: /config/config.yaml
             subPath: config.yaml
-            readOnly: true
