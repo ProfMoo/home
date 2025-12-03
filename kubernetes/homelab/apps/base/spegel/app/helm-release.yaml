@@ -19,6 +19,10 @@ spec:
   values:
     grafanaDashboard:
       enabled: true
+      mode: GrafanaOperator
+      grafanaOperator:
+        matchLabels:
+          grafana.internal/instance: main
     service:
       registry:
         hostPort: 29999
