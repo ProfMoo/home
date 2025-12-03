@@ -23,14 +23,12 @@ spec:
         containers:
           app:
             image:
-              repository: ghcr.io/esanchezm/prometheus-qbittorrent-exporter
-              tag: v1.6.0@sha256:b987d19693a5b2fe7314b22009c6302e084ec801fcf96afaf14065b4cdafc842
+              repository: ghcr.io/martabal/qbittorrent-exporter
+              tag: v1.13.0@sha256:1f9e1c541a597325dafc32e955b99b97ae48ad1214e13a9cfb207ac8b19a94a3
             env:
-              EXPORTER_PORT: &port 8000
-              QBITTORRENT_HOST: qbittorrent.media.svc.cluster.local
-              QBITTORRENT_PORT: 8080
-              QBITTORRENT_USER: "admin"
-              QBITTORRENT_PASS: "adminadmin"
+              QBITTORRENT_BASE_URL: qbittorrent.media.svc.cluster.local:8080
+              QBITTORRENT_USERNAME: "admin"
+              QBITTORRENT_PASSWORD: "adminadmin"
             probes:
               liveness:
                 enabled: true
@@ -57,7 +55,7 @@ spec:
         controller: *app
         ports:
           http:
-            port: *port
+            port: 8090
     serviceMonitor:
       app:
         serviceName: *app

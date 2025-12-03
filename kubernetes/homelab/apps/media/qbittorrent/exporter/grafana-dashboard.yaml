@@ -3,15 +3,17 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDashboard
 metadata:
-  name: grafana-operator
+  name: qbittorrent
 spec:
   allowCrossNamespaceImport: true
+  folder: media
+  datasources:
+    - datasourceName: Prometheus
+      inputName: DS_PROMETHEUS
+  grafanaCom:
+    id: 23784
+    revision: 1
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main
-  datasources:
-    - datasourceName: prometheus
-      inputName: DS_PROMETHEUS
-  configMapRef:
-    name: grafana-operator-dashboard
-    key: grafana-operator.json
+  resyncPeriod: 10m0s
