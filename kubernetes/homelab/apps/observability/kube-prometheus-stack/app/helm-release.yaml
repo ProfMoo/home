@@ -115,7 +115,7 @@ spec:
         dashboardsConfigMapRefEnabled: true
         folder: observability
         matchLabels:
-          grafana.internal/instance: main
+          grafana.drmoo.io/instance: main
     coreDns:
       enabled: true
     prometheusOperator:
