@@ -97,9 +97,7 @@ spec:
         folder: /rules/fake
     monitoring:
       dashboards:
-        enabled: true
-        annotations:
-          grafana_folder: Loki
+        enabled: false
       serviceMonitor:
         enabled: true
         metricsInstance:
