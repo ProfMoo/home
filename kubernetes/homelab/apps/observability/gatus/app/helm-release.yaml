@@ -69,7 +69,7 @@ spec:
               requests:
                 cpu: 100m
               limits:
-                memory: 512Mi
+                memory: 1Gi
         statefulset:
           volumeClaimTemplates:
             - name: config
