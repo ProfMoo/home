@@ -57,7 +57,7 @@
         description: Observability (username:password)
         widget:
           type: grafana
-          url: http://grafana.observability.svc.cluster.local:80
+          url: http://grafana-service.observability.svc.cluster.local:3000
           username: username
           password: password
     - Prometheus:

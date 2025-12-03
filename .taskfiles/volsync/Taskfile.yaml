@@ -21,13 +21,18 @@ tasks:
       - '[[ "{{.STATE}}" == "suspend" || "{{.STATE}}" == "resume" ]]'
       - which flux kubectl
   unlock:
-    desc: Unlock all restic source repos
+    desc: Unlock restic repository [APP=app-name or leave empty for all]
     cmds:
       - for: {var: SOURCES, split: "\n"}
         cmd: kubectl --namespace {{splitList "," .ITEM | first}} patch --field-manager=flux-client-side-apply replicationsources {{splitList "," .ITEM | last}} --type merge --patch "{\"spec\":{\"restic\":{\"unlock\":\"{{now | unixEpoch}}\"}}}"
     vars:
       SOURCES:
-        sh: kubectl get replicationsources --all-namespaces --no-headers --output=jsonpath='{range .items[*]}{.metadata.namespace},{.metadata.name}{"\n"}{end}'
+        sh: |
+          {{if .APP}}
+          kubectl get replicationsources --all-namespaces -o json | jq -r '.items[] | select(.metadata.name=="{{.APP}}") | "\(.metadata.namespace),\(.metadata.name)"'
+          {{else}}
+          kubectl get replicationsources --all-namespaces --no-headers --output=jsonpath='{range .items[*]}{.metadata.namespace},{.metadata.name}{"\n"}{end}'
+          {{end}}
     preconditions:
       - which kubectl
   snapshot:
