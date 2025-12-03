@@ -111,15 +111,11 @@ spec:
     grafana:
       enabled: false
       forceDeployDashboards: true
-      sidecar:
-        dashboards:
-          labels:
-            grafana_dashboard: "1"
-          annotations:
-            grafana_folder: Prometheus
-          multicluster:
-            etcd:
-              enabled: true
+      operator:
+        dashboardsConfigMapRefEnabled: true
+        folder: observability
+        matchLabels:
+          grafana.internal/instance: main
     coreDns:
       enabled: true
     prometheusOperator:
