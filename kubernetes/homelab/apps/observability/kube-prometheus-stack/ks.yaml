@@ -8,17 +8,12 @@ metadata:
 spec:
   path: ./kubernetes/homelab/apps/observability/kube-prometheus-stack/app
   targetNamespace: *namespace
-  components:
-    - ../../../../common/gatus/http-check
   dependsOn:
     - name: rook-ceph-cluster
       namespace: storage
   postBuild:
     substitute:
       APP: *app
-      # Gatus
-      GATUS_SUBDOMAIN: prometheus
-      GATUS_PATH: /-/healthy
   prune: true
   sourceRef:
     kind: GitRepository

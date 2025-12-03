@@ -12,15 +12,12 @@ spec:
       app.kubernetes.io/name: *app
   components:
     - ../../../../common/volsync
-    - ../../../../common/gatus/http-check
   interval: 30m
   path: ./kubernetes/homelab/apps/media/jellyfin/app
   postBuild:
     substitute:
       APP: *app
       PVC_NAME: jellyfin
-      GATUS_PATH: /health
-      GATUS_SUBDOMAIN: movies
       VOLSYNC_CAPACITY: 10Gi
   prune: true
   retryInterval: 2m
