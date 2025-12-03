@@ -20,6 +20,7 @@ spec:
   values:
     controllers:
       gatus:
+        type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
@@ -69,6 +70,12 @@ spec:
                 cpu: 100m
               limits:
                 memory: 256Mi
+        statefulset:
+          volumeClaimTemplates:
+            - name: config
+              storageClass: ceph-block
+              accessMode: ReadWriteOnce
+              size: 5Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
