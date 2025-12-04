@@ -94,7 +94,6 @@ spec:
       enableUniqueFilenames: true
       rules:
         searchNamespace: ALL
-        folder: /rules/fake
     monitoring:
       dashboards:
         enabled: false
