@@ -35,6 +35,8 @@ spec:
         spec:
           decryption:
             provider: sops
+            secretRef:
+              name: sops-age
           deletionPolicy: WaitForTermination
           patches:
             - patch: |-
