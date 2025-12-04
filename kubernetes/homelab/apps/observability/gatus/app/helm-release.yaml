@@ -72,12 +72,6 @@ spec:
                 memory: 2Gi
               limits:
                 memory: 2Gi
-        statefulset:
-          volumeClaimTemplates:
-            - name: config
-              storageClass: ceph-block-ephemeral
-              accessMode: ReadWriteOnce
-              size: 5Gi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: true
