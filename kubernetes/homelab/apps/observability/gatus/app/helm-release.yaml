@@ -69,13 +69,13 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 64Mi
+                memory: 2Gi
               limits:
-                memory: 512Mi
+                memory: 2Gi
         statefulset:
           volumeClaimTemplates:
             - name: config
-              storageClass: ceph-block
+              storageClass: ceph-block-ephemeral
               accessMode: ReadWriteOnce
               size: 5Gi
     defaultPodOptions:
