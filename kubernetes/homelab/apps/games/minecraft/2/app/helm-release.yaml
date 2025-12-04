@@ -9,14 +9,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: minecraft-2
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      strategy: rollback
-      retries: 3
   # NOTE: Values here: https://github.com/itzg/minecraft-server-charts/blob/master/charts/minecraft/values.yaml
   values:
     resources:

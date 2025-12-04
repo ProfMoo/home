@@ -11,17 +11,6 @@ spec:
     kind: OCIRepository
     name: kube-prometheus-stack
   maxHistory: 5
-  install:
-    crds: CreateReplace
-    timeout: 5m
-    remediation:
-      retries: 5
-  upgrade:
-    cleanupOnFail: true
-    crds: CreateReplace
-    timeout: 5m
-    remediation:
-      retries: 5
   uninstall:
     keepHistory: false
   valuesFrom:

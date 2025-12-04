@@ -10,14 +10,6 @@ spec:
     kind: OCIRepository
     name: logging-operator
   maxHistory: 3
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      strategy: rollback
-      retries: 3
   uninstall:
     keepHistory: false
   # NOTE: Example here: https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/values.yaml

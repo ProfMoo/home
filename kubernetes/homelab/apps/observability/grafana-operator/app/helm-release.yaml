@@ -10,14 +10,6 @@ spec:
     name: grafana-operator
   interval: 1h
   maxHistory: 3
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      strategy: rollback
-      retries: 3
   values:
     dashboard:
       enabled: true
