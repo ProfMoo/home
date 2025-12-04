@@ -34,10 +34,10 @@ spec:
               - --enable-service
             resources:
               requests:
-                cpu: 10m
-                memory: 64Mi
+                cpu: 100m
+                memory: 2Gi
               limits:
-                memory: 512Mi
+                memory: 2Gi
             restartPolicy: Always
         containers:
           app:
