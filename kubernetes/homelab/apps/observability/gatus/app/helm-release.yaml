@@ -74,7 +74,7 @@ spec:
                 memory: 2Gi
         statefulset:
           volumeClaimTemplates:
-            - name: config
+            - name: config-2
               storageClass: ceph-block-ephemeral
               accessMode: ReadWriteOnce
               size: 5Gi
