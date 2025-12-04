@@ -61,6 +61,12 @@ machine:
       enabled: true
       resolveMemberNames: true
       forwardKubeDNSToHost: false
+    kubernetesTalosAPIAccess:
+      allowedKubernetesNamespaces:
+        - system-upgrade
+      allowedRoles:
+        - os:admin
+      enabled: true
     rbac: true
     stableHostname: true
     apidCheckExtKeyUsage: true

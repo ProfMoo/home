@@ -61,11 +61,11 @@ machine:
       enabled: true
       port: 7445
     kubernetesTalosAPIAccess:
-      enabled: true
-      allowedRoles:
-        - os:admin
       allowedKubernetesNamespaces:
         - system-upgrade
+      allowedRoles:
+        - os:admin
+      enabled: true
   # logging:
   #   destinations:
   #     - name: loki
