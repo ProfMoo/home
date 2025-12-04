@@ -2,6 +2,8 @@
 
 ## Overview
 
+Within the `homelab` directory is all the in-cluster configuration for my homelab rack server.
+
 * Code in the [`bootstrap`](./homelab/bootstrap/) dir is used to bootstrap the cluster.
 
 * Code in the [`apps`](./homelab/apps/) dir is sync'd to the cluster after the cluster has been bootstrapped.
