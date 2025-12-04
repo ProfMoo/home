@@ -54,7 +54,7 @@ spec:
               GATUS_CONFIG_PATH: /config
               GATUS_DELAY_START_SECONDS: 10
               GATUS_WEB_PORT: &port 80
-              GOMEMLIMIT: 500000000
+              GOMEMLIMIT: 1GiB
             probes:
               liveness: &probes
                 enabled: true
