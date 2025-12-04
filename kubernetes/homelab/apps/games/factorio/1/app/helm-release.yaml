@@ -14,14 +14,6 @@ spec:
         kind: HelmRepository
         name: factorio
         namespace: flux-system
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      strategy: rollback
-      retries: 3
   # NOTE: Values here: https://github.com/SQLJames/factorio-server-charts/blob/main/charts/factorio-server-charts/values.yaml
   values:
     securityContext:

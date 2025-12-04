@@ -9,14 +9,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: cilium
-  install:
-    remediation:
-      retries: 3
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      strategy: rollback
-      retries: 3
   # Values can be found here: https://docs.cilium.io/en/stable/helm-reference/
   values:
     # Explanation of each field can be found in the Cilium documentation:

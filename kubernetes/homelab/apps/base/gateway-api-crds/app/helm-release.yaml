@@ -9,10 +9,3 @@ spec:
   chartRef:
     kind: OCIRepository
     name: gateway-api-crds
-  install:
-    remediation:
-      retries: -1
-  upgrade:
-    cleanupOnFail: true
-    remediation:
-      retries: 3
