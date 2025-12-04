@@ -32,6 +32,11 @@ spec:
               - --auto-httproute
               - --enable-httproute
               - --enable-service
+            env:
+              - name: GOMEMLIMIT
+                valueFrom:
+                  resourceFieldRef:
+                    resource: limits.memory
             resources:
               requests:
                 cpu: 100m
@@ -49,6 +54,7 @@ spec:
               GATUS_CONFIG_PATH: /config
               GATUS_DELAY_START_SECONDS: 10
               GATUS_WEB_PORT: &port 80
+              GOMEMLIMIT: 500000000
             probes:
               liveness: &probes
                 enabled: true
