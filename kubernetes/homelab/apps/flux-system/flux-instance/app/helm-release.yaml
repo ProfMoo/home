@@ -38,15 +38,6 @@ spec:
           app.kubernetes.io/name: flux
       kustomize:
         patches:
-          - # Add Sops decryption to 'profmoo-home' Kustomization
-            patch: |
-              - op: add
-                path: /spec/decryption
-                value:
-                  provider: sops
-            target:
-              group: kustomize.toolkit.fluxcd.io
-              kind: Kustomization
           - # Increase the number of workers
             patch: |
               - op: add
