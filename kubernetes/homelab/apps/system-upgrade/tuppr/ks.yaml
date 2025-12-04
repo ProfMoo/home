@@ -6,11 +6,11 @@ metadata:
   name: tuppr
 spec:
   interval: 1h
-  path: ./kubernetes/apps/system-upgrade/tuppr/app
+  path: ./kubernetes/homelab/apps/system-upgrade/tuppr/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: profmoo-home
     namespace: flux-system
   targetNamespace: system-upgrade
   wait: true
@@ -24,11 +24,11 @@ spec:
   dependsOn:
     - name: tuppr
   interval: 1h
-  path: ./kubernetes/apps/system-upgrade/tuppr/upgrades
+  path: ./kubernetes/homelab/apps/system-upgrade/tuppr/upgrades
   prune: true
   sourceRef:
     kind: GitRepository
-    name: flux-system
+    name: profmoo-home
     namespace: flux-system
   targetNamespace: system-upgrade
   wait: false
