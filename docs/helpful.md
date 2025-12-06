@@ -12,15 +12,6 @@ Make a job from a cronjob:
 kubectl create job example-job --from=cronjob/example-cronjob
 ```
 
-## Delete All Errored Pods
-
-```bash
-# Delete pods in Error state across all namespaces
-kubectl get pods --all-namespaces --field-selector status.phase=Failed -o custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name | tail -n +2 | while read namespace pod; do
-    kubectl delete pod -n $namespace $pod
-done
-```
-
 ## Reassign a PVC to an Old PV
 
 There are times (i.e. I mess something up) where a PVC makes a new PV instead of re-binding to the old PV as desired. In this scenario, the best remedy is as such:
@@ -51,6 +42,10 @@ There are times (i.e. I mess something up) where a PVC makes a new PV instead of
 5. Inspect and ensure everything looks right. You should see the PV, PVC, and pod all successfully quit at around the same time. Then, the pod should start back up, ask for the PVC, and the PVC<->PV should bind.
 
 ## Rook/Ceph
+
+Use the [`rook-ceph` kubectl plugin](https://rook.io/docs/rook/latest-release/Troubleshooting/kubectl-plugin/) to access `ceph` CLI easily.
+
+### Remove OSD
 
 Remove OSD docs: <https://rook.io/docs/rook/latest-release/Storage-Configuration/Advanced/ceph-osd-mgmt/#purge-the-osd-with-kubectl>
 
