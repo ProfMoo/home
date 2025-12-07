@@ -112,6 +112,17 @@ spec:
                       values:
                         - rook-osd-node
     cephBlockPools:
+      # Configure the built-in .mgr pool to use size 2 instead of default size 3
+      # This is necessary because the cluster only has 2 hosts (mat-zo, skrillex)
+      # and the CRUSH rule requires replicas on different hosts.
+      # We should increase the size to 3 if/when we add a 3rd storage node to the cluster.
+      # Example: https://github.com/rook/rook/blob/master/deploy/examples/pool-builtin-mgr.yaml
+      - name: builtin-mgr
+        spec:
+          name: .mgr
+          failureDomain: host
+          replicated:
+            size: 2
       # For critical data I can't lose
       - name: ceph-blockpool
         spec:
