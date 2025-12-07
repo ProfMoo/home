@@ -43,6 +43,7 @@ filters:
           HasAnyTag(
             "site:RED",
             "site:OPS",
+            "site:ANT",
           ) &&
           AddedDays > 365
         )
