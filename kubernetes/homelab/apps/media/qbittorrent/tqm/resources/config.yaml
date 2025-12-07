@@ -31,13 +31,12 @@ filters:
             "site:RED",
             "site:OPS",
           ) &&
-          AddedDays > 30
+          AddedDays > 60
         )
       # More stringent rules for these trackers.
       - |
         (
           HasAnyTag(
-            "activity:14d",
             "activity:30d",
             "activity:180d"
           ) &&
@@ -45,7 +44,7 @@ filters:
             "site:RED",
             "site:OPS",
           ) &&
-          AddedDays > 100
+          AddedDays > 365
         )
       - HasAnyTag("not-linked") && SeedingDays > 24
     tag:
