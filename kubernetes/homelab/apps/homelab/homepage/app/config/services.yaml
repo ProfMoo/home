@@ -109,6 +109,15 @@
           type: lidarr
           url: http://lidarr.media.svc.cluster.local:80
           key: foobarbazfoobarbazfoobarbazfooba
+    - QUI:
+        href: https://qui.drmoo.io
+        icon: qui
+        description: qBittorrent user interface (username:password)
+        widget:
+          type: qbittorrent
+          url: http://qui.media.svc.cluster.local:80/proxy/74e163e8486933b14f2d55a823ecf63c67631607d0a21b1647e2a05b738f15af
+          username: foo
+          password: bar
     - qBittorrent:
         href: https://qb.drmoo.io
         icon: qbittorrent
@@ -118,15 +127,6 @@
           url: http://qbittorrent.media.svc.cluster.local:8080
           username: admin
           password: adminadmin
-    - QUI:
-        href: https://qui.drmoo.io
-        icon: qui
-        description: qBittorrent user interface (username:password)
-        widget:
-          type: qbittorrent
-          url: http://qui.media.svc.cluster.local:80
-          username: user
-          password: pass
     - Betanin:
         href: http://betanin.drmoo.io
         icon: betanin
