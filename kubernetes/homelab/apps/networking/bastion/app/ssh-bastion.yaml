@@ -29,11 +29,10 @@ stringData:
     ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM8ntPUI7WlqUlOlpGr9YkaoZ6Cv6dvuil90n70gpFmv obshane96@gmail.com
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
   name: ssh-bastion
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: ssh-bastion
