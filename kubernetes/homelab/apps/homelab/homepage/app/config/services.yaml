@@ -118,6 +118,15 @@
           url: http://qbittorrent.media.svc.cluster.local:8080
           username: admin
           password: adminadmin
+    - QUI:
+        href: https://qui.drmoo.io
+        icon: qui
+        description: qBittorrent user interface (username:password)
+        widget:
+          type: qbittorrent
+          url: http://qui.media.svc.cluster.local:80
+          username: user
+          password: pass
     - Betanin:
         href: http://betanin.drmoo.io
         icon: betanin
