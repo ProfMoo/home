@@ -117,12 +117,15 @@ spec:
       # and the CRUSH rule requires replicas on different hosts.
       # We should increase the size to 3 if/when we add a 3rd storage node to the cluster.
       # Example: https://github.com/rook/rook/blob/master/deploy/examples/pool-builtin-mgr.yaml
+      # Relevant issue: https://github.com/rook/rook/issues/11368
       - name: builtin-mgr
         spec:
           name: .mgr
           failureDomain: host
           replicated:
             size: 2
+        storageClass:
+          enabled: false
       # For critical data I can't lose
       - name: ceph-blockpool
         spec:
