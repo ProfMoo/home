@@ -39,8 +39,6 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
-    - name: qbittorrent
   path: ./kubernetes/homelab/apps/media/qbittorrent/tqm
   prune: true
   sourceRef:
