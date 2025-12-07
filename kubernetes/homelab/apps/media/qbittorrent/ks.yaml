@@ -85,7 +85,7 @@ metadata:
 spec:
   targetNamespace: *namespace
   components:
-    - ../../../../components/volsync
+    - ../../../../common/volsync
   dependsOn:
     - name: rook-ceph-cluster
       namespace: storage
