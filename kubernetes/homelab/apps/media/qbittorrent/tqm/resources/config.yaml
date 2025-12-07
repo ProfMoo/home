@@ -2,11 +2,11 @@
 clients:
   qb:
     create_tags_upfront: false
-    download_path: /media/downloads/torrents/complete
+    download_path: /downloads/qbittorrent/complete
     enabled: true
     filter: default
     type: qbittorrent
-    url: http://qbittorrent.media.svc.cluster.local
+    url: http://qui.media.svc.cluster.local/proxy/f972e481fef6f5f1e5508c51eb7fbe83dc58cefb4d7ff93232d2db0b769ed87f
 filters:
   default:
     MapHardlinksFor:
@@ -19,6 +19,7 @@ filters:
       - '"manual" in Tags'
     remove:
       - IsUnregistered()
+      # Remove torrents which are at least 24 days old and have had no activity in the last 14+ days
       - (
           HasAnyTag(
             "activity:14d",
