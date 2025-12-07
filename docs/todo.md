@@ -12,7 +12,7 @@
    1. [X] Consider standing up a little IDE (similar to what I have for HASS) that I can run beets queries in and modify the SQLite DB.
    2. [ ] Or maybe I just move to `wrtag`. Tired of beets - too finicky.
 6. [X] Migrate to Flux Operator using [this PR](https://github.com/onedr0p/home-ops/pull/8624) as a guide.
-7. [ ] System Upgrade Controller.
+7. [X] System Upgrade Controller (use Tuppr).
 8. [ ] Work on preemptions for k8s so that the most important pods are always scheduled.
 9. [X] Move fluxtomization to specific namespaces instead of having them all in `flux-system`
    1. [X] Also do this for OCI Resources (i.e. Helm charts) (<https://github.com/onedr0p/home-ops/pull/8706>)
@@ -20,17 +20,18 @@
 10. [x] Fix renovate so that I actually get a net benefit from the tool.
 11. [X] ~~Add the Cloudflare `minecraft.drmoo.io` DNS record to TF (or try the TF operator!!!). It's currently manually entered on the CF website.~~ Used the `DNSEndpoint` from `external-dns`.
     1. [ ] Move Minecraft svcs off of Nodeport to use L2 cilium.
+       1. [ ] Use [this mc router](https://github.com/itzg/mc-router) to cleanly expose the MC servers on various hostnames
     2. [X] I like how JFrog did it [here](https://github.com/joryirving/home-ops/blob/9d327c98f5bb1f97e21bbb522258b112609e76c0/kubernetes/apps/base/games/minecraft/mc-router/dnsendpoint.yaml#L2). Very clean.
 12. [ ] Jellyfin MV organizational improvements. Doc with recommendations [here](https://github.com/mystoragebox/Jellyfin-Music-Video-Tutorial). Generally Jellyfin navigation isn't great currently.
-13. [ ] Replace qbtools with tqm. qbtools is deprecated per [this README](https://github.com/buroa/qbtools).
+13. [X] Replace qbtools with tqm. qbtools is deprecated per [this README](https://github.com/buroa/qbtools).
 14. [X] Manage coredns in Flux. That's how onedr0p does it. [Link](https://github.com/onedr0p/home-ops/blob/5899f27553d145b40d029be4eb34d8e254a7cc23/talos/machineconfig.yaml.j2#L147) and [link](https://github.com/onedr0p/home-ops/blob/5899f27553d145b40d029be4eb34d8e254a7cc23/kubernetes/apps/kube-system/coredns/ks.yaml#L23).
 15. [X] Add spegel for more stable image pulling
 16. [ ] Read [this](https://blog.nfreak.tv/music-stack/) and revamp music perhaps?
 17. [X] Replace ingress with Gateway API
-18. [ ] For k8s 1.34 upgrade, check [this message](https://discord.com/channels/673534664354430999/942576972943491113/1410643392785944708).
+18. [X] For k8s 1.34 upgrade, check [this message](https://discord.com/channels/673534664354430999/942576972943491113/1410643392785944708).
 19. [ ] Setup automatic transcoding for Jellyfin videos.
 20. [ ] Move ALL STORAGE to Ceph -> bye bye TrueNAS.
-    1. [ ] Finally figure out why some of the PGs won't replicate to the 3rd instance :thinking:
+    1. [X] Finally figure out why some of the PGs won't replicate to the 3rd instance :thinking:
 21. [ ] Add NUT monitoring to my power sources
 22. [X] Add unpoller
 23. [ ] Move to the bridge networking setup on my raw boxes. This way, multiple actual network cards back up the same network interface and I'm more resilient to failures.
@@ -42,7 +43,7 @@
 26. [ ] Actually use Lidarr to download new music?
 27. [X] Fix kromgo
 28. [ ] Ensure flux takes over the CRDs that come from the Helmfile
-29. [ ] Quiet fans? Link [here](https://blog.hessindustria.com/quiet-fans-on-dell-poweredge-servers-via-ipmi/)
+29. [X] Quiet fans? Link [here](https://blog.hessindustria.com/quiet-fans-on-dell-poweredge-servers-via-ipmi/)
 30. [ ] Setup alert for when my secrets aren't syncing from Bitwarden. Might need an external-secrets metrics exporter.
 
 ## July 27th, 2025
