@@ -45,9 +45,6 @@ spec:
           mgr/crash/warn_recent_interval: '7200' # 2h
       crashCollector:
         disable: false
-      # Temporarily disable disruption management to allow .mgr pool fix to apply
-      disruptionManagement:
-        managePodBudgets: false
       csi:
         readAffinity:
           enabled: false
