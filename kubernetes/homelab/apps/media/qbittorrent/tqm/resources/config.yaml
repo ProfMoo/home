@@ -15,8 +15,8 @@ filters:
       - IsTrackerDown()
       - Downloaded == false && !IsUnregistered()
       - SeedingHours < 26 && !IsUnregistered()
-      - '"upload" in Tags'
-      - '"manual" in Tags'
+      - '"upload" in Tags && !IsUnregistered()'
+      - '"manual" in Tags && !IsUnregistered()'
     remove:
       - IsUnregistered()
       # Remove torrents from "lower tier trackers" which are at least 24 days old and have had no activity in the last 14+ days
@@ -30,6 +30,7 @@ filters:
           !HasAnyTag(
             "site:RED",
             "site:OPS",
+            "site:ANT",
           ) &&
           AddedDays > 60
         )
