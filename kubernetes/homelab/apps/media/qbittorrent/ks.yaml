@@ -86,6 +86,9 @@ spec:
   targetNamespace: *namespace
   components:
     - ../../../../common/volsync
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
   dependsOn:
     - name: rook-ceph-cluster
       namespace: storage
@@ -94,6 +97,7 @@ spec:
   postBuild:
     substitute:
       APP: qui
+      PVC_NAME: qui
       VOLSYNC_CAPACITY: 2Gi
   prune: true
   sourceRef:
