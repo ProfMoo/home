@@ -27,7 +27,7 @@ filters:
             "activity:30d",
             "activity:180d"
           ) &&
-          !HasAnyTags(
+          !HasAnyTag(
             "site:RED",
             "site:OPS",
           ) &&
@@ -40,7 +40,7 @@ filters:
             "activity:30d",
             "activity:180d"
           ) &&
-          HasAnyTags(
+          HasAnyTag(
             "site:RED",
             "site:OPS",
           ) &&
