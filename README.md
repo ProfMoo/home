@@ -71,9 +71,9 @@ From top to bottom...
 |-----------------------------|-----|--------------|---------------------------------|------|---------------|-------------------------|
 | UniFi UDM Pro              | -   | -            | -                       | -    | -             | Router & Gateway            |
 | UniFi USW 24 PoE | -   | -            | -                               | -    | -             |  Switch        |
-| Dell PowerEdge (TBD model)   | 32   |  1x256GB SSD      | 2x256GB SSD (local) / 1x256GB SSD (`rook-ceph`) | 128GB | Proxmox         | Compute              |
+| Dell PowerEdge R540   | 32   |  1x256GB SSD      | 2x256GB SSD (local) / 1x256GB SSD (`rook-ceph`) | 128GB | Proxmox         | Compute              |
 | SuperMicro SYS-6028U-TR4T+   | 28   |  1x256GB SSD      | 2x256GB SSD (local) / 1x256GB SSD (`rook-ceph`) | 256GB | Proxmox         | Compute              |
-| Dell PowerEdge (TBD model)         |  20  | 1x256GB SSD      | 2x256GB SSD (local) / 1x256GB SSD (`rook-ceph`)     | 156GB | Proxmox | Compute     |
+| Dell PowerEdge R530         |  20  | 1x256GB SSD      | 2x256GB SSD (local) / 1x256GB SSD (`rook-ceph`)     | 156GB | Proxmox | Compute     |
 | Old Custom Build         | 4   | 1x2TB HDD      | 1x2TB HDD     | 16GB | Proxmox | Compute     |
 | TrueNas Mini R         | 8   | Internal SATA DOMs      | 6x22TB HDD     | 32GB | TrueNAS Scale | Storage     |
 | UniFi USP PDU Pro           | -   | -            | -                               | -    | -             | PDU                     |
