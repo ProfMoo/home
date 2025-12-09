@@ -51,7 +51,7 @@ A mono-repository for my homelab Kubernetes cluster. I strictly adhere to Infras
 
 I use [Talos](https://github.com/siderolabs/talos), [Terraform](https://github.com/hashicorp/terraform), and [Proxmox](https://github.com/proxmox) to spin up Kubernetes in a GitOps fashion in [this directory](./infrastructure).
 
-Proxmox, a VM-management technology, is used to spin up VMs in the Proxmox cluster. These raw VMs are bootstrapped via Terraform with Talos configuration(s) that create a functional Kubernetes cluster with the initial cluster components (such as Flux) already deployed.
+Proxmox, a VM-management technology, is used to spin up VMs on the compute bare-metal rack servers. These raw VMs are bootstrapped via Terraform with Talos configuration(s) that create a functional Kubernetes cluster with the initial cluster components (such as Flux) already deployed.
 
 ### Kubernetes
 
@@ -59,7 +59,27 @@ I configure Kubernetes with GitOps via [Flux](https://github.com/fluxcd/flux2). 
 
 ### Hardware
 
-TODO: List hardware here.
+<details>
+  <summary>Click here to see my server rack</summary>
+
+  <img src="./docs/rack.jpeg" align="center" width="250px" alt="rack" />
+</details>
+
+From top to bottom...
+
+| Device                      | Cores | OS Disk Size | Data Disk Size                  | Ram  | OS            | Function                |
+|-----------------------------|-----|--------------|---------------------------------|------|---------------|-------------------------|
+| UniFi UDM Pro              | -   | -            | -                       | -    | -             | Router & Gateway            |
+| UniFi USW 24 PoE | -   | -            | -                               | -    | -             |  Switch        |
+| Dell PowerEdge (TBD model)   | 32   |  1x256GB SSD      | 2x256GB SSD (local) / 1x256GB SSD (`rook-ceph`) | 128GB | Proxmox         | Compute              |
+| SuperMicro SYS-6028U-TR4T+   | 28   |  1x256GB SSD      | 2x256GB SSD (local) / 1x256GB SSD (`rook-ceph`) | 256GB | Proxmox         | Compute              |
+| Dell PowerEdge (TBD model)         |  20  | 1x256GB SSD      | 2x256GB SSD (local) / 1x256GB SSD (`rook-ceph`)     | 156GB | Proxmox | Compute     |
+| Old Custom Build         | 4   | 1x2TB HDD      | 1x2TB HDD     | 16GB | Proxmox | Compute     |
+| TrueNas Mini R         | 8   | Internal SATA DOMs      | 6x22TB HDD     | 32GB | TrueNAS Scale | Storage     |
+| UniFi USP PDU Pro           | -   | -            | -                               | -    | -             | PDU                     |
+| Eaton 5PX1500RT - 1500VA             | -  | -            | -                               | -    | -             | UPS                     |
+
+---
 
 ## Inspirations
 
