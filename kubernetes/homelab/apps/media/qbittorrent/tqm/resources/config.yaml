@@ -2,7 +2,7 @@
 clients:
   qb:
     create_tags_upfront: false
-    download_path: /data/downloads
+    download_path: /media/downloads
     download_path_mapping:
       /data/downloads: /media/downloads
     enabled: true
