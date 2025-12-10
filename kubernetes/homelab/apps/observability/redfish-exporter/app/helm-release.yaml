@@ -34,7 +34,6 @@ spec:
                 drop:
                   - ALL
     defaultPodOptions:
-      hostNetwork: true
       securityContext:
         runAsNonRoot: true
         runAsUser: 568
@@ -45,14 +44,14 @@ spec:
         controller: *app
         ports:
           http:
-            port: 9610
+            port: &port 9610
     serviceMonitor:
       app:
         serviceName: *app
         endpoints:
           - interval: 3m
             path: /metrics
-            port: metrics
+            port: *port
             scheme: http
             scrapeTimeout: 60s
     persistence:
