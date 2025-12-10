@@ -18,7 +18,7 @@ spec:
           app:
             image:
               repository: ghcr.io/freekingdean/redfish_exporter
-              tag: v0.1.12@sha256:86df9aacf0f9c34e6282ad0bd18651c2e959c4adf72aba1ac272be1182cbc902
+              tag: v0.1.13@sha256:2f900d91441f315a206e55277f73589237967ebc0b0727cda5d4f5fb415de885
             args:
               - serve
               - --config=/etc/redfish_exporter/config.yaml
