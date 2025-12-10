@@ -23,5 +23,7 @@ resources:
   - ./unpoller/ks.yaml
   #  - ./smartctl-exporter/ks.yaml
   - ./silence-operator/ks.yaml
-  - ./snmp-exporter/ks.yaml
-#  - ./nut-exporter/ks.yaml
+  # Disabling this for now. I'll use the unpoller PDU metrics instead.
+  #  - ./snmp-exporter/ks.yaml
+  # Disabilng this for now. Need the network card for the UPS, which I don't have yet.
+  #  - ./nut-exporter/ks.yaml
