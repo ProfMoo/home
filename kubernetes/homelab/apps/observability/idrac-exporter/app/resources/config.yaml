@@ -1,0 +1,10 @@
+---
+address: 0.0.0.0
+port: 9348
+timeout: 30
+hosts:
+  192.168.1.187:
+    username: ADMIN
+    password: ADMIN
+metrics:
+  all: true
