@@ -12,6 +12,12 @@ Make a job from a cronjob:
 kubectl create job example-job --from=cronjob/example-cronjob
 ```
 
+Create and attach to networking debug container:
+
+```bash
+kubectl debug <mypod> -it --image=nicolaka/netshoot
+```
+
 ## Reassign a PVC to an Old PV
 
 There are times (i.e. I mess something up) where a PVC makes a new PV instead of re-binding to the old PV as desired. In this scenario, the best remedy is as such:
