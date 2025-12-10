@@ -1,8 +1,11 @@
 ---
 host:
+  # https:// is added to the front of the 'endpoint' string in the codebase
   endpoint: 192.168.1.187
-  username: ADMIN
-  password: ADMIN
+  username: 'ADMIN'
+  password: 'ADMIN'
+metrics:
+  enableAll: true
 logLevel: debug
 web:
   address: 0.0.0.0
