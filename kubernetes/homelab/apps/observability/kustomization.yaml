@@ -17,7 +17,7 @@ resources:
   # Have yet to connect it successfully even once.
   # I am able to run the code locally and it connects perfectly OK.
   # There is something wrong/different about the k8s setup.
-  # - ./redfish-exporter/ks.yaml
+  - ./redfish-exporter/ks.yaml
   - ./gatus/ks.yaml
   - ./kromgo/ks.yaml
   - ./unpoller/ks.yaml
