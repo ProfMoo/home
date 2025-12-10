@@ -42,7 +42,7 @@ spec:
       app:
         serviceName: *app
         endpoints:
-          - interval: 3m
+          - interval: 2m
             path: /metrics
             port: metrics
             scheme: http
