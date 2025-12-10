@@ -10,9 +10,6 @@ spec:
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main
-  configMapRef:
-    name: proxmox-dashboard
-    key: proxmox-dashboard.json
   datasources:
     - inputName: DS_PROMETHEUS
       datasourceName: Prometheus
