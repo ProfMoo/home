@@ -62,7 +62,7 @@ I configure Kubernetes with GitOps via [Flux](https://github.com/fluxcd/flux2). 
 <details>
   <summary>Click here to see my server rack</summary>
 
-  <img src="./docs/rack.jpeg" align="center" width="250px" alt="rack" />
+  <img src="./docs/rack.jpeg" align="center" width="350px" alt="rack" />
 </details>
 
 From top to bottom...
