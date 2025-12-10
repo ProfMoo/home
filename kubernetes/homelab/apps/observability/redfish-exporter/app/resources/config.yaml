@@ -4,7 +4,7 @@ host:
   endpoint: 192.168.1.187
   username: 'ADMIN'
   password: 'ADMIN'
-  basicAuth: true
+  basicAuth: false
 metrics:
   enableAll: true
 logLevel: debug
