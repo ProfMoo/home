@@ -21,7 +21,7 @@ spec:
               tag: 2.2.0@sha256:16275f896172767fde9664d3d0785678e69eb2b96d36127905c736be210d3da3
             command:
               - /app/bin/idrac_exporter
-              - --config=/config/idrac.yml
+              - --config=/config/config.yml
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
