@@ -23,4 +23,5 @@ resources:
   - ./unpoller/ks.yaml
   #  - ./smartctl-exporter/ks.yaml
   - ./silence-operator/ks.yaml
+  - ./snmp-exporter/ks.yaml
 #  - ./nut-exporter/ks.yaml
