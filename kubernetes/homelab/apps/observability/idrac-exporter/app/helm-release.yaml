@@ -47,6 +47,8 @@ spec:
             port: metrics
             scheme: http
             scrapeTimeout: 60s
+            params:
+              target: ["192.168.1.187"]
     persistence:
       config:
         type: configMap
