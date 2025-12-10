@@ -6,7 +6,7 @@ metadata:
   name: proxmox-dashboard
 spec:
   allowCrossNamespaceImport: true
-  folder: infrastructure
+  folder: observability
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main
