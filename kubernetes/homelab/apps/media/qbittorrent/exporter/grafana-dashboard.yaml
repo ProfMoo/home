@@ -11,6 +11,7 @@ spec:
     - datasourceName: Prometheus
       inputName: DS_PROMETHEUS
   grafanaCom:
+    # renovate: depName="qBittorrent"
     id: 23784
     revision: 1
   instanceSelector:

@@ -10,6 +10,7 @@ spec:
     matchLabels:
       grafana.drmoo.io/instance: main
   grafanaCom:
+    # renovate: depName="Kubernetes API Server"
     id: 7752
     revision: 5
   datasources:
