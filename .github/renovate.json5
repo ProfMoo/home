@@ -59,5 +59,19 @@
       "\\.tf$"
     ],
     "versioning": "hashicorp"
-  }
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Process custom Kubernetes upgrade CRDs",
+      "fileMatch": [
+        "(^|/)kubernetes/.+\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\n.+version: (?<currentValue>\\S+)"
+      ],
+      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}docker{{/if}}",
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+    }
+  ]
 }
