@@ -12,4 +12,7 @@ spec:
   datasources:
     - inputName: DS_PROMETHEUS
       datasourceName: Prometheus
-  url: https://grafana.com/api/dashboards/12340/revisions/1/download
+  grafanaCom:
+    # renovate: depName="APC UPS"
+    id: 12340
+    revision: 1
