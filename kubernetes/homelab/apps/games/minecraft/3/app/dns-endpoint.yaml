@@ -8,7 +8,7 @@ spec:
   endpoints:
     - dnsName: minecraft.drmoo.io
       recordType: A
-      targets: ["100.1.168.155"]
+      targets: ["74.105.65.180"]
       providerSpecific:
         - name: external-dns.alpha.kubernetes.io/cloudflare-proxied
           value: 'false'
