@@ -23,7 +23,8 @@
         "ghcr.io/music-assistant/",
         "postfinance/",
         "ghcr.io/gethomepage/",
-        "ghcr.io/kashalls/external-dns-unifi-webhook/"
+        "ghcr.io/kashalls/external-dns-unifi-webhook/",
+        "ghcr.io/unpoller/unpoller"
       ]
     },
     {
