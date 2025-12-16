@@ -1,0 +1,25 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app mc-router
+  namespace: &namespace games
+spec:
+  targetNamespace: *namespace
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/homelab/apps/games/minecraft/mc-router/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: profmoo-home
+    namespace: flux-system
+  wait: false
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+  # NOTE: This enable this to recreate resources on immutable fields changes
+  # Docs: https://github.com/fluxcd/kustomize-controller/blob/main/docs/spec/v1/kustomizations.md#recommended-settings
+  force: true
