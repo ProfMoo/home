@@ -15,12 +15,16 @@ spec:
       repository: ghcr.io/itzg/mc-router
       tag: 1.37.0@sha256:8d365e5591b91385a559d3eb63179589f9e48437194faedd150ba957c6b5563b
       pullPolicy: IfNotPresent
-    env: |
-      obkiddos-1.drmoo.io=minecraft-1:25565
-      obkiddos-2.drmoo.io=minecraft-2:25565
-      obkiddos-3.drmoo.io=minecraft-3:25565
+    # args:
+    #   - --in-kube-cluster
+    # env: |
+    #   obkiddos-1.drmoo.io=minecraft-1:25565
+    #   obkiddos-2.drmoo.io=minecraft-2:25565
+    #   obkiddos-3.drmoo.io=minecraft-3:25565
     services:
       minecraft:
-        type: LoadBalancer
-        annotations:
-          lbipam.cilium.io/ips: 192.168.8.132
+        type: ClusterIP
+        # annotations:
+        #   lbipam.cilium.io/ips: 192.168.8.132
+        #   mc-router.host: obkiddos-1.drmoo.io,obkiddos-2.drmoo.io,obkiddos-3.drmoo.io
+        #   mc-router.default: obkiddos-3.drmoo.io
