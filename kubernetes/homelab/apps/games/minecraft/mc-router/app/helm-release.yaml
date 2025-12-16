@@ -22,8 +22,6 @@ spec:
     #   obkiddos-3.drmoo.io=minecraft-3:25565
     services:
       minecraft:
-        type: ClusterIP
-        # annotations:
-        #   lbipam.cilium.io/ips: 192.168.8.132
-        #   mc-router.host: obkiddos-1.drmoo.io,obkiddos-2.drmoo.io,obkiddos-3.drmoo.io
-        #   mc-router.default: obkiddos-3.drmoo.io
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 192.168.8.132
