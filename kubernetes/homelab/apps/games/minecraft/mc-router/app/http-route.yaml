@@ -15,7 +15,7 @@ spec:
       sectionName: https
   rules:
     - backendRefs:
-        - name: minecraft-1
+        - name: mc-router
           port: 25565
       matches:
         - path:
