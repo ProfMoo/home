@@ -10,7 +10,7 @@ spec:
     matchLabels:
       grafana.drmoo.io/instance: main
   grafanaCom:
-    # renovate: depName="VolSync Dashboard"
+    # renovate: datasource=custom.grafana-dashboards depName="VolSync Dashboard"
     id: 21356
     revision: 2
   datasources:

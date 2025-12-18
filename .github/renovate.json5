@@ -13,7 +13,7 @@
     "github>ProfMoo/home//.github/renovate/labels.json5",
     "github>ProfMoo/home//.github/renovate/semanticCommits.json5",
     "github>ProfMoo/home//.github/renovate/minecraft.json5",
-    "github>ProfMoo/home//.github/renovate/grafana-dashboards.json5"
+    "github>ProfMoo/home//.github/renovate/grafanaDashboards.json5"
   ],
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "platformAutomerge": true,
