@@ -8,7 +8,7 @@
                 "(^|/)grafana-dashboard\\.yaml$"
             ],
             "matchStrings": [
-                "grafanaCom:\\s*\\n\\s*(?:#.*\\n\\s*)?id:\\s*(?<depName>\\d+)\\s*\\n\\s*revision:\\s*(?<currentValue>\\d+)"
+                "grafanaCom:\\s*\\n(?:\\s*#[^\\n]*\\n)?\\s*id:\\s*(?<depName>\\d+)\\s*\\n\\s*revision:\\s*(?<currentValue>\\d+)"
             ],
             "datasourceTemplate": "custom.grafana-dashboards",
             "versioningTemplate": "regex:^(?<major>\\d+)$"
