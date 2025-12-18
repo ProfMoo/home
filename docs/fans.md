@@ -54,6 +54,13 @@ ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN raw 0x30 0x70 0x66 0x01 0x00 0x11
 ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN raw 0x30 0x70 0x66 0x01 0x01 0x11
 ```
 
+64 in hex is 100 in decimal, so 0x64 is max fan speed value.
+
+```bash
+# Set first zone to max fan speed
+ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN raw 0x30 0x70 0x66 0x01 0x00 0x64
+```
+
 After doing this (still have old PSU and no CPU fan). Currently @ avg ~56dB on wooden ledge after a 1 minute of listening. But currently not running anything. Not sure if things will get hot either.
 
 [This script](https://github.com/petersulyok/smfc) will be huge once I get my Noctuas all set up. Bought [this one](https://www.noctua.at/en/products/nf-a8-pwm) (80mm slot, PWM).
