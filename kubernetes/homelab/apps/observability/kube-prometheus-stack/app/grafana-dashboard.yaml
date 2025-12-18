@@ -11,7 +11,7 @@ spec:
       grafana.drmoo.io/instance: main
   grafanaCom:
     id: 1860
-    revision: 36
+    revision: 42
   datasources:
     - inputName: DS_PROMETHEUS
       datasourceName: Prometheus
