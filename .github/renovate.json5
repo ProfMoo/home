@@ -12,7 +12,8 @@
     "github>ProfMoo/home//.github/renovate/commitMessage.json5",
     "github>ProfMoo/home//.github/renovate/labels.json5",
     "github>ProfMoo/home//.github/renovate/semanticCommits.json5",
-    "github>ProfMoo/home//.github/renovate/minecraft.json5"
+    "github>ProfMoo/home//.github/renovate/minecraft.json5",
+    "github>ProfMoo/home//.github/renovate/grafana-dashboards.json5"
   ],
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "platformAutomerge": true,
@@ -61,19 +62,10 @@
     ],
     "versioning": "hashicorp"
   },
-  "customDatasources": {
-    "grafana-dashboards": {
-      "defaultRegistryUrlTemplate": "https://grafana.com/api/dashboards/{{packageName}}",
-      "format": "json",
-      "transformTemplates": [
-        "{\"releases\":[{\"version\": $string(revision)}], \"sourceDirectory\": name}"
-      ]
-    }
-  },
   "customManagers": [
     {
       "customType": "regex",
-      "description": "Process custom Kubernetes upgrade CRDs",
+      "description": "Process custom Kubernetes upgrade CRDs (for Tuppr)",
       "fileMatch": [
         "(^|/)kubernetes/.+\\.ya?ml$"
       ],
@@ -82,38 +74,6 @@
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}docker{{/if}}",
       "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
-    },
-    {
-      "customType": "regex",
-      "description": "Process Grafana dashboards",
-      "fileMatch": [
-        "/grafana-dashboard\\.yaml$"
-      ],
-      "matchStrings": [
-        "grafanaCom:\\s+id:\\s+(?<depName>\\d+)\\s+revision:\\s+(?<currentValue>\\d+)"
-      ],
-      "datasourceTemplate": "custom.grafana-dashboards",
-      "versioningTemplate": "regex:^(?<major>\\d+)$"
-    }
-  ],
-  "packageRules": [
-    {
-      "addLabels": [
-        "renovate/grafana-dashboard"
-      ],
-      "automerge": true,
-      "automergeType": "branch",
-      "commitMessageExtra": "({{currentVersion}} ➔ {{newVersion}})",
-      "commitMessageTopic": "dashboard {{sourceDirectory}}",
-      "ignoreTests": true,
-      "matchDatasources": [
-        "custom.grafana-dashboards"
-      ],
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "semanticCommitScope": "grafana-dashboards",
-      "semanticCommitType": "chore"
     }
   ]
 }
