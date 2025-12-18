@@ -10,4 +10,4 @@ spec:
       recordType: A
       # NOTE: This record is simply for mapping my domain to my apartment's WAN IP.
       # Just because this record is created doesn't mean drmoo.io will provide access to anything.
-      targets: [74.105.65.180"]
+      targets: ["74.105.65.180"]
