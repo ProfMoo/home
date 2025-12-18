@@ -8,7 +8,7 @@
                 "(^|/)helmrelease\\.ya?ml$"
             ],
             "matchStrings": [
-                "# renovate: datasource=custom\\.minecraft-release\\s+version:\\s+[\"']?(?<currentValue>[^\"'\\s]+)[\"']?"
+                "# renovate: datasource=custom\\.minecraft-release\\s*\\n\\s*version:\\s*[\"']?(?<currentValue>[^\"'\\s]+)[\"']?"
             ],
             "datasourceTemplate": "custom.minecraft-release",
             "depNameTemplate": "minecraft-release",
@@ -21,7 +21,7 @@
                 "(^|/)helmrelease\\.ya?ml$"
             ],
             "matchStrings": [
-                "# renovate: datasource=custom\\.minecraft-snapshot\\s+version:\\s+[\"']?(?<currentValue>[^\"'\\s]+)[\"']?"
+                "# renovate: datasource=custom\\.minecraft-snapshot\\s*\\n\\s*version:\\s*[\"']?(?<currentValue>[^\"'\\s]+)[\"']?"
             ],
             "datasourceTemplate": "custom.minecraft-snapshot",
             "depNameTemplate": "minecraft-snapshot",
