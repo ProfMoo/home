@@ -11,7 +11,8 @@
     "github>ProfMoo/home//.github/renovate/autoMerge.json5",
     "github>ProfMoo/home//.github/renovate/commitMessage.json5",
     "github>ProfMoo/home//.github/renovate/labels.json5",
-    "github>ProfMoo/home//.github/renovate/semanticCommits.json5"
+    "github>ProfMoo/home//.github/renovate/semanticCommits.json5",
+    "github>ProfMoo/home//.github/renovate/minecraft.json5"
   ],
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "platformAutomerge": true,
