@@ -12,3 +12,6 @@ hosts:
     use_basic_auth: true
 metrics:
   all: true
+events:
+  severity: warning
+  maxage: 7d
