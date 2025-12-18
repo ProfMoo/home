@@ -21,7 +21,7 @@ machine:
     - 127.0.0.1
     - ${talos_virtual_ip}
   kubelet:
-    image: ghcr.io/siderolabs/kubelet:v1.34.2
+    image: ghcr.io/siderolabs/kubelet:v1.34.3
     defaultRuntimeSeccompProfileEnabled: true
     disableManifestsDirectory: true
     extraArgs:
@@ -88,7 +88,7 @@ machine:
     # Adjust this image to either 1. install new extensions and/or 2. upgrade Talos
     # 1. Go to https://factory.talos.dev/ and generate a new path
     # 2. Pass in a different 'talos_version'
-    image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.11.5
+    image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.11.6
     disk: /dev/sda # The disk used for installations.
     wipe: false # Indicates if the installation disk should be wiped at installation time.
   files:
@@ -136,7 +136,7 @@ cluster:
   controlPlane:
     endpoint: https://${talos_virtual_ip}:6443
   apiServer:
-    image: registry.k8s.io/kube-apiserver:v1.34.2
+    image: registry.k8s.io/kube-apiserver:v1.34.3
     certSANs:
       - ${ipv4_address}
     disablePodSecurityPolicy: true
@@ -171,7 +171,7 @@ cluster:
         memory: 512Mi
       # No limits - critical component should not be throttled
   proxy:
-    image: registry.k8s.io/kube-proxy:v1.34.2
+    image: registry.k8s.io/kube-proxy:v1.34.3
     # Using Cilium as the proxy, so disabling kube-proxy
     disabled: true
   etcd:
@@ -181,7 +181,7 @@ cluster:
     extraArgs:
       listen-metrics-urls: http://0.0.0.0:2381
   controllerManager:
-    image: registry.k8s.io/kube-controller-manager:v1.34.2
+    image: registry.k8s.io/kube-controller-manager:v1.34.3
     extraArgs:
       # NOTE: Kubernetes manifests controlled by Talos require a special application process compared to most machine-config changes.
       # Source: https://github.com/siderolabs/talos/discussions/7835
@@ -194,7 +194,7 @@ cluster:
   discovery:
     enabled: true
   scheduler:
-    image: registry.k8s.io/kube-scheduler:v1.34.2
+    image: registry.k8s.io/kube-scheduler:v1.34.3
     extraArgs:
       # NOTE: This enables Prometheus to scrape metrics from the control plane nodes
       bind-address: 0.0.0.0

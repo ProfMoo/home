@@ -18,11 +18,11 @@ machine:
     # Adjust this image to either 1. install new extensions and/or 2. upgrade Talos
     # 1. Go to https://factory.talos.dev/ and generate a new path
     # 2. Pass in a different 'talos_version'
-    image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.11.5
+    image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.11.6
     disk: /dev/sda # The disk used for installations.
     wipe: false # Indicates if the installation disk should be wiped at installation time.
   kubelet:
-    image: ghcr.io/siderolabs/kubelet:v1.34.2
+    image: ghcr.io/siderolabs/kubelet:v1.34.3
     defaultRuntimeSeccompProfileEnabled: true
     disableManifestsDirectory: true
     extraArgs:
