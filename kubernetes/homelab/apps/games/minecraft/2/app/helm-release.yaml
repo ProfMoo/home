@@ -23,7 +23,8 @@ spec:
       # This must be overridden, since we can't accept this for the user.
       eula: "TRUE"
       # One of: LATEST, SNAPSHOT, or a specific version (ie: "1.7.9").
-      version: "LATEST"
+      # renovate: datasource=custom.minecraft-release
+      version: 1.21.11
       # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE"
       type: "VANILLA"
       # One of: peaceful, easy, normal, and hard
