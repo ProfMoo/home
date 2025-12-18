@@ -7,4 +7,5 @@ resources:
   - ./oci-repository.yaml
   - ./helm-release.yaml
   - ./prometheus-rule.yaml
+  - ./pod-monitor.yaml
   - ./webhook
