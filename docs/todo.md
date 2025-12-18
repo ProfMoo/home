@@ -19,8 +19,8 @@
    2. [X] Move bootstrap to values.yaml (<https://github.com/onedr0p/home-ops/pull/9671>)
 10. [x] Fix renovate so that I actually get a net benefit from the tool.
 11. [X] ~~Add the Cloudflare `minecraft.drmoo.io` DNS record to TF (or try the TF operator!!!). It's currently manually entered on the CF website.~~ Used the `DNSEndpoint` from `external-dns`.
-    1. [ ] Move Minecraft svcs off of Nodeport to use L2 cilium.
-       1. [ ] Use [this mc router](https://github.com/itzg/mc-router) to cleanly expose the MC servers on various hostnames
+    1. [X] Move Minecraft svcs off of Nodeport to use L2 cilium.
+       1. [X] Use [this mc router](https://github.com/itzg/mc-router) to cleanly expose the MC servers on various hostnames
     2. [X] I like how JFrog did it [here](https://github.com/joryirving/home-ops/blob/9d327c98f5bb1f97e21bbb522258b112609e76c0/kubernetes/apps/base/games/minecraft/mc-router/dnsendpoint.yaml#L2). Very clean.
 12. [ ] Jellyfin MV organizational improvements. Doc with recommendations [here](https://github.com/mystoragebox/Jellyfin-Music-Video-Tutorial). Generally Jellyfin navigation isn't great currently.
 13. [X] Replace qbtools with tqm. qbtools is deprecated per [this README](https://github.com/buroa/qbtools).
