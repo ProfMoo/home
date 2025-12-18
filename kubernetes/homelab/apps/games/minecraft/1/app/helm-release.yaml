@@ -24,7 +24,7 @@ spec:
       eula: "TRUE"
       # One of: LATEST, SNAPSHOT, or a specific version (ie: "1.7.9").
       # renovate: datasource=custom.minecraft-release
-      version: 1.21.10
+      version: 1.21.11
       # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE"
       type: "FABRIC"
       # One of: peaceful, easy, normal, and hard
