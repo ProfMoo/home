@@ -10,7 +10,6 @@ spec:
     matchLabels:
       grafana.drmoo.io/instance: main
   grafanaCom:
-    # renovate: depName="Ceph Cluster"
     id: 2842
     revision: 18
   datasources:
@@ -28,7 +27,6 @@ spec:
     matchLabels:
       grafana.drmoo.io/instance: main
   grafanaCom:
-    # renovate: depName="Ceph - OSD (Single)"
     id: 5336
     revision: 9
   datasources:
@@ -46,7 +44,6 @@ spec:
     matchLabels:
       grafana.drmoo.io/instance: main
   grafanaCom:
-    # renovate: depName="Ceph - Pools"
     id: 5342
     revision: 9
   datasources:

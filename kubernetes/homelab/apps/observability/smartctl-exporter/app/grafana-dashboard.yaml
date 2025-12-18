@@ -10,7 +10,6 @@ spec:
     matchLabels:
       grafana.drmoo.io/instance: main
   grafanaCom:
-    # renovate: depName="Smartctl Exporter"
     id: 22604
     revision: 2
   datasources:

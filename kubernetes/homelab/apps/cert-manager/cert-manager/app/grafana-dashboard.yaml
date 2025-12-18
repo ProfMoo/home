@@ -10,7 +10,6 @@ spec:
     matchLabels:
       grafana.drmoo.io/instance: main
   grafanaCom:
-    # renovate: depName="Cert-manager-Kubernetes"
     id: 20842
     revision: 3
   datasources:

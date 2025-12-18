@@ -10,7 +10,6 @@ spec:
     matchLabels:
       grafana.drmoo.io/instance: main
   grafanaCom:
-    # renovate: depName="Cloudflare Tunnels (cloudflared)"
     id: 17457
     revision: 6
   datasources:
