@@ -47,14 +47,14 @@ spec:
       #   optionalDependencies: false
       #   # The version type is used to determine the newest version to use from each project. The allowed values are: release, beta, alpha
       #   allowedVersionType: release
-      serviceAnnotations:
-        mc-router.itzg.me/externalServerName: obkiddos-3.drmoo.io
       rcon:
         enabled: true
         withGeneratedPassword: false
         port: 25575
         existingSecret: rcon-secret-3
         secretKey: rcon-password
+    serviceAnnotations:
+      mc-router.itzg.me/externalServerName: obkiddos-3.drmoo.io
     persistence:
       dataDir:
         # Set this to false if you don't care to persist state between restarts.
