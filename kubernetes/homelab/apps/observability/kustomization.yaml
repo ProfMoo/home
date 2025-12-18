@@ -12,17 +12,15 @@ resources:
   - ./loki/ks.yaml
   - ./grafana-operator/ks.yaml
   - ./proxmox-exporter/ks.yaml
-  # Disabling so this stops crashing constantly.
-  # Having trouble with the pod connecting to iDRAC IPs on startup.
-  # Have yet to connect it successfully even once.
-  # I am able to run the code locally and it connects perfectly OK.
+  # Disabling because I believe the iDRAC exporter is a better choice.
   # There is something wrong/different about the k8s setup.
-  - ./redfish-exporter/ks.yaml
+  # - ./redfish-exporter/ks.yaml
   - ./gatus/ks.yaml
   - ./kromgo/ks.yaml
   - ./unpoller/ks.yaml
   #  - ./smartctl-exporter/ks.yaml
   - ./silence-operator/ks.yaml
+  # # Even though it's called 'iDRAC Exporter', it really is a redfish exporter.
   - ./idrac-exporter/ks.yaml
   # Disabling this for now. I'll use the unpoller PDU metrics instead.
   #  - ./snmp-exporter/ks.yaml
