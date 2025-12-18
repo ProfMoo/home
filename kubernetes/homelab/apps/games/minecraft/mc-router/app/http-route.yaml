@@ -4,8 +4,6 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: obkiddos-1
-  annotations:
-    external-dns.alpha.kubernetes.io/target: obkiddos-1.drmoo.io
 spec:
   hostnames:
     - obkiddos-1.drmoo.io

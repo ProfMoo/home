@@ -40,8 +40,8 @@ spec:
       whitelist: ProfMoo,bamxmejia,KittyDonut1009,00Rem00,Seanzz,The9thCobra,linderson9
       # A comma-separated list of player names who should be admins.
       ops: ProfMoo
-      serviceType: NodePort
-      nodePort: 30105
+    serviceAnnotations:
+      mc-router.itzg.me/externalServerName: obkiddos-2.drmoo.io
     persistence:
       dataDir:
         enabled: true
