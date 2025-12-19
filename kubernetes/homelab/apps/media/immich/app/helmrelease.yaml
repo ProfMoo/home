@@ -93,7 +93,7 @@ spec:
                 enabled: true
                 custom: true
                 spec:
-                  exec: &probe-exec { command: ["sh", "-c", "valkey-cli ping | grep PONG"] }
+                  exec: &probe-exec {command: ["sh", "-c", "valkey-cli ping | grep PONG"]}
                   initialDelaySeconds: 30
                   periodSeconds: 10
                   timeoutSeconds: 5

@@ -17,7 +17,6 @@ spec:
               Mounted drive {{ $labels.device }} on device {{ $labels.instance }} has a temperature higher than 65°C
           labels:
             severity: critical
-
         - alert: SmartDeviceTestFailed
           expr: |-
             (smartctl_device_smart_status != 1 or smartctl_device_status != 1)
@@ -27,7 +26,6 @@ spec:
               Mounted drive {{ $labels.device }} on device {{ $labels.instance }} did not pass its SMART test
           labels:
             severity: critical
-
         - alert: SmartDeviceCriticalWarning
           expr: |-
             smartctl_device_critical_warning != 0

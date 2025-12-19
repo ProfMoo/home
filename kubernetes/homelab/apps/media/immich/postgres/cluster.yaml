@@ -48,11 +48,11 @@ spec:
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - topologyKey: kubernetes.io/hostname
-            labelSelector:
-              matchLabels:
-                postgres-operator.crunchydata.com/cluster: *name
-                postgres-operator.crunchydata.com/instance-set: *instance-name
+            - topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  postgres-operator.crunchydata.com/cluster: *name
+                  postgres-operator.crunchydata.com/instance-set: *instance-name
   users:
     # Superuser
     - name: "postgres"
@@ -112,7 +112,7 @@ spec:
         name: repo2
         s3: *s3
       options: []
-        # - --set=20251026-023002F_20251029-023002I
+      # - --set=20251026-023002F_20251029-023002I
   proxy:
     pgBouncer:
       port: 5432

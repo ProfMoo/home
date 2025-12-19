@@ -1,7 +1,9 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/DavidAnson/markdownlint-cli2/main/schema/markdownlint-cli2-config-schema.json
 globs: ["**/*.md", "**/*.markdown"]
-ignores: ["**/.terraform/**"]
+ignores:
+  - "**/.terraform/**"
+  - "**/.venv/**"
 config:
   # MD013/line-length - Line length
   MD013: false

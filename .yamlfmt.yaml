@@ -5,6 +5,10 @@ include:
   - "**/*.yml"
 exclude:
   - "**/*.sops.yaml"
+  # Ignoring these machine configs because they aren't valid YAML files
+  # until Terraform does some pre-processing
+  - "infrastructure/configs/worker.yaml"
+  - "infrastructure/configs/controlplane.yaml"
 formatter:
   type: basic
   include_document_start: true
