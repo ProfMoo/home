@@ -21,7 +21,7 @@ spec:
               repository: ghcr.io/m1k1o/neko/firefox
               tag: "3.0.8"
             env:
-              NEKO_SCREEN: 1280x720@30
+              NEKO_SCREEN: 1920x1080@30
               NEKO_PROXY: "true"
               NEKO_TCPMUX: &mux "5101"
               NEKO_UDPMUX: *mux
@@ -50,12 +50,6 @@ spec:
             protocol: UDP
     route:
       app:
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Testing
-          gethomepage.dev/name: Neko
-          gethomepage.dev/icon-url: https://raw.githubusercontent.com/chaijunkin/dashboard-icons/main/png/neko.png
-          gethomepage.dev/description: Virtual browser
         hostnames:
           - neko.drmoo.io
         parentRefs:
