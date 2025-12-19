@@ -4,8 +4,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ./cluster.yaml
-  - ./externalsecret.yaml
-  - ./podmonitor.yaml
+  - ./external-secret.yaml
+  - ./pod-monitor.yaml
 configMapGenerator:
   - name: immich-postgres-init
     files:

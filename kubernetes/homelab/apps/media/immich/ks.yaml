@@ -4,17 +4,27 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app immich
+  namespace: &namespace media
 spec:
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  components:
+    - ../../../../common/volsync
+  postBuild:
+    substitute:
+      APP: *app
+      PVC_NAME: immich-cache
+      VOLSYNC_CAPACITY: 10Gi
   dependsOn:
     - name: immich-postgres
-  path: ./kubernetes/apps/default/immich/app
+      namespace: media
+  path: ./kubernetes/homelab/apps/media/immich/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: profmoo-home
     namespace: flux-system
   wait: false
   interval: 30m
@@ -26,18 +36,42 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app immich-postgres
+  namespace: &namespace media
 spec:
+  targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/apps/default/immich/postgres
+  path: ./kubernetes/homelab/apps/media/immich/postgres
   dependsOn:
     - name: crunchy-operator
-      namespace: database
+      namespace: media
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-kubernetes
+    name: profmoo-home
+    namespace: flux-system
+  wait: false
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app crunchy-operator
+  namespace: &namespace media
+spec:
+  targetNamespace: *namespace
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  path: ./kubernetes/homelab/apps/media/immich/operator
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: profmoo-home
     namespace: flux-system
   wait: false
   interval: 30m

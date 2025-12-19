@@ -40,7 +40,7 @@ spec:
           app.kubernetes.io/name: *name
       replicas: &replicas 3
       dataVolumeClaimSpec:
-        storageClassName: openebs-hostpath
+        storageClassName: ceph-block
         accessModes: ["ReadWriteOnce"]
         resources:
           requests:

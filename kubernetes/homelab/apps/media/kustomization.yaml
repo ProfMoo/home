@@ -27,3 +27,4 @@ resources:
   - ./jellyfin/ks.yaml
   - ./audiobookshelf/ks.yaml
   - ./wizarr/ks.yaml
+  - ./immich/ks.yaml

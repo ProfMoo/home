@@ -22,15 +22,15 @@ spec:
               repository: ghcr.io/immich-app/immich-server
               tag: v2.3.1@sha256:f8d06a32b1b2a81053d78e40bf8e35236b9faefb5c3903ce9ca8712c9ed78445
             env:
-              TZ: "America/Los_Angeles"
-              IMMICH_TRUSTED_PROXIES: "172.31.0.0/16"
+              TZ: "America/New_York"
+              IMMICH_TRUSTED_PROXIES: "10.96.0.0/16"
               IMMICH_MEDIA_LOCATION: &mediaLocation /library
               DB_URL:
                 valueFrom:
                   secretKeyRef:
                     name: immich-pguser-immich
                     key: pgbouncer-uri
-              REDIS_HOSTNAME: &redisHostname "immich-valkey.default.svc.cluster.local"
+              REDIS_HOSTNAME: &redisHostname "immich-valkey.media.svc.cluster.local"
               IMMICH_TELEMETRY_INCLUDE: "all"
             resources:
               requests:
@@ -149,9 +149,10 @@ spec:
             path: /metrics
     route:
       immich:
-        hostnames: ["photos.ok8.sh"]
+        hostnames:
+          - "photos.drmoo.io"
         parentRefs:
-          - name: external
+          - name: envoy-external
             namespace: networking
             sectionName: https
         rules:
@@ -167,15 +168,12 @@ spec:
               - path: /config/matplotlib
       library:
         type: nfs
-        server: fran.outsideour.casa
-        path: /mnt/loki/immich
+        server: 192.168.8.248
+        path: /mnt/vault/media/immich
         globalMounts:
           - path: *mediaLocation
       cache:
-        type: persistentVolumeClaim
-        storageClass: openebs-hostpath
-        accessMode: ReadWriteOnce
-        size: 10Gi
+        existingClaim: immich-cache
         advancedMounts:
           machine-learning:
             main:
