@@ -14,7 +14,7 @@ spec:
     substitute:
       APP: *app
       PVC_NAME: neko-blockstorage
-  path: ./kubernetes/homelab/apps/media/neko/app
+  path: ./kubernetes/homelab/apps/base/neko/app
   prune: true
   sourceRef:
     kind: GitRepository
