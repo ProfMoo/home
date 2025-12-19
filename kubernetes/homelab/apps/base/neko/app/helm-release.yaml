@@ -60,7 +60,7 @@ spec:
           - neko.drmoo.io
         parentRefs:
           - name: envoy-external
-            namespace: network
+            namespace: networking
             sectionName: https
     persistence:
       config:
