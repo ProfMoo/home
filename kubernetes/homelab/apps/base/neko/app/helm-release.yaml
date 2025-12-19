@@ -16,7 +16,7 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          neko:
+          app:
             image:
               repository: ghcr.io/m1k1o/neko/firefox
               tag: "3.0.8"
@@ -35,7 +35,7 @@ spec:
               requests:
                 cpu: 10m
     service:
-      neko:
+      app:
         type: LoadBalancer
         annotations:
           lbipam.cilium.io/ips: 192.168.8.133
@@ -49,7 +49,7 @@ spec:
             port: *port
             protocol: UDP
     route:
-      neko:
+      app:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Testing
