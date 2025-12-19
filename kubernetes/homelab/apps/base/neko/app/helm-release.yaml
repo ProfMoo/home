@@ -34,16 +34,6 @@ spec:
             resources:
               requests:
                 cpu: 10m
-    persistence:
-      config:
-        name: neko-firefox-config
-        type: configMap
-        advancedMounts:
-          neko:
-            neko:
-              - path: /usr/lib/firefox/distribution/policies.json
-                readOnly: true
-                subPath: policies.json
     service:
       neko:
         type: LoadBalancer
@@ -72,3 +62,13 @@ spec:
           - name: envoy-external
             namespace: network
             sectionName: https
+    persistence:
+      config:
+        name: neko-firefox-config
+        type: configMap
+        advancedMounts:
+          neko:
+            neko:
+              - path: /usr/lib/firefox/distribution/policies.json
+                readOnly: true
+                subPath: policies.json
