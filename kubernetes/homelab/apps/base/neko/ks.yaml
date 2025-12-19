@@ -1,0 +1,26 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app neko
+  namespace: &namespace base
+spec:
+  targetNamespace: *namespace
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  postBuild:
+    substitute:
+      APP: *app
+      PVC_NAME: neko-blockstorage
+  path: ./kubernetes/homelab/apps/media/neko/app
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: profmoo-home
+    namespace: flux-system
+  wait: false
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m

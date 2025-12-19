@@ -1,0 +1,74 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: neko
+spec:
+  interval: 1h
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  values:
+    controllers:
+      app:
+        replicas: 1
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          neko:
+            image:
+              repository: ghcr.io/m1k1o/neko/firefox
+              tag: "3.0.8"
+            env:
+              NEKO_SCREEN: 1280x720@30
+              NEKO_PROXY: "true"
+              NEKO_TCPMUX: &mux "5101"
+              NEKO_UDPMUX: *mux
+              NEKO_ICELITE: "true"
+              NEKO_NAT1TO1: 0.0.0.0
+              NEKO_SESSION_HEARTBEAT_INTERVAL: 30
+            envFrom:
+              - secretRef:
+                  name: neko-secret
+            resources:
+              requests:
+                cpu: 10m
+    persistence:
+      config:
+        name: neko-firefox-config
+        type: configMap
+        advancedMounts:
+          neko:
+            neko:
+              - path: /usr/lib/firefox/distribution/policies.json
+                readOnly: true
+                subPath: policies.json
+    service:
+      neko:
+        type: LoadBalancer
+        annotations:
+          lbipam.cilium.io/ips: 192.168.8.133
+        ports:
+          http:
+            port: 80
+            targetPort: 8080
+          mux:
+            port: &port 5101
+          muxudp:
+            port: *port
+            protocol: UDP
+    route:
+      app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Testing
+          gethomepage.dev/name: Neko
+          gethomepage.dev/icon-url: https://raw.githubusercontent.com/chaijunkin/dashboard-icons/main/png/neko.png
+          gethomepage.dev/description: Virtual browser
+        hostnames:
+          - neko.drmoo.io
+        parentRefs:
+          - name: envoy-external
+            namespace: network
+            sectionName: https
