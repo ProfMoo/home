@@ -59,7 +59,7 @@ spec:
             port: *port
             protocol: UDP
     route:
-      app:
+      neko:
         annotations:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Testing
