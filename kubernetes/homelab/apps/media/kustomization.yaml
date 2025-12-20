@@ -28,3 +28,4 @@ resources:
   - ./audiobookshelf/ks.yaml
   - ./wizarr/ks.yaml
   - ./immich/ks.yaml
+  - ./movary/ks.yaml
