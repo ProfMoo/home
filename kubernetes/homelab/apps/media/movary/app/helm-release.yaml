@@ -50,6 +50,6 @@ spec:
       config:
         existingClaim: movary
         advancedMounts:
-          app:
+          movary:
             movary:
               - path: /app/storage
