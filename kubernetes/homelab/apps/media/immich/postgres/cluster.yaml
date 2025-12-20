@@ -38,7 +38,7 @@ spec:
       metadata:
         labels:
           app.kubernetes.io/name: *name
-      replicas: &replicas 3
+      replicas: 3
       dataVolumeClaimSpec:
         storageClassName: ceph-block
         accessModes: ["ReadWriteOnce"]
@@ -66,53 +66,52 @@ spec:
       options: "CREATEDB CREATEROLE"
       password:
         type: AlphaNumeric
-  backups:
-    pgbackrest:
-      configuration: &backupConfig
-        - secret:
-            name: immich-postgres-secret
-      global: &backupFlag
-        compress-type: "bz2"
-        compress-level: "9"
-        repo2-block: "y"
-        repo2-bundle: "y"
-        repo2-path: /
-        repo2-retention-full: "7" # days
-        repo2-retention-full-type: time
-        repo2-s3-uri-style: path
-      jobs:
-        ttlSecondsAfterFinished: 60
-      manual:
-        repoName: repo2
-        options:
-          - --type=full
-      metadata:
-        labels:
-          app.kubernetes.io/name: "postgres-backup"
-      repos:
-        - name: repo2
-          s3: &s3
-            bucket: immich-postgres
-            endpoint: s3.us-west-004.backblazeb2.com
-            region: us-west-004
-          schedules:
-            full: "30 2 * * 0" # Sunday at 02:30
-            incremental: "30 2 * * 1-6/2" # Mon-Sat at 02:30, every 2nd day
-      restore:
-        enabled: false
-        repoName: repo2
-        options:
-          - --type=full
-  dataSource:
-    pgbackrest:
-      stanza: db
-      configuration: *backupConfig
-      global: *backupFlag
-      repo:
-        name: repo2
-        s3: *s3
-      options: []
-      # - --set=20251026-023002F_20251029-023002I
+  # backups:
+  #   pgbackrest:
+  #     configuration: &backupConfig
+  #       - secret:
+  #           name: immich-postgres-secret
+  #     global: &backupFlag
+  #       compress-type: "bz2"
+  #       compress-level: "9"
+  #       repo2-block: "y"
+  #       repo2-bundle: "y"
+  #       repo2-path: /
+  #       repo2-retention-full: "7" # days
+  #       repo2-retention-full-type: time
+  #       repo2-s3-uri-style: path
+  #     jobs:
+  #       ttlSecondsAfterFinished: 60
+  #     manual:
+  #       repoName: repo2
+  #       options:
+  #         - --type=full
+  #     metadata:
+  #       labels:
+  #         app.kubernetes.io/name: "postgres-backup"
+  #     repos:
+  #       - name: repo2
+  #         s3: &s3
+  #           bucket: immich-postgres
+  #           endpoint: s3.us-west-004.backblazeb2.com
+  #           region: us-west-004
+  #         schedules:
+  #           full: "30 2 * * 0" # Sunday at 02:30
+  #           incremental: "30 2 * * 1-6/2" # Mon-Sat at 02:30, every 2nd day
+  #     restore:
+  #       enabled: false
+  #       repoName: repo2
+  #       options:
+  #         - --type=full
+  # dataSource:
+  #   pgbackrest:
+  #     stanza: db
+  #     configuration: *backupConfig
+  #     global: *backupFlag
+  #     repo:
+  #       name: repo2
+  #       s3: *s3
+  #     options: []
   proxy:
     pgBouncer:
       port: 5432
