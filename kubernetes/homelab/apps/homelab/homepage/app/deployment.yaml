@@ -12,6 +12,8 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/name: homepage
+      annotations:
+        reloader.stakater.com/auto: "true"
     spec:
       serviceAccount: homepage
       containers:
