@@ -34,6 +34,8 @@ spec:
                 memory: 256Mi
     defaultPodOptions:
       securityContext:
+        # Needed to set to 3000, per the creator's recommendation:
+        # https://github.com/leepeuker/movary/issues/632#issuecomment-2657274607
         runAsNonRoot: true
         runAsUser: 3000
         runAsGroup: 3000
