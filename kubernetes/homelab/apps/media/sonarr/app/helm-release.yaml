@@ -60,6 +60,15 @@ spec:
             port: *port
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: TV series torrent manager (admin:admin)
+          gethomepage.dev/group: Torrents
+          gethomepage.dev/icon: sonarr.png
+          gethomepage.dev/name: Sonarr
+          gethomepage.dev/widget.type: "sonarr"
+          gethomepage.dev/widget.url: "http://sonarr.media.svc.cluster.local:80"
+          gethomepage.dev/widget.key: "foobarbazfoobarbazfoobarbazfooba"
         hostnames:
           - "sonarr.drmoo.io"
         parentRefs:

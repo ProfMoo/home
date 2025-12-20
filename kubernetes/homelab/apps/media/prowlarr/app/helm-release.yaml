@@ -62,6 +62,15 @@ spec:
             port: *port
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Tracker indexer wrapper (admin:admin)
+          gethomepage.dev/group: Torrents
+          gethomepage.dev/icon: prowlarr.png
+          gethomepage.dev/name: Prowlarr
+          gethomepage.dev/widget.type: "prowlarr"
+          gethomepage.dev/widget.url: "http://prowlarr.media.svc.cluster.local:80"
+          gethomepage.dev/widget.key: "foobarbazfoobarbazfoobarbazfooba"
         hostnames:
           - "prowlarr.drmoo.io"
         parentRefs:

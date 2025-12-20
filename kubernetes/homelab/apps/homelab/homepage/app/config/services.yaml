@@ -77,30 +77,6 @@
         icon: mdi-connection
         description: Node connectivity
 - Torrents:
-    - Prowlarr:
-        href: https://prowlarr.drmoo.io
-        icon: prowlarr.png
-        description: Tracker indexer wrapper (admin:admin)
-        widget:
-          type: prowlarr
-          url: http://prowlarr.media.svc.cluster.local:80
-          key: foobarbazfoobarbazfoobarbazfooba
-    - Sonarr:
-        href: https://sonarr.drmoo.io
-        icon: sonarr.png
-        description: TV series torrent manager (admin:admin)
-        widget:
-          type: sonarr
-          url: http://sonarr.media.svc.cluster.local:80
-          key: foobarbazfoobarbazfoobarbazfooba
-    - Lidarr:
-        href: https://lidarr.drmoo.io
-        icon: lidarr.png
-        description: TV series torrent manager (admin:admin)
-        widget:
-          type: lidarr
-          url: http://lidarr.media.svc.cluster.local:80
-          key: foobarbazfoobarbazfoobarbazfooba
     - QUI:
         href: https://qui.drmoo.io
         icon: qui
