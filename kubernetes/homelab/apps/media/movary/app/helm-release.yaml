@@ -25,7 +25,6 @@ spec:
               DATABASE_MODE: sqlite
               TMDB_ENABLE_IMAGE_CACHING: '1' # Enable to prevent rate limit issues
               ENV: 'production'
-              APPLICATION_URL: movary.drmoo.io
             resources:
               requests:
                 cpu: 50m
