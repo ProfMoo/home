@@ -1,4 +1,5 @@
 ---
+mode: default
 ingress: false
 traefik: false
 gateway: true
