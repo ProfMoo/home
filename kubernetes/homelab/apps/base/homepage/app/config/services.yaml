@@ -77,15 +77,6 @@
         icon: mdi-connection
         description: Node connectivity
 - Torrents:
-    - QUI:
-        href: https://qui.drmoo.io
-        icon: qui
-        description: qBittorrent user interface (username:password)
-        widget:
-          type: qbittorrent
-          url: http://qui.media.svc.cluster.local:80/proxy/74e163e8486933b14f2d55a823ecf63c67631607d0a21b1647e2a05b738f15af
-          username: foo
-          password: bar
     - qBittorrent:
         href: https://qb.drmoo.io
         icon: qbittorrent
