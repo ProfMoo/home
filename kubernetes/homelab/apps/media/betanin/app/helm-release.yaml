@@ -45,16 +45,6 @@ spec:
                 memory: 2Gi
               limits:
                 memory: 4Gi
-          code-server:
-            image:
-              repository: ghcr.io/coder/code-server
-              tag: 4.107.0@sha256:4b622c4cd1b0f559fec0df67fcf09042d63e9ce84c575102066afd9511695627
-            args: ["--auth", "none", "--user-data-dir", "/config/.vscode", "--extensions-dir", "/config/.vscode", "--port", "12321", "/beets"]
-            resources:
-              requests:
-                cpu: 10m
-              limits:
-                memory: 512Mi
     defaultPodOptions:
       securityContext:
         runAsNonRoot: false
@@ -68,10 +58,14 @@ spec:
         ports:
           http:
             port: &port 9393
-          code-server:
-            port: &code-port 12321
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Music tagging (user:pass)
+          gethomepage.dev/group: Torrents
+          gethomepage.dev/icon: betanin
+          gethomepage.dev/name: Betanin
         hostnames:
           - "betanin.drmoo.io"
         parentRefs:
@@ -82,17 +76,6 @@ spec:
           - backendRefs:
               - identifier: app
                 port: *port
-      code-server:
-        hostnames:
-          - "beets-code.drmoo.io"
-        parentRefs:
-          - name: envoy-internal
-            namespace: networking
-            sectionName: https
-        rules:
-          - backendRefs:
-              - identifier: app
-                port: *code-port
     persistence:
       media:
         type: nfs

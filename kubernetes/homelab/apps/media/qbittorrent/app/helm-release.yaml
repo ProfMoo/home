@@ -93,6 +93,16 @@ spec:
             protocol: UDP
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Torrent downloader (admin:adminadmin)
+          gethomepage.dev/group: Torrents
+          gethomepage.dev/icon: qbittorrent
+          gethomepage.dev/name: qBittorrent
+          gethomepage.dev/widget.type: "qbittorrent"
+          gethomepage.dev/widget.url: "http://qbittorrent.media.svc.cluster.local:8080"
+          gethomepage.dev/widget.username: "admin"
+          gethomepage.dev/widget.password: "adminadmin"
         hostnames:
           - "qb.drmoo.io"
         parentRefs:
