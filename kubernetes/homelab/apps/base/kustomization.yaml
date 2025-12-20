@@ -16,3 +16,5 @@ resources:
   - ./gateway-api-crds/ks.yaml
   - ./descheduler/ks.yaml
   - ./neko/ks.yaml
+  - ./homepage/ks.yaml
+  - ./goldpinger/ks.yaml
