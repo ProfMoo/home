@@ -67,7 +67,7 @@ spec:
           gethomepage.dev/description: Movie torrent manager (admin:admin)
           gethomepage.dev/group: Torrents
           gethomepage.dev/icon: radarr.png
-          gethomepage.dev/name: Radarr2
+          gethomepage.dev/name: Radarr
           gethomepage.dev/widget.type: "radarr"
           gethomepage.dev/widget.url: "http://radarr.media.svc.cluster.local:80"
           gethomepage.dev/widget.key: "foobarbazfoobarbazfoobarbazfooba"

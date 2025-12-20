@@ -85,14 +85,6 @@
           type: prowlarr
           url: http://prowlarr.media.svc.cluster.local:80
           key: foobarbazfoobarbazfoobarbazfooba
-    - Radarr:
-        href: https://radarr.drmoo.io
-        icon: radarr.png
-        description: Movie torrent manager (admin:admin)
-        widget:
-          type: radarr
-          url: http://radarr.media.svc.cluster.local:80
-          key: foobarbazfoobarbazfoobarbazfooba
     - Sonarr:
         href: https://sonarr.drmoo.io
         icon: sonarr.png
