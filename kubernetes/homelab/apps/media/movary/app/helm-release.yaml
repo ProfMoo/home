@@ -60,7 +60,3 @@ spec:
           movary:
             app:
               - path: /app/storage
-                # tmpfs:
-                #   type: emptyDir
-                #   globalMounts:
-                #     - path: /app/src
