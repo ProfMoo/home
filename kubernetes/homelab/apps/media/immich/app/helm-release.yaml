@@ -149,6 +149,12 @@ spec:
             path: /metrics
     route:
       immich:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Testing
+          gethomepage.dev/name: Immich
+          gethomepage.dev/icon-url: https://raw.githubusercontent.com/chaijunkin/dashboard-icons/main/png/immich.png
+          gethomepage.dev/description: Photos
         hostnames:
           - "photos.drmoo.io"
         parentRefs:
