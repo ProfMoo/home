@@ -64,6 +64,15 @@ spec:
             port: *port
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Media server
+          gethomepage.dev/group: Home
+          gethomepage.dev/icon: jellyfin
+          gethomepage.dev/name: Jellyfin
+          gethomepage.dev/widget.type: "jellyfin"
+          gethomepage.dev/widget.url: "https://jellyfin.drmoo.io"
+          gethomepage.dev/widget.key: "f58cd19c3e6749f585f580fb11d7d180"
         hostnames:
           - "{{ .Release.Name }}.drmoo.io"
         parentRefs:
