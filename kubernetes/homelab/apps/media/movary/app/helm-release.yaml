@@ -32,6 +32,12 @@ spec:
                 memory: 256Mi
               limits:
                 memory: 256Mi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
     service:
       app:
         controller: movary
