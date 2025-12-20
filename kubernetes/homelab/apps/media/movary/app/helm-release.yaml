@@ -11,9 +11,9 @@ spec:
     name: app-template
   values:
     controllers:
-      main:
+      movary:
         containers:
-          movary:
+          app:
             image:
               repository: leepeuker/movary
               tag: 0.69.0
@@ -33,8 +33,8 @@ spec:
               limits:
                 memory: 256Mi
     service:
-      main:
-        controller: main
+      app:
+        controller: movary
         ports:
           http:
             port: 8080
@@ -50,6 +50,6 @@ spec:
       config:
         existingClaim: movary
         advancedMounts:
-          main:
+          app:
             movary:
               - path: /app/storage
