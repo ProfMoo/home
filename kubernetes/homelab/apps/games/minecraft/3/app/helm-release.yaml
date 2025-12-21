@@ -43,7 +43,7 @@ spec:
       ops: ProfMoo
       modrinth:
         projects:
-          # Lithium
+          # Lithium - this is the server-side mod which increases performance (but tries to keep vanilla behavior)
           - 'fabric:lithium'
         # Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
         downloadDependencies: required
