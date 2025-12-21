@@ -43,6 +43,11 @@ spec:
           gatus.home-operations.com/endpoint: |-
             group: services
           lbipam.cilium.io/ips: 192.168.8.129
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Mosquitto MQTT broker
+          gethomepage.dev/group: Home
+          gethomepage.dev/icon: mqtt
+          gethomepage.dev/name: Mosquitto
         ports:
           http:
             port: 1883

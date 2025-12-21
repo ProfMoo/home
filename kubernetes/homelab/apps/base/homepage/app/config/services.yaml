@@ -2,22 +2,6 @@
 # Docs for this file can be found here:
 # https://gethomepage.dev/widgets/
 - Home:
-    - Jellyfin:
-        href: https://jellyfin.drmoo.io
-        icon: jellyfin
-        description: Media server (admin:)
-        widget:
-          type: jellyfin
-          url: https://jellyfin.drmoo.io
-          key: f58cd19c3e6749f585f580fb11d7d180
-    - Jellyseerr:
-        href: https://request.drmoo.io
-        icon: jellyseerr
-        description: Request system
-        widget:
-          type: jellyseerr
-          url: http://jellyseerr.media.svc.cluster.local:80
-          key: MTc1ODQyMzQ3MTg3NDUyZTg0NWM4LTJhYjYtNDJkZC1hNDI4LWE1OTQ3ODZmMGRmYQ==
     - Gatus:
         href: https://status.drmoo.io
         icon: gatus

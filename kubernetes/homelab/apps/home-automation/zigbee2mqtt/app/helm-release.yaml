@@ -81,6 +81,12 @@ spec:
             port: *port
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Zigbee2MQTT user interface
+          gethomepage.dev/group: Home
+          gethomepage.dev/icon: zigbee
+          gethomepage.dev/name: Zigbee2MQTT
         hostnames:
           - "zigbee.drmoo.io"
         parentRefs:
