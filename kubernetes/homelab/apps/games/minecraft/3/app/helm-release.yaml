@@ -41,6 +41,14 @@ spec:
       whitelist: ProfMoo,bamxmejia,KittyDonut1009,00Rem00,Seanzz,The9thCobra,linderson9
       # A comma-separated list of player names who should be admins.
       ops: ProfMoo
+      modRinth:
+        projects:
+          # Lithium
+          - 'fabric:lithium'
+        # Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
+        downloadDependencies: required
+        # The version type is used to determine the newest version to use from each project. The allowed values are: release, beta, alpha
+        allowedVersionType: release
       spigetResources:
         - 36618 #Prom Exporter
       rcon:
