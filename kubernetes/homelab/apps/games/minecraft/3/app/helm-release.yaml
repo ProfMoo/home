@@ -41,7 +41,7 @@ spec:
       whitelist: ProfMoo,bamxmejia,KittyDonut1009,00Rem00,Seanzz,The9thCobra,linderson9
       # A comma-separated list of player names who should be admins.
       ops: ProfMoo
-      modRinth:
+      modrinth:
         projects:
           # Lithium
           - 'fabric:lithium'
