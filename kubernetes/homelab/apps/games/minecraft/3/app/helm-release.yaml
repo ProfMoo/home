@@ -26,7 +26,7 @@ spec:
       # renovate: datasource=custom.minecraft-release
       version: 1.21.11
       # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE", etc.
-      type: "VANILLA"
+      type: "PAPER"
       # One of: peaceful, easy, normal, and hard
       difficulty: normal
       # This sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
@@ -41,13 +41,8 @@ spec:
       whitelist: ProfMoo,bamxmejia,KittyDonut1009,00Rem00,Seanzz,The9thCobra,linderson9
       # A comma-separated list of player names who should be admins.
       ops: ProfMoo
-      # A list of Modrinth project slugs with optional version after colon
-      # modrinth:
-      #   projects: ["https://modrinth.com/mod/fabricexporter/version/1.0.11"]
-      #   # Downloads Modrinth project dependencies marked as optional
-      #   optionalDependencies: false
-      #   # The version type is used to determine the newest version to use from each project. The allowed values are: release, beta, alpha
-      #   allowedVersionType: release
+      spigetResources:
+        - 36618 #Prom Exporter
       rcon:
         enabled: true
         withGeneratedPassword: false
