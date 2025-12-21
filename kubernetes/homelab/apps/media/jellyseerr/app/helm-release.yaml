@@ -58,7 +58,7 @@ spec:
           gethomepage.dev/icon: jellyseerr
           gethomepage.dev/name: Jellyseerr
           gethomepage.dev/widget.type: "jellyseerr"
-          gethomepage.dev/widget.url: "http://jellyseerr.media.svc.cluster.local:80"
+          gethomepage.dev/widget.url: "http://jellyseerr.media.svc.cluster.local"
           gethomepage.dev/widget.key: "MTc1ODQyMzQ3MTg3NDUyZTg0NWM4LTJhYjYtNDJkZC1hNDI4LWE1OTQ3ODZmMGRmYQ=="
         hostnames:
           - "jellyseerr.drmoo.io"
