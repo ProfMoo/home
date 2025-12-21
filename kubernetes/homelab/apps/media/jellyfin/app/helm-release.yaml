@@ -69,6 +69,7 @@ spec:
           gethomepage.dev/description: Media server
           gethomepage.dev/group: Home
           gethomepage.dev/icon: jellyfin
+          gethomepage.dev/app: jellyfin
           gethomepage.dev/name: Jellyfin
           gethomepage.dev/widget.type: "jellyfin"
           gethomepage.dev/widget.url: "https://jellyfin.drmoo.io"
