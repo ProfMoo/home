@@ -2,13 +2,6 @@
 # Docs for this file can be found here:
 # https://gethomepage.dev/widgets/
 - Home:
-    - Gatus:
-        href: https://status.drmoo.io
-        icon: gatus
-        description: Status page
-        widget:
-          type: gatus
-          url: https://status.drmoo.io
     - Zigbee Radio:
         href: http://192.168.1.148
         description: Zigbee radio webpage
