@@ -26,7 +26,7 @@ spec:
       # renovate: datasource=custom.minecraft-release
       version: 1.21.11
       # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE", etc.
-      type: "PAPER"
+      type: "FABRIC"
       # One of: peaceful, easy, normal, and hard
       difficulty: normal
       # This sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
