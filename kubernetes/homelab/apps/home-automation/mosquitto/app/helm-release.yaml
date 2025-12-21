@@ -48,6 +48,7 @@ spec:
           gethomepage.dev/group: Home
           gethomepage.dev/icon: mqtt
           gethomepage.dev/name: Mosquitto
+          gethomepage.dev/app: "mosquitto"
         ports:
           http:
             port: 1883
