@@ -29,6 +29,13 @@ spec:
       enabled: true
       route:
         main:
+          annotations:
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: Alerts
+            gethomepage.dev/group: Infrastructure
+            gethomepage.dev/icon: prometheus
+            gethomepage.dev/app: alaertmanager
+            gethomepage.dev/name: AlertManager
           enabled: true
           hostnames:
             - alertmanager.drmoo.io
@@ -121,6 +128,16 @@ spec:
     prometheus:
       route:
         main:
+          annotations:
+            gethomepage.dev/enabled: "true"
+            gethomepage.dev/description: Metrics
+            gethomepage.dev/group: Infrastructure
+            gethomepage.dev/icon: prometheus
+            gethomepage.dev/app: prometheus
+            gethomepage.dev/name: Prometheus
+            gethomepage.dev/widget.type: "prometheus"
+            gethomepage.dev/widget.url: "http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090"
+            gethomepage.dev/widget.fields: '["targets_up", "targets_down", "targets_total"]'
           enabled: true
           hostnames:
             - prometheus.drmoo.io
