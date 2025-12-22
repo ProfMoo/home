@@ -6,6 +6,12 @@ metadata:
   name: goldpinger
   annotations:
     external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/description: Node connectivity
+    gethomepage.dev/group: Infrastructure
+    gethomepage.dev/icon: mdi-connection
+    gethomepage.dev/name: GoldPinger
+    gethomepage.dev/app: goldpinger
 spec:
   parentRefs:
     - name: envoy-internal
