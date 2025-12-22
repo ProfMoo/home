@@ -27,6 +27,7 @@ spec:
           gethomepage.dev/group: Infrastructure
           gethomepage.dev/icon: mdi-chess-rook
           gethomepage.dev/name: Rook
+          gethomepage.dev/app: rook-ceph-mgr
         host:
           name: rook.drmoo.io
           path: /
