@@ -25,7 +25,7 @@ spec:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Rook storage cluster
           gethomepage.dev/group: Infrastructure
-          gethomepage.dev/icon: chess-rook
+          gethomepage.dev/icon: mdi-chess-rook
           gethomepage.dev/name: Rook
         host:
           name: rook.drmoo.io
