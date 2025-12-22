@@ -85,7 +85,7 @@ spec:
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: Zigbee2MQTT user interface
           gethomepage.dev/group: Home
-          gethomepage.dev/icon: message-arrow-right-outline
+          gethomepage.dev/icon: mdi-message-arrow-right-outline
           gethomepage.dev/name: Zigbee2MQTT
         hostnames:
           - "zigbee.drmoo.io"
