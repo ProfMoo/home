@@ -9,10 +9,6 @@
         href: https://mosquitto.drmoo.io
         description: MQTT Broker
 - Infrastructure:
-    - Rook:
-        href: https://rook.drmoo.io
-        icon: mdi-database
-        description: Rook storage cluster
     - Cilium:
         href: https://hubble.drmoo.io
         icon: mdi-lan
@@ -26,22 +22,6 @@
           url: http://grafana-service.observability.svc.cluster.local:3000
           username: username
           password: password
-    - Prometheus:
-        href: https://prometheus.drmoo.io
-        icon: prometheus
-        description: Metrics
-        widget:
-          type: prometheus
-          url: http://kube-prometheus-stack-prometheus.observability.svc.cluster.local:9090
-          fields: ["targets_up", "targets_down", "targets_total"]
-    - AlertManager:
-        href: https://alertmanager.drmoo.io
-        icon: alertmanager
-        description: Alerts
-    - GoldPinger:
-        href: https://goldpinger.drmoo.io
-        icon: mdi-connection
-        description: Node connectivity
 - Other:
     - Unifi:
         href: http://192.168.1.1
