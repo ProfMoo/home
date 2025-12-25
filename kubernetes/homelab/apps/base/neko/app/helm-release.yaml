@@ -19,7 +19,7 @@ spec:
           app:
             image:
               repository: ghcr.io/m1k1o/neko/firefox
-              tag: "3.0.8"
+              tag: "3.0.9"
             env:
               NEKO_SCREEN: 1920x1080@30
               NEKO_PROXY: "true"
