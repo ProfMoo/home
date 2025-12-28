@@ -20,7 +20,7 @@ resources:
   # There are breaking changes compared to v5, so it's likely not worth the time to upgrade right now.
   # https://www.cross-seed.org/docs/v6-migration
   - ./betanin/ks.yaml
-  - ./lidarr/ks.yaml
+  # - ./lidarr/ks.yaml
   - ./navidrome/ks.yaml
   # Putting down Roon for now until I can figure out how to get Multus working on my cluster
   # - ./roon/ks.yaml
