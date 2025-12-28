@@ -27,7 +27,7 @@ resources:
   - ./jellyfin/ks.yaml
   - ./audiobookshelf/ks.yaml
   - ./wizarr/ks.yaml
-  - ./immich/ks.yaml
+  # - ./immich/ks.yaml
   # I like the idea, but I kept getting a 403 error when trying to setup the initial admin user.
   # [20/Dec/2025:14:01:46 +0000] "POST /create-user HTTP/1.1" 403 31 "https://movary.drmoo.io/create-user"
   # - ./movary/ks.yaml
