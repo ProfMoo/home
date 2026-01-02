@@ -47,8 +47,8 @@ spec:
       # List with URLs and paths to jar files, additionally may be a directory with jars
       # This works for both mods and plugins depending on server type
       modUrls: ["https://github.com/sladkoff/minecraft-prometheus-exporter/releases/download/v3.1.0/minecraft-prometheus-exporter-3.1.0.jar", "/data/mods"]
-    serviceAnnotations:
-      mc-router.itzg.me/externalServerName: obkiddos-1.drmoo.io
+    # serviceAnnotations:
+    #   mc-router.itzg.me/externalServerName: obkiddos-1.drmoo.io
     persistence:
       dataDir:
         enabled: true

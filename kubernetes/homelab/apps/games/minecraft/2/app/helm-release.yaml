@@ -44,8 +44,8 @@ spec:
       whitelist: ProfMoo,bamxmejia,KittyDonut1009,00Rem00,Seanzz,The9thCobra,linderson9
       # A comma-separated list of player names who should be admins.
       ops: ProfMoo
-    serviceAnnotations:
-      mc-router.itzg.me/externalServerName: obkiddos-2.drmoo.io
+    # serviceAnnotations:
+    #   mc-router.itzg.me/externalServerName: obkiddos-2.drmoo.io
     persistence:
       dataDir:
         enabled: true
