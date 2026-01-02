@@ -35,7 +35,7 @@ spec:
       # This sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
       maxWorldSize: 20000
       # If you adjust this, you may need to adjust resources.requests above to match.
-      memory: 3000M
+      memory: 6000M
       # One of: creative, survival, adventure, spectator
       gameMode: survival
       # Message of the Day
