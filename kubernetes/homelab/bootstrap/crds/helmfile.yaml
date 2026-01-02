@@ -13,7 +13,7 @@ releases:
   - name: external-secrets
     namespace: external-secrets
     chart: oci://ghcr.io/external-secrets/charts/external-secrets
-    version: 1.2.0
+    version: 1.2.1
   - name: gateway-api-crds
     namespace: kube-system
     chart: oci://ghcr.io/wiremind/wiremind-helm-charts/gateway-api-crds
