@@ -16,7 +16,7 @@ spec:
           app:
             image:
               repository: leepeuker/movary
-              tag: 0.69.0
+              tag: 0.70.0
             envFrom:
               - secretRef:
                   name: movary
