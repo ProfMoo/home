@@ -71,6 +71,7 @@ spec:
           gethomepage.dev/icon: jellyfin
           gethomepage.dev/app: jellyfin
           gethomepage.dev/name: Jellyfin
+          gethomepage.dev/instance: homepage-internal
           gethomepage.dev/widget.type: "jellyfin"
           gethomepage.dev/widget.url: "https://jellyfin.drmoo.io"
           gethomepage.dev/widget.key: "f58cd19c3e6749f585f580fb11d7d180"

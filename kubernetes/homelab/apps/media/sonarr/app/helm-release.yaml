@@ -66,6 +66,7 @@ spec:
           gethomepage.dev/group: Torrents
           gethomepage.dev/icon: sonarr.png
           gethomepage.dev/name: Sonarr
+          gethomepage.dev/instance: homepage-internal
           gethomepage.dev/widget.type: "sonarr"
           gethomepage.dev/widget.url: "http://sonarr.media.svc.cluster.local:80"
           gethomepage.dev/widget.key: "foobarbazfoobarbazfoobarbazfooba"

@@ -99,6 +99,7 @@ spec:
           gethomepage.dev/group: Torrents
           gethomepage.dev/icon: qbittorrent
           gethomepage.dev/name: qBittorrent
+          gethomepage.dev/instance: homepage-internal
           gethomepage.dev/widget.type: "qbittorrent"
           gethomepage.dev/widget.url: "http://qbittorrent.media.svc.cluster.local:8080"
           gethomepage.dev/widget.username: "admin"

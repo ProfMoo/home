@@ -68,6 +68,7 @@ spec:
           gethomepage.dev/app: home-assistant
           gethomepage.dev/icon: home-assistant
           gethomepage.dev/name: Home Assistant
+          gethomepage.dev/instance: homepage-internal
           gethomepage.dev/widget.type: "homeassistant"
           gethomepage.dev/widget.url: "http://home-assistant.home-automation.svc.cluster.local:8123"
           gethomepage.dev/widget.key: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjNDE5MWY1ODY0ZjA0NTRmYjgxYzNiMTM3NjU4NjI1OCIsImlhdCI6MTc1NzE5MTA4NSwiZXhwIjoyMDcyNTUxMDg1fQ.PAFiFMVzkBy1oZiIqRsgr5dCG4a_TelEo2z5U8BpeIQ"
