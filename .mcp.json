@@ -1,0 +1,50 @@
+{
+    "mcpServers": {
+        "prometheus": {
+            "type": "stdio",
+            "command": "docker",
+            "args": [
+                "run",
+                "-i",
+                "--rm",
+                "-e",
+                "PROMETHEUS_URL",
+                "ghcr.io/pab1it0/prometheus-mcp-server:latest"
+            ],
+            "env": {
+                "PROMETHEUS_URL": "http://prometheus.drmoo.io"
+            }
+        },
+        "kubernetes-mcp-server": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "kubernetes-mcp-server@latest",
+                "--read-only"
+            ],
+            "env": {
+                "KUBECONFIG": "/Users/drmoo/.kube/config"
+            }
+        },
+        "grafana": {
+            "command": "docker",
+            "args": [
+                "run",
+                "--rm",
+                "-i",
+                "-e",
+                "GRAFANA_URL",
+                "-e",
+                "GRAFANA_SERVICE_ACCOUNT_TOKEN",
+                "grafana/mcp-grafana",
+                "-t",
+                "stdio"
+            ],
+            "env": {
+                "GRAFANA_URL": "http://grafana.drmoo.io",
+                "GRAFANA_USERNAME": "username",
+                "GRAFANA_PASSWORD": "password"
+            }
+        }
+    }
+}
