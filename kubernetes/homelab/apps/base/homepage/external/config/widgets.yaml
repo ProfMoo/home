@@ -1,0 +1,16 @@
+---
+- search:
+    provider: google
+    focus: true
+    target: _self
+- datetime:
+    text_size: xl
+    format:
+      hour12: true
+      timeStyle: short
+- openmeteo:
+    label: Hoboken
+    latitude: 40.7440
+    longitude: -74.0324
+    units: imperial
+    cache: 5

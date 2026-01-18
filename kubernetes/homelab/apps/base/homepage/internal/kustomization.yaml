@@ -10,7 +10,7 @@ resources:
   - ./service.yaml
   - ./http-route.yaml
 configMapGenerator:
-  - name: homepage-config
+  - name: homepage-internal-config
     files:
       - bookmarks.yaml=./config/bookmarks.yaml
       - custom.css=./config/custom.css

@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: homepage-internal
+spec:
+  selector:
+    app.kubernetes.io/name: homepage-internal
+  ports:
+    - protocol: TCP
+      name: homepage
+      port: 3000
+      targetPort: 3000
+  type: ClusterIP

@@ -87,6 +87,7 @@ spec:
           gethomepage.dev/group: Home
           gethomepage.dev/icon: mdi-message-arrow-right-outline
           gethomepage.dev/name: Zigbee2MQTT
+          gethomepage.dev/instance: homepage-internal
         hostnames:
           - "zigbee.drmoo.io"
         parentRefs:

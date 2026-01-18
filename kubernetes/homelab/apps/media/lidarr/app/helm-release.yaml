@@ -69,6 +69,7 @@ spec:
           gethomepage.dev/group: Torrents
           gethomepage.dev/icon: lidarr.png
           gethomepage.dev/name: Lidarr
+          gethomepage.dev/instance: homepage-internal
           gethomepage.dev/widget.type: "lidarr"
           gethomepage.dev/widget.url: "http://lidarr.media.svc.cluster.local:80"
           gethomepage.dev/widget.key: "foobarbazfoobarbazfoobarbazfooba"

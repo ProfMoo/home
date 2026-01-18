@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: homepage
+  name: homepage-external
 spec:
   selector:
-    app.kubernetes.io/name: homepage
+    app.kubernetes.io/name: homepage-external
   ports:
     - protocol: TCP
       name: homepage

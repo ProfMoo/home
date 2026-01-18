@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homepage-external
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: homepage-external
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: homepage-external
+      annotations:
+        reloader.stakater.com/auto: "true"
+    spec:
+      serviceAccount: homepage-external
+      containers:
+        - name: homepage
+          image: ghcr.io/gethomepage/homepage:v1.8.0
+          ports:
+            - containerPort: 3000
+              name: homepage
+          env:
+            - name: HOMEPAGE_ALLOWED_HOSTS
+              value: "dashboard.drmoo.io,localhost"
+          securityContext:
+            runAsNonRoot: false
+            runAsUser: 0
+            runAsGroup: 0
+            fsGroup: 0
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1000m"
+          volumeMounts:
+            - name: homepage-config-volume
+              # NOTE: Homepage expects this at a specific location, which we've matched here.
+              mountPath: /app/config
+            - name: logs
+              mountPath: /app/config/logs
+      volumes:
+        - name: homepage-config-volume
+          configMap:
+            name: homepage-external-config
+        - name: logs
+          emptyDir: {}

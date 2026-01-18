@@ -15,15 +15,15 @@
     units: imperial
     cache: 5
     # NOTE: Docs here: https://gethomepage.dev/latest/widgets/info/kubernetes/
-    # - kubernetes:
-    #     cluster:
-    #       show: true
-    #       cpu: true
-    #       memory: true
-    #       showLabel: true
-    #       label: "cluster"
-    #     nodes:
-    #       show: true
-    #       cpu: true
-    #       memory: true
-    #       showLabel: true
+- kubernetes:
+    cluster:
+        show: true
+        cpu: true
+        memory: true
+        showLabel: true
+        label: "cluster"
+    nodes:
+        show: true
+        cpu: true
+        memory: true
+        showLabel: true

@@ -68,6 +68,7 @@ spec:
           gethomepage.dev/group: Torrents
           gethomepage.dev/icon: prowlarr.png
           gethomepage.dev/name: Prowlarr
+          gethomepage.dev/instance: homepage-internal
           gethomepage.dev/widget.type: "prowlarr"
           gethomepage.dev/widget.url: "http://prowlarr.media.svc.cluster.local:80"
           gethomepage.dev/widget.key: "foobarbazfoobarbazfoobarbazfooba"

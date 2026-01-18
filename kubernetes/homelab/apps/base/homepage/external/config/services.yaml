@@ -1,0 +1,25 @@
+---
+# Docs for this file can be found here:
+# https://gethomepage.dev/widgets/
+- Other:
+    - Minecraft:
+        href: udp://obkiddos-3.drmoo.io:25565
+        icon: minecraft
+        description: OBKiddos 3
+        widget:
+          type: minecraft
+          url: udp://obkiddos-3.drmoo.io:25565
+    - Minecraft:
+        href: udp://obkiddos-2.drmoo.io:25565
+        icon: minecraft
+        description: OBKiddos 2
+        widget:
+          type: minecraft
+          url: udp://obkiddos-2.drmoo.io:25565
+    - Minecraft:
+        href: udp://obkiddos-1.drmoo.io:25565
+        icon: minecraft
+        description: OBKiddos 1
+        widget:
+          type: minecraft
+          url: udp://obkiddos-1.drmoo.io:25565

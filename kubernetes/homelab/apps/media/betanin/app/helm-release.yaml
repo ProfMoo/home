@@ -66,6 +66,7 @@ spec:
           gethomepage.dev/group: Torrents
           gethomepage.dev/icon: betanin
           gethomepage.dev/name: Betanin
+          gethomepage.dev/instance: homepage-internal
         hostnames:
           - "betanin.drmoo.io"
         parentRefs:

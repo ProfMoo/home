@@ -155,6 +155,7 @@ spec:
           gethomepage.dev/name: Immich
           gethomepage.dev/icon-url: https://raw.githubusercontent.com/chaijunkin/dashboard-icons/main/png/immich.png
           gethomepage.dev/description: Photos
+          gethomepage.dev/instance: homepage-internal
         hostnames:
           - "photos.drmoo.io"
         parentRefs:

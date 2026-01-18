@@ -23,6 +23,7 @@ spec:
       dashboard:
         annotations:
           gethomepage.dev/enabled: "true"
+          gethomepage.dev/instance: homepage-internal
           gethomepage.dev/description: Rook storage cluster
           gethomepage.dev/group: Infrastructure
           gethomepage.dev/icon: mdi-chess-rook
