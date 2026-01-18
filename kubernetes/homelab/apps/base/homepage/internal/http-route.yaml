@@ -12,7 +12,7 @@ spec:
       namespace: networking
       sectionName: https
   hostnames:
-    - home.internal.drmoo.io
+    - home.drmoo.io
   rules:
     - backendRefs:
         - name: homepage-internal
