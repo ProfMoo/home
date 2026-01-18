@@ -24,7 +24,11 @@
         "postfinance/",
         "ghcr.io/gethomepage/",
         "ghcr.io/kashalls/external-dns-unifi-webhook/",
-        "ghcr.io/unpoller/unpoller"
+        "ghcr.io/unpoller/unpoller",
+        "ghcr.io/kashalls/kromgo",
+        "ghcr.io/twin/gatus",
+        "ghcr.io/zwave-js/zwave-js-ui",
+        "ghcr.io/coder/code-server"
       ]
     },
     {
