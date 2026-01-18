@@ -43,6 +43,13 @@ spec:
             namespace: networking
             sectionName: https
       external:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Join"
+          gethomepage.dev/description: "Get access to the media server"
+          gethomepage.dev/group: "Media"
+          gethomepage.dev/icon: "mdi-account-plus"
+          gethomepage.dev/instance: "homepage-external"
         hostnames:
           - "users.drmoo.io"
         parentRefs:

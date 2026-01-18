@@ -69,6 +69,13 @@ spec:
             namespace: networking
             sectionName: https
       external:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Request Media"
+          gethomepage.dev/description: "Request new movies and TV shows"
+          gethomepage.dev/group: "Media"
+          gethomepage.dev/icon: "mdi-movie-search"
+          gethomepage.dev/instance: "homepage-external"
         hostnames:
           - "request.drmoo.io"
         parentRefs:

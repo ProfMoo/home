@@ -82,6 +82,13 @@ spec:
             namespace: networking
             sectionName: https
       external:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Movies & TV"
+          gethomepage.dev/description: "Stream movies and TV shows"
+          gethomepage.dev/group: "Media"
+          gethomepage.dev/icon: "mdi-filmstrip"
+          gethomepage.dev/instance: "homepage-external"
         hostnames:
           - "movies.drmoo.io"
           - "moovies.drmoo.io"
