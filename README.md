@@ -71,6 +71,7 @@ From top to bottom...
 |-----------------------------|-----|--------------|---------------------------------|------|---------------|-------------------------|
 | UniFi UDM Pro              | -   | -            | -                       | -    | -             | Router & Gateway            |
 | UniFi USW 24 PoE | -   | -            | -                               | -    | -             |  Switch        |
+| UniFi Patch Panel | -   | -            | -                               | -    | -             |  Patch Panel        |
 | Dell PowerEdge R540   | 32   |  1x256GB SSD      | 2x256GB SSD (local) / 1x256GB SSD (`rook-ceph`) | 128GB | Proxmox         | Compute              |
 | SuperMicro SYS-6028U-TR4T+   | 28   |  1x256GB SSD      | 2x256GB SSD (local) / 1x256GB SSD (`rook-ceph`) | 256GB | Proxmox         | Compute              |
 | Dell PowerEdge R530         |  20  | 1x256GB SSD      | 2x256GB SSD (local) / 1x256GB SSD (`rook-ceph`)     | 156GB | Proxmox | Compute     |
