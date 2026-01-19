@@ -4,6 +4,13 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: hubble-ui
+  annotations:
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/name: "Cilium"
+    gethomepage.dev/description: "Network packet visualization"
+    gethomepage.dev/group: "Infrastructure"
+    gethomepage.dev/icon: "mdi-lan"
+    gethomepage.dev/instance: "homepage-internal"
 spec:
   hostnames:
     - hubble.drmoo.io

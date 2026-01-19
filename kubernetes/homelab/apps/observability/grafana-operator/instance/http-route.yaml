@@ -6,6 +6,17 @@ metadata:
   name: grafana
   annotations:
     external-dns.alpha.kubernetes.io/target: internal.drmoo.io
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/name: "Grafana"
+    gethomepage.dev/description: "Observability (username:password)"
+    gethomepage.dev/group: "Infrastructure"
+    gethomepage.dev/icon: "grafana"
+    gethomepage.dev/app: "grafana"
+    gethomepage.dev/instance: "homepage-internal"
+    gethomepage.dev/widget.type: "grafana"
+    gethomepage.dev/widget.url: "http://grafana-service.observability.svc.cluster.local:3000"
+    gethomepage.dev/widget.username: "username"
+    gethomepage.dev/widget.password: "password"
 spec:
   parentRefs:
     - name: envoy-internal

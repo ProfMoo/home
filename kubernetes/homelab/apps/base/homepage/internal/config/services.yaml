@@ -8,20 +8,6 @@
     - Mosquitto:
         href: https://mosquitto.drmoo.io
         description: MQTT Broker
-- Infrastructure:
-    - Cilium:
-        href: https://hubble.drmoo.io
-        icon: mdi-lan
-        description: Network packet visualization
-    - Grafana:
-        href: https://grafana.drmoo.io
-        icon: grafana
-        description: Observability (username:password)
-        widget:
-          type: grafana
-          url: http://grafana-service.observability.svc.cluster.local:3000
-          username: username
-          password: password
 - Other:
     - Unifi:
         href: http://192.168.1.1
