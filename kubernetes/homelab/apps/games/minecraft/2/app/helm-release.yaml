@@ -44,8 +44,16 @@ spec:
       whitelist: ProfMoo,bamxmejia,KittyDonut1009,00Rem00,Seanzz,The9thCobra,linderson9
       # A comma-separated list of player names who should be admins.
       ops: ProfMoo
-    # serviceAnnotations:
-    #   mc-router.itzg.me/externalServerName: obkiddos-2.drmoo.io
+    serviceAnnotations:
+      mc-router.itzg.me/externalServerName: obkiddos-2.drmoo.io
+      gethomepage.dev/enabled: "true"
+      gethomepage.dev/name: "OBKiddos 2"
+      gethomepage.dev/description: "Minecraft server"
+      gethomepage.dev/group: "Games"
+      gethomepage.dev/icon: "minecraft"
+      gethomepage.dev/instance: "homepage-internal"
+      gethomepage.dev/widget.type: "minecraft"
+      gethomepage.dev/widget.url: "udp://minecraft-2.games.svc.cluster.local:25565"
     persistence:
       dataDir:
         enabled: true

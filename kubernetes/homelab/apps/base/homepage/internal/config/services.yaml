@@ -5,9 +5,6 @@
     - Zigbee Radio:
         href: http://192.168.1.148
         description: Zigbee radio webpage
-    - Mosquitto:
-        href: https://mosquitto.drmoo.io
-        description: MQTT Broker
 - Other:
     - Unifi:
         href: http://192.168.1.1
@@ -43,24 +40,3 @@
         href: http://192.168.1.187
         icon: supermicro
         description: (ADMIN:ADMIN)
-    - Minecraft:
-        href: udp://minecraft-3.games.svc.cluster.local:25565
-        icon: minecraft
-        description: OBKiddos 3
-        widget:
-          type: minecraft
-          url: udp://minecraft-3.games.svc.cluster.local:25565
-    - Minecraft:
-        href: udp://minecraft-2.games.svc.cluster.local:25565
-        icon: minecraft
-        description: OBKiddos 2
-        widget:
-          type: minecraft
-          url: udp://minecraft-2.games.svc.cluster.local:25565
-    - Minecraft:
-        href: udp://minecraft-1.games.svc.cluster.local:25565
-        icon: minecraft
-        description: OBKiddos 1
-        widget:
-          type: minecraft
-          url: udp://minecraft-1.games.svc.cluster.local:25565
