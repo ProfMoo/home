@@ -87,8 +87,6 @@ metadata:
     external-dns.alpha.kubernetes.io/target: &hostname internal.drmoo.io
     gatus.home-operations.com/endpoint: |-
       group: internal
-      client:
-        insecure-skip-verify: true
       ui:
         hide-hostname: true
         hide-url: true
