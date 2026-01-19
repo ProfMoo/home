@@ -36,6 +36,14 @@ spec:
             port: 5690
     route:
       app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Wizarr"
+          gethomepage.dev/description: "Get access to the media server"
+          gethomepage.dev/group: "Media"
+          gethomepage.dev/icon: "mdi-account-plus"
+          gethomepage.dev/app: "wizarr"
+          gethomepage.dev/instance: "homepage-internal"
         hostnames:
           - "wizarr.drmoo.io"
         parentRefs:
@@ -49,6 +57,7 @@ spec:
           gethomepage.dev/description: "Get access to the media server"
           gethomepage.dev/group: "Media"
           gethomepage.dev/icon: "mdi-account-plus"
+          gethomepage.dev/app: "wizarr"
           gethomepage.dev/instance: "homepage-external"
         hostnames:
           - "users.drmoo.io"
