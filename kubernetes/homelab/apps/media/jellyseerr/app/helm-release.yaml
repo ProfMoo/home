@@ -75,7 +75,11 @@ spec:
           gethomepage.dev/description: "Request new movies and TV shows"
           gethomepage.dev/group: "Media"
           gethomepage.dev/icon: "mdi-movie-search"
+          gethomepage.dev/app: "jellyseerr"
           gethomepage.dev/instance: "homepage-external"
+          gethomepage.dev/widget.type: "jellyseerr"
+          gethomepage.dev/widget.url: "https://request.drmoo.io"
+          gethomepage.dev/widget.key: "MTc1ODQyMzQ3MTg3NDUyZTg0NWM4LTJhYjYtNDJkZC1hNDI4LWE1OTQ3ODZmMGRmYQ=="
         hostnames:
           - "request.drmoo.io"
         parentRefs:
