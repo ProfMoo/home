@@ -45,6 +45,7 @@
 28. [ ] Ensure flux takes over the CRDs that come from the Helmfile
 29. [X] Quiet fans? Link [here](https://blog.hessindustria.com/quiet-fans-on-dell-poweredge-servers-via-ipmi/)
 30. [ ] Setup alert for when my secrets aren't syncing from Bitwarden. Might need an external-secrets metrics exporter.
+31. [ ] Add push alerts back to my phone/somewhere. Pushover costs money, perhaps there is a self-hosted alternative?
 
 ## July 27th, 2025
 
