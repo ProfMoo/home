@@ -1,5 +1,6 @@
 ---
 title: Moo's Pasture
+instanceName: homepage-external
 logpath: /tmp
 target: _self
 quicklaunch:
