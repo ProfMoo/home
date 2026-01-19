@@ -90,6 +90,9 @@ spec:
           gethomepage.dev/icon: "mdi-filmstrip"
           gethomepage.dev/app: "jellyfin"
           gethomepage.dev/instance: "homepage-external"
+          gethomepage.dev/widget.type: "jellyfin"
+          gethomepage.dev/widget.url: "https://movies.drmoo.io"
+          gethomepage.dev/widget.key: "f58cd19c3e6749f585f580fb11d7d180"
         hostnames:
           - "movies.drmoo.io"
           - "moovies.drmoo.io"
