@@ -60,6 +60,9 @@ spec:
             port: *healthPort
     route:
       external:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            conditions: ["[STATUS] == 404"]
         hostnames:
           - kromgo.drmoo.io
         parentRefs:
