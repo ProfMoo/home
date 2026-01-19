@@ -85,12 +85,6 @@ metadata:
   name: envoy-internal
   annotations:
     external-dns.alpha.kubernetes.io/target: &hostname internal.drmoo.io
-    gatus.home-operations.com/endpoint: |-
-      group: internal
-      guarded: true
-      ui:
-        hide-hostname: true
-        hide-url: true
 spec:
   gatewayClassName: envoy
   infrastructure:
