@@ -88,6 +88,7 @@ spec:
           gethomepage.dev/description: "Stream movies and TV shows"
           gethomepage.dev/group: "Media"
           gethomepage.dev/icon: "mdi-filmstrip"
+          gethomepage.dev/app: "jellyfin"
           gethomepage.dev/instance: "homepage-external"
         hostnames:
           - "movies.drmoo.io"
