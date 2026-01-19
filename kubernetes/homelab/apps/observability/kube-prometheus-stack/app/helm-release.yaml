@@ -35,7 +35,7 @@ spec:
             gethomepage.dev/description: Alerts
             gethomepage.dev/group: Infrastructure
             gethomepage.dev/icon: prometheus
-            gethomepage.dev/app: alaertmanager
+            gethomepage.dev/app: alertmanager
             gethomepage.dev/name: AlertManager
           enabled: true
           hostnames:

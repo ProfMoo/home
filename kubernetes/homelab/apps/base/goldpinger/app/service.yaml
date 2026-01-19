@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: goldpinger
   labels:
-    app: goldpinger
+    app.kubernetes.io/name: goldpinger
 spec:
   type: ClusterIP
   ports:
@@ -12,4 +12,4 @@ spec:
       targetPort: 8080
       name: http
   selector:
-    app: goldpinger
+    app.kubernetes.io/name: goldpinger

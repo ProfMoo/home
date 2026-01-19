@@ -4,17 +4,17 @@ kind: DaemonSet
 metadata:
   name: goldpinger
   labels:
-    app: goldpinger
+    app.kubernetes.io/name: goldpinger
 spec:
   updateStrategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app: goldpinger
+      app.kubernetes.io/name: goldpinger
   template:
     metadata:
       labels:
-        app: goldpinger
+        app.kubernetes.io/name: goldpinger
     spec:
       serviceAccount: goldpinger-serviceaccount
       tolerations:

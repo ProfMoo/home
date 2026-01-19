@@ -6,7 +6,7 @@ metadata:
   name: hubble-ui
   annotations:
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/name: "Cilium"
+    gethomepage.dev/name: "Hubble"
     gethomepage.dev/description: "Network packet visualization"
     gethomepage.dev/group: "Infrastructure"
     gethomepage.dev/icon: "mdi-lan"
