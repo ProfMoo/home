@@ -30,9 +30,9 @@ machine:
       # Reserve CPU and memory for system services (more aggressive for workers)
       system-reserved: "cpu=1000m,memory=2Gi,ephemeral-storage=2Gi"
       kube-reserved: "cpu=1000m,memory=2Gi,ephemeral-storage=2Gi"
-      eviction-hard: "memory.available<1Gi,nodefs.available<10%"
-      eviction-soft: "memory.available<2Gi,nodefs.available<15%"
-      eviction-soft-grace-period: "memory.available=1m30s,nodefs.available=2m"
+      eviction-hard: "memory.available<2Gi,nodefs.available<10%"
+      eviction-soft: "memory.available<4Gi,nodefs.available<15%"
+      eviction-soft-grace-period: "memory.available=3m,nodefs.available=2m"
   sysctls:
     user.max_user_namespaces: "11255"
     vm.nr_hugepages: "1024"
