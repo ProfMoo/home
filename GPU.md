@@ -1278,6 +1278,8 @@ Consider adding a Grafana dashboard once your observability stack is stable. NVI
 - [NVIDIA Device Plugin](https://github.com/NVIDIA/k8s-device-plugin)
 - [GPU Feature Discovery](https://github.com/NVIDIA/gpu-feature-discovery)
 - [DCGM Exporter](https://github.com/NVIDIA/dcgm-exporter)
+- [GPU Sharing in Kubernetes](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-sharing.html)
+- [Time-Slicing GPUs](https://docs.nvidia.com/datacenter/cloud-native/k8s-device-plugin/latest/time-slicing.html)
 
 ### Jellyfin
 

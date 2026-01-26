@@ -21,7 +21,7 @@ resources:
   # https://www.cross-seed.org/docs/v6-migration
   - ./betanin/ks.yaml
   # - ./lidarr/ks.yaml
-  - ./navidrome/ks.yaml
+  # - ./navidrome/ks.yaml
   # Putting down Roon for now until I can figure out how to get Multus working on my cluster
   # - ./roon/ks.yaml
   - ./jellyfin/ks.yaml
