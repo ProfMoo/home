@@ -19,7 +19,7 @@ spec:
       APP: *app
       PVC_NAME: jellyfin
       VOLSYNC_CAPACITY: 20Gi
-      VOLSYNC_CACHE_CAPACITY: 5Gi
+      VOLSYNC_SRC_CACHE_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
   sourceRef:

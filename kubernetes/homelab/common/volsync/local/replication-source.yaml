@@ -13,7 +13,7 @@ spec:
     pruneIntervalDays: 14
     repository: "${APP}-volsync-secret"
     volumeSnapshotClassName: csi-ceph-blockpool
-    cacheCapacity: "${VOLSYNC_CACHE_CAPACITY:=2Gi}"
+    cacheCapacity: "${VOLSYNC_SRC_CACHE_CAPACITY:=2Gi}"
     cacheStorageClassName: ceph-block
     cacheAccessModes: ["ReadWriteOnce"]
     storageClassName: ceph-block
