@@ -1238,6 +1238,50 @@ kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=j
 3. **Wrong Jellyfin settings**: Verify "Nvidia NVENC" is selected in transcoding settings
 4. **Codec not supported**: T4 doesn't support AV1 encoding, limited VP9 support
 
+### Time-Slicing Not Working
+
+**Symptoms**: Node shows `nvidia.com/gpu: 1` instead of `4`
+
+**Causes & Solutions**:
+
+1. **ConfigMap not found**: Verify ConfigMap exists in `gpu-operator` namespace
+   ```bash
+   kubectl get configmap -n gpu-operator time-slicing-config
+   ```
+
+2. **HelmRelease missing config reference**: Check `devicePlugin.config.name` is set to `time-slicing-config`
+
+3. **Device plugin not restarted**: After creating/updating the ConfigMap, restart the device plugin:
+   ```bash
+   kubectl rollout restart daemonset -n gpu-operator nvidia-device-plugin-daemonset
+   ```
+
+4. **Invalid ConfigMap format**: Check device plugin logs for parsing errors:
+   ```bash
+   kubectl logs -n gpu-operator -l app=nvidia-device-plugin-daemonset | grep -i error
+   ```
+
+### GPU Memory Exhaustion (OOM) with Time-Slicing
+
+**Symptoms**: CUDA out of memory errors, pods crashing with GPU memory errors
+
+**Causes & Solutions**:
+
+1. **Too many concurrent GPU workloads**: Time-slicing shares memory, not just compute. Reduce replicas or stagger workloads.
+
+2. **Large LLM models**: Ollama with 13B+ models may consume 8-10GB. Either:
+   - Use smaller/quantized models (7B Q4 uses ~4GB)
+   - Reduce time-slicing replicas to 2
+   - Give LLM dedicated GPU access (request all 4 replicas)
+
+3. **Monitor memory usage**:
+   ```bash
+   # Check current GPU memory from DCGM metrics
+   kubectl exec -n gpu-operator $(kubectl get pod -n gpu-operator -l app=nvidia-dcgm-exporter -o name | head -1) -- dcgmi dmon -e 203 -c 1
+   # Or from any GPU pod
+   kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=jellyfin -o name) -- nvidia-smi
+   ```
+
 ---
 
 ## Future Considerations
