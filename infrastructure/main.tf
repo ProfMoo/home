@@ -174,6 +174,11 @@ module "cluster" {
           datastore_id   = "disk3"
           disk_interface = "scsi1"
           size           = 200
+        },
+        {
+          datastore_id   = "disk5"
+          disk_interface = "scsi2"
+          size           = 1800
         }
       ]
 
@@ -224,6 +229,11 @@ module "cluster" {
           datastore_id   = "disk4"
           disk_interface = "scsi2"
           size           = 500
+        },
+        {
+          datastore_id   = "disk6"
+          disk_interface = "scsi3"
+          size           = 1800
         }
       ]
 

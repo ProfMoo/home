@@ -41,10 +41,57 @@ This directory houses the code that transforms raw bare-metal machines into func
 
 ### Adding New Disks To Proxmox
 
+0. If the disk is already formatted, you'll need to 'zap' it to remove formatting to be able to add it to an LVM-Thin Pool. It'll be formatted if, for example, if was previously used in a storage cluster.
 1. Navigate to relevant node in Proxmox GUI -> Disks -> LVM-Thin -> "Create: Thinpool"
 2. Select new disk by block device name (`lsblk` might help show available nodes on the node). Example names: `/dev/sda`, `/dev/sdb`, `/dev/sdc`.
 3. Give the disk a name. I've chosen to increment the disks by the bay #. Example: Bay #3 -> `disk3`
 4. Hit "Create".
+
+### Removing OSD From Rook/Ceph
+
+1. Identify the OSD(s) to remove:
+
+    ```sh
+    kubectl -n storage exec -it deploy/rook-ceph-tools -- ceph osd tree
+    ```
+
+2. Mark the OSD out (starts data rebalancing away from it):
+
+    ```sh
+    kubectl -n storage exec -it deploy/rook-ceph-tools -- ceph osd out osd.<ID>
+    ```
+
+3. Wait for rebalancing to complete:
+
+    ```sh
+    kubectl -n storage exec -it deploy/rook-ceph-tools -- ceph -w
+    # Or check status periodically
+    # Wait until HEALTH_OK or at least no recovery/rebalancing in progress.
+    kubectl -n storage exec -it deploy/rook-ceph-tools -- ceph status
+    ```
+
+4. Purge the OSD (removes it from the cluster):
+
+    ```sh
+    kubectl -n storage exec -it deploy/rook-ceph-tools -- ceph osd purge osd.<ID> --yes-i-really-mean-it
+    ```
+
+5. Delete the OSD deployment:
+
+    ```sh
+    kubectl -n storage delete deploy rook-ceph-osd-<ID>
+    ```
+
+6. If the disk was explicitly listed in CephCluster CR, update the spec to remove it, otherwise Rook may try to recreate the OSD.
+
+7. Clean the disk (if reusing or decommissioning):
+
+    ```sh
+    # From rook-tools or the node itself
+    kubectl -n storage exec -it deploy/rook-ceph-tools -- ceph-volume lvm zap /dev/sdX --destroy
+    ```
+
+Tip: If removing multiple OSDs, do them one at a time and wait for full rebalancing between each to minimize risk and cluster load.
 
 ### Upgrading Kubernetes
 
