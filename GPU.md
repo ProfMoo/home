@@ -1141,9 +1141,9 @@ talosctl -n 192.168.8.123 dmesg | grep -i nvidia
 ### Check Kubernetes GPU Resources
 
 ```bash
-# Verify node has GPU in allocatable resources
+# Verify node has GPU in allocatable resources (should show 4 with time-slicing)
 kubectl describe node moody-good | grep -A5 "Allocatable:"
-# Expected: nvidia.com/gpu: 1
+# Expected: nvidia.com/gpu: 4  (not 1, because time-slicing is enabled)
 
 # Verify GPU Operator pods are running
 kubectl get pods -n gpu-operator
@@ -1152,6 +1152,28 @@ kubectl get pods -n gpu-operator
 # Check GPU labels applied by GFD
 kubectl get node moody-good -o json | jq '.metadata.labels | with_entries(select(.key | startswith("nvidia")))'
 # Expected: nvidia.com/gpu.product, nvidia.com/cuda.driver.major, etc.
+```
+
+### Check Time-Slicing Configuration
+
+```bash
+# Verify the time-slicing ConfigMap exists
+kubectl get configmap -n gpu-operator time-slicing-config -o yaml
+# Expected: Shows the time-slicing config with replicas: 4
+
+# Check device plugin logs for time-slicing activation
+kubectl logs -n gpu-operator -l app=nvidia-device-plugin-daemonset | grep -i "time-slicing\|sharing\|replicas"
+# Expected: Messages about loading sharing config
+
+# Verify allocatable GPUs reflect time-slicing (should be 4, not 1)
+kubectl get node moody-good -o jsonpath='{.status.allocatable.nvidia\.com/gpu}'
+# Expected: 4
+
+# Check how many GPU slots are currently allocated
+kubectl get node moody-good -o jsonpath='{.status.capacity.nvidia\.com/gpu}'
+# Expected: 4 (capacity)
+kubectl describe node moody-good | grep -A3 "Allocated resources"
+# Shows how many of the 4 slots are in use
 ```
 
 ### Check Jellyfin GPU Access
@@ -1216,6 +1238,50 @@ kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=j
 3. **Wrong Jellyfin settings**: Verify "Nvidia NVENC" is selected in transcoding settings
 4. **Codec not supported**: T4 doesn't support AV1 encoding, limited VP9 support
 
+### Time-Slicing Not Working
+
+**Symptoms**: Node shows `nvidia.com/gpu: 1` instead of `4`
+
+**Causes & Solutions**:
+
+1. **ConfigMap not found**: Verify ConfigMap exists in `gpu-operator` namespace
+   ```bash
+   kubectl get configmap -n gpu-operator time-slicing-config
+   ```
+
+2. **HelmRelease missing config reference**: Check `devicePlugin.config.name` is set to `time-slicing-config`
+
+3. **Device plugin not restarted**: After creating/updating the ConfigMap, restart the device plugin:
+   ```bash
+   kubectl rollout restart daemonset -n gpu-operator nvidia-device-plugin-daemonset
+   ```
+
+4. **Invalid ConfigMap format**: Check device plugin logs for parsing errors:
+   ```bash
+   kubectl logs -n gpu-operator -l app=nvidia-device-plugin-daemonset | grep -i error
+   ```
+
+### GPU Memory Exhaustion (OOM) with Time-Slicing
+
+**Symptoms**: CUDA out of memory errors, pods crashing with GPU memory errors
+
+**Causes & Solutions**:
+
+1. **Too many concurrent GPU workloads**: Time-slicing shares memory, not just compute. Reduce replicas or stagger workloads.
+
+2. **Large LLM models**: Ollama with 13B+ models may consume 8-10GB. Either:
+   - Use smaller/quantized models (7B Q4 uses ~4GB)
+   - Reduce time-slicing replicas to 2
+   - Give LLM dedicated GPU access (request all 4 replicas)
+
+3. **Monitor memory usage**:
+   ```bash
+   # Check current GPU memory from DCGM metrics
+   kubectl exec -n gpu-operator $(kubectl get pod -n gpu-operator -l app=nvidia-dcgm-exporter -o name | head -1) -- dcgmi dmon -e 203 -c 1
+   # Or from any GPU pod
+   kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=jellyfin -o name) -- nvidia-smi
+   ```
+
 ---
 
 ## Future Considerations
@@ -1228,12 +1294,18 @@ kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=j
 
 - Fine-grained resource requests (specific GPU memory amounts)
 - Dynamic partitioning (MIG on A100/H100)
-- Time-slicing configuration per-workload
-- Better multi-tenant scenarios
+- Per-workload time-slicing configuration (vs cluster-wide ConfigMap)
+- Better multi-tenant scenarios with resource claims
 
-**Current status**: Your cluster runs K8s 1.33.4 where DRA is beta. The NVIDIA DRA driver (`k8s-dra-driver-gpu`) is still experimental for GPU allocation. The device plugin approach used in this guide is the recommended production path for now.
+**Current status**: Your cluster runs K8s 1.33.4 where DRA is beta. The NVIDIA DRA driver (`k8s-dra-driver-gpu`) is still experimental for GPU allocation. This guide uses the device plugin with time-slicing ConfigMap, which is the production-ready approach.
 
-**Note**: The Tesla T4 doesn't support MIG (requires Ampere+), but time-slicing via DRA would work when it's production-ready.
+**When to consider migrating to DRA**:
+
+- When you need different time-slice counts for different workloads
+- When you want per-pod GPU memory limits (not currently possible with device plugin)
+- When NVIDIA's DRA driver reaches GA status
+
+**Note**: The Tesla T4 doesn't support MIG (requires Ampere+), so DRA's main benefit for your setup would be per-workload time-slice configuration.
 
 > **Source**: [Kubernetes DRA Documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/dynamic-resource-allocation/), [NVIDIA DRA Driver](https://github.com/NVIDIA/k8s-dra-driver-gpu)
 
