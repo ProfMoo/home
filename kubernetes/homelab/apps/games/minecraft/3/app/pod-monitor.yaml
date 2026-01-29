@@ -7,7 +7,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: minecraft-3-minecraft
+      app.kubernetes.io/instance: minecraft-3
   podMetricsEndpoints:
     - targetPort: 25585
       path: /metrics
