@@ -9,3 +9,5 @@ resources:
   - ./pv.yaml
   - ./pvc.yaml
   - ./helm-release.yaml
+  - ./pod-monitor.yaml
+  - ./grafana-dashboard.yaml

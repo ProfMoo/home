@@ -1,0 +1,14 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/podmonitor_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: minecraft-3
+spec:
+  selector:
+    matchLabels:
+      app: minecraft-3-minecraft
+  podMetricsEndpoints:
+    - targetPort: 25585
+      path: /metrics
+      interval: 30s
