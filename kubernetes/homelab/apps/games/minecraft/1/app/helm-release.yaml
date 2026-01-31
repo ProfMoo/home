@@ -75,6 +75,11 @@ spec:
           port: 25585
     serviceAnnotations:
       mc-router.itzg.me/externalServerName: obkiddos-1.drmoo.io
+      gatus.home-operations.com/endpoint: |-
+        url: tcp://obkiddos-1.drmoo.io:25565
+        group: minecraft
+        conditions:
+          - "[CONNECTED] == true"
       gethomepage.dev/enabled: "true"
       gethomepage.dev/name: "OBKiddos 1"
       gethomepage.dev/description: "Minecraft server"
