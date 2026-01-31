@@ -19,7 +19,7 @@ spec:
       namespace: networking
       sectionName: https
   hostnames:
-    - obkiddos-3.drmoo.io
+    - obkiddos-3-map.drmoo.io
   rules:
     - backendRefs:
         - name: minecraft-3-dynmap
