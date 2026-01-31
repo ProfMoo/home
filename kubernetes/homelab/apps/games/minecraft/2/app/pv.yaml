@@ -15,4 +15,6 @@ spec:
   mountOptions:
     - nfsvers=4.2
     - nconnect=8
-    - hard
+    - soft           # Instead of hard
+    - timeo=150      # 15 second timeout
+    - retrans=3      # 3 retries before giving up

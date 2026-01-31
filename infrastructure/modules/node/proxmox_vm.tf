@@ -94,7 +94,6 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
 
   # NOTE: This loads the Talos ISO onto disk via block storage.
   cdrom {
-    enabled   = true
     file_id   = var.initial_boot_iso
     interface = "ide2"
   }
