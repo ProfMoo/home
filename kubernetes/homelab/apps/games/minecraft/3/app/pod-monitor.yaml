@@ -9,6 +9,6 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: minecraft-3
   podMetricsEndpoints:
-    - targetPort: 25585
+    - port: metrics
       path: /metrics
       interval: 30s

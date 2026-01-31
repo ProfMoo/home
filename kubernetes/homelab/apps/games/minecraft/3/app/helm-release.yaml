@@ -62,6 +62,14 @@ spec:
         port: 25575
         existingSecret: rcon-secret-3
         secretKey: rcon-password
+      # These options allow you to expose another port from the Minecraft server, plugins such
+      # as dynmap (8123) and bluemap (8100) will require this for access to their web interfaces
+      extraPorts:
+      - name: metrics
+        containerPort: 25585
+        protocol: TCP
+        service:
+          enabled: false
     serviceAnnotations:
       mc-router.itzg.me/externalServerName: obkiddos-3.drmoo.io
       gethomepage.dev/enabled: "true"

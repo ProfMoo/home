@@ -221,11 +221,6 @@ module "cluster" {
 
       storage_disks = [
         {
-          datastore_id   = "disk2"
-          disk_interface = "scsi1"
-          size           = 200
-        },
-        {
           datastore_id   = "disk4"
           disk_interface = "scsi2"
           size           = 500
