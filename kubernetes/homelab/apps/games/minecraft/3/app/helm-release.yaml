@@ -54,8 +54,6 @@ spec:
         downloadDependencies: required
         # The version type is used to determine the newest version to use from each project. The allowed values are: release, beta, alpha
         allowedVersionType: release
-      spigetResources:
-        - 36618 #Prom Exporter
       rcon:
         enabled: true
         withGeneratedPassword: false
