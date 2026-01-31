@@ -5,7 +5,7 @@ kind: HelmRelease
 metadata:
   name: minecraft-2
 spec:
-  interval: 30m
+  interval: 5m
   chartRef:
     kind: OCIRepository
     name: minecraft-2
@@ -28,14 +28,14 @@ spec:
       # One of: LATEST, SNAPSHOT, or a specific version (ie: "1.7.9").
       # renovate: datasource=custom.minecraft-release
       version: 1.21.11
-      # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE"
-      type: "VANILLA"
+      # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE", etc.
+      type: "FABRIC"
       # One of: peaceful, easy, normal, and hard
       difficulty: normal
       # This sets the maximum possible size in blocks, expressed as a radius, that the world border can obtain.
       maxWorldSize: 20000
       # If you adjust this, you may need to adjust resources.requests above to match.
-      memory: 3000M
+      memory: 6000M
       # One of: creative, survival, adventure, spectator
       gameMode: survival
       # Message of the Day
@@ -44,6 +44,35 @@ spec:
       whitelist: ProfMoo,bamxmejia,KittyDonut1009,00Rem00,Seanzz,The9thCobra,linderson9
       # A comma-separated list of player names who should be admins.
       ops: ProfMoo
+      modrinth:
+        projects:
+          # Lithium - this is the server-side mod which increases performance (but tries to keep vanilla behavior)
+          - 'fabric:lithium'
+          - 'fabric:fabricexporter'
+          - 'fabric:spark'
+        # Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
+        downloadDependencies: required
+        # The version type is used to determine the newest version to use from each project. The allowed values are: release, beta, alpha
+        allowedVersionType: release
+      rcon:
+        enabled: true
+        withGeneratedPassword: false
+        port: 25575
+        existingSecret: rcon-secret-2
+        secretKey: rcon-password
+      # These options allow you to expose another port from the Minecraft server, plugins such
+      # as dynmap (8123) and bluemap (8100) will require this for access to their web interfaces
+      extraPorts:
+      - name: metrics
+        containerPort: 25585
+        protocol: TCP
+        # For some reason, the service needs to be enabled for the chart to add the port to the pod.
+        # So we use a pod monitor, but need this useless service. *shrugs*.
+        service:
+          enabled: true
+          embedded: false
+          type: ClusterIP
+          port: 25585
     serviceAnnotations:
       mc-router.itzg.me/externalServerName: obkiddos-2.drmoo.io
       gethomepage.dev/enabled: "true"

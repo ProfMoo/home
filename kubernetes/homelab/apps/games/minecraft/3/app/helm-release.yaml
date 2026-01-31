@@ -66,6 +66,8 @@ spec:
       - name: metrics
         containerPort: 25585
         protocol: TCP
+        # For some reason, the service needs to be enabled for the chart to add the port to the pod.
+        # So we use a pod monitor, but need this useless service. *shrugs*.
         service:
           enabled: true
           embedded: false
