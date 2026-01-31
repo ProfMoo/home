@@ -22,5 +22,5 @@ spec:
     - obkiddos-3.drmoo.io
   rules:
     - backendRefs:
-        - name: minecraft-3
+        - name: minecraft-3-dynmap
           port: 8123
