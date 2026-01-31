@@ -48,7 +48,7 @@ spec:
         projects:
           # Lithium - this is the server-side mod which increases performance (but tries to keep vanilla behavior)
           - 'fabric:lithium'
-          - 'fabric:unifiedmetrics'
+          - 'fabric:fabricexporter'
           - 'fabric:spark'
         # Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
         downloadDependencies: required
@@ -64,7 +64,7 @@ spec:
       # as dynmap (8123) and bluemap (8100) will require this for access to their web interfaces
       extraPorts:
       - name: metrics
-        containerPort: 9100
+        containerPort: 25585
         protocol: TCP
         # For some reason, the service needs to be enabled for the chart to add the port to the pod.
         # So we use a pod monitor, but need this useless service. *shrugs*.
@@ -72,7 +72,7 @@ spec:
           enabled: true
           embedded: false
           type: ClusterIP
-          port: 9100
+          port: 25585
     serviceAnnotations:
       mc-router.itzg.me/externalServerName: obkiddos-3.drmoo.io
       gethomepage.dev/enabled: "true"

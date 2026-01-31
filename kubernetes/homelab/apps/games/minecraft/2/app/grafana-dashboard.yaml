@@ -6,13 +6,13 @@ metadata:
   name: minecraft-2
 spec:
   allowCrossNamespaceImport: true
-  folder: Minecraft
+  folder: minecraft
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main
   grafanaCom:
     id: 14492
-    revision: 1
+    revision: 5
   datasources:
     - inputName: DS_PROMETHEUS
       datasourceName: Prometheus
