@@ -6,7 +6,7 @@ metadata:
   name: minecraft-1
 spec:
   allowCrossNamespaceImport: true
-  folder: Minecraft
+  folder: minecraft
   instanceSelector:
     matchLabels:
       grafana.drmoo.io/instance: main

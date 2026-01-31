@@ -11,8 +11,8 @@ spec:
     matchLabels:
       grafana.drmoo.io/instance: main
   grafanaCom:
-    id: 14492
-    revision: 1
+    id: 14756
+    revision: 11
   datasources:
     - inputName: DS_PROMETHEUS
       datasourceName: Prometheus
