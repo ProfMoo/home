@@ -79,27 +79,21 @@ kubectl -n storage rollout restart deploy/rook-ceph-operator
     kubectl -n storage exec -it deploy/rook-ceph-tools -- ceph status
     ```
 
-4. Mark it as down:
-
-    ```sh
-    kubectl -n storage exec -it deploy/rook-ceph-tools -- ceph osd down osd.<ID>
-    ```
-
-5. Purge the OSD (removes it from the cluster):
+4. Purge the OSD (removes it from the cluster):
 
     ```sh
     kubectl -n storage exec -it deploy/rook-ceph-tools -- ceph osd purge osd.<ID> --yes-i-really-mean-it
     ```
 
-6. Delete the OSD deployment:
+5. Delete the OSD deployment:
 
     ```sh
     kubectl -n storage delete deploy rook-ceph-osd-<ID>
     ```
 
-7. If the disk was explicitly listed in CephCluster CR, update the spec to remove it, otherwise Rook may try to recreate the OSD.
+6. If the disk was explicitly listed in CephCluster CR, update the spec to remove it, otherwise Rook may try to recreate the OSD.
 
-8. Clean the disk (if reusing or decommissioning):
+7. Clean the disk (if reusing or decommissioning):
 
     ```sh
     # From rook-tools or the node itself
