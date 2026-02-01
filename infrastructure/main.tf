@@ -166,15 +166,10 @@ module "cluster" {
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_10_6_iso_pve1.talos_iso_id
 
-      disk_size = "200"
+      disk_size = "500"
       datastore = "disk3"
 
       storage_disks = [
-        {
-          datastore_id   = "disk3"
-          disk_interface = "scsi1"
-          size           = 200
-        },
         {
           datastore_id   = "disk5"
           disk_interface = "scsi2"
@@ -216,15 +211,10 @@ module "cluster" {
       proxmox_node_name     = "pve"
       initial_boot_iso      = module.talos_1_10_6_iso_pve1.talos_iso_id
 
-      disk_size = "200"
-      datastore = "disk2"
+      disk_size = "500"
+      datastore = "disk4"
 
       storage_disks = [
-        {
-          datastore_id   = "disk4"
-          disk_interface = "scsi2"
-          size           = 500
-        },
         {
           datastore_id   = "disk6"
           disk_interface = "scsi3"
@@ -267,6 +257,24 @@ module "cluster" {
 
       disk_size = "450"
       datastore = "disk3"
+
+      storage_disks = [
+        {
+          datastore_id   = "disk4"
+          disk_interface = "scsi4"
+          size           = 500
+        },
+        {
+          datastore_id   = "disk5"
+          disk_interface = "scsi5"
+          size           = 1800
+        },
+        {
+          datastore_id   = "disk6"
+          disk_interface = "scsi6"
+          size           = 1800
+        }
+      ]
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.10.6"

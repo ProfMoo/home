@@ -197,6 +197,7 @@ spec:
       - name: &cephFileSystemName ceph-filesystem
         spec:
           metadataPool:
+            failureDomain: host
             replicated:
               size: 2
           dataPools:
