@@ -31,7 +31,7 @@ releases:
   - name: cert-manager
     namespace: cert-manager
     chart: oci://quay.io/jetstack/charts/cert-manager
-    version: v1.19.2
+    version: v1.19.3
     values: ['./values.yaml.gotmpl']
     needs: ['base/spegel']
   - name: flux-operator
