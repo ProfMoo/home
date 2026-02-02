@@ -54,7 +54,7 @@ spec:
           - 'fabric:ferrite-core'
           - 'fabric:scalablelux'
           - 'fabric:fast-ip-ping'
-          - 'fabric:modmenu'
+          # - 'fabric:modmenu'
         # Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
         downloadDependencies: required
         # The version type is used to determine the newest version to use from each project. The allowed values are: release, beta, alpha
