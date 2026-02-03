@@ -54,6 +54,7 @@ spec:
           - 'fabric:ferrite-core'
           - 'fabric:scalablelux'
           - 'fabric:fast-ip-ping'
+          # Feb 2026 - Modmenu wasn't updated to the 1.21.11 version yet. Worth trying later.
           # - 'fabric:modmenu'
         # Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
         downloadDependencies: required
