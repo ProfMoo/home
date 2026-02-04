@@ -8,3 +8,4 @@ resources:
   - ./daemon-set.yaml
   - ./service.yaml
   - ./http-route.yaml
+  - ./grafana-dashboard.yaml
