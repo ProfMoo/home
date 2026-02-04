@@ -9,3 +9,4 @@ resources:
   - ./service.yaml
   - ./http-route.yaml
   - ./grafana-dashboard.yaml
+  - ./pod-monitor.yaml
