@@ -17,6 +17,7 @@ spec:
       APP: *app
       PVC_NAME: home-assistant-blockstorage
       VOLSYNC_CAPACITY: 10Gi
+      VOLSYNC_SCHEDULE: "54 * * * *"
   path: ./kubernetes/homelab/apps/home-automation/home-assistant/app
   prune: true
   sourceRef:

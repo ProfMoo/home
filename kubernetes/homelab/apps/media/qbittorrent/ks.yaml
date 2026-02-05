@@ -17,6 +17,7 @@ spec:
       APP: *app
       PVC_NAME: qbittorrent
       VOLSYNC_CAPACITY: 5Gi
+      VOLSYNC_SCHEDULE: "15 * * * *"
   path: ./kubernetes/homelab/apps/media/qbittorrent/app
   prune: true
   sourceRef:
@@ -97,6 +98,7 @@ spec:
       APP: qui
       PVC_NAME: qui
       VOLSYNC_CAPACITY: 2Gi
+      VOLSYNC_SCHEDULE: "18 * * * *"
   prune: true
   sourceRef:
     kind: GitRepository

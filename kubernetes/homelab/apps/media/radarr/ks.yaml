@@ -17,6 +17,7 @@ spec:
       APP: *app
       PVC_NAME: radarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
+      VOLSYNC_SCHEDULE: "12 * * * *"
   path: ./kubernetes/homelab/apps/media/radarr/app
   prune: true
   sourceRef:

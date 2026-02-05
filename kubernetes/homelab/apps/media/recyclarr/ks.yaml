@@ -17,6 +17,7 @@ spec:
       APP: *app
       PVC_NAME: recyclarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
+      VOLSYNC_SCHEDULE: "42 * * * *"
   path: ./kubernetes/homelab/apps/media/recyclarr/app
   prune: true
   sourceRef:

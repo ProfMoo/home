@@ -17,6 +17,7 @@ spec:
       APP: *app
       PVC_NAME: sonarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
+      VOLSYNC_SCHEDULE: "33 * * * *"
   path: ./kubernetes/homelab/apps/media/sonarr/app
   prune: true
   sourceRef:

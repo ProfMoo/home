@@ -17,6 +17,7 @@ spec:
       APP: *app
       PVC_NAME: zwave-blockstorage
       VOLSYNC_CAPACITY: 10Gi
+      VOLSYNC_SCHEDULE: "51 * * * *"
   path: ./kubernetes/homelab/apps/home-automation/zwave/app
   prune: true
   sourceRef:

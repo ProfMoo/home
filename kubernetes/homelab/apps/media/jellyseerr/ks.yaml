@@ -17,6 +17,7 @@ spec:
       APP: *app
       PVC_NAME: jellyseerr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
+      VOLSYNC_SCHEDULE: "21 * * * *"
   path: ./kubernetes/homelab/apps/media/jellyseerr/app
   prune: true
   sourceRef:

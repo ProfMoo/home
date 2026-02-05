@@ -17,6 +17,7 @@ spec:
       APP: *app
       PVC_NAME: movary
       VOLSYNC_CAPACITY: 10Gi
+      VOLSYNC_SCHEDULE: "6 * * * *"
   path: ./kubernetes/homelab/apps/media/movary/app
   prune: true
   sourceRef:

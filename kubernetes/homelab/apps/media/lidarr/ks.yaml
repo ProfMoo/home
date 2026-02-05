@@ -17,6 +17,7 @@ spec:
       APP: *app
       PVC_NAME: lidarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
+      VOLSYNC_SCHEDULE: "39 * * * *"
   path: ./kubernetes/homelab/apps/media/lidarr/app
   prune: true
   sourceRef:
