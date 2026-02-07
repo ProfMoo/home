@@ -39,26 +39,20 @@ TotalServerShield Extended Warranty: TheServerStore Standard 90 Days (Replacemen
 ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor | grep FAN
 ```
 
-Got this command working to lower the fan:
+My actual SuperMicro settings to lower the fan:
 
 ```bash
-# Lowered the threshold
+# Lowered the threshold (ensures the BIOS doesn't think the fans are malfunctioning and cranking them up)
 ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor thresh FAN1 lower 100 100 100
 ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor thresh FAN2 lower 100 100 100
 ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor thresh FAN7 lower 100 100 100
 ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor thresh FAN8 lower 100 100 100
 
-# First zone (left two fans in front)
-ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN raw 0x30 0x70 0x66 0x01 0x00 0x11
-# Second zone (right two fans in front)
-ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN raw 0x30 0x70 0x66 0x01 0x01 0x11
-```
-
-64 in hex is 100 in decimal, so 0x64 is max fan speed value.
-
-```bash
-# Set first zone to max fan speed
-ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN raw 0x30 0x70 0x66 0x01 0x00 0x64
+# First zone (the CPU fans) - set these to about 2850RPM. Enough to cool, but not too loud.
+ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN raw 0x30 0x70 0x66 0x01 0x00 0x28
+# Second zone (the four fans in front) - these are super quiet, so we go max speed on this guy.
+# 64 in hex is 100 in decimal, so 0x64 is max fan speed value.
+ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN raw 0x30 0x70 0x66 0x01 0x01 0x64
 ```
 
 After doing this (still have old PSU and no CPU fan). Currently @ avg ~56dB on wooden ledge after a 1 minute of listening. But currently not running anything. Not sure if things will get hot either.

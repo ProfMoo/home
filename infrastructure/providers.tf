@@ -6,7 +6,7 @@ terraform {
     }
     talos = {
       source  = "siderolabs/talos"
-      version = "0.7.1"
+      version = "0.10.1"
     }
     unifi = {
       source  = "paultyng/unifi"
@@ -15,6 +15,10 @@ terraform {
     sops = {
       source  = "carlpett/sops"
       version = "1.3.0"
+    }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 4.0"
     }
   }
 

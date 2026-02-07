@@ -5,12 +5,17 @@ debug: false
 persist: true
 machine:
   type: ${node_type}
-  # The `token` is used by a machine to join the PKI of the cluster.
+  # Machine token: a shared secret used by this node to join the Talos PKI trust domain.
+  # Trustd (the Talos certificate service) validates this token before issuing the node
+  # its identity certificate. Format: 6-char.20-char random hex strings.
   token: ${token}
-  # The root certificate authority of the PKI.
+  # Talos OS CA (Ed25519) — the root of trust for the Talos API (apid/machined/trustd).
+  # talosctl client certs are signed by this CA; apid verifies them against it.
+  # Control plane nodes hold the private key so trustd can issue identity certs to
+  # other nodes joining the cluster. Workers only need the public cert.
   ca:
-    crt: ${client_ca_crt}
-    key: ${client_key}
+    crt: ${talos_ca_crt}
+    key: ${talos_ca_key}
   nodeLabels:
 %{ for key, value in kubernetes_node_labels ~}
     ${key}: ${value}
@@ -106,12 +111,22 @@ machine:
       - name: nbd
 cluster:
   clusterName: homelab
-  id: ${cluster_id} # Globally unique identifier for this cluster (base64 encoded random 32 bytes).
-  secret: ${cluster_secret} # Shared secret of cluster (base64 encoded random 32 bytes).
-  # NOTE: This is needed to join the cluster
-  # The [bootstrap token](https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/) used to join the cluster.
-  token: ${cluster_token}
-  # A key used for the [encryption of secret data at rest](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/).
+  # Cluster ID: base64-encoded 32 random bytes. A globally unique identifier for this
+  # cluster, used by the Talos discovery service to group nodes into the same cluster.
+  id: ${cluster_id}
+  # Cluster secret: base64-encoded 32 random bytes. Shared secret that nodes must
+  # present to prove cluster membership during the discovery/join process.
+  secret: ${cluster_secret}
+  # Kubernetes bootstrap token (format: [a-z0-9]{6}.[a-z0-9]{16}).
+  # Used by kubeadm-style TLS bootstrapping — kubelet presents this token to the
+  # API server to obtain its initial client certificate. Authenticates via the
+  # Bootstrap Token authenticator (token ID + secret mapped to a Secret in kube-system).
+  # See: https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/
+  token: ${bootstrap_token}
+  # Secretbox encryption key: base64-encoded 32-byte key used for Kubernetes secrets
+  # encryption at rest. The API server encrypts Secret resources in etcd using the
+  # XSalsa20-Poly1305 (secretbox) algorithm with this key, preventing plaintext
+  # storage of sensitive data. See: https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/
   secretboxEncryptionSecret: ${secretbox_encryption_secret}
   coreDNS:
     disabled: true
@@ -123,14 +138,31 @@ cluster:
     # The pod subnet CIDR.
     podSubnets: ${format("%#v",split(",",pod_subnets))}
     serviceSubnets: ${format("%#v",split(",",service_subnets))}
+  # Kubernetes CA (RSA 4096 / ECDSA P-256, depending on Talos version) — the root of
+  # trust for the entire Kubernetes control plane PKI. Signs:
+  #   - kube-apiserver serving certificate
+  #   - kubelet client certificates (via TLS bootstrapping)
+  #   - controller-manager and scheduler client certificates
+  # The API server presents a cert signed by this CA; kubectl/kubelets verify against it.
+  # Control plane nodes hold the private key; workers only need the public cert.
   ca:
-    crt: ${cluster_ca_crt}
-    key: ${cluster_ca_key}
-  # The base64 encoded aggregator certificate authority used by Kubernetes for front-proxy certificate generation.
+    crt: ${k8s_ca_crt}
+    key: ${k8s_ca_key}
+  # Front-proxy / aggregator CA (RSA 4096 / ECDSA P-256) — a separate CA used
+  # exclusively for the Kubernetes aggregation layer (API server extension).
+  # Signs the front-proxy client certificate that kube-apiserver uses when
+  # forwarding requests to extension API servers (e.g. metrics-server, custom
+  # APIServices). Extension API servers verify this cert to trust that the
+  # request was proxied by a legitimate API server.
+  # See: https://kubernetes.io/docs/tasks/extend-kubernetes/configure-aggregation-layer/
   aggregatorCA:
     crt: ${aggregator_ca_crt}
     key: ${aggregator_ca_key}
-  # The base64 encoded private key for service account token generation.
+  # Kubernetes service account signing key (RSA 4096 / ECDSA P-256).
+  # The controller-manager uses this private key to sign ServiceAccount JWTs
+  # (projected volume tokens and legacy secret-based tokens). The API server
+  # uses the corresponding public key to verify these tokens. No certificate
+  # is needed — only the asymmetric key pair matters.
   serviceAccount:
     key: ${service_account_key}
   controlPlane:
@@ -175,6 +207,11 @@ cluster:
     # Using Cilium as the proxy, so disabling kube-proxy
     disabled: true
   etcd:
+    # etcd CA (RSA 4096 / ECDSA P-256) — an independent CA dedicated to etcd's
+    # mutual TLS. Signs both the etcd server and peer certificates. Kept separate
+    # from the Kubernetes CA so that only etcd peers and the API server (as a
+    # client) can participate in etcd communication. The API server is issued a
+    # client cert from this CA to authenticate its reads/writes to etcd.
     ca:
       crt: ${etcd_ca_crt}
       key: ${etcd_ca_key}
@@ -210,6 +247,17 @@ cluster:
         kind: Namespace
         metadata:
             name: cilium
+            annotations:
+              kustomize.toolkit.fluxcd.io/prune: disabled
+            labels:
+              pod-security.kubernetes.io/enforce: "privileged"
+    # Need this namespace so that the secrets can be bootstrapped into this namespace.
+    - name: flux-system
+      contents: |-
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+            name: flux-system
             annotations:
               kustomize.toolkit.fluxcd.io/prune: disabled
             labels:

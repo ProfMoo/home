@@ -4,14 +4,14 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: &app spegel
-  namespace: &namespace base
+  namespace: &namespace kube-system
 spec:
   targetNamespace: *namespace
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   interval: 1h
-  path: ./kubernetes/homelab/apps/base/spegel/app
+  path: ./kubernetes/homelab/apps/kube-system/spegel/app
   prune: true
   retryInterval: 2m
   sourceRef:

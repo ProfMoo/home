@@ -7,3 +7,4 @@ components:
   - ../../common/all-namespaces
 resources:
   - ./coredns/ks.yaml
+  - ./spegel/ks.yaml

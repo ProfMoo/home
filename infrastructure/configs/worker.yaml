@@ -4,10 +4,17 @@ debug: false
 persist: true
 machine:
   type: ${node_type}
-  token: ${token} # The `token` is used by a machine to join the PKI of the cluster.
-  # The root certificate authority of the PKI.
+  # Machine token: a shared secret used by this node to join the Talos PKI trust domain.
+  # Trustd (the Talos certificate service) validates this token before issuing the node
+  # its identity certificate. Format: 6-char.20-char random hex strings.
+  token: ${token}
+  # Talos OS CA (Ed25519) — the root of trust for the Talos API (apid/machined/trustd).
+  # talosctl client certs are signed by this CA; apid verifies them against it.
+  # Workers only receive the public cert (key: "") so they can verify peers but
+  # cannot issue new identity certificates — only control plane nodes hold the
+  # private key (via trustd).
   ca:
-    crt: ${client_ca_crt}
+    crt: ${talos_ca_crt}
     key: ""
   nodeLabels:
 %{ for key, value in kubernetes_node_labels ~}
@@ -95,10 +102,18 @@ machine:
       - name: nbd
 cluster:
   clusterName: homelab
-  id: ${cluster_id} # Globally unique identifier for this cluster (base64 encoded random 32 bytes).
-  secret: ${cluster_secret} # Shared secret of cluster (base64 encoded random 32 bytes).
-  # NOTE: This is needed to join the cluster
-  token: ${cluster_token} # The [bootstrap token](https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/) used to join the cluster.
+  # Cluster ID: base64-encoded 32 random bytes. A globally unique identifier for this
+  # cluster, used by the Talos discovery service to group nodes into the same cluster.
+  id: ${cluster_id}
+  # Cluster secret: base64-encoded 32 random bytes. Shared secret that nodes must
+  # present to prove cluster membership during the discovery/join process.
+  secret: ${cluster_secret}
+  # Kubernetes bootstrap token (format: [a-z0-9]{6}.[a-z0-9]{16}).
+  # Used by kubeadm-style TLS bootstrapping — kubelet presents this token to the
+  # API server to obtain its initial client certificate. Authenticates via the
+  # Bootstrap Token authenticator (token ID + secret mapped to a Secret in kube-system).
+  # See: https://kubernetes.io/docs/reference/access-authn-authz/bootstrap-tokens/
+  token: ${bootstrap_token}
   controlPlane:
     endpoint: https://${talos_virtual_ip}:6443
   network:
@@ -110,8 +125,12 @@ cluster:
     serviceSubnets: ${format("%#v",split(",",service_subnets))}
   proxy:
     disabled: true
+  # Kubernetes CA (RSA 4096 / ECDSA P-256, depending on Talos version) — the root of
+  # trust for the entire Kubernetes control plane PKI. The kubelet uses this cert to
+  # verify the API server's TLS certificate when connecting. Workers only receive the
+  # public cert (key: "") — they cannot sign new K8s certificates.
   ca:
-    crt: ${cluster_ca_crt}
+    crt: ${k8s_ca_crt}
     key: ""
   # NOTE: This is needed so that Talos nodes can discover each other.
   discovery:

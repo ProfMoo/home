@@ -9,6 +9,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: spegel
+  # Values here: https://github.com/spegel-org/spegel/blob/main/charts/spegel/values.yaml
   values:
     grafanaDashboard:
       enabled: true

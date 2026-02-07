@@ -2,4 +2,8 @@
 
 terraform output -raw talosconfig >$HOME/.talos/config
 
+export TALOSCONFIG=$HOME/.talos/config
+
 terraform output -raw kubeconfig >$HOME/.kube/config
+
+export KUBECONFIG=$HOME/.kube/config

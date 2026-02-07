@@ -1,32 +1,21 @@
-module "talos_1_9_2_iso" {
+module "talos_1_11_6_iso_pve1" {
   source = "./modules/talos-iso"
 
   # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
   talos_image_datastore = "local"
 
-  talos_version = "1.9.2"
+  talos_version = "1.11.6"
   # The Proxmox node identifier for the storage location of the Talos image
   talos_image_storage_node = "pve"
 }
 
-module "talos_1_10_6_iso_pve1" {
+module "talos_1_11_6_iso_pve5" {
   source = "./modules/talos-iso"
 
   # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
   talos_image_datastore = "local"
 
-  talos_version = "1.10.6"
-  # The Proxmox node identifier for the storage location of the Talos image
-  talos_image_storage_node = "pve"
-}
-
-module "talos_1_10_6_iso_pve5" {
-  source = "./modules/talos-iso"
-
-  # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
-  talos_image_datastore = "local"
-
-  talos_version = "1.10.6"
+  talos_version = "1.11.6"
   # The Proxmox node identifier for the storage location of the Talos image
   talos_image_storage_node = "pve5"
 }
@@ -47,15 +36,15 @@ module "cluster" {
       memory                = 8096
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_10_6_iso_pve1.talos_iso_id
+      initial_boot_iso      = module.talos_1_11_6_iso_pve1.talos_iso_id
 
-      disk_size = "50"
-      datastore = "disk2"
+      disk_size = "500"
+      datastore = "pve-disk2"
 
       enable_storage_cluster = false
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.10.6"
+      talos_version      = "1.11.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
@@ -85,15 +74,15 @@ module "cluster" {
       memory                = 8096
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_10_6_iso_pve1.talos_iso_id
+      initial_boot_iso      = module.talos_1_11_6_iso_pve1.talos_iso_id
 
-      disk_size = "50"
-      datastore = "disk1"
+      disk_size = "500"
+      datastore = "pve-disk3"
 
       enable_storage_cluster = false
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.10.6"
+      talos_version      = "1.11.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
@@ -123,15 +112,15 @@ module "cluster" {
       memory                = 8096 # 8GB (of 256GB)
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve5"
-      initial_boot_iso      = module.talos_1_10_6_iso_pve5.talos_iso_id
+      initial_boot_iso      = module.talos_1_11_6_iso_pve5.talos_iso_id
 
-      disk_size = "450"
-      datastore = "disk2"
+      disk_size = "500"
+      datastore = "pve5-disk2"
 
       enable_storage_cluster = false
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.10.6"
+      talos_version      = "1.11.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
@@ -164,21 +153,21 @@ module "cluster" {
       memory                = 81920 # 80GB
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_10_6_iso_pve1.talos_iso_id
+      initial_boot_iso      = module.talos_1_11_6_iso_pve1.talos_iso_id
 
       disk_size = "500"
-      datastore = "disk3"
+      datastore = "pve-disk4"
 
       storage_disks = [
         {
-          datastore_id   = "disk5"
+          datastore_id   = "pve-disk6"
           disk_interface = "scsi2"
           size           = 1800
         }
       ]
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.10.6"
+      talos_version      = "1.11.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
@@ -209,21 +198,21 @@ module "cluster" {
       memory                = 81920 # 80GB
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_10_6_iso_pve1.talos_iso_id
+      initial_boot_iso      = module.talos_1_11_6_iso_pve1.talos_iso_id
 
       disk_size = "500"
-      datastore = "disk4"
+      datastore = "pve-disk5"
 
       storage_disks = [
         {
-          datastore_id   = "disk6"
+          datastore_id   = "pve-disk7"
           disk_interface = "scsi3"
           size           = 1800
         }
       ]
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.10.6"
+      talos_version      = "1.11.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration
@@ -244,8 +233,8 @@ module "cluster" {
         "drmoo.io/storage" : "rook-osd-node"
       }
     },
-    "worker_node_instance_4" = {
-      id                    = "1105"
+    "worker_node_instance_2" = {
+      id                    = "1102"
       name                  = "moody-good"
       description           = "Worker node instance in the Kubernetes homelab cluster"
       tags                  = ["worker-node", "kubernetes"]
@@ -253,31 +242,31 @@ module "cluster" {
       memory                = 243712 # 238GB (out of 256GB)
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve5"
-      initial_boot_iso      = module.talos_1_10_6_iso_pve5.talos_iso_id
+      initial_boot_iso      = module.talos_1_11_6_iso_pve5.talos_iso_id
 
-      disk_size = "450"
-      datastore = "disk3"
+      disk_size = "500"
+      datastore = "pve5-disk3"
 
       storage_disks = [
         {
-          datastore_id   = "disk4"
+          datastore_id   = "pve5-disk4"
           disk_interface = "scsi4"
           size           = 500
         },
         {
-          datastore_id   = "disk5"
+          datastore_id   = "pve5-disk5"
           disk_interface = "scsi5"
           size           = 1800
         },
         {
-          datastore_id   = "disk6"
+          datastore_id   = "pve5-disk6"
           disk_interface = "scsi6"
           size           = 1800
         }
       ]
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.10.6"
+      talos_version      = "1.11.6"
       kubernetes_version = "1.33.4"
 
       # External kubernetes network configuration

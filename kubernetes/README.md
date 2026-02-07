@@ -16,6 +16,14 @@ Within the `homelab` directory is all the in-cluster configuration for my homela
 
 The steps below are run after the cluster is created with Talos to start the flux-focused GitOps workflow. One the steps below are run, all the K8s cluster components and apps should install onto the cluster.
 
+### 0. Kubernetes Bootstrap
+
+If this is truly a fresh new cluster, a [Talos bootstrap](https://docs.siderolabs.com/talos/v1.11/getting-started/getting-started#step-9-bootstrap-your-etcd-cluster) is needed.
+
+```bash
+talosctl bootstrap --nodes 192.168.0.2 --endpoints 192.168.0.2 --talosconfig=./talosconfig
+```
+
 ### 1. Secrets
 
 In [this directory](./bootstrap), there are two secrets that must be applied to the cluster for flux to function properly:

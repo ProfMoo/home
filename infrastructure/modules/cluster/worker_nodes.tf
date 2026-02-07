@@ -52,12 +52,12 @@ locals {
         service_subnets  = node.service_subnets,
 
         # Secrets
-        token          = data.sops_file.talos_secrets.data["talos.machineconfig.trustdinfo.token"]
-        client_ca_crt  = data.sops_file.talos_secrets.data["talos.machineconfig.certs.k8s.crt"]
-        cluster_id     = data.sops_file.talos_secrets.data["talos.machineconfig.cluster.id"]
-        cluster_secret = data.sops_file.talos_secrets.data["talos.machineconfig.cluster.secret"]
-        cluster_token  = data.sops_file.talos_secrets.data["talos.machineconfig.secrets.bootstraptoken"]
-        cluster_ca_crt = data.sops_file.talos_secrets.data["talos.machineconfig.certs.os.crt"]
+        token           = data.sops_file.talos_secrets.data["talos.machineconfig.trustdinfo.token"]
+        k8s_ca_crt      = data.sops_file.talos_secrets.data["talos.machineconfig.certs.k8s.crt"]
+        cluster_id      = data.sops_file.talos_secrets.data["talos.machineconfig.cluster.id"]
+        cluster_secret  = data.sops_file.talos_secrets.data["talos.machineconfig.cluster.secret"]
+        bootstrap_token = data.sops_file.talos_secrets.data["talos.machineconfig.secrets.bootstraptoken"]
+        talos_ca_crt    = data.sops_file.talos_secrets.data["talos.machineconfig.certs.os.crt"]
 
         kubernetes_node_labels = node.kubernetes_node_labels
       }
