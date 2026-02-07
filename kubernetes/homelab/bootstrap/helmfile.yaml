@@ -8,7 +8,8 @@ helmDefaults:
   # We need namespaces such as `cilium` and `flux-system` to exist already.
   createNamespace: true
 # The Helmfile release here pull in the configuration directly from the HelmReleases.
-# So once this is deployed, the flux-operator will pickup the configuration from the HelmReleases.
+# So this means that the Helmfile will use the same values that the eventualy flux-operator will use.
+# Once this is deployed, the flux-operator will pickup the configuration from the HelmReleases.
 # At that point, the flux-operator will begin to manage itself.
 releases:
   - name: cilium
