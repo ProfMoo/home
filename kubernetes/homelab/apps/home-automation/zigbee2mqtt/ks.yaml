@@ -19,7 +19,16 @@ spec:
       VOLSYNC_CAPACITY: 10Gi
       VOLSYNC_SCHEDULE: "48 * * * *"
   dependsOn:
+    - name: external-secrets-stores
+      namespace: base
+    - name: rook-ceph-cluster
+      namespace: storage
     - name: mosquitto
+      namespace: home-automation
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: zigbee2mqtt
       namespace: home-automation
   path: ./kubernetes/homelab/apps/home-automation/zigbee2mqtt/app
   prune: true

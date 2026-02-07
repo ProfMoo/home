@@ -34,6 +34,11 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  dependsOn:
+    - name: external-secrets-stores
+      namespace: base
+    - name: rook-ceph-cluster
+      namespace: storage
   components:
     - ../../../../common/volsync
   postBuild:
@@ -77,6 +82,10 @@ spec:
       - kind: Secret
         name: betanin-secrets
   dependsOn:
+    - name: external-secrets-stores
+      namespace: base
+    - name: rook-ceph-cluster
+      namespace: storage
     - name: betanin-secrets
       namespace: *namespace
   prune: true
