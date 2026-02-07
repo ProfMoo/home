@@ -14,9 +14,30 @@ helmDefaults:
 releases:
   - name: cilium
     namespace: cilium
-    chart: oci://ghcr.io/home-operations/charts-mirror/cilium
-    version: 1.18.6
-    values: ['./values.yaml.gotmpl']
+    chart: oci://quay.io/cilium/charts/cilium
+    version: 1.19.0
+    values:
+      - ./values.yaml.gotmpl
+    hooks:
+      - # Wait for Cilium CRDs to be available
+        command: bash
+        args:
+          - -c
+          - until kubectl get crd ciliuml2announcementpolicies.cilium.io ciliumloadbalancerippools.cilium.io &>/dev/null; do sleep 5; done
+        events:
+          - postsync
+        showlogs: true
+      - # Apply Cilium CRs
+        command: kubectl
+        args:
+          - apply
+          - --namespace=cilium
+          - --server-side
+          - --field-manager=kustomize-controller
+          - --filename=../../../kubernetes/homelab/apps/cilium/cilium/config/l2.yaml
+        events:
+          - postsync
+        showlogs: true
   - name: coredns
     namespace: kube-system
     chart: oci://ghcr.io/coredns/charts/coredns
