@@ -40,10 +40,10 @@ There are a few components that need to installed manually before the cluster ca
 
 After the initial Talos cluster creation (with the CNI set to none), the cluster will be waiting for a CNI to be installed ([docs](https://www.talos.dev/v1.9/kubernetes-guides/network/deploying-cilium/)).
 
-To install the initial bootstrap components, use `helmfile`:
+To install the initial bootstrap components, use the bootstrap script at `bootstrap/bootstrap.sh`:
 
 ```bash
-helmfile --file kubernetes/homelab/bootstrap/helmfile.yaml apply  --skip-diff-on-install --suppress-diff
+./bootstrap.sh
 ```
 
 ## Storage
@@ -67,100 +67,6 @@ For this hyperconverged route, I might consider using [Harvester](https://github
 ## Secrets
 
 I use [`sops`](https://github.com/getsops/sops) to manage secrets in a GitOps way. There's a good overview of sops [here](https://blog.gitguardian.com/a-comprehensive-guide-to-sops/).
-
-### Secrets With Flux
-
-To properly ensure secrets are GitOps-ified and still kept secret across the wide array of apps in this repo, there are numerous methods in which an app can be supplied secrets. This section describes numerous ways to supply secrets with [Flux](https://fluxcd.io/) and [SOPS](https://github.com/mozilla/sops).
-
-_This guide will not be covering how to integrate SOPS into Flux initially (i.e. bootstrapping SOPS with Flux during initial setup). For that, check out the [Flux documentation on integrating SOPS](https://fluxcd.io/docs/guides/mozilla-sops/). This guide is also not covering [External Secrets](https://external-secrets.io/latest/), which is also used in this repository._
-
-For the first three examples, the following secret will be used:.
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-    name: application-secret
-    namespace: default
-stringData:
-    SUPER_SECRET_KEY: "SUPER SECRET VALUE"
-```
-
-#### Method 1: `envFrom`
-
-> _Use `envFrom` in a deployment or a Helm chart that supports the setting, this will pass all secret items from the secret into the containers environment._
-
-```yaml
-envFrom:
-- secretRef:
-    name: application-secret
-```
-
-View example [Helm Release](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/apps/default/home-assistant/helm-release.yaml) and corresponding [Secret](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/apps/default/home-assistant/secret.sops.yaml).
-
-#### Method 2: `env.valueFrom`
-
-> _Similar to the above but it's possible with `env` to pick an item from a secret._
-
-```yaml
-env:
-- name: WAY_COOLER_ENV_VARIABLE
-    valueFrom:
-    secretKeyRef:
-        name: application-secret
-        key: SUPER_SECRET_KEY
-```
-
-View example [Helm Release](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/apps/networking/external-dns/helm-release.yaml) and corresponding [Secret](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/apps/networking/external-dns/secret.sops.yaml).
-
-#### Method 3: `spec.valuesFrom`
-
-> _The Flux HelmRelease option `valuesFrom` can inject a secret item into the Helm values of a `HelmRelease`_
->
-> * _Does not work with merging array values_
-> * _Care needed with keys that contain dot notation in the name_
-
-```yaml
-valuesFrom:
-- targetPath: config."admin\.password"
-    kind: Secret
-    name: application-secret
-    valuesKey: SUPER_SECRET_KEY
-```
-
-View example [Helm Release](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/apps/default/emqx/helm-release.yaml) and corresponding [Secret](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/apps/default/emqx/secret.sops.yaml).
-
-#### Method 4: Variable Substitution with Flux
-
-> _Flux variable substitution can inject secrets into any YAML manifest. This requires the [Flux Kustomization](https://fluxcd.io/docs/components/kustomize/kustomization/) configured to enable [variable substitution](https://fluxcd.io/docs/components/kustomize/kustomization/#variable-substitution). Correctly configured this allows you to use `${GLOBAL_SUPER_SECRET_KEY}` in any YAML manifest._
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-    name: cluster-secrets
-    namespace: flux-system
-stringData:
-    GLOBAL_SUPER_SECRET_KEY: "GLOBAL SUPER SECRET VALUE"
-```
-
-```yaml
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-# ...
-spec:
-# ...
-decryption:
-    provider: sops
-    secretRef:
-        name: sops-age
-postBuild:
-    substituteFrom:
-    - kind: Secret
-        name: cluster-secrets
-```
-
-View example [Fluxtomization](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/flux/apps.yaml), [Helm Release](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/apps/monitoring/kube-prometheus-stack/helm-release.yaml), and corresponding [Secret](https://github.com/onedr0p/home-ops/blob/782ec8c15cacc17329aec08841380aba134794a1/cluster/config/cluster-secrets.sops.yaml).
 
 ### Kustomization Wait & DependOn
 
