@@ -64,4 +64,14 @@ spec:
       namespace: *namespace
     - name: external-secrets-bitwarden
       namespace: *namespace
+  healthChecks:
+    - apiVersion: external-secrets.io/v1
+      kind: ClusterSecretStore
+      name: bitwarden-login
+    - apiVersion: external-secrets.io/v1
+      kind: ClusterSecretStore
+      name: bitwarden-fields
+    - apiVersion: external-secrets.io/v1
+      kind: ClusterSecretStore
+      name: bitwarden-notes
   targetNamespace: *namespace

@@ -10,6 +10,11 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  dependsOn:
+    - name: external-secrets-stores
+      namespace: base
+    - name: rook-ceph-cluster
+      namespace: storage
   components:
     - ../../../../common/volsync
   postBuild:

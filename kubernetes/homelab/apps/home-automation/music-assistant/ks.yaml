@@ -7,6 +7,11 @@ metadata:
   namespace: &namespace home-automation
 spec:
   targetNamespace: *namespace
+  dependsOn:
+    - name: external-secrets-stores
+      namespace: base
+    - name: rook-ceph-cluster
+      namespace: storage
   components:
     - ../../../../common/volsync
   postBuild:
