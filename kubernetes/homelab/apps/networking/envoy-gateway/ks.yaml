@@ -12,6 +12,11 @@ spec:
   dependsOn:
     - name: certificates
       namespace: cert-manager
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: envoy-gateway
+      namespace: networking
   interval: 1h
   path: ./kubernetes/homelab/apps/networking/envoy-gateway/app
   prune: true

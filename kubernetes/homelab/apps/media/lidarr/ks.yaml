@@ -10,6 +10,16 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
+  dependsOn:
+    - name: external-secrets-stores
+      namespace: base
+    - name: rook-ceph-cluster
+      namespace: storage
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: lidarr
+      namespace: media
   components:
     - ../../../../common/volsync
   postBuild:

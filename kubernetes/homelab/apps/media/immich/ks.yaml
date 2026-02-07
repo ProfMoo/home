@@ -19,7 +19,16 @@ spec:
       VOLSYNC_CAPACITY: 10Gi
       VOLSYNC_SCHEDULE: "9 * * * *"
   dependsOn:
+    - name: external-secrets-stores
+      namespace: base
+    - name: rook-ceph-cluster
+      namespace: storage
     - name: immich-postgres
+      namespace: media
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: immich
       namespace: media
   path: ./kubernetes/homelab/apps/media/immich/app
   prune: true

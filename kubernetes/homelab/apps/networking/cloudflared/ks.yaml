@@ -15,6 +15,11 @@ spec:
       namespace: networking
     - name: external-secrets-stores
       namespace: base
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: cloudflared
+      namespace: networking
   path: ./kubernetes/homelab/apps/networking/cloudflared/app
   prune: true
   sourceRef:
