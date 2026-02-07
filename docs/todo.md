@@ -48,6 +48,8 @@
 31. [ ] Add push alerts back to my phone/somewhere. Pushover costs money, perhaps there is a self-hosted alternative?
 32. [ ] Add alert for when the CPU is getting too hot on the server rack
     1. [ ] And alerts generally
+33. [ ] Figure out a clean way to bootstrap the core 2 secrets into `kube-system`. The problem I ran into was: Create just cilium -> bootstrap secrets -> don't exist. Would be simpler.
+    1. [ ] Is it possible to automate the initial secret creation?
 
 ## July 27th, 2025
 
