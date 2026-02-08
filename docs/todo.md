@@ -42,14 +42,15 @@
     2. [ ] And [here](https://github.com/onedr0p/home-ops/pull/9793/files)
 26. [ ] Actually use Lidarr to download new music?
 27. [X] Fix kromgo
-28. [ ] Ensure flux takes over the CRDs that come from the Helmfile
+28. [X] Ensure flux takes over the CRDs that come from the Helmfile
 29. [X] Quiet fans? Link [here](https://blog.hessindustria.com/quiet-fans-on-dell-poweredge-servers-via-ipmi/)
 30. [ ] Setup alert for when my secrets aren't syncing from Bitwarden. Might need an external-secrets metrics exporter.
 31. [ ] Add push alerts back to my phone/somewhere. Pushover costs money, perhaps there is a self-hosted alternative?
 32. [ ] Add alert for when the CPU is getting too hot on the server rack
-    1. [ ] And alerts generally
+    1. [ ] And alerts generally for the hardware
 33. [ ] Figure out a clean way to bootstrap the core 2 secrets into `kube-system`. The problem I ran into was: Create just cilium -> bootstrap secrets -> don't exist. Would be simpler.
     1. [ ] Is it possible to automate the initial secret creation?
+34. [ ] Add linting/formatting to CI
 
 ## July 27th, 2025
 
