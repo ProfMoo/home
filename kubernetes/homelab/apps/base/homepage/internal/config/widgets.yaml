@@ -13,13 +13,13 @@
     # NOTE: Docs here: https://gethomepage.dev/latest/widgets/info/kubernetes/
 - kubernetes:
     cluster:
-        show: true
-        cpu: true
-        memory: true
-        showLabel: true
-        label: "cluster"
+      show: true
+      cpu: true
+      memory: true
+      showLabel: true
+      label: "cluster"
     nodes:
-        show: true
-        cpu: true
-        memory: true
-        showLabel: true
+      show: true
+      cpu: true
+      memory: true
+      showLabel: true

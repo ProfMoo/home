@@ -63,16 +63,16 @@ spec:
       # These options allow you to expose another port from the Minecraft server, plugins such
       # as dynmap (8123) and bluemap (8100) will require this for access to their web interfaces
       extraPorts:
-      - name: metrics
-        containerPort: 25585
-        protocol: TCP
-        # For some reason, the service needs to be enabled for the chart to add the port to the pod.
-        # So we use a pod monitor, but need this useless service. *shrugs*.
-        service:
-          enabled: true
-          embedded: false
-          type: ClusterIP
-          port: 25585
+        - name: metrics
+          containerPort: 25585
+          protocol: TCP
+          # For some reason, the service needs to be enabled for the chart to add the port to the pod.
+          # So we use a pod monitor, but need this useless service. *shrugs*.
+          service:
+            enabled: true
+            embedded: false
+            type: ClusterIP
+            port: 25585
     serviceAnnotations:
       mc-router.itzg.me/externalServerName: obkiddos-2.drmoo.io
       gatus.home-operations.com/endpoint: |-

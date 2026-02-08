@@ -28,7 +28,7 @@ Worker nodes occasionally become overwhelmed and go unreachable. The crash manif
 
 ### Kubelet Configuration (all workers)
 
-```
+```yaml
 system-reserved: cpu=1000m, memory=2Gi, ephemeral-storage=2Gi
 kube-reserved: cpu=1000m, memory=2Gi, ephemeral-storage=2Gi
 eviction-hard: memory.available<1Gi, nodefs.available<10%
@@ -38,7 +38,7 @@ eviction-soft-grace-period: memory.available=1m30s, nodefs.available=2m
 
 ### NFS Configuration (all workers)
 
-```
+```text
 nfsvers=4.2
 hard=True       # NFS ops block INDEFINITELY if server unreachable
 nconnect=16     # 16 concurrent NFS connections
@@ -68,7 +68,7 @@ By the time kubelet starts evicting pods, the kernel OOM killer may have already
 
 ### 3. NFS HARD MOUNTS CAN HANG THE NODE
 
-```
+```text
 hard=True
 nconnect=16
 ```
@@ -139,7 +139,7 @@ iostat -x 1 5
 
 1. **Consider percentage-based eviction thresholds** — For large-memory nodes:
 
-   ```
+   ```yaml
    eviction-hard: "memory.available<5%,nodefs.available<10%"
    eviction-soft: "memory.available<10%,nodefs.available<15%"
    ```

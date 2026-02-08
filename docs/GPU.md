@@ -110,7 +110,7 @@ reboot
 
 Add to `/etc/modules`:
 
-```
+```text
 vfio
 vfio_iommu_type1
 vfio_pci
@@ -129,7 +129,7 @@ vfio_virqfd
 
 Create `/etc/modprobe.d/blacklist-nvidia.conf`:
 
-```
+```text
 blacklist nouveau
 blacklist nvidia
 blacklist nvidia_drm
@@ -157,7 +157,7 @@ lspci -nn | grep -i nvidia
 
 Create `/etc/modprobe.d/vfio.conf`:
 
-```
+```text
 options vfio-pci ids=10de:1eb8
 ```
 
@@ -510,7 +510,7 @@ However, **on Talos**, drivers and toolkit are provided by system extensions (Ph
 
 **Why**: Consistency with your existing app deployments (like rook-ceph, reloader, etc.) makes the codebase maintainable and follows the established Flux CD patterns.
 
-```
+```text
 kubernetes/homelab/apps/base/nvidia-gpu-operator/
 ├── ks.yaml                      # Flux Kustomization - tells Flux what to deploy
 └── app/
@@ -1245,6 +1245,7 @@ kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=j
 **Causes & Solutions**:
 
 1. **ConfigMap not found**: Verify ConfigMap exists in `gpu-operator` namespace
+
    ```bash
    kubectl get configmap -n gpu-operator time-slicing-config
    ```
@@ -1252,11 +1253,13 @@ kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=j
 2. **HelmRelease missing config reference**: Check `devicePlugin.config.name` is set to `time-slicing-config`
 
 3. **Device plugin not restarted**: After creating/updating the ConfigMap, restart the device plugin:
+
    ```bash
    kubectl rollout restart daemonset -n gpu-operator nvidia-device-plugin-daemonset
    ```
 
 4. **Invalid ConfigMap format**: Check device plugin logs for parsing errors:
+
    ```bash
    kubectl logs -n gpu-operator -l app=nvidia-device-plugin-daemonset | grep -i error
    ```
@@ -1275,6 +1278,7 @@ kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=j
    - Give LLM dedicated GPU access (request all 4 replicas)
 
 3. **Monitor memory usage**:
+
    ```bash
    # Check current GPU memory from DCGM metrics
    kubectl exec -n gpu-operator $(kubectl get pod -n gpu-operator -l app=nvidia-dcgm-exporter -o name | head -1) -- dcgmi dmon -e 203 -c 1
