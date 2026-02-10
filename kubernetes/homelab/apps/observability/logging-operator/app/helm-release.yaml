@@ -53,11 +53,11 @@ spec:
           serviceMonitor: true
         resources:
           requests:
-            cpu: 500m
-            memory: 500M
+            cpu: 100m
+            memory: 128Mi
           limits:
             cpu: 1
-            memory: 1Gi
+            memory: 512Mi
       fluentd:
         metrics:
           serviceMonitor: true
@@ -65,11 +65,11 @@ spec:
           replicas: 3
         resources:
           requests:
-            cpu: 500m
-            memory: 1Gi
+            cpu: 250m
+            memory: 256Mi
           limits:
             cpu: 2
-            memory: 2Gi
+            memory: 1Gi
         bufferStorageVolume:
           pvc:
             spec:
