@@ -175,3 +175,46 @@ iostat -x 1 5
 | skrillex | worker | 16% | 26% | OK |
 
 The cluster is stable. Control plane memory pressure remains the main concern to address.
+
+---
+
+## Update (2026-02-11): INVESTIGATING — Node Isolation
+
+Node crashes are still occurring. To identify the offending workload, moody-good has been isolated using a taint so pods can be selectively added back one at a time.
+
+### Actions Taken
+
+1. **Tainted moody-good** (via `kubectl` — Talos `registerWithTaints` only applies during first node registration, so taints on existing nodes must be managed with kubectl):
+
+   ```bash
+   kubectl taint node moody-good drmoo.io/investigate=isolate:NoSchedule
+   ```
+
+2. **Uncordoned moody-good** so the custom taint is the only scheduling gate.
+
+3. **Added rook-ceph tolerations** in `kubernetes/homelab/apps/storage/rook-ceph/cluster/helm-release.yaml` so storage pods can schedule on moody-good despite the taint:
+   - `placement.all` — covers crashcollector, exporter, and other daemons without explicit placement
+   - `placement.osd` / `placement.mon` / `placement.mgr` — need their own tolerations because explicit placement overrides `all`
+
+4. **Rook pods confirmed scheduled** — mon-c, osd-0, osd-3, osd-4 now running on moody-good. Ceph cluster healthy.
+
+### Current Node State
+
+| Node | Role | CPU% | Memory% | Status |
+|------|------|------|---------|--------|
+| porter-robinson | control-plane | 29% | 57% | OK |
+| fox-stevenson | control-plane | 48% | 80% | High memory |
+| fred-again | control-plane | 15% | 69% | OK |
+| mat-zo | worker | 23% | 18% | OK |
+| moody-good | worker | 0% | 2% | Tainted — rook-ceph only |
+| skrillex | worker | 28% | 34% | OK |
+
+### Strategy
+
+Selectively add tolerations to workloads one at a time and observe stability. Once the offending workload is identified, the taint stays until the root cause is resolved.
+
+To remove the taint when the investigation is complete:
+
+```bash
+kubectl taint node moody-good drmoo.io/investigate=isolate:NoSchedule-
+```
