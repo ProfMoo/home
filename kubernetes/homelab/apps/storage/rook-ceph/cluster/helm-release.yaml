@@ -92,7 +92,18 @@ spec:
       # Only restrict storage-providing components (OSDs, mons, mgrs) to storage nodes
       # Allow CSI components on all nodes so any node can mount Ceph volumes
       placement:
+        all:
+          tolerations:
+            - key: drmoo.io/investigate
+              operator: Equal
+              value: isolate
+              effect: NoSchedule
         osd:
+          tolerations:
+            - key: drmoo.io/investigate
+              operator: Equal
+              value: isolate
+              effect: NoSchedule
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
@@ -102,6 +113,11 @@ spec:
                       values:
                         - rook-osd-node
         mon:
+          tolerations:
+            - key: drmoo.io/investigate
+              operator: Equal
+              value: isolate
+              effect: NoSchedule
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
@@ -111,6 +127,11 @@ spec:
                       values:
                         - rook-osd-node
         mgr:
+          tolerations:
+            - key: drmoo.io/investigate
+              operator: Equal
+              value: isolate
+              effect: NoSchedule
           nodeAffinity:
             requiredDuringSchedulingIgnoredDuringExecution:
               nodeSelectorTerms:
