@@ -114,3 +114,25 @@ spec:
         accessModes:
           - ReadWriteOnce
         existingClaim: minecraft-3
+    livenessProbe:
+      command:
+        - mc-health
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      failureThreshold: 20
+      successThreshold: 1
+      timeoutSeconds: 1
+    readinessProbe:
+      command:
+        - mc-health
+      initialDelaySeconds: 60
+      periodSeconds: 10
+      failureThreshold: 20
+      successThreshold: 1
+      timeoutSeconds: 1
+    startupProbe:
+      command:
+        - mc-health
+      enabled: false
+      failureThreshold: 30
+      periodSeconds: 10
