@@ -56,6 +56,7 @@ spec:
           - 'fabric:fast-ip-ping'
           - 'fabric:chunky'
           - 'fabric:c2me-fabric'
+          - 'fabric:shulkerboxtooltip'
           # Version doesn't work for some reason
           # - 'fabric:vmp-fabric'
         # Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
@@ -69,12 +70,13 @@ spec:
         existingSecret: rcon-secret-3
         secretKey: rcon-password
       # These options allow you to expose another port from the Minecraft server, plugins such
-      # as dynmap (8123) and bluemap (8100) will require this for access to their web interfaces
+      # as dynmap (8123) and metrics (25585) will require this for access to their web interfaces
       extraPorts:
         - name: metrics
           containerPort: 25585
           protocol: TCP
-          # For some reason, the service needs to be enabled for the chart to add the port to the pod.
+          # Unfortunately, the Helm chart is developed such that the service needs
+          # to be enabled for the chart to add the port to the pod.
           # So we use a pod monitor, but need this useless service. *shrugs*.
           service:
             enabled: true
@@ -84,7 +86,8 @@ spec:
         - name: dynmap
           containerPort: 8123
           protocol: TCP
-          # For some reason, the service needs to be enabled for the chart to add the port to the pod.
+          # Unfortunately, the Helm chart is developed such that the service needs
+          # to be enabled for the chart to add the port to the pod.
           # So we use a pod monitor, but need this useless service. *shrugs*.
           service:
             enabled: true
