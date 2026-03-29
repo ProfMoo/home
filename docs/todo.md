@@ -51,6 +51,7 @@
 33. [ ] Figure out a clean way to bootstrap the core 2 secrets into `kube-system`. The problem I ran into was: Create just cilium -> bootstrap secrets -> don't exist. Would be simpler.
     1. [ ] Is it possible to automate the initial secret creation?
 34. [ ] Add linting/formatting to CI
+35. [ ] Use [this](https://www.youtube.com/watch?v=kcWIX7ihUxU) smartplug in the home?
 
 ## July 27th, 2025
 

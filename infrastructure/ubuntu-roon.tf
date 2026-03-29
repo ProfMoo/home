@@ -50,32 +50,28 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
 
   # CPU Configuration - Good performance for Roon Server
   cpu {
-    cores = 3      # 4 cores for good DSP/upsampling performance
-    type  = "host" # Use host CPU type for best performance
+    cores = 3
+    type  = "host"
   }
 
-  # Memory Configuration - Plenty for Ubuntu + Roon
   memory {
     dedicated = 14336
   }
 
-  # Network Configuration for VLAN 1
   network_device {
     bridge      = "vmbr0"
     mac_address = unifi_user.ubuntu_roon.mac
     firewall    = false
-    model       = "virtio" # VirtIO for best performance
+    model       = "virtio"
   }
 
-  # Main disk for Ubuntu + Roon (imported from cloud image)
   disk {
     datastore_id = "pve4-disk1"
     file_id      = proxmox_virtual_environment_file.ubuntu_cloud_image.id
     interface    = "scsi0"
-    size         = 128 # Resize to 128GB for OS, Roon, and database
+    size         = 128
   }
 
-  # Cloud-init configuration to enable password authentication
   initialization {
     user_account {
       username = local.ubuntu_username
@@ -94,34 +90,27 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
     }
   }
 
-  # Enable QEMU guest agent for better VM management
   agent {
     enabled = true
     timeout = "1s"
   }
 
-  # Operating system type
   operating_system {
     type = "l26" # Linux
   }
 
-  # Machine type
   machine = "q35"
 
-  # Use UEFI for modern Ubuntu
   bios = "ovmf"
 
-  # EFI disk for UEFI boot
   efi_disk {
     datastore_id = "pve4-disk1"
     file_format  = "raw"
   }
 
-  # Start VM automatically - it's ready to go!
   started = true
 }
 
-# Output the VM's details
 output "ubuntu_roon_ip" {
   value       = unifi_user.ubuntu_roon.fixed_ip
   description = "IP address of the Ubuntu Roon VM"
