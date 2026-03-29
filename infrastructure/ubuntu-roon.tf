@@ -69,18 +69,10 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
 
   # Main disk for Ubuntu + Roon (imported from cloud image)
   disk {
-    datastore_id = "disk1"
+    datastore_id = "pve4-disk1"
     file_id      = proxmox_virtual_environment_file.ubuntu_cloud_image.id
     interface    = "scsi0"
     size         = 128 # Resize to 128GB for OS, Roon, and database
-  }
-
-  # I migrated Roon in Proxmos and the disk image is confusing the TF provider, forcing a recreation (which I don't wanna do right now).
-  # For now, I'll just ignore disk changes.
-  lifecycle {
-    ignore_changes = [
-      disk,
-    ]
   }
 
   # Cloud-init configuration to enable password authentication
@@ -121,7 +113,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
 
   # EFI disk for UEFI boot
   efi_disk {
-    datastore_id = "disk1"
+    datastore_id = "pve4-disk1"
     file_format  = "raw"
   }
 
