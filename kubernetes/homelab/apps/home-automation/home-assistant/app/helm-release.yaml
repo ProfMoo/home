@@ -56,7 +56,7 @@ spec:
         controller: home-assistant
         ports:
           http:
-            port: 8123
+            port: &port 8123
           code-server:
             port: 12321
     route:
@@ -78,6 +78,10 @@ spec:
           - name: envoy-internal
             namespace: networking
             sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: *port
       code-server:
         hostnames:
           - "hass-code.drmoo.io"
