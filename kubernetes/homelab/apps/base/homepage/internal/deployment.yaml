@@ -18,7 +18,7 @@ spec:
       serviceAccount: homepage-internal
       containers:
         - name: homepage
-          image: ghcr.io/gethomepage/homepage:v1.12.1
+          image: ghcr.io/gethomepage/homepage:v1.12.2
           ports:
             - containerPort: 3000
               name: homepage
