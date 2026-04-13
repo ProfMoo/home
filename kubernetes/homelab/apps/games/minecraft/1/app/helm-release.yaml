@@ -52,7 +52,7 @@ spec:
           - 'fabric:spark'
           - 'fabric:dynmap'
           - 'fabric:ferrite-core'
-          - 'fabric:scalablelux'
+          # - 'fabric:scalablelux'
           - 'fabric:fast-ip-ping'
           - 'fabric:chunky'
           - 'fabric:c2me-fabric'
