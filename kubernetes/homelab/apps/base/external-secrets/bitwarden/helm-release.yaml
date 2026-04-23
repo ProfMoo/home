@@ -17,6 +17,9 @@ spec:
         containers:
           app:
             image:
+              # NOTE: This image is no longer updated.
+              # If we update to a maintained version, ensure we don't automerge these updates - it's too risky.
+              # https://community.bitwarden.com/t/bitwarden-statement-on-checkmarx-supply-chain-incident/96127/3
               repository: ghcr.io/roxedus/bw
               tag: 2025.9.0@sha256:dbb0a965ddf57c78ab550f262b0fa90bfccd96439af87d659387897596882200
             command:
