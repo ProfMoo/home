@@ -17,3 +17,4 @@ resources:
   - ./neko/ks.yaml
   - ./homepage/ks.yaml
   - ./goldpinger/ks.yaml
+  - ./renovate/ks.yaml

@@ -8,12 +8,12 @@
     ":dependencyDashboard",
     ":semanticCommits",
     ":timezone(America/New_York)",
-    "github>ProfMoo/home//.github/renovate/autoMerge.json5",
-    "github>ProfMoo/home//.github/renovate/commitMessage.json5",
-    "github>ProfMoo/home//.github/renovate/labels.json5",
-    "github>ProfMoo/home//.github/renovate/semanticCommits.json5",
-    "github>ProfMoo/home//.github/renovate/minecraft.json5",
-    "github>ProfMoo/home//.github/renovate/grafanaDashboards.json5"
+    "github>ProfMoo/home//kubernetes/homelab/apps/base/renovate/config/autoMerge.json5",
+    "github>ProfMoo/home//kubernetes/homelab/apps/base/renovate/config/commitMessage.json5",
+    "github>ProfMoo/home//kubernetes/homelab/apps/base/renovate/config/labels.json5",
+    "github>ProfMoo/home//kubernetes/homelab/apps/base/renovate/config/semanticCommits.json5",
+    "github>ProfMoo/home//kubernetes/homelab/apps/base/renovate/config/minecraft.json5",
+    "github>ProfMoo/home//kubernetes/homelab/apps/base/renovate/config/grafanaDashboards.json5"
   ],
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "platformAutomerge": true,
