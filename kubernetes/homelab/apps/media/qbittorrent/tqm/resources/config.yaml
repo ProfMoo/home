@@ -36,7 +36,7 @@ filters:
           ) &&
           AddedDays > 60
         )
-      # More stringent rules for these trackers.
+      # More stringent rules for these trackers (they weren't covered above).
       - |
         (
           HasAnyTag(
