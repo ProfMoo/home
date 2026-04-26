@@ -23,6 +23,8 @@ spec:
           schedule: "@daily"
           successfulJobsHistory: 1
           failedJobsHistory: 1
+          backoffLimit: 2
+          ttlSecondsAfterFinished: 3600
         containers:
           app:
             image:

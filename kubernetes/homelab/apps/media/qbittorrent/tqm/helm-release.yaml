@@ -18,6 +18,8 @@ spec:
           concurrencyPolicy: Forbid
           successfulJobsHistory: 1
           failedJobsHistory: 1
+          backoffLimit: 2
+          ttlSecondsAfterFinished: 3600
         initContainers:
           retag: &container
             image:
