@@ -238,8 +238,11 @@ module "cluster" {
       name                  = "moody-good"
       description           = "Worker node instance in the Kubernetes homelab cluster"
       tags                  = ["worker-node", "kubernetes"]
-      cpu_cores             = 50     # (out of 56)
-      memory                = 243712 # 238GB (out of 256GB)
+      # Sized to fit within a single NUMA node on pve5 (dual-socket: 28 threads / 128GB per node).
+      # Leaves headroom for host overhead + fred-again (3 vCPU / 8GB) co-located on pve5.
+      # See docs/disk-investigation/numa-investigation.md for root cause.
+      cpu_cores             = 16     # was 50; max 28 threads per NUMA node
+      memory                = 102400 # 100GB; was 243712 (238GB), max ~128GB per NUMA node
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve5"
       initial_boot_iso      = module.talos_1_11_6_iso_pve5.talos_iso_id
