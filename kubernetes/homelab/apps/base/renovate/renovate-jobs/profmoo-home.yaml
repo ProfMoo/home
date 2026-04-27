@@ -32,8 +32,8 @@ spec:
     - name: RENOVATE_CONFIG_FILE
       value: kubernetes/homelab/apps/base/renovate/config/renovate.json5
     # NOTE: keep dry-run on for first reconcile, then remove
-    # - name: RENOVATE_DRY_RUN
-    #   value: "full"
+    - name: RENOVATE_DRY_RUN
+      value: "full"
     - name: DOCKERHUB_USERNAME
       valueFrom:
         secretKeyRef:
