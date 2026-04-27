@@ -3,7 +3,7 @@
 apiVersion: renovate-operator.mogenius.com/v1alpha1
 kind: RenovateJob
 metadata:
-  name: profmoo-home
+  name: profmoo
 spec:
   discoveryFilters: ["ProfMoo/home"]
   image: ghcr.io/renovatebot/renovate:43.4.3
