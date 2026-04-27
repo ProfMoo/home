@@ -11,11 +11,10 @@ spec:
   hostnames:
     - renovate.drmoo.io
   parentRefs:
-    - name: envoy-external
+    - name: envoy-internal
       namespace: networking
       sectionName: https
   rules:
     - backendRefs:
-        # NOTE: confirm svc name after first deploy: kubectl get svc -n base
         - name: renovate-operator
-          port: 8080
+          port: 8082
