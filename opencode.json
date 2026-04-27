@@ -1,13 +1,66 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "mcp__oc__kubernetes-mcp-server_*": "allow",
+    "mcp__oc__grafana_get_*": "allow",
+    "mcp__oc__grafana_list_*": "allow",
+    "mcp__oc__grafana_search_*": "allow",
+    "mcp__oc__grafana_query_*": "allow",
+    "mcp__oc__grafana_find_*": "allow",
+    "mcp__oc__grafana_fetch_*": "allow",
+    "mcp__oc__grafana_generate_deeplink": "allow",
+    "mcp__oc__prometheus_*": "allow"
+  },
   "mcp": {
     "kubernetes-mcp-server": {
       "type": "local",
       "command": [
         "npx",
         "-y",
-        "kubernetes-mcp-server@latest"
-      ]
+        "kubernetes-mcp-server@latest",
+        "--read-only"
+      ],
+      "environment": {
+        "KUBECONFIG": "/Users/drmoo/.kube/config"
+      }
+    },
+    "prometheus": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "PROMETHEUS_URL",
+        "ghcr.io/pab1it0/prometheus-mcp-server:latest"
+      ],
+      "environment": {
+        "PROMETHEUS_URL": "https://prometheus.drmoo.io"
+      }
+    },
+    "grafana": {
+      "type": "local",
+      "command": [
+        "docker",
+        "run",
+        "--rm",
+        "-i",
+        "-e",
+        "GRAFANA_URL",
+        "-e",
+        "GRAFANA_USERNAME",
+        "-e",
+        "GRAFANA_PASSWORD",
+        "grafana/mcp-grafana",
+        "-t",
+        "stdio"
+      ],
+      "environment": {
+        "GRAFANA_URL": "https://grafana.drmoo.io",
+        "GRAFANA_USERNAME": "username",
+        "GRAFANA_PASSWORD": "password"
+      }
     }
   }
 }

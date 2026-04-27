@@ -1,0 +1,56 @@
+---
+# yaml-language-server: $schema=https://kube-schemas.pages.dev/renovate-operator.mogenius.com/renovatejob_v1alpha1.json
+apiVersion: renovate-operator.mogenius.com/v1alpha1
+kind: RenovateJob
+metadata:
+  name: profmoo-home
+spec:
+  discoveryFilters: ["ProfMoo/home"]
+  image: ghcr.io/renovatebot/renovate:43.4.3
+  parallelism: 5
+  schedule: "0 * * * *"
+  provider:
+    name: github
+  secretRef: renovate-bot-auth-token
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+  webhook:
+    enabled: true
+    authentication:
+      enabled: false
+  extraEnv:
+    - name: LOG_LEVEL
+      value: debug
+    - name: RENOVATE_PLATFORM_COMMIT
+      value: "true"
+    - name: RENOVATE_AUTODISCOVER
+      value: "true"
+    - name: RENOVATE_AUTODISCOVER_FILTER
+      value: "ProfMoo/home"
+    - name: RENOVATE_CONFIG_FILE
+      value: kubernetes/homelab/apps/base/renovate/config/renovate.json5
+    # NOTE: keep dry-run on for first reconcile, then remove
+    - name: RENOVATE_DRY_RUN
+      value: "full"
+    - name: DOCKERHUB_USERNAME
+      valueFrom:
+        secretKeyRef:
+          name: docker-hub-token
+          key: DOCKERHUB_USERNAME
+    - name: DOCKERHUB_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: docker-hub-token
+          key: DOCKERHUB_TOKEN
+    - name: RENOVATE_HOST_RULES
+      value: >-
+        [
+          {
+            "hostType": "docker",
+            "matchHost": "docker.io",
+            "username": "$(DOCKERHUB_USERNAME)",
+            "password": "$(DOCKERHUB_TOKEN)"
+          }
+        ]
