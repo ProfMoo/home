@@ -52,7 +52,7 @@ spec:
         mgr:
           mgr/crash/warn_recent_interval: '7200' # 2h
         osd:
-          # NOTE: Modifying these values so that Ceph doesn't report "unhealhty" for a full day if one node goes down.
+          # NOTE: Modifying these values so that Ceph doesn't report "unhealthy" for a full day if one node goes down.
           bluestore_slow_ops_warn_lifetime: '3600' # 1h (default 86400 = 24h)
           bluestore_slow_ops_warn_threshold: '2' # (default is 1)
       crashCollector:
