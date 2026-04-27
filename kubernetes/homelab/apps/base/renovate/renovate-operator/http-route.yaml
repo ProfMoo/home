@@ -16,6 +16,6 @@ spec:
       sectionName: https
   rules:
     - backendRefs:
-        # NOTE: confirm svc name after first deploy: kubectl get svc -n renovate
+        # NOTE: confirm svc name after first deploy: kubectl get svc -n base
         - name: renovate-operator
           port: 8080
