@@ -29,8 +29,6 @@ spec:
       value: "true"
     - name: RENOVATE_AUTODISCOVER_FILTER
       value: "ProfMoo/home"
-    - name: RENOVATE_CONFIG_FILE
-      value: kubernetes/homelab/apps/base/renovate/config/renovate.json5
     # NOTE: keep dry-run on for first reconcile, then remove
     - name: RENOVATE_DRY_RUN
       value: "full"
