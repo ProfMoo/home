@@ -24,14 +24,14 @@ spec:
     - name: LOG_LEVEL
       value: debug
     - name: RENOVATE_PLATFORM_COMMIT
-      value: "true"
+      value: "enabled"
     - name: RENOVATE_AUTODISCOVER
       value: "true"
     - name: RENOVATE_AUTODISCOVER_FILTER
       value: "ProfMoo/home"
-    # NOTE: keep dry-run on for first reconcile, then remove
-    - name: RENOVATE_DRY_RUN
-      value: "full"
+    # NOTE: Can turn on dry-run for testing
+    # - name: RENOVATE_DRY_RUN
+    #   value: "full"
     - name: DOCKERHUB_USERNAME
       valueFrom:
         secretKeyRef:

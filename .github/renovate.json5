@@ -1,6 +1,6 @@
 {
   // Stub config — Renovate auto-discovers config at this path during per-repo runs.
-  // Canonical config lives under kubernetes/homelab/apps/base/renovate/config/.
+  // Full config lives under kubernetes/homelab/apps/base/renovate/config/.
   // The cluster operator clones the repo, then this stub pulls in the rest via the
   // github> preset (fetched through the GitHub API, not local filesystem).
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
