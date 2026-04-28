@@ -35,6 +35,12 @@
   "ignorePaths": [
     "**/*.sops.*"
   ],
+  // Private/3rd-party packages Renovate cannot resolve digests for.
+  // ghcr.io/waifulabs/crunchydata-vectorchord is a private GHCR package (401 anon).
+  // Cluster pulls cached copy; Renovate skips digest tracking until reachable.
+  "ignoreDeps": [
+    "ghcr.io/waifulabs/crunchydata-vectorchord"
+  ],
   "flux": {
     "fileMatch": [
       "(^|/)kubernetes/.+\\.ya?ml$"
