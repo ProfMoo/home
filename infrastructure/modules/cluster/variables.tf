@@ -62,6 +62,17 @@ variable "worker_nodes" {
       size           = number
     })), [])
 
+    # Optional QEMU machine type. PCIe passthrough requires 'q35'. Defaults to 'pc'.
+    machine_type = optional(string, "pc")
+
+    # Optional PCI passthrough devices (e.g. GPUs). Uses Proxmox resource mappings.
+    pci_devices = optional(list(object({
+      mapping = string
+      pcie    = bool
+      rombar  = bool
+      xvga    = bool
+    })), [])
+
     talos_version      = string
     kubernetes_version = string
 

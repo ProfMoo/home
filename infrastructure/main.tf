@@ -234,10 +234,10 @@ module "cluster" {
       }
     },
     "worker_node_instance_2" = {
-      id                    = "1102"
-      name                  = "moody-good"
-      description           = "Worker node instance in the Kubernetes homelab cluster"
-      tags                  = ["worker-node", "kubernetes"]
+      id          = "1102"
+      name        = "moody-good"
+      description = "GPU-enabled worker node in the Kubernetes homelab cluster (NVIDIA Tesla T4 passthrough)"
+      tags        = ["worker-node", "kubernetes", "gpu"]
       # Sized to fit within a single NUMA node on pve5 (dual-socket: 28 threads / 128GB per node).
       # Leaves headroom for host overhead + fred-again (3 vCPU / 8GB) co-located on pve5.
       # See docs/disk-investigation/numa-investigation.md for root cause.
@@ -268,6 +268,21 @@ module "cluster" {
         }
       ]
 
+      # GPU passthrough (NVIDIA Tesla T4).
+      # Requires 'q35' machine type for PCIe support.
+      # The 'tesla-t4' resource mapping must be created in Proxmox first:
+      # Datacenter > Resource Mappings > PCI Devices > Add (name: tesla-t4, node: pve5, PCIe checked).
+      # See docs/GPU.md for full setup.
+      machine_type = "q35"
+      # pci_devices = [
+      #   {
+      #     mapping = "tesla-t4"
+      #     pcie    = true
+      #     rombar  = true
+      #     xvga    = false # T4 is compute-only, no display outputs
+      #   }
+      # ]
+
       # This doesn't necessarily need to match the boot ISO.
       talos_version      = "1.11.6"
       kubernetes_version = "1.33.4"
@@ -288,6 +303,7 @@ module "cluster" {
         "drmoo.io/role" : "worker"
         "drmoo.io/zone" : "pve5"
         "drmoo.io/storage" : "rook-osd-node"
+        "drmoo.io/gpu" : "nvidia-t4"
       }
     }
   }

@@ -16,6 +16,9 @@ module "worker_nodes" {
 
   storage_disks = each.value.storage_disks
 
+  machine_type = each.value.machine_type
+  pci_devices  = each.value.pci_devices
+
   vlan_id               = each.value.vlan_id
   bridge_network_device = each.value.bridge_network_device
   ipv4_address          = each.value.ipv4_address

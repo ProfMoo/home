@@ -90,3 +90,20 @@ variable "vlan_id" {
   type        = string
   description = "The ID of the VLAN to use for the VM. This should correspond to a VLAN on the gateway of the network."
 }
+
+variable "machine_type" {
+  type        = string
+  description = "The QEMU machine type. PCIe passthrough requires 'q35'. Defaults to 'pc' for backwards compatibility with existing nodes."
+  default     = "pc"
+}
+
+variable "pci_devices" {
+  type = list(object({
+    mapping = string # Proxmox cluster-wide resource mapping name (e.g. 'tesla-t4'). Created in Datacenter > Resource Mappings.
+    pcie    = bool   # Use PCIe (true) vs legacy PCI (false). Required true for modern GPUs. Requires machine_type='q35'.
+    rombar  = bool   # Expose device option ROM to VM. Usually true.
+    xvga    = bool   # Mark as primary display adapter. False for compute GPUs (e.g. Tesla T4) with no display outputs.
+  }))
+  description = "PCI devices to pass through to the VM (e.g. GPUs). Uses Proxmox resource mappings (api_token compatible). Requires machine_type='q35' if pcie=true."
+  default     = []
+}

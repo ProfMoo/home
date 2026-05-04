@@ -38,6 +38,9 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
 
   scsi_hardware = "virtio-scsi-single"
 
+  # NOTE: Defaults to 'pc'. Override to 'q35' for nodes with PCIe passthrough.
+  machine = var.machine_type
+
   cpu {
     cores = var.cpu_cores
     type  = "x86-64-v2-AES"
@@ -89,6 +92,23 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
       interface    = disk.value.disk_interface
       size         = disk.value.size
       serial       = disk.key == 0 ? "storage_cluster_disk" : "storage_cluster_${disk.key}"
+    }
+  }
+
+  # PCI passthrough (e.g. NVIDIA GPU for moody-good).
+  # Uses Proxmox cluster-wide resource mappings (Datacenter > Resource Mappings > PCI Devices).
+  # The 'mapping' approach is required because the proxmox provider uses api_token auth;
+  # the alternative 'id' field requires root username/password.
+  # Each entry becomes hostpci0, hostpci1, ... in Proxmox config order.
+  dynamic "hostpci" {
+    for_each = var.pci_devices
+    iterator = pci
+    content {
+      device  = "hostpci${pci.key}"
+      mapping = pci.value.mapping
+      pcie    = pci.value.pcie
+      rombar  = pci.value.rombar
+      xvga    = pci.value.xvga
     }
   }
 
