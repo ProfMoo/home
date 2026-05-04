@@ -43,8 +43,10 @@ My actual SuperMicro settings to lower the fan:
 
 ```bash
 # Lowered the threshold (ensures the BIOS doesn't think the fans are malfunctioning and cranking them up)
-ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor thresh FAN1 lower 100 100 100
-ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor thresh FAN2 lower 100 100 100
+ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor thresh FAN3 lower 100 100 100
+ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor thresh FAN4 lower 100 100 100
+ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor thresh FAN5 lower 100 100 100
+ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor thresh FAN6 lower 100 100 100
 ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor thresh FAN7 lower 100 100 100
 ipmitool -H 192.168.1.187 -U ADMIN -P ADMIN sensor thresh FAN8 lower 100 100 100
 

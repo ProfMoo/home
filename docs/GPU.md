@@ -1373,3 +1373,19 @@ Consider adding a Grafana dashboard once your observability stack is stable. NVI
 - [NVIDIA Tesla T4 Specifications](https://www.nvidia.com/en-us/data-center/tesla-t4/)
 - [NVIDIA Video Codec SDK (NVENC/NVDEC)](https://developer.nvidia.com/nvidia-video-codec-sdk)
 - [NVIDIA GPU Support Matrix](https://developer.nvidia.com/video-encode-and-decode-gpu-support-matrix-new)
+
+---
+
+## Implementation
+
+```sh
+> lspci -nn | grep -i nvidia
+82:00.0 3D controller [0302]: NVIDIA Corporation TU104GL [Tesla T4] [10de:1eb8] (rev a1)
+```
+
+```sh
+82:00.0 3D controller [0302]: NVIDIA Corporation TU104GL [Tesla T4] [10de:1eb8] (rev a1)
+ Subsystem: NVIDIA Corporation TU104GL [Tesla T4] [10de:12a2]
+ Kernel driver in use: vfio-pci
+ Kernel modules: nvidiafb, nouveau
+```
