@@ -55,7 +55,8 @@ spec:
           # - 'fabric:scalablelux'
           - 'fabric:fast-ip-ping'
           - 'fabric:chunky'
-          - 'fabric:c2me-fabric'
+          # Still on 1.21.x, no 26.1.x version yet
+          # - 'fabric:c2me-fabric'
           - 'fabric:shulkerboxtooltip'
           # Version doesn't work for some reason
           # - 'fabric:vmp-fabric'
