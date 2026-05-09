@@ -50,7 +50,8 @@ spec:
           - 'fabric:lithium'
           - 'fabric:fabricexporter'
           - 'fabric:spark'
-          - 'fabric:dynmap'
+          # Still on 1.21.x, no 26.1.x version yet
+          # - 'fabric:dynmap'
           - 'fabric:ferrite-core'
           # - 'fabric:scalablelux'
           - 'fabric:fast-ip-ping'

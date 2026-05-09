@@ -43,5 +43,15 @@
                 "{\"releases\": $map($filter(versions, function($v) { $v.type = \"snapshot\"}), function($v) { {\"version\": $v.id, \"releaseTimestamp\": $v.releaseTime} }), \"sourceUrl\": \"https://minecraft.net/snapshots\", \"homepage\": \"https://minecraft.net\"}"
             ]
         }
-    }
+    },
+    "packageRules": [
+        {
+            "description": "Open one PR per file for Minecraft version updates so each server can be upgraded independently",
+            "matchDatasources": [
+                "custom.minecraft-release",
+                "custom.minecraft-snapshot"
+            ],
+            "additionalBranchPrefix": "{{packageFile}}-"
+        }
+    ]
 }
