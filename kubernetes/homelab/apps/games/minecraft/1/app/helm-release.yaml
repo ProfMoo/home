@@ -48,7 +48,8 @@ spec:
         projects:
           # Lithium - this is the server-side mod which increases performance (but tries to keep vanilla behavior)
           - 'fabric:lithium'
-          - 'fabric:fabricexporter'
+          # Still on 1.21.x, no 26.1.x version yet
+          # - 'fabric:fabricexporter'
           - 'fabric:spark'
           # Still on 1.21.x, no 26.1.x version yet
           # - 'fabric:dynmap'
