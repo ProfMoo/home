@@ -69,7 +69,7 @@ resource "proxmox_virtual_environment_vm" "ubuntu_roon" {
     datastore_id = "pve4-disk1"
     file_id      = proxmox_virtual_environment_file.ubuntu_cloud_image.id
     interface    = "scsi0"
-    size         = 128
+    size         = 512
   }
 
   initialization {
@@ -151,3 +151,7 @@ output "ubuntu_roon_password" {
 #   sudo mount -t nfs 192.168.1.26:/path/to/music /mnt/music
 # 3. Make it persistent across reboots:
 #   echo "192.168.1.26:/path/to/music /mnt/music nfs defaults 0 0" | sudo tee -a /etc/fstab
+
+# To restart Roon Server after the VM is rebooted should happen automatically, but to check:
+#   sudo systemctl status roonserver
+#   sudo journalctl -u roonserver
