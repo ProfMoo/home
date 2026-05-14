@@ -80,6 +80,13 @@ spec:
           - name: envoy-internal
             namespace: networking
             sectionName: https
+      external:
+        hostnames:
+          - "listens.drmoo.io"
+        parentRefs:
+          - name: envoy-external
+            namespace: networking
+            sectionName: https
     persistence:
       config:
         existingClaim: koito
