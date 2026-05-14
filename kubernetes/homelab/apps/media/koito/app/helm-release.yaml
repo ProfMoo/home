@@ -1,0 +1,87 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: koito
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  # NOTE: More info on this Helm chart here: https://bjw-s.github.io/helm-charts/docs/common-library/
+  # Koito docs: https://koito.io/reference/configuration/
+  values:
+    controllers:
+      koito:
+        containers:
+          app:
+            image:
+              repository: gabehf/koito
+              tag: v0.2.1@sha256:b4df05ef176f8406806cb1218fde1b8851100c249d706ed8e5f557af919ee8d6
+            env:
+              TZ: America/New_York
+              KOITO_LISTEN_PORT: &port 80
+              KOITO_DEFAULT_USERNAME: admin
+              KOITO_LOG_LEVEL: info
+              KOITO_ENABLE_STRUCTURED_LOGGING: false
+              KOITO_FORCE_TZ: America/New_York
+              KOITO_CONFIG_DIR: /etc/koito
+              KOITO_FETCH_IMAGES_DURING_IMPORT: true
+              KOITO_LASTFM_API_KEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: koito-secrets
+                    key: KOITO_LASTFM_API_KEY
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  tcpSocket:
+                    port: *port
+                  initialDelaySeconds: 10
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 1Gi
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+        runAsGroup: 0
+        fsGroup: 0
+    service:
+      app:
+        controller: koito
+        ports:
+          http:
+            port: *port
+    route:
+      app:
+        annotations:
+          gatus.home-operations.com/endpoint: |-
+            conditions: ["[STATUS] == 200"]
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: Self-hosted music tracker (admin:changeme)
+          gethomepage.dev/group: Media
+          gethomepage.dev/icon: mdi-music-circle
+          gethomepage.dev/name: Koito
+          gethomepage.dev/instance: homepage-internal
+        hostnames:
+          - "koito.drmoo.io"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+    persistence:
+      config:
+        existingClaim: koito
+        globalMounts:
+          - path: /etc/koito
