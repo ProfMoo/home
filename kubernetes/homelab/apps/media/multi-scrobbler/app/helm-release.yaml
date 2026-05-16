@@ -3,53 +3,57 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: koito
+  name: multi-scrobbler
 spec:
   interval: 30m
   chartRef:
     kind: OCIRepository
     name: app-template
   # NOTE: More info on this Helm chart here: https://bjw-s.github.io/helm-charts/docs/common-library/
-  # Koito docs: https://koito.io/reference/configuration/
-  # Last.fm exporter: https://lastfm.ghan.nl/export/
+  # Multi-scrobbler docs: https://foxxmd.github.io/multi-scrobbler/docs/configuration
   values:
     controllers:
-      koito:
+      multi-scrobbler:
+        annotations:
+          reloader.stakater.com/auto: "true"
         containers:
           app:
             image:
-              repository: gabehf/koito
-              tag: v0.2.1@sha256:b4df05ef176f8406806cb1218fde1b8851100c249d706ed8e5f557af919ee8d6
+              repository: ghcr.io/foxxmd/multi-scrobbler
+              tag: 0.13.3@sha256:aecbf754a18c2ddc5d9bcf6385316a63aeae685f4106e76c25ab9d2c26c0f550
+            envFrom:
+              - secretRef:
+                  name: multi-scrobbler-secret
             env:
               TZ: America/New_York
-              KOITO_LISTEN_PORT: &port 80
-              KOITO_DEFAULT_USERNAME: admin
-              KOITO_LOG_LEVEL: info
-              KOITO_ENABLE_STRUCTURED_LOGGING: false
-              KOITO_FORCE_TZ: America/New_York
-              KOITO_CONFIG_DIR: /etc/koito
-              KOITO_FETCH_IMAGES_DURING_IMPORT: true
-              KOITO_LASTFM_API_KEY:
-                valueFrom:
-                  secretKeyRef:
-                    name: koito-secrets
-                    key: KOITO_LASTFM_API_KEY
+              BASE_URL: https://multi-scrobbler.drmoo.io
+              PORT: &port 9078
+              LOG_LEVEL: info
+              LASTFM_REDIRECT_URI: https://multi-scrobbler.drmoo.io/lastfm/callback
+              SPOTIFY_REDIRECT_URI: https://multi-scrobbler.drmoo.io/callback
+              KOITO_URL: http://koito.media.svc.cluster.local
             probes:
               liveness: &probes
                 enabled: true
                 custom: true
                 spec:
-                  tcpSocket:
+                  httpGet:
+                    path: /health
                     port: *port
                   initialDelaySeconds: 10
                   periodSeconds: 10
-                  timeoutSeconds: 1
+                  timeoutSeconds: 3
                   failureThreshold: 3
               readiness: *probes
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 5
             resources:
               requests:
                 cpu: 10m
-                memory: 128Mi
+                memory: 256Mi
               limits:
                 memory: 1Gi
     defaultPodOptions:
@@ -60,7 +64,7 @@ spec:
         fsGroup: 0
     service:
       app:
-        controller: koito
+        controller: multi-scrobbler
         ports:
           http:
             port: *port
@@ -70,26 +74,19 @@ spec:
           gatus.home-operations.com/endpoint: |-
             conditions: ["[STATUS] == 200"]
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/description: Self-hosted music tracker (admin:changeme)
+          gethomepage.dev/description: Music scrobbler aggregator
           gethomepage.dev/group: Media
-          gethomepage.dev/icon: mdi-music-circle
-          gethomepage.dev/name: Koito
+          gethomepage.dev/icon: multi-scrobbler
+          gethomepage.dev/name: Multi-Scrobbler
           gethomepage.dev/instance: homepage-internal
         hostnames:
-          - "koito.drmoo.io"
+          - "multi-scrobbler.drmoo.io"
         parentRefs:
           - name: envoy-internal
             namespace: networking
             sectionName: https
-      external:
-        hostnames:
-          - "listens.drmoo.io"
-        parentRefs:
-          - name: envoy-external
-            namespace: networking
-            sectionName: https
     persistence:
       config:
-        existingClaim: koito
+        existingClaim: multi-scrobbler
         globalMounts:
-          - path: /etc/koito
+          - path: /config

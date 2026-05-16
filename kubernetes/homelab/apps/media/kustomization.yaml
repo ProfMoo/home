@@ -27,6 +27,7 @@ resources:
   - ./jellyfin/ks.yaml
   - ./audiobookshelf/ks.yaml
   - ./koito/ks.yaml
+  - ./multi-scrobbler/ks.yaml
   - ./wizarr/ks.yaml
   # - ./immich/ks.yaml
   # I like the idea, but I kept getting a 403 error when trying to setup the initial admin user.
