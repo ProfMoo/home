@@ -26,7 +26,7 @@ spec:
                   name: multi-scrobbler-secret
             env:
               TZ: America/New_York
-              BASE_URL: https://multi-scrobbler.drmoo.io
+              BASE_URL: https://scrobbler.drmoo.io
               PORT: &port 9078
               LOG_LEVEL: info
               KOITO_URL: http://koito.media.svc.cluster.local
@@ -78,7 +78,7 @@ spec:
           gethomepage.dev/name: Multi-Scrobbler
           gethomepage.dev/instance: homepage-internal
         hostnames:
-          - "multi-scrobbler.drmoo.io"
+          - "scrobbler.drmoo.io"
         parentRefs:
           - name: envoy-internal
             namespace: networking
