@@ -29,7 +29,6 @@ spec:
               BASE_URL: https://multi-scrobbler.drmoo.io
               PORT: &port 9078
               LOG_LEVEL: info
-              LASTFM_REDIRECT_URI: https://multi-scrobbler.drmoo.io/lastfm/callback
               KOITO_URL: http://koito.media.svc.cluster.local
             probes:
               liveness: &probes
