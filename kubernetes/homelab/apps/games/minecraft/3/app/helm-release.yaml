@@ -57,6 +57,7 @@ spec:
           - 'fabric:chunky'
           - 'fabric:c2me-fabric'
           - 'fabric:shulkerboxtooltip'
+          - 'fabric:jei'
           # Version doesn't work for some reason
           # - 'fabric:vmp-fabric'
         # Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
