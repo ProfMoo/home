@@ -21,7 +21,7 @@ spec:
           app:
             image:
               repository: ghcr.io/home-operations/home-assistant
-              tag: 2026.5.2@sha256:47ea7e614147b083a3bace4ead9cadf4d4b55ebeee4655e7c1e7ef6410229bcf
+              tag: 2026.5.3@sha256:05dc008c0bad203ee4e0845a298e0fbbbdb7a6fedab912af782746e238b1e04a
             env:
               TZ: America/New_York
             securityContext:
@@ -36,7 +36,7 @@ spec:
           code-server:
             image:
               repository: ghcr.io/coder/code-server
-              tag: 4.118.0@sha256:4aff9947c113487113201da811564fade1af5f23038b4d683998d024eebbac92
+              tag: 4.121.0@sha256:ea5f42d99998e2ba44297eca9b8a38a101e718ef54caaa41d649f6c6f1c8c71e
             args: ["--auth", "none", "--user-data-dir", "/config/.vscode", "--extensions-dir", "/config/.vscode", "--port", "12321", "/config"]
             resources:
               requests:
