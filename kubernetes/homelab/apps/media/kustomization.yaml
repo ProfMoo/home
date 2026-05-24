@@ -10,6 +10,7 @@ resources:
   - ./radarr/ks.yaml
   - ./sonarr/ks.yaml
   - ./prowlarr/ks.yaml
+  - ./profilarr/ks.yaml
   # Buildarr is currently a bit too unstable to use. Though I like the concept,
   # I haven't found a lot of success with it. I'm putting it on hold for now.
   # Last commit with Buildarr in tree: https://github.com/ProfMoo/home/tree/2404804656995085cb68e4e12afe74a035a7deb6
