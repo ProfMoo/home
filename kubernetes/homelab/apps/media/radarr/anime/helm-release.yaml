@@ -3,7 +3,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: radarr
+  name: anime-radarr
 spec:
   interval: 30m
   chartRef:
@@ -12,10 +12,9 @@ spec:
   dependsOn:
     - name: rook-ceph-cluster
       namespace: storage
-  # NOTE: More info on this Helm chart here: https://bjw-s.github.io/helm-charts/docs/common-library/
   values:
     controllers:
-      radarr:
+      anime-radarr:
         containers:
           app:
             image:
@@ -24,7 +23,7 @@ spec:
             env:
               RADARR__AUTHENTICATION_METHOD: External
               RADARR__AUTHENTICATION_REQUIRED: DisabledForLocalAddresses
-              RADARR__INSTANCE_NAME: Radarr
+              RADARR__INSTANCE_NAME: Anime Radarr
               RADARR__PORT: &port 80
               RADARR__LOG_LEVEL: info
               RADARR__THEME: dark
@@ -56,7 +55,7 @@ spec:
         fsGroup: 0
     service:
       app:
-        controller: radarr
+        controller: anime-radarr
         ports:
           http:
             port: *port
@@ -66,23 +65,23 @@ spec:
           gatus.home-operations.com/endpoint: |-
             conditions: ["[STATUS] == 200"]
           gethomepage.dev/enabled: "true"
-          gethomepage.dev/description: Movie torrent manager (admin:admin)
+          gethomepage.dev/description: Anime movie torrent manager (admin:admin)
           gethomepage.dev/group: Torrents
           gethomepage.dev/icon: radarr.png
-          gethomepage.dev/name: Radarr
+          gethomepage.dev/name: Anime Radarr
           gethomepage.dev/instance: homepage-internal
           gethomepage.dev/widget.type: "radarr"
-          gethomepage.dev/widget.url: "http://radarr.media.svc.cluster.local:80"
+          gethomepage.dev/widget.url: "http://anime-radarr.media.svc.cluster.local:80"
           gethomepage.dev/widget.key: "foobarbazfoobarbazfoobarbazfooba"
         hostnames:
-          - "radarr.drmoo.io"
+          - "anime-radarr.drmoo.io"
         parentRefs:
           - name: envoy-internal
             namespace: networking
             sectionName: https
     persistence:
       config:
-        existingClaim: radarr-blockstorage
+        existingClaim: anime-radarr-blockstorage
         globalMounts:
           - path: /config
       media:

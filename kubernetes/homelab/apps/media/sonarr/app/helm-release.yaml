@@ -61,6 +61,8 @@ spec:
     route:
       app:
         annotations:
+          gatus.home-operations.com/endpoint: |-
+            conditions: ["[STATUS] == 200"]
           gethomepage.dev/enabled: "true"
           gethomepage.dev/description: TV series torrent manager (admin:admin)
           gethomepage.dev/group: Torrents
