@@ -52,28 +52,7 @@
       "requiredStatusChecks": null,
       "minimumReleaseAge": "7 days",
       "matchUpdateTypes": [
-        "minor"
-      ]
-    },
-    {
-      "description": "qBittorrent (app-template) patch versions auto-merge immediately",
-      "prBodyNotes": [
-        "⚡ **Immediate Automerge**: Patch updates merge immediately when CI passes"
-      ],
-      "matchDatasources": [
-        "helm"
-      ],
-      "matchPackageNames": [
-        "app-template"
-      ],
-      "matchFileNames": [
-        "**/qbittorrent/**"
-      ],
-      "automerge": true,
-      "automergeType": "pr",
-      "ignoreTests": true,
-      "requiredStatusChecks": null,
-      "matchUpdateTypes": [
+        "minor",
         "patch"
       ]
     },
