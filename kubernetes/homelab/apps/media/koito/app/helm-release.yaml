@@ -74,6 +74,7 @@ spec:
           gethomepage.dev/group: Media
           gethomepage.dev/icon: mdi-music-circle
           gethomepage.dev/name: Koito
+          gethomepage.dev/app: koito
           gethomepage.dev/instance: homepage-internal
         hostnames:
           - "koito.drmoo.io"

@@ -29,7 +29,8 @@
 16. [ ] Read [this](https://blog.nfreak.tv/music-stack/) and revamp music perhaps?
 17. [X] Replace ingress with Gateway API
 18. [X] For k8s 1.34 upgrade, check [this message](https://discord.com/channels/673534664354430999/942576972943491113/1410643392785944708).
-19. [ ] Setup automatic transcoding for Jellyfin videos.
+19. [X] ~~Setup automatic transcoding for Jellyfin videos.~~
+    1. Won't actually do this. Instead, I've been working on downloading videos that work well on my streamer.
 20. [ ] Move ALL STORAGE to Ceph -> bye bye TrueNAS.
     1. [X] Finally figure out why some of the PGs won't replicate to the 3rd instance :thinking:
 21. [ ] Add NUT monitoring to my power sources
