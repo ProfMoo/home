@@ -63,6 +63,7 @@ spec:
         annotations:
           gatus.home-operations.com/endpoint: |-
             conditions: ["[STATUS] == 404"]
+            path: /foobar
         hostnames:
           - kromgo.drmoo.io
         parentRefs:
