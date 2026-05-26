@@ -12,6 +12,7 @@ metadata:
     gethomepage.dev/icon: minecraft
     gethomepage.dev/name: "OBKiddos 3 Dynmap"
     gethomepage.dev/app: minecraft-3
+    gethomepage.dev/pod-selector: app.kubernetes.io/instance=minecraft-3
     gethomepage.dev/instance: homepage-external
 spec:
   parentRefs:
