@@ -28,7 +28,7 @@ metadata:
   name: renovate-webhook
   annotations:
     gatus.home-operations.com/endpoint: |-
-      conditions: ["[STATUS] == 405"]
+      conditions: ["[STATUS] == 401"]
 spec:
   hostnames:
     - renovate-webhook.drmoo.io

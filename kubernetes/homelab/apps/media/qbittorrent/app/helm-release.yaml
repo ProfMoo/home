@@ -130,6 +130,3 @@ spec:
         existingClaim: qbittorrent
         globalMounts:
           - path: /config
-      qbrr:
-        type: image
-        image: ghcr.io/buroa/qbrr:0.1.5@sha256:7dcb8ff9940502f7222ed969db714cb1903181391d45bb6212ffd50ac2d2b629
