@@ -9,6 +9,8 @@ spec:
   path: ./kubernetes/homelab/apps/observability/kube-prometheus-stack/app
   targetNamespace: *namespace
   dependsOn:
+    - name: ntfy
+      namespace: observability
     - name: rook-ceph-cluster
       namespace: storage
   healthChecks:

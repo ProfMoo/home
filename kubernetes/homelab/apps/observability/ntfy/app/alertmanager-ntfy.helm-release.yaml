@@ -1,0 +1,51 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: alertmanager-ntfy
+spec:
+  interval: 1h
+  dependsOn:
+    - name: ntfy
+  chart:
+    spec:
+      chart: alertmanager-ntfy
+      version: 0.1.2
+      sourceRef:
+        kind: HelmRepository
+        name: alertmanager-ntfy
+        namespace: flux-system
+  values:
+    config:
+      http:
+        addr: :8000
+        auth:
+          username: alertmanager
+          password: verysecure
+      ntfy:
+        baseurl: http://ntfy.observability.svc.cluster.local
+        notification:
+          topic: alertmanager
+          priority: |
+            status == "firing" ? "urgent" : "default"
+          tags:
+            - tag: "+1"
+              condition: status == "resolved"
+            - tag: rotating_light
+              condition: status == "firing"
+          templates:
+            title: |
+              {{ if eq .Status "resolved" }}Resolved: {{ end }}{{ if index .Annotations "summary" }}{{ index .Annotations "summary" }}{{ else }}{{ index .Labels "alertname" }}{{ end }}
+            description: |
+              {{ if index .Annotations "description" }}{{ index .Annotations "description" }}{{ else if index .Annotations "summary" }}{{ index .Annotations "summary" }}{{ else }}Alert description not available{{ end }}
+            headers:
+              X-Click: |
+                {{ .GeneratorURL }}
+      async: false
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        memory: 128Mi

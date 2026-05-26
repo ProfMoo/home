@@ -25,7 +25,7 @@ spec:
           - name: alertname
             value: Watchdog
             matchType: =
-      - receiver: pushover
+      - receiver: ntfy
         matchers:
           - name: severity
             value: critical
@@ -50,39 +50,12 @@ spec:
         - urlSecret:
             name: &secret alertmanager-secret
             key: ALERTMANAGER_HEARTBEAT_URL
-    - name: pushover
-      pushoverConfigs:
-        - html: true
-          message: |-
-            {{- range .Alerts }}
-              {{- if ne .Annotations.description "" }}
-                {{ .Annotations.description }}
-              {{- else if ne .Annotations.summary "" }}
-                {{ .Annotations.summary }}
-              {{- else if ne .Annotations.message "" }}
-                {{ .Annotations.message }}
-              {{- else }}
-                Alert description not available
-              {{- end }}
-              {{- if gt (len .Labels.SortedPairs) 0 }}
-                <small>
-                  {{- range .Labels.SortedPairs }}
-                    <b>{{ .Name }}:</b> {{ .Value }}
-                  {{- end }}
-                </small>
-              {{- end }}
-            {{- end }}
-          priority: |-
-            {{ if eq .Status "firing" }}1{{ else }}0{{ end }}
-          sendResolved: true
-          sound: gamelan
-          title: >-
-            [{{ .Status | toUpper }}{{ if eq .Status "firing" }}:{{ .Alerts.Firing | len }}{{ end }}] {{ .CommonLabels.alertname }}
-          ttl: 86400s
-          token:
-            name: *secret
-            key: ALERTMANAGER_PUSHOVER_TOKEN
-          userKey:
-            name: *secret
-            key: PUSHOVER_USER_KEY
-          urlTitle: View in Alertmanager
+    - name: ntfy
+      webhookConfigs:
+        - url: http://alertmanager-ntfy.observability.svc.cluster.local:8000/hook
+          httpConfig:
+            basicAuth:
+              username: alertmanager
+              password:
+                name: *secret
+                key: ALERTMANAGER_NTFY_WEBHOOK_PASSWORD
