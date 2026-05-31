@@ -1,4 +1,4 @@
-FROM sentriz/betanin:v0.6.2
+FROM sentriz/betanin:v0.6.3
 
 WORKDIR /src
 
