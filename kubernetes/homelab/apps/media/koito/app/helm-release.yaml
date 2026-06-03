@@ -19,7 +19,7 @@ spec:
           app:
             image:
               repository: gabehf/koito
-              tag: v0.3.1@sha256:96bf8f71b9bf7fd6b7382882722ad593e41e51128948ebe55777308f66c17e8a
+              tag: v0.3.2@sha256:3011de405ba2a5c56270928c2b0391add8aa3b3ed68363531b3c64b61f238857
             env:
               TZ: America/New_York
               KOITO_LISTEN_PORT: &port 80
