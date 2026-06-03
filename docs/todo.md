@@ -53,6 +53,8 @@
     1. [ ] Is it possible to automate the initial secret creation?
 34. [ ] Add linting/formatting to CI
 35. [ ] Use [this](https://www.youtube.com/watch?v=kcWIX7ihUxU) smartplug in the home?
+36. [ ] Apparently tuppr might not work because I spread out the volsync so much that there is never an open window. Fix that
+37. [ ] Ensure Rook breaking changes in 1.20 still work for me. <https://rook.github.io/docs/rook/v1.20/Upgrade/rook-upgrade/#supported-versions>
 
 ## July 27th, 2025
 
