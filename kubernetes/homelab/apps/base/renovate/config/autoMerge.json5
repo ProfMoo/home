@@ -134,6 +134,29 @@
       ]
     },
     {
+      "description": "Rook/Ceph versions require 14 days before auto-merge",
+      "prBodyNotes": [
+        "⏳ **Delayed Automerge**: This Rook/Ceph update will auto-merge after 14 days to allow for soak time",
+        "📅 **Merge Date**: {{#if mergeDate}}{{mergeDate}}{{else}}14 days from PR creation{{/if}}"
+      ],
+      "matchManagers": [
+        "flux"
+      ],
+      "matchPackagePatterns": [
+        "^ghcr\\.io/rook/rook-ceph$",
+        "^ghcr\\.io/rook/rook-ceph-cluster$"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "ignoreTests": true,
+      "requiredStatusChecks": null,
+      "minimumReleaseAge": "14 days",
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ]
+    },
+    {
       "description": "Auto-merge Flux HelmRelease chart updates for patch and minor versions",
       "matchManagers": [
         "flux"
