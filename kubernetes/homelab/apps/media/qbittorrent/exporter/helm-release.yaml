@@ -16,7 +16,7 @@ spec:
           app:
             image:
               repository: ghcr.io/martabal/qbittorrent-exporter
-              tag: v1.13.4@sha256:b7360b87bcbe0982e1784a6e341d9cf00137795803eac4fe9f8dd9f813d72fb6
+              tag: v2.0.1@sha256:ddf2bff9b357e50be4ddb699b6489ac5a49e4fac8c7dc5d4ca2abe1e5855f4dd
             env:
               QBITTORRENT_BASE_URL: http://qbittorrent.media.svc.cluster.local:8080
               QBITTORRENT_USERNAME: "admin"
