@@ -17,7 +17,7 @@ spec:
       APP: *app
       PVC_NAME: zigbee2mqtt-blockstorage
       VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_SCHEDULE: "48 * * * *"
+      VOLSYNC_SCHEDULE: "6 * * * *"
   dependsOn:
     - name: external-secrets-stores
       namespace: base

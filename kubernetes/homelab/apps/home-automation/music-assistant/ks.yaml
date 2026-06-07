@@ -24,7 +24,7 @@ spec:
       APP: *app
       PVC_NAME: music-assistant
       VOLSYNC_CAPACITY: 5Gi
-      VOLSYNC_SCHEDULE: "57 * * * *"
+      VOLSYNC_SCHEDULE: "5 * * * *"
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app

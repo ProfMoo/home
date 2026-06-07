@@ -27,7 +27,7 @@ spec:
       APP: *app
       PVC_NAME: koito
       VOLSYNC_CAPACITY: 15Gi
-      VOLSYNC_SCHEDULE: "42 * * * *"
+      VOLSYNC_SCHEDULE: "2 * * * *"
   path: ./kubernetes/homelab/apps/media/koito/app
   prune: true
   sourceRef:

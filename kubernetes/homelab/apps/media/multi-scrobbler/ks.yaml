@@ -27,7 +27,7 @@ spec:
       APP: *app
       PVC_NAME: multi-scrobbler
       VOLSYNC_CAPACITY: 5Gi
-      VOLSYNC_SCHEDULE: "48 * * * *"
+      VOLSYNC_SCHEDULE: "3 * * * *"
   path: ./kubernetes/homelab/apps/media/multi-scrobbler/app
   prune: true
   sourceRef:

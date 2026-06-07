@@ -27,7 +27,7 @@ spec:
       APP: *app
       PVC_NAME: wizarr
       VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_SCHEDULE: "3 * * * *"
+      VOLSYNC_SCHEDULE: "0 * * * *"
   path: ./kubernetes/homelab/apps/media/wizarr/app
   prune: true
   sourceRef:

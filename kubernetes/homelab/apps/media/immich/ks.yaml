@@ -17,7 +17,7 @@ spec:
       APP: *app
       PVC_NAME: immich-cache
       VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_SCHEDULE: "9 * * * *"
+      VOLSYNC_SCHEDULE: "2 * * * *"
   dependsOn:
     - name: external-secrets-stores
       namespace: base

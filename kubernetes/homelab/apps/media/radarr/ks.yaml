@@ -27,7 +27,7 @@ spec:
       APP: *app
       PVC_NAME: radarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_SCHEDULE: "12 * * * *"
+      VOLSYNC_SCHEDULE: "3 * * * *"
   path: ./kubernetes/homelab/apps/media/radarr/app
   prune: true
   sourceRef:
@@ -67,7 +67,7 @@ spec:
       APP: anime-radarr
       PVC_NAME: anime-radarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_SCHEDULE: "13 * * * *"
+      VOLSYNC_SCHEDULE: "4 * * * *"
   path: ./kubernetes/homelab/apps/media/radarr/anime
   prune: true
   sourceRef:

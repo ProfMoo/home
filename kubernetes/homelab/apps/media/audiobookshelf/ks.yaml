@@ -27,7 +27,7 @@ spec:
       APP: *app
       PVC_NAME: audiobookshelf
       VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_SCHEDULE: "24 * * * *"
+      VOLSYNC_SCHEDULE: "8 * * * *"
   path: ./kubernetes/homelab/apps/media/audiobookshelf/app
   prune: true
   sourceRef:

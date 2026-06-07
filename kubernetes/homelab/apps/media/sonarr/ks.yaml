@@ -27,7 +27,7 @@ spec:
       APP: *app
       PVC_NAME: sonarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_SCHEDULE: "33 * * * *"
+      VOLSYNC_SCHEDULE: "11 * * * *"
   path: ./kubernetes/homelab/apps/media/sonarr/app
   prune: true
   sourceRef:
@@ -67,7 +67,7 @@ spec:
       APP: anime-sonarr
       PVC_NAME: anime-sonarr-blockstorage
       VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_SCHEDULE: "34 * * * *"
+      VOLSYNC_SCHEDULE: "12 * * * *"
   path: ./kubernetes/homelab/apps/media/sonarr/anime
   prune: true
   sourceRef:

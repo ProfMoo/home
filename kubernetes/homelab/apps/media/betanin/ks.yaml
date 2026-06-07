@@ -46,7 +46,7 @@ spec:
       APP: *app
       PVC_NAME: beets-blockstorage
       VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_SCHEDULE: "27 * * * *"
+      VOLSYNC_SCHEDULE: "9 * * * *"
   path: ./kubernetes/homelab/apps/media/betanin/beets-pvc
   prune: true
   sourceRef:
@@ -77,7 +77,7 @@ spec:
       APP: *app
       PVC_NAME: betanin-blockstorage
       VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_SCHEDULE: "30 * * * *"
+      VOLSYNC_SCHEDULE: "10 * * * *"
     substituteFrom:
       - kind: Secret
         name: betanin-secrets

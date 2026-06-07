@@ -27,7 +27,7 @@ spec:
       APP: *app
       PVC_NAME: navidrome
       VOLSYNC_CAPACITY: 10Gi
-      VOLSYNC_SCHEDULE: "36 * * * *"
+      VOLSYNC_SCHEDULE: "13 * * * *"
   path: ./kubernetes/homelab/apps/media/navidrome/app
   prune: true
   sourceRef:
