@@ -28,7 +28,8 @@
         "ghcr.io/kashalls/kromgo",
         "ghcr.io/twin/gatus",
         "ghcr.io/zwave-js/zwave-js-ui",
-        "ghcr.io/coder/code-server"
+        "ghcr.io/coder/code-server",
+        "ghcr.io/dictionarry-hub/profilarr"
       ]
     },
     {
