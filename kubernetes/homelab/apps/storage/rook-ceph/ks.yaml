@@ -35,6 +35,36 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
+  name: &app ceph-csi-drivers
+  namespace: &namespace storage
+spec:
+  targetNamespace: *namespace
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  dependsOn:
+    - name: rook-ceph-operator
+      namespace: *namespace
+  healthChecks:
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
+      name: ceph-csi-drivers
+      namespace: *namespace
+  interval: 1h
+  path: ./kubernetes/homelab/apps/storage/rook-ceph/csi-drivers
+  prune: true
+  wait: false
+  retryInterval: 2m
+  sourceRef:
+    kind: GitRepository
+    name: profmoo-home
+    namespace: flux-system
+  timeout: 5m
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
   name: &app rook-ceph-cluster
   namespace: &namespace storage
 spec:
@@ -43,6 +73,8 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
+    - name: ceph-csi-drivers
+      namespace: *namespace
     - name: rook-ceph-operator
       namespace: *namespace
     - name: volsync

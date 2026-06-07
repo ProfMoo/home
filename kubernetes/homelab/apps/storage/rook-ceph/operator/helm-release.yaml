@@ -14,11 +14,6 @@ spec:
   # https://github.com/rook/rook/blob/master/deploy/charts/rook-ceph/values.yaml
   values:
     csi:
-      cephFSKernelMountOptions: ms_mode=prefer-crc
-      # NOTE: Enable the driver and shapshotter if you want to use CephFS
-      enableCephfsDriver: true
-      enableCephfsSnapshotter: true
-      enableLiveness: true
       serviceMonitor:
         enabled: true
     enableDiscoveryDaemon: true
