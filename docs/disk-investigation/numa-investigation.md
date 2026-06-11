@@ -138,11 +138,13 @@ moody-good is too large to be placed on one node, so it cannot benefit.
 ## What's documented vs. inferred
 
 **Documented** (cite-able):
+
 - Proxmox wiki on NUMA: a VM larger than one host NUMA node should have
   `numa: 1` or it will pay cross-socket costs.
 - QEMU and RHEL virtualization tuning guides say the same.
 
 **Inferred** (pattern-matched from stack traces):
+
 - That cross-NUMA contention is severe enough to specifically trigger
   `rcu_sched` stalls in the patterns we observed. There is no upstream kernel
   bug or fix to point at; this is a scalability/locality issue, not a defect.

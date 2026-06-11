@@ -46,6 +46,7 @@ spec:
       value: >-
         [
 
+
           {
             "hostType": "docker",
             "matchHost": "docker.io",
