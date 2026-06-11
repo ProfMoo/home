@@ -138,8 +138,8 @@ spec:
           runAsNonRoot: true
           runAsUser: 64535
         replicas: 1
-        retention: 4d
-        retentionSize: 50GB
+        retention: 14d
+        retentionSize: 100GB
         ruleSelectorNilUsesHelmValues: false
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
@@ -163,7 +163,7 @@ spec:
               storageClassName: ceph-block-ephemeral
               resources:
                 requests:
-                  storage: 60Gi
+                  storage: 120Gi
     additionalPrometheusRulesMap:
       dockerhub-rules:
         groups:

@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - ./helm-release.yaml
   - ./grafana-dashboard.yaml
+  - ./prometheus-rule.yaml
 configMapGenerator:
   - name: idrac-configmap
     files:

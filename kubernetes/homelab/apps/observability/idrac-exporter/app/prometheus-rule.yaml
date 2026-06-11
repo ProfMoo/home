@@ -1,0 +1,46 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/prometheusrule_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: idrac-exporter-rules
+spec:
+  groups:
+    - name: idrac-exporter.rules
+      rules:
+        - alert: IDRACSystemHighTemperature
+          expr: |-
+            idrac_sensors_temperature{job="idrac-exporter",name="System Temp"} > 42
+          for: 10m
+          annotations:
+            summary: >-
+              iDRAC system temperature for {{ $labels.instance }} is higher than 42C
+          labels:
+            severity: critical
+        - alert: IDRACCPUHighTemperature
+          expr: |-
+            idrac_sensors_temperature{job="idrac-exporter",name=~"CPU[0-9]+ Temp"} > 75
+          for: 10m
+          annotations:
+            summary: >-
+              iDRAC CPU sensor {{ $labels.name }} for {{ $labels.instance }} is higher than 75C
+          labels:
+            severity: critical
+        - alert: IDRACComponentHighTemperature
+          expr: |-
+            idrac_sensors_temperature{job="idrac-exporter",name!~"CPU[0-9]+ Temp|System Temp"} > 80
+          for: 10m
+          annotations:
+            summary: >-
+              iDRAC component sensor {{ $labels.name }} for {{ $labels.instance }} is higher than 80C
+          labels:
+            severity: critical
+        - alert: IDRACTemperatureMetricsMissing
+          expr: |-
+            absent(idrac_sensors_temperature{job="idrac-exporter"})
+          for: 10m
+          annotations:
+            summary: >-
+              iDRAC temperature metrics are missing
+          labels:
+            severity: critical
