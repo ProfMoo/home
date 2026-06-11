@@ -1,0 +1,16 @@
+---
+repos:
+  - repo: local
+    hooks:
+      - id: format
+        name: Format files
+        entry: task f:format
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: lint
+        name: Lint files
+        entry: task l:lint
+        language: system
+        pass_filenames: false
+        always_run: true
