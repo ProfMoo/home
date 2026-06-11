@@ -43,11 +43,8 @@ spec:
           name: docker-hub-token
           key: DOCKERHUB_TOKEN
     - name: RENOVATE_HOST_RULES
-      value: >-
+      value: |-
         [
-
-
-
           {
             "hostType": "docker",
             "matchHost": "docker.io",
