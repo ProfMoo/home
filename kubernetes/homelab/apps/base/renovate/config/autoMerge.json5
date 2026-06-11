@@ -29,7 +29,8 @@
         "ghcr.io/zwave-js/zwave-js-ui",
         "ghcr.io/coder/code-server",
         "ghcr.io/dictionarry-hub/profilarr",
-        "ghcr.io/valkey-io"
+        "ghcr.io/valkey-io",
+        "mirror.gcr.io/envoyproxy/envoy"
       ]
     },
     {
