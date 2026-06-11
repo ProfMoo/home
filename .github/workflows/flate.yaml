@@ -1,19 +1,15 @@
 ---
 # yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
 name: Flate
-
 on:
   pull_request:
     branches:
       - master
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: true
-
 permissions:
   contents: read
-
 jobs:
   filter:
     name: Flate - Filter
@@ -26,7 +22,6 @@ jobs:
         uses: bjw-s-labs/action-changed-files@a9a36fb08ce06db9b02fbd8026cc2c0945eb9841 # v0.6.0
         with:
           patterns: kubernetes/**/*
-
   flate:
     if: ${{ needs.filter.outputs.changed-files != '[]' }}
     needs: filter
@@ -44,21 +39,18 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-
       - name: Setup Mise
         uses: jdx/mise-action@dba19683ed58901619b14f395a24841710cb4925 # v4.1.0
         with:
           cache: false
           tool_versions: |
             github:home-operations/flate latest
-
       - name: Run flate diff
         env:
           KIND: ${{ matrix.kind }}
         run: |
           flate diff "$KIND" --path ./kubernetes/homelab/repo --output github > "$KIND.diff"
           [ -s "$KIND.diff" ] || rm "$KIND.diff"
-
       - if: ${{ hashFiles(format('{0}.diff', matrix.kind)) != '' }}
         name: Upload diff
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -66,7 +58,6 @@ jobs:
           name: flate-diff-${{ matrix.kind }}
           path: ${{ matrix.kind }}.diff
           retention-days: 1
-
   comment:
     if: ${{ !cancelled() && needs.flate.result != 'skipped' }}
     needs: flate
@@ -81,7 +72,6 @@ jobs:
         with:
           pattern: flate-diff-*
           merge-multiple: true
-
       - if: ${{ hashFiles('helmrelease.diff', 'kustomization.diff') != '' }}
         name: Generate Token
         uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
@@ -90,7 +80,6 @@ jobs:
           app-id: "${{ secrets.RENOVATE_APP_ID }}"
           private-key: "${{ secrets.RENOVATE_APP_PRIVATE_KEY }}"
           permission-pull-requests: write
-
       - if: ${{ hashFiles('helmrelease.diff', 'kustomization.diff') != '' }}
         name: Add or Update Comment
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
@@ -155,7 +144,6 @@ jobs:
             } else {
               await github.rest.issues.createComment({ owner, repo, issue_number, body });
             }
-
   success:
     if: ${{ !cancelled() }}
     needs:
@@ -167,7 +155,6 @@ jobs:
       - name: Any jobs failed?
         if: ${{ contains(needs.*.result, 'failure') }}
         run: exit 1
-
       - name: All jobs passed or skipped?
         if: ${{ !(contains(needs.*.result, 'failure')) }}
         run: echo "All jobs passed or skipped" && echo "${{ toJSON(needs.*.result) }}"

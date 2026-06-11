@@ -45,6 +45,7 @@ spec:
     - name: RENOVATE_HOST_RULES
       value: >-
         [
+
           {
             "hostType": "docker",
             "matchHost": "docker.io",
