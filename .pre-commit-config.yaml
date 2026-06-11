@@ -18,6 +18,8 @@ repos:
       - id: check-toml
       - id: check-yaml
       - id: end-of-file-fixer
+        # TODO: Remove once I figure out a better way to handle this
+        # They are mandatory empty YAML, which confuses the YAML formatter and the end-of-file-fixer
         exclude: >-
           ^kubernetes/homelab/apps/base/homepage/(external/config/(bookmarks|docker)|internal/config/docker)\.yaml$
       - id: trailing-whitespace
