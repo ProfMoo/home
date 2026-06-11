@@ -9,6 +9,7 @@ exclude:
   # until Terraform does some pre-processing
   - "infrastructure/configs/worker.yaml"
   - "infrastructure/configs/controlplane.yaml"
+  - "infrastructure/nodes/**/*.yaml"
 formatter:
   type: basic
   include_document_start: true
