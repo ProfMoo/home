@@ -12,10 +12,8 @@ resources:
 configMapGenerator:
   - name: homepage-internal-config
     files:
-      - bookmarks.yaml=./config/bookmarks.yaml
       - custom.css=./config/custom.css
       - custom.js=./config/custom.js
-      - docker.yaml=./config/docker.yaml
       - kubernetes.yaml=./config/kubernetes.yaml
       - proxmox.yaml=./config/proxmox.yaml
       - services.yaml=./config/services.yaml
