@@ -1,0 +1,9 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/configmap_v1.json
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: minecraft-2-bluemap
+data:
+  core.conf: |-
+    accept-download: true

@@ -10,7 +10,7 @@ metadata:
     gethomepage.dev/description: Minecraft 3
     gethomepage.dev/group: Games
     gethomepage.dev/icon: minecraft
-    gethomepage.dev/name: "OBKiddos 3 Dynmap"
+    gethomepage.dev/name: "OBKiddos 3 BlueMap"
     gethomepage.dev/app: minecraft-3
     gethomepage.dev/pod-selector: app.kubernetes.io/instance=minecraft-3
     gethomepage.dev/instance: homepage-external
@@ -23,5 +23,5 @@ spec:
     - obkiddos-3-map.drmoo.io
   rules:
     - backendRefs:
-        - name: minecraft-3-dynmap
-          port: 8123
+        - name: minecraft-3-bluemap
+          port: 8100

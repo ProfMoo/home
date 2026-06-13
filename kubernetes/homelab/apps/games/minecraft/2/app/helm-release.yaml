@@ -20,6 +20,16 @@ spec:
         cpu: 4000m
     workloadAsStatefulSet: true
     strategyType: RollingUpdate
+    extraVolumes:
+      - volumeMounts:
+          - name: bluemap-config
+            mountPath: /data/config/bluemap/core.conf
+            subPath: core.conf
+            readOnly: true
+        volumes:
+          - name: bluemap-config
+            configMap:
+              name: minecraft-2-bluemap
     minecraftServer:
       # NOTE: This tells the container to override the server.properties file on disk. Be careful with this.
       overrideServerProperties: true
@@ -27,7 +37,7 @@ spec:
       eula: "TRUE"
       # One of: LATEST, SNAPSHOT, or a specific version (ie: "1.7.9").
       # renovate: datasource=custom.minecraft-release
-      version: 1.21.11
+      version: "26.1.2"
       # This can be one of "VANILLA", "FORGE", "SPIGOT", "BUKKIT", "PAPER", "FTBA", "SPONGEVANILLA", "CURSEFORGE", etc.
       type: "FABRIC"
       # One of: peaceful, easy, normal, and hard
@@ -48,17 +58,18 @@ spec:
         projects:
           # Lithium - this is the server-side mod which increases performance (but tries to keep vanilla behavior)
           - 'fabric:lithium'
-          - 'fabric:fabricexporter'
+          - 'fabric:fabricexporter:l5Bq2Y09'
           - 'fabric:spark'
-          - 'fabric:dynmap'
+          - 'fabric:bluemap'
           - 'fabric:ferrite-core'
           - 'fabric:scalablelux'
           - 'fabric:fast-ip-ping'
           - 'fabric:chunky'
-          - 'fabric:c2me-fabric'
+          # 26.1.x version is still not in 'release' channel, so we use the alpha channel for now
+          - 'fabric:c2me-fabric:alpha'
           - 'fabric:shulkerboxtooltip'
-          # Version doesn't work for some reason
-          # - 'fabric:vmp-fabric'
+          # 26.1.x version is still not in 'release' channel, so we use the alpha channel for now
+          - 'fabric:vmp-fabric:alpha'
         # Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
         downloadDependencies: required
         # The version type is used to determine the newest version to use from each project. The allowed values are: release, beta, alpha
@@ -70,7 +81,7 @@ spec:
         existingSecret: rcon-secret-2
         secretKey: rcon-password
       # These options allow you to expose another port from the Minecraft server, plugins such
-      # as dynmap (8123) and metrics (25585) will require this for access to their web interfaces
+      # as BlueMap (8100) and metrics (25585) will require this for access to their web interfaces
       extraPorts:
         - name: metrics
           containerPort: 25585
@@ -83,8 +94,8 @@ spec:
             embedded: false
             type: ClusterIP
             port: 25585
-        - name: dynmap
-          containerPort: 8123
+        - name: bluemap
+          containerPort: 8100
           protocol: TCP
           # Unfortunately, the Helm chart is developed such that the service needs
           # to be enabled for the chart to add the port to the pod.
@@ -93,7 +104,7 @@ spec:
             enabled: true
             embedded: false
             type: ClusterIP
-            port: 8123
+            port: 8100
     serviceAnnotations:
       mc-router.itzg.me/externalServerName: obkiddos-2.drmoo.io
       gatus.home-operations.com/endpoint: |-

@@ -56,7 +56,7 @@ spec:
       ops: ProfMoo
       modrinth:
         projects:
-          # Lithium - this is the server-side mod which increases performance (but tries to keep vanilla behavior)
+          # Lithium - this is the server-side version of themod which increases performance (but tries to keep vanilla behavior)
           - 'fabric:lithium'
           - 'fabric:fabricexporter:l5Bq2Y09'
           - 'fabric:spark'
@@ -65,8 +65,10 @@ spec:
           - 'fabric:scalablelux'
           - 'fabric:fast-ip-ping'
           - 'fabric:chunky'
+          # 26.1.x version is still not in 'release' channel, so we use the alpha channel for now
           - 'fabric:c2me-fabric:alpha'
           - 'fabric:shulkerboxtooltip'
+          # 26.1.x version is still not in 'release' channel, so we use the alpha channel for now
           - 'fabric:vmp-fabric:alpha'
         # Specifies whether to download Modrinth dependencies. The allowed values are: none, required, optional
         downloadDependencies: required

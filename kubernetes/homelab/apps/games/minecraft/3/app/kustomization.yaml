@@ -8,6 +8,7 @@ resources:
   - ./oci-repository.yaml
   - ./pv.yaml
   - ./pvc.yaml
+  - ./bluemap-config.yaml
   - ./helm-release.yaml
   - ./pod-monitor.yaml
   - ./grafana-dashboard.yaml
