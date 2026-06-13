@@ -20,13 +20,23 @@ spec:
         cpu: 4000m
     workloadAsStatefulSet: true
     strategyType: RollingUpdate
-    extraVolumes:
-      - volumeMounts:
+    initContainers:
+      - name: configure-bluemap
+        image: docker.io/library/busybox:1.37.0
+        command:
+          - sh
+          - -ec
+          - |-
+            mkdir -p /data/config/bluemap
+            cp /bluemap-config/core.conf /data/config/bluemap/core.conf
+        volumeMounts:
+          - name: datadir
+            mountPath: /data
           - name: bluemap-config
-            mountPath: /data/config/bluemap/core.conf
-            subPath: core.conf
+            mountPath: /bluemap-config
             readOnly: true
-        volumes:
+    extraVolumes:
+      - volumes:
           - name: bluemap-config
             configMap:
               name: minecraft-3-bluemap
