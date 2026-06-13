@@ -68,7 +68,7 @@ Direct tools expected locally: `talosctl`, `kubectl`, `flux`, `terraform`, `dock
 ## Formatting And Style
 
 - YAML starts with `---`; `.yamlfmt.yaml` enforces document start and trims whitespace.
-- Include the schema in the YAML at the top.
+- Include the schema in the YAML at the top if it's not a Kubernetes standard component.
 - Do not format `*.sops.yaml` or Talos templates in `infrastructure/configs/`; yamlfmt excludes them.
 - Markdown lint ignores line length and inline HTML; root README uses HTML badges/layout.
 - Shell scripts should pass `shfmt -d .`.

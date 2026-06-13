@@ -28,7 +28,9 @@ spec:
           - -ec
           - |-
             mkdir -p /data/config/bluemap
-            cp /bluemap-config/core.conf /data/config/bluemap/core.conf
+            if [ ! -e /data/config/bluemap/core.conf ]; then
+              cp /bluemap-config/core.conf /data/config/bluemap/core.conf
+            fi
         volumeMounts:
           - name: datadir
             mountPath: /data

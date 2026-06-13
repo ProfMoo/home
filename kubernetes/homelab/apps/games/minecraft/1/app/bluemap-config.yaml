@@ -1,4 +1,6 @@
 ---
+# Seed only; init copies this into the PVC if missing so BlueMap owns generated config after first boot.
+# But bluemap needs this file to bootstrap, so we provide it one time here.
 apiVersion: v1
 kind: ConfigMap
 metadata:
