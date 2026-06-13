@@ -28,9 +28,14 @@ spec:
           - -ec
           - |-
             mkdir -p /data/config/bluemap
-            if [ ! -e /data/config/bluemap/core.conf ]; then
+            if [ ! -s /data/config/bluemap/core.conf ]; then
               cp /bluemap-config/core.conf /data/config/bluemap/core.conf
             fi
+            chown -R 1000:3000 /data/config/bluemap
+        securityContext:
+          runAsGroup: 0
+          runAsNonRoot: false
+          runAsUser: 0
         volumeMounts:
           - name: datadir
             mountPath: /data
