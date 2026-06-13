@@ -1,0 +1,37 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/prometheusrule_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: external-secrets-rules
+spec:
+  groups:
+    - name: external-secrets.rules
+      rules:
+        - alert: BitwardenClusterSecretStoreNotReady
+          expr: |-
+            clustersecretstore_status_condition{condition="Ready",name=~"bitwarden-.*",status="False"} == 1
+          for: 15m
+          annotations:
+            summary: >-
+              Bitwarden ClusterSecretStore {{ $labels.name }} has not been Ready for 15 minutes; ExternalSecrets using this store may stop syncing Kubernetes Secrets from Bitwarden
+          labels:
+            severity: critical
+        - alert: ExternalSecretNotReady
+          expr: |-
+            externalsecret_status_condition{condition="Ready",status="False"} == 1
+          for: 20m
+          annotations:
+            summary: >-
+              ExternalSecret {{ $labels.exported_namespace }}/{{ $labels.name }} has not been Ready for 20 minutes; target Kubernetes Secret data may be stale or missing
+          labels:
+            severity: critical
+        - alert: ExternalSecretSyncErrors
+          expr: |-
+            increase(externalsecret_sync_calls_error[15m]) > 0
+          for: 10m
+          annotations:
+            summary: >-
+              ExternalSecret {{ $labels.exported_namespace }}/{{ $labels.name }} recorded sync errors in the last 15 minutes; Kubernetes Secret data may not match Bitwarden
+          labels:
+            severity: critical
