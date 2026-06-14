@@ -92,6 +92,13 @@ spec:
         globalMounts:
           - path: /data
             readOnly: true
+      media2:
+        type: nfs
+        server: 192.168.8.248
+        path: /mnt/vault/media/media/books2
+        globalMounts:
+          - path: /books
+            readOnly: true
       tmpfs:
         type: emptyDir
         globalMounts:
