@@ -21,7 +21,9 @@ resources:
   # - ./roon/ks.yaml
   - ./jellyfin/ks.yaml
   - ./audiobookshelf/ks.yaml
-  - ./audiobookrequest/ks.yaml
+  # Disabling for now.
+  # ABR reaches out toe MAM and qBittorrent directly (instead of using Chaptarr or something). So it doens't do folder organization - gets kinda messy.
+  # - ./audiobookrequest/ks.yaml
   - ./koito/ks.yaml
   - ./multi-scrobbler/ks.yaml
   - ./wizarr/ks.yaml
