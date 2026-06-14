@@ -1,0 +1,119 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: chaptarr
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  dependsOn:
+    - name: rook-ceph-cluster
+      namespace: storage
+  values:
+    controllers:
+      chaptarr:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        initContainers:
+          chown-run:
+            image:
+              repository: busybox
+              tag: 1.38.0@sha256:fd8d9aa63ba2f0982b5304e1ee8d3b90a210bc1ffb5314d980eb6962f1a9715d
+            command: ["sh", "-c"]
+            args: ["chown -R 568:65539 /run"]
+            securityContext:
+              runAsNonRoot: false
+              runAsUser: 0
+        containers:
+          app:
+            image:
+              repository: docker.io/robertlordhood/chaptarr
+              tag: develop@sha256:4dfc5f95828bcc29ed16d9082734a14653a3ccd3b78a948234113e758835bcd3
+            env:
+              TZ: America/New_York
+              CHAPTARR__APP__INSTANCENAME: Chaptarr
+              CHAPTARR__APPLICATION_URL: https://chaptarr.drmoo.io
+              CHAPTARR__APP__THEME: dark
+              CHAPTARR__AUTH__METHOD: Forms
+              CHAPTARR__AUTH__REQUIRED: DisabledForLocalAddresses
+              CHAPTARR__LOG__DBENABLED: "False"
+              CHAPTARR__LOG__LEVEL: info
+              CHAPTARR__SERVER__PORT: &port 8789
+              CHAPTARR__UPDATE__BRANCH: develop
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+            resources:
+              requests:
+                cpu: 50m
+                memory: 750Mi
+              limits:
+                memory: 2Gi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 65539
+        fsGroupChangePolicy: OnRootMismatch
+        runAsGroup: 65539
+        runAsNonRoot: true
+        runAsUser: 568
+    service:
+      app:
+        controller: chaptarr
+        ports:
+          http:
+            port: *port
+    route:
+      app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/description: YouTube channel downloader
+          gethomepage.dev/group: Torrents
+          gethomepage.dev/icon: mdi-youtube
+          gethomepage.dev/name: Chaptarr
+          gethomepage.dev/instance: homepage-internal
+        hostnames:
+          - "chaptarr.drmoo.io"
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: http
+    persistence:
+      config:
+        existingClaim: chaptarr-blockstorage
+        globalMounts:
+          - path: /config
+      media:
+        type: nfs
+        server: 192.168.8.248
+        path: /mnt/vault/media
+        globalMounts:
+          - path: /data
+      run:
+        type: emptyDir
+        globalMounts:
+          - path: /run
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
