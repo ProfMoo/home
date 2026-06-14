@@ -21,6 +21,7 @@ resources:
   # - ./roon/ks.yaml
   - ./jellyfin/ks.yaml
   - ./audiobookshelf/ks.yaml
+  - ./audiobookrequest/ks.yaml
   - ./koito/ks.yaml
   - ./multi-scrobbler/ks.yaml
   - ./wizarr/ks.yaml
