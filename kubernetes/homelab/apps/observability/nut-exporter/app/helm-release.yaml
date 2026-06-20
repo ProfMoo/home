@@ -67,7 +67,3 @@ spec:
                 regex: (pod)
             params:
               server: [nut-server.observability.svc.cluster.local]
-            selector:
-              matchLabels:
-                app.kubernetes.io/instance: nut-exporter
-                app.kubernetes.io/name: nut-exporter

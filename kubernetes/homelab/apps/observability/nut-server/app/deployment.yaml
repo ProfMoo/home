@@ -51,7 +51,17 @@ spec:
               memory: 256Mi
           volumeMounts:
             - name: nut-local-config
-              mountPath: /etc/nut/local
+              mountPath: /etc/nut/local/ups.conf
+              subPath: ups.conf
+            - name: nut-local-config
+              mountPath: /etc/nut/local/upsd.conf
+              subPath: upsd.conf
+            - name: nut-local-config
+              mountPath: /etc/nut/local/upsd.users
+              subPath: upsd.users
+            - name: nut-local-config
+              mountPath: /etc/nut/local/upsmon.conf
+              subPath: upsmon.conf
       volumes:
         - name: nut-local-config
           secret:
