@@ -1,0 +1,13 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/v1/service_v1.json
+apiVersion: v1
+kind: Service
+metadata:
+  name: nut-server
+spec:
+  selector:
+    app.kubernetes.io/name: nut-server
+  ports:
+    - name: nut
+      port: 3493
+      targetPort: nut

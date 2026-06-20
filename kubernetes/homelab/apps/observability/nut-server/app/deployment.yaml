@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nut-server
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: nut-server
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: nut-server
+    spec:
+      priorityClassName: high-priority
+      enableServiceLinks: false
+      containers:
+        - name: nut-upsd
+          image: instantlinux/nut-upsd:2.8.3-r4@sha256:3554d6fbdfd1259d091f67b6a1376a96f215971f710c532042f92ce650ef81eb
+          ports:
+            - name: nut
+              containerPort: 3493
+              protocol: TCP
+          env:
+            - name: NAME
+              value: rack
+            - name: DRIVER
+              value: snmp-ups
+            - name: SERVER
+              value: primary
+            - name: API_USER
+              value: upsmon
+          readinessProbe:
+            tcpSocket:
+              port: nut
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: nut
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 10m
+              memory: 64Mi
+            limits:
+              memory: 256Mi
+          volumeMounts:
+            - name: nut-local-config
+              mountPath: /etc/nut/local
+      volumes:
+        - name: nut-local-config
+          secret:
+            secretName: nut-server-config

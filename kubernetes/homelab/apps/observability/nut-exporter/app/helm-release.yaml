@@ -54,19 +54,19 @@ spec:
             scrapeTimeout: 30s
             metricRelabelings:
               - action: replace
-                replacement: server
+                replacement: rack
                 sourceLabels:
                   - instance
                 targetLabel: instance
               - action: replace
-                replacement: server
+                replacement: nut-server.observability.svc.cluster.local
                 sourceLabels:
                   - server
                 targetLabel: server
               - action: labeldrop
                 regex: (pod)
             params:
-              server: [fran.outsideour.casa]
+              server: [nut-server.observability.svc.cluster.local]
             selector:
               matchLabels:
                 app.kubernetes.io/instance: nut-exporter
