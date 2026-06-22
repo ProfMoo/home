@@ -39,7 +39,7 @@ jobs:
           token: "${{ steps.app-token.outputs.token }}"
       - name: Renovate
         id: renovate
-        uses: renovatebot/github-action@v46.1.15
+        uses: renovatebot/github-action@v46.1.16
         with:
           configurationFile: kubernetes/homelab/apps/base/renovate/config/renovate.json5
           token: "${{ steps.app-token.outputs.token }}"
