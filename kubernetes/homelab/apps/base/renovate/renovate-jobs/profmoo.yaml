@@ -6,7 +6,7 @@ metadata:
   name: profmoo
 spec:
   discoveryFilters: ["ProfMoo/home"]
-  image: ghcr.io/renovatebot/renovate:43.220.0
+  image: ghcr.io/renovatebot/renovate:43.249.5
   parallelism: 5
   schedule: "0 * * * *"
   provider:
