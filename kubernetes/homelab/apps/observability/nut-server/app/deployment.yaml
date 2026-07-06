@@ -19,7 +19,7 @@ spec:
       enableServiceLinks: false
       containers:
         - name: nut-upsd
-          image: instantlinux/nut-upsd:2.8.3-r4@sha256:3554d6fbdfd1259d091f67b6a1376a96f215971f710c532042f92ce650ef81eb
+          image: instantlinux/nut-upsd:2.8.3-r4@sha256:ab2f9988309ee8a47934e03eb836fa5313cc34234f50ea5400ec65c71dd4e0b2
           ports:
             - name: nut
               containerPort: 3493
