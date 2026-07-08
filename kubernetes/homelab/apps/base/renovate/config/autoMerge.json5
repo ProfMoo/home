@@ -3,10 +3,6 @@
   "packageRules": [
     {
       "description": "qBittorrent image versions require 28 days before auto-merge",
-      "prBodyNotes": [
-        "⏳ **Delayed Automerge**: This qBittorrent image update will auto-merge after the target version is 28 days old",
-        "📅 **Merge Date**: {{#if mergeDate}}{{mergeDate}}{{else}}28 days after release{{/if}}"
-      ],
       "matchDatasources": [
         "docker"
       ],
@@ -58,31 +54,6 @@
       ]
     },
     {
-      "description": "qBittorrent (app-template) minor versions require 7 days before auto-merge",
-      "prBodyNotes": [
-        "⏳ **Delayed Automerge**: This minor update will auto-merge after 7 days to allow for testing",
-        "📅 **Merge Date**: {{#if mergeDate}}{{mergeDate}}{{else}}7 days from PR creation{{/if}}"
-      ],
-      "matchDatasources": [
-        "helm"
-      ],
-      "matchPackageNames": [
-        "app-template"
-      ],
-      "matchFileNames": [
-        "**/qbittorrent/**"
-      ],
-      "automerge": true,
-      "automergeType": "pr",
-      "ignoreTests": true,
-      "requiredStatusChecks": null,
-      "minimumReleaseAge": "7 days",
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ]
-    },
-    {
       "description": "Auto merge helm updates for patch and minor versions (excluding app-template)",
       "matchDatasources": [
         "helm"
@@ -100,15 +71,12 @@
       ]
     },
     {
-      "description": "Auto merge app-template updates immediately (except qBittorrent)",
+      "description": "Auto merge app-template updates immediately",
       "matchDatasources": [
         "helm"
       ],
       "matchPackageNames": [
         "app-template"
-      ],
-      "excludePackageFiles": [
-        "**/qbittorrent/**"
       ],
       "automerge": true,
       "automergeType": "pr",
