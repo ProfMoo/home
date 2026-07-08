@@ -2,6 +2,30 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
+      "description": "qBittorrent image versions require 28 days before auto-merge",
+      "prBodyNotes": [
+        "⏳ **Delayed Automerge**: This qBittorrent image update will auto-merge after the target version is 28 days old",
+        "📅 **Merge Date**: {{#if mergeDate}}{{mergeDate}}{{else}}28 days after release{{/if}}"
+      ],
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "ghcr.io/home-operations/qbittorrent"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "ignoreTests": true,
+      "minimumReleaseAge": "28 days",
+      "prCreation": "not-pending",
+      "internalChecksFilter": "strict",
+      "matchUpdateTypes": [
+        "patch",
+        "minor",
+        "digest"
+      ]
+    },
+    {
       "description": [
         "Auto-merge container updates for trusted containers (patch, minor, and digest)"
       ],
