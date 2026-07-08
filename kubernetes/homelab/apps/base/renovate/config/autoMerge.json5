@@ -2,26 +2,6 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "packageRules": [
     {
-      "description": "qBittorrent image versions require 28 days before auto-merge",
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackageNames": [
-        "ghcr.io/home-operations/qbittorrent"
-      ],
-      "automerge": true,
-      "automergeType": "pr",
-      "ignoreTests": true,
-      "minimumReleaseAge": "28 days",
-      "prCreation": "not-pending",
-      "internalChecksFilter": "strict",
-      "matchUpdateTypes": [
-        "patch",
-        "minor",
-        "digest"
-      ]
-    },
-    {
       "description": [
         "Auto-merge container updates for trusted containers (patch, minor, and digest)"
       ],
@@ -52,6 +32,22 @@
         "ghcr.io/valkey-io",
         "mirror.gcr.io/envoyproxy/envoy"
       ]
+    },
+    {
+      // GHCR does not expose release timestamps to Renovate's Docker datasource, so
+      // minimumReleaseAge cannot reliably wait 28 days per qBittorrent image tag.
+      // Renovate debug logs show no currentVersionTimestamp for this package.
+      // See https://github.com/renovatebot/renovate/discussions/38143
+      // This is a problem for many private trackers, which have a wait period for new version of qBittorrent.
+      // An immediate deploy of a new version would break qBittorrent until the new version is added to the whitelist in the private tracker.
+      "description": "Do not auto-merge qBittorrent image updates",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "ghcr.io/home-operations/qbittorrent"
+      ],
+      "automerge": false
     },
     {
       "description": "Auto merge helm updates for patch and minor versions (excluding app-template)",
