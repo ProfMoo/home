@@ -16,7 +16,7 @@ spec:
         matchers:
           - name: alertname
             value: InfoInhibitor
-            matchType: =
+            matchType: "="
       - receiver: heartbeat
         groupInterval: 5m
         groupWait: 0s
@@ -24,22 +24,22 @@ spec:
         matchers:
           - name: alertname
             value: Watchdog
-            matchType: =
+            matchType: "="
       - receiver: ntfy
         matchers:
           - name: severity
             value: critical
-            matchType: =
+            matchType: "="
   inhibitRules:
     - equal: ["alertname", "namespace"]
       sourceMatch:
         - name: severity
           value: critical
-          matchType: =
+          matchType: "="
       targetMatch:
         - name: severity
           value: warning
-          matchType: =
+          matchType: "="
   receivers:
     - name: "null"
     # A heartbeat check (can be any service that knows how to handle heartbeat check-ins).
@@ -55,7 +55,9 @@ spec:
         - url: http://alertmanager-ntfy.observability.svc.cluster.local:8000/hook
           httpConfig:
             basicAuth:
-              username: alertmanager
+              username:
+                name: *secret
+                key: ALERTMANAGER_NTFY_WEBHOOK_USERNAME
               password:
                 name: *secret
                 key: ALERTMANAGER_NTFY_WEBHOOK_PASSWORD
