@@ -39,6 +39,7 @@ spec:
             securityContext:
               privileged: true
     defaultPodOptions:
+      automountServiceAccountToken: true
       hostNetwork: true
     persistence:
       etc-cni-net-d:

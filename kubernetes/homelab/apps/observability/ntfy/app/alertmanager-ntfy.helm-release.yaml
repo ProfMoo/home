@@ -15,7 +15,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: alertmanager-ntfy
-        namespace: flux-system
+        namespace: observability
   values:
     config:
       http:
