@@ -33,9 +33,9 @@
         icon: dell
         description: (root:calvin)
     - Compute-2 iDRAC:
-        href: http://192.168.1.102
-        icon: dell
-        description: (root:MA33M93PFYX3)
+        href: http://192.168.1.112
+        icon: supermicro
+        description: (ADMIN:ADMIN)
     - Compute-3 iDRAC:
         href: http://192.168.1.187
         icon: supermicro

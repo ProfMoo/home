@@ -77,9 +77,9 @@ From top to bottom...
 | Dell PowerEdge R530         |  20  | 1x256GB SSD      | 2x256GB SSD (local) / 1x256GB SSD (`rook-ceph`)     | 156GB | Proxmox | Compute     |
 | Old Custom Build         | 4   | 1x2TB HDD      | 1x2TB HDD     | 16GB | Proxmox | Compute     |
 | [SuperMicro CSE-847BE1C12-R1K68LPB4](https://www.supermicro.com/en/products/chassis/4u/847/sc847be1c12-r1k68lpb4) | 2x Intel Xeon E5-2640 v4 2.4GHz 10-Core CPU | 1 x 480GB SSD | 64GB | - | Proxmox | Storage |
-| TrueNas Mini R         | 8   | Internal SATA DOMs      | 6x22TB HDD     | 32GB | TrueNAS Scale | Storage     |
+| [TrueNas Mini R](https://www.truenas.com/blog/meet-the-mini-r/)         | 8   | Internal SATA DOMs      | 6x22TB HDD     | 32GB | TrueNAS Scale | Storage     |
 | UniFi USP PDU Pro           | -   | -            | -                               | -    | -             | PDU                     |
-| Eaton 5PX1500RT - 1500VA             | -  | -            | -                               | -    | -             | UPS                     |
+| [Eaton 5PX1500RT - 1500VA](https://www.eaton.com/us/en-us/skuPage.5PX1500RT.html)             | -  | -            | -                               | -    | -             | UPS                     |
 
 ---
 
