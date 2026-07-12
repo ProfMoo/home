@@ -1,0 +1,32 @@
+---
+# LiteLLM config docs: https://docs.litellm.ai/docs/proxy/configs
+model_list:
+  - model_name: gpt-5.5
+    litellm_params:
+      model: openai/gpt-5.5
+      api_key: os.environ/OPENAI_API_KEY
+      drop_params: true
+  - model_name: claude-opus-4.6
+    model_info:
+      max_input_tokens: 200000
+      max_output_tokens: 65536
+      supports_function_calling: true
+      supports_prompt_caching: true
+      supports_vision: true
+    litellm_params:
+      model: anthropic/claude-opus-4-6
+      api_key: os.environ/ANTHROPIC_API_KEY
+      drop_params: true
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+  health_check_endpoint: /v1/health
+router_settings:
+  routing_strategy: simple-shuffle
+litellm_settings:
+  success_callback: ["prometheus"]
+  prometheus_adapter: true
+  drop_params: false
+  request_timeout: 600
+  num_retries: 2
+  retry_after: 5
+  set_verbose: false

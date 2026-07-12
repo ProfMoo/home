@@ -1,38 +1,57 @@
-# Supermicro
 
-## Overview
+# Fan Settings
 
-My server:
+## Specs
 
-SuperMicro SuperServer SYS-6028U-TR4T+ 2U Rackmount Server
-Processor: 2x Intel Xeon E5-2680 v4 2.4GHz 14-Core Processors   (+$34.00)
-Memory: 256GB (8x 32GB) DDR4 Registered Memory   (+$560.00)
-Storage Controller: 12Gbps IT Mode PCIe Storage Controller (Flashed to IT Mode; No RAID Pass-Thru Only)   (+$59.00)
-Hard Drive (1): 480GB 6Gbps SATA SSD   (+$39.00)
-Hard Drive (2): 480GB 6Gbps SATA SSD   (+$39.00)
-Hard Drive (3): 480GB 6Gbps SATA SSD   (+$39.00)
-Hard Drive (4): Tray with Screws
-Hard Drive (5): Tray with Screws
-Hard Drive (6): Tray with Screws
-Hard Drive (7): Tray with Screws
-Hard Drive (8): Tray with Screws
-Hard Drive (9): Tray with Screws
-Hard Drive (10): Tray with Screws
-Hard Drive (11): Tray with Screws
-Hard Drive (12): Tray with Screws
-GPU/PCIe Add-On Card (1): NVIDIA Tesla T4 16GbE GDDR6 PCI-e Graphics Card   (+$699.00)
-GPU/PCIe Add-On Card (2): Intel X550-T2 Dual Port 10GbE RJ45 PCIe Adapter   (+$75.00)
-GPU/PCIe Add-On Card (3): None Installed
-Power Supply: 2x 1000W 80Plus Platinum Power Supplies
-4-Post Rack Rail Kit: Original SuperMicro Rails   (+$99.00)
-Power Cable: No Power Cable Included
-TotalServerShield Extended Warranty: TheServerStore Standard 90 Days (Replacement Parts; No Onsite Support)
+> SuperMicro SuperServer SYS-6028U-TR4T+ 2U Rackmount Server
+> Processor: 2x Intel Xeon E5-2680 v4 2.4GHz 14-Core Processors
+>
+> Memory: 256GB (8x 32GB) DDR4 Registered Memory
+>
+> Storage Controller: 12Gbps IT Mode PCIe Storage Controller (Flashed to IT Mode; No RAID Pass-Thru Only)
+>
+> Hard Drive (1): 480GB 6Gbps SATA SSD
+>
+> Hard Drive (2): 480GB 6Gbps SATA SSD
+>
+> Hard Drive (3): 480GB 6Gbps SATA SSD
+>
+> Hard Drive (4): Tray with Screws
+>
+> Hard Drive (5): Tray with Screws
+>
+> Hard Drive (6): Tray with Screws
+>
+> Hard Drive (7): Tray with Screws
+>
+> Hard Drive (8): Tray with Screws
+>
+> Hard Drive (9): Tray with Screws
+>
+> Hard Drive (10): Tray with Screws
+>
+> Hard Drive (11): Tray with Screws
+>
+> Hard Drive (12): Tray with Screws
+>
+> GPU/PCIe Add-On Card (1): NVIDIA Tesla T4 16GbE GDDR6 PCI-e Graphics Card
+>
+> GPU/PCIe Add-On Card (2): Intel X550-T2 Dual Port 10GbE RJ45 PCIe Adapter
+>
+> GPU/PCIe Add-On Card (3): None Installed
+>
+> Power Supply: 2x 1000W 80Plus Platinum Power Supplies
+>
+> 4-Post Rack Rail Kit: Original SuperMicro Rails
+>
 
 [SuperMicro spec page](https://www.supermicro.com/en/products/system/2U/6028/SYS-6028U-TR4_.php)
 
 [Machine IP](https://192.168.1.187/)
 
 ## Fans
+
+How I keep my fans cool and quiet:
 
 ```bash
 # To view fan sensor readings
