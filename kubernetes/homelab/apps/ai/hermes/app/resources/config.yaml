@@ -1,0 +1,47 @@
+---
+# Hermes docs: https://github.com/NousResearch/hermes-agent
+# Hermes config example: https://github.com/drag0n141/home-ops/blob/master/kubernetes/apps/ai/hermes/app/resources/config.yaml
+model:
+  default: gpt-5.5
+  provider: custom:litellm
+  base_url: http://litellm.ai.svc.cluster.local:4000/v1
+  api_key: ${LITELLM_MASTER_KEY}
+providers:
+  litellm:
+    base_url: http://litellm.ai.svc.cluster.local:4000/v1
+    api_key: ${LITELLM_MASTER_KEY}
+toolsets:
+  - hermes-cli
+terminal:
+  backend: local
+  cwd: /opt/data/workspace
+  timeout: 180
+  persistent_shell: true
+memory:
+  auto_migrate: true
+  auto_summarize:
+    threshold: 50
+compression:
+  enabled: true
+  threshold: 0.5
+  target_ratio: 0.2
+  protect_last_n: 20
+group_sessions_per_user: false
+streaming:
+  enabled: false
+security:
+  redact_secrets: true
+  tirith_enabled: true
+  tirith_fail_open: true
+privacy:
+  redact_pii: true
+platform_toolsets:
+  cli:
+    - hermes-cli
+agent:
+  max_turns: 90
+  gateway_timeout: 1800
+  restart_drain_timeout: 60
+  api_max_retries: 2
+  reasoning_effort: medium
+  tool_use_enforcement: auto

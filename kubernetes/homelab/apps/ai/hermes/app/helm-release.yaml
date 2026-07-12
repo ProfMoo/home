@@ -1,0 +1,90 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: hermes
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  values:
+    controllers:
+      hermes:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          app:
+            image:
+              repository: docker.io/nousresearch/hermes-agent
+              tag: v2026.7.7@sha256:ce3b39adf33fffae8cb19dcae74f971975b972efe91207f7d7539f80a0aae66a
+            args:
+              - gateway
+              - run
+            env:
+              TZ: America/New_York
+              API_SERVER_ENABLED: true
+              API_SERVER_HOST: 0.0.0.0
+              API_SERVER_PORT: &port 8642
+              HERMES_HOME: /opt/data
+              HOME: /opt/data
+              TERM: xterm-256color
+            envFrom:
+              - secretRef:
+                  name: hermes-secret
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: false
+              capabilities: {drop: ["ALL"]}
+            resources:
+              requests:
+                cpu: 50m
+                memory: 512Mi
+              limits:
+                memory: 4Gi
+    defaultPodOptions:
+      securityContext:
+        fsGroup: 10000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: hermes
+        ports:
+          http:
+            port: *port
+    route:
+      app:
+        annotations:
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/instance: homepage-internal
+          gethomepage.dev/description: Nous Hermes agent
+          gethomepage.dev/group: Home
+          gethomepage.dev/icon: mdi-robot-outline
+          gethomepage.dev/name: Hermes
+          gethomepage.dev/app: hermes
+        hostnames:
+          - hermes.drmoo.io
+        parentRefs:
+          - name: envoy-internal
+            namespace: networking
+            sectionName: https
+    persistence:
+      data:
+        existingClaim: hermes
+        globalMounts:
+          - path: /opt/data
+      config:
+        type: configMap
+        name: hermes-configmap
+        defaultMode: 0o755
+        advancedMounts:
+          hermes:
+            app:
+              - path: /opt/data/config.yaml
+                subPath: config.yaml
+      tmpfs:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
+            subPath: tmp
