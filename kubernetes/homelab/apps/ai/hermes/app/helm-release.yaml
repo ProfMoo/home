@@ -41,9 +41,10 @@ spec:
               API_SERVER_HOST: 0.0.0.0
               API_SERVER_PORT: &port 8642
               HERMES_DASHBOARD: "1"
+              HERMES_DASHBOARD_BASIC_AUTH_USERNAME: admin
               HERMES_DASHBOARD_HOST: 0.0.0.0
-              HERMES_DASHBOARD_INSECURE: "1"
               HERMES_DASHBOARD_PORT: &dashboardPort 9119
+              HERMES_DASHBOARD_PUBLIC_URL: https://hermes.drmoo.io
               HERMES_HOME: /opt/data
               HOME: /opt/data
               TERM: xterm-256color
