@@ -14,6 +14,19 @@ spec:
       hermes:
         annotations:
           reloader.stakater.com/auto: "true"
+        initContainers:
+          init:
+            image:
+              repository: docker.io/library/alpine
+              tag: "3.24"
+            command:
+              - sh
+              - -c
+              - |
+                set -euo pipefail
+                mkdir -p /opt/data
+                cp /run/config/config.yaml /opt/data/config.yaml
+                chown 10000:10000 /opt/data/config.yaml
         containers:
           app:
             image:
@@ -79,8 +92,8 @@ spec:
         defaultMode: 0o755
         advancedMounts:
           hermes:
-            app:
-              - path: /opt/data/config.yaml
+            init:
+              - path: /run/config/config.yaml
                 subPath: config.yaml
       tmpfs:
         type: emptyDir
