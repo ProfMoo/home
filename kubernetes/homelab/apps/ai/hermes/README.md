@@ -1,14 +1,5 @@
 # Hermes
 
-Check deploy state:
-
-```sh
-flux get kustomizations -n ai
-flux get helmreleases -n ai
-kubectl get pods -n ai -l app.kubernetes.io/name=hermes
-kubectl get externalsecret,secret -n ai | grep hermes
-```
-
 Check Hermes status:
 
 ```sh
@@ -47,20 +38,11 @@ hermes model
 hermes
 ```
 
-Open Gateway route:
+Open dashboard route:
 
 ```sh
 open https://hermes.drmoo.io
 ```
 
-Note: current service exposes Hermes gateway port `8642`, not web dashboard port `9119`.
-Use `kubectl exec -it ... hermes chat --tui` for interactive use unless dashboard is added later.
-
-Debug config and logs:
-
-```sh
-kubectl -n ai logs deploy/hermes -f
-kubectl -n ai exec deploy/hermes -- sh -c 'ls -la /opt/data && sed -n "1,120p" /opt/data/config.yaml'
-kubectl -n ai describe externalsecret hermes-secret
-kubectl -n ai describe helmrelease hermes
-```
+Dashboard is exposed on `https://hermes.drmoo.io` through Envoy internal.
+Gateway API remains exposed on service port `8642` as `agent`.

@@ -40,6 +40,10 @@ spec:
               API_SERVER_ENABLED: true
               API_SERVER_HOST: 0.0.0.0
               API_SERVER_PORT: &port 8642
+              HERMES_DASHBOARD: "1"
+              HERMES_DASHBOARD_HOST: 0.0.0.0
+              HERMES_DASHBOARD_INSECURE: "1"
+              HERMES_DASHBOARD_PORT: &dashboardPort 9119
               HERMES_HOME: /opt/data
               HOME: /opt/data
               TERM: xterm-256color
@@ -64,6 +68,8 @@ spec:
         controller: hermes
         ports:
           http:
+            port: *dashboardPort
+          agent:
             port: *port
     route:
       app:
@@ -81,6 +87,10 @@ spec:
           - name: envoy-internal
             namespace: networking
             sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: app
+                port: http
     persistence:
       data:
         existingClaim: hermes
