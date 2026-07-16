@@ -15,7 +15,7 @@ releases:
   - name: cilium
     namespace: cilium
     chart: oci://quay.io/cilium/charts/cilium
-    version: 1.19.5
+    version: 1.19.6
     values:
       - ./values.yaml.gotmpl
     hooks:
