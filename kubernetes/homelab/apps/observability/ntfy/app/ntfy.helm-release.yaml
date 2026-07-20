@@ -18,7 +18,7 @@ spec:
           app:
             image:
               repository: binwiederhier/ntfy
-              tag: v2.24.0@sha256:f8a9b104313b87cc24ae4f775f39e6328205b57dff6ede3eaf098a91e5d79f59
+              tag: v2.26.3@sha256:081b53dbb20674fcfe05fdb4eb8af9036a2645ef979543d16f7f80803af467b1
             args:
               - serve
             env:
