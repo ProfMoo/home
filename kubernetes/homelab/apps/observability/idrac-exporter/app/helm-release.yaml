@@ -49,6 +49,10 @@ spec:
             scrapeTimeout: 60s
             params:
               target: ["192.168.1.112"]
+            relabelings: &relabelings
+              # NOTE: Set 'instance' to the iDRAC target instead of the exporter pod IP.
+              - sourceLabels: [__param_target]
+                targetLabel: instance
           - interval: 2m
             path: /metrics
             port: metrics
@@ -56,6 +60,7 @@ spec:
             scrapeTimeout: 60s
             params:
               target: ["192.168.1.187"]
+            relabelings: *relabelings
           - interval: 2m
             path: /metrics
             port: metrics
@@ -63,6 +68,7 @@ spec:
             scrapeTimeout: 60s
             params:
               target: ["192.168.1.120"]
+            relabelings: *relabelings
     persistence:
       config:
         type: configMap
