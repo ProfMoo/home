@@ -47,6 +47,7 @@ spec:
           - name: bluemap-config
             configMap:
               name: minecraft-3-bluemap
+    # Still haven't 100% confirmed these work. Remove this comment once confirmed.
     extraEnv:
       # https://minecraft.wiki/w/Server.properties#max-players
       CUSTOM_SERVER_PROPERTIES: |-
