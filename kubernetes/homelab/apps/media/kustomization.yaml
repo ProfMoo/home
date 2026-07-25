@@ -11,6 +11,7 @@ resources:
   - ./sonarr/ks.yaml
   - ./prowlarr/ks.yaml
   - ./profilarr/ks.yaml
+  - ./seasonpackerr/ks.yaml
   - ./chaptarr/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./jellyseerr/ks.yaml

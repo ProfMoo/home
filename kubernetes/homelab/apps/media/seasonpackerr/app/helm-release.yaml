@@ -1,0 +1,87 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/bjw-s-labs/helm-charts/main/charts/other/app-template/schemas/helmrelease-helm-v2.schema.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: seasonpackerr
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: app-template
+  values:
+    controllers:
+      seasonpackarr:
+        containers:
+          app:
+            image:
+              repository: ghcr.io/nuxencs/seasonpackarr
+              tag: v0.16.0@sha256:5e46ea5a098f2d116433d73b7bc7fe74a3a60f573678796f6726f3440b2068bc
+            env:
+              TZ: America/New_York
+              SEASONPACKARR__DISABLE_CONFIG_FILE: true
+              SEASONPACKARR__HOST: 0.0.0.0
+              SEASONPACKARR__PORT: &port 80
+              SEASONPACKARR__LOG_LEVEL: INFO
+              SEASONPACKARR__SMART_MODE: true
+              SEASONPACKARR__SMART_MODE_THRESHOLD: 0.75
+              SEASONPACKARR__PARSE_TORRENT_FILE: true
+              SEASONPACKARR__FUZZY_MATCHING_SKIP_REPACK_COMPARE: true
+              SEASONPACKARR__CLIENTS_DEFAULT_HOST: qbittorrent.media.svc.cluster.local
+              SEASONPACKARR__CLIENTS_DEFAULT_PORT: 8080
+              SEASONPACKARR__CLIENTS_DEFAULT_PREIMPORTPATH: /data/downloads
+            probes:
+              liveness:
+                enabled: true
+                spec:
+                  periodSeconds: 30
+                  timeoutSeconds: 5
+                  failureThreshold: 5
+              readiness:
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/healthz/readiness
+                    port: *port
+                  periodSeconds: 10
+                  timeoutSeconds: 5
+                  failureThreshold: 5
+              startup:
+                enabled: true
+                spec:
+                  failureThreshold: 30
+                  periodSeconds: 10
+            resources:
+              requests:
+                cpu: 10m
+              limits:
+                memory: 256Mi
+            securityContext:
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities: {drop: ["ALL"]}
+    defaultPodOptions:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: OnRootMismatch
+    service:
+      app:
+        controller: seasonpackarr
+        ports:
+          http:
+            port: *port
+    persistence:
+      media:
+        type: nfs
+        server: 192.168.8.248
+        path: /mnt/vault/media
+        globalMounts:
+          - path: /data
+      tmp:
+        type: emptyDir
+        globalMounts:
+          - path: /tmp
