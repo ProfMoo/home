@@ -48,6 +48,13 @@ spec:
             scheme: http
             scrapeTimeout: 60s
             params:
+              target: ["192.168.1.112"]
+          - interval: 2m
+            path: /metrics
+            port: metrics
+            scheme: http
+            scrapeTimeout: 60s
+            params:
               target: ["192.168.1.187"]
           - interval: 2m
             path: /metrics
