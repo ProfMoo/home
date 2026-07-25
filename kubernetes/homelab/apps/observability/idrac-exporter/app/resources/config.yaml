@@ -3,10 +3,10 @@ address: 0.0.0.0
 port: 9348
 timeout: 30
 hosts:
-  192.168.1.187:
+  192.168.1.112:
     username: ADMIN
     password: ADMIN
-  192.168.1.112:
+  192.168.1.187:
     username: ADMIN
     password: ADMIN
   192.168.1.120:
@@ -14,7 +14,17 @@ hosts:
     password: calvin
     use_basic_auth: true
 metrics:
-  all: true
+  all: false
+  system: true
+  sensors: true
+  power: true
+  processors: true
+  events: true
+  storage: false
+  memory: true
+  network: true
+  manager: true
+  extra: true
 events:
   severity: warning
   maxage: 7d
