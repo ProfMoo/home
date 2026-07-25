@@ -147,7 +147,7 @@ spec:
             "colorMode": "background",
             "graphMode": "none",
             "justifyMode": "auto",
-            "orientation": "horizontal",
+            "orientation": "auto",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -183,7 +183,7 @@ spec:
               "expr": "idrac_system_health{instance=~\"$instance\", job=~\"$job\"}",
               "format": "table",
               "instant": true,
-              "legendFormat": "{{status}}",
+              "legendFormat": "{{instance}}: {{status}}",
               "metrics": [
                 {
                   "id": "1",
@@ -249,7 +249,7 @@ spec:
             "colorMode": "value",
             "graphMode": "none",
             "justifyMode": "auto",
-            "orientation": "horizontal",
+            "orientation": "auto",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -285,7 +285,7 @@ spec:
               "expr": "idrac_system_bios_info{instance=~\"$instance\", job=~\"$job\"}",
               "format": "time_series",
               "instant": true,
-              "legendFormat": "{{version}}",
+              "legendFormat": "{{instance}}: {{version}}",
               "metrics": [
                 {
                   "id": "1",
@@ -613,7 +613,7 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 2,
+            "h": 3,
             "w": 4,
             "x": 0,
             "y": 5
@@ -624,7 +624,7 @@ spec:
             "colorMode": "value",
             "graphMode": "none",
             "justifyMode": "auto",
-            "orientation": "horizontal",
+            "orientation": "auto",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -660,7 +660,7 @@ spec:
               "expr": "idrac_system_machine_info{instance=~\"$instance\", job=~\"$job\"}",
               "format": "table",
               "instant": true,
-              "legendFormat": "{{manufacturer}}",
+              "legendFormat": "{{instance}}: {{manufacturer}}",
               "metrics": [
                 {
                   "id": "1",
@@ -708,7 +708,7 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 2,
+            "h": 3,
             "w": 4,
             "x": 4,
             "y": 5
@@ -719,7 +719,7 @@ spec:
             "colorMode": "value",
             "graphMode": "none",
             "justifyMode": "auto",
-            "orientation": "horizontal",
+            "orientation": "auto",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -768,7 +768,7 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 2,
+            "h": 3,
             "w": 4,
             "x": 8,
             "y": 5
@@ -781,7 +781,7 @@ spec:
             "colorMode": "value",
             "graphMode": "none",
             "justifyMode": "auto",
-            "orientation": "horizontal",
+            "orientation": "auto",
             "reduceOptions": {
               "calcs": [
                 "last"
@@ -818,7 +818,7 @@ spec:
               "format": "time_series",
               "instant": true,
               "interval": "",
-              "legendFormat": "",
+              "legendFormat": "{{instance}}",
               "metrics": [
                 {
                   "id": "1",
@@ -867,10 +867,10 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 2,
+            "h": 3,
             "w": 4,
             "x": 0,
-            "y": 7
+            "y": 8
           },
           "hideTimeOverride": true,
           "id": 5,
@@ -878,7 +878,7 @@ spec:
             "colorMode": "value",
             "graphMode": "none",
             "justifyMode": "auto",
-            "orientation": "horizontal",
+            "orientation": "auto",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -937,10 +937,10 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 2,
+            "h": 3,
             "w": 4,
             "x": 4,
-            "y": 7
+            "y": 8
           },
           "hideTimeOverride": true,
           "id": 7,
@@ -948,7 +948,7 @@ spec:
             "colorMode": "value",
             "graphMode": "none",
             "justifyMode": "auto",
-            "orientation": "horizontal",
+            "orientation": "auto",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -997,10 +997,10 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 2,
+            "h": 3,
             "w": 4,
             "x": 8,
-            "y": 7
+            "y": 8
           },
           "hideTimeOverride": true,
           "id": 21,
@@ -1010,7 +1010,7 @@ spec:
             "colorMode": "value",
             "graphMode": "none",
             "justifyMode": "auto",
-            "orientation": "horizontal",
+            "orientation": "auto",
             "reduceOptions": {
               "calcs": [
                 "last"
@@ -1047,7 +1047,7 @@ spec:
               "format": "time_series",
               "instant": true,
               "interval": "",
-              "legendFormat": "",
+              "legendFormat": "{{instance}}",
               "metrics": [
                 {
                   "id": "1",
@@ -1086,10 +1086,10 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 2,
+            "h": 3,
             "w": 4,
             "x": 0,
-            "y": 9
+            "y": 11
           },
           "hideTimeOverride": true,
           "id": 30,
@@ -1099,7 +1099,7 @@ spec:
             "colorMode": "value",
             "graphMode": "none",
             "justifyMode": "auto",
-            "orientation": "horizontal",
+            "orientation": "auto",
             "reduceOptions": {
               "calcs": [
                 "last"
@@ -1136,7 +1136,7 @@ spec:
               "format": "time_series",
               "instant": true,
               "interval": "",
-              "legendFormat": "",
+              "legendFormat": "{{instance}}",
               "metrics": [
                 {
                   "id": "1",
@@ -1189,10 +1189,10 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 2,
+            "h": 3,
             "w": 4,
             "x": 4,
-            "y": 9
+            "y": 11
           },
           "hideTimeOverride": true,
           "id": 25,
@@ -1202,7 +1202,7 @@ spec:
             "colorMode": "value",
             "graphMode": "none",
             "justifyMode": "auto",
-            "orientation": "horizontal",
+            "orientation": "auto",
             "reduceOptions": {
               "calcs": [
                 "lastNotNull"
@@ -1238,7 +1238,7 @@ spec:
               "expr": "idrac_system_indicator_led_on{instance=~\"$instance\", job=~\"$job\"}",
               "format": "time_series",
               "instant": true,
-              "legendFormat": "{{state}}",
+              "legendFormat": "{{instance}}: {{state}}",
               "metrics": [
                 {
                   "id": "1",
@@ -1293,10 +1293,10 @@ spec:
             "overrides": []
           },
           "gridPos": {
-            "h": 2,
+            "h": 3,
             "w": 4,
             "x": 8,
-            "y": 9
+            "y": 11
           },
           "hideTimeOverride": true,
           "id": 9,
@@ -1306,7 +1306,7 @@ spec:
             "colorMode": "value",
             "graphMode": "none",
             "justifyMode": "auto",
-            "orientation": "horizontal",
+            "orientation": "auto",
             "reduceOptions": {
               "calcs": [
                 "last"
@@ -1341,7 +1341,7 @@ spec:
               "exemplar": false,
               "expr": "idrac_system_power_on{instance=~\"$instance\", job=~\"$job\"}",
               "instant": true,
-              "legendFormat": "",
+              "legendFormat": "{{instance}}",
               "metrics": [
                 {
                   "id": "1",
@@ -1505,7 +1505,7 @@ spec:
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 11
+            "y": 14
           },
           "id": 31,
           "options": {
@@ -1765,7 +1765,7 @@ spec:
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 11
+            "y": 14
           },
           "id": 34,
           "options": {
@@ -1890,7 +1890,7 @@ spec:
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 20
+            "y": 23
           },
           "id": 12,
           "panels": [],
@@ -1958,7 +1958,7 @@ spec:
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 21
+            "y": 24
           },
           "id": 14,
           "options": {
@@ -2074,7 +2074,7 @@ spec:
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 21
+            "y": 24
           },
           "id": 15,
           "options": {
@@ -2135,7 +2135,7 @@ spec:
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 30
+            "y": 33
           },
           "id": 17,
           "panels": [],
@@ -2214,7 +2214,7 @@ spec:
             "h": 8,
             "w": 11,
             "x": 0,
-            "y": 31
+            "y": 34
           },
           "id": 19,
           "options": {
@@ -2303,7 +2303,7 @@ spec:
             "h": 4,
             "w": 2,
             "x": 11,
-            "y": 31
+            "y": 34
           },
           "hideTimeOverride": true,
           "id": 23,
@@ -2426,7 +2426,7 @@ spec:
             "h": 8,
             "w": 11,
             "x": 13,
-            "y": 31
+            "y": 34
           },
           "id": 22,
           "options": {
@@ -2503,7 +2503,7 @@ spec:
             "h": 4,
             "w": 2,
             "x": 11,
-            "y": 35
+            "y": 38
           },
           "hideTimeOverride": true,
           "id": 24,
@@ -2573,7 +2573,7 @@ spec:
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 39
+            "y": 42
           },
           "id": 29,
           "panels": [],
@@ -2695,7 +2695,7 @@ spec:
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 40
+            "y": 43
           },
           "id": 27,
           "options": {
