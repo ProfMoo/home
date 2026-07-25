@@ -47,6 +47,13 @@ spec:
           - name: bluemap-config
             configMap:
               name: minecraft-3-bluemap
+    extraEnv:
+      CUSTOM_SERVER_PROPERTIES: |-
+        # https://minecraft.wiki/w/Server.properties#max-players
+        max-players=10
+      RCON_CMDS_STARTUP: |-
+        # https://minecraft.wiki/w/Game_rule#players_sleeping_percentage
+        gamerule players_sleeping_percentage 50
     minecraftServer:
       # NOTE: This tells the container to override the server.properties file on disk. Be careful with this.
       overrideServerProperties: true
