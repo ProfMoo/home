@@ -1,0 +1,61 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/helm.toolkit.fluxcd.io/helmrelease_v2.json
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app unifi-static
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: unifi-static-dns
+  values:
+    fullnameOverride: *app
+    logLevel: debug
+    provider:
+      name: webhook
+      webhook:
+        image:
+          repository: ghcr.io/home-operations/external-dns-unifi-webhook
+          tag: 0.10.9@sha256:30ae224e23bb7c303d72901a85aea77060288872716b8bc50589216c1f9d0df0
+        env:
+          - name: UNIFI_HOST
+            value: https://192.168.1.1
+          - name: UNIFI_USER
+            valueFrom:
+              secretKeyRef:
+                name: &secret external-dns-unifi-secret-static
+                key: EXTERNAL_DNS_UNIFI_USER
+          - name: UNIFI_PASS
+            valueFrom:
+              secretKeyRef:
+                name: *secret
+                key: EXTERNAL_DNS_UNIFI_PASS
+          - name: LOG_LEVEL
+            value: "debug"
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: http-webhook
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: http-webhook
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+    triggerLoopOnEvent: true
+    extraArgs:
+      - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
+      - --crd-source-kind=DNSEndpoint
+    policy: sync
+    sources:
+      - "crd"
+    txtOwnerId: unifi-static
+    txtPrefix: k8s.unifi-static.
+    domainFilters: ["internal.drmoo.io"]
+    serviceMonitor:
+      enabled: true
+    podAnnotations:
+      secret.reloader.stakater.com/reload: *secret

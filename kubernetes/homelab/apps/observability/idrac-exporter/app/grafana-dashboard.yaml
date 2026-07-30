@@ -42,6 +42,7 @@ spec:
             },
             "enable": true,
             "expr": "last_over_time(idrac_events_log_entry{job=~\"$job\", instance=~\"$instance\"}[$__interval] offset -$__interval) * 1000 < ${__to}\nand \nlast_over_time(idrac_events_log_entry{job=~\"$job\", instance=~\"$instance\"}[$__interval] offset -$__interval) * 1000 > ${__from}",
+            "hide": false,
             "iconColor": "purple",
             "name": "Events",
             "tagKeys": "instance,severity",
@@ -54,7 +55,7 @@ spec:
       "editable": true,
       "fiscalYearStartMonth": 0,
       "graphTooltip": 0,
-      "id": 1155,
+      "id": 0,
       "links": [
         {
           "asDropdown": false,
@@ -69,7 +70,6 @@ spec:
           "url": "d/3faidY24k"
         }
       ],
-      "liveNow": false,
       "panels": [
         {
           "collapsed": false,
@@ -160,7 +160,7 @@ spec:
             "textMode": "auto",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "alias": "",
@@ -262,7 +262,7 @@ spec:
             "textMode": "name",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "alias": "",
@@ -462,7 +462,7 @@ spec:
             ]
           },
           "gridPos": {
-            "h": 10,
+            "h": 13,
             "w": 12,
             "x": 12,
             "y": 1
@@ -470,14 +470,6 @@ spec:
           "id": 32,
           "options": {
             "cellHeight": "sm",
-            "footer": {
-              "countRows": false,
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
             "showHeader": true,
             "sortBy": [
               {
@@ -486,7 +478,7 @@ spec:
               }
             ]
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "datasource": {
@@ -538,6 +530,19 @@ spec:
               "instant": false,
               "range": true,
               "refId": "SPEED"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "idrac_memory_module_speed_mhz{job=~\"$job\", instance=~\"$instance\"}",
+              "format": "table",
+              "hide": false,
+              "instant": false,
+              "range": true,
+              "refId": "Instance"
             }
           ],
           "title": "Memory",
@@ -553,6 +558,18 @@ spec:
               "id": "filterFieldsByName",
               "options": {
                 "include": {
+                  "names": [
+                    "ecc",
+                    "manufacturer",
+                    "name",
+                    "rank",
+                    "serial",
+                    "type",
+                    "status",
+                    "Value #CAPACITY",
+                    "Value #SPEED",
+                    "instance 3"
+                  ],
                   "pattern": "(ecc|name|type|manufacturer|rank|mediatype|model|protocol|serial|slot|status|Value #CAPACITY|Value #SPEED)"
                 }
               }
@@ -573,8 +590,9 @@ spec:
                   "type": 5
                 },
                 "renameByName": {
-                  "Value #CAPACITY": "Capacity",
-                  "Value #SPEED": "Speed"
+                  "Value #CAPACITY": "capacity",
+                  "Value #SPEED": "speed",
+                  "instance": ""
                 }
               }
             }
@@ -637,7 +655,7 @@ spec:
             "textMode": "value",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "alias": "",
@@ -732,7 +750,7 @@ spec:
             "textMode": "value",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "datasource": {
@@ -794,7 +812,7 @@ spec:
             "textMode": "value",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "alias": "",
@@ -891,7 +909,7 @@ spec:
             "textMode": "value",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "datasource": {
@@ -961,7 +979,7 @@ spec:
             "textMode": "value",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "datasource": {
@@ -1023,7 +1041,7 @@ spec:
             "textMode": "value",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "alias": "",
@@ -1112,7 +1130,7 @@ spec:
             "textMode": "value",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "alias": "",
@@ -1215,7 +1233,7 @@ spec:
             "textMode": "name",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "alias": "",
@@ -1319,7 +1337,7 @@ spec:
             "textMode": "value",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "alias": "",
@@ -1510,14 +1528,6 @@ spec:
           "id": 31,
           "options": {
             "cellHeight": "sm",
-            "footer": {
-              "countRows": false,
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
             "showHeader": true,
             "sortBy": [
               {
@@ -1526,7 +1536,7 @@ spec:
               }
             ]
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "datasource": {
@@ -1770,18 +1780,10 @@ spec:
           "id": 34,
           "options": {
             "cellHeight": "sm",
-            "footer": {
-              "countRows": false,
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
             "showHeader": true,
             "sortBy": []
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "datasource": {
@@ -1848,6 +1850,13 @@ spec:
               "id": "filterFieldsByName",
               "options": {
                 "include": {
+                  "names": [
+                    "id",
+                    "status",
+                    "Value #LINK_UP",
+                    "Value #SPEED",
+                    "instance 1"
+                  ],
                   "pattern": "(id|name|status.+|status|Value #SPEED|Value #HEALTH|Value #LINK_UP|Value #PORT_HEALTH|Value #INTERFACE_HEALTH)"
                 }
               }
@@ -2326,7 +2335,7 @@ spec:
             "textMode": "value",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "alias": "",
@@ -2526,7 +2535,7 @@ spec:
             "textMode": "value",
             "wideLayout": true
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "alias": "",
@@ -2700,18 +2709,10 @@ spec:
           "id": 27,
           "options": {
             "cellHeight": "sm",
-            "footer": {
-              "countRows": false,
-              "fields": "",
-              "reducer": [
-                "sum"
-              ],
-              "show": false
-            },
             "showHeader": true,
             "sortBy": []
           },
-          "pluginVersion": "11.0.0",
+          "pluginVersion": "12.3.0",
           "targets": [
             {
               "datasource": {
@@ -2812,8 +2813,9 @@ spec:
           "type": "table"
         }
       ],
+      "preload": false,
       "refresh": "30s",
-      "schemaVersion": 39,
+      "schemaVersion": 42,
       "tags": [
         "dell",
         "idrac",
@@ -2823,26 +2825,22 @@ spec:
       "templating": {
         "list": [
           {
-            "hide": 0,
+            "current": {
+              "text": "Prometheus",
+              "value": "prometheus"
+            },
             "includeAll": false,
             "label": "Datasource",
-            "multi": false,
             "name": "datasource",
             "options": [],
             "query": "prometheus",
-            "queryValue": "",
             "refresh": 1,
             "regex": ".+",
-            "skipUrlSync": false,
             "type": "datasource"
           },
           {
-            "allValue": "",
             "current": {
-              "selected": true,
-              "text": [
-                "All"
-              ],
+              "text": "All",
               "value": [
                 "$__all"
               ]
@@ -2852,7 +2850,6 @@ spec:
               "uid": "${datasource}"
             },
             "definition": "label_values(idrac_system_machine_info,job)",
-            "hide": 0,
             "includeAll": true,
             "label": "job",
             "multi": true,
@@ -2861,27 +2858,33 @@ spec:
             "query": "label_values(idrac_system_machine_info,job)",
             "refresh": 1,
             "regex": "",
-            "skipUrlSync": false,
             "sort": 1,
             "type": "query"
           },
           {
             "allValue": ".+",
+            "current": {
+              "text": [
+                "192.168.1.120",
+                "192.168.1.187"
+              ],
+              "value": [
+                "192.168.1.120",
+                "192.168.1.187"
+              ]
+            },
             "datasource": {
               "type": "prometheus",
               "uid": "${datasource}"
             },
             "definition": "label_values(idrac_system_machine_info{job=~\"$job\"},instance)",
-            "hide": 0,
             "includeAll": true,
-            "label": "",
             "multi": true,
             "name": "instance",
             "options": [],
             "query": "label_values(idrac_system_machine_info{job=~\"$job\"},instance)",
             "refresh": 1,
             "regex": "",
-            "skipUrlSync": false,
             "sort": 3,
             "type": "query"
           }
@@ -2895,6 +2898,5 @@ spec:
       "timezone": "",
       "title": "BMC",
       "uid": "YVz226S4z",
-      "version": 5,
-      "weekStart": ""
+      "version": 14
     }

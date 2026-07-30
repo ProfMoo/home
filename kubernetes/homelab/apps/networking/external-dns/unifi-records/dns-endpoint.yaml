@@ -1,0 +1,12 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/externaldns.k8s.io/dnsendpoint_v1alpha1.json
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: internal-node-2
+spec:
+  endpoints:
+    - dnsName: node.2.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.1.112"]
