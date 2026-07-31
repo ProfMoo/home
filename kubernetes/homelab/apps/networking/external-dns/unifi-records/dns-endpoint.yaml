@@ -6,7 +6,51 @@ metadata:
   name: internal-node-2
 spec:
   endpoints:
+    - dnsName: internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.8.131"]
+    - dnsName: k8s.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.8.99"]
+    - dnsName: node.1.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.1.120"]
     - dnsName: node.2.internal.drmoo.io
       recordType: A
       recordTTL: 300
       targets: ["192.168.1.112"]
+    - dnsName: node.3.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.1.187"]
+    - dnsName: pve.0.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.1.64"]
+    - dnsName: pve.2.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.1.67"]
+    - dnsName: truenas.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.1.26"]
+    - dnsName: truenas-oobm.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.1.54"]
+    - dnsName: unifi.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.1.1"]
+    - dnsName: ups.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.1.49"]
+    - dnsName: zigbee.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.1.148"]
