@@ -15,7 +15,7 @@ spec:
         module: [default]
         cluster: ["1"]
         node: ["1"]
-        target: ["192.168.1.64"]
+        target: ["pve.1.internal.drmoo.io"]
       relabelings:
         # NOTE: This relabeling ensures the 'instance' label is set to the IP of the underlying Proxmox node
         # that we're querying for information (instead of the default, which would be the exporter IP).
@@ -27,19 +27,7 @@ spec:
         module: [default]
         cluster: ["1"]
         node: ["1"]
-        target: ["192.168.1.48"]
-      relabelings:
-        # NOTE: This relabeling ensures the 'instance' label is set to the IP of the underlying Proxmox node
-        # that we're querying for information (instead of the default, which would be the exporter IP).
-        - sourceLabels: [__param_target]
-          targetLabel: instance
-    - path: /pve
-      port: metrics
-      params:
-        module: [default]
-        cluster: ["1"]
-        node: ["1"]
-        target: ["192.168.1.192"]
+        target: ["pve.5.internal.drmoo.io"]
       relabelings:
         # NOTE: This relabeling ensures the 'instance' label is set to the IP of the underlying Proxmox node
         # that we're querying for information (instead of the default, which would be the exporter IP).

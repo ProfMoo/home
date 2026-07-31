@@ -21,11 +21,11 @@
         href: http://truenas-oobm.internal.drmoo.io
         icon: truenas
     - Compute-1:
-        href: http://pve.0.internal.drmoo.io:8006
+        href: http://pve.1.internal.drmoo.io:8006
         icon: proxmox
         description: (root:admin)
     - Compute-2:
-        href: http://pve.1.internal.drmoo.io:8006
+        href: http://pve.5.internal.drmoo.io:8006
         icon: proxmox
         description: (root:admin)
     - Compute-1 iDRAC:
