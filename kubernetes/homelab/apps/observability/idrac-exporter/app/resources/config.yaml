@@ -3,13 +3,13 @@ address: 0.0.0.0
 port: 9348
 timeout: 30
 hosts:
-  192.168.1.112:
+  node.2.internal.drmoo.io:
     username: ADMIN
     password: ADMIN
-  192.168.1.187:
+  node.3.internal.drmoo.io:
     username: ADMIN
     password: ADMIN
-  192.168.1.120:
+  node.1.internal.drmoo.io:
     username: root
     password: calvin
     use_basic_auth: true

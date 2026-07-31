@@ -48,7 +48,7 @@ spec:
             scheme: http
             scrapeTimeout: 60s
             params:
-              target: ["192.168.1.112"]
+              target: ["node.2.internal.drmoo.io"]
             relabelings: &relabelings
               # NOTE: Set 'instance' to the iDRAC target instead of the exporter pod IP.
               - sourceLabels: [__param_target]
@@ -59,7 +59,7 @@ spec:
             scheme: http
             scrapeTimeout: 60s
             params:
-              target: ["192.168.1.187"]
+              target: ["node.3.internal.drmoo.io"]
             relabelings: *relabelings
           - interval: 2m
             path: /metrics
@@ -67,7 +67,7 @@ spec:
             scheme: http
             scrapeTimeout: 60s
             params:
-              target: ["192.168.1.120"]
+              target: ["node.1.internal.drmoo.io"]
             relabelings: *relabelings
     persistence:
       config:
