@@ -91,4 +91,4 @@ One major change from the typical home-operations setup is that I configured Kub
 
 ## Local Dev
 
-Some binaries needed for local development: `claude` `talosctl` `kubectl` `flux` `terraform` `docker` `yamlfmt` `markdownlint-cli2` `hadolint` `shfmt`, `minijinja-cli`, `gum`
+Some binaries needed for local development: `claude` `talosctl` `kubectl` `flux` `terraform` `docker` `yamlfmt` `markdownlint-cli2` `hadolint` `shfmt`, `minijinja-cli`
