@@ -25,6 +25,7 @@ spec:
       - --crd-source-apiversion=externaldns.k8s.io/v1alpha1
       - --crd-source-kind=DNSEndpoint
       - --gateway-name=envoy-external
+      - --exclude-domains=internal.drmoo.io
     triggerLoopOnEvent: true
     policy: sync
     sources:
