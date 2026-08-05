@@ -41,7 +41,7 @@ A [onedr0p home-ops](https://github.com/onedr0p/home-ops) inspired project, with
 
 ## Overview
 
-A mono-repository for my homelab Kubernetes cluster. I strictly adhere to Infrastructure as Code (IaC) and GitOps practices using tools like Kubernetes, Terraform, Talos, Flux, Renovate, and GitHub Actions.
+A mono-repository for my homelab Kubernetes cluster. I strictly adhere to Infrastructure as Code (IaC) and GitOps practices using OSS tools like Kubernetes, Terraform, Talos, Flux, Renovate, and GitHub Actions.
 
 <p align="center">
   <img src="./docs/diagram.drawio.png" alt="diagram" width="500" height="500">
@@ -51,7 +51,7 @@ A mono-repository for my homelab Kubernetes cluster. I strictly adhere to Infras
 
 I use [Talos](https://github.com/siderolabs/talos), [Terraform](https://github.com/hashicorp/terraform), and [Proxmox](https://github.com/proxmox) to spin up Kubernetes in a GitOps fashion in [this directory](./infrastructure).
 
-Proxmox, a VM-management technology, is used to spin up VMs on the compute bare-metal rack servers. These raw VMs are bootstrapped via Terraform with Talos configuration(s) that create a functional Kubernetes cluster with the initial cluster components (such as Flux) already deployed.
+Proxmox, a VM-management and hypervisor technology, is used to spin up VMs on the compute bare-metal rack servers. These raw VMs are bootstrapped via Terraform with Talos configuration(s) that create a functional Kubernetes cluster with the initial cluster components (such as Flux) already deployed.
 
 ### Kubernetes
 
