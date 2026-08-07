@@ -12,7 +12,7 @@ spec:
   values:
     image:
       repository: ghcr.io/itzg/mc-router
-      tag: 1.43.1@sha256:b4f4c50ba90ab2ea93cff96b7cba1c1d7d41f3e580ce20d989e4d6744f054a53
+      tag: 1.45.4@sha256:1ffcbfe6fa01a73b61f351fd2b30c124838975e03dd65a5d4a272cc30bdd4dd7
       pullPolicy: IfNotPresent
     services:
       minecraft:
