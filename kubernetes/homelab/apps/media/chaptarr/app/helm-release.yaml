@@ -31,7 +31,7 @@ spec:
           app:
             image:
               repository: docker.io/robertlordhood/chaptarr
-              tag: develop@sha256:912f4f5b3049b478e8f76a05945999e5faafb94cd6e4976544d2334f011a11a1
+              tag: develop@sha256:ccbe157f88f33d085d12a3e5d7cfb9d5b15f89d69b6eba984f789064d21e1b85
             env:
               TZ: America/New_York
               CHAPTARR__APP__INSTANCENAME: Chaptarr
