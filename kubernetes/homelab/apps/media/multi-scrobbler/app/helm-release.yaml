@@ -35,7 +35,6 @@ spec:
               # https://multi-scrobbler.netlify.app/updating/upgrade-path/0140/?configType=env#configuring-ids
               SOURCE_LASTFM_ID: foobar-source-lastfm
               KOITO_ID: foobar-koito
-              LASTFM_ID: foobar-lastfm
             probes:
               liveness: &probes
                 enabled: true
