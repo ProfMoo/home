@@ -31,6 +31,9 @@ spec:
               LOG_LEVEL: info
               SOURCE_LASTFM_REDIRECT_URI: https://scrobbler.drmoo.io/lastfm/callback
               KOITO_URL: http://koito.media.svc.cluster.local
+              SOURCE_LASTFM_ID: foobar-source-lastfm
+              KOITO_ID: foobar-koito
+              LASTFM_ID: foobar-lastfm
             probes:
               liveness: &probes
                 enabled: true
