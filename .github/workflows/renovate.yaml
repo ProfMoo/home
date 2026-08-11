@@ -34,12 +34,12 @@ jobs:
           app-id: "${{ secrets.RENOVATE_APP_ID }}"
           private-key: "${{ secrets.RENOVATE_APP_PRIVATE_KEY }}"
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           token: "${{ steps.app-token.outputs.token }}"
       - name: Renovate
         id: renovate
-        uses: renovatebot/github-action@v46.2.1
+        uses: renovatebot/github-action@v46.2.2
         with:
           configurationFile: kubernetes/homelab/apps/base/renovate/config/renovate.json5
           token: "${{ steps.app-token.outputs.token }}"
