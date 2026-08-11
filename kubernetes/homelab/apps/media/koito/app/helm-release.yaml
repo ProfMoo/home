@@ -29,6 +29,8 @@ spec:
               KOITO_FORCE_TZ: America/New_York
               KOITO_CONFIG_DIR: /etc/koito
               KOITO_FETCH_IMAGES_DURING_IMPORT: true
+              # NOTE: Only used for images (not scrobbling)
+              # Source: https://koito.io/reference/configuration/#koito_lastfm_api_key
               KOITO_LASTFM_API_KEY:
                 valueFrom:
                   secretKeyRef:
