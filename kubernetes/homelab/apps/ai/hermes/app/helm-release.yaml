@@ -48,7 +48,16 @@ spec:
               HERMES_HOME: /opt/data
               HOME: /opt/data
               TERM: xterm-256color
+              EMAIL_IMAP_HOST: imap.gmail.com
+              EMAIL_IMAP_PORT: 993
+              EMAIL_SMTP_HOST: smtp.gmail.com
+              EMAIL_SMTP_PORT: 587
+              EMAIL_POLL_INTERVAL: 15
+              EMAIL_ALLOWED_USERS: obshane96@gmail.com,superbud9123@gmail.com
+              EMAIL_HOME_ADDRESS: obshane96@gmail.com
             envFrom:
+              - secretRef:
+                  name: hermes-email-secret
               - secretRef:
                   name: hermes-secret
             securityContext:

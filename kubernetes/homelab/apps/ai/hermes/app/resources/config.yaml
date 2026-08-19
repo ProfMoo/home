@@ -40,6 +40,8 @@ platform_toolsets:
     - hermes-cli
   discord:
     - hermes-discord
+  email:
+    - hermes-email
 agent:
   max_turns: 90
   gateway_timeout: 1800
