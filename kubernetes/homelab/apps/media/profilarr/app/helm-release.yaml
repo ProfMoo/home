@@ -21,7 +21,7 @@ spec:
           app:
             image:
               repository: ghcr.io/dictionarry-hub/profilarr
-              tag: 2.1.0@sha256:75a43c9c19c70f6e48315d4ed5cef3232d905da8fab397391a2078a5e0fd7ec1
+              tag: 2.2.0@sha256:ddcdd0f340043c2ec0a85ca74b9a6be9be42b1c0288c75fc36a26a43f695860b
             env:
               PUID: 1000
               PGID: 1000
@@ -75,7 +75,7 @@ spec:
           app:
             image:
               repository: ghcr.io/dictionarry-hub/profilarr-parser
-              tag: 2.1.0@sha256:83d668258b2a798adaf25dec0d78e5159953c3b015e2d31edb8e5b9859f3c591
+              tag: 2.2.0@sha256:3cd3f8c4979ee66304a518462cc6c5b59825bae6b25e7dfa51b30178b9265df7
             env:
               ASPNETCORE_URLS: http://+:5000
               ASPNETCORE_ENVIRONMENT: Production
