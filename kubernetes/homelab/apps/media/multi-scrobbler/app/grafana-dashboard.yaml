@@ -1,0 +1,17 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/grafana.integreatly.org/grafanadashboard_v1beta1.json
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: multi-scrobbler
+spec:
+  allowCrossNamespaceImport: true
+  folder: media
+  datasources:
+    - datasourceName: Prometheus
+      inputName: DS_PROMETHEUS
+  url: https://docs.multi-scrobbler.app/assets/files/multiscrobbler-dashboard-814b740dbbd83aba08598320999b9f67.json
+  instanceSelector:
+    matchLabels:
+      grafana.drmoo.io/instance: main
+  resyncPeriod: 10m0s

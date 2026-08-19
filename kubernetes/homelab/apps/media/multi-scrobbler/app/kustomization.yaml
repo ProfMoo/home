@@ -5,3 +5,5 @@ kind: Kustomization
 resources:
   - ./multi-scrobbler.secret.sops.yaml
   - ./helm-release.yaml
+  - ./service-monitor.yaml
+  - ./grafana-dashboard.yaml

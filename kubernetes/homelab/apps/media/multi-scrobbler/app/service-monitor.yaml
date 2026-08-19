@@ -1,0 +1,20 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.pages.dev/monitoring.coreos.com/servicemonitor_v1.json
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: multi-scrobbler
+spec:
+  endpoints:
+    - port: http
+      path: /api/metrics
+      interval: 30s
+      honorLabels: true
+  jobLabel: app.kubernetes.io/name
+  namespaceSelector:
+    matchNames:
+      - media
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: multi-scrobbler
+      app.kubernetes.io/instance: multi-scrobbler
