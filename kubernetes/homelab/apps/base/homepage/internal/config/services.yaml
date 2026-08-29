@@ -28,6 +28,10 @@
         href: http://pve.5.internal.drmoo.io:8006
         icon: proxmox
         description: (root:admin)
+    - Compute-6:
+        href: http://pve.6.internal.drmoo.io:8006
+        icon: proxmox
+        description: (root:admin)
     - Compute-1 iDRAC:
         href: http://node.1.internal.drmoo.io
         icon: dell

@@ -42,6 +42,14 @@ spec:
       recordType: A
       recordTTL: 300
       targets: ["192.168.1.48"]
+    - dnsName: pve.6.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.1.77"]
+    - dnsName: pve6.internal.drmoo.io
+      recordType: A
+      recordTTL: 300
+      targets: ["192.168.1.77"]
     - dnsName: truenas.internal.drmoo.io
       recordType: A
       recordTTL: 300
