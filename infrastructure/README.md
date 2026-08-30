@@ -91,12 +91,11 @@ kubectl -n storage rollout restart deploy/rook-ceph-operator
     kubectl -n storage delete deploy rook-ceph-osd-<ID>
     ```
 
-6. If the disk was explicitly listed in CephCluster CR, update the spec to remove it, otherwise Rook may try to recreate the OSD.
+6. If the disk was explicitly listed in CephCluster CR, update the spec to remove it, otherwise Rook may try to recreate the OSD (usually it's not).
 
 7. Clean the disk (if reusing or decommissioning):
 
     ```sh
-    # From rook-tools or the node itself
     kubectl -n storage exec -it deploy/rook-ceph-tools -- ceph-volume lvm zap /dev/sdX --destroy
     ```
 
