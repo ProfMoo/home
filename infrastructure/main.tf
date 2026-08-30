@@ -41,8 +41,6 @@ module "cluster" {
       disk_size = "500"
       datastore = "pve-disk2"
 
-      enable_storage_cluster = false
-
       # This doesn't necessarily need to match the boot ISO.
       talos_version = "1.12.7"
 
@@ -79,9 +77,6 @@ module "cluster" {
       # Old datastore: pve-disk3
       datastore = "pve-disk3"
 
-      enable_storage_cluster = false
-
-
       # This doesn't necessarily need to match the boot ISO.
       talos_version = "1.12.7"
       # External kubernetes network configuration
@@ -115,8 +110,6 @@ module "cluster" {
 
       disk_size = "500"
       datastore = "pve5-disk2"
-
-      enable_storage_cluster = false
 
       # This doesn't necessarily need to match the boot ISO.
       talos_version = "1.12.7"
