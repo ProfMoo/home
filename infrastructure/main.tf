@@ -95,12 +95,12 @@ module "cluster" {
       cpu_cores             = 3
       memory                = 8096
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_iso_pve1.talos_iso_id
+      proxmox_node_name     = "pve6"
+      initial_boot_iso      = module.talos_iso_pve6.talos_iso_id
 
       disk_size = "500"
       # Old datastore: pve-disk3
-      datastore = "pve-disk3"
+      datastore = "pve6-disk2"
 
       # This doesn't necessarily need to match the boot ISO.
       # This value mostly just matters for initial startup. If the node is new, then this value will determine which Talos
@@ -123,7 +123,7 @@ module "cluster" {
 
       kubernetes_node_labels = {
         "drmoo.io/role" : "controlplane"
-        "drmoo.io/zone" : "pve"
+        "drmoo.io/zone" : "pve6"
       }
     },
     "control_plane_instance_2" = {
@@ -217,24 +217,25 @@ module "cluster" {
       }
     },
     "worker_node_instance_1" = {
-      id                    = "1101"
-      name                  = "mat-zo"
-      description           = "Worker node instance in the Kubernetes homelab cluster"
-      tags                  = ["worker-node", "kubernetes"]
-      cpu_cores             = 15
-      memory                = 81920 # 80GB
+      id          = "1101"
+      name        = "mat-zo"
+      description = "Worker node instance in the Kubernetes homelab cluster"
+      tags        = ["worker-node", "kubernetes"]
+      # Small enough to fit on one CPU to avoid NUMA node issues.
+      cpu_cores             = 26
+      memory                = 61440 # 60GB
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_iso_pve1.talos_iso_id
+      proxmox_node_name     = "pve6"
+      initial_boot_iso      = module.talos_iso_pve6.talos_iso_id
 
       disk_size = "500"
-      datastore = "pve-disk5"
+      datastore = "pve6-disk3"
 
       storage_disks = [
         {
-          datastore_id   = "pve-disk7"
+          datastore_id   = "pve6-disk4"
           disk_interface = "scsi3"
-          size           = 1800
+          size           = 500
         }
       ]
 
@@ -259,7 +260,7 @@ module "cluster" {
 
       kubernetes_node_labels = {
         "drmoo.io/role" : "worker"
-        "drmoo.io/zone" : "pve"
+        "drmoo.io/zone" : "pve6"
         "drmoo.io/storage" : "rook-osd-node"
       }
     },
