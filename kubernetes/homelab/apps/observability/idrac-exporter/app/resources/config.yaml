@@ -2,6 +2,7 @@
 address: 0.0.0.0
 port: 9348
 timeout: 30
+concurrency: 2
 hosts:
   node.2.internal.drmoo.io:
     username: ADMIN
