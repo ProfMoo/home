@@ -48,7 +48,7 @@ spec:
             scheme: http
             scrapeTimeout: 60s
             params:
-              target: ["node.2.internal.drmoo.io"]
+              target: ["node-2.internal.drmoo.io"]
             relabelings: &relabelings
               # NOTE: Set 'instance' to the iDRAC target instead of the exporter pod IP.
               - sourceLabels: [__param_target]
@@ -59,7 +59,7 @@ spec:
             scheme: http
             scrapeTimeout: 60s
             params:
-              target: ["node.3.internal.drmoo.io"]
+              target: ["node-3.internal.drmoo.io"]
             relabelings: *relabelings
           - interval: 2m
             path: /metrics
@@ -67,7 +67,13 @@ spec:
             scheme: http
             scrapeTimeout: 60s
             params:
-              target: ["node.1.internal.drmoo.io"]
+              # NOTE: node.1 is iDRAC. Keep this hostname aligned with the iDRAC
+              # DNS name set manually via RACADM, otherwise Redfish returns 400.
+              # I set this node to respond on this hostname manually with RACADM commands:
+              #   docker run --rm -it --network=host --platform linux/amd64 dcampos/racadm:latest --nocertwarn -r 192.168.1.120 -u root -p calvin set iDRAC.NIC.DNSRacName node-1
+              #   docker run --rm -it --network=host --platform linux/amd64 dcampos/racadm:latest --nocertwarn -r 192.168.1.120 -u root -p calvin set iDRAC.NIC.DNSDomainName internal.drmoo.io
+              #   docker run --rm -it --network=host --platform linux/amd64 dcampos/racadm:latest --nocertwarn -r 192.168.1.120 -u root -p calvin racreset
+              target: ["node-1.internal.drmoo.io"]
             relabelings: *relabelings
     persistence:
       config:

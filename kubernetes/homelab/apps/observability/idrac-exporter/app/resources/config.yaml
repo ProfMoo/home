@@ -4,13 +4,13 @@ port: 9348
 timeout: 30
 concurrency: 2
 hosts:
-  node.2.internal.drmoo.io:
+  node-2.internal.drmoo.io:
     username: ADMIN
     password: ADMIN
-  node.3.internal.drmoo.io:
+  node-3.internal.drmoo.io:
     username: ADMIN
     password: ADMIN
-  node.1.internal.drmoo.io:
+  node-1.internal.drmoo.io:
     username: root
     password: calvin
     use_basic_auth: true

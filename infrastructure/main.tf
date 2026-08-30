@@ -4,7 +4,7 @@ module "talos_1_11_6_iso_pve1" {
   # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
   talos_image_datastore = "local"
 
-  talos_version = "1.11.6"
+  talos_version = "1.12.7"
   # The Proxmox node identifier for the storage location of the Talos image
   talos_image_storage_node = "pve"
 }
@@ -15,7 +15,7 @@ module "talos_1_11_6_iso_pve5" {
   # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
   talos_image_datastore = "local"
 
-  talos_version = "1.11.6"
+  talos_version = "1.12.7"
   # The Proxmox node identifier for the storage location of the Talos image
   talos_image_storage_node = "pve5"
 }
@@ -44,8 +44,7 @@ module "cluster" {
       enable_storage_cluster = false
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.11.6"
-      kubernetes_version = "1.33.4"
+      talos_version = "1.12.7"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -77,14 +76,14 @@ module "cluster" {
       initial_boot_iso      = module.talos_1_11_6_iso_pve1.talos_iso_id
 
       disk_size = "500"
+      # Old datastore: pve-disk3
       datastore = "pve-disk3"
 
       enable_storage_cluster = false
 
-      # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.11.6"
-      kubernetes_version = "1.33.4"
 
+      # This doesn't necessarily need to match the boot ISO.
+      talos_version = "1.12.7"
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
 
@@ -120,8 +119,7 @@ module "cluster" {
       enable_storage_cluster = false
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.11.6"
-      kubernetes_version = "1.33.4"
+      talos_version = "1.12.7"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -167,8 +165,7 @@ module "cluster" {
       ]
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.11.6"
-      kubernetes_version = "1.33.4"
+      talos_version = "1.12.7"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -212,8 +209,7 @@ module "cluster" {
       ]
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.11.6"
-      kubernetes_version = "1.33.4"
+      talos_version = "1.12.7"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -284,8 +280,7 @@ module "cluster" {
       # ]
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.11.6"
-      kubernetes_version = "1.33.4"
+      talos_version = "1.12.7"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
