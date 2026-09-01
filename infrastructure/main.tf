@@ -99,7 +99,6 @@ module "cluster" {
       initial_boot_iso      = module.talos_iso_pve6.talos_iso_id
 
       disk_size = "500"
-      # Old datastore: pve-disk3
       datastore = "pve6-disk2"
 
       # This doesn't necessarily need to match the boot ISO.
