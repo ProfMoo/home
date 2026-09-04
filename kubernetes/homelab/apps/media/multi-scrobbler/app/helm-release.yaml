@@ -20,7 +20,7 @@ spec:
           app:
             image:
               repository: ghcr.io/foxxmd/multi-scrobbler
-              tag: 0.16.4@sha256:61b7b7748a7bccdc08085254af550f8333ef36cc671f902754ffe4bd1e44e6d5
+              tag: 0.17.2@sha256:775b5e8cc10d316cc3f29d8195022a910261347ca6c3314a6e17b0d2c51d5c0d
             envFrom:
               - secretRef:
                   name: multi-scrobbler-secret
