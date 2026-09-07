@@ -9,7 +9,7 @@ Homelab IaC/GitOps mono-repo for `ProfMoo/home`.
 - `kubernetes/homelab/apps/<area>/<app>/`: app deployments. Typical layout is `ks.yaml` plus `app/` containing HelmRelease, Kustomization, dashboards, monitors, rules, secrets, etc.
 - `kubernetes/homelab/common/`: reusable Kustomize components, especially VolSync PVC backup plumbing.
 - `kubernetes/homelab/bootstrap/`: one-time/manual bootstrap pieces for Flux and base CRDs.
-- `infrastructure/`: Terraform + Talos + Proxmox VM/node config. Generated node configs live in `infrastructure/nodes/`.
+- `infrastructure/`: OpenTofu + Talos + Proxmox VM/node config. Generated node configs live in `infrastructure/nodes/`.
 - `containers/`: local container build context(s), currently small.
 - `docs/`: operational notes and investigations.
 
@@ -18,14 +18,14 @@ Homelab IaC/GitOps mono-repo for `ProfMoo/home`.
 Use `task --list` first. Common checks:
 
 - `task l:lint`: all lint checks.
-- `task f:format`: format YAML, Markdown, Terraform, shell.
+- `task f:format`: format YAML, Markdown, HCL, shell.
 - `task l:lint-yaml` / `task f:format-yaml`: YAML only.
 - `task l:lint-markdown` / `task f:format-markdown`: Markdown only.
-- `task l:lint-terraform` / `task f:format-terraform`: Terraform only.
+- `task l:lint-hcl` / `task f:format-hcl`: HCL only.
 - `task t:apply-dry-run`: Talos config dry-run against live nodes.
 - `task t:apply`: apply all generated Talos node configs.
 
-Direct tools expected locally: `talosctl`, `kubectl`, `flux`, `terraform`, `docker`, `yamlfmt`, `markdownlint-cli2`, `hadolint`, `shfmt`, `minijinja-cli`, `gum`, `sops`.
+Direct tools expected locally: `talosctl`, `kubectl`, `flux`, `tofu`, `docker`, `yamlfmt`, `markdownlint-cli2`, `hadolint`, `shfmt`, `minijinja-cli`, `gum`, `sops`.
 
 ## Kubernetes Change Pattern
 
@@ -59,10 +59,10 @@ Direct tools expected locally: `talosctl`, `kubectl`, `flux`, `terraform`, `dock
 
 ## Infrastructure Pattern
 
-- Terraform root is `infrastructure/`; modules live under `infrastructure/modules/`.
+- OpenTofu root is `infrastructure/`; modules live under `infrastructure/modules/`.
 - Node inventory and generated Talos machine config are in `infrastructure/nodes/*.yaml`.
-- `infrastructure/create_talos_node_configs` creates per-node Talos configs after Terraform/config changes.
-- Validate infra edits with `terraform fmt -recursive` or `task l:lint-terraform`; use `terraform plan` from `infrastructure/` only when credentials/state are available.
+- `infrastructure/create_talos_node_configs` creates per-node Talos configs after OpenTofu/config changes.
+- Validate infra edits with `tofu fmt -recursive` or `task l:lint-hcl`; use `tofu plan` from `infrastructure/` only when credentials/state are available.
 - Do not hand-edit generated Talos node configs unless task explicitly targets them.
 
 ## Formatting And Style
@@ -72,7 +72,7 @@ Direct tools expected locally: `talosctl`, `kubectl`, `flux`, `terraform`, `dock
 - Do not format `*.sops.yaml` or Talos templates in `infrastructure/configs/`; yamlfmt excludes them.
 - Markdown lint ignores line length and inline HTML; root README uses HTML badges/layout.
 - Shell scripts should pass `shfmt -d .`.
-- Terraform should pass `terraform fmt -check -recursive -diff`.
+- HCL should pass `tofu fmt -check -recursive -diff`.
 
 ## Operational Caution
 

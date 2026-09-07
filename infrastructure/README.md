@@ -4,7 +4,7 @@ This directory houses the code that transforms raw bare-metal machines into func
 
 ## Prerequisites
 
-1. Terraform installed (check [the providers file](./talos/providers.tf) for the specific version requirements)
+1. OpenTofu installed (check [the providers file](./providers.tf) for the specific version requirements)
 2. Install Proxmox VE v8.0+ on a bare-metal machine (or more than one).
 3. Ensure you have a file named `aws-credentials` in the `talos` directory in the format:
 
@@ -19,7 +19,7 @@ This directory houses the code that transforms raw bare-metal machines into func
 ## How To Use
 
 1. Populate `main.tf` as desired.
-2. Run the desired Terraform commands (i.e. `terraform plan`, `terraform apply`).
+2. Run the desired OpenTofu commands (i.e. `tofu plan`, `tofu apply`).
 3. Run this command to create the per-node Talos configs:
 
     ```bash
@@ -136,11 +136,11 @@ Tip: If removing multiple OSDs, do them one at a time and wait for full rebalanc
 
 ### Upgrading Kubernetes
 
-Can perform a rolling upgrade with the TF provider and a standard TF workflow (or `talosctl` also works per [the docs](https://www.talos.dev/v1.9/kubernetes-guides/upgrading-kubernetes/)).
+Can perform a rolling upgrade with the OpenTofu provider and a standard OpenTofu workflow (or `talosctl` also works per [the docs](https://www.talos.dev/v1.9/kubernetes-guides/upgrading-kubernetes/)).
 
 ### Upgrading Talos
 
-The Talos TF provider is relatively under-featured for upgrades ([Example of lack of features here](https://github.com/siderolabs/terraform-provider-talos/issues/140#issue-2055027252)). So it's best to use `talosctl` and follow the more production-ready upgrade path [here](https://www.talos.dev/v1.9/talos-guides/upgrading-talos/).
+The Talos OpenTofu provider is relatively under-featured for upgrades ([Example of lack of features here](https://github.com/siderolabs/terraform-provider-talos/issues/140#issue-2055027252)). So it's best to use `talosctl` and follow the more production-ready upgrade path [here](https://www.talos.dev/v1.9/talos-guides/upgrading-talos/).
 
 ### Upgrading Talos-Controlled, Kubernetes-State-Managed Resources
 

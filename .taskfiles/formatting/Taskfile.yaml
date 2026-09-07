@@ -6,7 +6,7 @@ tasks:
     deps:
       - format-yaml
       - format-markdown
-      - format-terraform
+      - format-hcl
       - format-shell
   format-yaml:
     desc: "Format YAML files"
@@ -20,12 +20,12 @@ tasks:
       - echo "==> Formatting Markdown files..."
       - markdownlint-cli2 --config .markdownlint-cli2.yaml "**/*.md" --fix
       - echo "==> Done formatting Markdown files"
-  format-terraform:
-    desc: "Format Terraform files"
+  format-hcl:
+    desc: "Format HCL files"
     cmds:
-      - echo "==> Formatting Terraform files..."
-      - terraform fmt -recursive
-      - echo "==> Done formatting Terraform files"
+      - echo "==> Formatting HCL files..."
+      - tofu fmt -recursive
+      - echo "==> Done formatting HCL files"
   format-shell:
     desc: "Format Shell scripts"
     cmds:

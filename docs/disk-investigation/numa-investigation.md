@@ -174,7 +174,7 @@ leave 14 CPU / 96 GB allocatable — well above current moody-good utilization
 (~1% CPU per `kubectl top`).
 
 The VM must be rebooted for Proxmox to apply the new sizing. Apply the
-Terraform plan, then reboot the VM via Proxmox or `talosctl reboot`.
+OpenTofu plan, then reboot the VM via Proxmox or `talosctl reboot`.
 
 ## Soak Plan
 
@@ -197,7 +197,7 @@ kubectl get events --field-selector involvedObject.name=moody-good --sort-by='.l
   back up later by either (a) staying within one NUMA node, or (b) enabling
   full guest NUMA passthrough (`numa: 1`, `sockets: 2`, `cores: 14` per
   socket, plus `numa0`/`numa1` host-pinning lines in `/etc/pve/qemu-server/`).
-  Option (b) requires a custom Terraform module change since the bpg/proxmox
+  Option (b) requires a custom OpenTofu module change since the bpg/proxmox
   provider may not expose those fields directly.
 
 - **Stalls continue:** This theory is wrong. Next places to look:

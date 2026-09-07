@@ -27,7 +27,7 @@ terraform {
     key    = "infrastructure"
     region = "us-east-1"
 
-    # To authenticate access to state (does not authenticate the actual terraform commands).
+    # To authenticate access to state (does not authenticate the actual OpenTofu commands).
     # These credentials also need to have access to the KMS key used to decrypt the keys in ./secrets.sops.yaml.
     shared_credentials_file = "./aws-credentials"
   }

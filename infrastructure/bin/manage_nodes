@@ -20,7 +20,7 @@ upgrade_node() {
 	done
 }
 
-# Ensure that a node is also removed from the cluster when Terraform destroys it.
+# Ensure that a node is also removed from the cluster when OpenTofu destroys it.
 # https://www.talos.dev/v1.9/talos-guides/howto/scaling-down/
 remove_node() {
 	talosctl reset --nodes $1
@@ -32,8 +32,8 @@ main() {
 	command=$1
 	nodes=$2
 
-	terraform output -raw kubeconfig >$tmp_dir/kubeconfig
-	terraform output -raw talosconfig >$tmp_dir/talosconfig
+	tofu output -raw kubeconfig >$tmp_dir/kubeconfig
+	tofu output -raw talosconfig >$tmp_dir/talosconfig
 
 	export KUBECONFIG=$tmp_dir/kubeconfig
 	export TALOSCONFIG=$tmp_dir/talosconfig

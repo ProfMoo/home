@@ -4,7 +4,7 @@
 # The instructions on how to decode each secret is embedded into the secret YAMLs themselves.
 creation_rules:
   # These secrets are used during infrastructure creation.
-  # Namely: used in operations with Terraform, Proxmox, and similar.
+  # Namely: used in operations with OpenTofu, Proxmox, and similar.
   - path_regex: infrastructure\/.+\.sops.ya?ml
     input_type: yaml
     encrypted_regex: ^(data|stringData)$

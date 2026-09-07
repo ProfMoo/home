@@ -4,7 +4,7 @@ resource "aws_iam_user" "nas" {
   name = "nas"
 
   tags = {
-    description = "Used by Synology NAS to connect to the S3 replication backup. Also in-use by TrueNAS NAS now."
+    description = "Used by TrueNAS NAS to connect to the S3 replication backup."
   }
 }
 

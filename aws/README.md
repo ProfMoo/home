@@ -1,6 +1,6 @@
 # Remote Storage
 
-This Terraform code is used to generate the AWS resources necessary for long-time archival S3 storage. I use S3 as a low-cost, API-driven remote backup service.
+This OpenTofu code is used to generate the AWS resources necessary for long-time archival S3 storage. I use S3 as a low-cost, API-driven remote backup service.
 
 ## Quick Start
 
@@ -15,7 +15,7 @@ This Terraform code is used to generate the AWS resources necessary for long-tim
 2. Run:
 
     ```bash
-    ./run.sh $TERRAFORM_COMMANDS_HERE
+    ./docker_run.sh $TOFU_COMMANDS_HERE
     # Ex: ./docker_run.sh apply -auto-approve
     # Ex: ./docker_run.sh plan
     ```

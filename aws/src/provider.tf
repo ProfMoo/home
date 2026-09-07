@@ -14,7 +14,7 @@ terraform {
     bucket = "sobrien-home"
     key    = "home"
     region = "us-east-1"
-    # To authenticate to access the state (not the actual terraform commands)
+    # To authenticate to access the state (not the actual OpenTofu commands)
     shared_credentials_files = ["./aws-credentials"]
   }
 }

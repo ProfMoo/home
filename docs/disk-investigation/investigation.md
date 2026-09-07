@@ -83,7 +83,7 @@ Control plane nodes have 8GB RAM but kube-apiserver alone uses 2-3.5GB. This lea
 
 ### 5. moody-good LABELED FOR STORAGE BUT HAS NO DISK
 
-moody-good has `drmoo.io/storage: rook-osd-node` but has no dedicated storage disk in its Terraform config. This means rook-discover is constantly scanning for disks.
+moody-good has `drmoo.io/storage: rook-osd-node` but has no dedicated storage disk in its OpenTofu config. This means rook-discover is constantly scanning for disks.
 
 ---
 
@@ -131,7 +131,7 @@ iostat -x 1 5
 
 1. **Check pve5 disk health** — Run SMART diagnostics on the physical disk backing moody-good's VM.
 
-2. **Add a dedicated storage disk to moody-good** — The node has 50 CPUs and 238GB RAM but only a single shared disk. Add a `storage_disks` entry in Terraform on a **separate physical disk** from the OS.
+2. **Add a dedicated storage disk to moody-good** — The node has 50 CPUs and 238GB RAM but only a single shared disk. Add a `storage_disks` entry in OpenTofu on a **separate physical disk** from the OS.
 
 3. **Fix skrillex disk contention** — Both OS and storage disk are on `disk3`. Move one to a different physical datastore.
 

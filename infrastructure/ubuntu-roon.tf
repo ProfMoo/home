@@ -27,7 +27,7 @@ resource "proxmox_virtual_environment_file" "ubuntu_cloud_image" {
 resource "unifi_user" "ubuntu_roon" {
   mac  = "52:54:00:0f:42:44" # Unique MAC address for the Ubuntu Roon VM
   name = "ubuntu-roon"
-  note = "Ubuntu VM for Roon Server - Provisioned via Terraform"
+  note = "Ubuntu VM for Roon Server - Provisioned via OpenTofu"
 
   fixed_ip   = "192.168.1.198" # Choose an available IP on VLAN 1 (avoiding conflict with existing Roon at .200)
   network_id = "1"             # VLAN 1

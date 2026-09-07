@@ -6,7 +6,7 @@ tasks:
     deps:
       - lint-yaml
       - lint-markdown
-      - lint-terraform
+      - lint-hcl
       - lint-docker
       - lint-shell
   lint-yaml:
@@ -21,12 +21,12 @@ tasks:
       - echo "==> Linting Markdown files..."
       - markdownlint-cli2 --config .markdownlint-cli2.yaml
       - echo "==> Done linting Markdown files"
-  lint-terraform:
-    desc: "Lint Terraform files"
+  lint-hcl:
+    desc: "Lint HCL files"
     cmds:
-      - echo "==> Linting Terraform files..."
-      - terraform fmt -check -recursive -diff
-      - echo "==> Done linting Terraform files"
+      - echo "==> Linting HCL files..."
+      - tofu fmt -check -recursive -diff
+      - echo "==> Done linting HCL files"
   lint-docker:
     desc: "Lint Dockerfiles"
     cmds:

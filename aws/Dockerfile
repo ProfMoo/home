@@ -1,13 +1,13 @@
-FROM hashicorp/terraform:1.15
+FROM ghcr.io/opentofu/opentofu:1.10.6
 
-WORKDIR /terraform
+WORKDIR /opentofu
 
 
 COPY src .
 
 COPY aws-credentials /aws-credentials
 
-RUN terraform init
+RUN tofu init
 
-ENTRYPOINT ["terraform"]
+ENTRYPOINT ["tofu"]
 CMD ["plan"]

@@ -183,23 +183,23 @@ lspci -nnk -s 3b:00.0
 
 ---
 
-## Phase 2: Terraform Changes
+## Phase 2: OpenTofu Changes
 
 ### Why This Phase is Needed
 
-Your infrastructure follows IaC principles using Terraform to provision Proxmox VMs. To pass the GPU through to moody-good, we need to:
+Your infrastructure follows IaC principles using OpenTofu to provision Proxmox VMs. To pass the GPU through to moody-good, we need to:
 
 1. Add the `hostpci` configuration to the VM definition
 2. Keep this change version-controlled and reproducible
 3. Allow future GPU nodes to be easily configured
 
-> **Source**: [Proxmox Terraform Provider - hostpci](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm#hostpci)
+> **Source**: [Proxmox OpenTofu Provider - hostpci](https://registry.terraform.io/providers/bpg/proxmox/latest/docs/resources/virtual_environment_vm#hostpci)
 
 ---
 
 ### 2.1 Add PCI Passthrough to Node Module
 
-**What**: Extend the node Terraform module to support PCI device passthrough.
+**What**: Extend the node OpenTofu module to support PCI device passthrough.
 
 **Why**: The current `infrastructure/modules/node/proxmox_vm.tf` doesn't have a `hostpci` block. Adding this as a variable with a default empty list means existing nodes are unaffected, while GPU nodes can specify devices to pass through.
 
@@ -1204,7 +1204,7 @@ kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=j
 
 1. **IOMMU not enabled**: Check `dmesg | grep -i iommu` on pve5 - should show "IOMMU enabled"
 2. **GPU not bound to VFIO**: Run `lspci -nnk -s <pci-addr>` on pve5 - should show "vfio-pci"
-3. **Incorrect PCI address**: Verify address in Terraform matches `lspci` output
+3. **Incorrect PCI address**: Verify address in OpenTofu matches `lspci` output
 4. **Another VM using GPU**: Each GPU can only be passed to one VM at a time
 
 ### NVIDIA Modules Not Loading in Talos

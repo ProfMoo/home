@@ -1,4 +1,4 @@
-# Local .terraform directories
+# Local OpenTofu/Terraform directories
 **/.terraform/*
 
 # .tfstate files
@@ -26,7 +26,7 @@ override.tf.json
 #
 # !example_override.tf
 
-# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
+# Include tfplan files to ignore the plan output of command: tofu plan -out=tfplan
 # example: *tfplan*
 
 # Ignore CLI configuration files

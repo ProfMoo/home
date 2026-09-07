@@ -1,6 +1,6 @@
 resource "aws_route53_zone" "drmoo_io" {
   name    = "drmoo.io"
-  comment = "HostedZone managed by Terraform from the ProfMoo/home repo"
+  comment = "HostedZone managed by OpenTofu from the ProfMoo/home repo"
 }
 
 resource "aws_route53_record" "drmoo_io_ns" {
