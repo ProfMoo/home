@@ -235,6 +235,11 @@ module "cluster" {
           datastore_id   = "pve6-disk4"
           disk_interface = "scsi3"
           size           = 500
+        },
+        {
+          datastore_id   = "pve6-disk5"
+          disk_interface = "scsi5"
+          size           = 1800
         }
       ]
 
