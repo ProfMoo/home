@@ -1,23 +1,44 @@
-module "talos_1_11_6_iso_pve1" {
+module "talos_iso_pve1" {
   source = "./modules/talos-iso"
 
   # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
   talos_image_datastore = "local"
 
-  talos_version = "1.11.6"
+  talos_version = "1.12.7"
   # The Proxmox node identifier for the storage location of the Talos image
   talos_image_storage_node = "pve"
 }
 
-module "talos_1_11_6_iso_pve5" {
+moved {
+  from = module.talos_1_11_6_iso_pve1
+  to   = module.talos_iso_pve1
+}
+
+moved {
+  from = module.talos_1_11_6_iso_pve5
+  to   = module.talos_iso_pve5
+}
+
+module "talos_iso_pve5" {
   source = "./modules/talos-iso"
 
   # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
   talos_image_datastore = "local"
 
-  talos_version = "1.11.6"
+  talos_version = "1.12.7"
   # The Proxmox node identifier for the storage location of the Talos image
   talos_image_storage_node = "pve5"
+}
+
+module "talos_iso_pve6" {
+  source = "./modules/talos-iso"
+
+  # The Proxmox default storage pool allocated for the Proxmox node itself is "local", but you can use any storage pool you want.
+  talos_image_datastore = "local"
+
+  talos_version = "1.12.7"
+  # The Proxmox node identifier for the storage location of the Talos image
+  talos_image_storage_node = "pve6"
 }
 
 module "cluster" {
@@ -36,16 +57,17 @@ module "cluster" {
       memory                = 8096
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_11_6_iso_pve1.talos_iso_id
+      initial_boot_iso      = module.talos_iso_pve1.talos_iso_id
 
       disk_size = "500"
       datastore = "pve-disk2"
 
-      enable_storage_cluster = false
-
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.11.6"
-      kubernetes_version = "1.33.4"
+      # This value mostly just matters for initial startup. If the node is new, then this value will determine which Talos
+      # version will be used to bootstrap the node. Once this node exists, the Talos version is saved on disk and this value is ignored.
+      # So for example, if you started a talos node w/ Talos 1.12.7, and then later upgraded to Talos 1.12.8, then
+      # restarting the node will still use Talos 1.12.8.
+      talos_version = "1.12.7"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -73,18 +95,18 @@ module "cluster" {
       cpu_cores             = 3
       memory                = 8096
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_11_6_iso_pve1.talos_iso_id
+      proxmox_node_name     = "pve6"
+      initial_boot_iso      = module.talos_iso_pve6.talos_iso_id
 
       disk_size = "500"
-      datastore = "pve-disk3"
-
-      enable_storage_cluster = false
+      datastore = "pve6-disk2"
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.11.6"
-      kubernetes_version = "1.33.4"
-
+      # This value mostly just matters for initial startup. If the node is new, then this value will determine which Talos
+      # version will be used to bootstrap the node. Once this node exists, the Talos version is saved on disk and this value is ignored.
+      # So for example, if you started a talos node w/ Talos 1.12.7, and then later upgraded to Talos 1.12.8, then
+      # restarting the node will still use Talos 1.12.8.
+      talos_version = "1.12.7"
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
 
@@ -100,7 +122,7 @@ module "cluster" {
 
       kubernetes_node_labels = {
         "drmoo.io/role" : "controlplane"
-        "drmoo.io/zone" : "pve"
+        "drmoo.io/zone" : "pve6"
       }
     },
     "control_plane_instance_2" = {
@@ -112,16 +134,17 @@ module "cluster" {
       memory                = 8096 # 8GB (of 256GB)
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve5"
-      initial_boot_iso      = module.talos_1_11_6_iso_pve5.talos_iso_id
+      initial_boot_iso      = module.talos_iso_pve5.talos_iso_id
 
       disk_size = "500"
       datastore = "pve5-disk2"
 
-      enable_storage_cluster = false
-
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.11.6"
-      kubernetes_version = "1.33.4"
+      # This value mostly just matters for initial startup. If the node is new, then this value will determine which Talos
+      # version will be used to bootstrap the node. Once this node exists, the Talos version is saved on disk and this value is ignored.
+      # So for example, if you started a talos node w/ Talos 1.12.7, and then later upgraded to Talos 1.12.8, then
+      # restarting the node will still use Talos 1.12.8.
+      talos_version = "1.12.7"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -153,7 +176,7 @@ module "cluster" {
       memory                = 81920 # 80GB
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_11_6_iso_pve1.talos_iso_id
+      initial_boot_iso      = module.talos_iso_pve1.talos_iso_id
 
       disk_size = "500"
       datastore = "pve-disk4"
@@ -167,8 +190,11 @@ module "cluster" {
       ]
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.11.6"
-      kubernetes_version = "1.33.4"
+      # This value mostly just matters for initial startup. If the node is new, then this value will determine which Talos
+      # version will be used to bootstrap the node. Once this node exists, the Talos version is saved on disk and this value is ignored.
+      # So for example, if you started a talos node w/ Talos 1.12.7, and then later upgraded to Talos 1.12.8, then
+      # restarting the node will still use Talos 1.12.8.
+      talos_version = "1.12.7"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -190,30 +216,39 @@ module "cluster" {
       }
     },
     "worker_node_instance_1" = {
-      id                    = "1101"
-      name                  = "mat-zo"
-      description           = "Worker node instance in the Kubernetes homelab cluster"
-      tags                  = ["worker-node", "kubernetes"]
-      cpu_cores             = 15
-      memory                = 81920 # 80GB
+      id          = "1101"
+      name        = "mat-zo"
+      description = "Worker node instance in the Kubernetes homelab cluster"
+      tags        = ["worker-node", "kubernetes"]
+      # Small enough to fit on one CPU to avoid NUMA node issues.
+      cpu_cores             = 26
+      memory                = 61440 # 60GB
       bridge_network_device = "vmbr0"
-      proxmox_node_name     = "pve"
-      initial_boot_iso      = module.talos_1_11_6_iso_pve1.talos_iso_id
+      proxmox_node_name     = "pve6"
+      initial_boot_iso      = module.talos_iso_pve6.talos_iso_id
 
       disk_size = "500"
-      datastore = "pve-disk5"
+      datastore = "pve6-disk3"
 
       storage_disks = [
         {
-          datastore_id   = "pve-disk7"
+          datastore_id   = "pve6-disk4"
           disk_interface = "scsi3"
+          size           = 500
+        },
+        {
+          datastore_id   = "pve6-disk5"
+          disk_interface = "scsi5"
           size           = 1800
         }
       ]
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.11.6"
-      kubernetes_version = "1.33.4"
+      # This value mostly just matters for initial startup. If the node is new, then this value will determine which Talos
+      # version will be used to bootstrap the node. Once this node exists, the Talos version is saved on disk and this value is ignored.
+      # So for example, if you started a talos node w/ Talos 1.12.7, and then later upgraded to Talos 1.12.8, then
+      # restarting the node will still use Talos 1.12.8.
+      talos_version = "1.12.7"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"
@@ -229,7 +264,7 @@ module "cluster" {
 
       kubernetes_node_labels = {
         "drmoo.io/role" : "worker"
-        "drmoo.io/zone" : "pve"
+        "drmoo.io/zone" : "pve6"
         "drmoo.io/storage" : "rook-osd-node"
       }
     },
@@ -245,7 +280,7 @@ module "cluster" {
       memory                = 102400 # 100GB; was 243712 (238GB), max ~128GB per NUMA node
       bridge_network_device = "vmbr0"
       proxmox_node_name     = "pve5"
-      initial_boot_iso      = module.talos_1_11_6_iso_pve5.talos_iso_id
+      initial_boot_iso      = module.talos_iso_pve5.talos_iso_id
 
       disk_size = "500"
       datastore = "pve5-disk3"
@@ -284,8 +319,11 @@ module "cluster" {
       # ]
 
       # This doesn't necessarily need to match the boot ISO.
-      talos_version      = "1.11.6"
-      kubernetes_version = "1.33.4"
+      # This value mostly just matters for initial startup. If the node is new, then this value will determine which Talos
+      # version will be used to bootstrap the node. Once this node exists, the Talos version is saved on disk and this value is ignored.
+      # So for example, if you started a talos node w/ Talos 1.12.7, and then later upgraded to Talos 1.12.8, then
+      # restarting the node will still use Talos 1.12.8.
+      talos_version = "1.12.7"
 
       # External kubernetes network configuration
       talos_virtual_ip = "192.168.8.99"

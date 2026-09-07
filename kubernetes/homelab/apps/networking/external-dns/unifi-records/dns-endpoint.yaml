@@ -14,15 +14,15 @@ spec:
       recordType: A
       recordTTL: 300
       targets: ["192.168.8.99"]
-    - dnsName: node.1.internal.drmoo.io
+    - dnsName: node-1.internal.drmoo.io
       recordType: A
       recordTTL: 300
       targets: ["192.168.1.120"]
-    - dnsName: node.2.internal.drmoo.io
+    - dnsName: node-2.internal.drmoo.io
       recordType: A
       recordTTL: 300
       targets: ["192.168.1.112"]
-    - dnsName: node.3.internal.drmoo.io
+    - dnsName: node-3.internal.drmoo.io
       recordType: A
       recordTTL: 300
       targets: ["192.168.1.187"]

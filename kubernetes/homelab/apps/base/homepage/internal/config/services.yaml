@@ -33,14 +33,14 @@
         icon: proxmox
         description: (root:admin)
     - Compute-1 iDRAC:
-        href: http://node.1.internal.drmoo.io
+        href: http://node-1.internal.drmoo.io
         icon: dell
         description: (root:calvin)
     - Compute-2 iDRAC:
-        href: http://node.2.internal.drmoo.io
+        href: http://node-2.internal.drmoo.io
         icon: supermicro
         description: (ADMIN:ADMIN)
     - Compute-3 iDRAC:
-        href: http://node.3.internal.drmoo.io
+        href: http://node-3.internal.drmoo.io
         icon: supermicro
         description: (ADMIN:ADMIN)

@@ -24,8 +24,7 @@ variable "control_plane" {
     disk_size = number
     datastore = string
 
-    talos_version      = string
-    kubernetes_version = string
+    talos_version = string
 
     talos_virtual_ip = string
 
@@ -73,8 +72,7 @@ variable "worker_nodes" {
       xvga    = bool
     })), [])
 
-    talos_version      = string
-    kubernetes_version = string
+    talos_version = string
 
     talos_virtual_ip = string
 
