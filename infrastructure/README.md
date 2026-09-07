@@ -42,8 +42,8 @@ This directory houses the code that transforms raw bare-metal machines into func
 ### Adding New Disks To Proxmox
 
 0. If the disk is already formatted, you'll need to 'zap' it to remove formatting to be able to add it to an LVM-Thin Pool. To do so: `sgdisk --zap-all /dev/<disk>`. To find the disk path, use `lsblk`.
-   1. The disk will be formatted if, for example, if was previously used in a storage cluster.
-1. Navigate to relevant node in Proxmox GUI -> Disks -> LVM-Thin -> "Create: Thinpool"
+   1. The disk will be formatted if, for example, if was previously used in Rook/Ceph.
+1. Navigate to relevant node in Proxmox GUI (not the cluster) -> Disks -> LVM-Thin -> "Create: Thinpool"
 2. Select new disk by block device name (`lsblk` might help show available nodes on the node). Example names: `/dev/sda`, `/dev/sdb`, `/dev/sdc`.
 3. Give the disk a name. I've chosen to increment the disks by the bay #. Example: Bay #3 -> `disk3`
 4. Hit "Create".
@@ -91,13 +91,45 @@ kubectl -n storage rollout restart deploy/rook-ceph-operator
     kubectl -n storage delete deploy rook-ceph-osd-<ID>
     ```
 
-6. If the disk was explicitly listed in CephCluster CR, update the spec to remove it, otherwise Rook may try to recreate the OSD.
+6. If the disk was explicitly listed in CephCluster CR, update the spec to remove it, otherwise Rook may try to recreate the OSD (usually it's not).
 
-7. Clean the disk (if reusing or decommissioning):
+7. Clean the disk if reusing it from prior Rook/Ceph use. Rook raw-mode OSD metadata can remain even when `lsblk` shows no filesystem. This can make Rook prepare say a disk is already prepared or keep resurrecting a purged OSD.
 
     ```sh
-    # From rook-tools or the node itself
-    kubectl -n storage exec -it deploy/rook-ceph-tools -- ceph-volume lvm zap /dev/sdX --destroy
+    # Confirm node disk names first. Never wipe the Talos OS disk.
+    talosctl -n <node_ip> get disks
+
+    # Stop Rook from racing disk cleanup.
+    kubectl -n storage scale deploy rook-ceph-operator --replicas=0
+    kubectl -n storage delete deploy rook-ceph-osd-<ID> --ignore-not-found
+
+    # Start a privileged Ceph toolbox pod pinned to the node with host /dev mounted.
+    ./scripts/rook-ceph-wipe-disk.sh <node_name>
+    ```
+
+    In the pod, inspect and wipe only the intended Rook data disks:
+
+    ```sh
+    # Should show the intended disks to be wiped (indicating leftover bluestore data)
+    lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINT
+    ceph-volume raw list
+
+    # Wipe the disks
+    ceph-volume lvm zap /dev/sdX --destroy
+
+    # If raw metadata remains in `ceph-volume raw list`, use BlueStore zap too.
+    ceph-bluestore-tool zap-device --dev /dev/sdX --yes-i-really-really-mean-it
+
+    # Confirm disk is no longer there.
+    ceph-volume raw list
+    ```
+
+    Restart Rook and watch prepare:
+
+    ```sh
+    kubectl -n storage scale deploy rook-ceph-operator --replicas=1
+    kubectl -n storage get pods -l app=rook-ceph-osd-prepare -w
+    kubectl -n storage exec -it deploy/rook-ceph-tools -- ceph osd tree
     ```
 
 Tip: If removing multiple OSDs, do them one at a time and wait for full rebalancing between each to minimize risk and cluster load.
