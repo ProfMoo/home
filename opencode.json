@@ -1,16 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "permission": {
-    "mcp__oc__kubernetes-mcp-server_*": "allow",
-    "mcp__oc__grafana_get_*": "allow",
-    "mcp__oc__grafana_list_*": "allow",
-    "mcp__oc__grafana_search_*": "allow",
-    "mcp__oc__grafana_query_*": "allow",
-    "mcp__oc__grafana_find_*": "allow",
-    "mcp__oc__grafana_fetch_*": "allow",
-    "mcp__oc__grafana_generate_deeplink": "allow",
-    "mcp__oc__prometheus_*": "allow"
-  },
   "mcp": {
     "kubernetes-mcp-server": {
       "type": "local",
