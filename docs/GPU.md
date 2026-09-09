@@ -13,12 +13,14 @@ This guide documents how to add NVIDIA Tesla T4 GPU support to the homelab Kuber
 
 Current validated target for this repo:
 
-- Talos: `v1.12.7`
+- Talos: `v1.13.x`
 - Kubernetes: `v1.37.0`
 - NVIDIA GPU Operator: `v26.7.0`
 - NVIDIA DRA Driver for GPUs: `v0.5.0` via GPU Operator
 
 NVIDIA GPU Operator `v26.7.0` supports Kubernetes `1.33-1.37`. `v25.10.x` and older are end-of-support, so do not use older chart versions from stale examples.
+
+Before applying Talos machine config, verify your Talos release supports the selected Kubernetes control plane and kubelet images.
 
 This guide uses Kubernetes Dynamic Resource Allocation (DRA) as the only GPU API. DRA is the newer Kubernetes hardware resource model and is the right fit for Kubernetes `1.37.0`.
 
@@ -294,8 +296,8 @@ In `infrastructure/main.tf`, update the moody-good worker node:
     }
   ]
 
-  talos_version      = "1.10.6"
-  kubernetes_version = "1.33.4"
+      talos_version      = "1.13.0" # Use your exact Talos 1.13 patch version
+      kubernetes_version = "1.37.0"
 
   talos_virtual_ip = "192.168.8.99"
 
@@ -330,7 +332,7 @@ Talos Linux is an immutable, secure operating system designed for Kubernetes. Un
 
 This means NVIDIA drivers must be installed via **system extensions** - pre-built, signed modules that are baked into the Talos image at boot time.
 
-> **Source**: [Talos Linux NVIDIA GPU Documentation](https://www.talos.dev/v1.9/talos-guides/configuration/nvidia-gpu-proprietary/)
+> **Source**: [Talos Linux NVIDIA GPU Documentation](https://docs.siderolabs.com/talos/latest/configure-your-talos-cluster/hardware-and-drivers/nvidia-gpu-proprietary/)
 
 ---
 
@@ -348,7 +350,7 @@ This means NVIDIA drivers must be installed via **system extensions** - pre-buil
 **Steps**:
 
 1. Go to [Talos Image Factory](https://factory.talos.dev/)
-2. Select Talos version `v1.11.6` (matching your current version)
+2. Select your Talos `v1.13.x` patch version (matching your current version)
 3. Add extensions:
    - Search for `nvidia` and select both:
      - `siderolabs/nonfree-kmod-nvidia-production`
@@ -371,7 +373,7 @@ This means NVIDIA drivers must be installed via **system extensions** - pre-buil
 1. **New install image**: Points to the Image Factory schematic with NVIDIA extensions
 2. **Containerd runtime configuration**: DRA requires a CDI-capable runtime path so the NVIDIA DRA kubelet plugin can inject allocated devices into pods.
 
-> **Source**: [Talos NVIDIA Configuration](https://docs.siderolabs.com/talos/v1.9/configure-your-talos-cluster/hardware-and-drivers/nvidia-gpu-proprietary/#configuring-containerd)
+> **Source**: [Talos NVIDIA Configuration](https://docs.siderolabs.com/talos/latest/configure-your-talos-cluster/hardware-and-drivers/nvidia-gpu-proprietary/#deploying-nvidia-gpu-operator)
 
 Create `infrastructure/configs/worker-gpu.yaml` (or add conditionals to worker.yaml):
 
@@ -394,11 +396,11 @@ machine:
     # NEW: Image Factory schematic with NVIDIA extensions
     # The schematic ID encodes which extensions are included
     # This image contains: base Talos + NVIDIA kernel modules + NVIDIA container toolkit
-    image: factory.talos.dev/installer/<NEW-SCHEMATIC-ID>:v1.12.7
+    image: factory.talos.dev/installer/<NEW-SCHEMATIC-ID>:v1.13.0 # Use your exact Talos 1.13 patch version
     disk: /dev/sda
     wipe: false
   kubelet:
-    image: ghcr.io/siderolabs/kubelet:v1.35.4
+    image: ghcr.io/siderolabs/kubelet:v1.37.0
     defaultRuntimeSeccompProfileEnabled: true
     disableManifestsDirectory: true
     extraArgs:
@@ -494,7 +496,7 @@ talosctl apply-config --nodes 192.168.8.123 --file nodes/moody-good.yaml
 talosctl -n 192.168.8.123 dmesg -f
 ```
 
-> **Source**: [Talos Configuration Application](https://www.talos.dev/v1.9/talos-guides/configuration/editing-machine-configuration/)
+> **Source**: [Talos Configuration Application](https://docs.siderolabs.com/talos/latest/configure-your-talos-cluster/system-configuration/editing-machine-configuration/)
 
 ---
 
@@ -511,7 +513,7 @@ The NVIDIA GPU Operator automates GPU integration with Kubernetes. This guide us
 
 On Talos, drivers and toolkit are provided by system extensions from Phase 3. Keep GPU Operator driver installation disabled.
 
-Do not deploy the old `ClusterPolicy` workflow. NVIDIA documents that a cluster can have either `GPUCluster` for DRA or `ClusterPolicy` for the classic device plugin, but not both.
+Deploy only the DRA `GPUCluster` workflow. Do not mix it with another GPU allocation stack.
 
 > **Source**: [NVIDIA GPU Operator DRA Documentation](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/dra-intro-install.html), [Kubernetes Dynamic Resource Allocation](https://kubernetes.io/docs/concepts/resource-management/dynamic-resource-allocation/)
 
@@ -652,7 +654,7 @@ resources:
 
 - **`driver.enabled: false`**: Talos provides drivers via the `nonfree-kmod-nvidia` extension. The GPU Operator's driver installer expects a standard Linux filesystem with `/bin/sh` - Talos doesn't have this.
 - **`toolkit.enabled: false`**: Talos provides the toolkit via the `nvidia-container-toolkit` extension. Same reason as above.
-- **`clusterPolicy.deployCR: false`**: Do not create the old device-plugin `ClusterPolicy` resource.
+- **`clusterPolicy.deployCR: false`**: Required so the chart creates only DRA resources.
 - **`gpuCluster.deployCR: true`**: Create the DRA `GPUCluster` resource.
 
 The components we do enable provide the Kubernetes DRA integration layer.
@@ -700,7 +702,7 @@ spec:
       driverInstallDir: /usr/local
 
     # ============================================================
-    # DRA: Create GPUCluster, not ClusterPolicy
+    # DRA: Create GPUCluster only
     # ============================================================
     clusterPolicy:
       deployCR: false
@@ -1052,7 +1054,7 @@ Consider adding a Grafana dashboard once your observability stack is stable. NVI
 
 ### Talos Linux
 
-- [Talos NVIDIA GPU Documentation](https://docs.siderolabs.com/talos/v1.9/configure-your-talos-cluster/hardware-and-drivers/nvidia-gpu-proprietary)
+- [Talos NVIDIA GPU Documentation](https://docs.siderolabs.com/talos/latest/configure-your-talos-cluster/hardware-and-drivers/nvidia-gpu-proprietary)
 - [Talos Image Factory](https://factory.talos.dev/)
 - [Sidero Labs Extensions Repository](https://github.com/siderolabs/extensions)
 - [AI Workloads on Talos Linux Blog](https://www.siderolabs.com/blog/ai-workloads-on-talos-linux/)
@@ -1060,13 +1062,10 @@ Consider adding a Grafana dashboard once your observability stack is stable. NVI
 ### NVIDIA GPU Operator
 
 - [GPU Operator Documentation](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/getting-started.html)
+- [GPU Operator DRA Documentation](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/dra-intro-install.html)
 - [GPU Operator GitHub](https://github.com/NVIDIA/gpu-operator)
 - [GPU Operator Helm Values Reference](https://github.com/NVIDIA/gpu-operator/blob/master/deployments/gpu-operator/values.yaml)
-- [NVIDIA Device Plugin](https://github.com/NVIDIA/k8s-device-plugin)
-- [GPU Feature Discovery](https://github.com/NVIDIA/gpu-feature-discovery)
 - [DCGM Exporter](https://github.com/NVIDIA/dcgm-exporter)
-- [GPU Sharing in Kubernetes](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-sharing.html)
-- [Time-Slicing GPUs](https://docs.nvidia.com/datacenter/cloud-native/k8s-device-plugin/latest/time-slicing.html)
 
 ### Jellyfin
 
