@@ -186,6 +186,16 @@ module "cluster" {
           datastore_id   = "pve-disk6"
           disk_interface = "scsi2"
           size           = 1800
+        },
+        {
+          datastore_id   = "pve-disk3"
+          disk_interface = "scsi3"
+          size           = 1800
+        },
+        {
+          datastore_id   = "pve-disk5"
+          disk_interface = "scsi5"
+          size           = 1800
         }
       ]
 

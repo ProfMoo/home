@@ -11,6 +11,17 @@ This guide documents how to add NVIDIA Tesla T4 GPU support to the homelab Kuber
 | Target VM | moody-good (50 vCPU, 238GB RAM) |
 | Primary Use Case | Jellyfin NVENC/NVDEC hardware transcoding |
 
+Current validated target for this repo:
+
+- Talos: `v1.12.7`
+- Kubernetes: `v1.37.0`
+- NVIDIA GPU Operator: `v26.7.0`
+- NVIDIA DRA Driver for GPUs: `v0.5.0` via GPU Operator
+
+NVIDIA GPU Operator `v26.7.0` supports Kubernetes `1.33-1.37`. `v25.10.x` and older are end-of-support, so do not use older chart versions from stale examples.
+
+This guide uses Kubernetes Dynamic Resource Allocation (DRA) as the only GPU API. DRA is the newer Kubernetes hardware resource model and is the right fit for Kubernetes `1.37.0`.
+
 ## Architecture
 
 ```text
@@ -32,7 +43,7 @@ This guide documents how to add NVIDIA Tesla T4 GPU support to the homelab Kuber
 │  • nonfree-kmod-nvidia-production (kernel drivers)          │
 │  • nvidia-container-toolkit-production (container runtime)  │
 │                                                             │
-│  Containerd: default_runtime = "nvidia"                     │
+│  Containerd: CDI-capable NVIDIA runtime                      │
 └─────────────────────────────────────────────────────────────┘
                     │
                     ▼
@@ -41,12 +52,12 @@ This guide documents how to add NVIDIA Tesla T4 GPU support to the homelab Kuber
 │                                                             │
 │  ┌──────────────────┐     ┌─────────────────────────────┐  │
 │  │ GPU Operator     │     │        GPU Workloads        │  │
-│  │ (device plugin,  │     │  (Time-sliced: 4 replicas)  │  │
-│  │  GFD, DCGM)      │     ├─────────────────────────────┤  │
-│  │                  │────▶│ Jellyfin    nvidia.com/gpu:1│  │
-│  │ Time-slicing:    │     │ Ollama      nvidia.com/gpu:1│  │
-│  │ nvidia.com/gpu:4 │     │ Frigate     nvidia.com/gpu:1│  │
-│  │ (advertised)     │     │ (1 slot free)               │  │
+│  │ (GPUCluster,     │     │  ResourceClaim / DRA        │  │
+│  │  DRA driver,     │     ├─────────────────────────────┤  │
+│  │  DCGM)           │────▶│ Jellyfin     gpu.nvidia.com │  │
+│  │                  │     │ Ollama       gpu.nvidia.com │  │
+│  │ DeviceClasses:   │     │ Frigate      gpu.nvidia.com │  │
+│  │ gpu.nvidia.com   │     │                             │  │
 │  └──────────────────┘     └─────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -208,10 +219,10 @@ Update `infrastructure/modules/node/variables.tf`:
 ```hcl
 variable "pci_devices" {
   type = list(object({
-    device_id  = string  # PCI address (e.g., "0000:3b:00.0")
-    pcie       = bool    # Use PCIe passthrough mode
-    rombar     = bool    # Enable ROM BAR
-    x_vga      = bool    # Primary GPU (usually false for compute GPUs)
+    mapping = string # Proxmox cluster-wide PCI resource mapping name (e.g., "tesla-t4")
+    pcie    = bool   # Use PCIe passthrough mode
+    rombar  = bool   # Enable ROM BAR
+    xvga    = bool   # Primary GPU (usually false for compute GPUs)
   }))
   description = "PCI devices to pass through to the VM (e.g., GPUs)"
   default     = []
@@ -220,10 +231,10 @@ variable "pci_devices" {
 
 **Parameter explanations**:
 
-- `device_id`: The PCI address from `lspci` (format: `0000:bus:device.function`)
+- `mapping`: Proxmox Datacenter PCI resource mapping name. This repo uses mappings because the Proxmox provider runs with API token auth; raw PCI IDs require root username/password auth in this provider.
 - `pcie`: Enables PCIe mode vs legacy PCI. PCIe provides better performance and is required for modern GPUs
 - `rombar`: Exposes the device's option ROM to the VM. Required for some devices to initialize properly
-- `x_vga`: Marks this as the primary display adapter. Set `false` for compute GPUs like the T4 (they have no display outputs)
+- `xvga`: Marks this as the primary display adapter. Set `false` for compute GPUs like the T4 (they have no display outputs)
 
 > **Source**: [Proxmox VM hostpci Documentation](https://pve.proxmox.com/wiki/Qemu/KVM_Virtual_Machines#qm_pci_passthrough)
 
@@ -237,10 +248,11 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
   dynamic "hostpci" {
     for_each = var.pci_devices
     content {
-      device  = hostpci.value.device_id
-      pcie    = hostpci.value.pcie
-      rombar  = hostpci.value.rombar
-      xvga    = hostpci.value.x_vga
+      device  = "hostpci${pci.key}"
+      mapping = pci.value.mapping
+      pcie    = pci.value.pcie
+      rombar  = pci.value.rombar
+      xvga    = pci.value.xvga
     }
   }
 }
@@ -344,7 +356,7 @@ This means NVIDIA drivers must be installed via **system extensions** - pre-buil
 4. Keep any existing extensions from your current schematic (e.g., `qemu-guest-agent`)
 5. Generate the schematic and copy the new ID
 
-**Important version matching**: The NVIDIA driver version in `nonfree-kmod-nvidia` must match the version expected by `nvidia-container-toolkit`. The Image Factory handles this automatically when you select compatible versions.
+**Important version matching**: The NVIDIA driver version in `nonfree-kmod-nvidia` must match the version expected by `nvidia-container-toolkit`. The Image Factory helps here, but verify both extension tags use compatible NVIDIA driver versions. Talos published NVIDIA drivers are tied to a specific Talos release, so update the extension set whenever Talos is upgraded.
 
 > **Source**: [Talos Extensions Compatibility](https://github.com/siderolabs/extensions#nvidia-gpu-support)
 
@@ -357,7 +369,7 @@ This means NVIDIA drivers must be installed via **system extensions** - pre-buil
 **Why**: Two critical changes are needed:
 
 1. **New install image**: Points to the Image Factory schematic with NVIDIA extensions
-2. **Containerd runtime configuration**: By default, containerd uses `runc`. We need to make `nvidia` the default runtime so containers automatically get GPU access without special configuration.
+2. **Containerd runtime configuration**: DRA requires a CDI-capable runtime path so the NVIDIA DRA kubelet plugin can inject allocated devices into pods.
 
 > **Source**: [Talos NVIDIA Configuration](https://docs.siderolabs.com/talos/v1.9/configure-your-talos-cluster/hardware-and-drivers/nvidia-gpu-proprietary/#configuring-containerd)
 
@@ -382,11 +394,11 @@ machine:
     # NEW: Image Factory schematic with NVIDIA extensions
     # The schematic ID encodes which extensions are included
     # This image contains: base Talos + NVIDIA kernel modules + NVIDIA container toolkit
-    image: factory.talos.dev/installer/<NEW-SCHEMATIC-ID>:v1.11.6
+    image: factory.talos.dev/installer/<NEW-SCHEMATIC-ID>:v1.12.7
     disk: /dev/sda
     wipe: false
   kubelet:
-    image: ghcr.io/siderolabs/kubelet:v1.34.3
+    image: ghcr.io/siderolabs/kubelet:v1.35.4
     defaultRuntimeSeccompProfileEnabled: true
     disableManifestsDirectory: true
     extraArgs:
@@ -435,9 +447,9 @@ machine:
         hard=True
         nconnect=16
         noatime=True
-    # NEW: Configure containerd to use NVIDIA runtime by default
-    # Without this, containers would use runc and not see the GPU
-    # The nvidia runtime wraps runc and adds GPU device mounts + environment variables
+    # NEW: Configure containerd for NVIDIA runtime support.
+    # DRA uses CDI for device injection; the NVIDIA runtime handler remains useful
+    # for validation/debug pods that set runtimeClassName: nvidia.
     - op: create
       path: /etc/cri/conf.d/20-customization.part
       permissions: 0o644
@@ -449,8 +461,12 @@ machine:
   kernel:
     modules:
       - name: nbd
-      # Note: NVIDIA modules (nvidia, nvidia_uvm, nvidia_modeset, nvidia_drm)
-      # are loaded automatically by the nonfree-kmod-nvidia extension
+      # NVIDIA modules are provided by the nonfree-kmod-nvidia extension,
+      # but Talos docs now load them explicitly here.
+      - name: nvidia
+      - name: nvidia_uvm
+      - name: nvidia_drm
+      - name: nvidia_modeset
 cluster:
   # ... keep existing cluster config unchanged ...
 ```
@@ -482,25 +498,22 @@ talosctl -n 192.168.8.123 dmesg -f
 
 ---
 
-## Phase 4: Kubernetes GPU Operator
+## Phase 4: Kubernetes GPU Operator with DRA
 
 ### Why This Phase is Needed
 
-The NVIDIA GPU Operator automates the deployment and management of GPU software components in Kubernetes. On a standard Linux distribution, it would install:
+The NVIDIA GPU Operator automates GPU integration with Kubernetes. This guide uses the DRA-managed workflow introduced by NVIDIA GPU Operator `v26.7.0`:
 
-- NVIDIA drivers
-- NVIDIA Container Toolkit
-- Kubernetes device plugin
-- GPU Feature Discovery (GFD)
-- DCGM Exporter (monitoring)
+1. **GPUCluster**: Cluster-scoped singleton that tells the Operator to deploy DRA components.
+2. **DRA Driver for NVIDIA GPUs**: Publishes GPUs through Kubernetes `ResourceSlice` and `DeviceClass` APIs.
+3. **DCGM Exporter**: Exports Prometheus GPU metrics.
+4. **Validator**: Verifies that DRA allocation works.
 
-However, **on Talos**, drivers and toolkit are provided by system extensions (Phase 3). We disable those components and only use the GPU Operator for:
+On Talos, drivers and toolkit are provided by system extensions from Phase 3. Keep GPU Operator driver installation disabled.
 
-1. **Device Plugin**: Exposes GPUs as schedulable resources (`nvidia.com/gpu`)
-2. **GPU Feature Discovery**: Labels nodes with GPU capabilities (architecture, memory, driver version)
-3. **DCGM Exporter**: Prometheus metrics for GPU monitoring
+Do not deploy the old `ClusterPolicy` workflow. NVIDIA documents that a cluster can have either `GPUCluster` for DRA or `ClusterPolicy` for the classic device plugin, but not both.
 
-> **Source**: [NVIDIA GPU Operator Documentation](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/getting-started.html), [GPU Operator on Talos](https://github.com/siderolabs/talos/issues/9014)
+> **Source**: [NVIDIA GPU Operator DRA Documentation](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/dra-intro-install.html), [Kubernetes Dynamic Resource Allocation](https://kubernetes.io/docs/concepts/resource-management/dynamic-resource-allocation/)
 
 ---
 
@@ -517,8 +530,7 @@ kubernetes/homelab/apps/base/nvidia-gpu-operator/
     ├── kustomization.yaml       # Kustomize resources list
     ├── namespace.yaml           # GPU Operator namespace with PSA labels
     ├── oci-repository.yaml      # Helm chart source
-    ├── helm-release.yaml        # Helm values and configuration
-    └── time-slicing-config.yaml # GPU sharing configuration (multiple pods per GPU)
+    └── helm-release.yaml        # Helm values and DRA configuration
 ```
 
 ---
@@ -562,7 +574,7 @@ spec:
 
 **Why**: The GPU Operator components need elevated privileges:
 
-- Device plugin needs access to `/dev/nvidia*` devices
+- DRA kubelet plugin needs access to `/dev/nvidia*` devices
 - Some components need `hostPath` volumes
 - DCGM needs access to GPU management interfaces
 
@@ -589,22 +601,25 @@ metadata:
 
 **What**: Define the Helm chart source as an OCI artifact.
 
-**Why**: NVIDIA publishes the GPU Operator Helm chart to GitHub Container Registry as an OCI artifact. This matches your existing pattern (rook-ceph, app-template use OCI repositories). Version `v25.10.1` is the latest stable release as of January 2025.
+**Why**: NVIDIA publishes the GPU Operator Helm chart as an OCI artifact. This matches your existing Flux `OCIRepository` pattern. Version `v26.7.0` is the current stable release and supports Kubernetes `1.33-1.37`; `v25.10.x` and older are end-of-support.
 
 > **Source**: [NVIDIA GPU Operator Releases](https://github.com/NVIDIA/gpu-operator/releases)
 
 ```yaml
 ---
-apiVersion: source.toolkit.fluxcd.io/v1beta2
+apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: nvidia-gpu-operator
   namespace: gpu-operator
 spec:
   interval: 12h
-  url: oci://ghcr.io/nvidia/gpu-operator
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  url: oci://nvcr.io/nvidia/cloud-native-charts/gpu-operator
   ref:
-    tag: v25.10.1
+    tag: v26.7.0
 ```
 
 ---
@@ -625,21 +640,22 @@ resources:
   - namespace.yaml
   - oci-repository.yaml
   - helm-release.yaml
-  - time-slicing-config.yaml  # GPU sharing configuration
 ```
 
 ---
 
 ### 4.6 HelmRelease (app/helm-release.yaml)
 
-**What**: Configure the GPU Operator Helm chart with Talos-specific settings.
+**What**: Configure the GPU Operator Helm chart for the DRA `GPUCluster` workflow.
 
 **Why**: This is the most critical configuration. The key insight is:
 
 - **`driver.enabled: false`**: Talos provides drivers via the `nonfree-kmod-nvidia` extension. The GPU Operator's driver installer expects a standard Linux filesystem with `/bin/sh` - Talos doesn't have this.
 - **`toolkit.enabled: false`**: Talos provides the toolkit via the `nvidia-container-toolkit` extension. Same reason as above.
+- **`clusterPolicy.deployCR: false`**: Do not create the old device-plugin `ClusterPolicy` resource.
+- **`gpuCluster.deployCR: true`**: Create the DRA `GPUCluster` resource.
 
-The components we DO enable provide the Kubernetes integration layer.
+The components we do enable provide the Kubernetes DRA integration layer.
 
 > **Source**: [GPU Operator Helm Values](https://github.com/NVIDIA/gpu-operator/blob/master/deployments/gpu-operator/values.yaml), [Talos GPU Operator Discussion](https://github.com/siderolabs/talos/issues/9014#issuecomment-2107070034)
 
@@ -678,69 +694,36 @@ spec:
     toolkit:
       enabled: false
 
-    # ============================================================
-    # Device Plugin - REQUIRED
-    # ============================================================
-    # The device plugin is a DaemonSet that:
-    # 1. Discovers NVIDIA GPUs on each node
-    # 2. Reports them to kubelet as allocatable resources (nvidia.com/gpu)
-    # 3. Handles GPU allocation when pods request nvidia.com/gpu resources
-    # Without this, Kubernetes has no idea GPUs exist.
-    # Source: https://github.com/NVIDIA/k8s-device-plugin
-    devicePlugin:
-      enabled: true
-      # Reference the time-slicing ConfigMap to enable GPU sharing
-      # This tells the device plugin to advertise 4 GPU "replicas" instead of 1
-      config:
-        name: time-slicing-config  # ConfigMap name
-        default: any               # Apply to all GPUs (or specify per-GPU rules)
+    # Talos places host-installed NVIDIA driver files under /usr/local.
+    # Upstream Talos docs require this override when using GPU Operator.
+    hostPaths:
+      driverInstallDir: /usr/local
 
     # ============================================================
-    # GPU Feature Discovery (GFD) - RECOMMENDED
+    # DRA: Create GPUCluster, not ClusterPolicy
     # ============================================================
-    # GFD labels nodes with detailed GPU information:
-    # - nvidia.com/gpu.product: Tesla-T4
-    # - nvidia.com/gpu.memory: 15360 (MB)
-    # - nvidia.com/cuda.driver.major: 550
-    # - nvidia.com/gpu.compute.major: 7 (Turing = compute 7.5)
-    # This enables advanced scheduling (e.g., "only schedule on Turing+ GPUs")
-    # Source: https://github.com/NVIDIA/gpu-feature-discovery
-    gfd:
-      enabled: true
+    clusterPolicy:
+      deployCR: false
+    gpuCluster:
+      deployCR: true
+
+    # ============================================================
+    # DRA Driver - REQUIRED
+    # ============================================================
+    # Full GPU allocation is GA in NVIDIA DRA Driver v0.5.0.
+    # ComputeDomain is for multi-node NVLink systems; disable for Tesla T4.
+    draDriver:
+      version: v0.5.0
+      computeDomains:
+        enabled: false
 
     # ============================================================
     # DCGM Exporter - RECOMMENDED for observability
     # ============================================================
-    # Exports GPU metrics to Prometheus:
-    # - GPU utilization, memory usage, temperature
-    # - Encoder/decoder utilization (useful for transcoding monitoring)
-    # - Power consumption, clock speeds
-    # Source: https://github.com/NVIDIA/dcgm-exporter
     dcgmExporter:
       enabled: true
       serviceMonitor:
         enabled: true  # Auto-creates ServiceMonitor for Prometheus Operator
-
-    # ============================================================
-    # Node Feature Discovery (NFD) - OPTIONAL
-    # ============================================================
-    # NFD detects hardware features (CPU flags, PCI devices, etc.) and
-    # labels nodes accordingly. The GPU Operator uses NFD to detect
-    # nodes with NVIDIA GPUs (PCI vendor ID 10de).
-    # If you already have NFD deployed cluster-wide, set this to false.
-    # Source: https://github.com/kubernetes-sigs/node-feature-discovery
-    nfd:
-      enabled: true
-
-    # ============================================================
-    # MIG Manager - NOT NEEDED for T4
-    # ============================================================
-    # Multi-Instance GPU (MIG) allows partitioning a single GPU into
-    # multiple isolated instances. Only supported on A30, A100, H100.
-    # The T4 is Turing architecture and doesn't support MIG.
-    # Source: https://docs.nvidia.com/datacenter/tesla/mig-user-guide/
-    migManager:
-      enabled: false
 
     # ============================================================
     # Validator - RECOMMENDED
@@ -752,85 +735,7 @@ spec:
     # Useful for debugging deployment issues.
     validator:
       enabled: true
-
-    # ============================================================
-    # Operator settings
-    # ============================================================
-    operator:
-      defaultRuntime: containerd  # Talos uses containerd
 ```
-
----
-
-### 4.7 Time-Slicing Configuration (app/time-slicing-config.yaml)
-
-**What**: Configure the GPU to be shared among multiple pods using time-slicing.
-
-**Why**: By default, the NVIDIA device plugin treats each GPU as an indivisible resource - one pod gets the whole GPU. Time-slicing allows multiple pods to share a single GPU by giving each pod alternating time slices of GPU access. This is ideal for workloads that don't constantly saturate the GPU:
-
-- **Jellyfin**: Only uses GPU during active transcoding sessions
-- **Ollama**: Only uses GPU during inference requests
-- **Frigate**: Uses GPU for object detection, but not constantly at 100%
-
-With `replicas: 4`, the device plugin advertises `nvidia.com/gpu: 4` instead of `nvidia.com/gpu: 1`. Kubernetes can then schedule up to 4 pods that each request `nvidia.com/gpu: 1`. The GPU driver handles context-switching between them.
-
-**Trade-offs**:
-
-- **Performance**: Each workload gets less GPU time when others are active. Heavy simultaneous use will cause slowdowns.
-- **Memory**: All pods share the GPU's 16GB VRAM. If total memory requests exceed 16GB, you'll get OOM errors.
-- **No isolation**: Unlike MIG (not supported on T4), time-slicing provides no memory or fault isolation.
-
-> **Source**: [GPU Sharing in Kubernetes](https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-sharing.html), [Time-Slicing GPUs in Kubernetes](https://docs.nvidia.com/datacenter/cloud-native/k8s-device-plugin/latest/time-slicing.html)
-
-```yaml
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: time-slicing-config
-  namespace: gpu-operator
-data:
-  # The "any" key is the default config applied to all GPUs on all nodes
-  # You can also create per-node or per-GPU-model configs if needed
-  any: |-
-    version: v1
-    sharing:
-      timeSlicing:
-        # Number of time-sliced "replicas" to create per physical GPU
-        # This makes Kubernetes see 4 allocatable GPUs instead of 1
-        # Each replica is a virtual slice that shares the physical GPU
-        replicas: 4
-
-        # Whether to fail pod creation if more pods request GPU than replicas
-        # true: Pods beyond the replica count will fail to schedule (safer)
-        # false: Pods may oversubscribe the GPU (can cause OOMs)
-        failRequestsGreaterThanOne: false
-
-        # Optional: rename the resource (default: nvidia.com/gpu)
-        # Useful if you want separate resource names for shared vs dedicated GPUs
-        # renameByDefault: false
-        # resourceName: nvidia.com/gpu-shared
-```
-
-**How it works**:
-
-1. The ConfigMap is mounted into the device plugin pod
-2. Device plugin reads the config and advertises 4 GPUs to kubelet
-3. When a pod requests `nvidia.com/gpu: 1`, it gets assigned one of the 4 "slots"
-4. The NVIDIA driver's CUDA Time Slice Scheduler handles fair queuing between processes
-5. Each process gets exclusive GPU access during its time slice (~10-50ms per slice)
-
-**Memory considerations for your workloads**:
-
-| Workload | Typical VRAM Usage | Notes |
-|----------|-------------------|-------|
-| Jellyfin (1080p transcode) | ~500MB-1GB | Very efficient |
-| Jellyfin (4K transcode) | ~2-3GB | Higher for HDR tone mapping |
-| Ollama (7B model) | ~4-6GB | Depends on quantization |
-| Ollama (13B model) | ~8-10GB | May not fit with others |
-| Frigate (object detection) | ~1-2GB | Depends on model |
-
-With 16GB total, running Jellyfin + Ollama (7B) + Frigate simultaneously should work fine. Running larger LLM models may require either dedicated GPU access or reducing replicas.
 
 ---
 
@@ -887,198 +792,67 @@ We need to:
 
 ---
 
-### 5.1 Update HelmRelease
+### 5.1 Add DRA ResourceClaimTemplate
 
-**What**: Modify Jellyfin's Helm values to request GPU resources and schedule on the GPU node.
+**What**: Create a DRA `ResourceClaimTemplate` in Jellyfin's namespace.
 
-**Why**:
+**Why**: With DRA, pods do not request GPUs through `limits`. Pods reference a claim, and Kubernetes allocates a matching device from the `gpu.nvidia.com` `DeviceClass`.
 
-- `nvidia.com/gpu: 1` in resources tells Kubernetes to allocate one GPU to this pod
-- `nodeSelector` ensures the pod only runs on moody-good (the GPU node)
-- Environment variables tell the NVIDIA runtime to expose all GPU capabilities
-
-Modify `kubernetes/homelab/apps/media/jellyfin/app/helm-release.yaml`:
+Create `kubernetes/homelab/apps/media/jellyfin/app/gpu-resource-claim-template.yaml` and add it to Jellyfin's `kustomization.yaml`:
 
 ```yaml
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
+apiVersion: resource.k8s.io/v1
+kind: ResourceClaimTemplate
 metadata:
-  name: jellyfin
+  name: jellyfin-gpu
 spec:
-  interval: 1h
-  chartRef:
-    kind: OCIRepository
-    name: app-template
-  values:
-    controllers:
-      jellyfin:
-        annotations:
-          reloader.stakater.com/auto: "true"
-        containers:
-          app:
-            image:
-              repository: ghcr.io/jellyfin/jellyfin
-              tag: 10.11.6@sha256:25db4eb10143c1c12adb79ed978e31d94fc98dc499fbae2d38b2c935089ced3e
-            env:
-              TZ: America/New_York
-              # ============================================================
-              # NVIDIA Container Runtime environment variables
-              # ============================================================
-              # These are typically set automatically by nvidia-container-toolkit,
-              # but we set them explicitly for clarity and to ensure they're present.
-              #
-              # NVIDIA_VISIBLE_DEVICES: Which GPUs to expose to the container
-              #   "all" = all GPUs, or specify by index (0,1) or UUID
-              #
-              # NVIDIA_DRIVER_CAPABILITIES: Which driver features to expose
-              #   "all" = everything (compute, graphics, video, utility)
-              #   For transcoding, we specifically need "video" for NVENC/NVDEC
-              #   Using "all" is simpler and ensures nothing is missing
-              #
-              # Source: https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/docker-specialized.html
-              NVIDIA_VISIBLE_DEVICES: all
-              NVIDIA_DRIVER_CAPABILITIES: all
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /health
-                    port: &port 8096
-                  initialDelaySeconds: 0
-                  periodSeconds: 10
-                  timeoutSeconds: 1
-                  failureThreshold: 5
-              readiness: *probes
-              startup:
-                enabled: true
-                spec:
-                  failureThreshold: 30
-                  periodSeconds: 10
-            securityContext:
-              allowPrivilegeEscalation: false
-              readOnlyRootFilesystem: true
-              capabilities: {drop: ["ALL"]}
-            resources:
-              requests:
-                cpu: 4
-                memory: 6Gi
-                # ============================================================
-                # GPU Resource Request
-                # ============================================================
-                # This tells Kubernetes to allocate 1 GPU to this pod.
-                # The nvidia-device-plugin handles the actual allocation.
-                # The pod won't start if no GPU is available.
-                nvidia.com/gpu: 1
-              limits:
-                cpu: 16
-                memory: 12Gi
-                # Limits should match requests for GPUs (they're not burstable)
-                nvidia.com/gpu: 1
+  spec:
+    devices:
+      requests:
+        - name: gpu
+          exactly:
+            deviceClassName: gpu.nvidia.com
+            selectors:
+              - cel:
+                  expression: |
+                    device.attributes['gpu.nvidia.com'].productName.lowerAscii().matches('^.*t4.*$')
+```
 
-    defaultPodOptions:
-      securityContext:
-        runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
-        fsGroupChangePolicy: OnRootMismatch
-      # ============================================================
-      # Node Selection
-      # ============================================================
-      # Ensure Jellyfin only schedules on GPU-enabled nodes.
-      # This matches the label we added in Phase 2.
-      nodeSelector:
-        drmoo.io/gpu: nvidia-t4
-      # ============================================================
-      # Tolerations
-      # ============================================================
-      # If GPU nodes have taints (to prevent non-GPU workloads from scheduling),
-      # this toleration allows Jellyfin to schedule anyway.
-      # The GPU Operator may add this taint automatically.
-      tolerations:
-        - key: nvidia.com/gpu
-          operator: Exists
-          effect: NoSchedule
+### 5.2 Update Jellyfin Pod Spec
 
-    # ... rest of config unchanged (service, route, persistence) ...
-    service:
-      app:
-        ports:
-          http:
-            port: *port
-    route:
-      app:
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/description: Media server
-          gethomepage.dev/group: Home
-          gethomepage.dev/icon: jellyfin
-          gethomepage.dev/app: jellyfin
-          gethomepage.dev/name: Jellyfin
-          gethomepage.dev/instance: homepage-internal
-          gethomepage.dev/widget.type: "jellyfin"
-          gethomepage.dev/widget.url: "https://jellyfin.drmoo.io"
-          gethomepage.dev/widget.key: "f58cd19c3e6749f585f580fb11d7d180"
-        hostnames:
-          - "{{ .Release.Name }}.drmoo.io"
-        parentRefs:
-          - name: envoy-internal
-            namespace: networking
-            sectionName: https
-      external:
-        annotations:
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/name: "Movies & TV"
-          gethomepage.dev/description: "Stream movies and TV shows"
-          gethomepage.dev/group: "Media"
-          gethomepage.dev/icon: "mdi-filmstrip"
-          gethomepage.dev/app: "jellyfin"
-          gethomepage.dev/instance: "homepage-external"
-          gethomepage.dev/widget.type: "jellyfin"
-          gethomepage.dev/widget.url: "https://movies.drmoo.io"
-          gethomepage.dev/widget.key: "f58cd19c3e6749f585f580fb11d7d180"
-        hostnames:
-          - "movies.drmoo.io"
-          - "moovies.drmoo.io"
-        parentRefs:
-          - name: envoy-external
-            namespace: networking
-            sectionName: https
-    persistence:
-      config:
-        existingClaim: "{{ .Release.Name }}"
-        globalMounts:
-          - path: /config
-      config-cache:
-        existingClaim: "{{ .Release.Name }}-cache"
-        globalMounts:
-          - path: /config/metadata
-      media:
-        type: nfs
-        server: 192.168.8.248
-        path: /mnt/vault/media
-        globalMounts:
-          - path: /data
-            readOnly: true
-      tmpfs:
-        type: emptyDir
-        advancedMounts:
-          jellyfin:
-            app:
-              - path: /cache
-                subPath: cache
-              - path: /config/log
-                subPath: log
-              - path: /tmp
-                subPath: tmp
+**What**: Add the DRA claim to Jellyfin's pod spec and container resources.
+
+**Why**: DRA has two links: pod-level `resourceClaims` points at the template, and container-level `resources.claims` says which container can use the allocated device.
+
+The rendered Jellyfin pod template needs these fields:
+
+```yaml
+spec:
+  resourceClaims:
+    - name: gpu
+      resourceClaimTemplateName: jellyfin-gpu
+  containers:
+    - name: app
+      resources:
+        claims:
+          - name: gpu
+```
+
+Keep Jellyfin's normal CPU/memory requests and limits. Do not add GPU `requests` or `limits`.
+
+If the current bjw-s `app-template` values cannot express `spec.resourceClaims` and `resources.claims`, add a Kustomize patch against the rendered Deployment/StatefulSet rather than falling back to extended resources.
+
+Keep scheduling constrained to the GPU node:
+
+```yaml
+nodeSelector:
+  drmoo.io/gpu: nvidia-t4
 ```
 
 ---
 
-### 5.2 Jellyfin UI Configuration
+### 5.3 Jellyfin UI Configuration
 
 **What**: Configure Jellyfin's transcoding settings to use NVIDIA hardware acceleration.
 
@@ -1141,47 +915,38 @@ talosctl -n 192.168.8.123 dmesg | grep -i nvidia
 ### Check Kubernetes GPU Resources
 
 ```bash
-# Verify node has GPU in allocatable resources (should show 4 with time-slicing)
-kubectl describe node moody-good | grep -A5 "Allocatable:"
-# Expected: nvidia.com/gpu: 4  (not 1, because time-slicing is enabled)
-
-# Verify GPU Operator pods are running
+# Verify GPU Operator pods are running.
 kubectl get pods -n gpu-operator
-# Expected: nvidia-device-plugin-xxx, nvidia-dcgm-exporter-xxx, etc. all Running
+# Expected: nvidia-dra-driver-kubelet-plugin, nvidia-dra-validator,
+# nvidia-dcgm-exporter-dra, and gpu-operator pods Running/Completed.
 
-# Check GPU labels applied by GFD
-kubectl get node moody-good -o json | jq '.metadata.labels | with_entries(select(.key | startswith("nvidia")))'
-# Expected: nvidia.com/gpu.product, nvidia.com/cuda.driver.major, etc.
+# Verify DRA GPUCluster is ready.
+kubectl get gpucluster gpu-cluster
+# Expected: STATUS ready
+
+# Verify DRA DeviceClass exists.
+kubectl get deviceclass gpu.nvidia.com
+
+# Verify DRA ResourceSlice publishes the GPU.
+kubectl get resourceslice
+kubectl get resourceslice -o yaml | grep -i "productName\|Tesla\|T4"
 ```
 
-### Check Time-Slicing Configuration
+### Check DRA Claim Allocation
 
 ```bash
-# Verify the time-slicing ConfigMap exists
-kubectl get configmap -n gpu-operator time-slicing-config -o yaml
-# Expected: Shows the time-slicing config with replicas: 4
+# Verify Jellyfin claim was created from the template.
+kubectl get resourceclaim -n media
 
-# Check device plugin logs for time-slicing activation
-kubectl logs -n gpu-operator -l app=nvidia-device-plugin-daemonset | grep -i "time-slicing\|sharing\|replicas"
-# Expected: Messages about loading sharing config
-
-# Verify allocatable GPUs reflect time-slicing (should be 4, not 1)
-kubectl get node moody-good -o jsonpath='{.status.allocatable.nvidia\.com/gpu}'
-# Expected: 4
-
-# Check how many GPU slots are currently allocated
-kubectl get node moody-good -o jsonpath='{.status.capacity.nvidia\.com/gpu}'
-# Expected: 4 (capacity)
-kubectl describe node moody-good | grep -A3 "Allocated resources"
-# Shows how many of the 4 slots are in use
+# Inspect allocation state and selected device.
+kubectl get resourceclaim -n media -o yaml | grep -i "allocated\|device\|driver\|gpu.nvidia.com"
 ```
 
 ### Check Jellyfin GPU Access
 
 ```bash
-# Verify Jellyfin pod has GPU allocated
-kubectl describe pod -n media -l app.kubernetes.io/name=jellyfin | grep -A3 "Limits:"
-# Expected: nvidia.com/gpu: 1
+# Verify Jellyfin pod references the DRA claim.
+kubectl get pod -n media -l app.kubernetes.io/name=jellyfin -o yaml | grep -i "resourceClaims\|jellyfin-gpu\|claims:"
 
 # Run nvidia-smi inside Jellyfin container
 kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=jellyfin -o name) -- nvidia-smi
@@ -1217,15 +982,17 @@ kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=j
 2. **Extension version mismatch**: Ensure nvidia-container-toolkit and nonfree-kmod-nvidia versions match
 3. **Check dmesg for errors**: `talosctl dmesg | grep -i "nvidia\|error"`
 
-### Device Plugin Not Detecting GPU
+### DRA Driver Not Publishing GPU
 
-**Symptoms**: Node shows `nvidia.com/gpu: 0` in allocatable
+**Symptoms**: `kubectl get resourceslice` does not show `gpu.nvidia.com` resources.
 
 **Causes & Solutions**:
 
-1. **Check device plugin logs**: `kubectl logs -n gpu-operator -l app=nvidia-device-plugin`
-2. **Verify NFD labeled the node**: `kubectl get node moody-good -o json | jq '.metadata.labels["feature.node.kubernetes.io/pci-10de.present"]'` should be `true`
-3. **Wrong GPU Operator config**: Ensure `driver.enabled=false` and `toolkit.enabled=false`
+1. **Check GPUCluster**: `kubectl describe gpucluster gpu-cluster`
+2. **Check DRA pods**: `kubectl get pods -n gpu-operator | grep dra`
+3. **Check DRA logs**: `kubectl logs -n gpu-operator -l app=nvidia-dra-driver-kubelet-plugin`
+4. **Wrong GPU Operator mode**: Ensure `clusterPolicy.deployCR=false` and `gpuCluster.deployCR=true`
+5. **Driver too old**: NVIDIA DRA workflow requires NVIDIA driver `580+`
 
 ### Jellyfin Transcoding Fails
 
@@ -1233,85 +1000,29 @@ kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=j
 
 **Causes & Solutions**:
 
-1. **GPU not allocated to pod**: Check `kubectl describe pod` for `nvidia.com/gpu` in limits
-2. **Missing env vars**: Ensure `NVIDIA_VISIBLE_DEVICES` and `NVIDIA_DRIVER_CAPABILITIES` are set
+1. **GPU not allocated to pod**: Check `kubectl describe resourceclaim -n media`
+2. **Pod not wired to claim**: Check rendered pod has both `spec.resourceClaims` and container `resources.claims`
 3. **Wrong Jellyfin settings**: Verify "Nvidia NVENC" is selected in transcoding settings
 4. **Codec not supported**: T4 doesn't support AV1 encoding, limited VP9 support
 
-### Time-Slicing Not Working
-
-**Symptoms**: Node shows `nvidia.com/gpu: 1` instead of `4`
-
-**Causes & Solutions**:
-
-1. **ConfigMap not found**: Verify ConfigMap exists in `gpu-operator` namespace
-
-   ```bash
-   kubectl get configmap -n gpu-operator time-slicing-config
-   ```
-
-2. **HelmRelease missing config reference**: Check `devicePlugin.config.name` is set to `time-slicing-config`
-
-3. **Device plugin not restarted**: After creating/updating the ConfigMap, restart the device plugin:
-
-   ```bash
-   kubectl rollout restart daemonset -n gpu-operator nvidia-device-plugin-daemonset
-   ```
-
-4. **Invalid ConfigMap format**: Check device plugin logs for parsing errors:
-
-   ```bash
-   kubectl logs -n gpu-operator -l app=nvidia-device-plugin-daemonset | grep -i error
-   ```
-
-### GPU Memory Exhaustion (OOM) with Time-Slicing
+### GPU Memory Exhaustion (OOM)
 
 **Symptoms**: CUDA out of memory errors, pods crashing with GPU memory errors
 
 **Causes & Solutions**:
 
-1. **Too many concurrent GPU workloads**: Time-slicing shares memory, not just compute. Reduce replicas or stagger workloads.
-
-2. **Large LLM models**: Ollama with 13B+ models may consume 8-10GB. Either:
-   - Use smaller/quantized models (7B Q4 uses ~4GB)
-   - Reduce time-slicing replicas to 2
-   - Give LLM dedicated GPU access (request all 4 replicas)
+1. **Too many concurrent GPU workloads**: A Tesla T4 has 16GB VRAM. With full-GPU DRA allocation, schedule one workload per GPU unless intentionally sharing one claim inside one pod.
+2. **Large LLM models**: Ollama with 13B+ models may consume 8-10GB. Use smaller/quantized models or avoid colocating GPU-heavy workloads.
 
 3. **Monitor memory usage**:
 
    ```bash
-   # Check current GPU memory from DCGM metrics
-   kubectl exec -n gpu-operator $(kubectl get pod -n gpu-operator -l app=nvidia-dcgm-exporter -o name | head -1) -- dcgmi dmon -e 203 -c 1
-   # Or from any GPU pod
    kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=jellyfin -o name) -- nvidia-smi
    ```
 
 ---
 
 ## Future Considerations
-
-### Dynamic Resource Allocation (DRA)
-
-**What**: DRA is a Kubernetes API for requesting specialized hardware resources with more flexibility than device plugins.
-
-**Why it matters**: DRA (GA in Kubernetes 1.34) will eventually replace device plugins because it supports:
-
-- Fine-grained resource requests (specific GPU memory amounts)
-- Dynamic partitioning (MIG on A100/H100)
-- Per-workload time-slicing configuration (vs cluster-wide ConfigMap)
-- Better multi-tenant scenarios with resource claims
-
-**Current status**: Your cluster runs K8s 1.33.4 where DRA is beta. The NVIDIA DRA driver (`k8s-dra-driver-gpu`) is still experimental for GPU allocation. This guide uses the device plugin with time-slicing ConfigMap, which is the production-ready approach.
-
-**When to consider migrating to DRA**:
-
-- When you need different time-slice counts for different workloads
-- When you want per-pod GPU memory limits (not currently possible with device plugin)
-- When NVIDIA's DRA driver reaches GA status
-
-**Note**: The Tesla T4 doesn't support MIG (requires Ampere+), so DRA's main benefit for your setup would be per-workload time-slice configuration.
-
-> **Source**: [Kubernetes DRA Documentation](https://kubernetes.io/docs/concepts/scheduling-eviction/dynamic-resource-allocation/), [NVIDIA DRA Driver](https://github.com/NVIDIA/k8s-dra-driver-gpu)
 
 ### GPU Monitoring Dashboard
 
