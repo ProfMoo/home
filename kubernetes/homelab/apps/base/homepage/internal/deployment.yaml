@@ -26,7 +26,7 @@ spec:
             - name: HOMEPAGE_ALLOWED_HOSTS
               value: "home.drmoo.io,localhost"
             - name: HOMEPAGE_AUTH_ENABLED
-              value: "true"
+              value: "false"
           securityContext:
             runAsNonRoot: false
             runAsUser: 0
