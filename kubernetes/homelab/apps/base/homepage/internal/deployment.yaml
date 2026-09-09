@@ -18,13 +18,15 @@ spec:
       serviceAccount: homepage-internal
       containers:
         - name: homepage
-          image: ghcr.io/gethomepage/homepage:v1.13.2
+          image: ghcr.io/gethomepage/homepage:v2.2.0
           ports:
             - containerPort: 3000
               name: homepage
           env:
             - name: HOMEPAGE_ALLOWED_HOSTS
               value: "home.drmoo.io,localhost"
+            - name: HOMEPAGE_AUTH_ENABLED
+              value: "true"
           securityContext:
             runAsNonRoot: false
             runAsUser: 0
