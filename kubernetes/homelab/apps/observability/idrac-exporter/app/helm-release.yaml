@@ -65,7 +65,7 @@ spec:
             path: /metrics
             port: metrics
             scheme: http
-            scrapeTimeout: 60s
+            scrapeTimeout: 110s
             params:
               # NOTE: node.1 is iDRAC. Keep this hostname aligned with the iDRAC
               # DNS name set manually via RACADM, otherwise Redfish returns 400.
