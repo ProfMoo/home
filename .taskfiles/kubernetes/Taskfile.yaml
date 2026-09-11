@@ -30,6 +30,18 @@ tasks:
       - kubectl get nodes {{.NODE}}
       - kubectl node-shell --version
       - which kubectl
+  drain-node:
+    desc: Cordon and drain a node [NODE=required] [TIMEOUT=10m]
+    cmd: |
+      kubectl cordon {{.NODE}}
+      kubectl drain {{.NODE}} --ignore-daemonsets --delete-emptydir-data --timeout={{.TIMEOUT}}
+    vars:
+      TIMEOUT: '{{.TIMEOUT | default "10m"}}'
+    requires:
+      vars: [NODE]
+    preconditions:
+      - kubectl get nodes {{.NODE}}
+      - which kubectl
   reset-pvc:
     desc: Scale down deployment, delete PVC, and make PV available [NS=default] [DEPLOY=required] [CLAIM=required]
     cmd: |

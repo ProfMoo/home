@@ -5,7 +5,7 @@ This guide documents how to add NVIDIA Tesla T4 GPU support to the homelab Kuber
 ## Overview
 
 | Component | Details |
-|-----------|---------|
+| ----------- | --------- |
 | GPU | NVIDIA Tesla T4 16GB GDDR6 (Turing architecture) |
 | Proxmox Host | pve5 (SuperMicro SYS-6028U-TR4T+) |
 | Target VM | moody-good (50 vCPU, 238GB RAM) |
@@ -82,7 +82,7 @@ PCI passthrough allows a virtual machine to directly access physical hardware, b
 
 ---
 
-### 1.1 Enable IOMMU in GRUB
+### 1.1 Enable IOMMU in GRUB (DONE)
 
 **What**: IOMMU (Input-Output Memory Management Unit) is a hardware feature that allows the hypervisor to control which memory regions a device can access.
 
@@ -96,7 +96,7 @@ SSH to pve5 and edit `/etc/default/grub`:
 
 ```bash
 # For Intel CPU (SuperMicro uses Intel Xeons)
-GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on"
 ```
 
 Update GRUB and reboot:
@@ -108,7 +108,7 @@ reboot
 
 ---
 
-### 1.2 Load VFIO Modules
+### 1.2 Load VFIO Modules (DONE)
 
 **What**: VFIO (Virtual Function I/O) is a Linux kernel framework that provides safe, non-privileged userspace drivers. It's the mechanism that allows QEMU/KVM to give VMs direct access to PCI devices.
 
@@ -132,7 +132,7 @@ vfio_virqfd
 
 ---
 
-### 1.3 Blacklist NVIDIA Drivers on Host
+### 1.3 Blacklist NVIDIA Drivers on Host (DONE)
 
 **What**: Prevent the Proxmox host from loading any NVIDIA drivers.
 
@@ -153,7 +153,7 @@ blacklist nvidiafb
 
 ---
 
-### 1.4 Bind GPU to VFIO
+### 1.4 Bind GPU to VFIO (DONE)
 
 **What**: Tell the kernel to bind the GPU to the `vfio-pci` driver at boot time.
 
@@ -183,7 +183,7 @@ reboot
 
 ---
 
-### 1.5 Verify VFIO Binding
+### 1.5 Verify VFIO Binding (DONE)
 
 **What**: Confirm the GPU is bound to vfio-pci and ready for passthrough.
 
@@ -1031,7 +1031,7 @@ kubectl exec -it -n media $(kubectl get pod -n media -l app.kubernetes.io/name=j
 The DCGM Exporter (enabled in GPU Operator) exports Prometheus metrics. Key metrics for transcoding monitoring:
 
 | Metric | Description |
-|--------|-------------|
+| -------- | ------------- |
 | `DCGM_FI_DEV_GPU_UTIL` | GPU compute utilization % |
 | `DCGM_FI_DEV_MEM_COPY_UTIL` | Memory bandwidth utilization % |
 | `DCGM_FI_DEV_ENC_UTIL` | NVENC encoder utilization % |
