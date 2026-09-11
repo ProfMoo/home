@@ -9,7 +9,7 @@ releases:
   - name: cloudflare-dns
     namespace: networking
     chart: oci://ghcr.io/home-operations/charts-mirror/external-dns
-    version: 1.21.1
+    version: 1.22.0
   - name: external-secrets
     namespace: external-secrets
     chart: oci://ghcr.io/external-secrets/charts/external-secrets
