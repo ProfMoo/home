@@ -135,7 +135,7 @@ spec:
           name: .mgr
           failureDomain: host
           replicated:
-            size: 2
+            size: 3
         storageClass:
           enabled: false
       # For critical data I can't lose
@@ -143,7 +143,7 @@ spec:
         spec:
           failureDomain: host
           replicated:
-            size: 2
+            size: 3
         storageClass:
           enabled: true
           name: ceph-block
@@ -169,7 +169,7 @@ spec:
         spec:
           failureDomain: host
           replicated:
-            size: 2
+            size: 3
         storageClass:
           enabled: true
           name: ceph-block-ephemeral
@@ -203,11 +203,11 @@ spec:
           metadataPool:
             failureDomain: host
             replicated:
-              size: 2
+              size: 3
           dataPools:
             - failureDomain: host
               replicated:
-                size: 2
+                size: 3
               name: data0
           metadataServer:
             activeCount: 1
