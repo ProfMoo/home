@@ -66,7 +66,7 @@ This guide uses Kubernetes Dynamic Resource Allocation (DRA) as the only GPU API
 
 ---
 
-## Phase 1: Proxmox Configuration (pve5)
+## Phase 1: Proxmox Configuration (pve5) (DONE)
 
 ### Why This Phase is Needed
 

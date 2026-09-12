@@ -6,9 +6,9 @@ rm -r nodes
 # Create nodes directory
 mkdir nodes
 
-# Get the worker node configs from the Terraform output
+# Get the worker node configs from the tofu output
 # and write them to individual files
-terraform output -json worker_node_configs |
+tofu output -json worker_node_configs |
 	jq -rc 'to_entries[]' |
 	while IFS= read -r entry; do
 		key=$(echo "$entry" | jq -r '.key')
@@ -16,9 +16,9 @@ terraform output -json worker_node_configs |
 		echo "$value" >"nodes/${key}.yaml"
 	done
 
-# Get the control plane configs from the Terraform output
+# Get the control plane configs from the tofu output
 # and write them to individual files
-terraform output -json control_plane_configs |
+tofu output -json control_plane_configs |
 	jq -rc 'to_entries[]' |
 	while IFS= read -r entry; do
 		key=$(echo "$entry" | jq -r '.key')

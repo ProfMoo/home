@@ -17,6 +17,8 @@ module "worker_nodes" {
   storage_disks = each.value.storage_disks
 
   machine_type = each.value.machine_type
+  bios         = each.value.bios
+  efi_disk     = each.value.efi_disk
   pci_devices  = each.value.pci_devices
 
   vlan_id               = each.value.vlan_id
@@ -43,8 +45,7 @@ locals {
         node_type    = "worker",
         proxmox_node = node.proxmox_node_name
 
-        hostname      = node.name,
-        talos_version = node.talos_version,
+        hostname = node.name,
 
         mac_address    = module.worker_nodes[key].mac_address,
         ipv4_address   = module.worker_nodes[key].ipv4_address,

@@ -32,8 +32,7 @@ locals {
         node_type    = "controlplane",
         proxmox_node = node.proxmox_node_name
 
-        hostname      = node.name,
-        talos_version = node.talos_version,
+        hostname = node.name,
 
         mac_address    = module.control_plane_node[key].mac_address,
         ipv4_address   = module.control_plane_node[key].ipv4_address,

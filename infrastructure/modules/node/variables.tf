@@ -50,6 +50,7 @@ variable "storage_disks" {
     datastore_id   = string
     disk_interface = string
     size           = number
+    ssd            = bool
   }))
   description = "List of storage disks for the storage cluster. This is used for Rook/Ceph. If provided, storage cluster will be automatically enabled."
   default     = []
@@ -95,6 +96,23 @@ variable "machine_type" {
   type        = string
   description = "The QEMU machine type. PCIe passthrough requires 'q35'. Defaults to 'pc' for backwards compatibility with existing nodes."
   default     = "pc"
+}
+
+variable "bios" {
+  type        = string
+  description = "The VM firmware. Use 'ovmf' for UEFI/q35 GPU passthrough."
+  default     = "seabios"
+}
+
+variable "efi_disk" {
+  type = object({
+    datastore_id      = string
+    file_format       = string
+    type              = optional(string, "4m")
+    pre_enrolled_keys = optional(bool, false)
+  })
+  description = "Optional EFI disk for OVMF/UEFI boot. Required when bios='ovmf'."
+  default     = null
 }
 
 variable "pci_devices" {

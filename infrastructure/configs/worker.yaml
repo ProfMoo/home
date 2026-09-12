@@ -21,15 +21,25 @@ machine:
     ${key}: ${value}
 %{ endfor ~}
   install:
+    # This value only matters for fresh Talos install. If the node is new, then this value will determine which Talos
+    # version will be used to bootstrap the node. It's slightly different than the boot ISO, which is used when the node idles in bootstrap.
+    # Once this node exists and is part of the cluster, the Talos version is saved on disk and this value is ignored.
+    # So for example:
+    # If you booted a new VM in Talos 1.12.6 (the boot ISO value), a VM restart would keep in 1.12.6
+    # If you then install this Talos config to 1.12. (the value in this config), you can restart the k8s nodes and maintain 1.12.7.
+    # If you then upgrade the k8s nodes to 1.12.8 (from Tuppr or manual upgrade), this config's value stays at 1.12.7, but a k8s node restart would stay at 1.12.8.
+    #
     # Docs: https://www.talos.dev/v1.9/learn-more/image-factory/
     # Adjust this image to either 1. install new extensions and/or 2. upgrade Talos
     # 1. Go to https://factory.talos.dev/ and generate a new path
     # 2. Pass in a different 'talos_version'
-    image: factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.12.7
-    disk: /dev/sda # The disk used for installations.
+    image: factory.talos.dev/metal-installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.13.10
+     # Giving a consistent disk location for the install.
+     # The Proxmox VM has scsi0 set as the first boot device.
+    disk: /dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0
     wipe: false # Indicates if the installation disk should be wiped at installation time.
   kubelet:
-    image: ghcr.io/siderolabs/kubelet:v1.35.4
+    image: ghcr.io/siderolabs/kubelet:v1.36.1
     defaultRuntimeSeccompProfileEnabled: true
     disableManifestsDirectory: true
     extraArgs:

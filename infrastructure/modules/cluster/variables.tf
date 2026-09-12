@@ -24,8 +24,6 @@ variable "control_plane" {
     disk_size = number
     datastore = string
 
-    talos_version = string
-
     talos_virtual_ip = string
 
     vlan_id        = string
@@ -59,10 +57,22 @@ variable "worker_nodes" {
       datastore_id   = string
       disk_interface = string
       size           = number
+      ssd            = bool
     })), [])
 
     # Optional QEMU machine type. PCIe passthrough requires 'q35'. Defaults to 'pc'.
     machine_type = optional(string, "pc")
+
+    # Optional VM firmware. OVMF/UEFI is recommended for modern PCIe GPU passthrough.
+    bios = optional(string, "seabios")
+
+    # Optional EFI disk. Required when bios='ovmf'.
+    efi_disk = optional(object({
+      datastore_id      = string
+      file_format       = string
+      type              = optional(string, "4m")
+      pre_enrolled_keys = optional(bool, false)
+    }), null)
 
     # Optional PCI passthrough devices (e.g. GPUs). Uses Proxmox resource mappings.
     pci_devices = optional(list(object({
@@ -71,8 +81,6 @@ variable "worker_nodes" {
       rombar  = bool
       xvga    = bool
     })), [])
-
-    talos_version = string
 
     talos_virtual_ip = string
 

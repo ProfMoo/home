@@ -110,8 +110,10 @@ kubectl -n storage rollout restart deploy/rook-ceph-operator
     In the pod, inspect and wipe only the intended Rook data disks:
 
     ```sh
-    # Should show the intended disks to be wiped (indicating leftover bluestore data)
+    # Should show the intended disks to be wiped
+    # This ones indicates the disk is seen at all
     lsblk -o NAME,SIZE,FSTYPE,MOUNTPOINT
+    # This one indicates there is an actual ceph volume (with data that needs to be wiped)
     ceph-volume raw list
 
     # Wipe the disks

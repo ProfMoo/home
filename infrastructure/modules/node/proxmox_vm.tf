@@ -41,6 +41,8 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
   # NOTE: Defaults to 'pc'. Override to 'q35' for nodes with PCIe passthrough.
   machine = var.machine_type
 
+  bios = var.bios
+
   cpu {
     cores = var.cpu_cores
     type  = "x86-64-v2-AES"
@@ -92,6 +94,17 @@ resource "proxmox_virtual_environment_vm" "talos_node" {
       interface    = disk.value.disk_interface
       size         = disk.value.size
       serial       = disk.key == 0 ? "storage_cluster_disk" : "storage_cluster_${disk.key}"
+      ssd          = disk.value.ssd
+    }
+  }
+
+  dynamic "efi_disk" {
+    for_each = var.efi_disk == null ? [] : [var.efi_disk]
+    content {
+      datastore_id      = efi_disk.value.datastore_id
+      file_format       = efi_disk.value.file_format
+      type              = efi_disk.value.type
+      pre_enrolled_keys = efi_disk.value.pre_enrolled_keys
     }
   }
 
