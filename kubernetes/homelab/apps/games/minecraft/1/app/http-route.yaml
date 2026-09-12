@@ -5,7 +5,7 @@ kind: HTTPRoute
 metadata:
   name: minecraft-1
   annotations:
-    external-dns.alpha.kubernetes.io/target: external.drmoo.io
+    external-dns.kubernetes.io/target: external.drmoo.io
     gethomepage.dev/enabled: "true"
     gethomepage.dev/description: Minecraft 1
     gethomepage.dev/group: Games

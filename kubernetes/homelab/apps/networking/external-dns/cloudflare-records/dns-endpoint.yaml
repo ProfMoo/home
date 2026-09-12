@@ -12,5 +12,5 @@ spec:
       # Just because this record is created doesn't mean drmoo.io will provide access to anything.
       targets: ["74.105.65.180"]
       providerSpecific:
-        - name: external-dns.alpha.kubernetes.io/cloudflare-proxied
+        - name: external-dns.kubernetes.io/cloudflare-proxied
           value: 'false'
