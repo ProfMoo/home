@@ -122,6 +122,6 @@ variable "pci_devices" {
     rombar  = bool   # Expose device option ROM to VM. Usually true.
     xvga    = bool   # Mark as primary display adapter. False for compute GPUs (e.g. Tesla T4) with no display outputs.
   }))
-  description = "PCI devices to pass through to the VM (e.g. GPUs). Uses Proxmox resource mappings (api_token compatible). Requires machine_type='q35' if pcie=true."
+  description = "PCI devices to pass through to the VM (e.g. GPUs). Uses Proxmox resource mapping. Requires machine_type='q35' if pcie=true."
   default     = []
 }
