@@ -45,13 +45,16 @@
 27. [X] Fix kromgo
 28. [X] Ensure flux takes over the CRDs that come from the Helmfile
 29. [X] Quiet fans? Link [here](https://blog.hessindustria.com/quiet-fans-on-dell-poweredge-servers-via-ipmi/)
-30. [ ] Setup alert for when my secrets aren't syncing from Bitwarden. Might need an external-secrets metrics exporter.
+30. [X] Setup alert for when my secrets aren't syncing from Bitwarden. Might need an external-secrets metrics exporter.
 31. [ ] Add push alerts back to my phone/somewhere. Pushover costs money, perhaps there is a self-hosted alternative?
-32. [ ] Add alert for when the CPU is getting too hot on the server rack
+32. [X] Add alert for when the CPU is getting too hot on the server rack
     1. [ ] And alerts generally for the hardware
 33. [ ] Figure out a clean way to bootstrap the core 2 secrets into `kube-system`. The problem I ran into was: Create just cilium -> bootstrap secrets -> don't exist. Would be simpler.
     1. [ ] Is it possible to automate the initial secret creation?
 34. [ ] Add linting/formatting to CI
 35. [ ] Use [this](https://www.youtube.com/watch?v=kcWIX7ihUxU) smartplug in the home?
-36. [ ] Apparently tuppr might not work because I spread out the volsync so much that there is never an open window. Fix that
+36. [X] ~~Apparently tuppr might not work because I spread out the volsync so much that there is never an open window. Fix that~~. Actual problem was Rook/Ceph instability due to crashing k8s nodes. Fixed w/ Numa fix.
 37. [X] Ensure Rook breaking changes in 1.20 still work for me. <https://rook.github.io/docs/rook/v1.20/Upgrade/rook-upgrade/#supported-versions>
+38. [ ] Setup smartctl to check on health of drives -> setup alerts for this
+39. [ ] Upgrade rest of Proxmox nodes to 8.4 (or 9+)
+40. [ ] Make bios changes that I made to `moody-good` across the board?
