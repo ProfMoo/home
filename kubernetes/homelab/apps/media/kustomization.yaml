@@ -20,6 +20,7 @@ resources:
   # Putting down Roon for now until I can figure out how to get Multus working on my cluster
   # - ./roon/ks.yaml
   - ./jellyfin/ks.yaml
+  - ./tunarr/ks.yaml
   - ./audiobookshelf/ks.yaml
   # Disabling for now.
   # ABR reaches out toe MAM and qBittorrent directly (instead of using Chaptarr or something). So it doens't do folder organization - gets kinda messy.
