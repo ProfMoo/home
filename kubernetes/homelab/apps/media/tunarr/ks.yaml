@@ -18,15 +18,8 @@ spec:
       kind: HelmRelease
       name: tunarr
       namespace: media
-  components:
-    - ../../../../common/volsync
   interval: 30m
   path: ./kubernetes/homelab/apps/media/tunarr/app
-  postBuild:
-    substitute:
-      APP: *app
-      PVC_NAME: tunarr
-      VOLSYNC_CAPACITY: 5Gi
   prune: true
   retryInterval: 2m
   sourceRef:
