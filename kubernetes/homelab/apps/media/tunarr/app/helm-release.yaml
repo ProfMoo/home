@@ -26,6 +26,7 @@ spec:
             env:
               TZ: America/New_York
               TUNARR_LOG_LEVEL: info
+              TUNARR_DATABASE_PATH: /config/tunarr
             probes:
               liveness: &probes
                 enabled: true
