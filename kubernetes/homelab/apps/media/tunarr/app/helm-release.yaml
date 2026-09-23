@@ -83,7 +83,7 @@ spec:
             sectionName: https
     persistence:
       config:
-        existingClaim: tunarr-config
+        existingClaim: tunarr
         globalMounts:
           - path: /config/tunarr
       media:
