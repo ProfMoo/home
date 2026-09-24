@@ -55,9 +55,9 @@ spec:
             resources:
               requests:
                 cpu: 100m
-                memory: 512Mi
+                memory: 1Gi
               limits:
-                memory: 2Gi
+                memory: 4Gi
     service:
       app:
         controller: tunarr
@@ -86,13 +86,6 @@ spec:
         existingClaim: tunarr
         globalMounts:
           - path: /config/tunarr
-      media:
-        type: nfs
-        server: 192.168.8.248
-        path: /mnt/vault/media
-        globalMounts:
-          - path: /data
-            readOnly: true
       transcode:
         type: emptyDir
         sizeLimit: 8Gi
