@@ -112,6 +112,13 @@ For more information about how `beets` handles release disambiguation, please re
 beet ls album:"Hollow World" -f 'id: $id path: $path | $artist - $artists - $albumartist - $albumartists - $album - $albumtype - $releasegroupdisambig - $albumdisambig - $label - $catalognum | (%aunique{})'
 ```
 
+* With regex-y wildcards
+
+```bash
+beet ls title::"^Out of Body.*" -f 'id: $id path: $path | $artist - $artists - $albumartist - $albumartists - $album - $albumtype - $releasegroupdisambig - $albumdisambig - $label - $catalognu
+m | (%aunique{})'
+```
+
 ### Unrelated TODO
 
 * Once I get [this PR](https://github.com/x1ppy/beets-originquery/pull/5) merged in, the `requirements.txt` for beets can be changed back to use x1ppy's repository rather than my own internal fork.
