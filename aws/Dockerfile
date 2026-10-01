@@ -1,4 +1,4 @@
-FROM ghcr.io/opentofu/opentofu:1.12.6
+FROM ghcr.io/opentofu/opentofu:1.13.1
 
 WORKDIR /opentofu
 
