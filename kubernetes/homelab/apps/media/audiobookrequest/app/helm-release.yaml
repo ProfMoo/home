@@ -21,7 +21,7 @@ spec:
           app:
             image:
               repository: docker.io/markbeep/audiobookrequest
-              tag: "1"
+              tag: "2"
             env:
               TZ: America/New_York
               LOG_LEVEL: info
