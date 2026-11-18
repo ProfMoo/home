@@ -18,7 +18,7 @@ spec:
           idrac-exporter:
             image:
               repository: ghcr.io/mrlhansen/idrac_exporter
-              tag: 2.6.3@sha256:7a95f2862f9c1cd2b66c1704781bb7a709ea1fc17a1ae58cecb09fc81c829b91
+              tag: 3.0.0@sha256:75a62fbd13eb0f8d312198df35b94cdf0b7b39ce2db4ca8da987c84aff4e8b74
             command:
               - /app/bin/idrac_exporter
               - --config=/config/config.yaml
